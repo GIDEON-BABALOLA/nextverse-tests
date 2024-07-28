@@ -1,11 +1,32 @@
 
+
+.users-table-container{
+display: flex;
+flex-direction: row;
+gap: 10px;
+}
+.users-table-children{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.users-table-children span:first-child {
+  background-color: red; /* Change this to your desired color */
+}
+
+
+
+
+
 .new-boy{
   display: flex;
   flex-direction: row;
   gap: 15px;
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
-  padding: 15px;
+  padding: 10px;
+  font-size: 10px;
 }
 
 
@@ -25,7 +46,7 @@ accent-color: #031335;
 width: 15px;/* hide the default checkbox */
 }
 .new-boy-header{
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Poppins";
 }
 .new-father{
@@ -34,17 +55,37 @@ width: 15px;/* hide the default checkbox */
  
  
 }
-.users-page-header{
-  display: flex;
-  flex-direction: row;
-}
+
 .new-grandfather{
   /* margin-top: 50px; */
+
+
 }
-.new-boy span{
- 
-  padding: 7px;
+.users-table-children-now{
+display: flex;
+gap: 30px;
+flex-direction: row;
+/* box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1); */
+
 }
+.legoo span{
+  text-align: center;
+}
+.legoo{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  font-size: 20px;
+
+
+
+}
+
+.new-boy-data li{
+  list-style-type: none;
+}
+
+
 .new-boy span:last-of-type {
   cursor: pointer;
 }
