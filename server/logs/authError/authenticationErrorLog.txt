@@ -1,0 +1,41 @@
+20240509	15:51:58	05816d99-750b-4595-bc13-6caf4077a175	JsonWebTokenError:secret or public key must be provided
+20240509	15:52:01	5a37e44d-d4e4-4a44-bc8e-eab48127d996	JsonWebTokenError:secret or public key must be provided
+20240509	15:52:02	1d24f73d-0477-49ec-bfa1-a7902e375f47	JsonWebTokenError:secret or public key must be provided
+20240509	15:52:03	9ae57ef9-d891-48d7-82a2-36e7dac1a0d2	JsonWebTokenError:secret or public key must be provided
+20240509	15:52:03	a6930f0e-5040-4e24-8b25-a3fe8a0fdae7	JsonWebTokenError:secret or public key must be provided
+20240509	16:00:41	9706f2f2-c82b-460c-b979-295ada0f60f9	JsonWebTokenError:secret or public key must be provided
+20240509	16:01:02	f5ddd002-1b7f-42cd-98a4-7bbe65f2bcc6	JsonWebTokenError:secret or public key must be provided
+20240509	16:01:04	47c4a794-fe28-4233-add3-1f4a1cb60e42	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:11	523ab97b-c78d-4d01-8896-95761d7de951	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:14	34dd3948-e152-4247-b09f-9a82ff5f9da2	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:15	58adb982-ebbf-4787-9992-548bb743d5ef	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:27	7e024cc7-cab0-4676-8a0a-9e16996df63c	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:28	f0f3eea2-a9a6-4cd6-a0ff-75790f7895ed	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:29	2b800f25-96dc-49db-8e60-cfdcca1bb7bc	JsonWebTokenError:secret or public key must be provided
+20240509	16:02:35	4c77d622-5f9c-499e-a2d9-fe6314c93d04	JsonWebTokenError:secret or public key must be provided
+20240509	16:03:08	9455719c-2443-4939-bbc9-34eecaf93542	JsonWebTokenError:secret or public key must be provided
+20240509	16:03:25	34f0a1a2-a762-467c-aed5-959b2ad0dbf8	JsonWebTokenError:secret or public key must be provided
+20240509	16:03:32	0034c95a-553e-4b2e-afc8-f0428b51de7e	JsonWebTokenError:secret or public key must be provided
+20240509	16:03:38	57b47af8-c621-4054-ad03-b2cc40f631f6	JsonWebTokenError:secret or public key must be provided
+20240509	16:04:07	8749f1c8-b53b-4b6b-b057-22dd71488f92	ReferenceError:LIGHT_NOTE_JWT_TOKEN_SECRET is not defined
+20240509	16:04:11	e387d21d-9fa0-469e-9aea-2a2c3a6b591b	ReferenceError:LIGHT_NOTE_JWT_TOKEN_SECRET is not defined
+20240509	16:04:27	6e754ca6-f08d-4d82-87d9-93e423354721	JsonWebTokenError:secret or public key must be provided
+20240509	16:04:30	c9f02d1f-f809-4f4f-aa63-7d073b7dd5f1	JsonWebTokenError:secret or public key must be provided
+20240509	16:08:39	ba89788d-90d9-446f-bc77-cd48112a8c67	JsonWebTokenError:invalid signature
+20240509	16:43:28	f7967d57-7d9b-4553-bee8-b24f1c2bb13c	JsonWebTokenError:invalid signature
+20240509	16:43:32	852acc1e-12db-4624-94fb-be1d924cd211	JsonWebTokenError:invalid signature
+20240509	16:43:33	269de144-8978-4147-a3ba-1aeb43c435b9	JsonWebTokenError:invalid signature
+20240509	16:45:23	cd1c5057-111f-40c4-bc05-13502d3331f6	JsonWebTokenError:invalid signature
+20240511	16:43:48	3687b5f1-55f9-4185-ba98-ed88c21a90a2	JsonWebTokenError:jwt malformed
+20240511	16:43:51	dd708695-eddc-4b5d-9f77-bd52b4ea6383	JsonWebTokenError:jwt malformed
+20240511	16:43:52	4cd12ea0-7b0f-460c-a133-ac1c54b6030e	JsonWebTokenError:jwt malformed
+20240511	16:43:54	823f5a00-ddaf-49e1-b7fa-34439dcbb867	JsonWebTokenError:jwt malformed
+20240512	21:25:24	4d5271a4-e82c-494e-86fa-22f23eeac4e0	TokenExpiredError:jwt expired
+20240512	21:25:27	5efccb33-c49f-4586-9f11-97bd7ad96063	TokenExpiredError:jwt expired
+20240512	21:25:28	57bb7c14-385d-47fc-bde0-39df67daa16b	TokenExpiredError:jwt expired
+20240512	21:25:29	2e19a2cb-4304-4d9a-bc15-128b9a568b3c	TokenExpiredError:jwt expired
+20240515	10:55:47	4932a72e-752d-4ea9-ab5c-b602c0cd5fdc	TokenExpiredError:jwt expired
+20240515	10:55:49	dfa950e7-607f-40f2-8f1d-387d97610239	TokenExpiredError:jwt expired
+20240515	10:55:50	d1dbd583-04f6-4c29-91ca-4028e3cbb6a9	TokenExpiredError:jwt expired
+20240515	10:55:58	5c93e49e-a1e5-4596-b400-bc0125be64f2	TokenExpiredError:jwt expired
+20240515	10:55:59	ba967b57-865c-4fcb-8771-dfef88101cbc	TokenExpiredError:jwt expired

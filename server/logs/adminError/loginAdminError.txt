@@ -1,0 +1,30 @@
+20240512	19:39:59	a54e7735-c641-4c35-9796-dbdd9f221a41	adminError: Invalid Credentials
+20240512	21:09:35	eb713c68-40e5-4bb3-bf0f-75237863f5f0	ReferenceError: validateEmail is not defined
+20240512	21:09:36	add64234-49c7-404e-9ec5-c4a54b2a7fa4	ReferenceError: validateEmail is not defined
+20240512	21:09:37	88eac68b-f3f6-4952-9b6b-c9cccf482bc2	ReferenceError: validateEmail is not defined
+20240512	21:10:47	a90b4e3f-f9f0-47eb-84c5-f0e52af08d76	userError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:10:48	e222df83-b488-4ff4-86e7-8dd78b45fd8c	userError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:10:49	2e04b6bd-e8eb-4370-b194-85166a491c7f	userError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:10:50	b5942010-c51d-4f83-8f00-acfa260dd8fe	userError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:10:51	37c460cb-6a87-44e6-b9bb-b67397c0bf43	userError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:16:26	5c794841-5a11-4e2f-bf1b-9f901d555a6d	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:16:27	edc49347-116b-41a0-9f9d-5f9d4369b6da	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:16:28	060ba10e-552a-40e9-9ee5-5b897f048a24	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:16:48	cbaa9ed0-ac14-47f1-8042-c5e812f447b3	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:13	b1fb393e-5939-4757-89d8-768837d82ba7	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:15	f42d4a96-1609-4b3f-b7ee-9412d75e4f43	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:16	5e37f866-350f-462f-9f40-04b171de9994	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:17	d97a405e-92f1-4c8e-9a53-d93772579e13	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:21	93db23e3-3f68-4546-8948-845340c450a4	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:21	112642df-2eb1-4253-b120-fd3eaf3a296b	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:22	2bb66265-59f7-452c-820a-441152294e68	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:18:23	27f35521-6096-44b0-be90-4fa8e8246613	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:01	5afacbef-c2c2-48b0-905c-34e89691bf28	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:03	81ce5f69-dbcc-4849-84ca-393d642c8674	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:06	02ecdd2a-f308-4bdd-86ac-82afda9d9918	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:06	7da79d52-60a6-4d03-b6d5-2b1620072151	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:07	3b15df40-781f-49d0-a3bc-64ed42618997	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240515	10:56:13	6b99586d-039c-4e38-a4e1-022dc68a4d4a	adminError: Invalid Credentials
+20240515	10:57:13	651e65d3-cf07-4f47-9a0c-2b07506e4b44	adminError: Invalid Credentials
+20240515	10:57:14	f993d2f9-4a89-46ea-afe7-6e59e7847bd9	adminError: Invalid Credentials
+20240515	10:57:15	29177b00-2207-472d-a49b-dff9737b3633	adminError: Invalid Credentials

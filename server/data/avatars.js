@@ -1,0 +1,35 @@
+const avatars = [
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408743/Avatars/b1hk7r5d0eopfo4lkosc.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408765/Avatars/cakgeqd55ncpaszkbhzv.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408719/Avatars/d0a1lsvavgz33gdmviwr.png',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408769/Avatars/ekwq2nt3cwstxftpravg.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408721/Avatars/ewbrxopkc07aumowl1qh.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408765/Avatars/ftohdhno5z8rptatc984.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408724/Avatars/fwzjgxv9nwqerukvkmfo.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408698/Avatars/gberfhf0u4duaila0pzf.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408771/Avatars/i5fs4w9lukc3zdcqmiam.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408770/Avatars/j2qjukxg92ezd4oerzqz.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408772/Avatars/nb31pc5ncpw29rew1kjg.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408705/Avatars/nqygbbqcueadblm4mxjo.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408769/Avatars/p7kwmyzmaknatqsygjx7.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408717/Avatars/po9odsukesgqpk4sxvts.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408724/Avatars/qsxouazfwl38xzqjzs0n.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408767/Avatars/rqnsiqdkanhvewf6v7jb.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408766/Avatars/s0tt5avbtddnlnvvog21.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408764/Avatars/sxvw9lcgcpk956xmg16d.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408770/Avatars/szqnijp8r22oqll5rzmn.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408765/Avatars/tttpthb4houkvzpfi7wl.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408770/Avatars/umoj9h3rvik6xal88sh5.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408723/Avatars/vybysna0vs8dbf8qkjd1.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408768/Avatars/xeny3iz73ogfcbaarisv.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408697/Avatars/ybymlysawco7unmyxd6b.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408710/Avatars/yi07tltxmoaej1ybc0hh.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408771/Avatars/ylfkcmnzu704azun8msu.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408738/Avatars/yq7olsu4djjzlv643nsm.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408775/Avatars/yqsbhjvpt99uddtuy7tr.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408712/Avatars/yxuavl3ckq9ziaw0kavl.jpg',
+  'https://res.cloudinary.com/doctr0fct/image/upload/v1716408716/Avatars/zjsir46bzy2k1rt3dwgu.jpg'
+]
+console.log(avatars.length)
+module.exports = { avatars }
+// Example usage: replace 'your-folder-name' with the actual folder name

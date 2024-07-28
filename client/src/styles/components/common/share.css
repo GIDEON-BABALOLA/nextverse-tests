@@ -1,0 +1,175 @@
+
+
+:root {
+    --primary: #323AC0;
+    --text: #252728;
+    --headline: #1A1E1F;
+    --gray-text: #6D7679;
+    --white: #fff;
+    --background: #F8F8FF;
+    --gray-dark: #9BA2A4;
+    --gray-light: #F3F3F4;
+}
+
+.litenote-share-social-icons{
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+     margin-top: 2%;
+     cursor : pointer;
+}
+.litenote-share-btn {
+    border-radius: 50%;
+    appearance: none;
+    padding: 1rem;
+    color: var(--primary);
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 
+        0px 3px 6px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    background: var(--white);
+    border: none;
+}
+
+.litenote-share-btn:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 
+        0px 6px 12px;
+}
+
+.litenote-share-btn svg {
+    stroke: var(--primary);
+}
+
+.litenote-close-btn {
+    background: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.litenote-close-btn svg {
+    stroke: var(--gray-dark);
+    height: 1.75rem;
+    width: 1.75rem;
+}
+
+
+.litenote-copy-link-dialog {
+
+    border-radius: 0.75rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 
+        0px 8px 24px;
+    max-width: 36rem;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 4rem;
+    border: none;
+    background: var(--white);
+    font-family: "Poppins", sans-serif;
+    top: -1000px;
+    transition: all  2s ease;
+    /* position: absolute; */
+}
+
+.litenote-copy-link-dialog header {
+    display: flex;
+    min-height: 4rem;
+    padding: 1.5rem 2rem 0.75rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid 
+        var(--gray-light);
+}
+
+.litenote-copy-link-dialog header h2 {
+    font-size: 1.5rem;
+    color: var(--headline);
+}
+
+.litenote-copy-link-dialog__content {
+    padding: 2rem;
+}
+
+.litenote-copy-link-wrapper {
+    display: flex;
+    color: var(--gray-text);
+    border-radius: 0.5rem;
+    font-weight: 700;
+    color: var(--text);
+    justify-content: space-between;
+    background: var(--gray-light);
+    padding: 0.25rem;
+    padding-left: 1.5rem;
+}
+
+.litenote-copy-link-wrapper input {
+    color: var(--gray-text);
+    outline: none;
+    border: none;
+    width: 100%;
+    font-weight: 800;
+    background: inherit;
+    font-size: 1.2rem;
+}
+
+.litenote-copy-link-wrapper input::selection {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.litenote-copy-link-dialog h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.litenote-copy-link-wrapper button {
+    color: var(--primary);
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    align-items: center;
+    background: var(--white);
+    border: none;
+    box-shadow: rgba(149, 157, 165, 0.2) 
+        0px 3px 6px;
+}
+/* .litenote-share-slide-down {
+    animation: slideDown 0.6s ease-in-out;
+
+  } */
+
+  .slide-dow {
+    top: 100px;
+    transition: all  0.6s ease-in-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+        transform: translateY(-100%); 
+    }
+    to {
+        transform: translateY(0);
+    }
+  }
+
+
+
+    
+  @media screen and (max-width: 768px) {
+    .litenote-copy-link-dialog {
+        margin-top: 10rem;
+        max-width: 23rem;
+
+    }
+  }
+  

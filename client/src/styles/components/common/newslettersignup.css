@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+:root {
+  --clr-neutral-300: hsl(232, 41%, 97%);
+  --clr-neutral-400: hsl(98, 0%, 50%);
+  --clr-neutral-900: #020203;
+  --clr-accent: #ff5e62;
+  /* font weight */
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-700: 700;
+  /* Type */
+  --ff-primary: "Mulish", sans-serif;
+}
+.litenote-newsletter-main,
+.litenote-newsletter-main {
+  width: min(95%, 1136px);
+  margin: 1% auto;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it appears above other elements */
+  font-size: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  
+
+}
+
+
+.litenote-newsletter-news {
+  background-color: #fff;
+  padding: 0.5em 1.25em;
+  /* border-radius: 10px; */
+  box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
+  display: block;
+  padding-top: 10%;
+  position: absolute;
+  transition: all  2s ease;
+  
+  z-index: 4;
+  top: -1000px;
+  width: 90%;
+  margin: 1% auto;
+  left: 0;
+  right: 0;
+  
+  
+}
+.slide-down {
+  top: 150px;
+  transition: all  1s ease;
+}
+.litenote-newsletter-slide-up {
+  display: fixed;
+  animation: slideUp 0.6s ease-in-out;
+}
+
+.litenote-newsletter-news__title {
+  font-size: 1.75rem;
+  margin-bottom: 1.5em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.litenote-newsletter-news-grid {
+  display: grid;
+}
+
+.litenote-newsletter-custom {
+  opacity: 0;
+  position: relative;
+}
+
+
+.litenote-newsletter-custom + label {
+  display: grid;
+  grid-template-columns: 24px auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
+  position: relative;
+  cursor: pointer;
+}
+
+.litenote-newsletter-custom[type=checkbox] + label::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  border: 1px solid #8f94a1;
+  background: transparent;
+}
+
+.litenote-newsletter-custom[type=checkbox] + label::after {
+  content: "✓";
+  color: white;
+  font-size: 1.25rem;
+  position: absolute;
+  top: 0px;
+  left: 4px;
+  transform: scale(0);
+  transition: all 300ms ease-in-out;
+}
+
+.litenote-newsletter-custom[type=checkbox]:checked + label::before {
+  background-color: var(--clr-accent);
+}
+
+.litenote-newsletter-custom[type=checkbox]:checked + label::after {
+  transform: scale(1);
+}
+
+.litenote-newsletter-h-five {
+  font-size: 1.25rem;
+  white-space: nowrap;
+}
+
+.litenote-newsletter-p {
+  grid-column: 2/-2;
+}
+.litenote-newsletter-p{
+  color: #8f94a1;
+  color : hsl(98, 0%, 50%)
+}
+
+.litenote-newsletter-card {
+  padding: 15px 12px;
+}
+
+/* :hover.litenote-newsletter-card{
+  background-color: var(--clr-neutral-300);
+  width: 100%;
+  height: 88px;
+
+} */
+
+
+
+.litenote-newsletter-news__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.litenote-newsletter-news__form input[type=email] {
+  border: 0;
+  outline: 0;
+  padding: 20px 30px;
+  border-radius: 3px;
+  border: 1px solid #8f94a1;
+  font-size: 17px;
+}
+
+.litenote-newsletter-news__btn {
+  border: none;
+  outline: none;
+  background: transparent;
+  background-color: var(--clr-accent);
+  padding: 20px 30px;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight:bolder;
+}
+.litenote-newsletter-news__btn:active{
+  transform: scale(0.95);
+}
+
+
+@keyframes slideDown {
+  from {
+      transform: translateY(-100%); 
+  }
+  to {
+      transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(0); 
+}
+to {
+    transform: translateY(-100%);
+}
+
+
+}
+
+
+
+
+@media screen and (max-width:768px) {
+  .litenote-newsletter-news__title {
+
+    margin-bottom: 0em;
+
+  }
+  .litenote-newsletter-news {
+    width: 95%;
+  }
+}
+@media (min-width: 550px) {
+  .litenote-newsletter-news-grid {
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .litenote-newsletter-news {
+    padding: 4.125em 2.25em;
+  }
+
+  .litenote-newsletter-news__form {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .litenote-newsletter-news__form input[type=email] {
+    flex: 0 0 480px;
+  }
+}

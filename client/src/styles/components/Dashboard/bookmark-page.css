@@ -1,0 +1,71 @@
+:root{
+    --box-bookmark-slider--shadow: none;
+}
+.dark-theme-variables{
+    --box-bookmark-slider--shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+}
+.bookmark-tabs-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    
+}
+.bookmark-tabs{
+    box-shadow: var(--box-bookmark-slider--shadow);
+    padding: 10px;
+    border-radius: 5rem;
+    padding: 10px;
+    display: flex;
+    position:  relative;
+}
+input[type = "radio"]{
+    display: none;
+}
+label{
+    display: block;
+    height: 55px;
+    width: 200px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+.glider{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--color-light);
+    width: 200px;
+    height: 55px;
+    border-radius: 2rem;
+    transition: ease .3s ;
+}
+@media screen and (max-width:765px) {
+    .bookmark-tabs-wrapper{
+       animation: relative;
+    }
+}
+
+@keyframes slideright{
+    from{
+transform: translateX(-50%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+@keyframes slideleft{
+    from{
+transform: translateX(0);
+    }
+    to{
+        transform: translateX(-50%);
+    }
+}

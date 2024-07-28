@@ -1,0 +1,5 @@
+20240518	22:05:10	0676838a-0025-4217-8a83-efc45c3b6766	ReferenceError: follower is not defined
+20240518	22:13:39	0e186398-fae8-447e-9b74-fbca05ea6f0c	TypeError: this.findByIdAndUpdate is not a function
+20240518	22:14:08	19dba2e5-1815-4602-8ab1-1e0570bab8cc	TypeError: this.findByIdAndUpdate is not a function
+20240518	22:17:21	b1c2f82b-fb19-4217-8eaa-444f541ad612	TypeError: this.findByIdAndUpdate is not a function
+20240518	22:18:23	6ad2e73a-f32d-43f9-8199-aa237d625bd9	TypeError: this.findByIdAndUpdate is not a function

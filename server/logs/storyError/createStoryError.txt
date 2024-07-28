@@ -1,0 +1,126 @@
+20240518	22:44:08	8067427d-4502-4b58-a80b-94c61e9e2907	userError: Please Fill In All The Fields
+20240518	22:44:10	8a9f9127-f044-41fc-abf0-6498dd60ecb3	userError: Please Fill In All The Fields
+20240518	22:44:52	387194e2-6cf7-4ac3-ba23-d52d8fa71a32	userError: Please Fill In All The Fields
+20240518	22:48:01	775ecf26-bb1d-4a84-a0ed-b3252ff16083	ReferenceError: username is not defined
+20240518	22:48:02	b3c1d6a5-f67f-404b-8b29-33348b780cbc	ReferenceError: username is not defined
+20240518	22:48:33	d73aa4b6-bcb1-467a-b929-8e530d8415b2	ReferenceError: username is not defined
+20240518	22:48:34	ecfd2848-6aa1-4959-821f-e33e248b2bee	ReferenceError: username is not defined
+20240518	22:48:35	4513a606-0cd3-4fbd-ad9e-56748c8e27d4	ReferenceError: username is not defined
+20240518	22:49:23	de67590a-efa3-48ca-a401-bacf8d81f926	ReferenceError: username is not defined
+20240518	22:50:06	7845e150-6146-4c87-8cad-306e63a5579b	ReferenceError: Cannot access 'story' before initialization
+20240518	22:50:07	a4134899-dde4-4994-980e-5e120ac8338c	ReferenceError: Cannot access 'story' before initialization
+20240518	22:51:05	c38d5db8-1435-4edd-91c4-24546ddf3492	ReferenceError: Cannot access 'story' before initialization
+20240518	22:51:31	de7ff15d-f4a7-497d-aeea-5a369a4ab170	ReferenceError: picture is not defined
+20240518	22:51:47	2040789f-873c-443d-abb9-8dd57c49f930	TypeError: req.files is not iterable
+20240518	22:52:59	b2017d32-48fa-4c4a-96a2-22bd12e1cbd3	userError: Pls Choose An Image To Upload
+20240518	22:54:47	58cb2ffe-7cc3-4a16-8e1e-32dd21d4a07f	userError: Please Fill In All The Fields
+20240518	22:54:48	efed8ed7-e081-4fe6-bc09-6a08b788c7cc	userError: Please Fill In All The Fields
+20240518	22:54:49	b99fde62-60cd-4897-a47c-1cf56e8e88c5	userError: Please Fill In All The Fields
+20240518	22:54:58	e74c0ecc-6e51-4251-b01c-4aa2e22f24b8	userError: Pls Choose An Image To Upload
+20240518	22:55:18	c5021f25-0d25-45a0-93cf-b42ffb96bf94	userError: Please Fill In All The Fields
+20240518	22:55:19	f3c1ebc3-d9f4-4d30-baaf-79ee834c963f	userError: Please Fill In All The Fields
+20240518	22:55:20	b4a9b3bd-bfd0-4c06-b015-156207963a54	userError: Please Fill In All The Fields
+20240518	22:55:21	52359c72-a602-4c9f-a630-5839429d4194	userError: Please Fill In All The Fields
+20240518	22:55:33	2c547fc7-be53-4f7f-b2c4-ae13831fe5c5	userError: Please Fill In All The Fields
+20240518	22:56:08	efedf4db-8ec6-4df6-b47f-e34c6a9acc0a	userError: Pls Choose An Image To Upload
+20240518	22:56:09	7bde9494-f8d5-471d-a29a-515f2894e14b	userError: Pls Choose An Image To Upload
+20240518	22:56:10	8687af3e-a420-44e1-8777-464cc2f7b9fa	userError: Pls Choose An Image To Upload
+20240518	22:56:11	0df5b9e5-9239-4905-97d0-92a2f53b0709	userError: Pls Choose An Image To Upload
+20240518	22:56:13	a7ff8c90-fe6c-4e20-8aff-e56978c0d61d	userError: Pls Choose An Image To Upload
+20240518	22:56:14	992d3872-6187-4093-bd8b-a6274ec683ae	userError: Pls Choose An Image To Upload
+20240518	22:56:14	f576b51d-7b70-4fd8-bbe1-77a0fe58e9c1	userError: Pls Choose An Image To Upload
+20240518	22:56:42	c181981c-b715-4bba-b111-338741a6e1ba	userError: Please Fill In All The Fields
+20240518	22:56:43	93415dd9-66be-4cc6-969e-91efdf483551	userError: Please Fill In All The Fields
+20240518	22:56:44	d5abb640-7d40-493f-98a3-7ee46980de1a	userError: Please Fill In All The Fields
+20240518	22:56:53	e3a1b957-d977-4b8a-a647-92e9b60b12b8	userError: Please Fill In All The Fields
+20240518	22:56:54	13c968c0-e6ff-4d35-88c5-b93b5c2a3782	userError: Please Fill In All The Fields
+20240518	22:56:54	a63e4bea-5bf9-4d8e-83cb-8f58634f1b05	userError: Please Fill In All The Fields
+20240518	22:56:54	33af152b-ee2f-4da5-886a-53ddcfebc145	userError: Please Fill In All The Fields
+20240518	22:57:00	ec0e2b13-2d23-4e8a-9b90-57ae48e7745f	userError: Pls Choose An Image To Upload
+20240518	22:57:03	acd5c25d-74b0-47fd-b44b-124f2c334967	userError: Pls Choose An Image To Upload
+20240518	22:58:16	19674908-50ce-4d6b-8306-038b1793e657	userError: Pls Choose An Image To Upload
+20240518	22:58:26	a2260064-19e7-4f21-8f8b-3ee8d3a0655f	userError: Please Fill In All The Fields
+20240518	22:58:30	35dae32b-4148-4dfc-a5da-6ed8eb8e4088	userError: Please Fill In All The Fields
+20240518	22:58:30	d7d1bcda-fec1-4a72-b19f-f25f639da462	userError: Please Fill In All The Fields
+20240518	23:00:00	bf3bb6f2-0ba9-459e-a41d-27dd3df5e3a5	userError: Please Fill In All The Fields
+20240518	23:00:16	69b0b941-54e7-4814-a3a0-6f35d7c631ed	userError: Please Fill In All The Fields
+20240518	23:00:26	fa6d20e9-e210-4fe4-9478-4ef2e242dc4d	userError: Pls Choose An Image To Upload
+20240518	23:00:27	81411bce-0fbb-41f7-921e-d8ed3d90f703	userError: Pls Choose An Image To Upload
+20240518	23:00:52	e04ffcd9-c001-472d-9505-be21a43e44d6	userError: Please Fill In All The Fields
+20240518	23:00:54	bf21dee7-ab7a-4a1e-89c4-4db1d29d300d	userError: Please Fill In All The Fields
+20240518	23:04:04	c63ebe6f-1938-4a81-8a49-08ae8fdf0046	userError: Pls Choose An Image To Upload
+20240518	23:04:06	66c30cc6-ba0e-4990-8e59-d04ffc9eaaf2	userError: Pls Choose An Image To Upload
+20240518	23:04:06	3986697a-491c-4de7-9a87-91ac2a45ecf3	userError: Pls Choose An Image To Upload
+20240518	23:04:11	7efe726a-b738-4602-bdee-73f1e8c316ed	userError: Please Fill In All The Fields
+20240518	23:04:12	7268dac6-1f32-4ebb-9618-fd97ef6d5849	userError: Please Fill In All The Fields
+20240518	23:08:33	6c921de1-876e-4ec6-9bc3-ae3924e3ab3d	userError: Please Fill In All The Fields
+20240518	23:08:41	1b49d5cf-61f0-451e-8c7c-492639b4d0ea	userError: Pls Choose An Image To Upload
+20240518	23:09:46	5aeb5f74-f24e-4b62-a6ee-667ea4885d7a	userError: Pls Choose An Image To Upload
+20240518	23:09:47	74c3f429-b411-4dc7-8066-ac593f8989e4	userError: Pls Choose An Image To Upload
+20240518	23:09:49	4a665bba-c100-4c3a-9b79-4d86231ec2a0	userError: Pls Choose An Image To Upload
+20240518	23:09:54	13bc23b8-f51c-4811-83d4-b6659bc83e3c	userError: Please Fill In All The Fields
+20240518	23:09:56	0e47c80c-7990-40e9-b0f0-e523248ef24f	userError: Please Fill In All The Fields
+20240518	23:09:58	47dc9861-c0bd-4a60-be43-d8e560818390	userError: Please Fill In All The Fields
+20240519	13:25:18	4785f2e4-a916-4db2-b3c6-993a5526ca63	userError: Pls Choose An Image To Upload
+20240519	13:25:19	64e39b17-9e7b-4757-b7d7-88143beccd06	userError: Pls Choose An Image To Upload
+20240519	13:25:38	37f43ff8-3012-469c-a7f9-c2b66c16bc09	userError: Please Fill In All The Fields
+20240519	13:31:23	2aa61558-76b7-463a-a4b2-27674af14fbc	ReferenceError: cloudinaryUpload is not defined
+20240519	13:32:03	2bc38803-8897-4bc7-be6d-41e8c8183ffb	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240519	13:33:07	f665b21c-08d8-47c9-8fe9-0fb1b44ce220	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240519	13:33:44	b6a0f2bc-78be-4efd-a183-ded94654ffa5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240519	16:22:58	94f2bd7a-bbdc-45d6-a8cf-e63814859080	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240519	16:27:29	a50fa7ec-37e8-43c8-844f-cd1d12a49369	ValidationError: Story validation failed: category: `spiritual` is not a valid enum value for path `category`.
+20240519	16:28:15	f27f401a-6627-45d0-8cda-294f5c230c4a	ValidationError: Story validation failed: category: `fiction` is not a valid enum value for path `category`.
+20240519	16:29:49	377873da-3438-4139-ab19-fdd5bb95a985	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240519	22:13:25	a7b5e196-deb8-4ef1-b69a-eb1aa3c8b653	ValidationError: Story validation failed: storyId: Path `storyId` is required.
+20240519	22:15:27	47e739d7-2662-484c-8ffa-c2a7f081a9d7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240522	21:40:35	889474fc-37d7-4264-a0e5-629ddad5ad02	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240522	21:41:21	1ca223cf-071f-4390-a6d3-bbb917bbb7fd	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240522	21:41:22	eddbbad6-8efe-4c3a-89bc-83002a80058a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240523	20:50:25	bc4aa538-2941-444d-b9b9-c098bb1f60f1	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240523	21:10:07	d834381d-6be7-4a98-8943-1df332453ef7	ValidationError: Story validation failed: category: `Payday` is not a valid enum value for path `category`.
+20240523	21:10:21	58dd2cee-d299-408d-9170-6a16274f47b7	ValidationError: Story validation failed: category: `Payday` is not a valid enum value for path `category`.
+20240523	21:10:43	98f4a687-7899-49ba-a570-2f02d2e66d88	ValidationError: Story validation failed: category: `title` is not a valid enum value for path `category`.
+20240523	21:12:06	f229ea30-abb8-45e5-bfd8-5ef4a489f856	ValidationError: Story validation failed: category: `fictionu` is not a valid enum value for path `category`.
+20240523	21:12:56	17f3f94c-f38e-454a-8408-c4624882c0fd	ValidationError: Story validation failed: category: `fictionu` is not a valid enum value for path `category`.
+20240523	21:14:21	36bdf1b9-84be-4090-87b2-6c5318ded981	ValidationError: Story validation failed: category: `fictionu` is not a valid enum value for path `category`.
+20240523	22:07:26	95743f52-3284-492b-b7d7-30146da0f0e6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240523	22:07:27	dead7378-7be3-45bb-bc80-0d28b4d47a51	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240523	22:27:21	f4add602-d067-46ea-95ef-269f0235c2b6	MongoServerError: E11000 duplicate key error collection: lightnoteDB.stories index: slug_1 dup key: { slug: "payday" }
+20240523	22:28:28	4ac724b4-b65c-4233-bcb6-014b1d3864cb	MongoServerError: E11000 duplicate key error collection: lightnoteDB.stories index: slug_1 dup key: { slug: "payday-code" }
+20240523	22:29:46	c33d4f15-1f94-43be-8e0b-17e706f1d0fd	userError: Pls Choose An Image To Upload
+20240523	22:30:55	5955bdad-87a0-425f-80a7-890be4ab9a4c	userError: Pls Upload Two Images For This Story
+20240523	22:30:56	c253f868-26cb-40f5-a556-232923efaccf	userError: Pls Upload Two Images For This Story
+20240523	22:30:57	00d6d49d-9739-4c00-bea0-b4c96366aef9	userError: Pls Upload Two Images For This Story
+20240523	22:31:23	434118b2-1485-41bc-abc5-6905d96619a5	MongoServerError: E11000 duplicate key error collection: lightnoteDB.stories index: slug_1 dup key: { slug: "payday-code-man-dope" }
+20240523	22:34:00	56579bdd-e7bc-46b3-a539-9f81c2f99e3c	userError: A story with this title already exists, pls pick another title
+20240523	22:34:03	d683be6f-d5d6-4076-9701-a429ad91e002	userError: A story with this title already exists, pls pick another title
+20240523	22:34:04	6efdeb2b-fb0b-47b4-bf22-bd2afaf61c7a	userError: A story with this title already exists, pls pick another title
+20240523	22:34:04	683e6bda-2ce9-414f-be2d-503ef8fed275	userError: A story with this title already exists, pls pick another title
+20240523	22:40:44	6f715058-ab9d-41fa-b294-6a86526b9234	userError: A story with this title already exists, pls pick another title
+20240524	04:40:03	5562e04c-187e-4fdf-969e-06bdb35ff04f	userError: A story with this title already exists, pls pick another title
+20240524	04:40:16	40b4cf75-6ef5-4e42-8ff1-2860138f7648	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240524	04:41:19	22cd532e-5a0d-4e21-95f6-ad94bd6ac577	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240524	04:44:14	32d1d90d-41bb-4c26-9290-13fb998cb256	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240524	04:58:47	1fbc0640-ada9-4302-9efa-c3d037dfe028	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240524	04:59:46	e095f97c-37fe-4b3e-b01a-c7c26f1c1ac5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240525	20:49:33	24bcad53-1866-41d6-8886-12e8e41614f1	ValidationError: Story validation failed: currency: Path `currency` is required.
+20240525	21:11:07	8dc2e3a1-ac0d-421a-b4d1-04e4814a689a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240525	21:12:12	810f3cee-cbf2-4f1a-b677-b2d7a13eebb6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240525	21:31:20	80f37588-77a1-4b26-bfd3-c6d0ff8797eb	userError: A story with this title already exists, pls pick another title
+20240526	20:47:10	b95ee379-bf6f-45b6-966c-c95869d862b4	userError: A story with this title already exists, pls pick another title
+20240526	21:08:25	14c4b450-4af6-416b-a121-5fdc148c1807	userError: A story with this title already exists, pls pick another title
+20240526	21:10:31	f06a7b9d-f3d7-4246-b56d-ce7e5823972a	userError: A story with this title already exists, pls pick another title
+20240526	21:12:54	73d03dd1-082e-4320-b0d3-4c3a997a7897	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240526	21:14:16	39384fad-98fa-4b55-8f0c-9646a4244884	ReferenceError: text is not defined
+20240526	21:16:15	96989c24-1dba-4f04-94d7-18c15c3bd4d1	ReferenceError: text is not defined
+20240526	21:17:25	b36f1e7f-e76a-447a-8a50-80f0dad266fc	ReferenceError: text is not defined
+20240526	21:33:18	1eedbb2e-461a-4e5f-873f-997337f52e8e	userError: A story with this title already exists, pls pick another title
+20240526	21:40:11	396a02cd-aa92-4c76-9837-07f30eec59a7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240526	21:49:44	89007098-be62-4ef6-b1cc-757ea4b94c5f	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240526	21:55:07	d44a168e-355f-496d-8af5-903460ff706b	userError: A story with this title already exists, pls pick another title
+20240528	10:02:18	6807e71f-2910-4521-9786-b6cc6ee7a905	userError: A story with this title already exists, pls pick another title
+20240528	10:10:26	1389b24e-f3e9-4b27-a986-4a415adcd084	userError: A story with this title already exists, pls pick another title
+20240528	10:11:03	38dc9197-28ad-416c-ad36-d828e006411f	userError: A story with this title already exists, pls pick another title
+20240528	10:48:02	d828143d-a759-4ffe-b90f-cece93385dc6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240528	10:58:13	41a66d43-7b68-45cf-adba-3d501b73fe23	userError: A story with this title already exists, pls pick another title

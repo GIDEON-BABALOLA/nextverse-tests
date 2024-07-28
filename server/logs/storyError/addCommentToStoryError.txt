@@ -1,0 +1,2 @@
+20240528	11:39:39	b6f0fe09-b35f-4e1c-8a9e-2f40612d4122	ValidationError: Story validation failed: comments.0.commentBy: Cast to ObjectId failed for value "This is a very nice story" (type string) at path "commentBy" because of "BSONError"
+20240528	11:40:43	815f3908-5131-4913-9719-20b554e1ac34	ValidationError: Story validation failed: comments.0.commentBy: Cast to ObjectId failed for value "This is a very nice story" (type string) at path "commentBy" because of "BSONError"

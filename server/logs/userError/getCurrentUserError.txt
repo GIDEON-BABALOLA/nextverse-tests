@@ -1,0 +1,18 @@
+20240510	10:01:32	9d60784f-b422-44a1-b9f8-0965929bf256	TypeError: Found non-callable @@iterator
+20240510	10:05:22	7e562e73-b6c2-41c4-83ca-b3dfbe7a7f4b	TypeError: Found non-callable @@iterator
+20240511	17:37:23	83d2c7cd-64fe-409a-b7d1-e34709eecab4	TypeError: Cannot destructure property 'id' of 'req.user' as it is null.
+20240511	17:38:00	29de9079-cb93-41b2-bed7-9d3374f83e75	userError: Your Account Does Not Exist
+20240511	17:38:01	216be8eb-d9a1-4025-a648-221fe3ee14ff	userError: Your Account Does Not Exist
+20240511	17:38:02	9fb3da33-7efa-44d6-bd81-699a5498163e	userError: Your Account Does Not Exist
+20240512	18:35:48	3a89f7b2-a547-4fe6-8914-11ae2146f477	userError: You Are Not Logged In
+20240512	18:35:49	a122b9e4-1355-4ce1-9f6f-2092521f5e19	userError: You Are Not Logged In
+20240512	18:35:51	2b12fa3d-f2ba-40e7-8583-e1419b71c3ac	userError: You Are Not Logged In
+20240512	18:35:52	6e039e72-5a28-462b-9667-5b6257d213cf	userError: You Are Not Logged In
+20240512	18:35:53	e9e8710c-a757-42b6-9111-8e2c97affd27	userError: You Are Not Logged In
+20240512	18:36:26	7429f065-391c-4639-b4fa-46fece99f9df	userError: You Are Not Logged In
+20240512	18:36:27	b0d16f61-7d02-4506-9e22-3c00cd391b13	userError: You Are Not Logged In
+20240512	18:36:38	9708e245-7dd1-4bf3-8193-11213d3a5a9d	userError: You Are Not Logged In
+20240512	18:36:39	54821747-5eac-4999-8bac-8f849d94aca9	userError: You Are Not Logged In
+20240512	18:36:40	0f8c0505-456d-4356-8d2f-e42c4626a76d	userError: You Are Not Logged In
+20240512	18:36:41	9e19a65f-56dd-48ab-841b-a279bf106a83	userError: You Are Not Logged In
+20240527	12:18:19	cb35896f-d3f7-4ac0-ac22-f07fae26763b	userError: You Are Not Logged In

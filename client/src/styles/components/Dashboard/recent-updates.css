@@ -1,0 +1,27 @@
+.litenote-dashboard-recent-updates{
+    margin-top: 1rem;
+  }
+ .litenote-dashboard-recent-updates h2{
+   margin-bottom: 0.8rem;
+  }
+ .litenote-dashboard-recent-updates .litenote-dashboard-updates{
+ background: var(--color-white);
+ padding: var(--card-padding);
+ border-radius: var(--card-border-radius);
+ box-shadow: var(--box-shadow);
+ transition: 300ms all ease;
+  }
+ .litenote-dashboard-recent-updates .litenote-dashboard-updates:hover{
+ box-shadow: none;
+  }
+  .litenote-dashboard-profile-photo{
+    border-radius:50%;
+   width: 100%;
+   height: 2.5rem;
+  }
+  .litenote-dashboard-update{
+    display: grid;
+    grid-template-columns: 2.6rem auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+     }

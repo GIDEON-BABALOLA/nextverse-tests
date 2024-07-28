@@ -1,0 +1,83 @@
+20240509	22:34:26	5267378c-9b85-4a64-901d-41161d524bad	ReferenceError: cloudinaryUpload is not defined
+20240509	22:37:30	8830cc84-3c94-464b-a127-c5931a73c095	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:38:11	2e627c5c-42ec-47a5-8e4c-e899e35cae3d	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:38:14	5798721c-4a43-40e2-960d-904e55445ca9	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:38:38	024621e6-d5f5-4abf-a6c4-dd0db35962c5	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:39:28	ccb17c59-4fb3-4018-9b38-bce23e4923f3	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:42:40	89a59aeb-d05c-4afa-8131-b9ae6d91abf1	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:42:43	34ca6a9c-ef6e-4e83-abff-9831404049d9	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:43:12	29348b78-0624-4a31-bc16-a357ad88aae3	TypeError: Cannot read properties of undefined (reading '0')
+20240509	22:45:12	9eccddca-279b-453f-835a-5d398712aa57	userError: Pls Choose An Image To Upload
+20240509	22:47:00	1e5a19d1-11a4-427d-a465-cde2c0e66fbd	userError: Pls Choose An Image To Upload
+20240509	22:47:02	b6e3e715-cb92-4145-8d34-361a620d62df	userError: Pls Choose An Image To Upload
+20240509	22:47:03	272dc607-7141-424b-bd45-6a87beda27a1	userError: Pls Choose An Image To Upload
+20240509	22:47:04	bb72410d-f6fd-4a91-a3d1-e3ad921a7979	userError: Pls Choose An Image To Upload
+20240509	22:47:13	ddf29bd8-7cb6-4140-8726-089f810e7d2a	userError: Pls Choose An Image To Upload
+20240509	22:47:32	77edbb04-dda0-47c7-a979-0f4c9afe1bc0	userError: Pls Choose An Image To Upload
+20240509	22:48:40	6e7d57bf-4dcf-423c-a323-5b44e1731f6c	userError: Pls Choose An Image To Upload
+20240509	22:49:21	3da63ce0-4226-43f6-b382-3b8b2b10091b	userError: Pls Choose An Image To Upload
+20240509	22:49:24	619c662d-b138-44c6-aa3b-6327193b5af9	userError: Pls Choose An Image To Upload
+20240509	22:50:09	6289fead-3616-4bfd-a307-3bd0dc8ca9f1	userError: Pls Choose An Image To Upload
+20240509	22:50:37	ba70dff9-94ca-416b-b53c-bde21ee4f07d	userError: Pls Choose An Image To Upload
+20240509	22:52:30	4924c067-b9d1-486e-9631-a6b58943aae4	cloudinaryError: Unable To Upload Picture
+20240509	23:04:51	8383f7d7-f9c0-4773-81f5-25ca398d0612	userError: Pls Choose An Image To Upload
+20240509	23:17:38	f2e637e9-714e-4082-92e1-87c5fc1961cb	TypeError: Cannot read properties of undefined (reading '0')
+20240509	23:17:58	212c7f42-b627-475b-a098-8d4cd7a16335	TypeError: Cannot read properties of undefined (reading '0')
+20240509	23:18:22	98a1b9c7-9a5e-4537-9254-ae2b9e88537b	TypeError: Cannot read properties of undefined (reading '0')
+20240509	23:18:49	366c2160-5200-4829-9b18-6c34c08011fb	TypeError: Cannot read properties of undefined (reading '0')
+20240509	23:19:45	9c061791-43b9-4d0f-816c-299f4a043a98	TypeError: Cannot read properties of undefined (reading 'path')
+20240509	23:21:03	3d795acc-384d-4e5a-ac65-35027ee8e954	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:31:17	be90f81d-0b4b-40ba-b4bc-2111127b85fb	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:32:59	7443cc71-705d-4335-98e5-852e87acc533	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:33:19	494d6633-f6a0-4f6b-8fb1-4481fba3c6cb	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:43:19	9eefc1de-2bdd-47f2-be48-355a11dce06b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:43:24	a013fab3-1238-4fcf-b7d5-d481976f556e	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:44:15	f7cc6dfb-af03-4bdb-82d0-a235838bcf7e	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:45:53	24d2b41f-bb29-432b-a016-cdb759af2d0b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240509	23:47:30	5ab226d3-58df-4dcb-842e-209719458830	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240510	08:51:04	a513b42e-2b57-47bf-8143-4680890b0c08	TypeError: Cannot read properties of undefined (reading '0')
+20240510	09:27:56	6a86aa8b-cc1f-4f95-b2bd-c8186062c869	userError: Image size too large (max 2MB)
+20240510	09:28:22	b81021cf-b7ff-477d-b872-2b9fa65d97ee	userError: Image size too large (max 2MB)
+20240510	10:33:32	c50ad5aa-a656-45d6-a46e-b0fc14ea03d8	TypeError: Cannot destructure property '_id' of 'req.user' as it is null.
+20240510	10:33:54	81044aa4-2447-4e85-a1ea-e8cbb41094f9	userError: Image size too large (max 2MB)
+20240510	12:21:47	fe5b8d36-6b3c-455e-892b-cb438f495924	ReferenceError: Cannot access 'picture' before initialization
+20240510	12:22:25	a31f5664-9321-44a7-925b-e81e1a8c1df0	ReferenceError: Cannot access 'picture' before initialization
+20240510	12:22:52	043ef203-37c4-4ffd-a244-a48d568246c2	ReferenceError: Cannot access 'picture' before initialization
+20240510	12:23:11	68598e2b-05c2-4bd1-a9a2-3af360ff6065	ReferenceError: Cannot access 'picture' before initialization
+20240510	12:23:51	1976c060-fbfa-4cfe-af9f-34e1180b3a3a	cloudinaryError: Unable To Delete Your Formal Profile Picture
+20240510	12:25:16	1015e9c1-4ab6-43ff-9424-4142d50fcb4d	ReferenceError: error is not defined
+20240510	12:25:25	d6bfb9e3-c4cd-4d38-b8da-82a944930160	ReferenceError: error is not defined
+20240510	12:25:47	6219d650-1cbb-4199-8ee0-dcc07bc21546	cloudinaryError: Unable To Delete Your Formal Profile Picture
+20240510	21:12:53	76647630-103a-4097-a0a5-99047b0e96ea	cloudinaryError: Unable To Delete Your Formal Profile Picture
+20240510	21:13:54	66de03d6-378d-443f-b25a-57d3225b7ab2	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:14:57	7e044880-1e99-4f34-b70b-342075b978de	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:22:48	2bdda8d4-1203-4ad1-b6f7-320b5f5ea5e5	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:24:44	7fcc0132-1690-4a9a-8fe1-79edef99d43a	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:25:00	cd85d2ea-cc67-4ebf-beaa-476c69f407df	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:26:40	6975c34d-9141-40d6-a2a0-f6320fbcc736	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:27:15	36fb7e45-cb7d-402e-8cd0-f28a799a247c	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:28:25	4e37c2d9-4f03-4372-86dc-53e0e2247458	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:31:09	22ab8282-f1b8-428a-8d16-c309ac5639b8	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:31:44	95834ad8-0c18-47e7-825f-7d1747e2e780	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:32:46	a1940fc5-0755-484e-8687-a315038d2854	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	21:36:00	e98be833-8494-41ea-94e4-396a97866429	userError: Pls Choose An Image To Upload
+20240510	21:36:23	fa3ee65e-f939-45a7-a276-34fa97d1b826	cloudinaryError: Unable To Delete Your Formal Profile Picture, Check Internet Connection
+20240510	22:42:29	179ba97a-acf0-4051-a8dc-40a16d4aa731	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240511	17:39:16	5f738720-2e26-4888-8c4a-f1241e867140	TypeError: Cannot destructure property '_id' of 'req.user' as it is null.
+20240511	17:39:30	b64446c2-afb6-48c4-9a8f-b528900cb06e	userError: Your Account Does Not Exist
+20240511	17:39:30	96d480bc-e4c3-4fc1-941c-a40e9ec6deaf	userError: Your Account Does Not Exist
+20240512	21:25:42	7c6ad940-441b-4125-b22d-439f7b234157	TypeError: Cannot read properties of null (reading 'picture')
+20240512	21:25:43	107b56f7-42a1-4214-8d53-a7d77d5339b7	TypeError: Cannot read properties of null (reading 'picture')
+20240512	21:25:44	63d60ab9-0760-4bc4-b3cc-9a71c2574679	TypeError: Cannot read properties of null (reading 'picture')
+20240512	21:25:45	1c5446e2-9816-492f-8589-b8d0c6721dbf	TypeError: Cannot read properties of null (reading 'picture')
+20240512	21:25:45	a8c5f615-a235-43a9-aae1-2bc3dc082e0f	TypeError: Cannot read properties of null (reading 'picture')
+20240512	21:26:22	07c83e1f-67ea-48d4-9113-b0a9ec3132d5	TypeError: Cannot read properties of null (reading 'picture')
+20240514	21:42:35	c37ae17b-5ffa-4a15-ac23-c361f14966b1	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20240519	22:35:45	7ebf588e-08dc-431c-9699-4e0ce7615542	userError: This Story Does Not Exist
+20240519	22:36:12	cee8a292-1e43-430a-a439-ce013cc30a05	userError: This Story Does Not Exist
+20240519	22:36:56	ae671239-67a6-4a39-aa19-95955d0ab57e	userError: Pls Enter The Id Of The Story You Want To View
+20240519	22:38:14	b02a860e-91ba-4f4d-928c-3a2df8bb88c8	userError: Pls Enter The Id Of The Story You Want To View
+20240519	22:39:08	520276a1-b826-4729-b07e-0171e0096a0c	userError: Pls Enter The Id Of The Story You Want To View
+20240519	22:39:11	27e83cb6-6a07-499d-91f9-bf8fe6c8d38c	userError: Pls Enter The Id Of The Story You Want To View
+20240519	22:39:42	9926d3f5-82cd-4e37-8742-accbe649d401	CastError: Cast to ObjectId failed for value "44" (type string) at path "_id" for model "Story"
+20240522	10:32:14	74ef5b97-64f9-410e-a8f8-70e4168723e8	userError: Image size too large (max 2MB)

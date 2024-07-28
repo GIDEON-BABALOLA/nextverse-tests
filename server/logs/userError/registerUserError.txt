@@ -1,0 +1,145 @@
+20240509	14:34:18	2fd7d537-0029-4706-9c79-46cc5237d579	undefined: Please Fill In All The Fields
+20240509	14:35:10	88d7141d-ecf6-4d3a-8f6b-f7e35e312732	undefined: Please Fill In All The Fields
+20240509	14:35:11	73ad8ce2-34f5-4278-8b41-1ca8ab338b9e	undefined: Please Fill In All The Fields
+20240509	14:57:39	544f5657-dbf5-45e3-b2b0-0827058e7a48	ValidationError: User validation failed: role: `user` is not a valid enum value for path `role`.
+20240509	14:58:12	c2dba6fc-f300-4a91-8fb9-1616a537ef44	userError: Please Fill In All The Fields
+20240509	14:59:30	c0678731-22ab-4b6d-a613-7e7f53d50a80	ValidationError: User validation failed: role: `user` is not a valid enum value for path `role`.
+20240509	15:00:11	c9a9123e-76f3-4669-98a9-26585ae53b3e	userError: User Already Exists
+20240509	15:00:14	830f72b0-578b-49e8-aa68-50ebd1c343c8	userError: User Already Exists
+20240509	15:23:50	d32fd0fa-c07f-4f7e-94fc-4e4b1a8aa415	userError: Please Provide An Email And A Password
+20240509	15:23:53	3f166efd-b37b-4396-b6ce-6c0a43afa9af	userError: Please Provide An Email And A Password
+20240509	15:24:18	37d6b3d3-1503-428d-acf1-a4fa3b904f1c	userError: Invalid Credentials
+20240509	15:24:27	8ab31ea5-c913-4652-b296-8bd79de5a075	ReferenceError: foundStudent is not defined
+20240509	15:25:44	4c433959-15bc-4813-8988-81df221e66c3	Error: secretOrPrivateKey must have a value
+20240509	15:26:03	647b629c-4e52-4c52-9fe4-665799860c31	userError: User Does Not Exist
+20240509	15:26:35	4865d5ab-3b08-4dd1-8275-c8a75c722442	Error: secretOrPrivateKey must have a value
+20240509	15:27:04	516cba35-a42c-4161-af0e-6d57dd19b47b	Error: secretOrPrivateKey must have a value
+20240509	15:27:36	c2a8de38-464b-429b-b0f7-a5cbfa4fa5b9	Error: secretOrPrivateKey must have a value
+20240509	16:44:45	ab621dc7-1353-4952-9e49-59972b557894	userError: User Already Exists
+20240510	11:11:15	9afb35bf-1cb9-483d-8b18-1f95acb89318	userError: User Already Exists
+20240510	11:21:31	b9b90bfc-2a82-479c-abb8-5fdb14197b68	userError: User Already Exists
+20240511	16:46:53	562df469-dc25-4299-a4aa-aca3b8b6ca8e	userError: User Already Exists
+20240511	16:46:54	32107a68-2d77-42fb-8485-f29be11c4200	userError: User Already Exists
+20240511	17:34:31	ce3a3081-e724-4bb5-9161-ebf9a0f8985e	ValidationError: User validation failed: mobile: Path `mobile` is required.
+20240511	17:34:33	99442b2a-5687-449d-9933-2d16d06a8a91	ValidationError: User validation failed: mobile: Path `mobile` is required.
+20240511	17:40:17	76dbccc6-82af-4bab-8386-28a26d0c5c8b	userError: User Already Exists
+20240511	17:40:18	422fcee5-2bc1-401d-9e1f-369c1e814c53	userError: User Already Exists
+20240511	17:40:19	2d392544-5a97-4755-bbf0-571a4411caa4	userError: User Already Exists
+20240511	17:40:20	a22a3793-17cd-4b64-a070-98551d675317	userError: User Already Exists
+20240512	17:49:55	38c8c8f2-b4ef-48bf-a866-04ccffbd4e8f	userError: Please Fill In All The Fields
+20240512	17:50:15	8918241a-3583-4a8c-b366-da3f0de2088d	userError: Please Fill In All The Fields
+20240512	17:50:17	90116c17-9102-4f7b-8424-768c4df64789	userError: Please Fill In All The Fields
+20240512	21:00:34	3eb851fa-0460-4c6c-91fc-b39f50ab5250	TypeError: emailValidate is not a function
+20240512	21:00:41	884c7f3b-c998-46db-bd10-6d22190cb641	TypeError: emailValidate is not a function
+20240512	21:03:30	cda4459b-deca-414b-b6ee-569bbb4aaae5	userError: User Already Exists
+20240512	21:03:31	3c1bf388-5eff-4b18-907c-109352176cd1	userError: User Already Exists
+20240512	21:03:38	c16a7630-30cf-47ed-8124-8a8b3b8114b1	ReferenceError: adminError is not defined
+20240512	21:03:39	ef2d0391-ad4f-4455-9d51-32dd35286fd4	ReferenceError: adminError is not defined
+20240512	21:03:41	af8f6328-1c29-45af-9abc-9074e6e59b72	ReferenceError: adminError is not defined
+20240512	21:03:42	020c18c3-b4ef-41c3-b937-e4085feed885	ReferenceError: adminError is not defined
+20240512	21:04:47	aa1f6f4d-4e70-4697-b139-3d4fc731453c	ReferenceError: adminError is not defined
+20240512	21:04:48	39edd6be-9de2-4d92-91ef-13843e940d14	ReferenceError: adminError is not defined
+20240512	21:04:49	c652af01-1c2d-4051-8973-7b4fe211e387	ReferenceError: adminError is not defined
+20240512	21:04:49	ab41262d-80e1-4d8d-bb03-0497c030ad54	ReferenceError: adminError is not defined
+20240512	21:04:50	9e221ea5-9629-42ad-935e-351324c19767	ReferenceError: adminError is not defined
+20240512	21:04:51	a0d786c7-ede7-4982-855b-b86637ccfbf8	ReferenceError: adminError is not defined
+20240512	21:05:11	0e41b52c-d488-46c1-a0f2-f8aff58cf1be	userError: Phone Number Has Been Used
+20240512	21:05:12	17a70e2d-415e-47bf-980f-c6c8d5a9770b	userError: Phone Number Has Been Used
+20240512	21:05:17	527afb65-b5c5-4c15-9c4c-db08c3e01c62	userError: Phone Number Has Been Used
+20240512	21:05:18	7018d920-2a0d-40e1-98ea-dcb37def630b	userError: Phone Number Has Been Used
+20240512	21:05:40	7cf0c8f4-eda8-4cc5-a733-aa9a307bdc62	userError: Phone Number Has Been Used
+20240512	21:05:41	0ae20257-a3c0-434a-a7bd-14feaa8f26cf	userError: Phone Number Has Been Used
+20240512	21:06:04	fe840cb4-92e2-47f5-8886-c2a028991702	userError: User Already Exists
+20240512	21:06:06	f36d2d47-6c87-4e1a-90ed-f500793bcee2	userError: User Already Exists
+20240512	21:06:07	27c68db6-b97d-469c-8fb7-3e3855089388	userError: User Already Exists
+20240512	21:06:08	6a0b67fc-e6a1-4512-a874-6b1504b68c26	userError: User Already Exists
+20240512	21:06:31	adba1961-8e51-469f-a15b-7e3d80ca9bd1	userError: Phone Number Has Been Used
+20240512	21:06:35	23c31fc6-f859-4f86-aee5-591ceff282c3	userError: Phone Number Has Been Used
+20240512	21:06:36	8eec7470-974a-4c69-9aea-8b3d7c302242	userError: Phone Number Has Been Used
+20240512	21:07:14	868b4ca7-c7a6-4133-a422-d89bade3eee6	userError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:07:27	602e0074-e541-48f6-a6ce-e08dbe5bb0fc	userError: Phone Number Has Been Used
+20240512	21:07:29	ba1a4d0b-e5b9-4463-8e63-36e566ec473e	userError: Phone Number Has Been Used
+20240512	21:20:31	e874e989-a2a3-476a-8134-223235e12823	userError: Phone Number Has Been Used
+20240512	21:20:44	55ce454e-a7f5-4e5f-9b43-f7c97a265dab	userError: User Already Exists
+20240512	21:20:45	28bde9ee-a0ff-486f-a136-0e5932edc307	userError: User Already Exists
+20240514	15:39:58	77590973-805e-4c69-8161-23329e36e896	ReferenceError: firstname is not defined
+20240514	15:40:00	48cd281b-4e5f-47d3-bb1f-4ae9e270842c	userError: User Already Exists
+20240514	15:40:00	53e45560-3ce5-463c-a537-22996c9415bd	userError: User Already Exists
+20240514	15:40:01	2b188e5f-e22a-43d9-a41a-0bd5bfd797c7	userError: User Already Exists
+20240514	15:40:02	e65e5805-9e3d-4db1-82d9-c9bae7eaf47b	userError: User Already Exists
+20240514	15:40:22	ef9f7ebc-2955-4e0c-b78d-668b4030b9ff	userError: User Already Exists
+20240514	15:40:23	e1ce7bbe-0b5a-4334-bf67-520e2a445400	userError: User Already Exists
+20240514	15:40:23	da6b889e-ac8f-4691-9dce-170528365e2d	userError: User Already Exists
+20240514	15:41:03	0cf3c9e8-e544-4489-afc1-bc80d997c529	userError: User Already Exists
+20240514	15:41:05	51d576fb-1492-4171-9a9e-6a992ecf817e	userError: User Already Exists
+20240514	15:41:07	8ece2212-0af5-413a-9f51-9cc667e35b4c	userError: User Already Exists
+20240514	15:41:08	e74c506f-1160-485c-9d26-593f46adb4ec	userError: User Already Exists
+20240514	15:41:08	c5224541-ffbf-4552-92b9-96d40af5c054	userError: User Already Exists
+20240514	15:41:08	f5ee97fb-241a-45e1-9f66-1518ed0c572b	userError: User Already Exists
+20240514	15:41:08	9a81e0f6-b3de-451f-88ab-72fc5b914681	userError: User Already Exists
+20240514	15:41:08	c34345b6-7c3e-46e9-bfc6-ac00eb722c23	userError: User Already Exists
+20240514	15:41:09	20a70ee5-18de-41e2-8850-b07d0d77d08f	userError: User Already Exists
+20240514	15:41:09	a95513b8-71a5-4acd-ad43-8ce9b17961c7	userError: User Already Exists
+20240514	15:41:09	ce575004-225c-495e-839e-2e57cd6c6dca	userError: User Already Exists
+20240514	15:41:09	f00fbe07-f906-4cd4-bcee-4da34b79502b	userError: User Already Exists
+20240514	15:41:10	aca72ba5-352d-49de-aa8e-fee7e88906f9	userError: User Already Exists
+20240514	15:41:25	f1b721e3-3f3e-4108-aa99-03dd03106514	userError: User Already Exists
+20240514	15:41:26	e275ca3d-e143-4cf0-8fd4-6169526ce146	userError: User Already Exists
+20240514	15:41:36	6b579feb-87d8-4c0d-8423-633b6b799736	ReferenceError: firstname is not defined
+20240514	15:41:38	0afd945f-3802-47ca-a003-97cf736d524e	userError: User Already Exists
+20240514	15:41:39	56bdf37b-a0ad-475d-a7b7-16cb3059773d	userError: User Already Exists
+20240514	15:41:45	00c05f7a-7468-492d-9671-bb11c351f9bb	userError: User Already Exists
+20240514	15:41:45	d2ca107c-67a6-4784-ace7-e56b6a843eeb	userError: User Already Exists
+20240514	15:41:45	e26703cf-20df-41b9-82e6-68af801ffa56	userError: User Already Exists
+20240514	15:41:53	6b3f86f8-4d35-4590-a027-5c58e66e2647	userError: Phone Number Has Been Used
+20240514	15:41:55	9fc345ea-1367-4c9d-a128-a76652a3e995	userError: Phone Number Has Been Used
+20240514	15:41:59	92d6a3ce-ac72-4d93-ab2a-9c6f60dd746c	ReferenceError: firstname is not defined
+20240514	15:42:00	a259921b-c411-4900-9d55-11be4dc7bba5	userError: User Already Exists
+20240514	15:42:46	422dc4cf-b0e1-4b3a-8023-46a8309463f7	userError: User Already Exists
+20240514	15:42:49	f9c3cd9c-f776-4e59-84d5-afc06250caff	userError: User Already Exists
+20240514	15:43:06	5a175edf-18f4-456c-91ad-a4903c5aef40	userError: Phone Number Has Been Used
+20240514	15:43:07	bbaa6e43-fb53-4ac8-81ac-71d9aa9dc05a	userError: Phone Number Has Been Used
+20240514	15:43:12	741e061e-d0af-4090-87fe-db4f45d97758	ReferenceError: firstname is not defined
+20240514	15:43:13	0e1f9ed7-392f-4665-9341-0d4d940ea4f3	userError: User Already Exists
+20240514	15:43:15	48f03e85-b93a-4600-bfd5-dabf79cfcb8e	userError: User Already Exists
+20240514	15:43:16	7a24d2a2-2212-4daa-ab0a-90d95c4b5bfa	userError: User Already Exists
+20240514	15:43:17	653823d1-3344-4fb4-aa9f-daa93fc6638e	userError: User Already Exists
+20240514	15:43:18	034e0303-8c46-4918-be21-52c98784ac88	userError: User Already Exists
+20240514	15:43:22	6e1376ad-2f84-4319-9afd-e31f16f62e85	userError: User Already Exists
+20240514	15:43:23	95e59afa-54c5-45e1-8748-a8f07a62fc6e	userError: User Already Exists
+20240514	15:43:24	9d125ee0-b110-4b22-aa4d-edfc6803a169	userError: User Already Exists
+20240514	15:43:47	34a5477b-3c0d-419f-be15-a86b277aff62	ReferenceError: firstname is not defined
+20240514	15:43:53	d49e9568-8881-431c-aeed-62f0fdbf2ebf	userError: User Already Exists
+20240514	15:43:55	0635c80b-12bd-47ba-b6b1-7c182d992b36	userError: User Already Exists
+20240514	15:44:36	80f12392-1803-47fb-911b-b665b0db167f	userError: User Already Exists
+20240514	15:44:37	b0bebdce-279b-4672-9a4d-a6d21f697884	userError: User Already Exists
+20240514	15:44:43	d48fe23c-444b-401f-8af0-783389765a24	ReferenceError: firstname is not defined
+20240514	15:45:10	e48c695d-c124-44ae-bc6e-9e5a0a1cee2f	userError: User Already Exists
+20240514	15:45:16	1ee433f9-b972-43ea-ba02-0d1afc9835b2	userError: Phone Number Has Been Used
+20240514	15:45:20	effb215b-9a12-4d31-80e6-d9499049f497	ReferenceError: generateEmailContent is not defined
+20240514	15:45:23	8dc4f918-1b3f-41d9-b245-0f553fc1a5c9	userError: User Already Exists
+20240515	10:36:47	483ef13d-1aa5-4e8e-b778-9ec4f9d54da2	userError: Phone Number Has Been Used
+20240516	11:19:09	044b9c03-a105-4c4d-8209-0a5d8e960cab	userError: Phone Number Has Been Used
+20240516	11:24:04	ca0f4363-8c5b-4afc-98a4-42ab5345c43e	userError: Phone Number Has Been Used
+20240516	11:30:32	74bf9299-f04f-4b47-bd47-878e986541d2	userError: Phone Number Has Been Used
+20240516	11:35:43	c3ed2412-d356-48fe-8486-e70dc51af62a	userError: Phone Number Has Been Used
+20240516	11:42:31	6bdb7c58-10f0-48d6-b6f7-0da29c21345d	userError: Phone Number Has Been Used
+20240516	12:09:09	0bc31fc4-f28a-4565-81d6-c86d35652f0d	userError: User Already Exists
+20240516	13:11:07	59a7962b-d60d-4700-a2ad-70cc0c93766a	userError: User Already Exists
+20240516	13:13:16	16e62e82-39b6-4b1c-8128-51151364c4ce	userError: User Already Exists
+20240516	20:32:29	eb3791f4-688f-4f62-b89d-9ff310d134e6	userError: Phone Number Has Been Used
+20240516	20:58:13	b098dd0a-3400-477c-b4de-f7e6fcd64af3	userError: User Already Exists
+20240516	21:04:38	c9a5f029-cd91-484e-abe7-adf523eca888	userError: User Already Exists
+20240516	22:02:48	cd14b845-5780-4f86-8370-38923fb12e1b	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240516	22:16:09	05ec05a9-c2c3-4941-98e9-fb6e6c7b1cba	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240516	22:42:36	0188e7cb-b1cb-4243-a549-830dc6c66e50	userError: User Already Exists
+20240517	23:31:40	c4c1035b-4ab5-47e0-8efc-46a8c12f5072	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240518	22:08:34	4b921ebe-c212-4d29-bbad-72df2f860422	userError: User Already Exists
+20240518	22:19:39	d6c80c82-397a-4d7f-9662-8c919f8162d2	userError: Phone Number Has Been Used
+20240519	13:25:08	3769625f-59f5-40a7-8845-c1e3f8ffb57c	userError: User Already Exists
+20240521	15:40:36	b828a00d-c081-4bba-b4e5-3169ec784f34	TypeError: Cannot read properties of undefined (reading 'size')
+20240521	15:41:48	4eb329cf-8617-450a-ac97-819104aede14	TypeError: Cannot read properties of undefined (reading 'path')
+20240521	15:46:08	7a65f4f9-f6e8-4a9b-9d37-15f3e4707a0e	ReferenceError: picture is not defined
+20240521	15:46:10	16ca47c2-be8e-4541-96bd-22bb3ae6f722	ReferenceError: picture is not defined
+20240521	15:46:33	abb9842b-d976-432e-926d-376896d3c654	TypeError: Cannot read properties of undefined (reading 'path')
+20240521	15:47:14	e769b154-d66d-4847-a61e-7011369eae59	userError: User Already Exists

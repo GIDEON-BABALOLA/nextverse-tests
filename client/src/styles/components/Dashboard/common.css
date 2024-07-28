@@ -1,0 +1,340 @@
+
+:root{
+--color-primary:#7380ec;
+--color-danger:#ff7782ec;
+--color-success:#41f1b5;
+--color-warning:#ffb782ec;
+
+--color-white:#fff;
+--color-info-dark:#7d8da1;
+--color-info-light:#dce1eb;
+--color-dark:#363949;
+--color-light:rgba(132,139,200,0.18);
+--color-primary-variant:#111e88;
+--color-dark-variant:#677483;
+--color-background:#f6f6f9;
+--toast-background:#eefafd;
+
+--card-border-radius:2rem;
+--border-radius-1:0.4rem;
+--border-radius-2:0.8rem;
+--border-radius-3:1.2rem;
+
+--card-padding: 1.8rem;
+--padding-1:1.2rem;
+
+--box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+    /*    Dark Mode */
+    .dark-theme-variables{
+        --toast-background:#181a1e;
+        --color-background:#181a1e;
+        --color-white:#202528;
+        --color-dark:#edeffd;
+        --color-dark-variant:#a3bdcc;
+        --color-light:rgba(0,0,0,0.4 );
+        --box-shadow:0 2rem 3rem var(--color-light);
+    }
+/* *{
+
+    margin:0;
+    padding:0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style:none;
+    box-sizing:border-box ;
+
+} */
+ html{
+    font-size: 14px;
+    
+}
+
+.full-dashboard{
+
+width:100vw;
+height:100vh;
+font-family: poppins, sans-serif;
+font-size:0.88rem;
+background: var(--color-background);
+user-select:none;
+overflow-x: hidden;
+color: var(--color-dark);
+}
+
+.litenote-dashboard-container{
+    display: grid;
+    width:96% ;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns:14rem auto 23rem ;
+}
+/* 
+a{
+    color:var(--color-dark);
+}
+  */
+
+.litenote-dashboard-h-one{
+    font-weight:800 ;
+    font-size: 1.8rem;
+}
+
+.litenote-dashboard-h-two{
+    font-size:1.4rem ;
+    font-weight:800 ;
+ }
+ .litenote-dashboard-h-three{
+    font-size:0.87rem ;
+ }
+ .litenote-dashboard-h-four{
+    font-size:0.8rem ;
+ }
+ .litenote-dashboard-h-five{
+    font-size:0.77rem;
+ }
+ scroll{
+    font-size: 0.75rem;;
+ }
+ .litenote-dashboard-profile-photo{
+   
+    border-radius:50%;
+   width: 100%;
+   height: 2.5rem;
+    
+ }
+ .text-muted{
+    color: var(--color-info-dark);
+ }
+/* p{
+    color: var(--color-dark-variant);
+} */
+/* b{
+    color: var(--color-dark);
+} */
+.litenote-dashboard-primary{
+    color: var(--color-primary);
+}
+.litenote-dashboard-danger{
+    color: var(--color-danger);
+}
+.litenote-dashboard-success{
+    color: var(--color-success);
+}
+.litenote-dashboard-warning{
+    color: var(--color-warning);
+}
+
+.litenote-sidebar-aside .litenote-dashboard-h-three{
+    font-size: 15px;
+}
+.text-muted{
+    color: var(--color-info-dark);
+
+ }
+
+/* -----media queries ----- */
+@media screen and (max-width:1200px) {
+    .litenote-dashboard-container{
+        width:94% ;
+        grid-template-columns: 7rem auto 23rem;
+    }
+
+    .litenote-sidebar-aside .logo h2{
+        display: none;
+    }
+    .litenote-dashboard- .sidebar h3{
+        display: none;
+    }
+    .litenote-dashboard- .sidebar a{
+      width:5.6rem;
+    }
+    .litenote-dashboard- .sidebar a:last-child{
+  position:relative ;
+  margin-top: 1.8rem;
+    }
+    main .litenote-dashboard-insights{
+ grid-template-columns: 1fr;
+ gap: 0;
+    }
+    
+    main .litenote-dashboard-recent-stories{
+        width: 94%;
+        position:absolute;
+        left: 50%;
+        transform: translate(-50%);
+        margin: 2rem 0 0 0.8rem;
+    }
+    main .litenote-dashboard-recent-stories table{
+        width: 83vw;  
+    }
+    main table tr th:last-child,
+    main table tr th:first-child{
+    display: none;
+    }
+    main table tr th:last-child,
+    main table tr th:first-child{
+    display: none;
+    }
+}
+
+
+.analytics-page-main{
+    margin-top: 2rem;
+    padding: 0.1rem;
+}
+
+
+
+@media screen and (min-width:1400px) {
+
+
+    .litenote-sidebar-aside  .sidebar{
+
+        display: flex;
+        flex-direction:column ;
+        height: 85vh;
+        position: fixed;
+        top: 5rem;
+    }
+}
+
+/*  -------Stories Analytics smallerTablets and mobile--------- */
+/* not more 768*/
+@media screen and (max-width:1200px) {
+    .litenote-dashboard-container{
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    .litenote-sidebar-aside  .sidebar .sidebar-links{
+ display: flex;
+ color: var(--color-info-dark);
+ margin-left: 3.4rem;
+ gap: 1rem;
+ align-items: center;
+ position: relative;
+ height: 3.7rem;
+ transition: all 300ms ease;
+ text-decoration: none;
+}
+    .litenote-sidebar-aside{
+        position: fixed;
+        left: -100%;
+        background: var(--color-white);
+        width: 30rem;
+        z-index: 3;
+        box-shadow: 1rem 3rem 4rem var(--color-light) ;
+        height: 100vh;
+        padding-right: var(--card-padding);
+        display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+    .litenote-sidebar-aside-close{
+    left: 0%;
+    animation: closeMenu 900ms ease forwards;
+    }
+    @keyframes showMenu {
+        to{
+            left: 0%;
+        }
+        
+    }
+    @keyframes closeMenu {
+        to{
+            left: -100%;
+        }
+    }
+    
+    
+    
+    .litenote-sidebar-aside .logo{
+        margin-left: 1rem;
+    }
+    .litenote-sidebar-aside .logo h2{
+       display: inline;
+    }
+    .litenote-sidebar-aside .sidebar h3{
+       display: inline;
+    }
+    .litenote-sidebar-aside .sidebar a{
+    height:3.4rem;
+    width: 100%;
+    }
+    .litenote-sidebar-aside .sidebar a:last-child{
+    position: absolute;
+    bottom: 5rem;
+    }
+    .litenote-sidebar-aside .close{
+    display: inline-block;
+    cursor: pointer;
+    }
+    
+    .analytics-page-main{
+        margin-top: 6rem;
+        padding: 0.1rem;
+    }
+    main .litenote-dashboard-recent-stories{ 
+       position: relative;
+       margin: 3rem 0 0 0;
+       width: 100%;
+    }
+    main .litenote-dashboard-recent-stories table{ 
+       margin: 0;
+       width: 100%;
+    }
+    .litenote-dashboard-right{
+        width: 94%;
+        margin: 0 auto 4rem;
+    }
+    
+    .litenote-dashboard-right .litenote-dashboard-top{
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        padding:0 0.8rem ;
+        height: 4.6rem;
+        background:var(--color-white) ;
+        width: 100%;
+        margin: 0;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--color-light);
+    }
+    .litenote-dashboard-right .litenote-dashboard-top .litenote-dashboard-theme-toggler{
+        width:4.4rem ;
+        position:absolute ;
+        left:66% ;
+    }
+    .litenote-dashboard-right .litenote-dashboard-profile .info{
+        display: none;
+    }
+    .litenote-dashboard-right .litenote-dashboard-top button{
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-dark);
+    position:absolute;
+    left:1rem;
+    outline: none !important;
+    border: none !important;
+    }
+    .litenote-dashboard-right .litenote-dashboard-top button span{
+        font-size:2rem ;
+        outline: none !important;
+        border: none !important;
+    }
+    
+    }
+    @media screen and (max-width:768px) {
+        .litenote-sidebar-aside{
+  
+            width: 20rem;
+        }
+        .litenote-sidebar-aside  .sidebar .sidebar-links{
+
+            margin-left: 2rem;
+        }
+    }

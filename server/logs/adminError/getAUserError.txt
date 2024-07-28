@@ -1,0 +1,25 @@
+20240515	10:26:01	a5cf051f-dda2-4485-b3c0-06150520f293	TypeError: TypeError: Cannot read properties of null (reading 'toObject')
+    at getAUser (C:\Users\USER\desktop\desktop\projects\lightnote\server\controllers\adminController.js:306:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20240515	10:26:35	7ce7fd88-3fc5-4b1b-a6c7-17d692d9f7f7	TypeError: TypeError: Cannot read properties of null (reading 'toObject')
+    at getAUser (C:\Users\USER\desktop\desktop\projects\lightnote\server\controllers\adminController.js:307:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20240515	10:29:09	6851139c-2adc-4fb9-98e7-728f64cbc6c7	adminError: adminError: The user with email gg does not exist
+    at getAUser (C:\Users\USER\desktop\desktop\projects\lightnote\server\controllers\adminController.js:307:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20240515	10:29:10	3ab43df5-c96f-4d21-b19c-1a8b1c4c3a45	adminError: adminError: The user with email gg does not exist
+    at getAUser (C:\Users\USER\desktop\desktop\projects\lightnote\server\controllers\adminController.js:307:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20240515	10:29:19	181347bb-cc2d-4deb-9d31-ce3aaa2e970a	adminError: adminError: The user with email gideonbabalola69@gmail.com does not exist
+    at getAUser (C:\Users\USER\desktop\desktop\projects\lightnote\server\controllers\adminController.js:307:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20240515	10:29:21	dabcf322-8d84-46fe-952f-7d4b64fc6091	adminError: adminError: The user with email gideonbabalola69@gmail.com does not exist
+    at getAUser (C:\Users\USER\desktop\desktop\projects\lightnote\server\controllers\adminController.js:307:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20240515	10:32:38	56f00159-5e56-4922-8cc5-9ed04d551557	adminError: The user with email dev@gmail.com does not exist
+20240515	10:32:40	7885398b-92c6-41e7-ae92-b5b7a20343d0	adminError: The user with email dev@gmail.com does not exist
+20240515	10:32:41	5a6441ef-b743-494a-85d8-3eb4b43b623e	adminError: The user with email dev@gmail.com does not exist
+20240515	10:38:30	65ea064b-031f-4b8a-b10e-1d367fd06c9d	adminError: The user with email dev@g does not exist
+20240515	10:38:32	820fe166-b5de-4bf0-bba0-75a41a9cc524	adminError: The user with email dev@g does not exist
+20240515	10:40:51	27abbe20-f1e3-4a61-b7d7-c69eee926941	adminError: The user with email dev@gmail.com does not exist
+20240515	10:40:53	db4666fc-438b-4c84-8389-e327422efd43	adminError: The user with email dev@gmail.com does not exist

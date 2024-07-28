@@ -1,0 +1,3 @@
+20240528	09:45:27	6d59ccbe-6990-449b-b133-a5f7d77fcf24	TypeError: Story.addLike is not a function
+20240528	09:50:08	8bd68460-bab6-4ee4-ae04-a3439e2a12a8	TypeError: Story.addLike is not a function
+20240528	09:50:08	e550beb6-352e-46a7-bb1e-df592ceccdc5	TypeError: Story.addLike is not a function

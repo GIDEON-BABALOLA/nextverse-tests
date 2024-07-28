@@ -1,0 +1,330 @@
+  .litenote-profile-user-profile {
+    padding: 60px 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .skeleton-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+  
+  }
+
+  .skeleton-title{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+  }
+  .skeleton-subtitle{
+    margin: 0;
+    font-size: 14px;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+
+  }
+  .skeleton-picture{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+            border: none;
+  }
+  .skeleton-button{
+    margin: 0;
+    font-size: 14px;
+    width: 30%;
+    height: 40%;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+  }
+  .skeleton-options{
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+            padding: 10px 20px;
+            border-radius: 5px;
+  }
+  .roller{
+  
+  }
+  
+  @-webkit-keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+  
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+  .litenote-profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+.checkbot{
+  position: relative;
+  display : inline-flex;
+  margin : 0.5%;
+}
+.checkman{
+  position: absolute;
+  top : 27%;
+  right: 25%;
+  z-index: 1;
+  color: white;
+  transform-origin: center;
+  /* width: 12px !important;
+  height: 12px !important; */
+
+}
+  .litenote-profile-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    animation: fade-in 0.5s ease-in-out;
+  }
+  
+  .litenote-profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .litenote-profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .litenote-profile-info {
+    flex: 1;
+  }
+  
+  .litenote-profile-info .litenote-profile-name {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .litenote-profile-info .litenote-profile-bio {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  .litenote-profile-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .litenote-profile-stats .litenote-profile-stat {
+    text-align: center;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+  
+  .litenote-profile-stats .litenote-profile-stat-value {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 1%;
+  }
+  
+  .litenote-profile-stats .litenote-profile-stat-label {
+    font-size: 14px;
+    color: #1b1919;
+    padding: 1%;
+  }
+  .litenote-profile-read-more-share{
+    display: flex;
+   cursor: pointer;
+    float: right;
+    color : #8F8F8F;
+  }
+  .litenote-profile-stories {
+    animation: fade-in 0.5s ease-in-out;
+  }
+  
+  .litenote-profile-stories .litenote-profile-section-title {
+    margin-bottom: 30px;
+  }
+  
+  .litenote-profile-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 40px;
+  }
+  
+  .litenote-profile-story-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slide-up 0.5s ease-in-out forwards;
+  }
+  
+  .litenote-profile-story-card:nth-child(even) {
+    animation-delay: 0.2s;
+  }
+  
+  .litenote-profile-story-card-inner {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .litenote-profile-story-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  .litenote-profile-story-image .caller {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .litenote-profile-story-card:hover .litenote-profile-story-image .caller {
+    transform: scale(1.1);
+  }
+  
+  .litenote-profile-story-card:hover .litenote-profile-story-image img {
+    transform: scale(1.1);
+  }
+  
+  .litenote-profile-story-content {
+    padding: 20px;
+  }
+  
+  .litenote-profile-story-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .spinner-loader-container{
+position: relative;
+width: 90px;
+  }
+  .litenote-profile-story-category {
+    margin: 0;
+    font-size: 14px;
+    color: #504545;
+  }
+  
+  .litenote-profile-read-more {
+    display: inline-block;
+    background-color: #ff5e62;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .follow-spinner-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   text-align: center;
+   transform: scale(0.5);
+ 
+
+  }
+  .follow {
+    border: none;
+    outline: none;
+    background: transparent;
+    background-color: var(--clr-accent);
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0%;
+    /* font-size: 10px; */
+    margin-bottom: 0%;
+    transform: scale(0.7);
+
+    /* font-weight:bolder; */
+  }
+  .follow-text{
+   
+    transform: scale(10%);
+  }
+  .follow:active{
+    transform: scale(0.5);
+  }
+  
+  .litenote-profile-read-more:hover {
+    background-color:white;
+    color:  #ff5e62;;
+  }
+ 
+  
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-up {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .litenote-profile-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .litenote-profile-image {
+      margin-right: 0;
+    }
+    .checkman{
+      top : 24%;
+      right: 24%;
+    }
+  }

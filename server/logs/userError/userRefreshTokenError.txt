@@ -1,0 +1,33 @@
+ 20240509	21:36:27	f044d4a5-75fa-4b92-a0c8-b5580dff0172	ReferenceError: Student is not defined
+20240509	21:36:30	94204c00-044e-4845-9845-8e149f073aaf	ReferenceError: Student is not defined
+20240509	21:37:27	0b167695-5860-4d2c-981e-d4216f3c2353	ReferenceError: jwt is not defined
+20240509	21:38:16	1fdfd50f-879b-4e4f-972e-8d8ac897198a	ReferenceError: LIGHTNOTE_JWT_TOKEN_SECRET is not defined
+20240509	21:38:58	3b29448b-65b7-4750-9694-a63d799d19fc	userError: Please Login Again To, No RefreshToken In Cookies
+20240509	22:24:54	4bf39328-f669-48e9-a2d1-c0efead123cf	userError: Please Login Again To, No RefreshToken In Cookies
+20240511	16:46:49	37972976-7823-47ed-9fce-11d4f66cdc0c	userError: Please Login Again To, No RefreshToken In Cookies
+20240511	16:46:50	f3b4a7b5-c596-456a-8477-384d5df7f834	userError: Please Login Again To, No RefreshToken In Cookies
+20240511	17:39:33	f5617740-eaaa-41b4-9996-5a325eb1fb4b	userError: No RefreshToken In Database
+20240511	17:39:34	59073495-01b9-412a-a029-c9e9f04e750b	userError: No RefreshToken In Database
+20240511	17:39:35	62069764-fd94-4ef8-9925-111d90f49c0f	userError: No RefreshToken In Database
+20240511	17:39:36	9cea2646-36b3-4605-b363-3dfacbf81f00	userError: No RefreshToken In Database
+20240511	17:39:37	400593a2-139a-4819-898d-8e0a9857e329	userError: No RefreshToken In Database
+20240511	17:39:38	3ab1ba80-22cd-4bdc-aae3-056994c23382	userError: No RefreshToken In Database
+20240511	17:40:10	48235781-0f41-430c-945a-57759c2a03ce	userError: Your Account Does Not Exist
+20240511	17:40:11	c6349495-3a84-4540-b402-ce08f3c0f2a7	userError: Your Account Does Not Exist
+20240511	17:40:12	a8e8b241-5b8b-4925-9ccd-0076f6a1fec3	userError: Your Account Does Not Exist
+20240512	19:36:31	2717ca3c-7b78-455d-a852-e77376b1ce68	userError: No RefreshToken In Database
+20240512	19:36:32	374d7312-3590-4f8e-9f54-5432d2492f50	userError: No RefreshToken In Database
+20240512	19:36:33	7955e6a3-079d-4633-9ea4-c4a14f3fcb30	userError: No RefreshToken In Database
+20240512	19:36:33	015dd970-e0f1-4e2d-8f55-e002c33533a2	userError: No RefreshToken In Database
+20240512	19:36:42	4b674622-ad48-480c-8c59-e5b7f569fab8	userError: No RefreshToken In Database
+20240512	19:36:43	ab409e70-d70c-4738-96f4-3eaf9837e5da	userError: No RefreshToken In Database
+20240512	19:37:04	08b5c259-8dd3-4d89-9455-2719b76fa25b	userError: No RefreshToken In Database
+20240512	19:37:05	b8f3a34a-5eaf-47a3-ba0c-4b1ddc2f79a6	userError: No RefreshToken In Database
+20240512	19:37:25	8829b055-15ee-4ed8-ad7e-96aa32de4ba8	userError: No RefreshToken In Database
+20240512	19:37:26	97f10cea-191d-46e6-a564-9f161031f832	userError: No RefreshToken In Database
+20240512	19:37:48	04445cb5-1a97-4622-8c6f-114206fc7102	userError: No RefreshToken In Database
+20240512	19:37:49	c990f940-f72d-4232-ac82-65fcf5aeb7e1	userError: No RefreshToken In Database
+20240512	19:37:50	ba568607-90a6-4e46-86c5-ef3ede8a5dce	userError: No RefreshToken In Database
+20240512	19:37:51	32aacf9c-e3d1-4355-964c-2d43a39832af	userError: No RefreshToken In Database
+20240512	19:38:00	e5477a42-641a-4279-8b79-159e717246e3	userError: No RefreshToken In Database
+20240512	19:38:00	1fcb5eac-0d86-42f1-acd2-6d50c01b71fc	userError: No RefreshToken In Database

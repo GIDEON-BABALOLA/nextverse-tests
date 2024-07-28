@@ -1,0 +1,82 @@
+20240509	15:30:50	6bd24671-a740-45e1-873d-ce692b2b5227	Error: secretOrPrivateKey must have a value
+20240509	15:36:51	00f02643-6e17-49ba-ab99-1ae57c59a3bf	Error: secretOrPrivateKey must have a value
+20240509	15:36:54	0116976d-9b3a-4d48-90fc-07fc08c481fb	Error: secretOrPrivateKey must have a value
+20240509	15:48:26	60137ee5-5490-4d6f-8985-8e477591e96c	userError: User Does Not Exist
+20240510	09:52:20	be02b485-27b9-4646-a103-67d4f09e14bb	userError: User Does Not Exist
+20240510	09:52:22	c4a4f988-1ea3-4578-a1d6-a3ee9f7a3e95	userError: User Does Not Exist
+20240510	11:13:31	4573c53c-28a9-4a1e-a30e-c5d7729c319b	userError: User Does Not Exist
+20240510	11:39:48	773dc376-3b11-4359-81cc-64191b031559	userError: User Does Not Exist
+20240510	11:54:43	89a5b8a1-293f-4882-8d01-7ea204850c7c	userError: User Does Not Exist
+20240511	17:02:50	75600a33-1add-44d2-9ba9-d3c67e36dbc9	userError: Invalid Credentials
+20240511	17:02:59	dffb23c2-519f-432a-bf3c-93f64d28270f	userError: Invalid Credentials
+20240511	17:03:00	1c9c07fa-8554-42ad-93a1-3e65b34aeb73	userError: Invalid Credentials
+20240511	17:03:01	3352d826-a42b-4e96-95f7-a5d77f7781a0	userError: Invalid Credentials
+20240511	17:03:02	b47ea03f-2832-406d-ac8c-84c867df8d20	userError: Invalid Credentials
+20240511	17:03:32	a6bf8ba8-e3ff-46a9-86d9-22d1447bc4d1	userError: Invalid Credentials
+20240511	17:04:32	d0bf427d-a937-4486-b427-8bb49854095b	userError: Invalid Credentials
+20240511	17:04:37	8cf17c55-1688-435c-9219-3cd829bb6fe1	userError: Invalid Credentials
+20240511	17:36:25	80c6ed4e-3259-46ba-9366-5f74ee480aac	userError: Invalid Credentials
+20240511	17:40:38	236b4714-fbc6-4ac6-b137-155c43aaaf70	userError: Invalid Credentials
+20240512	21:19:48	48ce379e-3f73-444c-8aa7-63535a7181e3	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:49	5878b1bb-4ba4-485d-9019-b908a570a447	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:19:50	348d92d2-150a-4416-b42e-df0af9b125ed	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:20:26	7e7befff-8a27-4064-b8f1-01309b11caaf	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:20:27	6c4dc68c-fddc-4b44-aef5-bd74c71f2caf	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:20:27	a4eb93a2-ad54-4220-b799-8cca435b1c78	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:20:28	0e9b1846-b7fb-4c1e-8d4a-4bf8e26d7cc4	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:20:54	e17475b8-379d-4438-ad4c-82d104064c5f	userError: Invalid Credentials
+20240512	21:20:55	89f8ccd0-d91c-4c37-8627-f7ce5bfcaec7	userError: Invalid Credentials
+20240512	21:20:56	bf20bc0e-1f48-4fd8-8028-9e763e9b683e	userError: Invalid Credentials
+20240512	21:20:57	fb8371c2-f6e6-48a1-90ca-fe7d2b081e5e	userError: Invalid Credentials
+20240512	21:20:58	39616c45-ac79-41db-917c-1e41c8276fa6	userError: Invalid Credentials
+20240512	21:20:59	fdfdf7fd-7b60-44d2-98f4-ae1ae4be5205	userError: Invalid Credentials
+20240512	21:21:14	0d841201-2095-49b9-a75f-0c20023c7496	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240512	21:25:36	c453b619-b6ac-44b3-a952-40507b7bef0b	userError: User Does Not Exist
+20240512	21:25:37	b00e504c-b2fc-4bc8-b521-981829c79f27	userError: User Does Not Exist
+20240512	21:25:38	2c8d6a7d-4370-46bf-95dd-87bbcc901f4a	userError: User Does Not Exist
+20240514	15:50:33	168cd3c2-8718-4aa3-adff-293f1276b7e5	userError: Invalid Credentials
+20240514	15:50:34	274c8205-c9ba-4632-8201-b56a7369efb9	userError: Invalid Credentials
+20240514	15:52:47	96ab8f08-276d-48f5-b94e-5856b7d2dbec	userError: Invalid Credentials
+20240514	15:52:52	c30f3465-79cb-4eae-8080-b42b88b3fc12	userError: Invalid Credentials
+20240514	15:52:53	d54c98fa-04dc-48c0-9348-d611deb46bd2	userError: Invalid Credentials
+20240514	15:52:55	5dd29655-708c-4e6f-9d70-d01a5929dc6b	userError: Invalid Credentials
+20240514	15:52:56	aed1b2e3-39cf-4c89-baf8-bf2076de0ab0	userError: Invalid Credentials
+20240514	16:01:38	a09454c0-5b0e-47ef-8763-65faf9e0cb2f	userError: Invalid Credentials
+20240514	16:01:39	8f796868-e5e5-49f3-abd5-4936185a50fb	userError: Invalid Credentials
+20240514	16:01:40	72671a28-86a5-4d2b-8fe5-5050684a990b	userError: Invalid Credentials
+20240514	16:01:41	70a8459c-5522-4453-a147-82c41ac9063f	userError: Invalid Credentials
+20240514	16:01:41	55bdbbda-eb69-4a67-a008-46680b2539c4	userError: Invalid Credentials
+20240514	16:04:17	aef1ba5b-45e0-461b-a287-ca1ba0ab4db6	userError: Invalid Credentials
+20240514	16:04:18	bb791a32-fdd9-4d04-b0af-d5a365d851c0	userError: Invalid Credentials
+20240514	16:04:19	92b382ce-7db7-46e7-b4dd-42f218c0b743	userError: Invalid Credentials
+20240514	16:04:19	4aae3d71-d9fe-4294-8938-159c3e088b2c	userError: Invalid Credentials
+20240514	16:04:20	087b0121-bf0d-4d97-85c9-7b70e353b37e	userError: Invalid Credentials
+20240514	16:07:55	71138a68-b092-4e27-b220-4188d9280979	userError: Invalid Credentials
+20240514	16:07:58	13d0ccef-313a-49fd-a480-a92cda6fab96	userError: Invalid Credentials
+20240514	16:07:59	1afb6feb-5668-4292-b08c-a8c98cd59e79	userError: Invalid Credentials
+20240514	16:07:59	d5020ef2-c787-4884-bd87-2f262a008a62	userError: Invalid Credentials
+20240514	16:08:00	bfc6ca35-67dc-45da-af80-4ebb777b677f	userError: Invalid Credentials
+20240514	16:08:39	5c3fa708-e1bb-45c6-8750-06783daa1273	userError: Invalid Credentials
+20240514	16:08:40	467da892-8dc7-4bf9-b883-635f95585461	userError: Invalid Credentials
+20240514	16:08:41	4b85aa98-81f1-48d2-a5c9-3896487bf8d7	userError: Invalid Credentials
+20240514	16:08:42	126470e4-5b14-4a9e-a7b2-41d864f266b2	userError: Invalid Credentials
+20240514	16:08:42	b93cae04-513a-4dcf-a1c0-31c02a4a9716	userError: Invalid Credentials
+20240514	16:10:01	67971af8-77cd-4c9b-94f6-b012cef20539	userError: Invalid Credentials
+20240514	21:42:45	d155066d-3c87-458b-88d4-d0f461f21fb5	userError: Invalid Credentials
+20240514	21:42:46	2a613c7f-ba49-474c-a424-3c393c007f09	userError: Invalid Credentials
+20240514	21:42:46	e4d1cbb4-c6c7-461b-99fa-069c0835990f	userError: Invalid Credentials
+20240514	21:42:47	d1a9e5b6-ec03-40e5-8d6b-176ae404f687	userError: Invalid Credentials
+20240514	21:42:47	ec0d97e9-e4eb-4ccb-8c8f-4096b75630b3	userError: Invalid Credentials
+20240516	12:06:18	8cebe6d9-3124-4599-9384-a8174005ebe8	validatorError: Invalid Email
+20240516	20:30:40	51e73dd6-6fda-4ab5-ad1a-45da73eb99b0	userError: User Does Not Exist
+20240516	20:30:41	b18574c6-1519-4a64-8e97-1449991c97a4	userError: User Does Not Exist
+20240516	22:17:05	7552c206-314b-4437-a9d3-9fefc493f836	userError: User Does Not Exist
+20240517	23:31:53	faa49690-d079-4465-80dc-8b9606549aa0	userError: User Does Not Exist
+20240518	20:49:40	b569927a-f071-4389-88db-1ef78da365d0	userError: User Does Not Exist
+20240518	20:49:42	3e4309d9-8091-4fe3-b8c3-736d88ba429c	userError: User Does Not Exist
+20240518	20:49:43	df0c0d5e-8e59-4eed-ba2e-bf205bb24dd4	userError: User Does Not Exist
+20240525	21:46:46	49e40e84-6982-40fa-9df8-ac58bcde76cd	userError: User Does Not Exist
+20240618	22:35:37	d3f6f748-224f-4cb3-8b88-751c2571090a	userError: Please Provide An Email And A Password
+20240618	22:35:39	e1c8bf1a-583b-4911-ab3b-7fd456e6647b	userError: Please Provide An Email And A Password
+20240618	22:36:35	02f10b4c-783a-408f-94c9-0b242a5fee33	userError: Please Provide An Email And A Password
+20240618	22:36:36	b029c9fd-41be-4f0b-bfae-1ffe65fcf6e1	userError: Please Provide An Email And A Password
