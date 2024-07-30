@@ -1,17 +1,15 @@
-import DashboardToast from "../../components/common/DashboardToast"
-import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
-import RotationLoader from "../../components/Loaders/RotationLoader"
+import DashboardToast from "../../components/common/DashboardToast.jsx"
+import DashboardHeader from '../../components/Dashboard/common/DashboardHeader.jsx';
+import RotationLoader from "../../components/Loaders/RotationLoader.jsx"
 import { useState, useEffect, useRef } from "react";
 import BookmarkCard from "../../components/Dashboard/common/BookmarkCard.jsx";
-import useWindowSize from "../../hooks/useWindowSize.jsx";
+
 import "../../styles/components/Dashboard/bookmark-page.css"
 
 
-const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const [loadPage, setLoadPage] = useState(true)
   const [slideDistance, setSlideDistance] = useState(0)
-  const { width } = useWindowSize()
-  const [mobileFilter, setMobileFilter] = useState(["All", "Category", "Date Added", "Read Time"])
   const tabRef = useRef()
   const [tabs, setTab] = useState({
     all : true,
@@ -168,4 +166,4 @@ ref={tabRef}
   )
 }
 
-export default SettingsPage
+export default BookmarksPage

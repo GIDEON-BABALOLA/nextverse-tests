@@ -9,7 +9,6 @@ import RegisterPage from './Pages/Register';
 import ProfilePage from './Pages/Profile';
 import BrowsePage from "./Pages/Browse"
 import { useState, useRef } from "react"
-import  DashboardPage from "./Pages/Dashboard/DashboardPage"
 import AnalyticsPage from "./Pages/Dashboard/AnalyticsPage"
 import UsersPage from "./Pages/Dashboard/UsersPage"
 import SettingsPage from "./Pages/Dashboard/SettingsPage"
@@ -17,6 +16,7 @@ import StoriesPage from './Pages/Dashboard/StoriesPage';
 import ReportsPage from './Pages/Dashboard/ReportsPage';
 import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
+import BookmarksPage from './Pages/Dashboard/BookmarksPage';
 function App() {
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const [showCookieConsent, setShowCookieConsent] = useState(false)
@@ -39,9 +39,9 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
   </Route>
   <Route path="login" element={<LoginPage />} />
   <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
-          <Route path="dashboard" element={<DashboardPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
-          <Route path="users" element={<UsersPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>} sidebarRef={sidebarRef} />
+          <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="settings" element={<SettingsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="stories" element={<StoriesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

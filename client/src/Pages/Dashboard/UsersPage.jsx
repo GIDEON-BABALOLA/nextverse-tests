@@ -2,12 +2,16 @@ import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
 import { useState, useEffect, useRef } from "react";
-import { MdDelete } from "react-icons/md"
+import { MdDelete, MdSearch, MdClose } from "react-icons/md"
+import {FaTimes, FaSearch} from "react-icons/fa"
 import "../../styles/components/Dashboard/users-page.css"
 import avatar from "../../assets/29.jpg"
 import useWindowSize from "../../hooks/useWindowSize";
-const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+import { MdCheckCircle, MdClear } from "react-icons/md";
+const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const { width } =useWindowSize()
+  const [rangeValue, setRangeValue] = useState(0)
+  const [searchQuery, setSearchQuery] = useState("")
   const data = [
     {
       "username": "Ghhhhhhhhhhhhhhhhideon-Babaloeee5555555555555555555eela",
@@ -18,7 +22,9 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 245,
       "dateJoined": "2020-11-14",
       "lastSeen": "2024-06-20",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar,
+      
     },
     {
       "username": "user2",
@@ -29,7 +35,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 926,
       "dateJoined": "2020-07-19",
       "lastSeen": "2024-12-18",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user3",
@@ -40,7 +47,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 457,
       "dateJoined": "2020-10-26",
       "lastSeen": "2024-10-17",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user4",
@@ -51,7 +59,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 623,
       "dateJoined": "2020-06-27",
       "lastSeen": "2024-07-25",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user5",
@@ -62,7 +71,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 163,
       "dateJoined": "2020-04-18",
       "lastSeen": "2024-09-21",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user6",
@@ -73,7 +83,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 289,
       "dateJoined": "2020-03-15",
       "lastSeen": "2024-11-13",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user7",
@@ -84,7 +95,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 194,
       "dateJoined": "2020-08-05",
       "lastSeen": "2024-03-06",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user8",
@@ -95,7 +107,8 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 95,
       "dateJoined": "2020-07-11",
       "lastSeen": "2024-05-22",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user9",
@@ -103,10 +116,11 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "following": 33,
       "newsletter": true,
       "stories": 57,
-      "likes": 547,
+      "likes": 75,
       "dateJoined": "2020-08-13",
       "lastSeen": "2024-07-23",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     {
       "username": "user10",
@@ -117,116 +131,36 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 358,
       "dateJoined": "2020-10-12",
       "lastSeen": "2024-12-14",
-      "delete": false
+      "email" : "dev@gmail.com",
+      "avatar": avatar
     },
     
   ]
-  const tabRef = useRef()
-  const combineData = (data) => {
-  const result = data.reduce((acc, dat) => {
-    acc.usernames = acc.usernames || [];
-    acc.followers = acc.followers || [];
-    acc.following = acc.following || [];
-    acc.likes = acc.likes || [];
-    acc.delete = acc.delete || [];
-    acc.stories = acc.stories || [];
-    acc.dateJoined = acc.dateJoined || [];
-    acc.lastSeen = acc.lastSeen || [];
-
-    acc.usernames.push({user : dat.username});
-    acc.followers.push({followers : dat.followers});
-    acc.following.push({following : dat.following});
-    acc.likes.push({likes : dat.likes});
-    acc.delete.push({delete : dat.delete});
-    acc.stories.push({stories : dat.stories});
-    acc.dateJoined.push({dateJoined : dat.dateJoined});
-    acc.lastSeen.push({lastSeen : dat.lastSeen});
-
-    return acc;
-  }, {});
-
-  return result;
-};
-const globe = Object.entries(combineData(data)).map(([key, value]) => {
-  return value
-})
-const [slideDistance, setSlideDistance] = useState(0)
-const [tabs, setTab] = useState({
-  all : true,
-  category : false,
-  date : false,
-  read : false
-})
-const clickMe = (e) => {
-
-  switch (e.target.innerText) {
-    case "All":
-      setSlideDistance(0)
-      setTab({
-        all : true,
-        category : false,
-        date : false,
-        read : false
-      })
-      break;
-      case "Category":
-        setSlideDistance(200)
-        setTab({
-          all : false,
-          category : true,
-          date : false,
-          read : false
-        })
-      break;
-      case "Date Added":
-        setSlideDistance(400)
-        setTab({
-          all : false,
-          category : false,
-          date : true,
-          read : false
-        })
-      break;
-      case "Read Time":
-        setSlideDistance(600)
-        setTab({
-          all : false,
-          category : false,
-          date : false,
-          read : true
-        })
-      break;
-    default:
-      setSlideDistance(0)
-      break;
-  }
+const tableRef = useRef()
+const slideValue = useRef()
+const inputSlider = useRef()
+const math = useRef()
+const slideInput = (e) => {
+  let value = e.target.value
+setRangeValue(value)
+  slideValue.current.innerText = value;
+  slideValue.current.style.left = (value/2) + "%";
 }
-let startX, startY, endX, endY;
-const minSwipeDistance = 50;
-const handleTouchStart = (event) => {
-  startX = event.touches[0].clientX;
-  startY = event.touches[0].clientY;
-console.log("start")
+const slideBlur = () => {
+  slideValue.classList.remove("show");
 }
-const handleTouchEnd = (event) => {
-  endX = event.changedTouches[0].clientX;
-  endY = event.changedTouches[0].clientY;
-  const deltaX = endX - startX;
-  const deltaY = endY - startY;
-  console.log(deltaY)
+const startSearch = () => {
+    
+}
 
-  if (Math.abs(deltaX) > minSwipeDistance) {
-    if (deltaX > 0) {
-      // Swipe right
-      tabRef.current.style.animation = "2s slideright forwards"
-    } else {
-      console.log("swipe left")
-       tabRef.current.style.animation = "2s slideleft forwards"
-    }
-  }
+useEffect(() => {
+if(width < 768){
+tableRef.current.style.left = -rangeValue + "%"
 }
-// const gold = Object.entries(combineData(data)).flatMap(([key, value]) => value)
-// console.log(gold)
+
+}, [rangeValue])
+
+
   const [loadPage, setLoadPage] = useState(true)
   useEffect(() => {
     setTimeout(() => {
@@ -263,93 +197,99 @@ const handleTouchEnd = (event) => {
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     
     </div>
-   <div className="users-page-container">
-   <ul className="responsive-table">
-    <li className="table-header">
-      <div className="col col-1">Job Id</div>
-      <div className="col col-2">Customer Name</div>
-      <div className="col col-3">Amount Due</div>
-      <div className="col col-4">Payment Status</div>
-      <div className="col col-5">Delete</div>
+    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
+   <h2>Search And Filter Your Users Data</h2>
+   { width < 767 && 
+   <>
+   
+    
+    <h3 className="table-slider-title"> Table Slider</h3>
+   <div className="range">
+        <div className="sliderValue">
+          <span className="" ref={slideValue} style={{left : "0%"}}>100</span>
+        </div>
+<div className="field">
+          <div className="value left" style={{marginLeft : "-10px"}}>
+{rangeValue}</div>
+<input 
+ref={inputSlider}
+onInput={slideInput}
+onBlur={slideBlur}
+type="range" min="0" max="60" value={rangeValue} step="1"/>
+          <div className="value right">
+60</div>
+</div>
+</div>
+</>
+   }
+   <div className="users-page-headings">
+
+    <section>
+
+    </section>
+
+    <section>
+  
+    <div className="user-search-wrapper">
+
+    <div className="field">
+       <input type="text" placeholder="Search Users Data" />
+       <label htmlFor="click" className="btn-2">Search</label>
+    </div>
+ </div>
+
+    </section>
+
+   </div>
+   <div className="users-page-container" ref={math}>
+   <ul className="users-table-container" 
+   style={{left : "-0%"}}
+   ref={tableRef}>
+    <li className="users-table-row first">
+      <div className="users-table-column" >S/N</div>
+      <div className="users-table-column" >Check</div>
+      <div className="users-table-column">Avatar</div>
+      <div className="users-table-column">Email</div>
+      <div className="users-table-column" >Followers</div>
+      <div  className="users-table-column">Following</div>
+      <div  className="users-table-column">Likes</div>
+      <div  className="users-table-column">Stories</div>
+      <div  className="users-table-column">Date-Joined</div>
+      <div  className="users-table-column">Last-Seen</div>
+      <div  className="users-table-column">Newsletter</div>
+      <div  className="users-table-column">Delete</div>
+
+      
     </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42235</div>
-      <div className="col col-2" data-label="Customer Name">John Doe</div>
-      <div className="col col-3" data-label="Amount">$350</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
+{
+  data.map((user, index) => (
+    <li className="users-table-row" key={index}>
+    <div className="users-table-column" data-label="Job Id">{index}</div>
+      <div className="users-table-column" data-label="Job Id"> <input type="checkbox" /></div>
+      <div  className="users-table-column" >  <img className="table-avatar" src={user.avatar}></img></div>
+      <div className="users-table-column" data-label="Amount">{user.email}</div>
+      <div className="users-table-column" data-label="Amount">{user.followers}</div>
+      <div className="users-table-column" data-label="Payment Status">{user.following}</div>
+      <div className="users-table-column" data-label="Payment Status">{user.likes}</div>
+      <div className="users-table-column" data-label="Payment Status">{user.stories}</div>
+      <div className="users-table-column" data-label="Payment Status">{user.dateJoined}</div>
+      <div className="users-table-column" data-label="Payment Status">{user.lastSeen}</div>
+      <div className="users-table-column" data-label="Payment Status">{user.newsletter ? <MdCheckCircle style={{color : "green"}} /> : <MdClear style={{color : "red"}}  /> }</div>
+      <div className="users-table-column" data-label="Payment Status"><MdDelete
+      className="users-table-delete-button"
+       size= {20} style={{ padding : "2px"}}/></div>
     </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42442</div>
-      <div className="col col-2" data-label="Customer Name">Jennifer Smith</div>
-      <div className="col col-3" data-label="Amount">$220</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
-    </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42257</div>
-      <div className="col col-2" data-label="Customer Name">John Smith</div>
-      <div className="col col-3" data-label="Amount">$341</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
-    </li>
-    <li className="table-row">
-     
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42311</div>
-      <div className="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div className="col col-3" data-label="Amount">$115</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
-    </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42311</div>
-      <div className="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div className="col col-3" data-label="Amount">$115</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
-    </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42311</div>
-      <div className="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div className="col col-3" data-label="Amount">$115</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
-    </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id"> <input type="checkbox" /></div>
-      <div className="col col-1" data-label="Job Id">42311</div>
-      <div className="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div className="col col-3" data-label="Amount">$115</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-5" data-label="Payment Status"><span className="material-symbols-outlined">
-        delete
-        </span></div>
-    </li>
+  ))
+}
+
   </ul>
   </div>
+  {/* <div>
+    Golang is one of the best programming languages
+  </div> */}
    </main>
 
-    {/* <div classNameName="litenote-dashboard-right">
-    <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
-    </div> */}
+   
     </>
     }
  
@@ -358,4 +298,4 @@ const handleTouchEnd = (event) => {
   )
 }
 
-export default SettingsPage
+export default UsersPage
