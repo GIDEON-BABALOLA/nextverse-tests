@@ -1,4 +1,4 @@
-import Gideon from "../assets/Gideon.jpg"
+import Gid from "../assets/Great.jpg"
 import favour from "../assets/29.jpg"
 import Great from "../assets/Great.jpg"
 import "../styles/components/Team/team-page.css"
@@ -38,7 +38,7 @@ const TeamPage = () => {
       </div>
     
       <div className="box">
-       <img src={Gideon} alt="" />
+       <img src={Gid} alt="" />
        <h3>Babalola Gideon</h3>
        <h5>Software Engineer </h5>
        <div className="icons">
