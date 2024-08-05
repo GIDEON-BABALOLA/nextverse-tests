@@ -1,6 +1,7 @@
-import Gid from "../assets/Great.jpg"
-import favour from "../assets/29.jpg"
-import Great from "../assets/Great.jpg"
+
+import Gideon from "../../src/assets/Gideon.jpg"
+import favour from "../../src/assets/29.jpg"
+import Great from "../../src/assets/Great.jpg"
 import "../styles/components/Team/team-page.css"
 import ConnectivityToast from "../components/common/connectivityToast"
 import { FaXTwitter, FaInstagram,  FaLinkedin } from "react-icons/fa6";
@@ -38,7 +39,7 @@ const TeamPage = () => {
       </div>
     
       <div className="box">
-       <img src={Gid} alt="" />
+       <img src={Gideon} alt="" />
        <h3>Babalola Gideon</h3>
        <h5>Software Engineer </h5>
        <div className="icons">
