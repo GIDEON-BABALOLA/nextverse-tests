@@ -1,5 +1,5 @@
 
-import Gideon from "../../src/assets/Gideon.jpg"
+import Gideon from "../../src/assets/Great.jpg"
 import favour from "../../src/assets/29.jpg"
 import Great from "../../src/assets/Great.jpg"
 import "../styles/components/Team/team-page.css"
