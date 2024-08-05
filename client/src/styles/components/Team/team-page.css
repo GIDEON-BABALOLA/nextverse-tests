@@ -1,0 +1,93 @@
+.team{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(#281c3e , #0f051d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Poppins";
+}
+.team-content{
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+.team-content img{
+    width: 40%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+.center h1{
+    color: #fff;
+    font-size: 4rem;
+    text-align:center;
+    font-weight: 1000;
+}
+
+.box{
+    padding: 50px;
+    background: #1b1229;
+    border-radius: 15px;
+    transition: all .38s ease;
+}
+.box h3{
+    font-size: 23px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+.box h5{
+    font-size: 15px;
+    font-weight: 600;
+    color: #b7b4bb;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+.icons svg{
+    display: inline-block;
+    color: #fff;
+    font-size: 28px;
+    margin: 0.8px;
+    transition: all .38s ease;
+    margin: 4px;
+}
+icons svg:hover{
+    transform: scale(1.2);
+}
+.box:hover{
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+@media(max-width: 1240px){
+    .team{
+        width:100%;
+        height: auto;
+        padding: 90px 2%;
+    }
+    .center h1{
+        font-size: 3.2rem;
+    }
+}
+@media (max-width: 768px) {
+    .team-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .team-content img {
+        width: 80%;
+    }
+
+    .box {
+        padding: 30px;
+    }
+}       

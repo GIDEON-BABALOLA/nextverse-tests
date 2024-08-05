@@ -6,7 +6,7 @@ const HamBurger = ({ nav}) => {
   }
   return (
 <>
-<div className="notfound-hamburger-menu">
+<div className="notfound-hamburger-menu" style={{color : "white"}}>
 <Hamburger onToggle={triggerMenu}/>
 </div>
 </>

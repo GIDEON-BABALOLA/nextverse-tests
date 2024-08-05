@@ -17,6 +17,7 @@ import ReportsPage from './Pages/Dashboard/ReportsPage';
 import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 import BookmarksPage from './Pages/Dashboard/BookmarksPage';
+import TeamPage from "./Pages/TeamPage"
 function App() {
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const [showCookieConsent, setShowCookieConsent] = useState(false)
@@ -37,6 +38,7 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
 <Route path="profile" element={< ProfilePage/>}/>
 <Route path="browse" element={< BrowsePage/>}/>
   </Route>
+  <Route path="our-team" element={<TeamPage />} />
   <Route path="login" element={<LoginPage />} />
   <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

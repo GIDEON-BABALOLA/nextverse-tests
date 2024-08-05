@@ -24,6 +24,7 @@
     transform: scale(0);
 transform-origin: top right;
 transition: transform 0.5s ease;
+z-index: 5;
 
 }
 .sub-menu-wrap.active{
@@ -37,7 +38,7 @@ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 box-sizing: border-box;
 border-radius: 5px;
 font-family: "Poppins", sans-serif;
-z-index: 6;
+
 }
 /* .s:hover .bookmark-settings-menu{
     transform: scale(1);

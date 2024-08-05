@@ -52,7 +52,7 @@ if(showNewsLetter === true){
       <div className="litenote-newsletter-news-grid">
          <div className="litenote-newsletter-card__group">
             <div className="litenote-newsletter-card active">
-               <input className="litenote-newsletter-custom" type="checkbox" id="check1"  checked />
+               <input className="litenote-newsletter-custom" type="checkbox" id="check1"   />
                <label htmlFor="check1">
                   <h5 className="litenote-newsletter-h-five">Fiction</h5>
                   <p className="litenote-newsletter-p">Get Latest fictional stories</p>
@@ -75,7 +75,7 @@ if(showNewsLetter === true){
                </label>
             </div>
             <div className="litenote-newsletter-card">
-               <input className="litenote-newsletter-custom" type="checkbox" id="check4" />
+               <input className="litenote-newsletter-custom" type="checkbox" id="check4" checked />
                <label htmlFor="check4">
                   <h5 className="litenote-newsletter-h-five">Lite Note Updates</h5>
                   <p className="litenote-newsletter-p">Announcements and Updates</p>
@@ -91,7 +91,7 @@ if(showNewsLetter === true){
                </label>
             </div>
             <div className="litenote-newsletter-card">
-               <input className="litenote-newsletter-custom" type="checkbox" id="check6" />
+               <input className="litenote-newsletter-custom" type="checkbox" id="check6" checked />
                <label htmlFor="check6">
                   <h5 className="litenote-newsletter-h-five"> Weekly updates </h5>
                   <p className="litenote-newsletter-p"> update for the week</p>

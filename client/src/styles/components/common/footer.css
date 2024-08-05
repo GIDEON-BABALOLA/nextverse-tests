@@ -9,6 +9,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     margin-bottom: 20px;
   }
   .social-links-container{
@@ -29,7 +30,25 @@ footer {
   .social-links a:hover {
     color: #ff5e62;
   }
+  .footer-content a{
+    color: white;
+    text-decoration: none;
+  }
   
+  @media screen and (max-width: 767px) {
+
+.footer-content{
+  /* flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; */
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+}
   @keyframes fadeIn {
     from {
       opacity: 0;

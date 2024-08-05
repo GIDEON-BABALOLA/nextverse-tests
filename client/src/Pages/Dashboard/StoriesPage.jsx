@@ -1,9 +1,13 @@
 import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
+import "../../styles/components/Dashboard/stories-page.css"
 import { useState, useEffect } from "react";
-const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+import TextEditor from "../../components/Dashboard/common/TextEditor";
+const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const [loadPage, setLoadPage] = useState(true)
+
+  
   useEffect(() => {
     setTimeout(() => {
       setLoadPage(false)
@@ -37,11 +41,15 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     <main>
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
    <h2>
-    StoriesPage
+    Senior
+    Devops Engineer
    </h2>
+<TextEditor />
+
+
     </main>
 
-    <div className="litenote-dashboard-right">
+    <div className="litenote-dashboard-right reports-page-right">
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     </div>
     </>
@@ -50,4 +58,4 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   )
 }
 
-export default SettingsPage
+export default StoriesPage

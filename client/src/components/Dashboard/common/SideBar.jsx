@@ -67,7 +67,7 @@ clickSidebarMenu()
                     <FaHome size={24} />
                            <h3 className="litenote-dashboard-h-three">Home</h3>
         </Link>
-                    <Link to="/dashboard/bookmarks"  className={`sidebar-links ${currentUrl === "dashboard" && "active"}`}>
+                    <Link to="/dashboard/bookmarks"  className={`sidebar-links ${currentUrl === "bookmarks" && "active"}`}>
                     <FaBookmark size={20} />
                            <h3 className="litenote-dashboard-h-three">Bookmarks</h3>
         </Link>

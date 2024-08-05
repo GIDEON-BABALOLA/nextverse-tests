@@ -24,6 +24,7 @@ const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
     const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const datetime = new Date()
     useEffect(() => {
+
         setInterval(() => {
             var newTime = new Date().toLocaleTimeString()
         setTime(newTime)

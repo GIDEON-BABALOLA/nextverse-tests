@@ -37,6 +37,36 @@ html, body, #root {
   .skeleton{
     animation: skeleton-loading 1s linear infinite alternate;
   }
+  .status-active {
+    /* This should be used to style a span*/
+    background-color: #166534;
+    border-radius: 9999px;
+    box-sizing: border-box;
+    color: #DCFCE7;
+    display: inline-flex;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 3px 8px;
+    text-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .status-inactive{
+    background-color: #991B1B;
+    border-radius: 9999px;
+    box-sizing: border-box;
+    color: #FEE2E2;
+    display: inline-flex;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 3px 8px;
+    text-wrap: nowrap;
+    white-space: nowrap;
+  }
+  
   @keyframes skeleton-loading{
     0%{
       background-color: hsl(200, 20%, 70%);

@@ -156,7 +156,7 @@ ref={tabRef}
       </div>
     </main>
 
-    <div className="litenote-dashboard-right">
+    <div className="litenote-dashboard-right" style={{left : "-70px", position : "relative"}}>
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     
     </div>

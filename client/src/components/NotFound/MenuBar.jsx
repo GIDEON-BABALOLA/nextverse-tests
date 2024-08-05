@@ -12,22 +12,22 @@ const MenuBar = ({ nav, setNav}) => {
   <>
     <nav data-state="closed" ref={nav} className="notfound-nav">
   <ul className="notfound-ul">
-  <li>
+  <li className="menu-bar-navigation-links">
   <Link to="/">
         Home
         </Link>
   </li>
-  <li>
+  <li className="menu-bar-navigation-links">
   <Link to="/profile">
         Profile
         </Link>
   </li>
-  <li>
+  <li className="menu-bar-navigation-links">
   <Link to="/browse">
         Browse
         </Link>
   </li>
-  <li>
+  <li className="menu-bar-navigation-links">
     <div className="social-icons">
     <FaInstagram  className="four-o-four fa-xl" size={30}/>
       <FaTwitter className="four-o-four" size={30}/>
