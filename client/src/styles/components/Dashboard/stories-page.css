@@ -6,6 +6,10 @@
 :root {
 	--primary-cocolor: #185ee0;
 	--secondary-color: #e6eef9;
+    --our-background : #ffff;
+}
+.dark-theme-variables{
+    --our-background : #00000066;
 }
 .stories-page-title .container {
 
@@ -29,7 +33,7 @@
 .stories-page-title .tabs {
 	display: flex;
 	position: absolute;
-	background-color: #fff;
+	background-color: var(--our-background);
 	box-shadow: 0 0 1px 0 rgba(#185ee0, 0.15), 0 6px 12px 0 rgba(#185ee0, 0.15);
 	padding: 0.75rem;
 	border-radius: 99px; 
