@@ -20,10 +20,10 @@ const LanguageSelect = () => {
   const languagePicked = useRef()
   const selectOptions = useRef()
 const languageData = [ {
-  name : "English - United States",
+  name : "English(US)",
   flag  : us},
 {
-  name : "English - Great Britain",
+  name : "English(UK)",
   flag : gb
 },
 {

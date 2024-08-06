@@ -183,7 +183,9 @@ a{
     padding: 0.1rem;
 }
 
-
+.cadre{
+    width: 238px;
+    }
 
 @media screen and (min-width:1400px) {
 
@@ -196,6 +198,7 @@ a{
         position: fixed;
         top: 5rem;
     }
+
 }
 
 /*  -------Stories Analytics smallerTablets and mobile--------- */
@@ -205,6 +208,9 @@ a{
         width: 100%;
         grid-template-columns: 1fr;
     }
+    .cadre{
+        width: 100%;
+        }
     .litenote-sidebar-aside  .sidebar .sidebar-links{
  display: flex;
  color: var(--color-info-dark);

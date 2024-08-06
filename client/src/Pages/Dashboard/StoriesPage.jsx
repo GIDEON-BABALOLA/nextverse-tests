@@ -88,7 +88,7 @@ switch (e.target.innerText.split("\n")[0]) {
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
   <div
   style={{marginTop : "10px", fontWeight : 1000, fontFamily : "Poppins"}}
-  >  <h3> Hello Gideon Babalola &#128075;</h3></div>
+  >  <h3> Hello Gideon Babalola <span className="hand-stories"> &#128075;</span></h3></div>
  
    <div className="stories-page-title">
    <div className="container">

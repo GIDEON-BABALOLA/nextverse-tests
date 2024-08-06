@@ -155,7 +155,7 @@ initializer()
   return (
     <div className="litenote-text-editor-container">
     <Toaster />
-    <h5 style={{color : "#CED4DA"}}>App</h5>
+    <h5 style={{color : "#CED4DA"}}>Text</h5>
     <h3 style={{fontWeight : "800"}}>Editor</h3>
     <section >
     <div className="litenote-text-editor-options">

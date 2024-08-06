@@ -3,10 +3,17 @@ import { FaShieldAlt, FaCookieBite} from "react-icons/fa";
 import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa";
 import { MdLanguage, MdCode, MdInfo } from "react-icons/md";
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import SpecialModal from "../../components/common/SpecialModal"
 const Footer = ({ setShowTermsAndConditions, setShowCookieContent}) => {
+  const [openModal, setOpenModal] = useState(false)
+  const showLanguageModal = () => {
+    setOpenModal(true)
+  }
   return (
   <>
     <footer>
+    <SpecialModal openModal={openModal} setOpenModal={setOpenModal}/>
     <div className="footer-content">
       <div className="logo" style={{display : "flex", flexDirection : "column"}}>
       <h6>Legal</h6>
@@ -68,7 +75,7 @@ const Footer = ({ setShowTermsAndConditions, setShowCookieContent}) => {
       </div>
       </div>
       <div className="social-links-container">
- <div>
+ <div onClick={showLanguageModal} style={{cursor : "pointer"}}>
   <MdLanguage size={25}/>&nbsp;Change Language
  </div>
  <div className="social-links">

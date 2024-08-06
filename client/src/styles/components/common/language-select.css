@@ -2,8 +2,8 @@
     font-family: "Poppins" sans-serif;
 }
 .country-select-wrapper{
-    width: 370px;
-    margin: 130px auto 0;
+    width: 300px;
+    margin: 1px auto 0;
 }
 
 .country-select-select-btn, .country-select-options li{
@@ -38,11 +38,12 @@
     transform: scale(0);
 transform-origin: top center;
 transition: transform 0.5s ease;
-/* display: none; */
+display: none;
 }
 .country-select-wrapper.active .country-select-content{
     transform: scale(1);
     /* display: block; */
+     display: block;
 }
 .country-select-content .country-select-search{
     position: relative;

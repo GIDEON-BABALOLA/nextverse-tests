@@ -150,6 +150,7 @@ input[type="color"]::-webkit-color-swatch {
     max-height: 330px;
     background: var(--text-editor-background);
     color: var(--texter);
+    overflow-y: auto;
     
     border-color: #7380EC;
     border: 2px solid #7380EC;

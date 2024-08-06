@@ -25,6 +25,7 @@ useEffect(() => {
     <>
     <main ref={page}>
     <ConnectivityToast />
+    
   
     <NewsletterSignup page={page}
     showNewsLetter={showNewsLetter} setShowNewsLetter={setShowNewsLetter} />
