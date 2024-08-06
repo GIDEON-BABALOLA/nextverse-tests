@@ -13,38 +13,52 @@ import { FaBold,
    FaAlignCenter,
    FaAlignJustify,
    FaIndent,
+   FaClipboard,
+   FaOutdent
  
   } from "react-icons/fa"
+  import toast, { Toaster } from "react-hot-toast";
  import { FaRotateLeft, FaRotateRight } from "react-icons/fa6";
  import { useEffect, useRef } from "react";
  import "../../../styles/components/Dashboard/text-editor.css"
 const TextEditor = () => {
-    const alignButtons = useRef()
-    const spacingButtons = useRef()
-    const formatButtons = useRef()
-    const scriptButtons = useRef()
+    const alignButtons = useRef([])
+    const spacingButtons = useRef([])
+    const formatButtons = useRef([])
+    const scriptButtons = useRef([])
     const fontName = useRef()
     const textAreaRef = useRef()
     const fontSizeRef = useRef()
+
     //initial settings
     //Highlight clicked button
+    const copyTextArea = () => {
+      if(textAreaRef.current.innerText == ""){
+        toast.error("pls enter your text")
+        return;
+      }
+      navigator.clipboard.writeText(textAreaRef.current.innerText).then(function() {
+      toast.success("Text is copied to clipboard")
+    }).catch(function(error) {
+        console.error('Could not copy text: ', error);
+    });
+    }
     const scrollTextArea = (e) => {
              textAreaRef.current.style.height ="63px"
         textAreaRef.current.style.height ="auto"
 textAreaRef.current.style.height =`${e.target.scrollHeight}px`
     }
     const highlighterRemover = (className) => {
-        console.log(className)
-        Array.from(className).forEach((button) => {
+   
+        className.forEach((button) => {
        button.classList.remove("active");
     });
     };
 const highlighter = (className, needsRemoval) => {
-    console.log(typeof className)
-    console.log(Array.from(className))
-    Array.from(className).forEach((button) => {
+  className.forEach((button) => {
+    
    button.addEventListener("click", () => {
-
+console.log("dav")
 if (needsRemoval) {
     let alreadyActive = false;
  if ( button.classList.contains("active"))  {
@@ -57,6 +71,8 @@ if (needsRemoval) {
  }
 }
  else {
+  console.log(button.classList)
+  console.log(button.id)
     button.classList.toggle("active");
 }
     });
@@ -138,36 +154,35 @@ initializer()
       
   return (
     <div className="litenote-text-editor-container">
-    
+    <Toaster />
     <h5 style={{color : "#CED4DA"}}>App</h5>
     <h3 style={{fontWeight : "800"}}>Editor</h3>
     <section >
     <div className="litenote-text-editor-options">
    {/* textFormat */}
    <button id="bold" className="litenote-text-editor-option-button
-   format" onClick={optionButtons} ref={formatButtons} 
-
+   format" onClick={optionButtons} ref={el => formatButtons.current.push(el)}
     >
    <FaBold />
    </button>
    <button id="italic" className="litenote-text-editor-option-button
-   format" onClick={optionButtons}   ref={formatButtons} >
+   format" onClick={optionButtons}   ref={el => formatButtons.current.push(el)}>
   <FaItalic />
    </button>
    <button id="underline" className="litenote-text-editor-option-button
-   format" onClick={optionButtons}   ref={formatButtons} >
+   format" onClick={optionButtons}   ref={el => formatButtons.current.push(el)} >
    <FaUnderline />
    </button>
    <button id="strikethrough" className="litenote-text-editor-option-button
-   format" onClick={optionButtons}  ref={formatButtons} >
+   format" onClick={optionButtons}  ref={el => formatButtons.current.push(el)}  >
  <FaStrikethrough/>
    </button>
    <button id="superscript" className="litenote-text-editor-option-button
-   format" onClick={optionButtons}   ref={scriptButtons} >
+   format" onClick={optionButtons}    ref={el => scriptButtons.current.push(el)} >
    <FaSuperscript />
    </button>
    <button id="subscript" className="litenote-text-editor-option-button
-   format" onClick={optionButtons}   ref={scriptButtons} >
+   format" onClick={optionButtons}   ref={el => scriptButtons.current.push(el)}>
    <FaSubscript />
    </button>
 
@@ -201,28 +216,33 @@ initializer()
      </button>
 
  {/* Alignment */}
-   <button id="justifyLeft" className="litenote-text-editor-option-button align" onClick={optionButtons} ref={alignButtons}>
+   <button id="justifyLeft" className="litenote-text-editor-option-button align" onClick={optionButtons} ref={el => alignButtons.current.push(el)}>
    <FaAlignLeft />
  </button>
    <button id="justifyCenter" 
-   className="litenote-text-editor-option-button align" onClick={optionButtons} ref={alignButtons}>
+   className="litenote-text-editor-option-button align" onClick={optionButtons} ref={el => alignButtons.current.push(el)}>
    <FaAlignCenter />
  </button>
  <button id="justifyRight" className="litenote-text-editor-option-button
- align" onClick={optionButtons}  ref={alignButtons} >
+ align" onClick={optionButtons}  ref={el => alignButtons.current.push(el)} >
    <FaAlignRight />
  </button>
  <button id="justifyFull" className="litenote-text-editor-option-button
- align" onClick={optionButtons}  ref={alignButtons} >
+ align" onClick={optionButtons}  ref={el => alignButtons.current.push(el)} >
    <FaAlignJustify />
  </button>
  <button id="indent" className="litenote-text-editor-option-button
- spacing" onClick={optionButtons}  ref={spacingButtons} >
+ spacing" onClick={optionButtons}  ref={el => spacingButtons.current.push(el)} >
     <FaIndent />
  </button>
  <button id="outdent" className="litenote-text-editor-option-button
- spacing" onClick={optionButtons}  ref={spacingButtons} >
-    <i className="litenote-text-editor-fa-solid fa-outcome"></i>
+ spacing" onClick={optionButtons}  ref={el => spacingButtons.current.push(el)}>
+   <FaOutdent />
+
+ </button>
+ <button id="outdent" className="litenote-text-editor-option-button
+ spacing" onClick={copyTextArea}   >
+   <FaClipboard />
  </button>
 
 {/* headings */}
@@ -244,7 +264,7 @@ initializer()
 
  {/* color */}
  <div className="litenote-text-editor-input-wrapper no-outline">
-   <input type="color" id="foreColor"
+   <input type="color" id="foreColor" value="#777777"
    className="litenote-text-editor-adv-option-button " onChange={advancedOptionButtons} />
    <span htmlFor="foreColor">
    <b> Font Color</b>
@@ -260,14 +280,16 @@ initializer()
     </div>
    
     {/* I am going to replace this input with auto resize text input when I find it online */}
-    {/* <div id="text-input" contentEditable="true" className="textInput-editor"></div> */}
-    <textarea 
+    <div 
     ref={textAreaRef}
-    onKeyUp={scrollTextArea}
     style={{height : "59px"}}
-    contentEditable="true"
-    className="textArea" placeholder="Type Something here..."></textarea>
-    
+    id="editable"
+    placeholder="Type Something here..."
+    className="textArea" 
+    onInput={scrollTextArea}
+    onBlur={scrollTextArea}
+    spellCheck="true"
+    contentEditable="true" ></div>
   
     <button className="computerprogrammer">Submit</button>
 

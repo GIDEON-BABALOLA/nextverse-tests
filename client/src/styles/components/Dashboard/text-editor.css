@@ -3,13 +3,13 @@
 --text-editor-background : #ffff;
 --text-editor-buttton : #0000;
 --text-editor-button-background : #ffff;
---text-editor-color-boy : #0000;
+--texter : #777777;
 }
 .dark-theme-variables{
     --text-editor-background : #00000066;
     --text-editor-buttton : #ffff;
     --text-editor-button-background : #181A1E;
-    --text-editor-color-boy : #ffff;
+    --texter : #ffff;
 }
 .computerprogrammer{
 float: right;
@@ -22,6 +22,7 @@ padding: 9px 15px;
 border-radius: 5px;
 background: #664AFF;
 transition: background 0.3s ease;
+margin-top: 5px;
 }
 .litenote-text-editor-container{
     background-color: var(--text-editor-background);
@@ -30,7 +31,7 @@ transition: background 0.3s ease;
     position: relative;
     transform: translate(-50%, -50%);
     left: 55%;
-    top: 50%;
+    top: 40%;
     border-radius: 10px;
     /* box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2); */
     box-shadow: #0000001A 0px 2px 5px 0px;
@@ -99,21 +100,21 @@ transition: background 0.3s ease;
     padding: 20px;
     height: 50vh;
 }
-.litenote-text-editor-active{
-    background-color: #e0e9ff;
-    background-color: #CED4DA;
-}
+
 @media screen and (max-width:768px) {
+    .computerprogrammer{
+        margin-top: 10px;
+    }
     .litenote-text-editor-container{
         width: 90vmin;
-        padding: 50px 30px;
+        padding: 55px 30px;
         position: relative;
         transform: translate(-50%, -50%);
         left: 50%;
         top: 50%;
         border-radius: 10px;
         box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
-        margin-top: 50px;
+        margin-top: 10px;
     }
 }
 
@@ -147,14 +148,23 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: #bfbfbf;
     margin-top: 20px;
     max-height: 330px;
-    color: var(--text-editor-color-boy);
     background: var(--text-editor-background);
+    color: var(--texter);
+    
+    border-color: #7380EC;
+    border: 2px solid #7380EC;
+
 }
-textarea:is(:focus, :valid){
+.textArea:is(:focus, :valid){
     border-color: #7380EC;
     padding: 14px;
     border-width: 2px;
 }
-textarea::-webkit-scrollbar{
+.textArea::-webkit-scrollbar{
     width:  0px;
+}
+
+.litenote-text-editor-option-button.active{
+    background-color: #e0e9ff;
+    background-color: red;
 }

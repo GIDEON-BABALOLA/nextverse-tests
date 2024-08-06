@@ -1,5 +1,95 @@
-.reports-page-right{
+.reports-page-right-stories{
     position: fixed;
-    left: 975px;
+    left: 1050px;
+
+}
+:root {
+	--primary-cocolor: #185ee0;
+	--secondary-color: #e6eef9;
+}
+.stories-page-title .container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    z-index: 5;
+
+}
+
+.stories-page-title .stories-glider{
+    position: absolute;
+	display: flex;
+	height: 54px;
+	background-color: var(--secondary-color);
+	z-index: 1;
+	border-radius: 99px;
+	transition: 0.25s ease-out;
+}
+.stories-page-title .tabs {
+	display: flex;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: 0 0 1px 0 rgba(#185ee0, 0.15), 0 6px 12px 0 rgba(#185ee0, 0.15);
+	padding: 0.75rem;
+	border-radius: 99px; 
+    font-family: "Poppins";
+    z-index: 5;
+  
+}
+
+
+
+.stories-page-title .tab {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 54px;
+	width: 200px;
+	font-size: 1.25rem;
+	font-weight: 500;
+	border-radius: 99px;
+	cursor: pointer;
+	transition: color 0.15s ease-in;
+}
+
+.stories-page-title .notification {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	margin-left: 0.75rem;
+	border-radius: 50%;
+	background-color: var(--secondary-color);
+	transition: 0.15s ease-in;
+}
+
+@media screen and (max-width:768px) {
+    .stories-page-title .container {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left: auto;
+       
+        
+        margin-top: 50px;
+        z-index: 5;
+    
+    }
+
+    .stories-page-title .tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 54px;
+        width: 110px;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border-radius: 99px;
+        cursor: pointer;
+        transition: color 0.15s ease-in;
+    }
 
 }

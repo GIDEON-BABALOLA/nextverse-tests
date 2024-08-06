@@ -36,7 +36,7 @@ setShowCookieConsent={setShowCookieConsent}
 showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>} />
 <Route path="publish" element={<Publish />} />
 <Route path="profile" element={< ProfilePage/>}/>
-<Route path="browse" element={< BrowsePage/>}/>
+<Route path="explore" element={< BrowsePage/>}/>
   </Route>
   <Route path="our-team" element={<TeamPage />} />
   <Route path="login" element={<LoginPage />} />

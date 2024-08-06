@@ -136,8 +136,8 @@ contextMenu.current.style.visibility = "visible"
         <Link to="/publish" className="navbar-header-links">
         Publish
         </Link>
-        <Link to="/browse" className="navbar-header-links">
-        Browse
+        <Link to="/explore" className="navbar-header-links">
+        Explore
         </Link>
         <Link to="/profile" className="navbar-header-links">
         Profile
