@@ -162,6 +162,7 @@ initializer()
    {/* textFormat */}
    <button id="bold" className="litenote-text-editor-option-button
    format" onClick={optionButtons} ref={el => formatButtons.current.push(el)}
+  //  style={{background : "#e6eef9", color : "black"}}
     >
    <FaBold />
    </button>
