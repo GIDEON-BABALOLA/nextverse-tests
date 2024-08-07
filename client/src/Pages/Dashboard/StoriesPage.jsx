@@ -4,9 +4,11 @@ import RotationLoader from "../../components/Loaders/RotationLoader"
 import "../../styles/components/Dashboard/stories-page.css"
 import { useState, useEffect, useRef } from "react";
 import TextEditor from "../../components/Dashboard/common/TextEditor";
+import NotesPreview from "../../components/Dashboard/common/NotesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
+  console.log(width)
   const [loadPage, setLoadPage] = useState(true)
   const [slideDistance, setSlideDistance] = useState(0)
   const tabRef = useRef()
@@ -84,7 +86,9 @@ switch (e.target.innerText.split("\n")[0]) {
     <RotationLoader />
     </>
      : <>
-    <main>
+     
+    <main style={{display : "flex", flexDirection : "column"}}>
+    
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
   <div
   style={{marginTop : "10px", fontWeight : 1000, fontFamily : "Poppins"}}
@@ -126,7 +130,8 @@ switch (e.target.innerText.split("\n")[0]) {
 	</div>
   </div>
 </div>
-<TextEditor />
+{tabs.notes && <TextEditor />}
+{tabs.stories && <NotesPreview />}
 
 
     </main>

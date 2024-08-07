@@ -17,8 +17,12 @@
     flex-direction: row;
     justify-content: space-around;
     margin-top: 20px;
-    z-index: 5;
-
+    z-index: 1;
+	position: fixed;
+	left: 90px;
+    /* position: fixed; */
+	/* width: 1000px; */
+	/* left: 90px; */
 }
 
 .stories-page-title .stories-glider{
@@ -80,6 +84,7 @@
         
         margin-top: 50px;
         z-index: 5;
+		position: static;
     
     }
 
@@ -94,6 +99,7 @@
         border-radius: 99px;
         cursor: pointer;
         transition: color 0.15s ease-in;
+		
     }
 
 }

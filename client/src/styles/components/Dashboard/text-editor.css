@@ -169,3 +169,37 @@ input[type="color"]::-webkit-color-swatch {
     background-color: #e0e9ff;
     background-color: red;
 }
+
+
+@media screen and (max-width:1200px) {
+    .litenote-text-editor-container{
+    background-color: var(--text-editor-background);
+    width: 700px;
+
+    margin-top: 100px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .litenote-dashboard-notes-preview .wrapper{
+        width: 100vmin;
+        padding: 55px 30px;
+        margin-top: 30px;
+
+    }
+}
+@media screen and (max-width:767px) {
+    .litenote-dashboard-notes-preview .wrapper{
+        width: 100vmin;
+        padding: 55px 30px;
+        margin-top: 0px;
+        
+
+    }
+    .litenote-text-editor-container{
+        background-color: var(--text-editor-background);
+        width: 351px;
+        margin-top: 0px;
+        }
+ 
+}

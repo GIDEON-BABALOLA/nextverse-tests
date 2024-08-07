@@ -1,0 +1,145 @@
+:root{
+    --note-background : white;
+    --note-settings-background :  #fff;
+    --note-settings-color : black;
+    --note-setings-hover : #f5f5f5;
+}
+.dark-theme-variables{
+    --note-background : #00000066;
+    --note-settings-background :  #202528;
+    --note-settings-color : #ffff;
+    --note-setings-hover  : #00000066;;
+}
+.litenote-dashboard-notes-preview .wrapper{
+    /* margin: 50px; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    flex-wrap: wrap;
+    gap: 15px;
+    /* margin-left: 0px; */
+    align-items: center;
+    margin: 0px;
+    margin-top: 90px;
+        width: 1000px;
+
+}
+.litenote-dashboard-notes-preview .wrapper li{
+    height: 250px;
+    list-style: none;
+    background: var(--note-background);
+    border-radius: 5px;
+    padding: 15px 20px 20px;
+    box-shadow: #0000001A 0px 2px 5px 0px;
+
+}
+.litenote-dashboard-notes-preview .add-box, .icon{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+.litenote-dashboard-notes-preview .add-box .icon{
+    height: 100px;
+    width: 100px;
+    color: #7380EC;
+    font-size: 40px;
+    border-radius: 50%;
+    border:  2px dashed #7380EC;
+} 
+.litenote-dashboard-notes-preview .add-box  p{
+    color: #7380EC;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.litenote-dashboard-notes-preview .note p{
+font-size: 22px;
+font-weight: 500;
+}
+.litenote-dashboard-notes-preview .note span{
+    display: block;
+    margin-top: 5px;
+    color: #575757;
+    font-size: 13px;
+}
+.litenote-dashboard-notes-preview .note .bottom-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+.litenote-dashboard-notes-preview .note{
+    display: flex;
+    flex-direction: column;
+ justify-content: space-around;
+}
+.litenote-dashboard-notes-preview .note .bottom-content span{
+    color: #6d6d6d;
+    font-size: 14px;
+}
+.litenote-dashboard-notes-preview .note .bottom-content .settings svg{
+    color: #6d6d6d;
+    font-size: 14px;
+    cursor: pointer;
+    padding-right: 8px;
+}
+.litenote-dashboard-notes-preview .settings  .menu{
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding: 5px 0;
+    background: var(--note-background);
+    right: -5px;
+    transform: scale(0);
+       transform-origin: bottom right;
+    transition: transform 0.2s ease;
+}
+.litenote-dashboard-notes-preview .settings:hover .menu{
+    transform: scale(1);
+}
+.litenote-dashboard-notes-preview .settings {
+    position: relative;
+}
+.litenote-dashboard-notes-preview .settings  .menu li{
+    display: flex;
+      
+    align-items: center;
+    justify-content: flex-start;
+    height: 25px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: "Poppins";
+    background: var(--note-settings-background);
+}
+.litenote-dashboard-notes-preview .settings  .menu li:hover{
+    background: var(--note-setings-hover);
+}
+
+@media screen and (max-width:1200px) {
+    .litenote-dashboard-notes-preview .wrapper{
+        width: 100vmin;
+        padding: 55px 30px;
+        margin-top: 60px;
+
+    }
+}
+
+@media screen and (max-width:768px) {
+    .litenote-dashboard-notes-preview .wrapper{
+        width: 100vmin;
+        padding: 55px 30px;
+        margin-top: 30px;
+
+    }
+}
+@media screen and (max-width:767px) {
+    .litenote-dashboard-notes-preview .wrapper{
+        width: 100vmin;
+        padding: 55px 30px;
+        margin-top: 0px;
+
+    }
+}

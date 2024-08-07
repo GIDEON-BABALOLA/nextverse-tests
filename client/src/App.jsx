@@ -17,16 +17,18 @@ import ReportsPage from './Pages/Dashboard/ReportsPage';
 import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 import BookmarksPage from './Pages/Dashboard/BookmarksPage';
+import JoinWaitingListPage from './Pages/JoinWaitingListPage';
 import TeamPage from "./Pages/TeamPage"
 function App() {
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const [showCookieConsent, setShowCookieConsent] = useState(false)
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
+  let appReady = true
   return (
     
     <>
-<Routes>
+{ appReady ?   <Routes>
   <Route path="/" element={<Layout className="pages"
   setShowCookieConsent={setShowCookieConsent}
    setShowTermsAndConditions={ setShowTermsAndConditions}/>}>
@@ -52,7 +54,8 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
 
 <Route path="register" element={<RegisterPage />} />
   <Route  path="*" element={<NotFound/>}/>
-</Routes>
+</Routes> : <JoinWaitingListPage />
+}
     </>
   )
 }
