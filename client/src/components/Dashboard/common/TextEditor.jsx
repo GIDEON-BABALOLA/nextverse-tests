@@ -44,6 +44,7 @@ const TextEditor = () => {
     });
     }
     const scrollTextArea = (e) => {
+    // what we Are going to be saving into the database from here is e.target.innerHtml, and we are going to be saving it as a string format
              textAreaRef.current.style.height ="63px"
         textAreaRef.current.style.height ="auto"
 textAreaRef.current.style.height =`${e.target.scrollHeight}px`

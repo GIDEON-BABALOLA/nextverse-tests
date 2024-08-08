@@ -7,14 +7,15 @@
 }
 
 .litenote-special-modal .popup {
-    width:450px;
-    height:350px;
+    width:350px;
+    height:300px;
     padding:30px 20px;
     background: #f5f5f5;
     border-radius: 10px;
     box-sizing:border-box;
     overflow-y: scroll;
-    z-index:2;
+    font-family: "Poppins";
+    z-index:6;
     text-align: center;
     box-shadow: #00000040 -10px 10px 40px 0px;
     opacity: 0;

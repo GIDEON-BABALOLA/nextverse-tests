@@ -4,6 +4,7 @@ import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa";
 import { MdLanguage, MdCode, MdInfo } from "react-icons/md";
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import LanguageSelect from "./LanguageSelect";
 import SpecialModal from "../../components/common/SpecialModal"
 const Footer = ({ setShowTermsAndConditions, setShowCookieContent}) => {
   const [openModal, setOpenModal] = useState(false)
@@ -13,7 +14,7 @@ const Footer = ({ setShowTermsAndConditions, setShowCookieContent}) => {
   return (
   <>
     <footer>
-    <SpecialModal openModal={openModal} setOpenModal={setOpenModal}/>
+    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="Language Select" content={<LanguageSelect />}/>
     <div className="footer-content">
       <div className="logo" style={{display : "flex", flexDirection : "column"}}>
       <h6>Legal</h6>

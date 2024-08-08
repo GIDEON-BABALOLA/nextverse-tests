@@ -1,6 +1,7 @@
 import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { FaStar, FaRegStar, FaEllipsis} from "react-icons/fa6";
 import { MdSaveAlt, MdReport, MdChecklist, MdClose, MdDelete, MdSave, MdAssignmentTurnedIn
  } from "react-icons/md"
@@ -75,7 +76,8 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <span>gideonbabalola69@gmail.com</span>
   </div>
 </div>
-<div className="litenote-reports-box-reports">
+<div className="litenote-reports-box-reports" style={{color : 'white'}}>
+{formatDistanceToNow(new Date("April 3, 2024"), { addSuffix: true })}
 </div>
 </div>
 <div className="litenote-reports-client-comment">
@@ -98,8 +100,8 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <span>gideonbabalola69@gmail.com</span>
   </div>
 </div>
-<div className="litenote-reports-box-reports">
-
+<div className="litenote-reports-box-reports" style={{color : 'white'}}>
+{formatDistanceToNow(new Date("April 3, 2024"), { addSuffix: true })}
 </div>
 </div>
 <div className="litenote-reports-client-comment">
@@ -125,7 +127,8 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <span>gideonbabalola69@gmail.com</span>
   </div>
 </div>
-<div className="litenote-reports-box-reports">
+<div className="litenote-reports-box-reports" style={{color : 'white'}}>
+{formatDistanceToNow(new Date("April 3, 2024"), { addSuffix: true })}
 </div>
 </div>
 <div className="litenote-reports-client-comment">
@@ -149,8 +152,8 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <span>gideonbabalola69@gmail.com</span>
   </div>
 </div>
-<div className="litenote-reports-box-reports">
-
+<div className="litenote-reports-box-reports" style={{color : 'white'}}>
+{formatDistanceToNow(new Date("April 3, 2024"), { addSuffix: true })}
 </div>
 </div>
 <div className="litenote-reports-client-comment">

@@ -1,8 +1,5 @@
-import { useEffect, useRef } from "react"
 import "../../styles/components/common/special-modal.css"
-import LanguageSelect from "./LanguageSelect"
-const SpecialModal = ({ openModal, setOpenModal }) => {
-  console.log(openModal)
+const SpecialModal = ({ openModal, setOpenModal, title, content, width, height }) => {
   const closeModal = () => {
    setOpenModal(false)
   }
@@ -10,15 +7,15 @@ const SpecialModal = ({ openModal, setOpenModal }) => {
   
   return (
     <section className="litenote-special-modal">
-            <div className={`popup center ${openModal == true ? "active" : ""}`}>
+            <div className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`}}>
      <div className="icon">
     
      </div>
      <div className="title">
-        Language Select
+        {title}
      </div>
      <div className="description">
-     <LanguageSelect />
+     {content}
      </div>
      <div className="dismiss-btn">
        <button id="dismiss-popup-btn" onClick={closeModal}>

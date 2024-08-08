@@ -9,14 +9,63 @@ import useWindowSize from "../../../hooks/useWindowSize"
 import NavbarContextMenu from "../../common/NavbarContextMenu"
 import { FaAngleRight } from "react-icons/fa"
 import useInternetMode from "../../../hooks/useInternetMode"
+import useColorMode from "../../../hooks/useColorMode"
 const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
+  const  { colorMode }= useColorMode()
   const {width, height} = useWindowSize()
   const { online } = useInternetMode()
   const themeRef = useRef();
-  const toggleTheme  = () => {
-    document.body.classList.toggle('dark-theme-variables');
-     themeRef.current.querySelector('span:nth-child(1)').classList.toggle('active');
- themeRef.current.querySelector('span:nth-child(2)').classList.toggle('active');
+  useEffect(() => {
+    console.log(colorMode)
+    if(colorMode == ""){
+      console.log("hssh")
+      themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
+    }
+    // }
+switch (colorMode) {
+  case "dark-mode":
+    themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
+    themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
+    break;
+    case "light-mode":
+      themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
+      themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
+    break;
+}
+  }, [colorMode])
+  const setCoookie = (cookieName, cookieValue, expiryDate) => {
+    const d = new Date();
+    d.setTime(d.getTime() + (expiryDate * 24 * 60 * 60 * 1000));
+    let expires =  "expires="+d.toUTCString();
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+    console.log(cookieValue)
+  }
+  const themeMode = (e) => {
+    let id;
+    const correctId = e.currentTarget.closest('span').id;
+        if(e.target.id == ""){
+         id = correctId
+        }
+    switch (id) {
+      case "dark-mode":
+        document.cookie = "color-mode=light-mode;expires=Thu, 01 Jan 1970 00:00:00 UTC;" //Function To Delete Cookie
+        setCoookie("color-mode", "dark-mode", 1)
+        document.body.classList.add('dark-theme-variables');
+        themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
+        themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
+        break;
+        case "light-mode":
+          document.cookie = "color-mode=dark-mode;expires=Thu, 01 Jan 1970 00:00:00 UTC;" //Function To Delete Cookie
+          setCoookie("color-mode", "light-mode", 1)
+          document.body.classList.remove('dark-theme-variables');
+          themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
+          themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
+          break;
+      
+    
+      default:
+        break;
+    }
   }
 
   const showLoggedUserOptions = (e) => {
@@ -65,12 +114,12 @@ contextMenu.current.classList.add("active")
         <MdMenu />
       </span>
     </button>
-    <div className="litenote-dashboard-theme-toggler" width onClick={toggleTheme} ref={themeRef}>
-    <span className="active">
-    <MdDarkMode />
-    </span>
-    <span>
+    <div className="litenote-dashboard-theme-toggler" width ref={themeRef}>
+    <span className="" id = "light-mode" onClick={themeMode}>
     <MdLightMode />
+    </span>
+    <span id = "dark-mode"  onClick={themeMode}>
+    <MdDarkMode  />
       </span>
     </div>
     

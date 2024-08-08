@@ -3,8 +3,27 @@ import { FaHome, FaBookmark } from 'react-icons/fa';
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
 import logo from "../../../../src/assets/litenote.png"
+import useColorMode from '../../../hooks/useColorMode';
 import {  useEffect } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
+   const  { colorMode }= useColorMode()
+   useEffect(() => {
+      if(colorMode == ""){
+        document.body.classList.remove('dark-theme-variables');
+        
+      }
+      // }
+  switch (colorMode) {
+    case "dark-mode":
+      document.body.classList.add('dark-theme-variables');
+  
+      break;
+      case "light-mode":
+        document.body.classList.remove('dark-theme-variables');
+      
+      break;
+  }
+    }, [colorMode])
    const currentPage = useParams();
    // console.log(linkRef.current.innerText)
    const currentUrl = Object.values(currentPage)[0].split("/")[1]

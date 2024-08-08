@@ -2,15 +2,17 @@ import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
 import { useState, useEffect, useRef } from "react";
-import { MdDelete, MdSearch, MdClose } from "react-icons/md"
-import {FaTimes, FaSearch} from "react-icons/fa"
+import { MdDelete,  MdClose } from "react-icons/md"
 import "../../styles/components/Dashboard/users-page.css"
 import avatar from "../../assets/29.jpg"
 import useWindowSize from "../../hooks/useWindowSize";
 import { MdCheckCircle, MdClear } from "react-icons/md";
+import SpecialModal  from "../../components/common/SpecialModal"
 const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const { width } =useWindowSize()
-  const [rangeValue, setRangeValue] = useState(0)
+  const [openModal, setOpenModal] = useState(false)
+  const [userToBePreview, setUserToBePreviewed] = useState()
+      const [rangeValue, setRangeValue] = useState(0)
   const [searchQuery, setSearchQuery] = useState("")
   const [tableFilter, setTableFilter] = useState({
     Delete : true,
@@ -188,6 +190,7 @@ const resetTable = () => {
     Stories : true
   })
 }
+
 const filterTable = (e) => {
   const textContent = e.currentTarget.closest('li').innerText.trim();
 switch (textContent) {
@@ -305,6 +308,43 @@ tableRef.current.style.left = -rangeValue + "%"
           }
         };
       }, [contextMenu]);
+      const previewUserHtml = () => {
+        
+        return (
+        <>{ userToBePreview &&
+      <div>
+        <div className="preview-user-container">
+        <div><img className="table-avatar" src={userToBePreview.avatar}></img></div>
+        <h4>{userToBePreview.email} </h4>
+        <p>
+                        Technical Writer And Litenote User
+                       
+                    </p>
+                    <p>Full Details</p>
+                    <ul className="preview-user-container-full-details-container">
+                      <li className="preview-user-container-full-details">{userToBePreview.email}</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.followers} followers</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.followers} following</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.likes} likes</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.likes} stories</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.lastSeen} Last-Seen</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.dateJoined} Date-Joined</li>
+                    </ul>
+                    </div>
+                    <div className="preview-user-action-buttons">
+                    <span>Delete User</span>
+                    <span>View Profile</span>
+                    </div>
+        </div>
+
+        }
+        </>)
+      }
+      const previewUserData = (currentUser) => {
+   setOpenModal(true)
+   setUserToBePreviewed(currentUser)
+   return;
+}
   return (
     <>
     {loadPage ? 
@@ -312,7 +352,9 @@ tableRef.current.style.left = -rangeValue + "%"
     <RotationLoader />
     </>
      : <>
+     
    <main className="users-page-phone-help">
+   <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="Current User" content={previewUserHtml()} height={400} width={400}/>
    <div className="litenote-dashboard-right">
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     
@@ -417,19 +459,19 @@ type="range" min="0" max="60" value={rangeValue} step="1"/>
     </li>
 {
   data.map((user, index) => (
-    <li className="users-table-row" key={index}>
+    <li className="users-table-row" key={index} onDoubleClick={ () => previewUserData(user)}>
     <div className="users-table-column" data-label="Job Id">{index}</div>
       <div className="users-table-column" data-label="Job Id"> <input type="checkbox" /></div>
-      {  tableFilter.Avatar  && <div  className="users-table-column" >  <img className="table-avatar" src={user.avatar}></img></div>}
-      { tableFilter.Email && <div className="users-table-column" data-label="Amount">{user.email}</div>}
-      { tableFilter.Followers && <div className="users-table-column" data-label="Amount">{user.followers}</div>}
-      { tableFilter.Following && <div className="users-table-column" data-label="Payment Status">{user.following}</div>}
-      {  tableFilter.Likes && <div className="users-table-column" data-label="Payment Status">{user.likes}</div>}
-      { tableFilter.Stories && <div className="users-table-column" data-label="Payment Status">{user.stories}</div>}
-      { tableFilter.dateJoined && <div className="users-table-column" data-label="Payment Status">{user.dateJoined}</div>}
-      { tableFilter.lastSeen && <div className="users-table-column" data-label="Payment Status">{user.lastSeen}</div>}
-      { tableFilter.Newsletter && <div className="users-table-column" data-label="Payment Status">{user.newsletter ? <MdCheckCircle style={{color : "green"}} /> : <MdClear style={{color : "red"}}  /> }</div>}
-      {  tableFilter.Delete == true && <div className="users-table-column" data-label="Payment Status"><MdDelete
+      {  tableFilter.Avatar  && <div    className="users-table-column" >  <img className="table-avatar" src={user.avatar}></img></div>}
+      { tableFilter.Email && <div  className="users-table-column" data-label="Amount">{user.email}</div>}
+      { tableFilter.Followers && <div  className="users-table-column" data-label="Amount">{user.followers}</div>}
+      { tableFilter.Following && <div  className="users-table-column" data-label="Payment Status">{user.following}</div>}
+      {  tableFilter.Likes && <div  className="users-table-column" data-label="Payment Status">{user.likes}</div>}
+      { tableFilter.Stories && <div  className="users-table-column" data-label="Payment Status">{user.stories}</div>}
+      { tableFilter.dateJoined && <div  className="users-table-column" data-label="Payment Status">{user.dateJoined}</div>}
+      { tableFilter.lastSeen && <div  className="users-table-column" data-label="Payment Status">{user.lastSeen}</div>}
+      { tableFilter.Newsletter && <div  className="users-table-column" data-label="Payment Status">{user.newsletter ? <MdCheckCircle style={{color : "green"}} /> : <MdClear style={{color : "red"}}  /> }</div>}
+      {  tableFilter.Delete == true && <div  className="users-table-column" data-label="Payment Status"><MdDelete
       className="users-table-delete-button"
        size= {20} style={{ padding : "2px"}}/></div>}
     </li>
