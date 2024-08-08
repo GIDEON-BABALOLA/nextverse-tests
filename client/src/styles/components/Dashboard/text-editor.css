@@ -4,12 +4,14 @@
 --text-editor-buttton : #0000;
 --text-editor-button-background : #ffff;
 --texter : #777777;
+--keyboard : black;
 }
 .dark-theme-variables{
     --text-editor-background : #00000066;
     --text-editor-buttton : #ffff;
     --text-editor-button-background : #181A1E;
     --texter : #ffff;
+    --keyboard : black;
 }
 .computerprogrammer{
 float: right;
@@ -167,7 +169,7 @@ input[type="color"]::-webkit-color-swatch {
 
 .litenote-text-editor-option-button.active{
     background-color: #e0e9ff;
-    background-color: red;
+    color: var(--keyboard);
 }
 
 
