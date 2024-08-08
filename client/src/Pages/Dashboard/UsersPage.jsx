@@ -12,8 +12,9 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const { width } =useWindowSize()
   const [openModal, setOpenModal] = useState(false)
   const [userToBePreview, setUserToBePreviewed] = useState()
-      const [rangeValue, setRangeValue] = useState(0)
+  const [rangeValue, setRangeValue] = useState(0)
   const [searchQuery, setSearchQuery] = useState("")
+  const [searchResult, setSearchResult] = useState("")
   const [tableFilter, setTableFilter] = useState({
     Delete : true,
     Newsletter : true,
@@ -147,11 +148,33 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "likes": 358,
       "dateJoined": "2020-10-12",
       "lastSeen": "2024-12-14",
-      "email" : "dev@gmail.com",
+      "email" : "solution@gmail.com",
       "avatar": avatar
     },
     
   ]
+
+  const handleSearchChange = (e) => { 
+    const value = e.target.value.trim()
+
+    setSearchQuery(value)
+    if(!value){
+        return setSearchResult(data)
+    }else{
+        setSearchResult(searchArray(value))
+    }
+}
+const searchArray = (search) => {
+    //Merge Array without repeating the elements in the array more than once
+    const mergeArray = (news, olds) => [...new Set([...news, ...olds])]
+    return mergeArray(resultsArray(search), data)
+}
+const resultsArray = (search) => {
+    const resultsArray = data.filter((user) => user.email.toLowerCase().includes(search.toLowerCase()) 
+ ) //Returns Boolean
+return resultsArray
+
+}
 const tableRef = useRef()
 const slideValue = useRef()
 const inputSlider = useRef()
@@ -162,20 +185,6 @@ setRangeValue(value)
   slideValue.current.innerText = value;
   slideValue.current.style.left = (value/2) + "%";
 }
-// const filterTable = (e) => {
-//   const textContent = e.currentTarget.closest('li').innerText.trim();
-
-//   if (textContent in tableFilter) {
-//     tableFilter[textContent] = false;
-//   }
-//   else if(textContent == "Date-Joined"){
-//     tableFilter["dateJoined"] = false;
-//   }
-//   else if(textContent == "Last-Seen"){
-//     tableFilter["lastSeen"] = false;
-//   }
-//   setTableFilter(tableFilter);
-// }
 const resetTable = () => {
   setTableFilter({
     Delete : true,
@@ -288,6 +297,7 @@ tableRef.current.style.left = -rangeValue + "%"
   useEffect(() => {
     setTimeout(() => {
       setLoadPage(false)
+      setSearchResult(data)
     }, 2000);
       }, [])
       const [contextMenu, setContextMenu] = useState()
@@ -390,7 +400,7 @@ type="range" min="0" max="60" value={rangeValue} step="1"/>
   <div className="user-search-wrapper">
 
   <div className="field">
-     <input type="text" placeholder="Search Users Data" />
+     <input type="text" placeholder="Search Users Data" value={searchQuery} onChange={(e) => handleSearchChange(e)}/>
      <label htmlFor="click" className="btn-2">Search</label>
   </div>
 </div>
@@ -458,7 +468,7 @@ type="range" min="0" max="60" value={rangeValue} step="1"/>
       
     </li>
 {
-  data.map((user, index) => (
+  searchResult.map((user, index) => (
     <li className="users-table-row" key={index} onDoubleClick={ () => previewUserData(user)}>
     <div className="users-table-column" data-label="Job Id">{index}</div>
       <div className="users-table-column" data-label="Job Id"> <input type="checkbox" /></div>
