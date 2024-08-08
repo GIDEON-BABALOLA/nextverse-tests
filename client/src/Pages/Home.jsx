@@ -10,16 +10,22 @@ import CookieConsent from "../components/common/CookieConsent.jsx"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import { TrustedBy } from "../components/Home/TrustedBy.jsx"
 import LanguageSelect from "../components/common/LanguageSelect.jsx"
+import useNewsletterMode from "../hooks/useNewsletterMode.jsx"
 const Home = ({ showTermsAndConditions, setShowTermsAndConditions, setShowCookieConsent, showCookieConsent}) => {
-
+const { newsletterMode } = useNewsletterMode()
+console.log(newsletterMode)
   const [showNewsLetter, setShowNewsLetter] = useState(null)
 const page = useRef()
 useEffect(() => {
-  setTimeout(() => {
-    setShowNewsLetter(!showNewsLetter)
-  }, 3000);
+  if(newsletterMode){
+    setTimeout(() => {
+        console.log("Fff")
+        setShowNewsLetter(!showNewsLetter)
+    }, 3000);
+  }
 
-}, [])
+
+}, [newsletterMode])
 
   return (
     <>

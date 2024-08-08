@@ -3,7 +3,7 @@ import { FaTimes } from "react-icons/fa"
 import {  useRef, useEffect, useState } from "react"
 import useWindowScroll from "../../hooks/useWindowScroll"
 import useWindowSize from "../../hooks/useWindowSize"
-import { SetCookie } from "../../helpers/CookiesConfiguration"
+import { setCookie } from "../../helpers/CookiesConfiguration"
 const NewsletterSignup = ({ page, showNewsLetter, setShowNewsLetter}) => {
    const [i, setI] = useState()
    const fullNewsletter = useRef()
@@ -14,7 +14,7 @@ const closeNewsletter = () => {
    setShowNewsLetter(false)
 }
 const subScribeToNewsletter = () => {
-   SetCookie("show-newsletter", false, 10)
+   setCookie("newsletter-mode", false, 10)
 }
 useEffect(() => {
    const scrollPercent = ((y / (parseInt(page.current.scrollHeight) - height)) * 100) + 20;

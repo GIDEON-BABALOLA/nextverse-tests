@@ -18,12 +18,23 @@ import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 import BookmarksPage from './Pages/Dashboard/BookmarksPage';
 import JoinWaitingListPage from './Pages/JoinWaitingListPage';
+import { useLocation } from "react-router-dom"
 import TeamPage from "./Pages/TeamPage"
+import { useEffect } from 'react';
 function App() {
+  const location = useLocation();
+  console.log(location)
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const [showCookieConsent, setShowCookieConsent] = useState(false)
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
+  useEffect(() => {
+
+const dashboardPattern = /^\/dashboard\/?.*$/
+    if (!dashboardPattern.test(location.pathname)) {
+      document.body.classList.remove('dark-theme-variables');
+    } 
+  }, [location.pathname]);
   let appReady = true
   return (
     

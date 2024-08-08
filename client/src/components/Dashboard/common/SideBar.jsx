@@ -6,6 +6,7 @@ import logo from "../../../../src/assets/litenote.png"
 import useColorMode from '../../../hooks/useColorMode';
 import {  useEffect } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
+   let role = "user"
    const  { colorMode }= useColorMode()
    useEffect(() => {
       if(colorMode == ""){
@@ -82,10 +83,11 @@ clickSidebarMenu()
                     </div>
 
                     <div className="sidebar">
-                    <Link to="/" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
+                 <Link to="/" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
                     <FaHome size={24} />
                            <h3 className="litenote-dashboard-h-three">Home</h3>
         </Link>
+                 
                     <Link to="/dashboard/bookmarks"  className={`sidebar-links ${currentUrl === "bookmarks" && "active"}`}>
                     <FaBookmark size={20} />
                            <h3 className="litenote-dashboard-h-three">Bookmarks</h3>

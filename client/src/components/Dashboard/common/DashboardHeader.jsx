@@ -4,7 +4,7 @@ import image from "../../../assets/3.jpg"
 import { useRef, useState, useEffect } from "react"
 import ContextMenu from "../../common/ContextMenu"
 import {  MdLogout, MdSettings, MdClose, MdGridView, MdOpenInNew }from "react-icons/md"
-import { FaHome, FaUserAlt, FaUser } from 'react-icons/fa';
+import {  FaUser } from 'react-icons/fa';
 import useWindowSize from "../../../hooks/useWindowSize"
 import NavbarContextMenu from "../../common/NavbarContextMenu"
 import { FaAngleRight } from "react-icons/fa"
