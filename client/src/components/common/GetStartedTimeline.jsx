@@ -1,29 +1,98 @@
 import "../../styles/components/common/get-started-timeline.css"
+import { useRef, useEffect, useState } from "react"
 import pic from  "../../assets/29.jpg"
 const GetStartedTimeline = () => {
+const elementRef = useRef()
+const firstSection =  useRef()
+const secondSection =  useRef()
+const thirdSection =  useRef()
+const fourthSection =  useRef()
+const fifthSection = useRef()
+useEffect(() => {
+  const secondObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          switch (entry.target.id) {
+case "firstSection":
+console.log("fjfj")
+firstSection.current.classList.add("active")
+break
+case "secondSection":
+  console.log("fjfj")
+              secondSection.current.classList.add("active")
+  break
+  case "thirdSection":
+    console.log("fjfj")
+    thirdSection.current.classList.add("active")
+    break
+    case "fourthSection":
+      console.log("fjfj")
+      fourthSection.current.classList.add("active")
+      break
+      case "fifthSection":
+        console.log("fjfj")
+        fifthSection.current.classList.add("active")
+        break
+              
+            default:
+              break;
+          }
+          // observer.unobserve(entry.target);
+        }
+      })
+    },
+    { threshold: 1 } // 10% of the element needs to be visible
+  );
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        elementRef.current.classList.add("active")
+        // observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.1 } // 10% of the element needs to be visible
+  );
+
+
+  if (elementRef.current) {
+    observer.observe(elementRef.current);
+    secondObserver.observe(firstSection.current);
+    secondObserver.observe(secondSection.current);
+    secondObserver.observe(thirdSection.current);
+    secondObserver.observe(fourthSection.current);
+    secondObserver.observe(fifthSection.current);
+  }
+
+  return () => {
+    if (elementRef.current) {
+      observer.unobserve(elementRef.current);
+    }
+  };
+}, []);
   return (
   <section className="get-started-timeline">
-        <div className="timeline">
-        <div className="container jobs left-container">
+        <div className="timeline" ref={elementRef} id="elementRef">
+        <div className="container jobs left-container" id="firstSection" ref={firstSection}>
         <img src={pic} alt="" />
             <div className="text-box">
               <h2>Step 1</h2>
               <small><b>Create An Account</b></small>
-              <p>Navigate to the navbar of the application, click on the avatar illustration, a context menu will appear with several options, click on Sign In. </p>
+              <p>Navigate to the navbar of the application, click on the avatar illustration, a context menu will appear with several options, click on Sign In.</p>
               <span className="left-container-arrow"></span>
             </div>
         </div>
         
-        <div className="container right-container">
+        <div className="container  right-container" id="secondSection" ref={secondSection}>
             <img src={pic} alt="" />
             <div className="text-box">
               <h2>Step 2</h2>
               <small><b>Fill In Your Details</b></small>
-              <p>After Clicking on the login button, It will take you to a page where you are required to enter a username, an email, password and a phone number, after this you are required to click on the register button</p>
+              <p>After Clicking on the login button, It will take you to a page where you are required to enter a username, an email, password and a phone number, after this you are required to click on the register button.</p>
               <span className="right-container-arrow"></span>
             </div>
         </div>
-        <div className="container left-container">
+        <div className="container left-container" id="thirdSection" ref={thirdSection}>
             <img src={pic} alt="" />
             <div className="text-box">
               <h2>Step 3</h2>
@@ -32,7 +101,7 @@ const GetStartedTimeline = () => {
               <span className="left-container-arrow"></span>
             </div>
         </div>
-        <div className="container right-container">
+        <div className="container right-container" id="fourthSection" ref={fourthSection}>
             <img src={pic} alt="" />
             <div className="text-box">
               <h2>Step 4</h2>
@@ -42,12 +111,12 @@ const GetStartedTimeline = () => {
             </div>
         </div>
        
-        <div className="container left-container">
+        <div className="container left-container" id="fifthSection" ref={fifthSection}>
             <img src={pic} alt="" />
             <div className="text-box">
               <h2>Step 5</h2>
               <small><b>Visiting Your Dashboard</b></small>
-              <p>The Dashboard Is Where the main action takes place</p>
+              <p>The Dashboard Is Where the main action takes place, inside your dashboard you get to edit your profile, you also get to write your notes with our powerful editor, I wont tell you everythink now more features are waiting for you in the dashboard.</p>
               <span className="left-container-arrow"></span>
             </div>
         </div>
