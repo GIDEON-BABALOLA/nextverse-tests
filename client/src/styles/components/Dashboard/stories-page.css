@@ -72,7 +72,26 @@
 	background-color: var(--secondary-color);
 	transition: 0.15s ease-in;
 }
+.story-card-avatar{
 
+	width: 10%;
+	border-radius: 50%;
+  
+  }
+  .story-card-user-info{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 5px;
+	margin-bottom: 5px;
+  }
+  .story-card-bottom-info{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 3px;
+  }
 @media screen and (max-width:768px) {
     .stories-page-title .container {
 
@@ -87,6 +106,7 @@
 		position: static;
     
     }
+
 
     .stories-page-title .tab {
         display: flex;

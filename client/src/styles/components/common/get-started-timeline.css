@@ -1,0 +1,168 @@
+
+.get-started-timeline .timeline{
+     position: relative;
+     max-width: 1200px; 
+     margin: 100px auto;
+     font-family: "Poppins";
+     /* transform: scaleY(0.9); */
+    /* left: -300px;   */
+   
+
+    
+   
+}
+.get-started-timeline .container{
+    padding: 10px 50px;
+    /* position: relative; */
+    width: 50%;
+   animation: movedown 1s linear forwards;
+   opacity: 0;
+    /* left: -300px;   */
+}
+.get-started-timeline .container p{
+    color: black;
+}
+@keyframes movedown {
+    0%{
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+.get-started-timeline .container:nth-child(1){
+animation-delay: 1s;
+}
+.get-started-timeline .container:nth-child(2){
+animation-delay: 2s;
+}
+.get-started-timeline .container:nth-child(3){
+animation-delay: 3s;
+}
+.get-started-timeline .container:nth-child(4){
+animation-delay: 4s;
+}
+.get-started-timeline .container:nth-child(5){
+animation-delay: 5s;
+}
+
+.get-started-timeline .text-box{
+    box-shadow: #0000001A 0px 2px 5px 0px;
+    padding: 20px 30px;
+     background: #fff; 
+     position: relative;
+     border-radius: 6px;
+     font-size: 15px;
+}
+.get-started-timeline .left-container{
+    position: relative;
+    left: -25%;
+}
+.get-started-timeline .right-container{
+    position: relative;
+    left: 25%;
+}
+.get-started-timeline .container img{
+    position: absolute;
+    width: 40px;
+    border-radius: 50%;
+    right: -20px;
+    top: 32px;
+    z-index: 10;
+}
+.get-started-timeline .right-container img{
+    left: -20px;
+}
+.get-started-timeline .timeline::after{
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: #333333;
+    top: 0;
+    left:50%;
+    margin-left: -3px;
+    z-index: -1;
+    animation: moveline 6s linear forwards ;
+}
+@keyframes moveline {
+    0%{
+        height: 0;;
+    }
+    100%{
+        height: 100%;
+    }
+}
+
+.get-started-timeline .text-box h2{
+font-weight: 700;
+}
+.get-started-timeline .text-box small{
+    display: inline-block;
+    margin-bottom: 15px;
+}
+.get-started-timeline .left-container-arrow{
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 28px;
+    z-index: 1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #333333;
+    right: -15px;
+}
+.get-started-timeline .right-container-arrow{
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 28px;
+    z-index: 1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #333333;
+    left: -15px;
+}
+@media screen and (max-width: 900px){
+    .get-started-timeline .left-container{
+        /* position: relative; */
+        left: 0%;
+    }
+    .get-started-timeline .right-container{
+        /* position: relative; */
+        left: 100%;
+    }
+   .get-started-timeline .timeline {
+        margin: 50px auto;
+    }
+   .get-started-timeline .timeline::after{
+        left: 31px;
+    }
+  .get-started-timeline  .container{
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 25px;
+    }
+    
+  .get-started-timeline  .text-box{
+        font-size: 13px;
+    }
+
+   .get-started-timeline .text-box small{
+        margin-bottom: 10px;
+    }
+  .get-started-timeline  .right-container{
+        left: 0;
+    }
+  .get-started-timeline  .left-container img, .right-container img{
+        left: 10px;
+    }
+   .get-started-timeline .left-container-arrow, .right-container-arrow{
+        border-right: 15px solid #fff;
+        border-left: 0;
+        left: -15px;
+    }
+}

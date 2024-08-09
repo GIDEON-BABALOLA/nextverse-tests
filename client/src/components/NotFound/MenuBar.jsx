@@ -12,22 +12,25 @@ const MenuBar = ({ nav, setNav}) => {
   <>
     <nav data-state="closed" ref={nav} className="notfound-nav">
   <ul className="notfound-ul">
-  <li className="menu-bar-navigation-links">
-  <Link to="/">
-        Home
+  <li className="menu-bar-navigation-links" style={{cursor : "pointer"}}    >
+  <Link to="/" >
+  <span  style={{cursor : "pointer"}} >
+  Home
+  </span>
+     
         </Link>
   </li>
-  <li className="menu-bar-navigation-links">
+  <li className="menu-bar-navigation-links" style={{cursor : "pointer"}}    >
   <Link to="/profile">
         Profile
         </Link>
   </li>
-  <li className="menu-bar-navigation-links">
-  <Link to="/browse">
-        Browse
+  <li className="menu-bar-navigation-links" style={{cursor : "pointer"}}    >
+  <Link to="/explore">
+        Explore
         </Link>
   </li>
-  <li className="menu-bar-navigation-links">
+  <li className="menu-bar-navigation-links" style={{cursor : "pointer"}}    >
     <div className="social-icons">
     <FaInstagram  className="four-o-four fa-xl" size={30}/>
       <FaTwitter className="four-o-four" size={30}/>

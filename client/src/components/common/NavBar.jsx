@@ -6,7 +6,7 @@ import avatar from "../../assets/28.jpg"
 import { FaAngleRight } from "react-icons/fa"
 import NavbarContextMenu from "./NavbarContextMenu"
 import Hamburger from 'hamburger-react'
-import { MdGridView, MdLogout, MdSettings, MdClose,  MdManageSearch ,  MdAutoStories }from "react-icons/md"
+import { MdGridView, MdLogout, MdSettings, MdDynamicFeed, MdManageSearch ,  MdAutoStories }from "react-icons/md"
 import { useState, useEffect } from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import { useParams } from "react-router-dom"
@@ -133,6 +133,9 @@ contextMenu.current.style.visibility = "visible"
       <Link to="/" className="navbar-header-links navbar-active">
         Home
         </Link>
+        <Link to="/feed" className="navbar-header-links">
+        Feed
+        </Link>
         <Link to="/publish" className="navbar-header-links">
         Publish
         </Link>
@@ -171,6 +174,13 @@ className="navbar-context-profile-photo-home"/>
                            <h3 className="litenote-dashboard-h-three">Home</h3>
                            
         </Link>
+        <Link to="/feed" className={`nav-sidebar-link ${currentUrl === "feed" && "active"}`} 
+                        onClick={dave}
+                    >
+                    <MdDynamicFeed size={24} />
+                           <h3 className="litenote-dashboard-h-three">Feed</h3>
+                           
+        </Link>
         <Link to="/publish"  className={`nav-sidebar-link ${currentUrl === "publish" && "active"}`}
          onClick={dave}
         >
@@ -189,7 +199,7 @@ className="navbar-context-profile-photo-home"/>
         </Link>
                       
                         
-                        <Link to="/dashboard/dashboard" className={`nav-sidebar-link ${currentUrl === "users" && "active"}` } 
+                        <Link to="/dashboard/analytics" className={`nav-sidebar-link ${currentUrl === "users" && "active"}` } 
                            onClick={dave}
                         >
                         

@@ -9,7 +9,7 @@ import { useState, useEffect, useRef } from "react"
 import CookieConsent from "../components/common/CookieConsent.jsx"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import { TrustedBy } from "../components/Home/TrustedBy.jsx"
-import LanguageSelect from "../components/common/LanguageSelect.jsx"
+import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
 import useNewsletterMode from "../hooks/useNewsletterMode.jsx"
 const Home = ({ showTermsAndConditions, setShowTermsAndConditions, setShowCookieConsent, showCookieConsent}) => {
 const { newsletterMode } = useNewsletterMode()
@@ -41,6 +41,7 @@ useEffect(() => {
     <TermsAndConditions showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>
     <CookieConsent setShowCookieConsent={setShowCookieConsent} showCookieConsent={showCookieConsent}/>
 <PopularStories />
+<GetStartedTimeline />
 {/* <TrustedBy /> */}
 <ChatBot />
 <Faq />

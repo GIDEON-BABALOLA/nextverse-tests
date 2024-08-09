@@ -15,6 +15,7 @@
     padding: 10px;
     display: flex;
     position:  relative;
+  width: 1200px;
 
  
 }
@@ -38,7 +39,7 @@ label{
     top: 10px;
     left: 10px;
     background: #e6eef9;
-    width: 200px;
+    width: 170px;
     height: 55px;
     border-radius: 2rem;
     transition: ease .3s ;

@@ -11,8 +11,7 @@ import ContextMenu from "../components/common/ContextMenu"
 import { FaTimes, FaUserAlt, FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
 import RotationLoader from "../components/Loaders/RotationLoader"
 import { useEffect, useState, useRef } from "react"
-import Tooltip from "../components/common/Tooltip"
-
+import { MdReadMore } from "react-icons/md"
 const BrowsePage = () => {
   const [shareModal, setShareModal] = useState()
   const { width, height } =useWindowSize()
@@ -104,10 +103,11 @@ setTimeout(() => {
                  , label : "Share"},
                  {id : 2, icon : <FaBookmark />
                  , label : "Bookmark"},
-                 {id : 3, icon : <FaTimes/>
-                 , label : "Close"},
+           
                  {id : 4, icon : <FaRegThumbsUp />
-                 , label : "Like Story"}
+                 , label : "Like Story"},
+                 {id : 5, icon : <MdReadMore />
+                  , label : "Read More"}
 ]} />
      </div>
      

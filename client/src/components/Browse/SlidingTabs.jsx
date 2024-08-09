@@ -27,7 +27,7 @@ const SlidingTabs = () => {
         })
         break;
         case "Fiction":
-          setSlideDistance(200)
+          setSlideDistance(170)
           setTab({
             all : false,
             fiction : true,
@@ -39,7 +39,7 @@ const SlidingTabs = () => {
           })
         break;
         case "Non-Fiction":
-          setSlideDistance(400)
+          setSlideDistance(340)
           setTab({
             all : false,
             fiction : false,
@@ -51,7 +51,7 @@ const SlidingTabs = () => {
           })
         break;
         case "Romance":
-          setSlideDistance(600)
+          setSlideDistance(510)
           setTab({
             all : false,
             fiction : false,
@@ -63,7 +63,7 @@ const SlidingTabs = () => {
           })
           break;
           case "Technology":
-            setSlideDistance(800)
+            setSlideDistance(680)
             setTab({
               all : false,
               fiction : false,
@@ -75,7 +75,7 @@ const SlidingTabs = () => {
             })
             break;
             case "Health":
-              setSlideDistance(1000)
+              setSlideDistance(850)
               setTab({
                 all : false,
                 fiction : false,
@@ -87,7 +87,7 @@ const SlidingTabs = () => {
               })
               break;
         case "Adventure":
-          setSlideDistance(1200)
+          setSlideDistance(1020)
           setTab({
             all : false,
             fiction : false,

@@ -9,6 +9,7 @@ import useWindowSize from "../../hooks/useWindowSize"
 import { FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { FaTimes, FaUserAlt, FaRegThumbsUp } from "react-icons/fa";
+import { MdReadMore } from "react-icons/md"
 import Toast from "../common/Toast"
 const Profile = () => {
 const {width, height} = useWindowSize()
@@ -87,7 +88,7 @@ const [shareModal, setShareModal] = useState()
                   , label : "Share"},
                   {id : 2, icon : <FaBookmark />
                   , label : "Bookmark"},
-                  {id : 3, icon : <FaTimes/>
+                  {id : 3, icon : <MdReadMore/>
                   , label : "Close"},
                   {id : 4, icon : <FaRegThumbsUp />
                   , label : "Like Story"}
