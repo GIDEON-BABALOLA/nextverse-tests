@@ -1,6 +1,11 @@
 import "../../styles/components/common/get-started-timeline.css"
+import { FaUserPlus, FaCheckCircle, FaEdit, FaTachometerAlt } from 'react-icons/fa';
 import { useRef, useEffect, useState } from "react"
 import pic from  "../../assets/29.jpg"
+import anotherpic from  "../../assets/Great.jpg"
+import woman from "../../assets/30.jpg"
+import picSecond from "../../assets/19.jpg"
+import picThird  from "../../assets/3.jpg"
 const GetStartedTimeline = () => {
 const elementRef = useRef()
 const firstSection =  useRef()
@@ -84,7 +89,7 @@ case "secondSection":
         </div>
         
         <div className="container  right-container" id="secondSection" ref={secondSection}>
-            <img src={pic} alt="" />
+            <img src={anotherpic} alt="" />
             <div className="text-box">
               <h2>Step 2</h2>
               <small><b>Fill In Your Details</b></small>
@@ -93,7 +98,7 @@ case "secondSection":
             </div>
         </div>
         <div className="container left-container" id="thirdSection" ref={thirdSection}>
-            <img src={pic} alt="" />
+            <img src={woman} alt="" />
             <div className="text-box">
               <h2>Step 3</h2>
               <small><b>Verify Your Account</b></small>
@@ -102,7 +107,7 @@ case "secondSection":
             </div>
         </div>
         <div className="container right-container" id="fourthSection" ref={fourthSection}>
-            <img src={pic} alt="" />
+            <img src={picSecond} alt="" />
             <div className="text-box">
               <h2>Step 4</h2>
               <small><b>Take A Tour Of Our App</b></small>
@@ -112,7 +117,7 @@ case "secondSection":
         </div>
        
         <div className="container left-container" id="fifthSection" ref={fifthSection}>
-            <img src={pic} alt="" />
+            <img src={picThird} alt="" />
             <div className="text-box">
               <h2>Step 5</h2>
               <small><b>Visiting Your Dashboard</b></small>

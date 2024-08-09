@@ -170,7 +170,9 @@ font-weight: 700;
         left: 0;
     }
   .get-started-timeline  .left-container img, .right-container img{
+    width: 5%;
         left: 10px;
+        left: 25px;
     }
    .get-started-timeline .left-container-arrow, .right-container-arrow{
         border-right: 15px solid #fff;
@@ -189,5 +191,9 @@ font-weight: 700;
         visibility: visible;
         opacity: 1;
           animation: movedown 1s linear forwards;
+    }
+    .get-started-timeline .right-container img{
+        left: 25px;
+        width: 5%;
     }
 }
