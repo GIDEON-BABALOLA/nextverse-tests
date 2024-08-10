@@ -74,6 +74,11 @@
 
 }
 
+.users-top-man{
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+}
 
 .user-search-wrapper .field input{
   height: 100%;
@@ -344,7 +349,15 @@ place-items: center;
 .filter-tags-details button:hover{
   background: #2c52ed;
 }
-
+@media all and (max-width: 768px) {
+  .users-top-man{
+    display: flex;
+    /* align-items: center; 
+    justify-content: space-between; */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 @media all and (max-width: 767px) {
   .users-table-containe{
     animation: relative;
@@ -380,6 +393,8 @@ place-items: center;
 .users-page-phone-help{
   margin-top: 50px;
 }
+
+
 
 }
 

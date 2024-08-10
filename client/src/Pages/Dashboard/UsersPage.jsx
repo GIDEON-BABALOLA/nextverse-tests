@@ -8,6 +8,7 @@ import avatar from "../../assets/29.jpg"
 import useWindowSize from "../../hooks/useWindowSize";
 import { MdCheckCircle, MdClear } from "react-icons/md";
 import SpecialModal  from "../../components/common/SpecialModal"
+import DashboardPagination from "../../components/Dashboard/common/DashboardPagination";
 const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const { width } =useWindowSize()
   const [openModal, setOpenModal] = useState(false)
@@ -395,7 +396,7 @@ type="range" min="0" max="60" value={rangeValue} step="1"/>
 </>
    }
    <div className="users-page-headings">
-   <section>
+   <section className="users-top-man">
   
   <div className="user-search-wrapper">
 
@@ -404,7 +405,9 @@ type="range" min="0" max="60" value={rangeValue} step="1"/>
      <label htmlFor="click" className="btn-2">Search</label>
   </div>
 </div>
-
+<div>
+<DashboardPagination />
+</div>
   </section>
     <section>
     {

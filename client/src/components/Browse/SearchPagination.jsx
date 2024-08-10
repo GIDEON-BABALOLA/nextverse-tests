@@ -32,6 +32,7 @@ const news = [firstNumber - 1, ...paginationNumbers.slice(0, 9)]
   };
 
   const nextBtn = () => {
+    console.log(currentValue)
     if(currentValue === 20){
       return disableNext(true)
     }
