@@ -151,7 +151,7 @@ contextMenu.current.style.visibility = "visible"
       <section className="litenote-nav-sidebar-aside" ref={navSidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
 
 
-                    <div className="navside">
+                    <div className="navside navbar-phone-problem-home-page">
                     <span className="close-nav-sidebar"
                     onClick={closeNavSidebar}
                     >
