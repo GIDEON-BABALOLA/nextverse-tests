@@ -31,7 +31,7 @@ const SearchFilter = () => {
     const openOption = () => {
         list.current.style.display = "block";
         setActive(!active)
-        if(active === true){;
+        if(active === true){
             list.current.style.padding = "20px";
             list.current.style.display = "block";
           setTimeout(() => {

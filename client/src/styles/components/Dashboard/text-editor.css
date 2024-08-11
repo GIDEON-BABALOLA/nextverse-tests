@@ -178,7 +178,7 @@ input[type="color"]::-webkit-color-swatch {
     background-color: var(--text-editor-background);
     width: 700px;
 
-    margin-top: 100px;
+    /* margin-top: 100px; */
     }
 }
 

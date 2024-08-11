@@ -1,0 +1,115 @@
+:root{
+    --settings-card : 
+}
+.dashboard-settings-page-title{
+    box-sizing: border-box;
+	max-width: 1280px;
+	padding: 16px 32px;
+    border-bottom: 0.666667px solid #374151;
+    /* border-left: 1px solid red;
+    border-right: 1px solid red; */
+}
+.dashboard-settings-page-title h2{
+    font-family: "Poppins";
+    font-weight: 700;
+}
+.dashboard-settings-main-page{
+    border-left: 1px solid white;
+    border-left: 0.666667px solid #374151;
+    /* border-right: 0.666667px solid #374151; */
+}
+.dashboard-settings-page-profile-card{
+    max-width: 1280px;
+    backdrop-filter: blur(16px);
+	background-color: #1F293780;
+	border: 0.666667px solid #374151;
+ 
+	border-radius: 12px;
+	box-shadow: #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #0000001A 0px 10px 15px -3px, #0000001A 0px 4px 6px -4px;
+    	/* box-shadow: #0000001A 0px 2px 5px 0px; */
+	box-sizing: border-box;
+	margin: 0px 0px 32px;
+	padding: 24px;
+    /* padding-right: 30px; */
+}
+.settings-toggle-button{
+    align-items: center;
+	appearance: button;
+	background-color: #4F46E5;
+	border-radius: 9999px;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	position: relative;
+	transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), fill 0.15s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+.dashboard-settings-inner{
+    box-sizing: border-box;
+	margin: 0px 50.6667px;
+	max-width: 896px;
+	padding: 24px 32px;
+    padding-right: 5px;
+}
+.edit-profile-button{
+    margin-top: 30px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    background: #664AFF;
+    background: #4338CA;
+    /* background: #7380EC; */
+    height: 40px;
+    width: 100px;
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;
+}
+.edit-profile-button-long {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    background: #664AFF;
+    background: #4338CA;
+    /* background: #7380EC; */
+    height: 40px;
+    width: 180px;
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;
+}
+.edit-profile-button-delete{
+    background: #B91C1C;
+}
+
+.delete-profile-settings-card{
+    backdrop-filter: blur(16px);
+	background-color: #7F1D1D80;
+	border: 0.666667px solid #B91C1C;
+	border-radius: 12px;
+	box-shadow: #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #0000001A 0px 10px 15px -3px, #0000001A 0px 4px 6px -4px;
+	box-sizing: border-box;
+	margin: 0px 0px 32px;
+	padding: 24px;
+}
+
+@media all and (max-width: 768px) {
+.dashboard-settings-inner{
+    box-sizing: border-box;
+	margin: 0px 50.6667px;
+	max-width: 896px;
+	padding: 24px 0px;
+    padding-right: 5px;
+}
+.dashboard-settings-main-page{
+    margin-top: 30px;
+}
+
+}
