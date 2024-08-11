@@ -1,6 +1,39 @@
 :root{
     --settings-card : 
 }
+.toggle-button{
+    background-color: #d2d2d2;
+    background-color: #4B5563;
+    width: 50px;
+    height: 25px;
+    border-radius: 200px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+    
+}
+.toggle-button::before{
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    margin: 5px;
+    left: -2px;
+    transition: 0.2s;
+    
+}
+.toggle-container input:checked + .toggle-button{
+background-color: #20096d;
+background-color: #4F46E5
+}
+.toggle-container input{
+    display: none;
+}
+.toggle-container input:checked + .toggle-button::before{
+    transform: translateX(20px);
+    }
 .dashboard-settings-page-title{
     box-sizing: border-box;
 	max-width: 1280px;

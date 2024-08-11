@@ -67,17 +67,26 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 
 </div>
 <div style={{marginTop : "15px", display :"flex", flexDirection : "column", gap : "10px", color : "#9CA3AF"}}>
-<div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}    >
+<div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between",}}    >
 <h5>Push Notifications</h5>
-<span className="settings-toggle-button"></span>
+<span className="toggle-container">
+<input type="checkbox" id="toggle-check"/>
+<label htmlFor="toggle-check" className="toggle-button"></label>
+</span>
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
 <h5>Email Notifications</h5>
-<span>button</span>
+<span className="toggle-container">
+<input type="checkbox" id="toggle-check"/>
+<label htmlFor="toggle-check" className="toggle-button"></label>
+</span>
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
 <h5>SMS Notifications</h5>
-<span>button</span>
+<span className="toggle-container">
+<input type="checkbox" id="toggle-check"/>
+<label htmlFor="toggle-check" className="toggle-button"></label>
+</span>
 </div>
 </div>
 </div>
@@ -90,7 +99,10 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <div style={{marginTop : "15px", display :"flex", flexDirection : "column", gap : "10px", color : "#9CA3AF"}}>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between", alignItems : "center", }}    >
 <h5>Two Factor Authentication</h5>
-<span className="">button</span>
+<span className="toggle-container">
+<input type="checkbox" id="toggle-check"/>
+<label htmlFor="toggle-check" className="toggle-button"></label>
+</span>
 </div>
 </div>
 <button className = "edit-profile-button-long">Change Password</button>
