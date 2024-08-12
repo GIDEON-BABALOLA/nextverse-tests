@@ -9,6 +9,9 @@
     height: 100vh;
    justify-content: center;
 }
+.phone-feed-nav{
+    display: none;
+}
 .trendy-story-image{
     background-image: url('img.jpg');
      width: 100%;
@@ -32,6 +35,7 @@
     padding: 20px;
     max-width: 800px;
     margin-left: 60px;
+    font-family:  "Poppins";
 }
 .feed-header {
     display: flex;
@@ -64,8 +68,8 @@
     border-radius: 20px;
     margin-bottom: 10px;
     outline: none;
+    padding-left: 30px;
 }
-
 .feed-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -101,6 +105,8 @@
     align-items: center;
     color: #757575;
     font-size: 12px;
+    justify-content: space-between;
+    margin-top: 4px;
 }
 .feed-card-meta img {
     width: 20px;
@@ -178,6 +184,9 @@
     border-radius: 20px;
     font-size: 12px;
 }
+/* .phone-feed-nav{
+    display: none;
+} */
 @media (max-width: 1024px) {
     .feed-right-sidebar {
         display: none;
@@ -186,18 +195,142 @@
         margin-right: 0;
     }
 }
+
+
+.feed-right-sidebar ::-webkit-input-placeholder {
+    /* WebKit browsers (Chrome, Safari, etc.) */
+  color: rgba(0,0,0,0.25);
+}
+
+.feed-box-search{
+    --padding : 14px;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    padding: var(--padding);
+    border-radius: 28px;
+    background: #f6f6f6;
+}
+.feed-box-search-input{
+    font-size: 16px;
+    font-family: "Poppins";
+    color: #333333;
+    margin-left: 14px;
+    margin-left: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+}
+.feed-profile-images{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 @media (max-width: 768px) {
-    .feed-sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 10px 0;
+    .feed-sidebar{
+        display: none;
     }
-    .feed-sidebar-icon {
+ .phone-feed-nav{
+    display: block;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 0;
+    right: 0;
+    background-color: hsl(225, 12%, 12%);
+    width: 88%;
+    margin-inline: auto;
+    box-shadow: 0 2px 16px hsla(228, 95%, 4%, .1);
+    padding: 1rem 1.75rem;
+    border-radius: 4rem;
+    z-index: 100;
+ }
+ .phone-feed-nav-list{
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+ }
+ .phone-feed-nav-link{
+    color: hsl(225, 8%, 65%);
+ 
+    font-size: 1.5rem;
+    transition: color .4s;
+ }
+ .phone-feed-nav-link:hover{
+    color : hsl(0, 0%, 100%);
+ }
+ .rotate-expand-icon{
+    transform: rotate(45deg);
+ }
+ .phone-feed-nav-expand{
+    border: none;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    background-color: #7380EC;
+    border-radius: 50%;
+    cursor: pointer;
+ }
+ .phone-feed-nav-expand-icon{
+    color: white;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: transform .4s;
+ }
+ .phone-feed-nav-expand-list{
+position: absolute;
+top: -4.5rem;
+left: 0;
+right: 0;
+background-color: hsl(225, 12%, 12%);
+box-shadow: 0 2px 16px hsla(228, 95%, 4%, .1);
+width: max-content;
+margin-inline: auto;
+padding: .5rem 1.5rem;
+border-radius: 4rem;
+display: flex;
+column-gap: 2rem;
+z-index: -1;
+overflow: hidden;
+transform: translateY(5rem) scale(.1);
+transition: transform .5s cubic-bezier(.5, 1.8, .4, .8);
+
+ }
+ .phone-feed-nav-expand-list li{
+    transform: translateY(-3rem);
+    transition: transform .4s;
+ }
+ .phone-feed-nav-expand-list li :nth-child(1){
+    transition-delay: .2s;
+ }
+ .phone-feed-nav-expand-list li :nth-child(2){
+    transition-delay: .4s;
+ }
+.show-list, .show-list li{
+    transform: translateY(0);
+ }
+.phone-feed-nav-expand-link{
+    color: hsl(225, 8%, 65%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color .4s;
+    text-decoration: none;
+}
+.phone-feed-nav-expand-link svg{
+    font-size: 1.5rem;
+}
+.phone-feed-nav-expand-link span{
+    font-size: 0.9rem;
+}
+.phone-feed-nav-expand-link :hover{
+    color: hsl(0, 0%, 100%);
+}
+    /* .feed-sidebar-icon {
         margin-bottom: 0;
-    }
+    } */
     .feed-main-content {
         margin-left: 0;
         padding: 10px;
