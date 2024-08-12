@@ -11,6 +11,7 @@ import { useState, useEffect } from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import { useParams } from "react-router-dom"
 import { FaUser, FaHome } from "react-icons/fa"
+import { MdOutlineRssFeed } from "react-icons/md";
 import { MdOpenInNew, MdOutlinePersonAddAlt } from 'react-icons/md';
 import useInternetMode from "../../hooks/useInternetMode"
 const NavBar = () => {
@@ -177,7 +178,7 @@ className="navbar-context-profile-photo-home"/>
         <Link to="/feed" className={`nav-sidebar-link ${currentUrl === "feed" && "active"}`} 
                         onClick={dave}
                     >
-                    <MdDynamicFeed size={24} />
+                    <MdOutlineRssFeed size={24} />
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
                            
         </Link>

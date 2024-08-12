@@ -4,9 +4,24 @@ import { FaRegTrashAlt, FaPlus } from "react-icons/fa"
 import SearchCircle from "./SearchCircle"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { useState } from "react"
+import SpecialModal from "../../common/SpecialModal"
 const StickyNotes = () => {
   const { width } = useWindowSize()
   const [blinkCursor, setBlinkCursor] = useState(true)
+  const [openModal, setOpenModal]  = useState(false)
+  const [modalTitle, setModalTitle] =  useState("")
+  const [modalContent, setModalContent] =  useState("")
+  const searchForStickyNotes = () => {
+    setModalTitle("Search Your Sticky Notes")
+    setModalContent(<div className="user-sticky-search-wrapper">
+
+      <div className="field">
+         <input type="text" placeholder="Search Sticky Notes"/>
+         <label htmlFor="click" className="btn-2" onClick={() => {setOpenModal(false)}}>Search</label>
+      </div>
+      </div>)
+setOpenModal(true)
+  }
   const stickyNotes = [
     {
 content : "This is my first sticky note",
@@ -43,15 +58,16 @@ date : "April 11 2023"
   ]
   return (
     <section className="litenote-dashboard-sticky-notes-preview">
-      <SearchCircle />
-      { width < 768 && <div className="user-sticky-search-wrapper">
+    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title={modalTitle} content={modalContent} width={450} />
+      <SearchCircle clickMe={searchForStickyNotes}/> 
+      {/* { width < 768 && <div className="user-sticky-search-wrapper">
 
 <div className="field">
    <input type="text" placeholder="Search Sticky Notes"/>
    <label htmlFor="click" className="btn-2">Search</label>
 </div>
 </div>
-      }
+      } */}
     <div className="sticky-wrapper">
     <div className="sticky-container">
       <div className="sticky-outer">

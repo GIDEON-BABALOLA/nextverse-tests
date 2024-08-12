@@ -10,8 +10,23 @@ import { useState } from "react"
 
 const NotesPreview = () => {
     const [openModal, setOpenModal] = useState(false)
+    const [modalTitle, setModalTitle] =  useState("")
+    const [modalContent, setModalContent] =  useState("")
     const triggerNoteDelete = () => {
+        setModalTitle("Delete Note")
+        setModalContent("Are you sure you want to delete this note")
         setOpenModal(true)
+    }
+    const searchForNotes = () => {
+        setModalTitle("Search Notes")
+        setModalContent(<div className="user-sticky-search-wrapper">
+
+            <div className="field">
+               <input type="text" placeholder="Search Sticky Notes"/>
+               <label htmlFor="click" className="btn-2">Search</label>
+            </div>
+            </div>)
+setOpenModal(true)
     }
     const dummyNotes = [
         {
@@ -53,8 +68,9 @@ const NotesPreview = () => {
 
 return <>
     <section className="litenote-dashboard-notes-preview" >
-    <SearchCircle />
-    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="Delete Note" content="Are you sure you want to delete this note"/>
+
+    <SearchCircle clickMe={searchForNotes}/>
+    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title={modalTitle} content={modalContent} width={450}/>
     <div className="user-notes-search-wrapper">
 
 <div className="field">

@@ -7,6 +7,7 @@ import Publish from './Pages/Publish';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import ProfilePage from './Pages/Profile';
+import FeedPage from "./Pages/Feed"
 import BrowsePage from "./Pages/Browse"
 import { useState, useRef } from "react"
 import AnalyticsPage from "./Pages/Dashboard/AnalyticsPage"
@@ -53,6 +54,7 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
   </Route>
   <Route path="our-team" element={<TeamPage />} />
   <Route path="login" element={<LoginPage />} />
+  <Route path="feed" element={<FeedPage />} />
   <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
