@@ -5,6 +5,7 @@ import "../../../styles/components/Dashboard/notes-preview-page.css"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { MdReadMore } from "react-icons/md"
 import SpecialModal from "../../common/SpecialModal"
+import SearchCircle from "./SearchCircle"
 import { useState } from "react"
 
 const NotesPreview = () => {
@@ -52,8 +53,17 @@ const NotesPreview = () => {
 
 return <>
     <section className="litenote-dashboard-notes-preview" >
+    <SearchCircle />
     <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="Delete Note" content="Are you sure you want to delete this note"/>
+    <div className="user-notes-search-wrapper">
+
+<div className="field">
+   <input type="text" placeholder="Search Sticky Notes"/>
+   <label htmlFor="click" className="btn-2">Search</label>
+</div>
+</div>
 <div className="wrapper">
+
 <li className="add-box">
 <div className="icon"><FaPlus /></div>
 <p>Add new note</p>

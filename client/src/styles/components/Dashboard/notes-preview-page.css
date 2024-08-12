@@ -10,6 +10,59 @@
     --note-settings-color : #ffff;
     --note-setings-hover  : #00000066;;
 }
+.user-notes-search-wrapper{
+    height: 60px;
+    width: 400px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    float:center;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    margin-top: 50px;
+    z-index: -1;
+    place-items: center;
+	margin-bottom: 0px;
+    position: absolute;
+  
+  }
+
+  .user-notes-search-wrapper .field input{
+    height: 100%;
+    width: 100%;
+    border: 2px solid var(--search-wrapper-border);
+    border-radius: 5px;
+    padding: 0 130px 0 15px;
+    font-size: 20px;
+    outline: none;
+    font-family: "Poppins";
+    color: var(--search-wrapper-color-search);
+    background-color: var(--search-wrapper-background);
+    /* box-shadow: 5px 5px 30px rgba(0,0,0,.2); */
+  }
+  .user-notes-search-wrapper .field input::placeholder{
+    color: #999;
+    font-family: "Poppins";
+    font-size: 18px;
+  }
+  .user-notes-search-wrapper .field .btn-2{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    background: #664AFF;
+    /* background: #7380EC; */
+    height: 40px;
+    width: 100px;
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 .litenote-dashboard-notes-preview .wrapper{
     /* margin: 50px; */
     display: grid;

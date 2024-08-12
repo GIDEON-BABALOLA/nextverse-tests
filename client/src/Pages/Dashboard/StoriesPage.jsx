@@ -8,6 +8,7 @@ import { FaAngleDown } from "react-icons/fa"
 import NotesPreview from "../../components/Dashboard/common/NotesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 import StickyNotes from "../../components/Dashboard/common/StickyNotes";
+
 import SearchFilter  from "../../components/Browse/SearchFilter"
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
@@ -92,7 +93,7 @@ switch (e.target.innerText.split("\n")[0]) {
       write : true,
       notes : false,
       stories : false,
-      articles : false,
+      stickyNotes : false,
     })
     break;
   case "Notes":
@@ -101,7 +102,7 @@ switch (e.target.innerText.split("\n")[0]) {
       write : false,
       notes : true,
       stories : false,
-      articles : false,
+      stickyNotes : false,
     })
     break;
     case "Stories":
@@ -110,7 +111,7 @@ switch (e.target.innerText.split("\n")[0]) {
         write : false,
         notes : false,
         stories : true,
-        articles : false,
+        stickyNotes : false,
       })
     break;
     case "Sticky Notes":
@@ -118,7 +119,7 @@ switch (e.target.innerText.split("\n")[0]) {
       setTab({
         notes : false,
         stories : false,
-        articles : true,
+        stickyNotes : true,
       })
     break;
 
@@ -127,7 +128,7 @@ switch (e.target.innerText.split("\n")[0]) {
     setTab({
       notes : true,
       stories : false,
-      articles : false,
+      stickyNotes : false,
     })
     break;
 }
@@ -203,7 +204,7 @@ switch (e.target.innerText.split("\n")[0]) {
      onClick={slideTab}
      className="tab"  htmlFor="radio-3" >Sticky Notes
       <span className="notification"
-     style={{backgroundColor : tabs.articles == true && "var(--primary-cocolor)", color : "#ffff", fontSize : "1rem" }}
+     style={{backgroundColor : tabs.stickyNotes == true && "var(--primary-cocolor)", color : "#ffff", fontSize : "1rem" }}
      >5</span>
      </label>
 		<span className="stories-glider"

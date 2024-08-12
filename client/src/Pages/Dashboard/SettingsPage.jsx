@@ -7,6 +7,7 @@ import "../../styles/components/Dashboard/dashboard-settings-page.css"
 import { FaRegUser, FaRegTrashAlt  } from "react-icons/fa";
 import { MdNotificationsNone } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
+
 const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const [loadPage, setLoadPage] = useState(true)
   useEffect(() => {
