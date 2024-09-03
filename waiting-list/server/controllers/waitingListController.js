@@ -56,7 +56,8 @@ if(req.query.page){
         throw new waitingListError( "This page does not exist",404)
     }
 }
-res.status(200).json({waitingList : waitingList, waitingListNumber : storyCount })
+
+    res.status(200).json({waitingList : waitingList, waitingListNumber : storyCount })
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getWaitingListError.txt", "waitingListError")
         if (error instanceof waitingListError) {
@@ -67,14 +68,15 @@ res.status(200).json({waitingList : waitingList, waitingListNumber : storyCount 
     }
 }
 const deleteUserFromWaitingList = async (req, res) => {
-    const { email } = req.body
+    const { email } = req.params
     try{
         const subscribedUser = await WaitingList.findOne({email : email})
 if(!subscribedUser){
     throw new waitingListError("You Have Not Subscribed To Our Newsletter", 400)
 }
-const deltedUser = await WaitingList.findOneAndDelete({email})
-res.status(200).json(deltedUser)
+const deletedUser = await WaitingList.findOneAndDelete({ email })
+
+res.status(204).json(deletedUser)
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getWaitingListError.txt", "waitingListError")
         if (error instanceof waitingListError) {

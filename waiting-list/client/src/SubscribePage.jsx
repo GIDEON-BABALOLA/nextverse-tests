@@ -36,7 +36,11 @@ const SubscribePage = ({ setAdmin }) => {
       setIsLoading(false)
       if(error.message == "canceled"){
         toast.error("Your Request Has Timed Out")
-                    }else{
+                    }
+                    else if(error.message == "Network Error"){
+toast.error("Our Service Is Offline")
+                    }
+                    else{
                       toast.error( error.response.data.message)
                     setIsLoading(false)
                 }

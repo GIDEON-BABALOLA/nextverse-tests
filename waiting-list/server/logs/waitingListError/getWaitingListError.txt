@@ -13,3 +13,454 @@
 20240902	08:31:59	7ce931f1-aaaa-42fd-b6da-0bc24d808e1c	waitingListError: You Have Not Subscribed To Our Newsletter
 20240902	08:46:08	5ee05857-7184-42c9-ba12-f24913fffe7a	waitingListError: You Have Not Subscribed To Our Newsletter
 20240902	08:46:08	f073ba76-d455-4ec8-8b97-0ad2877b3601	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	eb7595f7-2dd7-4af9-ac62-365e3911d242	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	69ef1fac-dbca-407e-a006-ecd495bd92d2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	810d5309-bed1-44f0-8ce7-08a8ff997ced	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	d9f35941-6978-41bc-9604-2b28906aa9b6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	c18a276a-44a3-41c3-8aa1-05c0d8984573	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	22992216-8856-43d7-b8ab-1704942470e6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	04a2f118-b21d-4ffa-aa0b-d4b2b424971a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	65c172a4-0869-4ff7-bcea-b10c5c5052eb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	ee4e2290-47b7-46e6-8e4c-69d418643fa6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	e6445ee2-f761-44df-8c9b-05ae1e2ff7a0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	71963c98-057e-4209-82b8-b37799b1c986	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	ff668818-e195-4fa2-afc5-9438b18574ce	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	cdbcd34d-68e5-442a-9514-63c1333e8a75	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	2d6fa86c-8ca1-4f91-a8b7-3bfd147414f7	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	0adab9a3-1464-4f67-947a-f6fe57179ff6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	72181b2c-4cd4-48c3-9d95-6962b847c3e1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	3c368911-ad86-4e23-813c-61aac79bdfa4	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	112ae01c-efde-417e-8ef2-9d864136b027	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	5401d33c-bfaa-4e26-bbbe-250a3716b88c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:40	e6372b89-f356-4e9d-95d8-f2bd7ea22f88	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	79e3f1e1-d356-47ac-8983-225c9fcf2e37	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	3a52a739-244a-42e6-9569-3fb1a7a438cf	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	4176b045-0c2a-49b0-9301-3c9010e48e7e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	f2e5b137-a8af-4efb-b01c-73d0e41ab371	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	9b53c77d-b423-48fb-9cdc-75c02030bf20	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	1557aae1-701d-4e6a-b840-f97f540c7249	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	8546b250-5bf4-4dce-b9ef-83cef1772a29	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	d41938fd-a91c-4cd5-afd0-7d6fa538b65c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	8f606e96-ff30-4a93-8ace-f7a2539a2baa	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	bc3f5aa5-c8fb-4c17-8148-763ebe57edad	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	d0ed0a73-dae4-47b5-ab82-496dd13e0b09	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	3b842e94-12b1-4eb2-b2c4-35fd9bae33b2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	1a1e7066-4ed7-4243-b1f6-e71c0be14879	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	574c7953-0db0-4bf8-b012-7ca4072e2deb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	7b712586-d4e1-4f05-bfa6-8478e3453df3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	44ff456a-9c40-4c66-a120-2f898419eafc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	c4f3622a-2164-449b-bbb6-badbba6ef7bf	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	ad418140-65aa-4780-afbc-12f0732350a9	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	adb09db6-2a99-4a77-9527-8422004a2c4c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:41	96571a5d-ed75-4997-a53c-923669a674c3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	fee2bbaa-f48c-4d0c-bc1b-9e142d2cb1fb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	6fd697ed-9a26-4911-8b73-f609c533c61d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	8c1f354f-24bb-4d9d-8808-04472bf4cb24	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	2555abe7-f3dc-4815-ade0-c7727bdfd7fa	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	853401f2-0831-4ff2-9468-7009951c62a1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	88f863ca-93cd-47c3-a845-8c2cca1990ba	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	fb99fedb-3101-4360-a92d-3d66171780c8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	dc8db7ed-7e74-425d-bd4e-4e40751619e0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	0f131089-e05e-4584-a313-e896eef74897	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:46	c74dae34-4bc9-4f91-bc4d-9709bce4b8f2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	79489182-3e3f-485f-9db5-e1c0252148dd	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	145a8129-8cdb-426e-acb2-fce8016aba5b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	c906c4fa-cfcb-4d41-94c0-a74d1fc14acc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	dab248a9-935a-4e14-9f17-773683a6a521	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	edc8a18e-cd6f-41a3-980e-b5412432a0a6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	06f0a943-0717-4ae2-ac71-ca4902e606a6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	7a976645-a3de-4b06-8c2c-0f91c0bc263e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	268772e5-fbbc-4ccc-8730-e1049cc07778	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	3c424d36-a277-46df-9e18-b16ae5a2d680	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:06:47	e91c2aa1-1d4f-4415-b76c-12d5ece802d2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	622d85b2-5118-4fd0-a128-44960c8958f3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	9fc82b63-25be-419a-972d-13de145e4a44	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	ae20298f-a341-4315-8554-f67f2befc5e6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	46d155d1-204d-47f9-a58d-b44bc8392b65	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	248903ed-9607-4d67-9bc4-3a0ce7721c9f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	b21997b8-5a62-4ca9-867d-a4b926a8a78e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	8d9e5aa9-c38d-4cd7-bc11-861ee73aedee	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	4dd0a66c-124c-4f64-9cc4-08dedf26b46a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:11	30ebaf80-e633-49aa-abd3-8f5db4db7e1e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	649bebea-d205-427d-b0b8-dd85bf5c7da6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	d8d1bc9f-95bb-4dac-85e4-046c0002c97c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	9218d881-8457-405b-9a3e-10c3a997481c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	68a7fc64-3f9f-42f2-a3a0-8619d00dd6d4	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	f8305223-dae7-4882-8a57-3078eb63de9a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	83210bfe-3353-4f33-b118-48dc26bf8641	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	837c627f-7c1b-4872-ab77-67f39c0e062f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	31c75091-4243-46f0-88bc-478dd91bcadb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	91f0440e-85a0-4733-86df-31d50d197492	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	74dd5f0a-f3bf-4973-93f5-674d5368ed6e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:12	b282d7a7-70e5-46c4-a1aa-973402d8b0a5	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	70b2abf6-4d22-46cf-997b-050185eb8bea	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	b9a8bbc0-5885-46d2-9a2a-bb6104803124	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	bfb5dac8-befc-4373-9549-6f1813be39c8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	5d9eb45a-fdfe-422e-a544-3ee62301fe7f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	7d8a50b2-7f73-4108-9411-bb593681445a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	5a3fb24e-8111-4360-8d62-28cd5346209c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	5303ab8a-2acb-4826-ac05-ed10c7815826	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	02a53695-bd16-4c3f-b90d-512475060f11	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	780396ea-f003-4c63-abb1-7d9e1c69d802	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	7d5aaca8-5401-4616-8799-9f1d090d9ce6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	295d8f8e-be3d-4e1d-ada4-51f742932704	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	51180a18-304a-451f-bef5-d7843d50fb04	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	dfc9d35b-e493-4213-9875-04d13257ee68	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	a671d268-95cb-4aee-86ca-819696d5efa6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	e6efa836-581f-484e-bc3a-138912fe1e16	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	8aa973fb-8aaf-4d88-9049-b912a8042efc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	7ddbac60-4984-4a8a-9713-fe8660e73d91	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	8a5711f6-2edd-45cb-8d12-1429678aac23	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	8e3e416b-f75c-46ee-88e1-62b37b3d0453	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:24	3dd3731b-f2c4-4b98-a1dd-fd4b7571ffba	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	ce27bed4-d688-49bd-be15-f733b2a7094a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	076bbbad-9e74-4c87-a079-a2c3fb9c4263	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	60d7742f-d6b1-45e1-b94b-51df82856ef0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	a06f47b9-02ce-479c-bccd-9d67fc3754b6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	31c0f5b6-94ad-4ad5-8f55-3834e2d63023	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	cabfc8bd-4c57-4588-9a1f-08e78db3783b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	0fde081c-0e14-479c-a0c0-5b0f0575bd1b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	f9e08e13-7ed2-4f32-927e-ecf38ecdca1c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	60c455d0-bb2f-4dbb-887e-33ac8bb8d795	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	2d970087-61af-45ef-88cb-ee3a6245654d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	970d707c-7a8c-4a8d-a935-c880c7feab57	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	a95f1092-c264-4b08-9884-68c42c4f4261	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:48	8c42068e-2142-4f9f-9766-db80d76a4235	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	ccb2ef8c-f6e8-4c69-ad73-2ce367e384c5	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	7404337a-b67a-4a7b-9ef8-b279e1f5a321	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	92722ebd-ae0e-4052-941a-2f2b919cf033	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	67535fee-79de-4a0d-b48c-e0fce230dede	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	58dcb686-1768-426f-b724-e5af7c04e86b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	5847db07-a9d2-4fe0-b420-77d6ef5dd1eb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:07:49	c9425268-321c-46ae-a92c-efcbeecfea75	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	053b9f87-a5b0-425e-9db7-e590ae52e633	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	48bd3b13-f793-4e6e-8458-b090b94fa936	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	a0063905-35b4-4a9c-8c28-34c83f43f0de	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	4be918c8-0419-42e1-9dd3-3ea43ddbe59a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	fa20b920-f426-48a7-a157-838e1540aeab	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	8ed7270b-b6a2-4b22-a2ab-61d588937fef	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	3e1d2f67-fbf9-4bad-812d-36116fc96ca2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	be85a5fc-2b4f-4825-aeba-3f4266cb67bc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	9787f106-5fc6-45a3-92d8-42be273a68ff	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	d7dde58e-b0ed-4143-9744-e4fe237d3379	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	284ced43-35a0-4f24-bbba-d8eb31b7e13b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	9f98b012-8c4f-4186-845e-1df376c572bc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	9fdc9391-c621-435b-9bc6-6de979e3cb2e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	ec826071-c24b-4b78-9bab-0ab004cf9378	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	3aec0412-5b31-4376-8cd8-dd2af1e56e4f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	65f6d247-8139-4028-aae8-9f0393a8c7c5	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	ea3cede0-0081-48b1-88a0-dbadacd6ef48	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	a93cc341-945f-46a6-a202-5f26d9a02ae0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	db857714-073b-4368-b952-c6b414b7b96c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:04	70776aae-2e43-4898-9c30-88778b6db73f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	e5020426-c252-425b-91d7-7f9018619bea	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	3b620f0d-a94e-47c2-941d-99d5ba94966c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	d5b4d9f0-b375-4bd0-bc60-878468fc12bc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	7fc393f2-cc2b-4ec3-a1dc-6f99f29b60cd	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	a611c563-1027-4428-86de-2cdac7f0b211	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	e9374ad8-b250-406a-8bdd-714f58aceb44	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	96c64cb8-6184-44e2-bc7f-8d37c84a38cd	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	310ac5ff-29db-4ff1-b9ca-ab3ee1d3fe4c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	9e85d026-9f6a-44d1-9d9c-406989dc694a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	3f07a0e2-83a6-4b24-87e1-60c4a6d7ee9c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	ab73e89a-7186-40ba-b783-22e0385a56f8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	c6e3f3b6-2086-4dd0-86cc-ce4dbc7c8b19	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	357e4cfc-b2fe-4600-a4a3-191e7cacd2fe	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	313900d0-1eb1-41d0-b60c-cfc860d85687	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	2cf86ec1-375e-4eb0-a7d4-da75546721be	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	c52b0716-7265-4405-985d-51512f89694a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	9ce25227-7247-4217-8a3a-784f70165c25	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	1f4c8b6c-1777-47a3-9747-48bcb899c06c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	fc74ec48-4ec5-4167-a02b-bc6d28f6a111	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:13	263971e1-f39d-4862-a47c-5d1c227d83e0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	47f21b29-1988-43ad-9e50-e9debab68018	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	b99ab77c-7195-4a03-b2ef-3c36e5ec829f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	f30ef54e-fd45-4e5a-8c62-99de3a215d66	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	d58f0df6-f993-49ce-ae57-81a1ea560775	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	f7670c61-30de-4b7e-ad13-d5f828f7099c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	c6fb1b24-c27a-49a6-9bf3-d2209e245670	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	f3693e2e-27a4-44a7-9fbf-7ac1457e7ebe	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	00f06463-2500-4731-a006-d6b92dfc7dc1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	fdde5848-34ea-4d6e-860f-146a7488f9b2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	9c3ce161-785b-4fb1-b72c-170b7f49816c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	d7aa33cd-ae23-4e6c-9967-159eac0b36cd	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	0e65fd25-e24a-46bb-bcd3-34ea31d35274	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	37ff90d8-3170-4c97-ac9e-3d87a6b3107a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	3b664737-51c1-4726-a545-741447156c2e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	07eb7229-71d4-4e03-9597-7d7392ab3394	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	6d03cad1-974a-4035-b08b-c606b7f9c7b6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	4528862b-a7a5-4607-9845-977af5f1c997	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	583a7ef8-2772-45bd-9f1a-778423d76ffa	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	034f07f6-9dc1-4f8f-91fb-810854066ffa	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:08:53	35cca666-9e7c-4acd-a47e-cb8bfe43b5ed	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	551fea84-ed7c-4627-95a0-3c3d221d86e4	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	7d523214-b7ff-49c5-b639-34996a3590cf	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	f878416f-9583-4cb9-8cd1-ac97cd0ddbf0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	fa012a9b-9139-4b89-8aa0-e86a77f89728	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	201926c8-bed2-4b60-ba9c-b7b3f6a30941	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	51b862ca-bec7-44d5-9a03-180fdf2da3e3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	b327a6da-af47-4104-a113-f821ab6cdd84	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	e0991553-fead-407b-a87d-73d0779cfb64	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	c589f5f4-43cb-4e5d-af43-b104d4626aa6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	bea18786-962f-4b8f-8bc2-d8bf881d5c16	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	1e5c62bb-0306-42df-8233-fd56b3ce1a2c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	60b77591-98f3-4447-9cd7-2da3deea1369	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	fb2959b9-ea3c-44d9-aae9-e12475969a0d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	c93e03c6-cf7e-4699-8f16-a336bca725f1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	69557e73-17f4-4794-ad39-c8e39a7bd95e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	72a12909-75bc-46d4-b971-035c1a07afa3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	ff0be055-d8f2-4629-8f9d-dde22d9ce27d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	ce3dc91f-345d-4748-be81-221a428e4157	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	d6b14216-e8dd-42e4-b21e-32e6b1c23f05	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:12	14399665-baa1-4c96-9aad-162ccf912d00	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	4867503d-ec07-4606-b46c-410227dd2864	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	f7a13280-b9e6-489a-858d-2ee4cd7481db	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	ec949579-b813-4afd-88a5-adbb1eeb05c3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	9b33d0b9-04a9-4c4a-ba61-a77713afb618	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	0fef287b-eec0-4195-9b72-737bb18d29b5	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	49bb1666-3c64-4e5f-a0a1-ec2858e1b512	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	95959fe0-c1f8-40c6-8acb-b0e6ccefeeb1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	21447248-444b-4fe9-8769-070546a5ff83	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	1aee36d0-4c85-4f48-b50b-79dbc31bdd2d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	44ac8bb2-3a9b-45aa-b397-25b3a3043b5e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	ff45379c-8344-4ec7-83cb-af7defa75ca2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	d122a6b3-dee1-4da3-b1b7-402e236ac3a3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	e6eed5cc-b72f-42e2-a03a-c7bdbdcb4e7a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	8f09b083-17fe-4b87-af0e-698efa2f3293	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	ca0cbc9f-e8ca-461b-b88b-10c6498950cd	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	acd1635e-0ef4-4e92-916b-3fef59550f83	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	16a54463-8564-4e89-8bc3-e484c439f543	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:35	341e71e1-f230-44ad-8c83-5ac0b6e31abf	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:36	4b89a575-ab38-4ae1-ab3e-02a775af8bab	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:09:36	5c8c74f4-b30e-40d9-917f-e45b593fabb3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:30	6561ceca-4dc0-4ec1-b95d-914295bb02bd	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	f68e8d77-d4ec-4343-9e98-97bce616cda9	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	97c115de-177e-4390-a056-8b529d386877	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	66c8a5bf-e8e0-4a83-879c-24cd44c0b2d0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	c8a2cb79-a90d-4960-8393-62808ef7c027	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	66504d7a-762e-405e-8e0f-70e4c0285923	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	bb282b22-3f2c-4be8-9a3f-80e4acb48a83	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	f586b0d3-478e-4072-8ac0-e65ebfa868b2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	f4ae7587-0a79-4a87-a0cd-eead25729ae2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	bd835929-d81d-477c-a617-d93f1ef3ca9f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:54	cc9e5550-df0d-4ced-a55a-e275d9cec5d2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	011fe0f0-7228-43bd-b126-866cbf8a3f0a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	232943c6-c7cb-4412-94ad-83aab1e93994	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	c3894459-5269-4e2a-9e64-1c64a1ed8eb2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	6801fcd4-4302-4069-855f-c2dd27cd1ea8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	e9fb241e-f90a-4b95-bd40-82bfdf184c38	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	ce85f95d-6aea-4498-9e4f-ea581dad740c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	029de146-0797-42d3-ae9f-c30e5f911668	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	bf892598-6a80-44e1-9966-b165bf32a213	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	9bb70262-4ed0-4426-b3fa-683fabc244a3	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:10:55	95e95c09-be41-4ae9-bacd-fd4928355e61	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:11:30	4cd285f0-c3a0-4ff0-ab8c-6aba05df894a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:11:47	f7c1e7c7-b822-4fa1-a481-54a9a2c7c576	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	4047e44b-6a6d-4d5b-b72c-ccbabf2100d8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	d9b38adc-c53b-4a9a-a4dd-e388517cb26b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	3b0de56f-f561-4bf9-ac7e-a96bc612368a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	2177a946-013d-445e-ad72-ae2efec5c94a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	588e3503-381b-4cbe-b849-2c4e107204fb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	bcbc0998-5c4a-4fd5-a8f3-7c3107d7250f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	07faceb6-0ce3-4917-8306-6acdf2dfbcc1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	b83a241a-79ca-46b9-a976-b758a011cf9d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	b2a6d710-0ea7-4bd4-b578-c3c5faca09c8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	0ce86ed7-b4f8-4f0b-a82d-50aa6379d3f6	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	5856e4f6-792b-49b2-a31a-0e6490295e42	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	d5382c60-58a2-4fcf-b47a-821f1fb7c948	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:46	4c11c77c-8706-4a6b-8390-287caf64af08	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	57d51060-f290-4eff-bdb6-166d0f7192cc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	081c5776-fbed-4291-986d-b346dc99d402	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	7d09bb7f-4392-4789-b331-89906b3cbcac	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	eac5a3ba-58ca-49c1-8992-8cd837a91853	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	69bb82bd-aa1f-4477-8932-040111ba8cf9	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	cce162ce-9809-4c65-9ef4-e199203962ae	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:12:47	094c6586-8c5d-4110-a646-1a4933383555	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	f908255d-e3a1-4df5-bac2-7ae3c1a545a9	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	01caf2f0-aa74-4d44-8da9-d0ba2973c85d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	2aea10c5-e1d1-49ce-a8eb-598e8d1bce09	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	2f2045bf-8bfd-4c58-9666-46067aa9cca4	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	502e1370-7611-41dd-8267-ea186d1584fb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	1f089d04-a215-4d2f-8d91-dd466b41b64e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	b45a3e6e-09ea-432e-a668-4eb44ddf04fb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	43af7fc9-73af-4014-975e-d4b124b9c105	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	3c5d05d8-2398-4635-8fd7-1754873e5e98	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	7ed0e352-be2f-4da2-b47b-33528981bd54	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	d94f9c38-7fda-4377-a120-d81386a491b2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	b5a06937-0d85-4f65-9c2b-c2e71a251f18	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	ad776a35-c393-422c-bb21-9ead89c7da7b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	62d77664-78f8-4747-b519-6916dcb959df	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	08663809-c4ca-4ad2-9b76-49b96871721b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	303deb26-12f1-4d9a-94e4-3eaa27c6ce18	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	560d8480-5dbb-4e46-b570-8cf150b92ee0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	827cb46f-a2a5-4030-8cad-2f72cfe528e2	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	af7f71fe-b8ef-47f7-a46a-8999d36391ed	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:13	5254f176-bb60-42ec-ad3c-2da7551488ee	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	7bb3a5d4-9ad0-4e64-b781-b77e78b1a967	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	aa2ab57e-828d-4bf9-97de-747eac9c7eff	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	8f37447d-3a5f-48b3-92ea-1e4a5ee91959	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	b0c13c3b-ca88-4f5d-a639-3caa4228bb36	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	c3168c87-068f-4697-a1ce-70e0f64547ce	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	3dd50bab-51d6-4fc3-a1ee-e913b40c4166	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	b3c2ae5c-9a01-489a-84bc-f2b95679b081	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	5dbb970e-62ce-4174-965f-dcf4852a83c1	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	a338d0d0-5d1a-44d2-a50a-19c1f9746b66	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	849303b3-e210-4f0b-baaa-e1316b3d9924	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	d7409360-6f5e-4be4-8fb8-24d76aa61f21	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:23	7c4c7c16-b2b5-4f3f-9c95-775dc415c63b	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	8bab1969-b18e-4a1d-922c-04f6a4163289	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	babb31a5-51f8-424e-ab8f-61ac3d9b8a85	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	241b13df-8157-4065-8d94-a9b6ac4d03b5	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	3e71ab0b-c268-4203-982f-1c0c4c0e9edc	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	0d813b73-a973-4ddf-b756-24ab3c29cc40	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	fee6a190-6227-4a2f-bae0-f3db6ce2088f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	6cf3cb97-7905-426e-9427-1ff894ffe1ad	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:24	ba7161d5-ce6d-4f03-944c-e7eef2f51d3e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:41	51408a08-a030-45a1-a798-81634259609a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:51	33becefc-1d76-47a9-a324-7689bd471ebb	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:13:51	29f66222-0562-4898-8b75-3c9c6237ae7e	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:14:03	c797a614-fbb5-4854-aa89-9e7d51652aef	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:14:31	49dfe651-535f-4988-a570-91b98148e4a4	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:14:49	16b8c382-f4ab-4e1d-9b4a-3666c6d91965	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:15:47	1ca1e3d2-c4c9-406a-b6f3-ebcf53b176d8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:20:12	b540783e-0041-458f-8d89-c1aed50189b8	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:20:17	2887c75a-9696-4837-b451-4b268784453c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:20:52	a9f86e25-8094-430a-b9f3-ebca8eb0343c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:21:15	ef460630-d613-42ca-83b4-2b45b6ba4178	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:23:20	8553a426-52f3-44cb-b0d2-4fec085f562d	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:24:23	7d317b64-fb15-48b5-80cc-37addd9a715a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:24:23	2b4cf771-3bda-44de-af2b-040354f9d5f0	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:25:18	f743520c-8221-4b77-8f2f-59591d342943	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:52:04	3a8be4c3-036e-4c08-85c7-78f3866fc451	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:52:22	08be99ae-43e5-4944-83e0-942be8186ee4	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:52:25	ae4fc66e-4509-44ed-ac41-e4b131723163	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:52:52	736dfe81-aecd-4377-9dce-6c5a474cf525	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:53:10	d3804dbd-8d15-4f44-b5e5-cf742b53ed8f	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:54:34	18c8b7aa-6f8d-47db-b071-7d9f01fbd584	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	12:58:01	054b4161-c712-473c-8ebf-8655789676b4	waitingListError: This page does not exist
+20240902	12:58:01	6f69ef11-cbb0-4107-abcd-ae321485efd4	waitingListError: This page does not exist
+20240902	14:07:22	b537c21c-95d4-45a1-be66-80929a759279	waitingListError: This page does not exist
+20240902	14:17:52	e7273bcf-48f3-4e8d-93a1-9ea8a35d320f	waitingListError: This page does not exist
+20240902	14:17:52	cf41d61d-c355-4dca-8edc-3d2f07a4e6da	waitingListError: This page does not exist
+20240902	14:17:52	2253d5c5-3b46-4784-8d28-1e26d82cab0b	waitingListError: This page does not exist
+20240902	14:17:52	abacb98e-e3d5-4569-b621-649c877f7f17	waitingListError: This page does not exist
+20240902	14:18:07	5e59ab70-e42b-4bca-bf13-31efe17b6050	waitingListError: This page does not exist
+20240902	14:18:07	16f10c2d-fb5e-4cb6-b5f9-f92a54e8706c	waitingListError: This page does not exist
+20240902	14:18:07	35acdbee-cffd-474a-8430-606fd57d717a	waitingListError: This page does not exist
+20240902	14:18:07	24918af3-9ac6-48d2-8738-166a66182efe	waitingListError: This page does not exist
+20240902	14:18:53	4a9aeadc-4777-4de2-b712-84777e646635	waitingListError: This page does not exist
+20240902	14:19:02	b7e45a32-7311-48a4-bead-e5300ab98fab	waitingListError: This page does not exist
+20240902	14:19:05	6de80e7a-4dcb-4593-ad11-53eda1bc027a	waitingListError: This page does not exist
+20240902	14:19:19	a027e6da-1129-460c-a5b3-8e52ed873ec4	waitingListError: This page does not exist
+20240902	14:19:31	dadc6418-d459-4b5f-9eb6-2d40d38288a5	waitingListError: This page does not exist
+20240902	14:19:49	2ab1c838-9e12-41ac-bc9f-af9729d1ded3	waitingListError: This page does not exist
+20240902	14:20:05	6391b072-3cd9-4c88-b6d9-4a009a8b15f2	waitingListError: This page does not exist
+20240902	14:20:12	818efcb4-3d89-40ba-8bf6-124c00412fd0	waitingListError: This page does not exist
+20240902	14:20:25	ad6375f4-50e9-4370-a04f-66693c8648ea	waitingListError: This page does not exist
+20240902	14:20:33	35fdb13f-34bb-47f1-af3a-dda6827db3ba	waitingListError: This page does not exist
+20240902	14:20:33	4457abc8-8a11-48cc-8e7f-16c16c76d3e8	waitingListError: This page does not exist
+20240902	14:20:33	8327974c-2750-4edb-81ae-6baad676c283	waitingListError: This page does not exist
+20240902	14:20:33	d32c16dd-b43d-43e0-9d6f-80f024bab61c	waitingListError: This page does not exist
+20240902	14:20:33	939616ca-8459-40f4-a196-b402bf3cb7d4	waitingListError: This page does not exist
+20240902	14:20:33	c550ebc0-728d-4938-b53f-d597e5014f84	waitingListError: This page does not exist
+20240902	14:20:34	7db127fa-2ebd-472a-9404-9f616c809c55	waitingListError: This page does not exist
+20240902	14:20:34	ac6fe417-df04-4f7f-8b20-9de11aea6780	waitingListError: This page does not exist
+20240902	14:20:34	e8a36dc9-70d4-4247-8a2a-38bb4a9ae333	waitingListError: This page does not exist
+20240902	14:20:34	3b228bfc-1bce-4185-89da-f05537d2cbe1	waitingListError: This page does not exist
+20240902	14:20:34	db33df97-5857-4242-a41d-e629d6756d29	waitingListError: This page does not exist
+20240902	14:20:34	9e15121d-a54e-4947-bfce-a5946ff84d60	waitingListError: This page does not exist
+20240902	14:20:35	25662936-dd4b-4c49-86e2-7a278ff93e99	waitingListError: This page does not exist
+20240902	14:20:35	99cc3188-397c-4d95-9078-2d0def5842a3	waitingListError: This page does not exist
+20240902	14:20:35	db5e003f-2c9e-445a-9fda-c7e0fcfa40a0	waitingListError: This page does not exist
+20240902	14:20:35	c9f4b513-f198-4f28-8729-db5afdb6d6c4	waitingListError: This page does not exist
+20240902	14:20:35	7fd1739f-a5ca-4cd1-b11e-89bbecc62d4e	waitingListError: This page does not exist
+20240902	14:20:36	669f4678-cd6b-44da-aa76-6e6a682c99fb	waitingListError: This page does not exist
+20240902	14:20:36	6a22b02d-87a9-48b0-9820-c98bb3fe0769	waitingListError: This page does not exist
+20240902	14:20:36	666be35d-03e8-4499-894d-a9693f9f5041	waitingListError: This page does not exist
+20240902	14:20:36	3c34a713-0337-4b72-b65d-0b1059ae386a	waitingListError: This page does not exist
+20240902	14:20:36	73934e6e-de19-40ec-8c47-a52a9f858075	waitingListError: This page does not exist
+20240902	14:20:36	e15a0ca0-7757-4197-b966-4c32228ddee3	waitingListError: This page does not exist
+20240902	14:20:37	25ca5a4f-9ea9-4baf-95b9-1d28875fac38	waitingListError: This page does not exist
+20240902	14:20:37	458e6f48-6155-4d86-a6dd-8f524fbda48b	waitingListError: This page does not exist
+20240902	14:20:37	2d278441-684f-4a4d-a612-ac864667e95e	waitingListError: This page does not exist
+20240902	14:20:37	5472fa81-fac3-494c-a716-7dfe27099350	waitingListError: This page does not exist
+20240902	14:20:37	04a26707-2524-497e-b65c-e35585208a8a	waitingListError: This page does not exist
+20240902	14:20:37	3734431c-be3c-4d36-aee7-8490aa38bd77	waitingListError: This page does not exist
+20240902	14:20:38	c5026554-fbf8-4662-aece-3a12307fa926	waitingListError: This page does not exist
+20240902	14:20:38	5dffea66-c004-4d68-beab-1b2897058234	waitingListError: This page does not exist
+20240902	14:20:38	672aa066-fe3b-4cc5-87f2-a87240330c83	waitingListError: This page does not exist
+20240902	14:20:38	7796a94d-2e12-4e91-a7f5-1a085ebc2b33	waitingListError: This page does not exist
+20240902	14:20:39	571b7add-e955-4bcf-8bee-3cca643d3dba	waitingListError: This page does not exist
+20240902	14:20:39	86e7c715-9fe6-4833-87b0-124cdea5663a	waitingListError: This page does not exist
+20240902	14:20:39	e4d2e5a0-a265-4541-95f9-50e5201d9776	waitingListError: This page does not exist
+20240902	14:20:39	25e30eab-bf01-4cc6-bf35-3da4ac1c781d	waitingListError: This page does not exist
+20240902	14:20:39	dfc193f1-3000-4f2a-a01b-5ab93497a46c	waitingListError: This page does not exist
+20240902	14:20:40	f950381d-a63a-45cd-9d5a-6c88a1791fa3	waitingListError: This page does not exist
+20240902	14:20:40	62e22906-b2d1-460d-9364-bb2aef8000ed	waitingListError: This page does not exist
+20240902	14:20:40	4fd7a61d-5166-4f8f-a220-78faa4e823b9	waitingListError: This page does not exist
+20240902	14:20:40	5b8ac57a-3c00-4a02-9334-56156898009e	waitingListError: This page does not exist
+20240902	14:20:40	1a721c27-34bb-45d5-b06d-518c66fd1350	waitingListError: This page does not exist
+20240902	14:20:40	56f88496-1307-4bdc-86db-7d087e445231	waitingListError: This page does not exist
+20240902	14:20:41	91c4356b-598c-454f-b05e-21103c55a689	waitingListError: This page does not exist
+20240902	14:20:41	8fc8ad91-45f8-4193-90e9-47057d328567	waitingListError: This page does not exist
+20240902	14:20:41	63af5679-e25b-4369-b311-8fb584239354	waitingListError: This page does not exist
+20240902	14:20:41	2b5053c9-5907-42c7-b726-10418c73de79	waitingListError: This page does not exist
+20240902	14:20:41	cca62629-76ad-4b97-9f72-2514bd4c8083	waitingListError: This page does not exist
+20240902	14:20:42	89edfc16-4b88-4068-93fd-6ea22b778efd	waitingListError: This page does not exist
+20240902	14:20:42	e5d64ee3-e980-4f18-990b-8465311eef55	waitingListError: This page does not exist
+20240902	14:20:42	ed217d6c-13fc-420e-96bb-f8164639d110	waitingListError: This page does not exist
+20240902	14:20:42	1b046054-8ba6-4868-a49d-74fbeb9bb450	waitingListError: This page does not exist
+20240902	14:20:42	0e4f05d8-7e4c-4a68-9cde-06d13050d792	waitingListError: This page does not exist
+20240902	14:20:51	9d3822b9-3053-4eff-99cd-c5726457b8fd	waitingListError: This page does not exist
+20240902	14:20:51	2ec1dfaf-2690-476d-bf49-441c449c7752	waitingListError: This page does not exist
+20240902	14:20:51	5ff82d60-a9e9-46ff-9a2a-2f1992b9909a	waitingListError: This page does not exist
+20240902	14:20:51	43b5b243-1315-41e3-a9b3-101f10210772	waitingListError: This page does not exist
+20240902	14:21:24	cc9c06b5-e118-4933-a887-9ae05bdcf0be	waitingListError: This page does not exist
+20240902	14:21:40	60c3c24c-187b-4f05-8799-a17bbf3eddef	waitingListError: This page does not exist
+20240902	14:21:40	d6ffc774-e74b-40d1-9f0e-b5483a6b695b	waitingListError: This page does not exist
+20240902	14:21:40	0ffacfa4-c424-4b05-969b-b8d67c9805b1	waitingListError: This page does not exist
+20240902	14:21:40	9b912eb9-783c-433a-b2c0-4ed90b592569	waitingListError: This page does not exist
+20240902	14:22:03	a7a3b70a-ba4f-4c11-81b7-6a9d328801da	waitingListError: This page does not exist
+20240902	14:22:05	7495a727-d79b-473c-8146-d3a68a8b9dff	waitingListError: This page does not exist
+20240902	14:22:07	1f86aafe-d78d-48f9-b0da-99062e8b2534	waitingListError: This page does not exist
+20240902	14:22:14	a94c539c-6036-4eb0-bc0c-d557d8f83ba5	waitingListError: This page does not exist
+20240902	14:22:14	67e3484d-6846-4b91-a242-1f7ba6d98e2d	waitingListError: This page does not exist
+20240902	14:22:14	07e3b57e-f4f3-4f74-9c4c-ac56fce56b44	waitingListError: This page does not exist
+20240902	14:22:14	4075a521-9c7f-4898-8b2e-03a75667d6f7	waitingListError: This page does not exist
+20240902	14:22:45	3a50946f-c0af-4e81-96fb-981f002d84f5	waitingListError: This page does not exist
+20240902	14:22:45	bbb4624d-70b4-4a31-9232-a830f7339b83	waitingListError: This page does not exist
+20240902	14:22:45	5ae73f71-cca9-4421-b33e-7a981b607873	waitingListError: This page does not exist
+20240902	14:22:45	1df3f5f2-ff7a-4201-a502-8cbf95828da1	waitingListError: This page does not exist
+20240902	14:23:00	648fc127-04a8-43a8-9ce6-f6f4321bdc78	waitingListError: This page does not exist
+20240902	14:26:59	355ec565-dcac-430b-9a2c-e7be50786ff7	waitingListError: This page does not exist
+20240902	14:27:05	94b7cd33-3ce0-4ac8-9c2f-47412c3833d4	waitingListError: This page does not exist
+20240902	14:27:13	2fda2179-1b6d-4b4f-a44f-128f04fae4ca	waitingListError: This page does not exist
+20240902	14:31:10	0f36b49a-a43c-473f-83e1-2c9b099ef51b	waitingListError: This page does not exist
+20240902	14:31:27	9f85b0e0-ef20-4149-b2bb-8b34997ef44f	waitingListError: This page does not exist
+20240903	01:04:24	3e2d463e-0f2e-41cc-b802-611f5e4d0e30	waitingListError: This page does not exist
+20240903	01:04:25	a83fc882-098c-4e0d-82d6-aa33253b0f86	waitingListError: This page does not exist
+20240903	01:06:47	76122c2b-0c2e-4a51-bd57-9f7e89b87744	waitingListError: This page does not exist
+20240903	01:06:49	22385cc3-ed5e-4e3d-a070-1cd1a5f0d534	waitingListError: This page does not exist
+20240903	01:06:51	1710046f-bd9c-4ec2-bd9d-f42024866c7e	waitingListError: This page does not exist
+20240903	01:06:52	4743c0b8-3efa-4dec-9283-39f7bb6220b0	waitingListError: This page does not exist
+20240903	01:06:53	f9164b89-d840-4e53-bc8c-21a145ba2e55	waitingListError: This page does not exist
+20240903	01:06:54	60a9429a-a29a-4b6c-98cb-d54f8657f599	waitingListError: This page does not exist
+20240903	01:06:54	2afffe5d-9c5f-41b7-9a17-ac68a79d0e41	waitingListError: This page does not exist
+20240903	01:06:55	0855e508-d7ff-40a7-bc09-dd450b0e80c3	waitingListError: This page does not exist
+20240903	01:06:55	e4bfc7a3-3ce6-4224-bd97-b5234097fa57	waitingListError: This page does not exist
+20240903	01:06:57	29b3a0fd-5d10-452c-bdbb-3cc4ef12ec7d	waitingListError: This page does not exist
+20240903	01:06:57	9470fd1f-59b8-4908-83b0-91e74c7198f4	waitingListError: This page does not exist
+20240903	01:06:57	2bed3b0f-93e0-4f45-a815-25e9a8b5e068	waitingListError: This page does not exist
+20240903	01:06:57	bde91dae-bed6-4ec8-9aa9-6dff2902aa98	waitingListError: This page does not exist
+20240903	01:06:57	63039ac0-cab5-4847-973d-b5e410300c63	waitingListError: This page does not exist
+20240903	01:06:58	26fbd692-af12-4a81-ad1d-2bb72b14405c	waitingListError: This page does not exist
+20240903	01:06:58	bbf0f7e5-1359-4e48-87e7-c57b26d99fe4	waitingListError: This page does not exist
+20240903	01:06:58	5995dd74-eae9-43ad-9924-7123bc26bc07	waitingListError: This page does not exist
+20240903	01:06:58	033bedc4-6002-4bee-9af2-cdff613bc005	waitingListError: This page does not exist
+20240903	01:07:18	03cd4111-71e9-47cc-9b91-d62657f0fdcd	waitingListError: This page does not exist
+20240903	01:07:21	f03dd484-a77e-4dc5-8ebe-3ecca5e76405	waitingListError: This page does not exist
+20240903	01:07:23	af2ac73d-fa3f-4a9b-b389-789e07c7a213	waitingListError: This page does not exist
+20240903	01:07:23	c7e9ad78-2f4c-49b5-98ab-e2c955735f90	waitingListError: This page does not exist
+20240903	01:07:38	ebb090e1-4440-4173-b9c6-a2a8e3282f76	waitingListError: This page does not exist
+20240903	01:10:35	f6bd3c7c-68f8-4577-be2b-ca34ac60fa46	waitingListError: This page does not exist
+20240903	01:10:38	bc377b1b-82e5-456b-b088-00f2f8fbaf21	waitingListError: This page does not exist

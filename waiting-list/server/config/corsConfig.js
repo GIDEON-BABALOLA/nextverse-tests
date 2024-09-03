@@ -1,12 +1,13 @@
 const allowedOrigins = ["http://localhost:3000", "http://localhost:5173", "https://litenote.vercel.app"]
+const path = require("path")
+const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents"))
 const corsOptions = {
   origin: function (origin, callback) {
         // use !origin during development and not during production
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      console.log("djdjdjd")
       callback(null, true)
     } else {
-      console.log("rkrrkrk")
+      logEvents(`${"CORS Error"}: ${`Not allowed by CORS, from origin ${origin}`}`, "corsError.txt", "corsError")
       callback(new Error('Not allowed by CORS'))
     }
   }, 

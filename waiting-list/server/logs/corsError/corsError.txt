@@ -1,0 +1,8 @@
+20240902	23:42:38	8ef8b0a2-7409-47f0-bb7b-5b79d30ab70c	CORS Error: Not allowed by CORS
+20240902	23:43:38	bff44a8b-4141-442e-a4af-78e955b53afc	CORS Error: Not allowed by CORS
+20240902	23:43:46	1ee6454d-c747-47f3-b0e7-8af45ccb4447	CORS Error: Not allowed by CORS
+20240902	23:43:47	09a1a0c9-e63a-4684-85e9-ef7b8e459702	CORS Error: Not allowed by CORS
+20240902	23:45:15	c4cc9e95-e93d-40da-98d1-23765596f972	CORS Error: Not allowed by CORS
+20240902	23:46:08	905700b3-09f0-472f-a4a4-3cffcbe9f1dc	CORS Error: Not allowed by CORS
+20240902	23:46:51	a765ef8c-23b4-485f-896e-5f601617c21c	CORS Error: Not allowed by CORS, from origin http://localhost:5173
+20240902	23:48:28	90493dc1-81fc-4588-b075-6f41aa4ed6f1	CORS Error: Not allowed by CORS, from origin undefined

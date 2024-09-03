@@ -1,18 +1,18 @@
 import "./pagination.css"
 import { MdChevronLeft, MdChevronRight} from "react-icons/md"
-import { useState } from "react";
-const Pagination = () => {
+import { useState, useEffect } from "react";
+import ArrowKeyDetector from "./ArrowKeyDetector";
+const Pagination = ({ userCount, getWaitingList, paginationNumbers, setPaginationNumbers }) => {
   const [currentValue, setCurrentValue] = useState(1);
   const [prev, disablePrev] = useState(false);
   const [next, disableNext] =  useState(false);
-  const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3])
   const activeLink = (value) => { 
-    console.log(value)
     setCurrentValue(value)
    }
+   useEffect(() => {
+    getWaitingList(currentValue, 5)
+   }, [currentValue])
    const backBtn = () => {
-    console.log("Dkddkdkdkdk")
-    console.log("Dd")
      if(currentValue === 1){
        return disablePrev(true)
      }
@@ -20,8 +20,9 @@ const Pagination = () => {
        setCurrentValue(currentValue - 1);
      }
       if(currentValue == paginationNumbers[0]){
-       console.log("letsgo")
+        console.log("dave")
        const firstNumber = paginationNumbers[paginationNumbers.length - paginationNumbers.length];
+       console.log(firstNumber)
  const news = [firstNumber - 1, ...paginationNumbers.slice(0, 2)]
        // Update state
        setPaginationNumbers(news);
@@ -33,18 +34,19 @@ const Pagination = () => {
    };
  
    const nextBtn = () => {
-     if(currentValue === 20){
+     if(currentValue === Math.ceil((userCount / 5))){
+      console.log("dkdk")
        return disableNext(true)
      }
-     if (currentValue < 10) {
+     if (currentValue < Math.ceil(userCount / 5)) {
+      console.log("power of the emipire")
        setCurrentValue(currentValue + 1);
      }
       if(currentValue === paginationNumbers[paginationNumbers.length - 1]){
        const lastNumber = paginationNumbers[paginationNumbers.length - 1];
-         
+         console.log(lastNumber)
        // Calculate new pagination array
        const newPaginationNumbers = [...paginationNumbers.slice(1), lastNumber + 1];
- 
        // Update state
        setPaginationNumbers(newPaginationNumbers);
        setCurrentValue(currentValue + 1);
@@ -52,6 +54,7 @@ const Pagination = () => {
    };
   return (
 <div id="app" className="dashboard-pagination-container">  
+<ArrowKeyDetector backBtn={backBtn} nextBtn={nextBtn}/>
 <ul className="dashboard-pagination-page">
 
     <li 
@@ -65,8 +68,10 @@ const Pagination = () => {
   >{value}</span>
 ))}
     <li className="dashboard-pagination-page__dots">...</li>
-    <li className="dashboard-pagination-page__numbers">20</li>
-    <li   className={`dashboard-pagination-page__btn ${prev ? 'disabled' : ''}`}
+    <li className="dashboard-pagination-page__numbers">{
+      Math.ceil((userCount / 5)   )
+    }</li>
+    <li   className={`dashboard-pagination-page__btn ${next ? 'disabled' : ''}`}
      onClick={nextBtn}><span><MdChevronRight size={20} /></span></li>
   </ul>
 </div>

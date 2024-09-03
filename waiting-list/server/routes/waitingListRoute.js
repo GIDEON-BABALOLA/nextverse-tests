@@ -8,5 +8,5 @@ const { subscribeToWaitingList,
  } = require(path.join(__dirname, "..", "controllers", "waitingListController"))
 router.post("/subscribe-user", bruteForceLimiter, subscribeToWaitingList)
 router.get("/get-waiting-list", getWaitingList)
-router.delete("/delete-subscribed-user", deleteUserFromWaitingList)
+router.delete("/delete-subscribed-user/:email", deleteUserFromWaitingList)
 module.exports = router

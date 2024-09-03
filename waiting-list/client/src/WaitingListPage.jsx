@@ -5,28 +5,54 @@ import { MdDelete } from "react-icons/md"
 import Pagination from "./Pagination"
 import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import toast, { Toaster } from "react-hot-toast"
 // import { MdDelete } from "react-icons/md"
 const WaitingListPage = () => {
   const [users, setUsers] = useState([])
-  const [userCount, setUserCount] = useState("")
+  const [userCount, setUserCount] = useState(0)
+  const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3])
   const [searchQuery, setSearchQuery] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState({
+    email : "",
+    load : false
+  })
+  const [dataLoading, setDataLoading] = useState(false)
+  const deleteSubscribedUser = async (email) => {
+    setIsLoading({email : email, load : true})
+try{
+const response = await axiosConfig.delete(`/delete-subscribed-user/${email}`, {
+  email : email
+})
+if(response.status == 204){
+  setIsLoading({email : email, load : false})
+  setUsers( users.filter((user) => user.email !== email))
+  setUserCount(userCount - 1)
+  toast.success(`You have successfully deleted the user with the email ${email}`)
+}
+}catch(error){
+  setIsLoading({email : email, load : false})
+  if(error.message == "Network Error"){
+    toast.error("Our Service Is Offline")
+  }else{
+  toast.error(error.response.data.message)
+  }
+}
+  }
   const handleSearchChange = (e) => {
 setSearchQuery(e.target.value)
   }
   const getWaitingList = async (page, limit) => {
-    console.log("eeee")
-    console.log("Eeke")
+    setDataLoading(true)
 try{
 const response = await axiosConfig.get(`/get-waiting-list?page=${page}&limit=${limit}`)
-console.log(response)
 if(response && response.data){
-  console.log(response)
+  setDataLoading(false)
   setUserCount(response.data.waitingListNumber)
+  // setPaginationNumbers([response.data.waitingListNumber])
   setUsers(response.data.waitingList)
 }
 }catch(error){
-console.log(error)
+  setDataLoading(false)
 }
   }
   useEffect(() => {
@@ -35,6 +61,7 @@ getWaitingList(1, 5)
   
   return (
     <>
+    <Toaster />
     <h2 style={{color : "white"}}>Litenote Admin Portal</h2>
          <h2 style={{color : "white"}}>Waiting List Subscription,  {userCount.toLocaleString()} Subscribed Users</h2>
          <div className="users-page-container">
@@ -48,7 +75,10 @@ getWaitingList(1, 5)
 </div>
 </div>
 <div>
-<Pagination />
+<Pagination 
+paginationNumbers={paginationNumbers}
+setPaginationNumbers={setPaginationNumbers}
+ userCount={userCount} getWaitingList={getWaitingList}/>
 </div>
 </section>
 <ul className="users-table-container" 
@@ -59,24 +89,47 @@ style={{left : "-2%"}}>
   <div className="users-table-column">Email</div>
   <div className="users-table-column">Date</div>
 
- <div className="users-table-column">Date</div>
+ <div className="users-table-column">Delete</div>
 </li>
-{users.filter((user) => searchQuery ? user.email.includes(searchQuery) : true).map((content, index) => (
+{ dataLoading ? 
+  <div 
+  style={{display : "flex", alignItems : "center", justifyContent : "center", placeItems : "center",
+  margin : "100px"
+  }}>
+    <div className="box-loader" style={{textAlign : "center"}}></div>
+    </div>  :
+    ( 
+      users.length !== 0 ?
+  users.filter((user) => searchQuery ? user.email.includes(searchQuery) : true).map((content, index) => (
 <li className="users-table-row" key={index}>
 <div className="users-table-column">{index}</div>
  <div className="users-table-column"> <input type="checkbox" /></div>
 <div  className="users-table-column">{content.email}</div>
 <div  className="users-table-column">{content.date}</div>
-    <div  className="users-table-column">
+    <div  className="users-table-column"
+    >
     
+    { isLoading.load && isLoading.email == content.email ? 
+    <div style={{display : "flex", alignItems : "center", justifyContent : "center", placeItems : "center"}}>
+    <div className="box-loader" style={{textAlign : "center"}}></div>
+    </div>
     
+       :
     <MdDelete
- className="users-table-delete-button"
-  size= {20} style={{ padding : "2px"}}/> 
+       onClick={
+      ()=>{
+        deleteSubscribedUser(content.email)
+      }
+     }
+ className=""
+  size= {20} style={{ padding : "2px", background : "#F2F2F2"}}/> 
+    }
   
   </div>
 </li>
 ))
+: <span style={{color : "white", fontFamily : "Poppins"}}>This Page Does Not Exist</span>
+)
 }
 
 </ul>

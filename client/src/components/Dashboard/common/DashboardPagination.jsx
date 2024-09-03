@@ -11,8 +11,6 @@ const DashboardPagination = () => {
     setCurrentValue(value)
    }
    const backBtn = () => {
-    console.log("Dkddkdkdkdk")
-    console.log("Dd")
      if(currentValue === 1){
        return disablePrev(true)
      }

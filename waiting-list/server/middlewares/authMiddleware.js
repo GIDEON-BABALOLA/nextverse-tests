@@ -5,6 +5,6 @@ const bruteForceLimiter = rateLimit({
 	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
 	handler: (req, res, next, options) =>
-		res.status(options.statusCode).json({message : "You Have Tried Incorrect Combinations Many Time, Pls Wait For A Minute"}),
+		res.status(options.statusCode).json({message : "You Have Used Too Many Different Emails"}),
 })
 module.exports = { bruteForceLimiter }
