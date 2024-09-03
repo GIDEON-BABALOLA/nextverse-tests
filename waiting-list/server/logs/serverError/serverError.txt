@@ -1,0 +1,2 @@
+20240903	17:29:10	11d85ff7-31d7-4c8c-8f23-8dc34d02a01e	SyntaxError: Unexpected token r in JSON at position 70
+20240903	19:48:17	b87915e1-63ea-48d1-adcd-5f6099e86280	Error: ENOENT: no such file or directory, stat 'C:\Users\user\Desktop\Projects\nextverse\waiting-list\server\controllers\ErrorFiles.zip'

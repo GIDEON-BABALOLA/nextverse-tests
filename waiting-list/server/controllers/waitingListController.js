@@ -3,6 +3,10 @@ const validator = require("validator")
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents")) 
 const WaitingList = require(path.join(__dirname, "..", "models", "waitingListModel.js"))
 const { waitingListError } = require(path.join(__dirname, "..", "utils", "customError"))
+const fs = require('fs');
+const archiver = require('archiver');
+const fsPromises = require("fs").promises
+const { dir } = require("console")
 const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const subscribeToWaitingList = async (req, res) => {
         try{
@@ -86,8 +90,79 @@ res.status(204).json(deletedUser)
          }
     }
 }
+const downloadWaitingListError = async (req, res) => {
+    try{
+        let files = []
+        if(fs.existsSync(path.join(__dirname, "..", "logs", "corsError"))){
+            const directory = path.join(__dirname, "..", "logs", "corsError")
+            const directoryFiles = await fsPromises.readdir(directory)
+             directoryFiles.forEach((file) => {
+                    const filePath = path.join(directory, file)
+                   files.push({name : file, path : filePath})
+                
+            })
+        }
+        if(fs.existsSync(path.join(__dirname, "..", "logs", "serverError"))){
+            const directory = path.join(__dirname, "..", "logs", "serverError")
+            const directoryFiles = await fsPromises.readdir(directory)
+             directoryFiles.forEach((file) => {
+                    const filePath = path.join(directory, file)
+                   files.push({name : file, path : filePath})
+                
+            })
+        }
+        if(fs.existsSync(path.join(__dirname, "..", "logs", "waitingListError"))){
+            const directory = path.join(__dirname, "..", "logs", "waitingListError")
+            const directoryFiles = await fsPromises.readdir(directory)
+             directoryFiles.forEach((file) => {
+                    const filePath = path.join(directory, file)
+                   files.push({name : file, path : filePath})
+                
+            })
+        }
+        if (files.length === 0) {
+            return res.status(404).send('No files found to download.');
+        }
+        const output = fs.createWriteStream(__dirname + '/ErrorFiles.zip');
+        const archive = archiver('zip', {
+            zlib: { level: 9 } // Sets the compression level.
+          });
+          archive.on('error', function(err) {
+            throw err;
+          });
+          // pipe archive data to the file
+           archive.pipe(output);
+           files.forEach((file) => {
+            archive.append(fs.createReadStream(file.path), { name : file.name})
+           })
+           archive.finalize();
+           output.on("close", () => {
+            res.download(path.join(__dirname, "ErrorFiles.zip"), 'ErrorFiles.zip', (err) => {
+                if (err) {
+                    console.error("Error sending file", err);
+                } else {
+                    // Delete the file after successful download
+                    fs.unlink(path.join(__dirname, "ErrorFiles.zip"), (err) => {
+                        if (err) {
+                            
+                        } else {
+                            
+                        }
+                    });
+                }
+            });
+
+          
+           })
+          
+    }catch(error){
+        console.log(error)
+        console.log("error occured when retrieving the files")
+    }
+}
 module.exports = {
     subscribeToWaitingList,
     getWaitingList,
-    deleteUserFromWaitingList
+    deleteUserFromWaitingList,
+    downloadWaitingListError
 }

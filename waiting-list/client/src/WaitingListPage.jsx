@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md"
 import Pagination from "./Pagination"
 import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import Download from "./Download"
 import toast, { Toaster } from "react-hot-toast"
 // import { MdDelete } from "react-icons/md"
 const WaitingListPage = () => {
@@ -59,6 +60,7 @@ if(response && response.data){
   return response.data.waitingList
 }
 }catch(error){
+  console.log(error)
   setDataLoading(false)
 }
   }
@@ -149,6 +151,7 @@ style={{textDecoration : "none"}}>
  <FaHome /> Go Home
 </span>
 </Link>
+<Download />
 
 <div>
 <b>© 2024 Next Verse. All rights reserved.</b>
