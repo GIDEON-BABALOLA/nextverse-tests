@@ -14,8 +14,11 @@ import { FaUser, FaHome } from "react-icons/fa"
 import { MdOutlineRssFeed } from "react-icons/md";
 import { MdOpenInNew, MdOutlinePersonAddAlt } from 'react-icons/md';
 import useInternetMode from "../../hooks/useInternetMode"
+import SpecialModal from "./SpecialModal"
+import LogoutConsent from "./LogoutConsent"
 const NavBar = () => {
 const [isOpen, setOpen] = useState(false)
+const [openModal, setOpenModal] = useState("")
   useEffect(() => {
 if(width < 768){
   isOpen ? showNavSidebar()  : closeNavSidebar()
@@ -117,6 +120,9 @@ contextMenu.current.style.visibility = "visible"
       }, [contextMenu]);
   return (
 <>
+<SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
+
+setOpenModal={setOpenModal} />} height={350} width={400}/>
 <Headroom >
 <header className="navbar-header">
     <nav className="navbar-nav-navbar">
@@ -128,7 +134,7 @@ contextMenu.current.style.visibility = "visible"
         
 
 }</Link>
-      </div>{
+      </div>{ 
       width > 768  ?
       <div className="navbar-nav-links">
       <Link to="/" className="navbar-header-links navbar-active">
@@ -262,7 +268,7 @@ src={avatar}></img>
     }
 
 
-<NavbarContextMenu contextMenu={contextMenu} setContextMenu={setContextMenu}
+<NavbarContextMenu contextMenu={contextMenu} setContextMenu={setContextMenu}  
 contextMenuData={[
   {
   id : 1,
@@ -287,16 +293,16 @@ contextMenuData={[
 },
 {
   id : 4,
-  icon : <MdLogout className="imags" size={40}/>,
+  icon : <MdLogout className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
   label : "Sign Out",
   arrow :   <MdOpenInNew />,
      link : "/"
-}
+} 
 ]}
 />
   </header>
 </Headroom>
-
+ 
 
 </>
   )

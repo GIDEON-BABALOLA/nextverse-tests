@@ -1,5 +1,12 @@
 :root{
-    --settings-card : 
+   
+    --settings-card : white;
+    --settings-border : "none"
+}
+.dark-theme-variables{
+  
+    --settings-card : #1F293780;
+    --settings-border : "0.666667px solid #374151"
 }
 .toggle-button{
     background-color: #d2d2d2;
@@ -54,8 +61,8 @@ background-color: #4F46E5
 .dashboard-settings-page-profile-card{
     max-width: 1280px;
     backdrop-filter: blur(16px);
-	background-color: #1F293780;
-	border: 0.666667px solid #374151;
+	background-color: var(--settings-card);
+    
  
 	border-radius: 12px;
 	box-shadow: #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #0000001A 0px 10px 15px -3px, #0000001A 0px 4px 6px -4px;
@@ -63,6 +70,7 @@ background-color: #4F46E5
 	box-sizing: border-box;
 	margin: 0px 0px 32px;
 	padding: 24px;
+    border: var(--settings-border);
     /* padding-right: 30px; */
 }
 .settings-toggle-button{

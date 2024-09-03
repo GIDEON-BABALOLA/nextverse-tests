@@ -1,0 +1,118 @@
+/* body {
+  background-color: #EAEAEC !important;
+    color: black !important;
+    font-family: "Poppins";
+}
+   */
+   body{
+    font-family: "Poppins";
+   }
+.users-table-row{
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    background: #EAEAEC;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+  }
+  .users-table-row.first{
+    font-weight: bold;
+	background-color: #F2F2F2;
+   
+  
+  }
+  .users-table-container{
+    display: flex;
+    flex-direction: column;
+    /* width: 1000px; */
+    font-family:  "Poppins";
+      
+  
+  }
+  .users-table-column{
+    padding: 5px;
+    flex: 1;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+  }
+  .table-avatar{
+    width: 30%;
+    border-radius: 50%;
+  
+  }
+
+  
+  
+.user-search-wrapper{
+  height: 60px;
+  width: 450px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  color: black;
+  background-color: white;
+
+
+}
+
+.users-top-man{
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+}
+
+.user-search-wrapper .field input{
+  height: 100%;
+  width: 100%;
+  border: 2px solid var(--search-wrapper-border);
+  border-radius: 5px;
+  padding: 0 130px 0 15px;
+  font-size: 20px;
+  outline: none;
+  font-family: "Poppins";
+  color: var(--search-wrapper-color-search)  ;
+  background-color: var(--search-wrapper-background);
+  /* box-shadow: 5px 5px 30px rgba(0,0,0,.2); */
+}
+.user-search-wrapper .field input::placeholder{
+  color: #999;
+  font-size: 18px;
+}
+.user-search-wrapper .field .btn-2{
+  position: absolute;
+  font-size: 16px;
+  color: #fff;
+  line-height: 40px;
+  background: #664AFF;
+  /* background: #7380EC; */
+  height: 40px;
+  width: 100px;
+  user-select: none;
+  border-radius: 5px;
+  top: 120px;
+  margin-left: 170px;
+float: right;
+cursor: pointer;
+  
+
+}
+  
+
+
+
+
+@media all and (max-width: 767px) {
+  .user-search-wrapper{
+    width: 300px;
+  }
+  .user-search-wrapper .field .btn-2{
+    margin-left: 40px;
+  }
+}

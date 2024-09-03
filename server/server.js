@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   })
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
-app.use("/api/story", storyRouter);
+app.use("/api/story", storyRouter); 
 mongoose.connect(process.env.LIGHTNOTE_MONGODB_URL)
 .then(() => {
     app.listen(PORT, () => {

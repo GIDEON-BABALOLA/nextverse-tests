@@ -1,10 +1,14 @@
 
 import "../../../styles/components/Dashboard/sticky-notes.css"
 import { FaRegTrashAlt, FaPlus } from "react-icons/fa"
+import { MdFormatShapes, MdOutlineRectangle } from "react-icons/md"
+import { FaRegTrashCan } from "react-icons/fa6";
 import SearchCircle from "./SearchCircle"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { useState } from "react"
 import SpecialModal from "../../common/SpecialModal"
+import colors from "../../../assets/colors.json"
+import { MdOutlineDelete } from "react-icons/md";
 const StickyNotes = () => {
   const { width } = useWindowSize()
   const [blinkCursor, setBlinkCursor] = useState(true)
@@ -22,6 +26,7 @@ const StickyNotes = () => {
       </div>)
 setOpenModal(true)
   }
+  
   const stickyNotes = [
     {
 content : "This is my first sticky note",
@@ -68,6 +73,27 @@ date : "April 11 2023"
 </div>
 </div>
       } */}
+      <div className="sticky-notes-color-controls">
+      <div  className="sticky-notes-color-add-btn">
+            <FaPlus />
+        </div>
+            {colors.map((color, index) => (
+            
+              <div
+              key={index}
+            className="sticky-notes-color"
+            style={{ backgroundColor: color.colorHeader }}
+        ></div>
+        
+
+            ))}
+            <div className="sticky-notes-color"><MdOutlineRectangle 
+            className="sticky-notes-color"
+            color="white"/></div>
+                <div className="sticky-notes-color"><MdOutlineRectangle 
+            className="sticky-notes-color parallelogram"
+            color="white"/></div>
+        </div>
     <div className="sticky-wrapper">
     <div className="sticky-container">
       <div className="sticky-outer">
@@ -134,6 +160,44 @@ size={10}
 
       ))
     }
+    <div
+       
+            className="card"
+            style={{
+           
+                backgroundColor: colors.colorBody,
+                
+            }}
+        >
+            <div
+             
+                className="card-header"
+                style={{
+                    backgroundColor: colors.colorHeader,
+                }}
+            >
+                <div>
+            <FaRegTrashAlt />
+        </div>
+
+                {/* {saving && (
+                    <div className="card-saving">
+                        <Spinner color={colors.colorText} />
+                        <span style={{ color: colors.colorText }}>
+                            Saving...
+                        </span>
+                    </div>
+                )} */}
+            </div>
+            <div className="card-body">
+                <textarea
+               
+                 
+                    style={{ color: colors.colorText }}
+                   
+                ></textarea>
+            </div>
+        </div>
     </div>
     </section>
   )

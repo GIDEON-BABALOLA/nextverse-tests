@@ -16,12 +16,12 @@ const SpecialModal = ({ openModal, setOpenModal, title, content, width, height }
      </div>
      <div className="description">
      {content}
-     </div>
+     </div>{ title !== "" &&
      <div className="dismiss-btn">
        <button id="dismiss-popup-btn" onClick={closeModal}>
           Dismiss
        </button>
-     </div>
+     </div>}
     </div>
     </section>
   )

@@ -8,7 +8,8 @@ import { FaAngleDown } from "react-icons/fa"
 import NotesPreview from "../../components/Dashboard/common/NotesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 import StickyNotes from "../../components/Dashboard/common/StickyNotes";
-
+import { FaPlus } from "react-icons/fa";
+import colors from "../../assets/colors.json"
 import SearchFilter  from "../../components/Browse/SearchFilter"
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
@@ -254,6 +255,7 @@ switch (e.target.innerText.split("\n")[0]) {
 
     <div className="litenote-dashboard-right reports-page-right-stories">
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
+
     </div>
     </>
     }

@@ -1,0 +1,15 @@
+20240830	13:22:27	1bd02fe9-25dd-4947-b2b0-06f4a5f77684	TypeError: waitingList.skip is not a function
+20240830	13:23:05	14bc2419-1482-41f3-b6c3-1942a65bfb6f	TypeError: waitingList.skip is not a function
+20240830	13:23:18	55a25ab1-bf2e-4924-9db8-e410a5f64437	TypeError: waitingList.skip is not a function
+20240830	13:24:24	5fc67f27-484b-400c-94fd-c6ec4d7cdeb7	TypeError: waitingList.skip is not a function
+20240830	13:24:25	d52678ba-3c22-44f1-90f0-dcc1a4fa1849	TypeError: waitingList.skip is not a function
+20240830	13:24:53	ac0c2755-4d82-4f0f-88b3-547a67f458a4	TypeError: waitingList.skip is not a function
+20240830	13:28:49	118d02ff-e179-4478-8156-4eacd2f442cd	TypeError: waitingList.countDocuments is not a function
+20240830	13:29:31	d88c4b53-ff99-41bd-bbc2-665552952071	waitingListError: This page does not exist
+20240830	13:29:32	0c8031d3-5dc5-4342-91c5-6f3a8e0f98d0	waitingListError: This page does not exist
+20240830	13:29:32	91a4ffa6-7c74-491a-9cc8-b6a917aa2fd6	waitingListError: This page does not exist
+20240830	13:30:23	2740d8b2-f25f-43fa-bb2a-edbbbc756e5f	waitingListError: This page does not exist
+20240830	13:30:23	070d6ffe-5101-4c68-b2ad-b18ee09c5baf	waitingListError: This page does not exist
+20240902	08:31:59	7ce931f1-aaaa-42fd-b6da-0bc24d808e1c	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	08:46:08	5ee05857-7184-42c9-ba12-f24913fffe7a	waitingListError: You Have Not Subscribed To Our Newsletter
+20240902	08:46:08	f073ba76-d455-4ec8-8b97-0ad2877b3601	waitingListError: You Have Not Subscribed To Our Newsletter

@@ -19,6 +19,7 @@
     --filter-tags-wrapper : #111316;
     --delete:   : none;
    }
+   
 .users-table-row{
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   background: var(--background-color-users-table-row);

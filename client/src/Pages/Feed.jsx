@@ -1,77 +1,179 @@
 
 import "../styles/components/Feed/feed.css"
-import { MdAccountCircle, MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView  } from "react-icons/md";
+import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
+    MdOutlineBookmarks, } from "react-icons/md";
 import favour from "../assets/29.jpg"
+import { MdOutlineCreate } from "react-icons/md";
+
 import gidiboy from "../assets/3.jpg"
-import { FaHome, FaPlus, FaSearch, FaTimes } from "react-icons/fa";
+import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
+
 import useWindowSize from "../hooks/useWindowSize";
 import { Link } from "react-router-dom"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 const FeedPage = () => {
+    const [view, setView] = useState({
+        list : false,
+        grid : true
+    })
+    const changeView = (e) => {
+        if(e.currentTarget.closest("a") === null){
+            setView({
+                list : !view.list,
+                grid : !view.grid
+        })
+    return;
+    }
+    switch (e.currentTarget.closest("a").innerText) {
+        case "Grid":
+            setView({
+                list : false,
+                grid : true
+            })
+            break;
+            case "List":
+                setView({
+                    list : true,
+                    grid : false
+                })
+            break;
+            case undefined :
+            console.log("Ddd") 
+            setView({
+                list : !view.list,
+                grid : !view.grid
+            })
+            break;
+    }
+console.log()
+    }
+    const feedData = [
+        {
+image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+category : "Technology",
+title : "The Impact of Technology on the Workplace: How Technology is Changing",
+avatar : favour,
+author : "Gideon Babalola",
+date : "April 12, 2025",
+time : "3 min read"
+        }, 
+        {
+            image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+            category : "Technology",
+            title : "The Impact of Technology on the Workplace: How Technology is Changing",
+            avatar : favour,
+            author : "Gideon Babalola",
+            date : "April 12, 2025",
+            time : "3 min read"
+                    }, 
+                    {
+                        image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+                        category : "Technology",
+                        title : "The Impact of Technology on the Workplace: How Technology is Changing",
+                        avatar : favour,
+                        author : "Gideon Babalola", 
+                        date : "April 12, 2025",
+                        time : "3 min read"
+                                }, 
+                                {
+                                    image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+                                    category : "Technology",
+                                    title : "The Impact of Technology on the Workplace: How Technology is Changing",
+                                    avatar : favour,
+                                    author : "Gideon Babalola",
+                                    date : "April 12, 2025",
+                                    time : "3 min read"
+                                            }, 
+    ]
   const { width } = useWindowSize()
-  const navExpand = useRef()
-  const navExpandList = useRef()
-  const navExpandIcon = useRef()
-  const showExpand = () => {
-    console.log("Dd")
-    navExpandList.current.classList.toggle("show-list")
-    console.log(navExpandIcon)
-  }
   return (
    <section>
-   <nav className="phone-feed-nav">
-<ul className="phone-feed-nav-list">
-<li >
-<Link className="phone-feed-nav-link">
-<MdAccountCircle size={20} />
-</Link>
-</li>
-<li>
-<Link className="phone-feed-nav-link">
-<FaHome size={20} />
-</Link>
-</li>
-<li>
-    <button className="phone-feed-nav-expand" id="phone-feed-nav-expand" ref={navExpand} onClick={showExpand}>
-<FaPlus style={{ transform: 'rotate(45deg)' }} 
-id="phone-feed-nav-expand-icon" className="phone-feed-nav-expand-icon" ref={navExpandIcon}/>
-    </button>
-    <ul className="phone-feed-nav-expand-list" ref={navExpandList}>
-<li>
-<Link className="phone-feed-nav-expand-link" >
-    <MdGridView />
-    <span>Grid View</span>
-</Link>
-</li>
-<li>
-<Link className="phone-feed-nav-expand-link" >
-    <MdFormatListBulleted />
-    <span>List View</span>
+   <div className="galacticus">
+   <div className="phone-feed-sidebar-menu">
+<ul className="phone-feed-sidebar-list">
+    <li className="phone-feed-sidebar-item">
+<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/profile"}>
+<img src={favour} alt="Author" className="feed-man"/>
+<span className="phone-feed-sidebar-nav-name">Profile</span>
 </Link>
     </li>
-    </ul>
-</li>
-
-<li>
-<Link className="phone-feed-nav-link">
-<MdBookmarks size={20} />
+    <li className="phone-feed-sidebar-item">
+<Link className="phone-feed-sidebar-nav-link" to={"/"}>
+<FaHome className="phone-feed-sidebar-icon"  />
+<span className="phone-feed-sidebar-nav-name">Home</span>
 </Link>
-</li>
-<li>
-<Link className="phone-feed-nav-link">
-<MdCreate size={20} />
-</Link>
+    </li>
+    <li className="phone-feed-sidebar-item">
+<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/bookmarks"}>
 
-</li>
+    <MdOutlineBookmarks className="phone-feed-sidebar-icon" />
+
+
+<span className="phone-feed-sidebar-nav-name">Bookmarks</span>
+</Link>
+    </li>
+    <li className="phone-feed-sidebar-item">
+    <Link className={`phone-feed-sidebar-nav-link ${ view.list && "active-structure"}`} >
+<MdFormatListBulleted className="phone-feed-sidebar-icon" onClick={changeView} style={{background : "white"}} />
+<span className="phone-feed-sidebar-nav-name">List</span>
+</Link>
+    </li>
+    <li className="phone-feed-sidebar-item">
+<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
+<MdOutlineCreate className="phone-feed-sidebar-icon" />
+<span className="phone-feed-sidebar-nav-name">Write</span>
+</Link>
+    </li>
+    <li className="phone-feed-sidebar-item">
+<Link className={`phone-feed-sidebar-nav-link ${ view.grid && "active-structure"}`} >
+<MdGridView className="phone-feed-sidebar-icon " onClick={changeView} />
+<span className="phone-feed-sidebar-nav-name">Grid</span>
+{/* <div className="feed-sidebar-icon" style={{background : "#F5F5F5", borderRadius : "50%"}}><MdGridView size={20} /></div> */}
+</Link>
+    </li>
 </ul>
-   </nav>
+   </div>
+   </div>
+ 
        <div className="feed-sidebar">
-        <div className="feed-sidebar-icon"><MdAccountCircle size={20} /></div>
-        <div className="feed-sidebar-icon"><FaHome size={20} /></div>
-        <div className="feed-sidebar-icon"><MdBookmarks size={20}  /></div>
-        <div className="feed-sidebar-icon"><MdFormatListBulleted size={20}  /></div>
-        <div className="feed-sidebar-icon"><MdCreate size={20} /></div>
-        <div className="feed-sidebar-icon"><MdGridView size={20} /></div>
+      
+        <div className="feed-sidebar-icon">
+        <Link to={"/dashboard/profile"}>
+
+         <img src={favour} alt="Author" className="feed-man"/>
+
+         </Link>
+       </div>
+        <div className="feed-sidebar-icon">
+        <Link to={"/"}>
+        <FaHome size={20} />
+        </Link>
+        </div>
+        <div className="feed-sidebar-icon">
+        <Link to={"/dashboard/bookmarks"}>
+        <MdBookmarks size={20}  />
+        </Link>
+      
+        </div>
+        <div className="feed-sidebar-icon" style={{background : view.list && "#F5F5F5", borderRadius : view.list && "50%",
+        color : view.list ?  "black" : "#757575"
+        }}><MdFormatListBulleted 
+        onClick={changeView}
+        size={20} 
+        /><span style={{display : "none"}} >list</span></div>
+        <div className="feed-sidebar-icon">
+        <Link to={"/dashboard/stories"}>
+        <MdCreate size={20}  />
+        </Link>
+        </div>
+        <div className="feed-sidebar-icon" 
+        style={{background : view.grid && "#F5F5F5", borderRadius : view.grid && "50%",
+        color : view.grid ?  "black" : "#757575"}}
+        >
+        <MdGridView size={20}
+        onClick={changeView}
+        
+         /><span style={{display : "none"}}>grid</span></div>
     </div>
     <div className="feed-main-content">
         <div className="feed-header">
@@ -108,8 +210,12 @@ id="phone-feed-nav-expand-icon" className="phone-feed-nav-expand-icon" ref={navE
         <hr />
         
         <div className="feed-grid">
-            <div className="feed-card">
-                <div className="feed-card-image"></div>
+            <div className="feed-card"> 
+                {/* <div className="feed-card-image"> */}
+                    <img src={"https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg"}
+                    className="feed-card-image"
+                    ></img>
+                {/* </div> */}
                 <div className="feed-card-content">
                 <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
                     <div className="feed-card-tag">Technology</div>
@@ -127,71 +233,33 @@ id="phone-feed-nav-expand-icon" className="phone-feed-nav-expand-icon" ref={navE
                     </div>
                 </div>
             </div>
-            <div className="feed-card">
-                <div className="feed-card-image"></div>
+{feedData.map((content, index) => (
+    <div className="feed-card" key={index}> 
+                {/* <div className="feed-card-image"> */}
+                    <img src={content.image}
+                    className="feed-card-image"
+                    ></img>
+                {/* </div> */}
                 <div className="feed-card-content">
-                    <div className="feed-card-tag">Technology</div>
-                    <div className="feed-card-title">The Impact of Technology on the Workplace: How Technology is Changing</div>
+                <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
+                    <div className="feed-card-tag">{content.category}</div>
+                    <span style={{color : "#777777"}}>{content.time}</span>
+                    </div>
+                    <div className="feed-card-title" style={{marginBottom : "0px"}}>The Impact of Technology on the Workplace: How Technology is Changing</div>
+                    
                     <div className="feed-card-meta">
-                        <span>3 min read</span>
-                        <img src="img.jpg" alt="Author" />
-                        <span>Jason Francisco</span>
-                        <span>August 20, 2022</span>
+                        {/* <span>3 min read</span> */}
+                        <span>
+                        <img src={content.avatar} alt="Author" />
+                        <span>{content.author}</span>
+                        </span>
+                        <span>{content.date}</span>
                     </div>
                 </div>
             </div>
-            <div className="feed-card">
-                <div className="feed-card-image"></div>
-                <div className="feed-card-content">
-                    <div className="feed-card-tag">Technology</div>
-                    <div className="feed-card-title">The Future of AI in Healthcare</div>
-                    <div className="feed-card-meta">
-                        <span>5 min read</span>
-                        <img src="img.jpg" alt="Author" />
-                        <span>Sarah Johnson</span>
-                        <span>August 22, 2022</span>
-                    </div>
-                </div>
-            </div>
-            <div className="feed-card">
-                <div className="feed-card-image"></div>
-                <div className="feed-card-content">
-                    <div className="feed-card-tag">Business</div>
-                    <div className="feed-card-title">Remote Work: The New Normal?</div>
-                    <div className="feed-card-meta">
-                        <span>4 min read</span>
-                        <img src="img.jpg" alt="Author" />
-                        <span>Michael Brown</span>
-                        <span>August 23, 2022</span>
-                    </div>
-                </div>
-            </div>
-            <div className="feed-card">
-                <div className="feed-card-image"><img src="imgjpg" alt="" /></div>
-                <div className="feed-card-content">
-                    <div className="feed-card-tag">Productivity</div>
-                    <div className="feed-card-title">5 Time Management Techniques for Busy Professionals</div>
-                    <div className="feed-card-meta">
-                        <span>6 min read</span>
-                        <img src="img.jpg" alt="Author" />
-                        <span>Emily Chen</span>
-                        <span>August 25, 2022</span>
-                    </div>
-                </div>
-            </div>
-            <div className="feed-card">
-                <div className="feed-card-image"></div>
-                <div className="feed-card-content">
-                    <div className="feed-card-tag">Mindfulness</div>
-                    <div className="feed-card-title">The Benefits of Daily Meditation</div>
-                    <div className="feed-card-meta">
-                        <span>4 min read</span>
-                        <img src="img.jpg" alt="Author" />
-                        <span>David Lee</span>
-                        <span>August 26, 2022</span>
-                    </div>
-                </div>
-            </div>
+))
+           
+}          
         </div>
     </div>
         
