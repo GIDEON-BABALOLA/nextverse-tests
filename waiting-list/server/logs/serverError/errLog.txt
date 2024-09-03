@@ -1,3 +1,5 @@
 20240902	23:46:08	5e7a8120-9296-49e2-a3dd-6088fdc7c6bf	Error: Not allowed by CORS
 20240902	23:46:51	ac0af76d-7ea3-4160-bfa4-2ebaec191ced	Error: Not allowed by CORS
 20240902	23:48:28	3f74fc67-6fe3-4ace-8080-169d291f67bd	Error: Not allowed by CORS
+20240903	02:15:19	b16bd43c-a52c-4094-b527-048b005c9c53	SyntaxError: Unexpected number in JSON at position 44
+20240903	02:53:05	546d4831-c5cf-42e4-b16d-10cb60d64390	SyntaxError: Unexpected end of JSON input

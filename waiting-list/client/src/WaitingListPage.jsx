@@ -38,6 +38,7 @@ if(response.status == 204){
   }
 }
   }
+
   const handleSearchChange = (e) => {
 setSearchQuery(e.target.value)
   }
@@ -48,8 +49,14 @@ const response = await axiosConfig.get(`/get-waiting-list?page=${page}&limit=${l
 if(response && response.data){
   setDataLoading(false)
   setUserCount(response.data.waitingListNumber)
+  if(response.data.waitingListNumber <= 5){
+    setPaginationNumbers([1])
+  }else if(response.data.waitingListNumber > 5 && response.data.waitingListNumber <= 10){
+    setPaginationNumbers([1, 2])
+  }
   // setPaginationNumbers([response.data.waitingListNumber])
   setUsers(response.data.waitingList)
+  return response.data.waitingList
 }
 }catch(error){
   setDataLoading(false)
@@ -57,6 +64,7 @@ if(response && response.data){
   }
   useEffect(() => {
 getWaitingList(1, 5)
+
   }, [])
   
   return (

@@ -97,3 +97,34 @@
 20240902	23:16:51	05618946-a64d-42d1-a2af-3fbd39c7db82	waitingListError: You Have Already Subscribed To Our Newsletter
 20240902	23:27:20	7f6de579-ff51-46aa-849e-4d9462511ec9	waitingListError: Please Enter A Valid Email
 20240903	01:08:24	98482255-b9e0-4b08-90c1-0f73dd12a853	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:08:23	0e805560-be02-4545-a16b-d4cafebbe4f0	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:14:40	5f8a3230-3d7e-4b92-a1d8-f525080b5de7	waitingListError: Please Enter A Valid Email
+20240903	02:14:43	ec6327a2-c57d-4689-9d34-d971bf6cf5cb	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:16:58	06ae7783-3ee7-473a-9833-be00efc33391	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:17:26	780cc7df-ce35-449e-8c9a-46c5554b55bc	waitingListError: Please Enter A Valid Email
+20240903	02:17:29	a596d840-ea4d-4b38-9a35-7df016b3f1d4	waitingListError: Please Enter A Valid Email
+20240903	02:27:43	d2ecd412-0098-4be5-ba58-6f37be09b4ad	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:30:07	acd1251d-ea50-4dd8-b36b-93a5758f11a9	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:53:12	608a00a8-7345-4973-a0aa-b28b55a21d70	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:53:15	edcfcc77-cf61-4a1c-9ce4-51adf151b2c8	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:54:07	d5419faf-e8ca-47d4-aa41-9bcf86ef9fdb	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	02:54:43	698c04d5-275f-4985-ba1d-5c514c601ba6	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	03:07:17	964f8a10-a0b3-46bf-806b-d17cb8fbfa0e	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	03:07:19	fa8a9822-761d-4c1b-be16-ebb50a69b020	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	03:17:11	45cd260f-6b07-4a52-9b40-190341308671	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	06:56:33	cfcc6ec1-318c-487d-bde9-a623526996f5	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:11:35	6f2cea55-4ace-4691-8ec1-f763019e2aae	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:13:44	66293b1b-de87-4a4e-8813-fd61e613b95d	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:13:52	de9720c8-3d1e-4094-84c6-dbe095014788	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:14:07	4ee73cc6-7aa4-441a-9828-4abd68c0d9c7	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:24:54	61680879-a19e-44fa-9460-07008b6fd588	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:28:34	a3c217ce-8f23-4ccb-ad44-4c274a3c6a1b	waitingListError: Please Enter A Valid Email
+20240903	07:28:37	2b834ee9-0f88-47a3-8bff-c0afe4fb69f7	waitingListError: Please Enter A Valid Email
+20240903	07:28:58	f909c4af-419a-446e-aaf9-6292ed152c1d	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:28:58	b3cc3809-0964-4ba0-90c2-cbf7ce00a3c1	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:34:51	e4a3aff7-8cc7-4a48-b6f4-b04bd599e709	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:34:57	ea17ac31-68ff-4f93-9126-2304c0362a7d	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:40:28	f88502bf-ab9b-4ca5-a238-d7964a1ef301	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:46:03	1678cec5-d474-484c-a145-eea3769ed59c	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:46:14	828d7087-fa3e-42b7-939a-23510a582874	waitingListError: You Have Already Subscribed To Our Newsletter
+20240903	07:46:16	7e65ef0b-f218-4d1f-826f-787e129eb584	waitingListError: You Have Already Subscribed To Our Newsletter

@@ -7,7 +7,7 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 const subscribeToWaitingList = async (req, res) => {
         try{
 const { email } = req.body;
-const adminEmails = ["gideonbabalola69@gmail.com", ""]
+const adminEmails = ["gideonbabalola69@gmail.com", "favouradigundamilare@gmail.com"]
 if(adminEmails.includes(email)){
     return res.status(200).json({message : "admin"})
 }
