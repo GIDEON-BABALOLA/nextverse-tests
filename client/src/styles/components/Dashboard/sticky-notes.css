@@ -1,5 +1,6 @@
 .litenote-dashboard-sticky-notes-preview{
     margin-top: 60px;
+    position: fixed;
 }
 .litenote-dashboard-sticky-notes-preview .sticky-wrapper{
     /* margin: 50px; */
@@ -288,17 +289,22 @@ z-index: 10000;
   /* You can adjust the angle to get the desired skew effect */
 }
 .card{
-  width: 400px;
+  width: 200px;
+  user-select: none;
   border-radius: 5px;
   cursor: pointer;
-  position: absolute;
+  cursor: move;
+  position: fixed;
+  min-height: 10rem;
   box-shadow:
   0 1px 1px hsl(0deg 0% 0% / 0.075),
   0 2px 2px hsl(0deg 0% 0% / 0.075),
   0 4px 4px hsl(0deg 0% 0% / 0.075),
   0 8px 8px hsl(0deg 0% 0% / 0.075),
   0 16px 16px hsl(0deg 0% 0% / 0.075)
+  
 ;
+font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .card-header {

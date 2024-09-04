@@ -28,6 +28,7 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
  
   })
   const chooseOption = (e) => {
+    console.log(e.target.innerText.split("\n")[0])
     switch (e.target.innerText.split("\n")[0]) {
       case "Write":
         setTab({
@@ -201,7 +202,7 @@ switch (e.target.innerText.split("\n")[0]) {
      </label>
 
 		<label
-     style={{color : tabs.articles == true && "var(--primary-cocolor)", fontSize : "1.5rem", whiteSpace : "" }}
+     style={{color : tabs.stickyNotes == true && "var(--primary-cocolor)", fontSize : "1.5rem", whiteSpace : "" }}
      onClick={slideTab}
      className="tab"  htmlFor="radio-3" >Sticky Notes
       <span className="notification"

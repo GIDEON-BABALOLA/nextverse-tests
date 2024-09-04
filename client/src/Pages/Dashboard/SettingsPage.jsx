@@ -3,6 +3,9 @@ import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
 import profileImage from "../../assets/29.jpg"
 import { useState, useEffect } from "react";
+import colors from "../../assets/colors.json"
+import { FaPlus } from "react-icons/fa";
+import { MdOutlineRectangle } from "react-icons/md";
 import "../../styles/components/Dashboard/dashboard-settings-page.css"
 import { FaRegUser, FaRegTrashAlt  } from "react-icons/fa";
 import { MdNotificationsNone } from "react-icons/md";
@@ -129,12 +132,35 @@ console.log(e.target.checked)
 <label htmlFor="push-notification-toggle-check" className="toggle-button"></label>
 </span>
 </div>
-<div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
+<div style={{display : "flex",
+alignItems : "center",
+ marginTop : "10px", flexDirection : "row", justifyContent  : "space-between"}}>
 <h5>Default Sticky Note Color</h5>
-<span className="toggle-container">
-<input type="checkbox" id="default-sticky-note-color-toggle-check" onChange={devops}/>
-<label htmlFor="default-sticky-note-color-toggle-check" className="toggle-button"></label>
-</span>
+
+{/* <input type="checkbox" id="default-sticky-note-color-toggle-check" onChange={devops}/>
+<label htmlFor="default-sticky-note-color-toggle-check" className="toggle-button"></label> */}
+ <div className="sticky-notes-color-controls"
+ style={{position : "initial", flexDirection : "row", padding : "0.5em",}}>
+      {/* <div  className="sticky-notes-color-add-btn">
+            <FaPlus />
+        </div> */}
+            {colors.map((color, index) => (
+            
+              <div
+              key={index}
+            className="sticky-notes-color"
+            style={{ backgroundColor: color.colorHeader, height : "20px", width : "20px" }}
+        ></div>
+        
+
+            ))}
+            {/* <div className="sticky-notes-color"><MdOutlineRectangle 
+            className="sticky-notes-color"
+            color="white"/></div>
+                <div className="sticky-notes-color"><MdOutlineRectangle 
+            className="sticky-notes-color parallelogram"
+            color="white"/></div> */}
+        </div> 
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
 <h5>Default Sticky Note Shape</h5>
