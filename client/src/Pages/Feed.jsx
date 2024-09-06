@@ -267,12 +267,13 @@ time : "3 min read"
 <h3>Your profile is stopping you from getting that job</h3>
 <span style={{color : "#777777"}}>
 Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from 
+Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from
 </span>
     </div>
     <div style={{display :"flex", flexDirection : "row",
     
     justifyContent: "space-between",
-    paddingTop : "20px"
+    paddingTop : "35px"
     }}>
     <span style={{display : "flex",
     flexDirection : "row",
@@ -286,16 +287,19 @@ Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as 
     <span style={{display : "flex",
     alignItems : "center",
     justifyContent : "space-between",
-    gap : "10px"
+    gap : "20px"
     }}>
-     <MdVisibility 
+    <span><MdVisibility 
         color=" #333333"
-        size={20}/> 30
-        <MdOutlineFavoriteBorder size={20}
+        size={20}/> 30</span>
+     <span>
+     <MdOutlineFavoriteBorder size={20}
         color="#E0245E" /> 80
-        <MdOutlineBookmarkAdd 
+     </span>
+        <span><MdOutlineBookmarkAdd 
         color="#4A90E2"
-        size={20}/> 40
+        size={20}/> 40</span>
+        
        
         </span>
     </div>
@@ -308,7 +312,7 @@ src={content.image}
 
 </img></section>
 </div>
-<hr  style={{color : "#2F3336"}}/>
+<hr  style={{color : "#9CA3AF"}}/>
 
 </>
         ))}

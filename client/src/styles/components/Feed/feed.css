@@ -264,7 +264,7 @@
     margin-top: 5px;
     margin-bottom: 5px;
     font-family: "Poppins";
-    padding: 10px;
+    padding: 15px 10px;
 }
 .list-view-card-first-section{
     display: flex;
@@ -285,7 +285,7 @@ border-radius: 50%;
     overflow: hidden;
 }
 .feed-list-view-card-bottom{
-    margin-top: 3px;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

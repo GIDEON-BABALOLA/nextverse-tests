@@ -10,10 +10,10 @@ import { FaShareAlt, FaWifi } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { BiWifiOff } from "react-icons/bi"
 import { FaTimes, FaUserAlt, FaRegThumbsUp } from "react-icons/fa";
-import { MdReadMore } from "react-icons/md"
+import { MdReadMore, MdCloudOff, MdOutlineRefresh } from "react-icons/md"
 import Toast from "../common/Toast"
 const Profile = () => {
-  let badInternet = true
+  let badInternet = false
 const {width, height} = useWindowSize()
 const [contextMenu, setContextMenu] = useState()
 const fireClick = (e) => {
@@ -101,12 +101,12 @@ const [shareModal, setShareModal] = useState()
   </div>
 </section>
  : <section className="something-went-wrong">
- <BiWifiOff size={100} color="#777777"/>
+ <MdCloudOff size={100} color="#777777"/>
  <div><h2>Something went wrong</h2></div>
  <div>We are unable to load this profile, check your connection</div>
  <div><button className="offline-button"
  onClick={() => location.reload()}
- >Refresh</button></div>
+ ><MdOutlineRefresh size={20}/> Refresh</button></div>
 </section>
 }
     </>

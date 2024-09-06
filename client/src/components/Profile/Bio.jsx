@@ -3,6 +3,7 @@ import { FaCertificate } from "react-icons/fa";
 import SpinnerLoader from "../Loaders/SpinnerLoader";
 import { useState } from "react";
 import { FcRating } from "react-icons/fc";
+import { MdVerified } from "react-icons/md";
 const Bio = ({ toastRef, toastProgress }) => {
   const [spin,  setSpin] = useState(false)
   const username = "Chris James"
@@ -22,7 +23,8 @@ setTimeout(() => {
    <>
 
             <h2 className="litenote-profile-name">{`${username}`} 
-            <FcRating style={{marginLeft : "1%"}} />
+            {/* <FcRating style={{marginLeft : "1%"}} /> */}
+            <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF5E62"}}/>
           {/* <span className="checkbot">
     
           <FaCertificate style={{color : "#ff5e62", margin: "1%"}} />
