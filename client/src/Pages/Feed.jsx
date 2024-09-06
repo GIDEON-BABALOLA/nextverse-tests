@@ -381,7 +381,7 @@ src={content.image}
         <div style={{marginTop  : "30px"}}>
         <h3>Recommended Topic</h3>
         <div className="feed-topics">
-            <span className="feed-topic">Technologies</span>
+            <span className="feed-topic">Technology</span>
             <span className="feed-topic">Money</span>
             <span className="feed-topic">Business</span>
             <span className="feed-topic">Productivity</span>
