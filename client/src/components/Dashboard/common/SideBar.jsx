@@ -134,7 +134,7 @@ clickSidebarMenu()
                         <MdReport size={24} />
                            <h3 className="litenote-dashboard-h-three">Reports</h3>
                         </Link>
-                        <Link to="/dashboard/email" className={`sidebar-links ${currentUrl === "messages" && "active"}`}
+                        <Link to="/dashboard/messages" className={`sidebar-links ${currentUrl === "messages" && "active"}`}
                         
                         onClick={dave}>
                         <MdEmail size={24} />

@@ -1,8 +1,15 @@
 
 import "../styles/components/Feed/feed.css"
 import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
-    MdOutlineBookmarks, } from "react-icons/md";
+    MdOutlineBookmarks,
+    MdOutlineFavoriteBorder,
+    MdOutlineBookmarkAdd,
+    MdVisibility
+} from "react-icons/md";
+import { MdMonitorHeart } from "react-icons/md";
 import favour from "../assets/29.jpg"
+import girly from "../assets/30.jpg"
+import blackman from "../assets/3.jpg"
 import { MdOutlineCreate } from "react-icons/md";
 
 import gidiboy from "../assets/3.jpg"
@@ -49,7 +56,7 @@ console.log()
     }
     const feedData = [
         {
-image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+image : "https://wallpapercave.com/wp/wp11326328.jpg",
 category : "Technology",
 title : "The Impact of Technology on the Workplace: How Technology is Changing",
 avatar : favour,
@@ -58,16 +65,16 @@ date : "April 12, 2025",
 time : "3 min read"
         }, 
         {
-            image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+            image : "https://wallpapercave.com/wp/wp11326335.jpg",
             category : "Technology",
             title : "The Impact of Technology on the Workplace: How Technology is Changing",
-            avatar : favour,
+            avatar : blackman,
             author : "Gideon Babalola",
             date : "April 12, 2025",
             time : "3 min read"
                     }, 
                     {
-                        image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+                        image : "https://wallpapercave.com/wp/wp11326368.jpg",
                         category : "Technology",
                         title : "The Impact of Technology on the Workplace: How Technology is Changing",
                         avatar : favour,
@@ -76,10 +83,10 @@ time : "3 min read"
                         time : "3 min read"
                                 }, 
                                 {
-                                    image : "https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg",
+                                    image : "https://wallpapercave.com/wp/wp11326350.jpg",
                                     category : "Technology",
                                     title : "The Impact of Technology on the Workplace: How Technology is Changing",
-                                    avatar : favour,
+                                    avatar : girly,
                                     author : "Gideon Babalola",
                                     date : "April 12, 2025",
                                     time : "3 min read"
@@ -209,30 +216,7 @@ time : "3 min read"
         </div>
         <hr />
         
-        <div className="feed-grid">
-            <div className="feed-card"> 
-                {/* <div className="feed-card-image"> */}
-                    <img src={"https://c4.wallpaperflare.com/wallpaper/384/350/430/digital-art-artwork-cyber-cyberpunk-neon-hd-wallpaper-preview.jpg"}
-                    className="feed-card-image"
-                    ></img>
-                {/* </div> */}
-                <div className="feed-card-content">
-                <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
-                    <div className="feed-card-tag">Technology</div>
-                    <span style={{color : "#777777"}}>3 min read</span>
-                    </div>
-                    <div className="feed-card-title" style={{marginBottom : "0px"}}>The Impact of Technology on the Workplace: How Technology is Changing</div>
-                    
-                    <div className="feed-card-meta">
-                        {/* <span>3 min read</span> */}
-                        <span>
-                        <img src={favour} alt="Author" />
-                        <span>Tracey Wilson</span>
-                        </span>
-                        <span>August 20, 2022</span>
-                    </div>
-                </div>
-            </div>
+        {view.grid && <div className="feed-grid">
 {feedData.map((content, index) => (
     <div className="feed-card" key={index}> 
                 {/* <div className="feed-card-image"> */}
@@ -258,9 +242,83 @@ time : "3 min read"
                 </div>
             </div>
 ))
-           
+
 }          
+        </div>}
+        { view.list &&
+        <>
+        <div className="feed-list-view">
+        {feedData.map((content, index) => (
+            <>
+            <div className="feed-list-view-card" key={index}>
+<section className="list-view-card-first-section">
+    <div className="list-view-card-profile-section">
+    <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
+    <img src={content.avatar}></img>
+    <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
+<span><b>{content.author}</b></span>
+<span>Blogger</span>
+    </div>
+
+
+    </span>
+    </div>
+    <div className="list-view-card-story-section">
+<h3>Your profile is stopping you from getting that job</h3>
+<span style={{color : "#777777"}}>
+Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from 
+</span>
+    </div>
+    <div style={{display :"flex", flexDirection : "row",
+    
+    justifyContent: "space-between",
+    paddingTop : "20px"
+    }}>
+    <span style={{display : "flex",
+    flexDirection : "row",
+    justifyContent : "space-between",
+    gap  : "20px",
+    color : "#777777"
+    }}>
+    <span>8 days ago</span>
+    <span>34 min read</span>
+     </span>
+    <span style={{display : "flex",
+    alignItems : "center",
+    justifyContent : "space-between",
+    gap : "10px"
+    }}>
+     <MdVisibility 
+        color=" #333333"
+        size={20}/> 30
+        <MdOutlineFavoriteBorder size={20}
+        color="#E0245E" /> 80
+        <MdOutlineBookmarkAdd 
+        color="#4A90E2"
+        size={20}/> 40
+       
+        </span>
+    </div>
+</section>
+<section
+className="list-view-card-second-section"
+><img
+src={content.image}
+>
+
+</img></section>
+</div>
+<hr  style={{color : "#2F3336"}}/>
+
+</>
+        ))}
+
+
+
         </div>
+        
+        </>
+        }
     </div>
         
     <div className="feed-right-sidebar">

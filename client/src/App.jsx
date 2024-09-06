@@ -19,6 +19,7 @@ import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 import BookmarksPage from './Pages/Dashboard/BookmarksPage';
 import JoinWaitingListPage from './Pages/JoinWaitingListPage';
+import MessagesPage from "./Pages/Dashboard/MessagesPage"
 import { useLocation } from "react-router-dom"
 import TeamPage from "./Pages/TeamPage"
 import { useEffect } from 'react';
@@ -63,6 +64,8 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
           <Route path="stories" element={<StoriesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="profile" element={<DashboardProfilePage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          <Route path="messages" element={<MessagesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          
         </Route>
 
 <Route path="register" element={<RegisterPage />} />

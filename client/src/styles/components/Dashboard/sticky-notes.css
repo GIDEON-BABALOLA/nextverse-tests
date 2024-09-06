@@ -329,6 +329,7 @@ font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100%;
   resize: none;
   font-size: 16px;
+  cursor: move;
 }
 
 

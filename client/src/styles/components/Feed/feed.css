@@ -213,15 +213,6 @@
 /* .phone-feed-nav{
     display: none;
 } */
-@media (max-width: 1024px) {
-    .feed-right-sidebar {
-        display: none;
-    }
-    .feed-main-content {
-        margin-right: 0;
-    }
-}
-
 
 .feed-right-sidebar ::-webkit-input-placeholder {
     /* WebKit browsers (Chrome, Safari, etc.) */
@@ -260,6 +251,61 @@
 .galacticus{
     box-shadow: #0000001A 0px 2px 5px 0px;
     display: none;
+}
+.feed-list-view{
+    margin-top: 10px;
+}
+.feed-list-view-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Poppins";
+    padding: 10px;
+}
+.list-view-card-first-section{
+    display: flex;
+    flex-direction: column;
+}
+.list-view-card-profile-section img{
+width: 5%;
+border-radius: 50%;
+}
+.list-view-card-story-section{
+    margin-top: 5px;
+    font-family:  "Poppins";
+}
+.list-view-card-second-section img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.feed-list-view-card-bottom{
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+    .feed-right-sidebar {
+        display: none;
+    }
+    .feed-main-content {
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 768px) {
