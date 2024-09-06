@@ -1,5 +1,6 @@
 import Input from "./Input"
 import { useRegisterAccount } from "../../hooks/useRegisterAccount"
+import { AuthContext } from "../../context/AuthContext"
 const Register = () => {
   const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
   const handleRegister = (e) => {

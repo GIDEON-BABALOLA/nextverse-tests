@@ -291,7 +291,23 @@ width: 90px;
     background-color:white;
     color:  #ff5e62;;
   }
- 
+ .something-went-wrong{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 90vh;
+ }
+ .offline-button{
+  outline: none;
+  border: 1px solid #FF5E62;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  margin-top: 5px;
+  cursor: pointer;
+  color : #FF5E62
+
+ }
   
   
   @keyframes fade-in {

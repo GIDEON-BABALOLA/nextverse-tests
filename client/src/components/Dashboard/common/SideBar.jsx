@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
 import logo from "../../../../src/assets/litenote.png"
 import useColorMode from '../../../hooks/useColorMode';
-import { MdOutlineRssFeed } from "react-icons/md";
+import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    let role = "user"
@@ -89,7 +89,7 @@ clickSidebarMenu()
                            <h3 className="litenote-dashboard-h-three">Home</h3>
         </Link>
         <Link to="/" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
-                    <MdOutlineRssFeed size={24} />
+                    <MdDynamicFeed size={24} />
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
         </Link>
                  

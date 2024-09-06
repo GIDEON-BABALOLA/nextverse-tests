@@ -6,12 +6,14 @@ import Share from "../common/Share"
 import { useState, useRef, useEffect} from "react"
 import ContextMenu from "../common/ContextMenu"
 import useWindowSize from "../../hooks/useWindowSize"
-import { FaShareAlt } from "react-icons/fa";
+import { FaShareAlt, FaWifi } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
+import { BiWifiOff } from "react-icons/bi"
 import { FaTimes, FaUserAlt, FaRegThumbsUp } from "react-icons/fa";
 import { MdReadMore } from "react-icons/md"
 import Toast from "../common/Toast"
 const Profile = () => {
+  let badInternet = true
 const {width, height} = useWindowSize()
 const [contextMenu, setContextMenu] = useState()
 const fireClick = (e) => {
@@ -61,7 +63,7 @@ const [shareModal, setShareModal] = useState()
   return (
     <>
 <Toast toastRef={toastRef} toastProgress={toastProgress}/>
-        <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
+{   !badInternet ?     <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
         <Share  share={shareRef} shareModal={shareModal}/>
   <div className="litenote-profile-container">
     <div className="litenote-profile-header">
@@ -98,6 +100,15 @@ const [shareModal, setShareModal] = useState()
     </div>
   </div>
 </section>
+ : <section className="something-went-wrong">
+ <BiWifiOff size={100} color="#777777"/>
+ <div><h2>Something went wrong</h2></div>
+ <div>We are unable to load this profile, check your connection</div>
+ <div><button className="offline-button"
+ onClick={() => location.reload()}
+ >Refresh</button></div>
+</section>
+}
     </>
   )
 }
