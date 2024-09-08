@@ -4,10 +4,13 @@ import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
     MdOutlineBookmarks,
     MdOutlineFavoriteBorder,
     MdOutlineBookmarkAdd,
-    MdVisibility
+    MdVisibility,
+
 } from "react-icons/md";
+import { FaEllipsisH, FaRegHeart } from "react-icons/fa";
 import { MdMonitorHeart } from "react-icons/md";
 import favour from "../assets/29.jpg"
+import useColorMode from "../hooks/useColorMode";
 import girly from "../assets/30.jpg"
 import blackman from "../assets/3.jpg"
 import { MdOutlineCreate } from "react-icons/md";
@@ -17,8 +20,25 @@ import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
 
 import useWindowSize from "../hooks/useWindowSize";
 import { Link } from "react-router-dom"
-import { useRef, useState } from "react"
+import { useEffect, useState } from "react"
 const FeedPage = () => {
+    const { colorMode } = useColorMode()
+    console.log(colorMode)
+    useEffect(() => {
+        console.log(colorMode)
+        if(colorMode == ""){
+            console.log("ddhd")
+        }
+        // }
+    switch (colorMode) {
+      case "dark-mode":
+        document.body.classList.add("dark-theme-variables")
+        break;
+        case "light-mode":
+            document.body.classList.remove("dark-theme-variables")
+        break;
+    }
+      }, [colorMode])
     const [view, setView] = useState({
         list : false,
         grid : true
@@ -94,7 +114,7 @@ time : "3 min read"
     ]
   const { width } = useWindowSize()
   return (
-   <section>
+   <section className="total-feed">
    <div className="galacticus">
    <div className="phone-feed-sidebar-menu">
 <ul className="phone-feed-sidebar-list">
@@ -121,7 +141,7 @@ time : "3 min read"
     </li>
     <li className="phone-feed-sidebar-item">
     <Link className={`phone-feed-sidebar-nav-link ${ view.list && "active-structure"}`} >
-<MdFormatListBulleted className="phone-feed-sidebar-icon" onClick={changeView} style={{background : "white"}} />
+<MdFormatListBulleted className="phone-feed-sidebar-icon" onClick={changeView}  />
 <span className="phone-feed-sidebar-nav-name">List</span>
 </Link>
     </li>
@@ -162,8 +182,8 @@ time : "3 min read"
         </Link>
       
         </div>
-        <div className="feed-sidebar-icon" style={{background : view.list && "#F5F5F5", borderRadius : view.list && "50%",
-        color : view.list ?  "black" : "#757575"
+        <div className="feed-sidebar-icon" style={{background : view.list && "var(--feed-sidebar-icon)", borderRadius : view.list && "50%",
+        color : view.list ?  "var(--feed-sidebar-icon-color)" : "#757575"
         }}><MdFormatListBulleted 
         onClick={changeView}
         size={20} 
@@ -174,8 +194,8 @@ time : "3 min read"
         </Link>
         </div>
         <div className="feed-sidebar-icon" 
-        style={{background : view.grid && "#F5F5F5", borderRadius : view.grid && "50%",
-        color : view.grid ?  "black" : "#757575"}}
+        style={{background : view.grid && "var(--feed-sidebar-icon)", borderRadius : view.grid && "50%",
+        color : view.grid ?  "var(--feed-sidebar-icon-color)" : "#757575"}}
         >
         <MdGridView size={20}
         onClick={changeView}
@@ -190,7 +210,7 @@ time : "3 min read"
             <input type="text" placeholder="Search Anything" className="feed-search-bar" /> */}
             <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
   <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-    <FaSearch style={{ position: 'absolute', left: '10px', cursor: 'pointer' }} />
+    <FaSearch style={{ position: 'absolute', left: '10px', cursor: 'pointer', bottom : "200px" }} />
     <input
       type="text"
       placeholder="Search Anything"
@@ -210,9 +230,13 @@ time : "3 min read"
         </div>
         
         <div className="feed-tabs">
-            <span>Recommended</span>
-            <span>Following</span>
-            <span>Challenges</span>
+            <span className="feed-headman active">Recommended</span>
+            <span
+            className="feed-headman"
+             >Following</span>
+            <span 
+            className="feed-headman"
+           >Challenges</span>
         </div>
         <hr />
         
@@ -227,7 +251,18 @@ time : "3 min read"
                 <div className="feed-card-content">
                 <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
                     <div className="feed-card-tag">{content.category}</div>
-                    <span style={{color : "#777777"}}>{content.time}</span>
+                    
+                   <span style={{display : "flex", gap : "15px", alignItems : "center"}}>
+                    
+                        <span style={{alignItems : "center"}}>
+                    <MdOutlineFavoriteBorder/> 20
+                    </span>
+                    <span style={{alignItems : "center"}}>
+                    <MdVisibility /> 30
+                    </span>
+                    <FaEllipsisH />
+                    </span>
+                    
                     </div>
                     <div className="feed-card-title" style={{marginBottom : "0px"}}>The Impact of Technology on the Workplace: How Technology is Changing</div>
                     
@@ -238,7 +273,9 @@ time : "3 min read"
                         <span>{content.author}</span>
                         </span>
                         <span>{content.date}</span>
+                        <span style={{color : "#777777"}}>{content.time}</span>
                     </div>
+                    
                 </div>
             </div>
 ))
@@ -265,7 +302,7 @@ time : "3 min read"
     </div>
     <div className="list-view-card-story-section">
 <h3>Your profile is stopping you from getting that job</h3>
-<span style={{color : "#777777"}}>
+<span>
 Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from 
 Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from
 </span>

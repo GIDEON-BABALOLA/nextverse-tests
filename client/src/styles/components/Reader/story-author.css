@@ -1,0 +1,21 @@
+.story-follow-suggestion {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+    align-self: flex-start;
+}
+.story-follow-suggestion img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.story-follow-button {
+    background-color: #ffffff;
+    border: 2px solid #FF5e62;
+    color: #FF5e62;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}

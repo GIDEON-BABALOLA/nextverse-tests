@@ -1,5 +1,6 @@
 import "../../../styles/components/Dashboard/dashboard-pagination.css"
 import { MdChevronLeft, MdChevronRight} from "react-icons/md"
+import ArrowKeyDetector from "../../../hooks/useArrowKeys";
 import { useState } from "react";
 const DashboardPagination = () => {
   const [currentValue, setCurrentValue] = useState(1);
@@ -49,7 +50,8 @@ const DashboardPagination = () => {
      }
    };
   return (
-<div id="app" className="dashboard-pagination-container">  
+<div id="app" className="dashboard-pagination-container"> 
+<ArrowKeyDetector  backBtn={backBtn} nextBtn={nextBtn}/> 
 <ul className="dashboard-pagination-page">
 
     <li 

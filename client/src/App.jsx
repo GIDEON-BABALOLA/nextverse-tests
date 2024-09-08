@@ -20,6 +20,7 @@ import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 import BookmarksPage from './Pages/Dashboard/BookmarksPage';
 import JoinWaitingListPage from './Pages/JoinWaitingListPage';
 import MessagesPage from "./Pages/Dashboard/MessagesPage"
+import StoryPage from './Pages/StoryPage';
 import { useLocation } from "react-router-dom"
 import TeamPage from "./Pages/TeamPage"
 import { useEffect } from 'react';
@@ -30,13 +31,15 @@ function App() {
   const [showCookieConsent, setShowCookieConsent] = useState(false)
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
-  useEffect(() => {
+//   useEffect(() => {
 
-const dashboardPattern = /^\/dashboard\/?.*$/
-    if (!dashboardPattern.test(location.pathname)) {
-      document.body.classList.remove('dark-theme-variables');
-    } 
-  }, [location.pathname]);
+// const dashboardPattern = /^\/dashboard\/?.*$/
+// const feedPattern = /^\/feed\/?.*$/
+
+//     if (!dashboardPattern.test(location.pathname)) {
+//       document.body.classList.remove('dark-theme-variables');
+//     } 
+//   }, [location.pathname]);
   let appReady = true
   return (
     
@@ -56,6 +59,7 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
   <Route path="our-team" element={<TeamPage />} />
   <Route path="login" element={<LoginPage />} />
   <Route path="feed" element={<FeedPage />} />
+  <Route path="story" element={<StoryPage />}/>
   <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
