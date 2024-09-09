@@ -17,7 +17,7 @@ const FeedCard = ({ content }) => {
   }, [loaded, error])
   return (
     <>
-    {loading ?  
+    {!loading ?  
     
     
       <div className="litenote-profile-story-card" style={{background : "var(--feed-card-background)"}}>
