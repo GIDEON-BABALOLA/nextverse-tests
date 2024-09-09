@@ -5,11 +5,14 @@ import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
     MdOutlineFavoriteBorder,
     MdOutlineBookmarkAdd,
     MdVisibility,
+    MdDarkMode, 
+    MdLightMode
 
 } from "react-icons/md";
 import { FaEllipsisH, FaRegHeart } from "react-icons/fa";
 import { MdMonitorHeart } from "react-icons/md";
 import favour from "../assets/29.jpg"
+import FeedCard from "../components/Dashboard/common/FeedCard";
 import useColorMode from "../hooks/useColorMode";
 import girly from "../assets/30.jpg"
 import blackman from "../assets/3.jpg"
@@ -126,14 +129,14 @@ time : "3 min read"
     </li>
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/"}>
-<FaHome className="phone-feed-sidebar-icon"  />
+<FaHome className="phone-feed-sidebar-icon"  color=" var(--icon-color)"/>
 <span className="phone-feed-sidebar-nav-name">Home</span>
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/bookmarks"}>
 
-    <MdOutlineBookmarks className="phone-feed-sidebar-icon" />
+    <MdOutlineBookmarks className="phone-feed-sidebar-icon" color=" var(--icon-color)"/>
 
 
 <span className="phone-feed-sidebar-nav-name">Bookmarks</span>
@@ -141,19 +144,19 @@ time : "3 min read"
     </li>
     <li className="phone-feed-sidebar-item">
     <Link className={`phone-feed-sidebar-nav-link ${ view.list && "active-structure"}`} >
-<MdFormatListBulleted className="phone-feed-sidebar-icon" onClick={changeView}  />
+<MdFormatListBulleted className="phone-feed-sidebar-icon" onClick={changeView}/>
 <span className="phone-feed-sidebar-nav-name">List</span>
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
-<MdOutlineCreate className="phone-feed-sidebar-icon" />
+<MdOutlineCreate className="phone-feed-sidebar-icon" color=" var(--icon-color)"/>
 <span className="phone-feed-sidebar-nav-name">Write</span>
 </Link>
     </li>
-    <li className="phone-feed-sidebar-item">
+    <li className="phone-feed-sidebar-item ">
 <Link className={`phone-feed-sidebar-nav-link ${ view.grid && "active-structure"}`} >
-<MdGridView className="phone-feed-sidebar-icon " onClick={changeView} />
+<MdGridView className="phone-feed-sidebar-icon " onClick={changeView}  />
 <span className="phone-feed-sidebar-nav-name">Grid</span>
 {/* <div className="feed-sidebar-icon" style={{background : "#F5F5F5", borderRadius : "50%"}}><MdGridView size={20} /></div> */}
 </Link>
@@ -173,29 +176,32 @@ time : "3 min read"
        </div>
         <div className="feed-sidebar-icon">
         <Link to={"/"}>
-        <FaHome size={20} />
+        <FaHome size={20} color="var(--icon-color)"   />
         </Link>
         </div>
         <div className="feed-sidebar-icon">
         <Link to={"/dashboard/bookmarks"}>
-        <MdBookmarks size={20}  />
+        <MdBookmarks size={20} color="
+        var(--icon-color) 
+        "  />
         </Link>
+    
       
         </div>
         <div className="feed-sidebar-icon" style={{background : view.list && "var(--feed-sidebar-icon)", borderRadius : view.list && "50%",
-        color : view.list ?  "var(--feed-sidebar-icon-color)" : "#757575"
+        color : view.list ?  "var(--feed-sidebar-icon-color)" : " var(--icon-color) "
         }}><MdFormatListBulleted 
         onClick={changeView}
         size={20} 
         /><span style={{display : "none"}} >list</span></div>
         <div className="feed-sidebar-icon">
         <Link to={"/dashboard/stories"}>
-        <MdCreate size={20}  />
+        <MdCreate size={20}  color=" var(--icon-color)"  />
         </Link>
         </div>
         <div className="feed-sidebar-icon" 
         style={{background : view.grid && "var(--feed-sidebar-icon)", borderRadius : view.grid && "50%",
-        color : view.grid ?  "var(--feed-sidebar-icon-color)" : "#757575"}}
+        color : view.grid ?  "var(--feed-sidebar-icon-color)" : " var(--icon-color) "}}
         >
         <MdGridView size={20}
         onClick={changeView}
@@ -242,42 +248,7 @@ time : "3 min read"
         
         {view.grid && <div className="feed-grid">
 {feedData.map((content, index) => (
-    <div className="feed-card" key={index}> 
-                {/* <div className="feed-card-image"> */}
-                    <img src={content.image}
-                    className="feed-card-image"
-                    ></img>
-                {/* </div> */}
-                <div className="feed-card-content">
-                <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
-                    <div className="feed-card-tag">{content.category}</div>
-                    
-                   <span style={{display : "flex", gap : "15px", alignItems : "center"}}>
-                    
-                        <span style={{alignItems : "center"}}>
-                    <MdOutlineFavoriteBorder/> 20
-                    </span>
-                    <span style={{alignItems : "center"}}>
-                    <MdVisibility /> 30
-                    </span>
-                    <FaEllipsisH />
-                    </span>
-                    
-                    </div>
-                    <div className="feed-card-title" style={{marginBottom : "0px"}}>The Impact of Technology on the Workplace: How Technology is Changing</div>
-                    
-                    <div className="feed-card-meta">
-                        {/* <span>3 min read</span> */}
-                        <span>
-                        <img src={content.avatar} alt="Author" />
-                        <span>{content.author}</span>
-                        </span>
-                        <span>{content.date}</span>
-                        <span style={{color : "#777777"}}>{content.time}</span>
-                    </div>
-                    
-                </div>
-            </div>
+  <FeedCard content={content} key={index}/>
 ))
 
 }          

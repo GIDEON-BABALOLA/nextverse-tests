@@ -23,8 +23,10 @@
     --searcher-border : #e0e0e0;
     --searcher-placeholder : black;
     --searcher-color : black;
+    --icon-color : #757575;
 }
 .dark-theme-variables{
+    --icon-color : white;
     --searcher : #181A1E;
     --searcher-border : #181A1E;
     --searcher-placeholder : white;
@@ -88,9 +90,7 @@
     align-items: center;
     margin-bottom: 20px;
 }
-.feed-sidebar-icon a{
-    color : #757575
-}
+
 .feed-main-content {
     flex: 1;
     padding: 20px;
@@ -444,7 +444,7 @@ border-radius: 50%;
     background-color: var(--feed-sidebar-background);
     width: 100%;
     z-index: 100;
-    height: 5rem;
+    height: 7rem;
     padding: 1rem 1rem;
     display: grid;
     align-items: center;
@@ -453,19 +453,8 @@ border-radius: 50%;
     box-shadow: #0000001A 0px 2px 5px 0px;
     box-shadow: 0 -1px 12px hsla(174, 63%, 15%, 0.15);
 }
-.active-structure{
-    color: black !important;
-    font-weight: bolder !important;
-}
-.active-structure::before{
-    content:  "" !important;
-    position: absolute !important;
-    bottom: 0.7rem !important;
-    width: 4px !important;
-    border-radius: 50% !important;
-    height: 4px !important;
-    background-color: black !important;
-}
+
+
 .phone-feed-sidebar-list, .phone-feed-sidebar-nav-link{
     display: flex;
     
@@ -478,10 +467,12 @@ border-radius: 50%;
     font-weight: 600;
 }
 .phone-feed-sidebar-list{
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 .phone-feed-sidebar-nav-name{
     font-size: .625rem;
+    color: var(--icon-color);
 }
 .phone-feed-sidebar-icon{
     font-size: 1.5rem;
@@ -491,4 +482,12 @@ border-radius: 50%;
     position: relative;
     color: #333333 !important;
     transition: .3s;
+}
+.active-structure svg{
+    color :  #7380EC;
+
+}
+.active-structure span{
+    color :  #7380EC;
+
 }
