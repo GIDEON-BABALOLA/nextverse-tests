@@ -88,7 +88,7 @@ clickSidebarMenu()
                     <FaHome size={24} />
                            <h3 className="litenote-dashboard-h-three">Home</h3>
         </Link>
-        <Link to="/" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
+        <Link to="/feed" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
                     <MdDynamicFeed size={24} />
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
         </Link>

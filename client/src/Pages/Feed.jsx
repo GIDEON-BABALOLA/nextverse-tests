@@ -82,6 +82,7 @@ console.log()
 image : "https://wallpapercave.com/wp/wp11326328.jpg",
 category : "Technology",
 title : "The Impact of Technology on the Workplace: How Technology is Changing",
+content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
 avatar : favour,
 author : "Gideon Babalola",
 date : "April 12, 2025",
@@ -94,6 +95,7 @@ time : "3 min read"
             avatar : blackman,
             author : "Gideon Babalola",
             date : "April 12, 2025",
+            content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
             time : "3 min read"
                     }, 
                     {
@@ -103,6 +105,7 @@ time : "3 min read"
                         avatar : favour,
                         author : "Gideon Babalola", 
                         date : "April 12, 2025",
+                        content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
                         time : "3 min read"
                                 }, 
                                 {
@@ -111,6 +114,7 @@ time : "3 min read"
                                     title : "The Impact of Technology on the Workplace: How Technology is Changing",
                                     avatar : girly,
                                     author : "Gideon Babalola",
+                                    content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
                                     date : "April 12, 2025",
                                     time : "3 min read"
                                             }, 
@@ -216,7 +220,7 @@ time : "3 min read"
             <input type="text" placeholder="Search Anything" className="feed-search-bar" /> */}
             <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
   <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-    <FaSearch style={{ position: 'absolute', left: '10px', cursor: 'pointer', bottom : "200px" }} />
+    <FaSearch className="search-magphone" />
     <input
       type="text"
       placeholder="Search Anything"
@@ -227,7 +231,7 @@ time : "3 min read"
         width: '100%',
       }}
     />
-    <FaTimes style={{ position: 'absolute', right: '10px', cursor: 'pointer' }} />
+    <FaTimes className="searchXphone" />
   </div>
 </div>
 
@@ -248,7 +252,7 @@ time : "3 min read"
         
         {view.grid && <div className="feed-grid">
 {feedData.map((content, index) => (
-  <FeedCard content={content} key={index}/>
+  <FeedCard content={content} key={index} view={"grid"}/>
 ))
 
 }          
@@ -258,68 +262,7 @@ time : "3 min read"
         <div className="feed-list-view">
         {feedData.map((content, index) => (
             <>
-            <div className="feed-list-view-card" key={index}>
-<section className="list-view-card-first-section">
-    <div className="list-view-card-profile-section">
-    <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
-    <img src={content.avatar}></img>
-    <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
-<span><b>{content.author}</b></span>
-<span>Blogger</span>
-    </div>
-
-
-    </span>
-    </div>
-    <div className="list-view-card-story-section">
-<h3>Your profile is stopping you from getting that job</h3>
-<span>
-Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from 
-Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from
-</span>
-    </div>
-    <div style={{display :"flex", flexDirection : "row",
-    
-    justifyContent: "space-between",
-    paddingTop : "35px"
-    }}>
-    <span style={{display : "flex",
-    flexDirection : "row",
-    justifyContent : "space-between",
-    gap  : "20px",
-    color : "#777777"
-    }}>
-    <span>8 days ago</span>
-    <span>34 min read</span>
-     </span>
-    <span style={{display : "flex",
-    alignItems : "center",
-    justifyContent : "space-between",
-    gap : "20px"
-    }}>
-    <span><MdVisibility 
-        color=" #333333"
-        size={20}/> 30</span>
-     <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" /> 80
-     </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/> 40</span>
-        
-       
-        </span>
-    </div>
-</section>
-<section
-className="list-view-card-second-section"
-><img
-src={content.image}
->
-
-</img></section>
-</div>
+  <FeedCard content={content} key={index}/>
 <hr  style={{color : "#9CA3AF"}}/>
 
 </>
@@ -337,7 +280,7 @@ src={content.image}
   
     <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
   <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-    <FaSearch style={{ position: 'absolute', left: '10px', cursor: 'pointer', top : "12px" }} />
+    <FaSearch className="search-mag" />
     <input
       type="text"
       placeholder="Search Anything"
@@ -348,7 +291,8 @@ src={content.image}
         width: '100%',
       }}
     />
-    <FaTimes style={{ position: 'absolute', right: '10px', cursor: 'pointer', top : "12px" }} />
+    <FaTimes
+    className="searchX" />
   </div>
 </div>
 

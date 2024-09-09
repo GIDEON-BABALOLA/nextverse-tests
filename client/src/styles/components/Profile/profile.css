@@ -1,8 +1,10 @@
   :root{
      --skeleton-background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+     --skeleton-background: linear-gradient(110deg, #e0e0e0 8%, #f5f5f5 18%, #e0e0e0 33%);
   }
   .dark-theme-variables{
     --skeleton-background: linear-gradient(110deg, #1C1E21 8%, #2A2C30 18%, #1C1E21 33%);
+    
   }
   .litenote-profile-user-profile {
     padding: 60px 20px;

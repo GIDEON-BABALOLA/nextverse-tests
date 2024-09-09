@@ -29,7 +29,7 @@
     --icon-color : white;
     --searcher : #181A1E;
     --searcher-border : #181A1E;
-    --searcher-placeholder : white;
+    --searcher-placeholder : #1A2D42;
     --feed-topic-background : #181A1E;
     --feed-main-content-background : #0E1012;
     --feed-sidebar-background : #181A1E;
@@ -282,6 +282,7 @@
 .feed-right-sidebar ::-webkit-input-placeholder {
     /* WebKit browsers (Chrome, Safari, etc.) */
   color: var(--searcher-placeholder);
+  color: #757575;
 }
 
 .feed-sidebar-icon {
@@ -352,14 +353,28 @@ border-radius: 50%;
     object-fit: cover;
     overflow: hidden;
 }
+
 .feed-list-view-card-bottom{
     margin-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+.searchX{
 
-
+    transform: translate(-20px, -5px);
+}
+.search-mag{
+    transform: translate(25px, -5px);
+}
+.search-magphone{
+transform: translateX(25px);
+color: var(--searcher-color);
+}
+.searchXphone{
+    transform: translateX(-20px);
+    color: var(--searcher-color);
+}
 
 
 
@@ -377,6 +392,10 @@ border-radius: 50%;
 }
 
 @media (max-width: 768px) {
+    .list-view-card-profile-section img{
+        width: 10%;
+        border-radius: 50%;
+        }
     .feed-sidebar{
         display: none;
     }

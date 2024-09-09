@@ -19,9 +19,10 @@ import { FaBold,
   } from "react-icons/fa"
   import toast, { Toaster } from "react-hot-toast";
  import { FaRotateLeft, FaRotateRight } from "react-icons/fa6";
- import { useEffect, useRef } from "react";
+ import { useEffect, useRef, useState } from "react";
  import "../../../styles/components/Dashboard/text-editor.css"
 const TextEditor = () => {
+  const [wordCount, setWordCount] = useState(0)
     const alignButtons = useRef([])
     const spacingButtons = useRef([])
     const formatButtons = useRef([])
@@ -44,6 +45,7 @@ const TextEditor = () => {
     });
     }
     const scrollTextArea = (e) => {
+      setWordCount(textAreaRef?.current?.innerText?.length)
     // what we Are going to be saving into the database from here is e.target.innerHtml, and we are going to be saving it as a string format
              textAreaRef.current.style.height ="63px"
         textAreaRef.current.style.height ="auto"
@@ -279,6 +281,7 @@ initializer()
    <b>Highlight Color</b>
    </span>
  </div>
+ <span style={{fontFamily : "Poppins"}}>{wordCount} words</span>
     </div>
    
     {/* I am going to replace this input with auto resize text input when I find it online */}
