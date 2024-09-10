@@ -107,7 +107,7 @@ if(showNewsLetter === true){
          <input type="email" placeholder="Enter your email address" />
          <button
          onClick={subScribeToNewsletter}
-          className="litenote-newsletter-news__btn">Subscribe</button>
+          className="litenote-newsletter-news__btn" style={{fontSize : "1.4rem"}}>Subscribe</button>
       </div>
    </div>
 </main>

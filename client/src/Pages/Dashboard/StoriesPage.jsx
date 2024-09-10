@@ -141,23 +141,23 @@ switch (e.target.innerText.split("\n")[0]) {
     }, 2000);
       }, [])
       const [contextMenu, setContextMenu] = useState()
-      useEffect(() => {
+      // useEffect(() => {
   
-        if (contextMenu) {
-          window.addEventListener('scroll', () => {
-            console.log("dave")
-            contextMenu.current.style.visibility = "hidden";
-          });
-        }
+      //   if (contextMenu) {
+      //     window.addEventListener('scroll', () => {
+      //       console.log("dave")
+      //       contextMenu.current.style.visibility = "hidden";
+      //     });
+      //   }
     
-        return () => {
-          if (contextMenu) {
-            window.removeEventListener('scroll', () => {
-              contextMenu.current.style.visibility = "hidden";
-            });
-          }
-        };
-      }, [contextMenu]);
+      //   return () => {
+      //     if (contextMenu) {
+      //       window.removeEventListener('scroll', () => {
+      //         contextMenu.current.style.visibility = "hidden";
+      //       });
+      //     }
+      //   };
+      // }, [contextMenu]);
   return (
     <>
     {loadPage ? 

@@ -16,9 +16,7 @@ const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
   const { online } = useInternetMode()
   const themeRef = useRef();
   useEffect(() => {
-    console.log(colorMode)
     if(colorMode == ""){
-      console.log("hssh")
       themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
     }
     // }
@@ -90,22 +88,24 @@ contextMenu.current.classList.add("active")
        sidebarRef.current.classList.remove("litenote-sidebar-aside-close")
  sidebarRef.current.style.display='block';
   }
-  useEffect(() => {
+  
+  // useEffect(() => {
 
-    if (contextMenu) {
-      window.addEventListener('scroll', () => {
-        contextMenu.current.style.visibility = "hidden";
-      });
-    }
+  //   if (contextMenu) {
+  //     console.log(contextMenu)
+  //     window.addEventListener('scroll', () => {
+  //       contextMenu.current.style.visibility = "hidden";
+  //     });
+  //   }
 
-    return () => {
-      if (contextMenu) {
-        window.removeEventListener('scroll', () => {
-          contextMenu.current.style.visibility = "hidden";
-        });
-      }
-    };
-  }, [contextMenu]);
+  //   return () => {
+  //     if (contextMenu) {
+  //       window.removeEventListener('scroll', () => {
+  //         contextMenu.current.style.visibility = "hidden";
+  //       });
+  //     }
+  //   };
+  // }, [contextMenu]);
     const userName = "Gideon"
   return (
     <div className="litenote-dashboard-top">
@@ -114,7 +114,7 @@ contextMenu.current.classList.add("active")
         <MdMenu />
       </span>
     </button>
-    <div className="litenote-dashboard-theme-toggler" width ref={themeRef}>
+    <div className="litenote-dashboard-theme-toggler"  ref={themeRef}>
     <span className="" id = "light-mode" onClick={themeMode}>
     <MdLightMode />
     </span>

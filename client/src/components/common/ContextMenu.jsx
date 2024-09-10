@@ -5,28 +5,27 @@ import useWindowSize from "../../hooks/useWindowSize"
 const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu, state}) => {
     const navigate = useNavigate()
     const context = useRef()
-    const triangle = useRef()
-    const rectangle = useRef()
+    // const triangle = useRef()
+    // const rectangle = useRef()
     useEffect(() => {
         setContextMenu(context)
     }, [setContextMenu])
-    const showColor = (e) => {
-        console.log("dope")
- 
-        if(e.target.innerText == "Dashboard"){
-   triangle.current.style.backgroundColor = "var(--context-link-hover)"
-rectangle.current.style.backgroundColor = "var(--context-link-hover)"
-        }
-    
-    }
-    const closeColor = () => {
-           triangle.current.style.backgroundColor = "var(--context-background)"
-rectangle.current.style.backgroundColor = "var(--context-background)"
-  }
+//     const showColor = (e) => {
+//         if(e.target.innerText == "Dashboard"){
+//    triangle.current.style.backgroundColor = "var(--context-link-hover)"
+// rectangle.current.style.backgroundColor = "var(--context-link-hover)"
+//         }
+//     }
+//     const closeColor = () => {
+//            triangle.current.style.backgroundColor = "var(--context-background)"
+// rectangle.current.style.backgroundColor = "var(--context-background)"
+//   }
     const openShare = (e) => {
 
         switch (e.target.innerText) {
             case "Share":
+                console.log("pops")
+                console.log(shareModal)
                      shareModal.current.showModal()
                      shareModal.current.classList.add("slide-dow")
                 break;
@@ -81,7 +80,10 @@ rectangle.current.style.backgroundColor = "var(--context-background)"
         {
             contextMenuData.map(((item, id) => (
                 <li className="litenote-context-link" key={id} onClick={openShare}
-                 data-name={item.label} onMouseOver={showColor} onMouseLeave={closeColor}>
+                 data-name={item.label} 
+                //  onMouseOver={showColor}
+                // onMouseLeave={closeColor}
+                >
                     {item.icon}<span className="litenote-context-label">{item.label}</span>
                 </li>
             

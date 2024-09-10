@@ -20,23 +20,22 @@ useEffect(() => {
         if (entry.isIntersecting) {
           switch (entry.target.id) {
 case "firstSection":
-console.log("fjfj")
 firstSection.current.classList.add("active")
 break
 case "secondSection":
-  console.log("fjfj")
+
               secondSection.current.classList.add("active")
   break
   case "thirdSection":
-    console.log("fjfj")
+  
     thirdSection.current.classList.add("active")
     break
     case "fourthSection":
-      console.log("fjfj")
+    
       fourthSection.current.classList.add("active")
       break
       case "fifthSection":
-        console.log("fjfj")
+      
         fifthSection.current.classList.add("active")
         break
               

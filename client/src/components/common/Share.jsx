@@ -28,7 +28,9 @@ setText(!text)
   return (
     <section>
 
-    <dialog className="litenote-copy-link-dialog litenote-share-slide-down show" ref={share}>
+    <dialog className="litenote-copy-link-dialog litenote-share-slide-down show"
+    style={{backgroundColor : "white"}}
+     ref={share}>
         <form>
             <header>
                 <h2>Share the link</h2>

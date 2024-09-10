@@ -25,11 +25,9 @@ if(width < 768){
 }
   }, [isOpen])
   const currentPage = useParams();
-  console.log(currentPage["*"])
   const navSidebarRef = useRef()
   // console.log(linkRef.current.innerText)
   const currentUrl = currentPage["*"]
-  console.log(currentUrl)
   const {width, height} = useWindowSize()
   const [contextMenu, setContextMenu] = useState()
   const { online } = useInternetMode()
@@ -104,19 +102,19 @@ contextMenu.current.style.visibility = "visible"
       };
       useEffect(() => {
 
-        if (contextMenu) {
-          window.addEventListener('scroll', () => {
-            contextMenu.current.style.visibility = "hidden";
-          });
-        }
-    
-        return () => {
-          if (contextMenu) {
-            window.removeEventListener('scroll', () => {
-              contextMenu.current.style.visibility = "hidden";
-            });
-          }
-        };
+        // if (contextMenu) {
+        //   window.addEventListener('scroll', () => {
+        //     contextMenu.current.style.visibility = "hidden";
+        //   });
+        // }
+    console.log(contextMenu)
+        // return () => {
+        //   if (contextMenu) {
+        //     window.removeEventListener('scroll', () => {
+        //       contextMenu.current.style.visibility = "hidden";
+        //     });
+        //   }
+        // };
       }, [contextMenu]);
   return (
 <>
@@ -137,19 +135,19 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
       </div>{ 
       width > 768  ?
       <div className="navbar-nav-links">
-      <Link to="/" className="navbar-header-links navbar-active">
+      <Link to="/" className="navbar-header-links navbar-active" style={{fontSize : "1.3rem"}}  >
         Home
         </Link>
-        <Link to="/feed" className="navbar-header-links">
+        <Link to="/feed" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Feed
         </Link>
-        <Link to="/publish" className="navbar-header-links">
+        <Link to="/publish" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Publish
         </Link>
-        <Link to="/explore" className="navbar-header-links">
+        <Link to="/explore" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Explore
         </Link>
-        <Link to="/profile" className="navbar-header-links">
+        <Link to="/profile" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Profile
         </Link>
      
