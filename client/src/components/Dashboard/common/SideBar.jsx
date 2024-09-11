@@ -1,9 +1,12 @@
-import { MdGridView, MdGroups, MdBarChart, MdAutoStories, MdPersonOutline, MdReport, MdEmail, MdSettings, MdLogout, MdClose } from 'react-icons/md';
+import { MdGridView, MdGroups,
+   MdBookmarks,
+   MdBarChart, MdAutoStories, MdPersonOutline, MdReport, MdEmail, MdSettings, MdLogout, MdClose } from 'react-icons/md';
 import { FaHome, FaBookmark } from 'react-icons/fa';
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
 import logo from "../../../../src/assets/litenote.png"
 import useColorMode from '../../../hooks/useColorMode';
+import { CgFeed} from "react-icons/cg"
 import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
@@ -89,12 +92,12 @@ clickSidebarMenu()
                            <h3 className="litenote-dashboard-h-three">Home</h3>
         </Link>
         <Link to="/feed" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
-                    <MdDynamicFeed size={24} />
+                    <CgFeed size={24} />
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
         </Link>
                  
                     <Link to="/dashboard/bookmarks"  className={`sidebar-links ${currentUrl === "bookmarks" && "active"}`}>
-                    <FaBookmark size={20} />
+                    <MdBookmarks size={20} />
                            <h3 className="litenote-dashboard-h-three">Bookmarks</h3>
         </Link>
                       
@@ -114,12 +117,12 @@ clickSidebarMenu()
                         <MdBarChart size={24} />
                            <h3 className="litenote-dashboard-h-three">Analytics</h3>
                         </Link>
-                        <Link to="/dashboard/stories" className={`sidebar-links ${currentUrl === "stories" && "active"}`} 
+                        <Link to="/dashboard/publish" className={`sidebar-links ${currentUrl === "publish" && "active"}`} 
                         
                         onClick={dave}>
                         <MdAutoStories size={24} />
 
-                           <h3 className="litenote-dashboard-h-three">Stories</h3>
+                           <h3 className="litenote-dashboard-h-three">Publish</h3>
                         </Link>
                         <Link to="/dashboard/profile" className={`sidebar-links ${currentUrl === "profile" && "active"}`} 
                         

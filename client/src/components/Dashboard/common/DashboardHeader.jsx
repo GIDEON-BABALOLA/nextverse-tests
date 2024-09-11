@@ -10,13 +10,17 @@ import NavbarContextMenu from "../../common/NavbarContextMenu"
 import { FaAngleRight } from "react-icons/fa"
 import useInternetMode from "../../../hooks/useInternetMode"
 import useColorMode from "../../../hooks/useColorMode"
+import { setCookie } from "../../../helpers/CookiesConfiguration"
+import { useThemeContext } from "../../../hooks/useThemeContext"
 const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
-  const  { colorMode }= useColorMode()
+  const { colorMode, dispatch } = useThemeContext()
   const {width, height} = useWindowSize()
   const { online } = useInternetMode()
   const themeRef = useRef();
   useEffect(() => {
-    if(colorMode == ""){
+    console.log("mercy")
+    if(colorMode == undefined || colorMode == ""){
+      console.log("griezman")
       themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
     }
     // }
@@ -31,13 +35,6 @@ switch (colorMode) {
     break;
 }
   }, [colorMode])
-  const setCoookie = (cookieName, cookieValue, expiryDate) => {
-    const d = new Date();
-    d.setTime(d.getTime() + (expiryDate * 24 * 60 * 60 * 1000));
-    let expires =  "expires="+d.toUTCString();
-    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
-    console.log(cookieValue)
-  }
   const themeMode = (e) => {
     let id;
     const correctId = e.currentTarget.closest('span').id;
@@ -46,16 +43,12 @@ switch (colorMode) {
         }
     switch (id) {
       case "dark-mode":
-        document.cookie = "color-mode=light-mode;expires=Thu, 01 Jan 1970 00:00:00 UTC;" //Function To Delete Cookie
-        setCoookie("color-mode", "dark-mode", 1)
-        document.body.classList.add('dark-theme-variables');
+        dispatch({type : "dark-mode", payload : "dark-mode"})
         themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
         themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
         break;
         case "light-mode":
-          document.cookie = "color-mode=dark-mode;expires=Thu, 01 Jan 1970 00:00:00 UTC;" //Function To Delete Cookie
-          setCoookie("color-mode", "light-mode", 1)
-          document.body.classList.remove('dark-theme-variables');
+        dispatch({type : "light-mode", payload : "light-mode"})
           themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
           themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
           break;

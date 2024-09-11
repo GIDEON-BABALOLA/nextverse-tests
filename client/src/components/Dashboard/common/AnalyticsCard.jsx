@@ -3,13 +3,12 @@ import {
   import "../../../styles/components/Dashboard/analytics-card.css"
   import Counter from "../../Profile/Counter"
   import CircularProgress from './CircularProgress';
-const AnalyticsProgress = ({cx, cy, r}) => {
-  <svg className='special-icon-dashboard'>
-  <circle cx={cx} cy={cy} r={r}></circle>
-</svg>
-}
+// const AnalyticsProgress = ({cx, cy, r}) => {
+//   <svg className='special-icon-dashboard'>
+//   <circle cx={cx} cy={cy} r={r}></circle>
+// </svg>
+// }
 const AnalyticsCard = ({cardTitle, cardTotal, cx, cy, r, cardPercent, className, cardIcon}) => {
-  console.log(cardPercent)
   return (
    <>
       <div className={className} >

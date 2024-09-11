@@ -1,5 +1,11 @@
-import { width } from "../../hooks/useWindowSize"
-const FollowersSidebar = () => {
+import useWindowSize from "../../hooks/useWindowSize"
+import { Link } from "react-router-dom"
+import { FaHome } from "react-icons/fa"
+import { MdGridView } from "react-icons/md"
+import { CgFeed} from "react-icons/cg"
+import favour from "../../assets/29.jpg"
+const FollowSidebar = () => {
+  const { width } = useWindowSize()
   return (
     <>
     { width < 768 ?
@@ -19,27 +25,18 @@ const FollowersSidebar = () => {
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/bookmarks"}>
-
-    <FaRegBookmark className="phone-feed-sidebar-icon" />
-
-
-<span className="phone-feed-sidebar-nav-name">Bookmarks</span>
+<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/publish"}>
+<MdGridView className="phone-feed-sidebar-icon" />
+<span className="phone-feed-sidebar-nav-name">Dashboard</span>
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
-<MdOutlineFavoriteBorder className="phone-feed-sidebar-icon" />
-<span className="phone-feed-sidebar-nav-name">Like</span>
+<Link className="phone-feed-sidebar-nav-link" to={"/feed"}>
+<CgFeed className="phone-feed-sidebar-icon" />
+<span className="phone-feed-sidebar-nav-name">Feed</span>
 </Link>
     </li>
     
-    <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
-<MdOutlineShare className="phone-feed-sidebar-icon" />
-<span className="phone-feed-sidebar-nav-name">Write</span>
-</Link>
-    </li>
 </ul>
    </div>
    </div>
@@ -59,20 +56,13 @@ const FollowersSidebar = () => {
     </Link>
     </div>
     <div className="feed-sidebar-icon">
-    <Link to={"/dashboard/bookmarks"}>
-    <FaRegBookmark size={20}  />
+    <Link to={"/dashboard/publish"}>
+    <MdGridView size={20}  />
     </Link>
-  
     </div>
     <div className="feed-sidebar-icon">
-    <Link to={"/dashboard/bookmarks"}>
-    <MdOutlineFavoriteBorder size={20}  />
-    </Link>
-  
-    </div>
-    <div className="feed-sidebar-icon">
-    <Link to={"/dashboard/stories"}>
-    <MdOutlineShare size={20}  />
+    <Link to={"/feed"}>
+    <CgFeed size={20}  />
     </Link>
     </div>
 </div>
@@ -81,4 +71,4 @@ const FollowersSidebar = () => {
   )
 }
 
-export default FollowersSidebar
+export default FollowSidebar

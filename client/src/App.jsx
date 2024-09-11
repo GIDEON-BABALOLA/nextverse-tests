@@ -21,6 +21,7 @@ import BookmarksPage from './Pages/Dashboard/BookmarksPage';
 import JoinWaitingListPage from './Pages/JoinWaitingListPage';
 import MessagesPage from "./Pages/Dashboard/MessagesPage"
 import StoryPage from './Pages/StoryPage';
+import FollowPage from './Pages/FollowPage';
 import { useLocation } from "react-router-dom"
 import TeamPage from "./Pages/TeamPage"
 import { useEffect } from 'react';
@@ -60,12 +61,13 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
   <Route path="login" element={<LoginPage />} />
   <Route path="feed" element={<FeedPage />} />
   <Route path="story" element={<StoryPage />}/>
+  <Route path="follow-suggestions" element={<FollowPage />}/>
   <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="settings" element={<SettingsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="stories" element={<StoriesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          <Route path="publish" element={<StoriesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="profile" element={<DashboardProfilePage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="messages" element={<MessagesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

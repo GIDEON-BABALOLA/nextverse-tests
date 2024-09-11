@@ -31,7 +31,8 @@ const StoryCard = ({ fireClick, story}) => {
               <div className="litenote-profile-story-content">
                 <h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
                 <p className="litenote-profile-story-category skeleton-subtitle">&nbsp;</p>
-                <FaEllipsisH  className="litenote-profile-read-more-share skeleton-options"  onClick={fireClick}/>
+                <FaEllipsisH  className="litenote-profile-read-more-share skeleton-options"
+                  onClick={fireClick}/>
               
                 <a  className="litenote-profile-read-more skeleton-button">&nbsp;</a>
              

@@ -1,0 +1,63 @@
+
+.followers-body-prefix .followers-list {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.followers-body-prefix .follower-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e4e6eb;
+}
+.followers-body-prefix .follower-item:last-child {
+    border-bottom: none;
+}
+.followers-body-prefix .follower-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.followers-body-prefix .follower-info {
+    flex-grow: 1;
+}
+.followers-body-prefix .follower-name {
+    font-weight: bold;
+    color: #1c1e21;
+    margin-bottom: 3px;
+}
+.followers-body-prefix .follower-username {
+    color: #65676b;
+    font-size: 14px;
+}
+.followers-body-prefix .follow-button {
+    background-color: #ffffff;
+    border: 1px solid #ff4500;
+    color: #ff4500;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: auto;
+    cursor: pointer;
+}
+.followers-body-prefix .follow-button.following {
+    background-color: #d61d45;
+    color: #ffffff
+}
+@media (max-width: 768px) {
+   .followers-body-prefix .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+  .followers-body-prefix  .sidebar-icon {
+        margin-bottom: 0;
+    }
+  .followers-body-prefix  .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

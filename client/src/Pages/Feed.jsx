@@ -2,30 +2,22 @@
 import "../styles/components/Feed/feed.css"
 import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
     MdOutlineBookmarks,
-    MdOutlineFavoriteBorder,
-    MdOutlineBookmarkAdd,
-    MdVisibility,
-    MdDarkMode, 
-    MdLightMode
 
 } from "react-icons/md";
-import { FaEllipsisH, FaRegHeart } from "react-icons/fa";
-import { MdMonitorHeart } from "react-icons/md";
 import favour from "../assets/29.jpg"
 import FeedCard from "../components/Dashboard/common/FeedCard";
-import useColorMode from "../hooks/useColorMode";
 import girly from "../assets/30.jpg"
 import blackman from "../assets/3.jpg"
 import { MdOutlineCreate } from "react-icons/md";
 
 import gidiboy from "../assets/3.jpg"
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
-
+import { useThemeContext } from "../hooks/useThemeContext";
 import useWindowSize from "../hooks/useWindowSize";
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 const FeedPage = () => {
-    const { colorMode } = useColorMode()
+    const { colorMode } = useThemeContext()
     console.log(colorMode)
     useEffect(() => {
         console.log(colorMode)
@@ -314,7 +306,10 @@ time : "3 min read"
             </div>
             <button className="feed-follow-button">Follow</button>
         </div>
-        <div className="feed-first">Show more</div>
+        <div className="feed-first"><Link
+        style={{textDecoration : "none", color : "#7380EC", cursor : "pointer"}}
+         to={"/follow-suggestions"}>Show more</Link>
+        </div>
     </div>
 
 <div style={{marginTop  : "30px"}}>

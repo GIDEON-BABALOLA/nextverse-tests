@@ -23,7 +23,6 @@ case "firstSection":
 firstSection.current.classList.add("active")
 break
 case "secondSection":
-
               secondSection.current.classList.add("active")
   break
   case "thirdSection":

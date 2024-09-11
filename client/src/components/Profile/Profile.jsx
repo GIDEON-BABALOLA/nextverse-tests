@@ -102,6 +102,7 @@ const Profile = () => {
   let badInternet = false
 const {width, height} = useWindowSize()
 const [contextMenu, setContextMenu] = useState()
+
 const fireClick = (e) => {
 updateMenuPosition(e.clientX, e.clientY)
 contextMenu.current.style.visibility = "visible"
@@ -175,7 +176,9 @@ const [shareModal, setShareModal] = useState()
         {/* Dynamically generate user's stories here  */}
         {
           dummyData.map((story, index) => (
-            <StoryCard  shareModal={shareModal} fireClick={fireClick} story={story} key={index}/>
+            <StoryCard  shareModal={shareModal} 
+          
+            fireClick={fireClick} story={story} key={index}/>
           ))
 
         }

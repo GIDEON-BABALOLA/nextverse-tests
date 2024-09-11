@@ -6,12 +6,12 @@ import avatar from "../../assets/28.jpg"
 import { FaAngleRight } from "react-icons/fa"
 import NavbarContextMenu from "./NavbarContextMenu"
 import Hamburger from 'hamburger-react'
-import { MdGridView, MdLogout, MdSettings, MdDynamicFeed, MdManageSearch ,  MdAutoStories }from "react-icons/md"
+import { MdGridView, MdLogout, MdSettings, MdManageSearch ,  MdAutoStories }from "react-icons/md"
 import { useState, useEffect } from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import { useParams } from "react-router-dom"
 import { FaUser, FaHome } from "react-icons/fa"
-import { MdOutlineRssFeed } from "react-icons/md";
+import { CgFeed } from "react-icons/cg";
 import { MdOpenInNew, MdOutlinePersonAddAlt } from 'react-icons/md';
 import useInternetMode from "../../hooks/useInternetMode"
 import SpecialModal from "./SpecialModal"
@@ -182,7 +182,7 @@ className="navbar-context-profile-photo-home"/>
         <Link to="/feed" className={`nav-sidebar-link ${currentUrl === "feed" && "active"}`} 
                         onClick={dave}
                     >
-                    <MdOutlineRssFeed size={24} />
+                    <CgFeed size={24} />
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
                            
         </Link>
