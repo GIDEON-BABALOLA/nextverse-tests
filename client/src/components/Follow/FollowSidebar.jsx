@@ -41,9 +41,9 @@ const FollowSidebar = () => {
    </div>
    </div>
    :
-    <div className="story-sidebar">
+    <div className="feed-sidebar">
       
-    <div className="story-sidebar-icon">
+    <div className="feed-sidebar-icon">
     <Link to={"/dashboard/profile"}>
 
      <img src={favour} alt="Author" className="feed-man"/>

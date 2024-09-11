@@ -5,7 +5,8 @@
     width: calc(100% - 60px);
 }
 .followers-body-prefix .header {
-    background-color: #ffffff;
+    background-color: var(--followers-header);
+   
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -13,5 +14,7 @@
 }
 .followers-body-prefix .header h1 {
     font-size: 24px;
-    color: #1c1e21;
+    color: #1c1e21  ;
+    color: var(--followers-header-color);
+    font-family: "Poppins";
 }
