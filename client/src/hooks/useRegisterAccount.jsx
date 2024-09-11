@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig } from "../api/axiosConfig";
+import Toast from "../components/common/Toast";
 export const useRegisterAccount = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -31,10 +32,11 @@ if(response && response.data){
         }
         
         catch(err){
-            if(axiosConfig.isCancel){
+            if(error.message == "canceled"){
 console.log("timeout error: ", err)
 setError("Your Request Has Timed Out")
             }else{
+                console.log(err)
                 console.log("Dkdk")
             setData([])
             setIsLoading(false)

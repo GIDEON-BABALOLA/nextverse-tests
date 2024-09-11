@@ -4,7 +4,7 @@ import SpinnerLoader from "../Loaders/SpinnerLoader";
 import { useState } from "react";
 import { FcRating } from "react-icons/fc";
 import { MdVerified } from "react-icons/md";
-const Bio = ({ toastRef, toastProgress }) => {
+const Bio = () => {
   const [spin,  setSpin] = useState(false)
   const username = "Chris James"
   const followUser = () => {

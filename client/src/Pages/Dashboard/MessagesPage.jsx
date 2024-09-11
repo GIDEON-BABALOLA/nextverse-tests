@@ -38,7 +38,7 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     <main className="litenote-dashboard-messages-page">
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
    <h2>
-    Pls Bear With Us, The Feature Is Still In Development
+   Thank you for your patience! This feature is in development, and we’re excited to bring it to you soon
    </h2>
     </main>
 

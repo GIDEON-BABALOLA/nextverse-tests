@@ -2,7 +2,6 @@ import "../styles/components/Browse/browse.css"
 import SearchBar from "../components/Browse/SearchBar"
 import SearchPagination from "../components/Browse/SearchPagination"
 import SearchFilter from "../components/Browse/SearchFilter"
-import SearchResult from "../components/Browse/SearchResult"
 import SlidingTabs from "../components/Browse/SlidingTabs"
 import useWindowSize from "../hooks/useWindowSize"
 import StoryCard from "../components/Profile/StoryCard"
@@ -13,13 +12,19 @@ import girl from "../assets/30.jpg"
 import ContextMenu from "../components/common/ContextMenu"
 import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
 import RotationLoader from "../components/Loaders/RotationLoader"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState} from "react"
+import { useModalContext } from "../hooks/useModalContext"
 import { MdReadMore } from "react-icons/md"
 const BrowsePage = () => {
-  const [shareModal, setShareModal] = useState()
-  const { width, height } =useWindowSize()
-  const shareRef = useRef()
-  const [contextMenu, setContextMenu] = useState()
+  const { width } = useWindowSize()
+  const {
+    contextMenu,
+     shareModal,
+ shareRef,
+ fireClick,
+ setContextMenu,
+ closeContextMenu
+} = useModalContext()
   const [loadResults, setLoadResults] = useState(true)
   const dummyData = [
     {
@@ -109,52 +114,27 @@ setTimeout(() => {
   setLoadResults(false)
 }, 2000);
   }, [])
-  
-  const fireClick = (e) => {
-    console.log("here")
-    updateMenuPosition(e.clientX, e.clientY)
-    contextMenu.current.style.visibility = "visible"
-      }
-      const updateMenuPosition = (x, y) => {
-    const maxTopValue = height - contextMenu.current.offsetHeight;
-    const maxLeftValue = width - contextMenu.current.offsetWidth; 
-    contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
-    contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
-      };
-  useEffect(() => {
-    setShareModal(shareRef)
-  }, [setShareModal])
-  useEffect(() => {
-    console.log(contextMenu)
-    if (contextMenu) {
-      window.addEventListener('scroll', () => {
-        if(contextMenu.current){
-        contextMenu.current.style.visibility = "hidden";
-        }
-      });
-    }
+ 
+  //   console.log(contextMenu)
+  //   if (contextMenu) {
+  //     window.addEventListener('scroll', () => {
+  //       if(contextMenu.current){
+  //       contextMenu.current.style.visibility = "hidden";
+  //       }
+  //     });
+  //   }
 
-    return () => {
-      if (contextMenu) {
-        window.removeEventListener('scroll', () => {
-          if(contextMenu.current){
-          contextMenu.current.style.visibility = "hidden";
-          }
+  //   return () => {
+  //     if (contextMenu) {
+  //       window.removeEventListener('scroll', () => {
+  //         if(contextMenu.current){
+  //         contextMenu.current.style.visibility = "hidden";
+  //         }
           
-        });
-      }
-    };
-  }, [contextMenu]);
-  const closeContextMenu  = (e) => {
-    if( e.clientX < parseInt(contextMenu.current.style.left) || e.clientX > parseInt(contextMenu.current.style.left) + contextMenu.current.offsetWidth )
-    {
-      contextMenu.current.style.visibility = "hidden";
-    }else if(
-      e.clientY < parseInt(contextMenu.current.style.top) || e.clientY > parseInt(contextMenu.current.style.top) + contextMenu.current.offsetHeight
-    ){
-      contextMenu.current.style.visibility = "hidden";
-    }
-}
+  //       });
+  //     }
+  //   };
+  // }, [contextMenu]);
   return (
     <>
 

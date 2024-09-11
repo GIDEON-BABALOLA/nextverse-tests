@@ -3,19 +3,28 @@ import Bio from "./Bio"
 import Stats from "./Stats"
 import StoryCard from "./StoryCard"
 import Share from "../common/Share"
-import { useState, useRef, useEffect} from "react"
+import {  useRef } from "react"
 import favour from "../../assets/29.jpg"
 import great from "../../assets/Great.jpg"
 import girl from "../../assets/30.jpg"
 import ContextMenu from "../common/ContextMenu"
-import useWindowSize from "../../hooks/useWindowSize"
-import { FaShareAlt, FaWifi } from "react-icons/fa";
+import ErrorMessage from "../common/ErrorMessage"
+import { FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
-import { BiWifiOff } from "react-icons/bi"
-import { FaTimes, FaUserAlt, FaRegThumbsUp } from "react-icons/fa";
-import { MdReadMore, MdCloudOff, MdOutlineRefresh } from "react-icons/md"
+import { useModalContext } from "../../hooks/useModalContext"
+import { FaRegThumbsUp } from "react-icons/fa";
+import { MdReadMore } from "react-icons/md"
 import Toast from "../common/Toast"
 const Profile = () => {
+  const {
+           contextMenu,
+            shareModal,
+        shareRef,
+        fireClick,
+        setContextMenu,
+        closeContextMenu
+     } = useModalContext()
+  console.log(contextMenu)
   const dummyData = [
     {
       title: "Exploring the Hidden Gems of Italy",
@@ -100,71 +109,19 @@ const Profile = () => {
     }
   ]
   let badInternet = false
-const {width, height} = useWindowSize()
-const [contextMenu, setContextMenu] = useState()
-
-const fireClick = (e) => {
-updateMenuPosition(e.clientX, e.clientY)
-contextMenu.current.style.visibility = "visible"
-  }
-  const updateMenuPosition = (x, y) => {
-const maxTopValue = height - contextMenu.current.offsetHeight;
-const maxLeftValue = width - contextMenu.current.offsetWidth; 
-contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
-contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
-  };
-const [shareModal, setShareModal] = useState()
   const username = "Chris"
-  const shareRef = useRef()
   const toastRef = useRef()
   const toastProgress = useRef()
-    useEffect(() => {
-    setShareModal(shareRef)
-  }, [setShareModal])
-    const closeContextMenu  = (e) => {
-      if( e.clientX < parseInt(contextMenu.current.style.left) || e.clientX > parseInt(contextMenu.current.style.left) + contextMenu.current.offsetWidth )
-      {
-        contextMenu.current.style.visibility = "hidden";
-      }else if(
-        e.clientY < parseInt(contextMenu.current.style.top) || e.clientY > parseInt(contextMenu.current.style.top) + contextMenu.current.offsetHeight
-      ){
-        contextMenu.current.style.visibility = "hidden";
-      }
-  }
-  useEffect(() => {
-    if (contextMenu) {
-      console.log("pappy")
-      window.addEventListener('scroll', () => {
-        if(contextMenu.current){
-          contextMenu.current.style.visibility = "hidden";
-        }
-        
-      });
-    }
-    return () => {
-      if (contextMenu) {
-        
-        window.removeEventListener('scroll', () => {
-          if(contextMenu.current){
-
-          
-          contextMenu.current.style.visibility = "hidden";
-          }
-        });
-      }
-    };
-  }, [contextMenu]);
-
   return (
     <>
-<Toast toastRef={toastRef} toastProgress={toastProgress}/>
+<Toast/>
 {   !badInternet ?     <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
         <Share  share={shareRef} shareModal={shareModal}/>
   <div className="litenote-profile-container">
     <div className="litenote-profile-header">
    <Avatar />
       <div className="litenote-profile-info">
- <Bio toastRef={toastRef} toastProgress={toastProgress}/>
+ <Bio/>
         <div className="litenote-profile-stats">
      <Stats />
         </div>
@@ -202,14 +159,9 @@ const [shareModal, setShareModal] = useState()
     </div>
   </div>
 </section>
- : <section className="something-went-wrong">
- <MdCloudOff size={100} color="#777777"/>
- <div><h2>Something went wrong</h2></div>
- <div>We are unable to load this profile, check your connection</div>
- <div><button className="offline-button"
- onClick={() => location.reload()}
- ><MdOutlineRefresh size={20}/> Refresh</button></div>
-</section>
+ : <ErrorMessage title={"Something went wrong"} 
+  message={"We are unable to load this profile, check your connection"}
+ />
 }
     </>
   )

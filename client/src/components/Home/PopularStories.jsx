@@ -2,18 +2,20 @@ import "../../styles/components/Home/popularstories.css"
 import StoryCard from "../Profile/StoryCard"
 import favour from "../../assets/29.jpg"
 import great from "../../assets/Great.jpg"
-import girl from "../../assets/30.jpg"
+import { useModalContext } from "../../hooks/useModalContext"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
 import { MdReadMore,  } from "react-icons/md"
-import useWindowSize from "../../hooks/useWindowSize"
 import ContextMenu from "../common/ContextMenu"
 import Share from "../common/Share"
-import { useState, useRef, useEffect } from "react"
 const PopularStories = () => {
-  const { width, height} = useWindowSize()
-  const [shareModal, setShareModal] = useState()
-  const [contextMenu, setContextMenu] = useState()
-  const shareRef = useRef()
+  const {
+    contextMenu,
+     shareModal,
+ shareRef,
+ fireClick,
+ setContextMenu,
+ closeContextMenu
+} = useModalContext()
   const featuredStories = [
 
     {
@@ -42,55 +44,6 @@ const PopularStories = () => {
       date : "March 17, 2020"
     }
   ]
-  const fireClick = (e) => {
-    updateMenuPosition(e.clientX, e.clientY)
-    contextMenu.current.style.visibility = "visible"
-      }
-      const closeContextMenu  = (e) => {
-        if( e.clientX < parseInt(contextMenu.current.style.left) || e.clientX > parseInt(contextMenu.current.style.left) + contextMenu.current.offsetWidth )
-        {
-          contextMenu.current.style.visibility = "hidden";
-        }else if(
-          e.clientY < parseInt(contextMenu.current.style.top) || e.clientY > parseInt(contextMenu.current.style.top) + contextMenu.current.offsetHeight
-        ){
-          contextMenu.current.style.visibility = "hidden";
-        }
-    }
-    useEffect(() => {
-      setShareModal(shareRef)
-    }, [setShareModal])
-      const updateMenuPosition = (x, y) => {
-        const maxTopValue = height - contextMenu.current.offsetHeight;
-        const maxLeftValue = width - contextMenu.current.offsetWidth; 
-        contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
-        contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
-          };
-          useEffect(() => {
-            console.log(contextMenu)
-
-            if (contextMenu) {
-              window.addEventListener('scroll', () => {
-                if(contextMenu.current){
-                contextMenu.current.style.visibility = "hidden";
-                }
-              });
-            }
-        
-            return () => {
-              if (contextMenu) {
-               
-                window.removeEventListener('scroll', () => {
-                  if(contextMenu.current){
-                  contextMenu.current.style.visibility = "hidden";
-                  }
-                  
-                });
-              }
-            }
-
-
-          }, [contextMenu]);
-        
   return (
    <>
     <section className="popular-stories-featured-stories" onClick={closeContextMenu}>

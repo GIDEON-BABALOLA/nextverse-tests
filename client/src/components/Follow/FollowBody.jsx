@@ -4,7 +4,7 @@ import FollowList from "./FollowList"
 import "../../styles/components/Follow/follow-body.css"
 import { useEffect } from "react"
 import {useThemeContext} from "../../hooks/useThemeContext"
-
+import ErrorMessage from "../common/ErrorMessage"
 const FollowBody = () => {
   const { colorMode } = useThemeContext()
   useEffect(() => {
@@ -24,6 +24,10 @@ const FollowBody = () => {
     <div className="main-content">
 <FollowHeader />
 <FollowList />
+{/* <ErrorMessage title={"Something went wrong"} 
+  message={"We are unable to load this content, check your connection"}
+  height={80}
+ /> */}
 </div>
     </section>
   )

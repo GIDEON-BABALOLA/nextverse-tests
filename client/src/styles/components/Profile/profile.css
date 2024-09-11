@@ -163,15 +163,17 @@
   }
   
   .litenote-profile-stats .litenote-profile-stat-value {
-    font-size: 18px;
+    font-size: 30px;
     font-weight: bold;
     padding: 1%;
+    padding-bottom: 0%;
   }
   
   .litenote-profile-stats .litenote-profile-stat-label {
     font-size: 14px;
     color: #1b1919;
     padding: 1%;
+    padding-top: 0%;
   }
   .litenote-profile-read-more-share{
     display: flex;
@@ -299,23 +301,7 @@ width: 90px;
     background-color:white;
     color:  #ff5e62;;
   }
- .something-went-wrong{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 90vh;
- }
- .offline-button{
-  outline: none;
-  border: 1px solid #FF5E62;
-  padding: 5px 10px;
-  border-radius: 9999px;
-  margin-top: 5px;
-  cursor: pointer;
-  color : #FF5E62
-
- }
+ 
   
   
   @keyframes fade-in {

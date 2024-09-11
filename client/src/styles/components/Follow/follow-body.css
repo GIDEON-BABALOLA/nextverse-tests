@@ -45,6 +45,30 @@
     border-radius: 50%;
     margin-right: 15px;
 }
+.skeleton-image-follower-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.skeleton-image-follower-name{
+width: 60px;
+height: 10px;
+}
+.skeleton-image-follower-username{
+    width: 80px;
+    height: 10px;
+    margin-top: 5px;
+}
+.skeleton-image-follow{
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: auto;
+    cursor: pointer;
+    width: 50px;
+    height: 20px;
+    
+}
 .followers-body-prefix .follower-info {
     flex-grow: 1;
 }
