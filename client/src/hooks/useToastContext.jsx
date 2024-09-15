@@ -1,11 +1,10 @@
-import { ThemeContext } from '../context/ThemeContext'
+import { ToastContext } from '../context/ToastContext'
 import { useContext } from 'react'
 
-export const useThemeContext = () => {
-  const context = useContext(ThemeContext)
+export const useToastContext = () => {
+  const context = useContext(ToastContext)
   if (!context) {
-    throw Error('useThemeContext must be used inside an ThemeContextProvider')
+    throw Error('useToastContext must be used inside an ToastContextProvider')
   }
-
   return context
 }

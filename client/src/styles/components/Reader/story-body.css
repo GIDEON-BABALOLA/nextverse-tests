@@ -1,12 +1,11 @@
 .story-body-images{
     object-fit: cover;
     width: 100%;
-    height: 50%;
     border-radius: 10px;
+    
 }
 .skeleton-image-story-images{
     object-fit: cover;
-    width: 60vw;
-    height: 30vw;
+   width: 100%;
     border-radius: 10px;
 }

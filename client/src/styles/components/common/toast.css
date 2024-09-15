@@ -51,7 +51,8 @@ margin: 0 20px;
     color: #6666;
 }
 .litenote-toast-message .text.text-1{
-    font-weight: 600;
+    font-weight: 1000;
+    font-size: 1.3rem;
     color: #333;
 }
 .toast-close{

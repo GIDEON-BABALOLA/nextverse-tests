@@ -1,27 +1,28 @@
 import { FaCheck } from "react-icons/fa"
 import { FaTimes } from "react-icons/fa"
 import "../../styles/components/common/toast.css"
-import { useEffect, useRef } from "react"
-
-const Toast = ({toastRef, toastProgress}) => {
-  const closeToast = () => {
-    toastRef.current.classList.remove("active")
-    setTimeout(() => {
-      toastProgress.current.classList.remove("active")
-    }, 5500);
-
-  }
+import { useToastContext } from "../../hooks/useToastContext"
+const Toast = () => {
+  const { closeToast, toastProgress, toastRef } = useToastContext()
   return ( 
-    <div className="litenote-toast" ref={toastRef}>
+    <div className="litenote-toast" ref={toastRef}
+    style={{fontFamily : "Poppins", fontWeight : "2rem"}}
+    >
         <div className="litenote-toast-content">
         <span className="toast-check">
         <FaCheck  size={20}/>
         </span>
  <div className="litenote-toast-message">
-<span className="litenote-toast-text text-1">
-Success
+<span className="litenote-toast-text text-1"
+style={{fontSize : "1.3rem", textDecoration : "bolder"}}
+>
 </span>
-<span className="litenote-toast-text text-2">Your Changes has been saved</span>
+<span className="litenote-toast-text text-2"
+style={{fontSize : "1.2rem",
+display : "flex", alignItems : "center", flexWrap : "wrap", justifyContent : "center",
+flexDirection : "column"
+}}
+></span>
  </div>
         </div>
 <FaTimes className="toast-close" size={26} onClick={closeToast}/>

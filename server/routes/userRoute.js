@@ -11,7 +11,8 @@ userRefreshToken,
 deleteUser,
 updateUser,
 followUser,
-unfollowUser
+unfollowUser,
+duplicateUsername
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { authMiddleware, isUser, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
@@ -20,6 +21,7 @@ router.post("/login-user", bruteForceLimiter, loginUser)
 router.post("/upload-user-picture", authMiddleware,  uploadProfileImageMiddleware,  uploadUserPicture)
 router.post("/follow-user", authMiddleware, followUser)
 router.post("/unfollow-user", authMiddleware, unfollowUser)
+router.post("/duplicate-username", duplicateUsername)
 router.put("/update-user", authMiddleware,  updateUser)
 router.get("/user-refresh-token", authMiddleware,  userRefreshToken)
 router.get("/get-current-user", authMiddleware, getCurrentUser)

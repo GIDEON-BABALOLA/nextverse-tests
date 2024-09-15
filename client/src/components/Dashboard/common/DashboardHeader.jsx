@@ -9,7 +9,6 @@ import useWindowSize from "../../../hooks/useWindowSize"
 import NavbarContextMenu from "../../common/NavbarContextMenu"
 import { FaAngleRight } from "react-icons/fa"
 import useInternetMode from "../../../hooks/useInternetMode"
-import useColorMode from "../../../hooks/useColorMode"
 import { setCookie } from "../../../helpers/CookiesConfiguration"
 import { useThemeContext } from "../../../hooks/useThemeContext"
 const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {

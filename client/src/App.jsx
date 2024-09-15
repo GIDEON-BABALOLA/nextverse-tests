@@ -6,6 +6,7 @@ import NotFound from "./Pages/NotFound"
 import Publish from './Pages/Publish';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
+import VerifyPage from "./Pages/Verify"
 import ProfilePage from './Pages/Profile';
 import FeedPage from "./Pages/Feed"
 import BrowsePage from "./Pages/Browse"
@@ -75,6 +76,7 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
         </Route>
 
 <Route path="register" element={<RegisterPage />} />
+<Route path="verify" element={<VerifyPage />}/>
   <Route  path="*" element={<NotFound/>}/>
 </Routes> : <JoinWaitingListPage />
 }

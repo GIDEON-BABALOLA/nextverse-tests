@@ -143,3 +143,16 @@
 20240521	15:46:10	16ca47c2-be8e-4541-96bd-22bb3ae6f722	ReferenceError: picture is not defined
 20240521	15:46:33	abb9842b-d976-432e-926d-376896d3c654	TypeError: Cannot read properties of undefined (reading 'path')
 20240521	15:47:14	e769b154-d66d-4847-a61e-7011369eae59	userError: User Already Exists
+20240913	09:05:09	7c5bc76a-c0f1-4559-a414-55546030cd0d	userError: Please Fill In All The Fields
+20240913	09:05:42	ab8b389b-8db1-4bb1-b3f2-ffcefeab9607	userError: Please Fill In All The Fields
+20240913	09:06:19	d79dc00d-21dd-4cf3-a56b-a9787ddc8983	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240913	12:34:49	e8016bcf-c755-4922-aab3-4b4911f8e361	ReferenceError: crypto is not defined
+20240913	12:35:25	23301a18-d61f-4ee7-af33-5bdcf8861a93	emailError: Unable To Generate The Signup And Welcome Email For You
+20240913	12:37:42	41c8e0c6-872e-48d6-a0fa-fe1025be8fe2	userError: User Already Exists
+20240913	12:37:53	e2471bb1-3230-4a36-a1fc-4117cfc3cfb0	emailError: Unable To Generate The Signup And Welcome Email For You
+20240913	12:38:41	9215524e-c8be-4074-8463-5bce9acc2e0f	emailError: Unable To Generate The Signup And Welcome Email For You
+20240913	12:39:08	ffcc8c88-81d3-4909-b768-8773d664fe46	userError: User Already Exists
+20240913	12:39:26	92e34fbb-b90e-411d-a25a-d770f3f09232	emailError: Unable To Generate The Signup And Welcome Email For You
+20240913	12:40:09	98debffa-8d85-4546-8e30-932a61ac5f97	userError: User Already Exists
+20240913	12:41:17	c61cdd24-1f0a-4467-bd96-49d29ab48556	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240913	12:55:38	26509b34-4db3-4eea-a0d5-d888c2c65bcf	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again

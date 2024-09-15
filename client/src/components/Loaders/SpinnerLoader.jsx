@@ -1,7 +1,11 @@
 import "../../styles/components/Loaders/spinner-loader.css"
-const spinnerLoader = () => {
+const spinnerLoader = ({ width }) => {
   return (
-   <div className="loader"></div>
+   <div className="loader"
+   style={{
+    width : `${width}px`
+   }}
+   ></div>
 
   )
 }

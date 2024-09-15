@@ -1,23 +1,18 @@
-import { FaCheck } from "react-icons/fa";
-import { FaCertificate } from "react-icons/fa";
+
 import SpinnerLoader from "../Loaders/SpinnerLoader";
 import { useState } from "react";
-import { FcRating } from "react-icons/fc";
+import { useToastContext } from "../../hooks/useToastContext";
 import { MdVerified } from "react-icons/md";
 const Bio = () => {
+  const { showToast } = useToastContext()
   const [spin,  setSpin] = useState(false)
   const username = "Chris James"
   const followUser = () => {
     setSpin(true)
-toastRef.current.classList.add("active")
-toastProgress.current.classList.add("active")
+showToast()
 setTimeout(() => {
   setSpin(false)
-  toastRef.current.classList.remove("active")
 }, 5000);
-setTimeout(() => {
-  toastProgress.current.classList.remove("active")
-}, 5500);
   }
   return (
    <>

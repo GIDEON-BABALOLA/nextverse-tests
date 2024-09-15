@@ -11,6 +11,7 @@ import { FaRegUser, FaRegTrashAlt  } from "react-icons/fa";
 import { MdNotificationsNone } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
+import DeleteConsent from "../../components/common/DeleteConsent";
 const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const devops = (e) => {
     let settingsData = JSON.stringify({
@@ -33,6 +34,7 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     localStorage.setItem("Settings", settingsData)
 console.log(e.target.checked)
   }
+  const [openModal, setOpenModal] = useState(false)
   const [loadPage, setLoadPage] = useState(true)
   useEffect(() => {
     setTimeout(() => {
@@ -64,7 +66,9 @@ console.log(e.target.checked)
     <RotationLoader />
     </>
      : <>
+     
     <main style={{marginRight : "-20px"}} className="dashboard-settings-main-page">
+    <DeleteConsent openModal={openModal} setOpenModal={setOpenModal}/>
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
 <div className="dashboard-settings-main-page">
 <div className="dashboard-settings-page-title">
@@ -213,7 +217,9 @@ alignItems : "center",
 <div style={{display : "flex", flexDirection : "row", alignItems :"center", gap : "20px", paddingTop : "10px"}}>
 <h5>Permanently delete your account and all of your content.</h5>
 </div>
-<button className = " edit-profile-button-long edit-profile-button-delete ">Delete Account</button>
+<button className = " edit-profile-button-long edit-profile-button-delete"
+onClick={ () => {setOpenModal(true)}}
+>Delete Account</button>
 </div>
 
 </section>

@@ -3,7 +3,6 @@ import Bio from "./Bio"
 import Stats from "./Stats"
 import StoryCard from "./StoryCard"
 import Share from "../common/Share"
-import {  useRef } from "react"
 import favour from "../../assets/29.jpg"
 import great from "../../assets/Great.jpg"
 import girl from "../../assets/30.jpg"
@@ -110,8 +109,8 @@ const Profile = () => {
   ]
   let badInternet = false
   const username = "Chris"
-  const toastRef = useRef()
-  const toastProgress = useRef()
+  // const toastRef = useRef()
+  // const toastProgress = useRef()
   return (
     <>
 <Toast/>

@@ -9,11 +9,29 @@ const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const { cloudinaryError, validatorError } = require("../utils/customError");
+const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { generateEmailContent, sendEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 //User Registration
+const duplicateUsername = async (req, res) => {
+    try{
+const { username } = req.body;
+const existingUser = await User.findOne({ username })
+if(existingUser){
+    throw new userError("Username Already Exists", 400)
+}
+return res.status(200).json({message : "Username is available"})
+    }catch(error){
+        if (error instanceof userError) {
+            return res.status(error.statusCode).json({ error : error.message})
+        }
+             else{
+         return res.status(500).json({error : "Internal Server Error"})
+         }
+    }
+}
 const signupUser = async (req, res) => {
 try{
 const { username, email, password, mobile} = req.body;
@@ -45,14 +63,14 @@ if(req.file){
 
 
 const hashedPassword = await bcrypt.hash(password, 10);
-let values = {username, litenoteLogo : process.env.LITENOTE_LOGO, frontendUrl : process.env.LITENOTE_FRONTEND_URL};
-const emailContent = await generateEmailContent(values, path.join(__dirname, "..", "views", "welcomeEmail.ejs"));
-const data = {
-  to: email,
-  subject: 'Litenote Signup Successful',
-  html: emailContent,
-  text: 'Lightnote Signup Successful'
-};
+// let values = {username, litenoteLogo : process.env.LITENOTE_LOGO, frontendUrl : process.env.LITENOTE_FRONTEND_URL};
+// const emailContent = await generateEmailContent(values, path.join(__dirname, "..", "views", "welcomeEmail.ejs"));
+// const data = {
+//   to: email,
+//   subject: 'Litenote Signup Successful',
+//   html: emailContent,
+//   text: 'Lightnote Signup Successful'
+// };
 // await sendEmail(data)
 /* Always Note To Use req.file for one picture and req.files for multiple pictures*/
 /*And note req.file is an object while req.files is an array */
@@ -64,6 +82,26 @@ const newUser = await User.create({
     ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
     picture : profilePicture
  })
+ const verificationToken = await newUser.createVerificationToken();
+ await newUser.save()
+ let values = {
+    username : username,
+    verificationToken : verificationToken,
+    userId : newUser._id.toString(),
+    litenoteLogo : process.env.LITENOTE_LOGO,
+    frontendUrl : process.env.LITENOTE_FRONTEND_URL
+};
+ const emailContent = await generateEmailContent(
+values,
+path.join(__dirname, "..", "views", "confirmEmail.ejs")
+)
+const data = {
+  to: email,
+  subject: 'Verify Your Account',
+  html: emailContent,
+  text: 'Litenote Needs To Confirm Your Email Address'
+};
+await sendEmail(data)
 res.status(201).json(newUser)
 }catch(error){
     console.log(error)
@@ -78,6 +116,9 @@ logEvents(`${error.name}: ${error.message}`, "registerUserError.txt", "userError
     return res.status(500).json({error : "Internal Server Error"})
     }
 }
+}
+const verifyUserRegistration = async (req, res) => {
+
 }
 //User Logging in
 const loginUser = async (req, res) => {
@@ -364,5 +405,6 @@ module.exports = {
     deleteUser,
     updateUser,
     followUser,
-    unfollowUser
+    unfollowUser,
+    duplicateUsername
 }

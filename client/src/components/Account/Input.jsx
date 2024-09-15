@@ -1,9 +1,13 @@
-const Input = ({type, placeholder, className, animate}) => {
+const Input = ({type, placeholder, className, animate, ...props}) => {
   return (
    <>
-      <div className={className}>
+      <div className={className}  > 
         <span>{animate}</span>
-            <input type={type} placeholder={placeholder} required />
+            <input
+            type={type} 
+            placeholder={placeholder}
+            {...props}
+             required />
           </div>
    </>
   )

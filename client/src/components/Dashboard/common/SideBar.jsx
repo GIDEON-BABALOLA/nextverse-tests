@@ -5,13 +5,13 @@ import { FaHome, FaBookmark } from 'react-icons/fa';
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
 import logo from "../../../../src/assets/litenote.png"
-import useColorMode from '../../../hooks/useColorMode';
 import { CgFeed} from "react-icons/cg"
+import { useThemeContext } from '../../../hooks/useThemeContext';
 import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
+   const { colorMode } = useThemeContext()
    let role = "user"
-   const  { colorMode }= useColorMode()
    useEffect(() => {
       if(colorMode == ""){
         document.body.classList.remove('dark-theme-variables');

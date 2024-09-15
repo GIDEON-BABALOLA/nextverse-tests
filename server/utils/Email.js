@@ -15,7 +15,7 @@ const sendEmail = async (data)=>{
   try{
     // Configure the mailoptions object
 const mailOptions = {
-  from: 'nextverse.101@gmail.com',
+  from: 'nextverse74@gmail.com',
   to: data.to,
   subject: data.subject,
   text: data.text,

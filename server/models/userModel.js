@@ -1,4 +1,5 @@
 const mongoose = require('mongoose'); // Erase if already required
+const crypto = require("crypto")
 const bcrypt = require("bcrypt")
 // Declare the Schema of the Mongo model
 const userSchema = new mongoose.Schema({
@@ -11,6 +12,13 @@ const userSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
+    status: {
+        type : Boolean,
+        required : true,
+        default : false
+    },
+    verificationToken : String,
+    VerificationTokenExpires: Date,
     password:{
         type:String,
         required:true,
@@ -133,6 +141,12 @@ userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
             $pull: { bookmarks: { bookmarkId: bookmarkId } },
         }, { new: true });
     }
+}
+userSchema.methods.createVerificationToken = async function() {
+    const verificationToken = crypto.randomBytes(32).toString("hex")
+    this.verificationToken = crypto.createHash("sha256").update(verificationToken).digest("hex")
+    this.verificationTokenExpires = Date.now() + 30 * 60 * 1000 //10 minutes //saved ten minutes ahead in the future
+    return verificationToken;
 }
 
 // Object.assign({}, obj)
