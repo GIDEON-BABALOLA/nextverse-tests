@@ -5,11 +5,12 @@ import ConnectivityToast from './connectivityToast'
 const Layout = ({setShowTermsAndConditions, setShowCookieConsent}) => {
   return (
     <>
-   
+  <div>
     <NavBar /> 
     <ConnectivityToast />
     <Outlet  />
 <Footer setShowTermsAndConditions={setShowTermsAndConditions} setShowCookieContent={setShowCookieConsent}/>
+</div>
     </>
   )
 }
