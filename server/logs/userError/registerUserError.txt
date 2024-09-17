@@ -238,3 +238,9 @@
 20240917	06:23:34	1bc505e8-777e-4cbf-99cc-a95568920a01	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20240917	06:23:42	457d231b-0668-4473-9b43-8bde347a76fd	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20240917	07:50:13	a31c7ba4-ba37-498c-8222-abb5528fa182	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	21:33:08	11254099-99a8-4824-90f1-ae928fecf91d	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	21:37:44	1d4a7b35-bc18-4e91-bb39-551646731839	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	21:38:21	fdfb2fc1-1395-4f4c-9481-260ac13031bb	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	21:38:21	959b8191-ac56-4607-a984-7d8cb76b78c3	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	21:39:47	1f296e8d-1fb0-4a29-bc25-f8968a90046e	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	21:40:30	9c47b8c3-e3ba-4a2c-9b7d-6f7b35a0f515	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again

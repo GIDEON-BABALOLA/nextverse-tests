@@ -12,6 +12,9 @@ const StickyNotesCard = forwardRef(({ content, initialPosition, ...props }, ref)
         current.style.height = textAreaRef.current.scrollHeight + "px"; // Set the new height
     }
     const saving = true
+    const saveStickyNote = () => {
+        
+    }
   return (
     <div
     ref={ref}
@@ -50,7 +53,9 @@ const StickyNotesCard = forwardRef(({ content, initialPosition, ...props }, ref)
             }}
             onInput={() => {
                 autoGrow(textAreaRef);
+                saveStickyNote()
             }}
+        
           
             style={{ color: colors.colorText }}
             defaultValue={`📌 ${content.body}`}
