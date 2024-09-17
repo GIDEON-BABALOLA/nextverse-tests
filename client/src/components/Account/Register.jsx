@@ -6,6 +6,7 @@ import SpinnerLoader from "../Loaders/SpinnerLoader"
 import { useEffect, useState } from "react"
 import { axiosConfig } from "../../api/axiosConfig"
 import { FaCheck, FaTimes } from "react-icons/fa"
+import Button from "./Button"
 const Register = () => {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
@@ -17,12 +18,17 @@ const Register = () => {
   const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
   useEffect(() => {
     if(error){
-showToast("Error", error)
+      console.log("daveeeeee")
+showToast("Error", error, false)
     }
   }, [error, showToast])
-  useEffect(() => {
 
-  }, [])
+  useEffect(() => {
+if(data.message){
+  const { message } = data
+  showToast("Success", message, true)
+}
+  }, [data, statusCode, showToast])
   const checkIfUsernameExists = async () => {
     setIsChecking(true)
     try{
@@ -41,28 +47,6 @@ if(response){
   const handleRegister = (e) => {
     e.preventDefault()
     registerAccount(email, password, mobile, username)
-    // let settingsData = JSON.stringify({
-    //   user: {
-    //  username : "John Doe",
-    //  email : "john.doe@example.com",
-    //   },
-    //   notifications : {
-    //    push : false,
-    //    email : false,
-    //    sms : false
-    //   },
-    //   personalization: {
-    //    darkMode  : false,
-    //    stickyNoteColor : false,
-    //    stickyNoteShape : false
-    //   },
-    //   security : {
-    //    twoFactorAuthentication : false,
-    //    cookiesInBrowser : false,
-    //    restoreDefaultSettings : false,
-    //   }
-    //    })
-    //      localStorage.setItem("Settings", settingsData)
   }
     return (
       <>
@@ -109,15 +93,7 @@ if(response){
             value={mobile}
             onChange = {(e) => setMobile(e.target.value)}
           />
-          <button className="litenote-register-submit-btn"
-          onClick={handleRegister}
-          >
-         { isLoading ? <span style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
-          <SpinnerLoader width={15} />
-          </span> : "Register"
-         }
-      
-          </button>
+         <Button onClick={handleRegister} isLoading={isLoading} text={"Register"}/>
         </div>
       </div>
       </>

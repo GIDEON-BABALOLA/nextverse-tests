@@ -12,11 +12,15 @@ deleteUser,
 updateUser,
 followUser,
 unfollowUser,
-duplicateUsername
+duplicateUsername,
+verifyUserRegistration,
+resendUserVerification
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { authMiddleware, isUser, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
 router.post("/register-user", signupUser);
+router.post("/verify-user-registration", verifyUserRegistration)
+router.post("/resend-user-verification", resendUserVerification)
 router.post("/login-user", bruteForceLimiter, loginUser)
 router.post("/upload-user-picture", authMiddleware,  uploadProfileImageMiddleware,  uploadUserPicture)
 router.post("/follow-user", authMiddleware, followUser)

@@ -76,7 +76,7 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
         </Route>
 
 <Route path="register" element={<RegisterPage />} />
-<Route path="verify" element={<VerifyPage />}/>
+<Route path="verify/:email/:token" element={<VerifyPage />}/>
   <Route  path="*" element={<NotFound/>}/>
 </Routes> : <JoinWaitingListPage />
 }

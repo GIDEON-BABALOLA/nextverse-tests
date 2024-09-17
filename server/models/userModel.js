@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
         default : false
     },
     verificationToken : String,
-    VerificationTokenExpires: Date,
+    verificationCode: Number,
+    verificationTokenExpires: Date,
     password:{
         type:String,
         required:true,
@@ -142,10 +143,10 @@ userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
         }, { new: true });
     }
 }
-userSchema.methods.createVerificationToken = async function() {
-    const verificationToken = crypto.randomBytes(32).toString("hex")
-    this.verificationToken = crypto.createHash("sha256").update(verificationToken).digest("hex")
-    this.verificationTokenExpires = Date.now() + 30 * 60 * 1000 //10 minutes //saved ten minutes ahead in the future
+userSchema.methods.createVerificationToken = async function(otp, verificationToken, time) {
+    this.verificationToken = verificationToken
+    this.verificationTokenExpires = time
+    this.verificationCode = otp
     return verificationToken;
 }
 

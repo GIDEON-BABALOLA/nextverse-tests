@@ -1,35 +1,65 @@
 import { useRef } from "react"
-import { useRegisterAccount } from "../../hooks/useRegisterAccount"
 import Toast from "../common/Toast"
 import { useToastContext } from "../../hooks/useToastContext"
 import SpinnerLoader from "../Loaders/SpinnerLoader"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import { FaShieldAlt } from "react-icons/fa"
-import { axiosConfig } from "../../api/axiosConfig"
-import { FaCheck, FaTimes } from "react-icons/fa"
+import Button from "./Button"
+import { useVerifyAccount } from "../../hooks/useVerifyAccount"
 import "../../styles/components/Account/verify.css"
+import Resend from "./Resend"
 const Verify = () => {
   const { showToast } = useToastContext()
-  const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
-  useEffect(() => {
-    if(error){
-showToast("Error", error)
-    }
-  }, [error, showToast])
-  useEffect(() => {
-
-  }, [])
+  const { token, email } = useParams();
+  const [seconds, setSeconds] = useState(600); 
   const OTPinputs = useRef([]);
   const [otpValues, setOtpValues] = useState(['', '', '', '']);
   const [buttonActive, setButtonActive] = useState(false);
+  const { verifyAccount, isLoading, error, data, statusCode} = useVerifyAccount()
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds(prevSeconds => {
+        if (prevSeconds === 0) {
+          clearInterval(intervalId);
+          return 0;
+        }
+        return prevSeconds - 1;
+      });
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+  useEffect(() => {
+    if(error){
+showToast("Error", error, false)
+    }
+  }, [error, showToast])
+  useEffect(() => {
+    if(data.message){
+      const { message } = data
+      showToast("Success", message, true)
+    }
+  }, [data, statusCode, showToast])
   useEffect(() => {
     OTPinputs.current[0].focus();
   }, []);
+
   const handleInputChange = (index, value) => {
     const newOtpValues = [...otpValues];
+    console.log(typeof String(value))
+    if(String(value).length !== 2){
+
     newOtpValues[index] = value;
 
     setOtpValues(newOtpValues);
+   }
+          if(value){
+
+    newOtpValues[index] = value.toString().split("").slice(-1);
+
+    setOtpValues(newOtpValues);
+   }
 
     const nextInput = OTPinputs.current[index + 1];
 
@@ -63,9 +93,17 @@ showToast("Error", error)
     const isButtonActive = otpValues.every((value) => value !== ''); //true
     setButtonActive(isButtonActive);
   };
-const handleVerification = () => {
-  console.log("dave")
+const handleVerification = (e) => {
+  e.preventDefault();
+  const otp = parseInt(otpValues.join(""))
+console.log(otp.toString().split(""))
+  if(otp.toString().split("").length !== 4 ){
+    showToast("Error", "Please Enter The Complete OTP", false)
+    return
+  }
+verifyAccount(otp, email, token)
 }
+
 
     return (
       <>
@@ -81,33 +119,33 @@ const handleVerification = () => {
   Pls Enter The Four Digit OTP That Was Sent To Your Email
   </b></span>
         <form>
-            <div className="form-group">
+            <div className="form-group" style={{marginBottom : "5px"}}>
             {otpValues.map((value, index) => (
             <input className="otpInput"
               key={index}
               type="number"
               value={value}
               ref={(el) => (OTPinputs.current[index] = el)}
-              onChange={(e) => handleInputChange(index, e.target.value)}
+              onChange={(e) => handleInputChange(index, e.target.value) }
               onKeyUp={(e) => handleInputKeyUp(index, e)}
             />
           ))}
                
             </div>
-            <button className="litenote-register-submit-btn"
-            onClick={() => handleVerification()}
-          >
-         { isLoading ? <span style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
-          <SpinnerLoader width={15} />
-          </span> : "Verify"
-         }
-      
-          </button>
+        
+      <Button isLoading={isLoading} text={"Verify"} 
+onClick={(e) => { handleVerification(e)}}
+
+      />
+       <Resend email={email} />
+        
+          
         </form>
         
   </div>   
   <div >
     </div>
+    
       </div>
       </>
       

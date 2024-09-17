@@ -2,13 +2,14 @@ const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const fs = require('fs');
 const bcrypt = require("bcrypt")
+const crypto = require("crypto")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
-const { cloudinaryError, validatorError } = require("../utils/customError");
+const { cloudinaryError, validatorError, emailError } = require("../utils/customError");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -25,16 +26,17 @@ if(existingUser){
 return res.status(200).json({message : "Username is available"})
     }catch(error){
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
              else{
-         return res.status(500).json({error : "Internal Server Error"})
+         return res.status(500).json({message : "Internal Server Error"})
          }
     }
 }
 const signupUser = async (req, res) => {
 try{
 const { username, email, password, mobile} = req.body;
+console.log(email, password)
 let profilePicture
 if(!username || !email || !password || !mobile){
     throw new userError("Please Fill In All The Fields", 400)
@@ -63,32 +65,13 @@ if(req.file){
 
 
 const hashedPassword = await bcrypt.hash(password, 10);
-// let values = {username, litenoteLogo : process.env.LITENOTE_LOGO, frontendUrl : process.env.LITENOTE_FRONTEND_URL};
-// const emailContent = await generateEmailContent(values, path.join(__dirname, "..", "views", "welcomeEmail.ejs"));
-// const data = {
-//   to: email,
-//   subject: 'Litenote Signup Successful',
-//   html: emailContent,
-//   text: 'Lightnote Signup Successful'
-// };
-// await sendEmail(data)
-/* Always Note To Use req.file for one picture and req.files for multiple pictures*/
-/*And note req.file is an object while req.files is an array */
-const newUser = await User.create({ 
-    username, 
-    email, 
-    password :  hashedPassword,
-    mobile : mobile, 
-    ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
-    picture : profilePicture
- })
- const verificationToken = await newUser.createVerificationToken();
- await newUser.save()
+ const otp = otpGenerator(4)
+ const token = crypto.randomBytes(32).toString("hex")
+ const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
  let values = {
-    username : username,
-    verificationToken : verificationToken,
-    userId : newUser._id.toString(),
-    litenoteLogo : process.env.LITENOTE_LOGO,
+    code : otp,
+    token : token,
+    email : email,
     frontendUrl : process.env.LITENOTE_FRONTEND_URL
 };
  const emailContent = await generateEmailContent(
@@ -100,25 +83,113 @@ const data = {
   subject: 'Verify Your Account',
   html: emailContent,
   text: 'Litenote Needs To Confirm Your Email Address'
-};
+}; 
 await sendEmail(data)
-res.status(201).json(newUser)
+
+const newUser = await User.create({ 
+    username, 
+    email, 
+    password :  hashedPassword,
+    mobile : mobile, 
+    ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
+    picture : profilePicture
+ })
+ const time = Date.now() + 30 * 60 * 1000 //10 minutes //saved ten minutes ahead in the future
+await newUser.createVerificationToken(otp, verificationToken, time);
+await newUser.save()
+res.status(201).json({ message : "Success, Check Your Email To Verify Your Account"})
 }catch(error){
     console.log(error)
 logEvents(`${error.name}: ${error.message}`, "registerUserError.txt", "userError")
     if (error instanceof userError) {
-       return  res.status(error.statusCode).json({ error : error.message})
+       return  res.status(error.statusCode).json({ message : error.message})
     }
     else if(error instanceof validatorError){
-        return  res.status(error.statusCode).json({ error : error.message})  
+        return  res.status(error.statusCode).json({ message : error.message})  
+    }
+    else if(error instanceof emailError){
+        return  res.status(error.statusCode).json({ message : error.message})  
     }
         else{
-    return res.status(500).json({error : "Internal Server Error"})
+    return res.status(500).json({message : "Internal Server Error"})
     }
 }
 }
 const verifyUserRegistration = async (req, res) => {
+try{
+const { token, email, otp } = req.body;
+console.log(token, email, otp)
+const hashedToken = crypto.createHash("sha256").update(token).digest("hex")
+const user = await User.findOne({
+    verificationToken : hashedToken,
+    email : email,
+    verificationResetExpires : { $gt : Date.now()}
+})
+if(!user){
+    throw new userError("OTP Has Expired, Click On The Resend Button", 404)
+}
+if(parseInt(otp) !== user.verificationCode){
+    throw new userError("Wrong OTP, Pls type the correct One-time-passsword", 400)
+}
+user.verificationToken = null;
+user.verificationCode = null;
+user.verificationResetExpires = null;
+user.status = true;
+await user.save()
+return res.status(201).json({message : "Account Verification Successfull, Go To Login"})
 
+}catch(error){
+    if (error instanceof userError) {
+        return  res.status(error.statusCode).json({ message : error.message})
+     }
+     else{
+        return res.status(500).json({message : "Internal Server Error"})
+        }
+}
+}
+const resendUserVerification = async (req, res) => {
+    try{
+        const { email } = req.body;
+        const otp = otpGenerator(4)
+        const user = await User.findOne({email : email})
+        console.log(user, email)
+        if(!user){
+            throw new userError("Your Have Not Yet Registered Your Account", 400)
+        }
+        const token = crypto.randomBytes(32).toString("hex")
+        const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
+        let values = {
+           code : otp,
+           token : token,
+           email : email,
+           frontendUrl : process.env.LITENOTE_FRONTEND_URL
+       };
+        const emailContent = await generateEmailContent(
+       values,
+       path.join(__dirname, "..", "views", "confirmEmail.ejs")
+       )
+       const data = {
+         to: email,
+         subject: 'Verify Your Account',
+         html: emailContent,
+         text: 'Litenote Needs To Confirm Your Email Address'
+       }; 
+       await sendEmail(data)
+       user.verificationToken = verificationToken;
+user.verificationCode = otp;
+user.verificationResetExpires = null;
+await user.save()
+return res.status(201).json({ message : "Success, Check Your Email To Verify Your Account"})
+    }catch(error){
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ message : error.message})
+         }else if(error instanceof emailError){
+            return  res.status(error.statusCode).json({ message : error.message})
+         }
+         else{
+            return res.status(500).json({message : "Internal Server Error"})
+            }
+    }
 }
 //User Logging in
 const loginUser = async (req, res) => {
@@ -406,5 +477,7 @@ module.exports = {
     updateUser,
     followUser,
     unfollowUser,
-    duplicateUsername
+    duplicateUsername,
+    verifyUserRegistration,
+    resendUserVerification
 }

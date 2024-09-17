@@ -156,3 +156,85 @@
 20240913	12:40:09	98debffa-8d85-4546-8e30-932a61ac5f97	userError: User Already Exists
 20240913	12:41:17	c61cdd24-1f0a-4467-bd96-49d29ab48556	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20240913	12:55:38	26509b34-4db3-4eea-a0d5-d888c2c65bcf	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	07:39:37	4b635dea-df7f-4717-94d2-fd168c29ebc0	userError: User Already Exists
+20240916	08:32:37	12129074-fe6b-47c8-9de8-7a28afa46d10	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	08:34:00	10dd111c-4f14-4233-b57b-743435ef0edf	userError: User Already Exists
+20240916	08:34:44	ec28d567-bbae-463b-bdc1-2002d0e6b3fb	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	08:35:27	4bbac07b-83da-45e6-8a6c-f0c3a187e3e8	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	08:35:52	7185d89c-e8d4-431e-ade5-6c0c2cff3e5b	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	08:41:05	afb7d038-7ebc-463f-9edf-6a3baa4d2125	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240916	08:41:19	3d4f3073-7107-4b74-b085-a5462cdba707	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240916	08:43:58	5e3a12e1-1a34-4db1-84a8-0f90c73943de	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240916	08:45:29	7abee684-e783-4eef-85c2-0eea13db433a	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240916	08:46:17	26debe91-bedd-4ef4-9c82-d292c2b35a9d	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240916	08:46:23	ee304f1d-f392-46d9-81f3-4925276509c8	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240916	09:11:23	57d6e480-2204-4505-b237-438e449e89bd	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	09:11:31	5e501f2c-9965-4a9f-8492-9d246987c020	userError: User Already Exists
+20240916	09:13:06	17f0159c-46a0-420a-a267-c2478cd5c427	userError: User Already Exists
+20240916	09:13:45	6bb49779-a9ec-4628-a83a-47e331d0d796	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	09:16:05	2cc3097e-0cbd-4c9a-b5ac-e2795623155c	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	09:17:10	01d144f4-9887-422b-bea8-8a0085936eaf	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	09:18:05	260885e5-38e1-4618-a367-c1e3d93beafe	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	09:20:22	89a206c8-f738-4093-beb0-35c02b2bc562	userError: User Already Exists
+20240916	09:22:23	bc23667f-1a8f-40cd-b14d-353fecb7ec7f	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	09:23:12	c9cb9688-824e-415a-8113-d55dae6a2444	userError: User Already Exists
+20240916	09:32:06	7733659d-968e-4507-8879-ab63fb026dc1	userError: User Already Exists
+20240916	09:32:31	51efb582-3e3e-44ad-8ae6-d4a488189d8c	userError: User Already Exists
+20240916	09:49:52	68398392-e920-4ae6-bc29-66153950e75d	ReferenceError: crypto is not defined
+20240916	09:50:17	81e5c4fd-18be-44a8-8110-e633fb75cde7	ReferenceError: verificationToken is not defined
+20240916	09:51:07	5c4f2f8f-2200-438c-baf1-d6688087bb16	ReferenceError: Cannot access 'newUser' before initialization
+20240916	09:56:43	cd320ebf-e22a-483f-89a4-be14d46a6335	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	11:09:28	955de20a-4501-41de-8f96-326fc000d8ee	userError: Please Fill In All The Fields
+20240916	11:11:57	be73d59e-d5dc-40a5-97ed-3284c72d91cc	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:12:00	3aaa790a-a213-43b8-bca7-14936d2748af	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:16:30	149cc0de-e7a6-4173-86f2-9ad54c425636	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:16:37	69f4799b-b583-4ff7-8a3a-7874b8c21cd3	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:16:48	5823bec1-85fd-40d6-8779-d2e3dd4a48f4	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:17:26	bad9d0c5-15d8-44a5-8b8d-e7ea0e610b99	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:17:30	e98a2be1-5ce8-49fa-92bf-e8b0815cbc11	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:17:47	8ce1e263-4fdb-4894-96ee-96fdffba85d2	ReferenceError: Cannot access 'verificationToken' before initialization
+20240916	11:18:54	c1e3ab95-95ff-48eb-aaa0-7a93b9f8e714	ReferenceError: to is not defined
+20240916	11:19:20	a1a02de8-b047-419f-a194-a8455df7fe77	ReferenceError: to is not defined
+20240916	11:19:59	89cf036d-b329-4f8f-8ca8-6d685ee7230b	ReferenceError: to is not defined
+20240916	11:20:19	26de2e10-8338-4500-8fca-980b33931efa	ReferenceError: to is not defined
+20240916	11:22:22	f3e456a7-42bb-4475-8dea-8ee74b277878	ReferenceError: to is not defined
+20240916	11:22:28	57867183-8138-4338-9fd3-b575c832798c	ReferenceError: to is not defined
+20240916	11:22:38	76a92f22-4d5a-43a9-8e04-fff355d48c12	ReferenceError: to is not defined
+20240916	11:24:52	809385b4-2851-411a-9cdd-f8cecb669f02	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	11:54:46	6570d35c-646a-452a-bb74-109c3bab95e9	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	11:59:38	1f401c1e-cef0-4ac0-ac13-a3d3b3585484	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	11:59:51	89bedcba-5b57-4530-957c-d3345eb1dd5e	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	12:27:11	e2e12cfc-bee0-4c6e-9f68-ad0a76333054	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	12:27:38	dc7b2155-d465-41d9-a491-86466889feed	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	12:28:25	43253134-08fc-4985-ad38-b2533f978908	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	13:21:20	620e7bda-b364-4303-9ad9-0fe8b48a9c2d	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	13:25:53	5a8783ba-85d0-46e0-92cd-b1011af09be7	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	13:26:12	9f3de9e7-06ba-4ef1-9228-8ed5c79bca27	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	13:27:24	d7b4a2c2-e5c2-4030-9ee6-2b79a6108831	emailError: Unable To Generate The Signup And Welcome Email For You
+20240916	13:29:23	d794f5c2-3160-4e4c-949a-dbcbf3939230	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240916	13:37:11	d0105219-4cd4-47c2-8567-5e5e74cb0206	userError: User Already Exists
+20240916	13:37:16	01b8c9f9-d140-4258-9c45-7f1efd15929b	userError: User Already Exists
+20240916	13:37:47	afdc0357-c86d-4801-b397-f189a9e2db30	userError: User Already Exists
+20240916	13:37:50	fb975cb1-90b7-4422-bf3e-b0040865be9c	userError: User Already Exists
+20240916	13:37:54	a3b322ec-0457-4400-8304-d5baa53cd05c	userError: User Already Exists
+20240916	13:38:17	9e961452-155f-43aa-8061-b2bec09afe49	userError: User Already Exists
+20240916	13:38:36	22f69bcb-1d5b-4583-bdec-7d346f9dd808	userError: User Already Exists
+20240916	13:38:58	3a9a124d-5109-42f3-8a6b-aad7933ba058	userError: User Already Exists
+20240916	13:39:03	6190849f-1cbf-4507-8cab-b8eef9531186	userError: User Already Exists
+20240916	13:39:46	934d206b-a8d4-4139-877f-4dab75c2567b	userError: User Already Exists
+20240916	13:39:57	38bdc8ab-c948-4597-ae51-a271502b73c9	userError: User Already Exists
+20240916	13:40:06	2af64f5a-7aeb-4571-8b37-ef01bcad3b0f	userError: User Already Exists
+20240916	13:44:44	1c1b40f7-1327-478c-bc8e-08de8c770c1f	userError: User Already Exists
+20240916	13:44:46	099623ca-df97-46ea-8b79-dcfd1a6e216f	userError: User Already Exists
+20240916	13:44:55	6bf27a68-d410-4aae-be80-8f106793f011	userError: User Already Exists
+20240916	13:45:30	01f71a30-9ccb-4898-bf85-d7d995fd69c3	userError: User Already Exists
+20240916	13:45:36	83c66238-8fea-4933-ac0e-ddaf833c1a91	userError: User Already Exists
+20240916	13:45:38	e9e664fd-a3a9-442d-832c-639f6bb40157	userError: User Already Exists
+20240916	13:45:42	d44bd8b6-d003-40c5-9bd3-107ef60da95c	userError: User Already Exists
+20240916	13:45:45	c6f43a34-e3af-4702-bda1-512b696bb93f	userError: User Already Exists
+20240916	13:48:59	ff7686b1-4100-46ef-a046-7e35db683106	userError: User Already Exists
+20240917	06:23:27	0b2de6bc-09be-4ed9-943e-f2ed24e4f4e5	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	06:23:27	b2e78361-29f1-443f-b66b-6addd79f5b08	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	06:23:34	1bc505e8-777e-4cbf-99cc-a95568920a01	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	06:23:42	457d231b-0668-4473-9b43-8bde347a76fd	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20240917	07:50:13	a31c7ba4-ba37-498c-8222-abb5528fa182	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again

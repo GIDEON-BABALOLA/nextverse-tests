@@ -21,19 +21,19 @@ export const useRegisterAccount = () => {
         const trueMobile = mobileValidate(mobile)
         const correctUsername = usernameValidate(username)
         if(!trueEmail){
-            showToast("Error", "Please Enter A Valid Email")
+            showToast("Error", "Please Enter A Valid Email", false)
             return;
                }
         if(truePassword !== true){
-            showToast("Error", truePassword)
+            showToast("Error", truePassword, false)
             return;
         }
         if(!trueMobile){
-            showToast("Error", "Please Enter A Valid Phone Number")
+            showToast("Error", "Please Enter A Valid Phone Number", false)
             return;
         }
         if(!correctUsername){
-      showToast("Error", "Username Can Only Contain Alphanumerics, Hyphens And Underscores")
+      showToast("Error", "Username Can Only Contain Alphanumerics, Hyphens And Underscores", false)
       return;
         }
     
@@ -41,18 +41,19 @@ export const useRegisterAccount = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post("/user/register", {
+const response = await axiosConfig.post("/user/register-user", {
     email : email,
     password : password,
     username : username,
     mobile : mobile,
 },
 {
-    signal : AbortSignal.timeout(10000) //times out after 10 seconds
+    signal : AbortSignal.timeout(100000) //times out after 10 seconds
 }
 )
 if(response && response.data){
     // dispatch({type : "LOGIN", payload : response.data})
+    console.log(response.data)
     setData(response.data)
     setStatusCode(response.status)
     setError(null)
@@ -67,13 +68,11 @@ setError("Your Request Has Timed Out")
             }
             else if(error.message == "Network Error"){
                 setError("Our Service Is Currently Offline")
-                console.log("Ekek")
-
             }
             else{
             setData([])
             setIsLoading(false)
-            setError(error.response.data.error)
+            setError(error.response.data.message)
             setStatusCode(error.response.status)
         }
     }

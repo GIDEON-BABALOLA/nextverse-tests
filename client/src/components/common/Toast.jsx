@@ -3,14 +3,14 @@ import { FaTimes } from "react-icons/fa"
 import "../../styles/components/common/toast.css"
 import { useToastContext } from "../../hooks/useToastContext"
 const Toast = () => {
-  const { closeToast, toastProgress, toastRef } = useToastContext()
+  const { closeToast, toastProgress, toastRef, mode } = useToastContext()
   return ( 
     <div className="litenote-toast" ref={toastRef}
     style={{fontFamily : "Poppins", fontWeight : "2rem"}}
     >
         <div className="litenote-toast-content">
-        <span className="toast-check">
-        <FaCheck  size={20}/>
+        <span className="toast-check" >
+       { mode ? <FaCheck  size={20}/> :  <FaTimes size={20}/>} 
         </span>
  <div className="litenote-toast-message">
 <span className="litenote-toast-text text-1"
