@@ -1,6 +1,6 @@
 import { FaPlus, FaEdit,  FaReadme } from "react-icons/fa" 
 import { FaEllipsis } from "react-icons/fa6"
-import { MdDelete } from "react-icons/md"
+import { MdDelete, MdSend } from "react-icons/md"
 import "../../../styles/components/Dashboard/notes-preview-page.css"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { MdReadMore } from "react-icons/md"
@@ -98,6 +98,7 @@ return <>
 <ul className = "menu">
 <li style={{whiteSpace : "nowrap"}}><FaReadme size={20} /> Read More</li>
 <li><FaEdit size={20} />Edit</li>
+<li><MdSend size={20} />Transfer</li>
 <li onClick={triggerNoteDelete}><MdDelete size={20}/>Delete</li>
 </ul>
 </div>

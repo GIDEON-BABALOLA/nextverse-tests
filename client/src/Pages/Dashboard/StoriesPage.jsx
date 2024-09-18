@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import TextEditor from "../../components/Dashboard/common/TextEditor";
 import { FaAngleDown } from "react-icons/fa"
 import NotesPreview from "../../components/Dashboard/common/NotesPreview";
+import StoriesPreview from "../../components/Dashboard/common/StoriesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 import StickyNotes from "../../components/Dashboard/common/StickyNotes";
 import { FaPlus } from "react-icons/fa";
@@ -249,6 +250,7 @@ switch (e.target.innerText.split("\n")[0]) {
    }
 {tabs.write && <TextEditor />}
 {tabs.notes && <NotesPreview />}
+{tabs.stories && <StoriesPreview />}
 {tabs.stickyNotes && <StickyNotes />}
 
 

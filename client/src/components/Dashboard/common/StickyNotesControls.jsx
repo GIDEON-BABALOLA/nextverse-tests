@@ -1,9 +1,8 @@
-import { MdOutlineRectangle } from 'react-icons/md'
+
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { useState } from 'react'
 import colors from "../../../assets/colors.json"
-const StickyNotesControls = () => {
-  const [pageNumber, setPageNumber] = useState(1)
+const StickyNotesControls = ({ createStickyNote, pageNumber, setPageNumber }) => {
   const nextPage = () => {
 setPageNumber(pageNumber + 1)
   }
@@ -26,6 +25,7 @@ setPageNumber(pageNumber - 1)
             key={index}
           className="sticky-notes-color"
           style={{ backgroundColor: color.colorHeader }}
+          onClick={ () => {createStickyNote(color)}}
       ></div>
       
 

@@ -16,8 +16,9 @@ const PopularStories = () => {
  setContextMenu,
  closeContextMenu
 } = useModalContext()
-  const featuredStories = [
 
+
+  const featuredStories = [
     {
       title: "Mastering the Art of Photography",
       category: "Photography",

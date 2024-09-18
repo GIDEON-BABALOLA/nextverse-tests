@@ -20,88 +20,23 @@ const StickyNotes = () => {
   const [blinkCursor, setBlinkCursor] = useState(true)
   const [openModal, setOpenModal]  = useState(false)
   const [modalTitle, setModalTitle] =  useState("")
+  const [pageNumber, setPageNumber] = useState(1)
   const stickyNoteContainerRef = useRef()
   const stickyNotesRefs = useRef([])
   const [modalContent, setModalContent] =  useState("")
-  const  [stickyNotes, setStickyNotes] = useState([
-   {
-        id: 1,
-        body:"Welcome To Sticky Notes",
-        colors: JSON.stringify({
-            id: "color-purple",
-            colorHeader: "#FED0FD",
-            colorBody: "#FEE5FD",
-            colorText: "#18181A",
-        }),
-    }, 
-
-
-
-    
-    // {
-    //     id: 2,
-    //     body: "God is the most high",
-    //     colors: JSON.stringify({
-    //         id: "color-blue",
-    //         colorHeader: "#9BD1DE",
-    //         colorBody: "#A6DCE9",
-    //         colorText: "#18181A",
-    //     }),
-    // },
-//     {
-//         id: 3,
-//         body: "God is good",
-//         colors: JSON.stringify({
-//             id: "color-yellow",
-//             colorHeader: "#FFEFBE",
-//             colorBody: "#FFF5DF",
-//             colorText: "#18181A",
-//         }),
-//     },
-//     {
-//       id: 4,
-//       body: "God is good",
-//       colors: JSON.stringify({
-//           id: "color-yellow",
-//           colorHeader: "#FFEFBE",
-//           colorBody: "#FFF5DF",
-//           colorText: "#18181A",
-//       }),
-//   },
-//   {
-//     id: 5,
-//     body: "God is good",
-//     colors: JSON.stringify({
-//         id: "color-yellow",
-//         colorHeader: "#FFEFBE",
-//         colorBody: "#FFF5DF",
-//         colorText: "#18181A",
-//     }),
-    
-// },
-// {
-//   id: 6,
-//   body: "God is good",
-//   colors: JSON.stringify({
-//       id: "color-yellow",
-//       colorHeader: "#FFEFBE",
-//       colorBody: "#FFF5DF",
-//       colorText: "#18181A",
-//   }),
-  
-// },
-// {
-//   id: 7,
-//   body: "God is good",
-//   colors: JSON.stringify({
-//       id: "color-yellow",
-//       colorHeader: "#FFEFBE",
-//       colorBody: "#FFF5DF",
-//       colorText: "#18181A",
-//   }),
-// }
-
-  ])
+  // const  [stickyNotes, setStickyNotes] = useState([
+  //  {
+  //       id: 1,
+  //       body:"Welcome To Sticky Notes",
+  //       colors: JSON.stringify({
+  //            id: "color-purple",
+  //           colorHeader: "#FED0FD",
+  //           colorBody: "#FEE5FD",
+  //           colorText: "#18181A",
+  //       }),
+  //   }
+  // ])
+   const [stickyNotes, setStickyNotes] = useState(JSON.parse(localStorage.getItem("stickyNotes")) || [])
   const searchForStickyNotes = () => {
     setModalTitle("Search Your Sticky Notes")
     setModalContent(<div className="user-sticky-search-wrapper">
@@ -115,10 +50,6 @@ setOpenModal(true)
   }
 const determineNewPosition = () => {
 const maxX = window.innerWidth - 240;
-console.log(stickyNoteContainerRef.current.getBoundingClientRect(), window.innerHeight,
-  stickyNoteContainerRef.current,
-  stickyNoteContainerRef.current.offsetHeight
-)
 const maxY = window.innerHeight - 240
 return {
     x:Math.floor(Math.random() * maxX), //Generate a number between 0 and maxX
@@ -134,7 +65,6 @@ const offsetX = e.clientX - rect.left;
 const offsetY = e.clientY - rect.top;
 const startPos = note.position
 const handleTouchMove = (e) => {
-  console.log("King")
   const newX = e.targetTouches[0].clientX
   const newY = e.targetTouches[0].clientY
   stickyNoteRef.style.left = `${newX}px`
@@ -155,7 +85,6 @@ const handleMouseUp = () => {
 document.removeEventListener("touchend", handleMouseUp)
   const finalRect = stickyNoteRef.getBoundingClientRect()
   const newPosition = {x: finalRect.left, y: finalRect.top};
-  console.log(window.innerWidth - finalRect.width, finalRect.left)
   //check for overlapping
   if(checkForOverlap(id)){
    stickyNoteRef.style.left = `${startPos.x}px`
@@ -202,14 +131,28 @@ const updatedNotes = stickyNotes.map((note) => note.id === id
 setStickyNotes(updatedNotes)
 localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
 }
-useEffect(() => {
+const createStickyNote = (color) => {
+  const oldStickyNotes = [...stickyNotes]
+  const newID =  oldStickyNotes.length ? oldStickyNotes[oldStickyNotes.length - 1].id + 1 : 1;
+  const newStickyNote = {
+  id : newID,
+  body:"Write Here",
+  colors: JSON.stringify(color)
 
+  }
+  const newStickyNotes = [...oldStickyNotes, newStickyNote]
+setStickyNotes(newStickyNotes)
+// localStorage.setItem("stickyNotes", JSON.stringify(newStickyNotes))
+
+}
+useEffect(() => {
 const savedNotes = JSON.parse(localStorage.getItem("stickyNotes")) || []
 const updatedNotes = stickyNotes.map((note) => {
     const savedNote = savedNotes.find((n) => n.id == note.id);
-    if(savedNote){
+if(savedNote){
         return {...note, position : savedNote.position}
-    }else{
+    }
+    else{
         const position = determineNewPosition()
         return {...note, position}
     }
@@ -217,7 +160,27 @@ const updatedNotes = stickyNotes.map((note) => {
 })
 setStickyNotes(updatedNotes)
 localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
+
+
 }, [stickyNotes.length])
+useEffect(() => {
+  const savedNotes = JSON.parse(localStorage.getItem("stickyNotes")) || []
+  if(savedNotes.length == 0){
+      const welcomeNote = {
+          id: 1,
+          body:"Welcome To Sticky Notes",
+          colors: JSON.stringify({
+               id: "color-purple",
+              colorHeader: "#FED0FD",
+              colorBody: "#FEE5FD",
+              colorText: "#18181A",
+          }),
+      }
+      const position = determineNewPosition()
+      const initialNote =  {...welcomeNote, position}
+      setStickyNotes([initialNote])    
+  } 
+}, [])
   return (
     <section className="litenote-dashboard-sticky-notes-preview" 
      ref={stickyNoteContainerRef}
@@ -225,15 +188,22 @@ localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
     >
     <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title={modalTitle} content={modalContent} width={450} />
       <SearchCircle clickMe={searchForStickyNotes}/> 
-        <StickyNotesControls />
+        <StickyNotesControls  createStickyNote={createStickyNote}
+pageNumber={pageNumber}
+setPageNumber={setPageNumber}
+        />
         <div style={{marginTop : "50px"}} 
         
        
         
         >
         {
-            stickyNotes.map((content, index) => (
+            stickyNotes.slice(     0 + (pageNumber -1) * 5,
+              5 + (pageNumber -1) * 5
+            ).
+            map((content, index) => (
           <StickyNotesCard 
+          key={index}
           ref={
             stickyNotesRefs.current[content.id] ?
             stickyNotesRefs.current[content.id] :
