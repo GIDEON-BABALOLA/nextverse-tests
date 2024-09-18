@@ -57,7 +57,7 @@ return <div className="accorder">
 <div className={`accordion__container animate`} ref={accordionContainer} id="Gideon">
 <h2 className="accordion-title-faq ">Frequently Asked Questions <FaQuestion />
 </h2>
-   <div className={`accordion__item  ${openAccordion === 0 ? "open" : ""} `} style={{"--index" : 1}} ref={(el) => (accordionRefs.current[0] = el)}> 
+   <div className={`accordion__item  ${openAccordion === 0 ? "open" : ""} `} style={{"--index" : 1}} ref={(el) => (accordionRefs.current[0] = el)} > 
       <div className="accordion__header"     onClick={() => handleAccordionClick(0)}>
       <p className="accordion__number">01</p>
             <p className="accordion__name">What is this platform for?</p>

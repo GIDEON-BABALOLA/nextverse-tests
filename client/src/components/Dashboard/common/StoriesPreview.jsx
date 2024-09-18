@@ -6,7 +6,19 @@ import ContextMenu from "../../common/ContextMenu"
 import { MdDelete, MdReadMore } from "react-icons/md"
 import Share from "../../common/Share"
 import { FaShareAlt, FaRegThumbsUp, FaTimes } from "react-icons/fa"
+import { useEffect, useRef } from "react"
 const StoriesPreview = () => {
+  const storyRef = useRef([])
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      console.log("I have been scrolled")
+    })
+    return () => {
+      window.removeEventListener("scroll", () => {
+        console.log("stopped useEffect")
+      })
+    }
+  })
   const {
     contextMenu,
      shareModal,
@@ -15,6 +27,9 @@ const StoriesPreview = () => {
  setContextMenu,
  closeContextMenu
 } = useModalContext()
+  
+
+    
     const myStories = [
         {
           title: "Mastering the Art of Photography",
@@ -64,15 +79,94 @@ const StoriesPreview = () => {
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : gideon,
+          date : "March 17, 2020"
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : gideon,
+          date : "March 17, 2020"
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : gideon,
+          date : "March 17, 2020"
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : gideon,
+          date : "March 17, 2020"
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : gideon,
+          date : "March 17, 2020"
         }
       ]
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              // storyRef.current.classList.add("active")
+              // observer.unobserve(entry.target);
+            }else{
+              contextMenu.current.style.visibility = "hidden";
+            }
+          },
+          { threshold: 1, rootMargin : "-100px"} // 10% of the element needs to be visible
+        );
+        if (storyRef.current) {
+          console.log(storyRef.current)
+          storyRef.current.map((story) => {
+            if(story){
+            observer.observe(story)
+            }
+          })
+        }
       
+        return () => {
+          if (storyRef.current) {
+            storyRef.current.map((story) => {
+              if(story){
+              observer.unobserve(story)
+              }
+            })
+          
+          }
+        };
+      }, [contextMenu]);
     
   return (
-    <section className="litenote-dashboard-notes-preview" onClick={closeContextMenu}>
-    <div className="litenote-dashboard-stories-preview-grid">
+    <section className="litenote-dashboard-notes-preview" onClick={closeContextMenu}
+  
+    >
+    <div className="litenote-dashboard-stories-preview-grid"
+    >
           {myStories.map((story, index) => (
-<StoryCard key={index} story={story} fireClick={fireClick}/>
+            <div key={index}  
+          //  ref={el => storyRef.current.push(el)}
+           ref={(el) => (storyRef.current[index] = el)}
+           >
+<StoryCard  story={story} fireClick={fireClick} />
+</div>
       ))
       }
       </div>
