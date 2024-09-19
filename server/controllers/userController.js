@@ -33,10 +33,21 @@ return res.status(200).json({message : "Username is available"})
          }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 const signupUser = async (req, res) => {
 try{
 const { username, email, password, mobile} = req.body;
-console.log(email, password)
 let profilePicture
 if(!username || !email || !password || !mobile){
     throw new userError("Please Fill In All The Fields", 400)
@@ -68,10 +79,12 @@ const hashedPassword = await bcrypt.hash(password, 10);
  const otp = otpGenerator(4)
  const token = crypto.randomBytes(32).toString("hex")
  const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
+ const minute = 5
  let values = {
     code : otp,
     token : token,
     email : email,
+    minute : minute,
     frontendUrl : process.env.LITENOTE_FRONTEND_URL
 };
  const emailContent = await generateEmailContent(
@@ -94,12 +107,11 @@ const newUser = await User.create({
     ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
     picture : profilePicture
  })
- const time = Date.now() + 30 * 60 * 1000 //10 minutes //saved ten minutes ahead in the future
+ const time = Date.now() + minute * 60 * 1000 //5 minutes //saved five minutes ahead in the future
 await newUser.createVerificationToken(otp, verificationToken, time);
 await newUser.save()
 res.status(201).json({ message : "Success, Check Your Email To Verify Your Account"})
 }catch(error){
-    console.log(error)
 logEvents(`${error.name}: ${error.message}`, "registerUserError.txt", "userError")
     if (error instanceof userError) {
        return  res.status(error.statusCode).json({ message : error.message})
@@ -115,30 +127,47 @@ logEvents(`${error.name}: ${error.message}`, "registerUserError.txt", "userError
     }
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const verifyUserRegistration = async (req, res) => {
 try{
 const { token, email, otp } = req.body;
-console.log(token, email, otp)
 const hashedToken = crypto.createHash("sha256").update(token).digest("hex")
 const user = await User.findOne({
     verificationToken : hashedToken,
     email : email,
-    verificationResetExpires : { $gt : Date.now()}
+    verificationTokenExpires : { $gt : Date.now()}
 })
 if(!user){
-    throw new userError("OTP Has Expired, Click On The Resend Button", 404)
+    throw new userError("OTP Has Expired, Click On Resend Verification Link", 404)
 }
-if(parseInt(otp) !== user.verificationCode){
-    throw new userError("Wrong OTP, Pls type the correct One-time-passsword", 400)
+if(parseInt(otp) !== parseInt(user.verificationCode)){
+    throw new userError("Wrong OTP, Pls Enter the correct One-time-passsword", 400)
 }
 user.verificationToken = null;
 user.verificationCode = null;
-user.verificationResetExpires = null;
+user.verificationTokenExpires = null;
 user.status = true;
 await user.save()
 return res.status(201).json({message : "Account Verification Successfull, Go To Login"})
 
 }catch(error){
+    logEvents(`${error.name}: ${error.message}`, "verifyUserRegistrationError.txt", "userError")
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ message : error.message})
      }
@@ -147,21 +176,50 @@ return res.status(201).json({message : "Account Verification Successfull, Go To 
         }
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const resendUserVerification = async (req, res) => {
     try{
         const { email } = req.body;
-        const otp = otpGenerator(4)
         const user = await User.findOne({email : email})
-        console.log(user, email)
         if(!user){
             throw new userError("Your Have Not Yet Registered Your Account", 400)
         }
+        const minute = 5
         const token = crypto.randomBytes(32).toString("hex")
+        const otp = otpGenerator(4)
         const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
+        const time = Date.now() + minute * 60 * 1000 //5 minutes //saved five minutes ahead in the future
         let values = {
            code : otp,
            token : token,
            email : email,
+           minute : minute,
            frontendUrl : process.env.LITENOTE_FRONTEND_URL
        };
         const emailContent = await generateEmailContent(
@@ -175,12 +233,13 @@ const resendUserVerification = async (req, res) => {
          text: 'Litenote Needs To Confirm Your Email Address'
        }; 
        await sendEmail(data)
-       user.verificationToken = verificationToken;
+user.verificationToken = verificationToken;
 user.verificationCode = otp;
-user.verificationResetExpires = null;
+user.verificationTokenExpires = time;
 await user.save()
-return res.status(201).json({ message : "Success, Check Your Email To Verify Your Account"})
+return res.status(201).json({ message : "Success, Check Your Email To Verify Your Account, Another Link has been sent"})
     }catch(error){
+        logEvents(`${error.name}: ${error.message}`, "resendUserVerificationError.txt", "userError")
         if (error instanceof userError) {
             return  res.status(error.statusCode).json({ message : error.message})
          }else if(error instanceof emailError){
@@ -191,6 +250,31 @@ return res.status(201).json({ message : "Success, Check Your Email To Verify You
             }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //User Logging in
 const loginUser = async (req, res) => {
 try{

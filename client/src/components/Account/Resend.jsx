@@ -25,7 +25,8 @@ showToast("Error", error, false)
               display : "flex",
               justifyContent  : "center",
               marginTop : "5px",
-              cursor : "pointer"
+              cursor : "pointer",
+              color : "rgba(255, 255, 255, 0.6)"
             }}
             onClick={(e) => {handleResend(e)}}
           >

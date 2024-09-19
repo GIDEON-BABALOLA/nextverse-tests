@@ -1,35 +1,24 @@
 import { useRef } from "react"
 import Toast from "../common/Toast"
+import { useNavigate } from "react-router-dom"
 import { useToastContext } from "../../hooks/useToastContext"
 import SpinnerLoader from "../Loaders/SpinnerLoader"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import CounterBackward from "../common/CounterBackward"
 import { FaShieldAlt } from "react-icons/fa"
 import Button from "./Button"
 import { useVerifyAccount } from "../../hooks/useVerifyAccount"
 import "../../styles/components/Account/verify.css"
 import Resend from "./Resend"
 const Verify = () => {
+  const router = useNavigate()
   const { showToast } = useToastContext()
   const { token, email } = useParams();
-  const [seconds, setSeconds] = useState(600); 
   const OTPinputs = useRef([]);
   const [otpValues, setOtpValues] = useState(['', '', '', '']);
   const [buttonActive, setButtonActive] = useState(false);
   const { verifyAccount, isLoading, error, data, statusCode} = useVerifyAccount()
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setSeconds(prevSeconds => {
-        if (prevSeconds === 0) {
-          clearInterval(intervalId);
-          return 0;
-        }
-        return prevSeconds - 1;
-      });
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
   useEffect(() => {
     if(error){
 showToast("Error", error, false)
@@ -38,9 +27,15 @@ showToast("Error", error, false)
   useEffect(() => {
     if(data.message){
       const { message } = data
-      showToast("Success", message, true)
+      showToast("Success",
+    message
+         ,
+          true)
+      setTimeout(() => {
+    router("/login")
+      }, 3000)
     }
-  }, [data, statusCode, showToast])
+  }, [data, statusCode, showToast, router])
   useEffect(() => {
     OTPinputs.current[0].focus();
   }, []);
@@ -137,7 +132,14 @@ verifyAccount(otp, email, token)
 onClick={(e) => { handleVerification(e)}}
 
       />
-       <Resend email={email} />
+       {error && <Resend email={email} />}
+   {  data.message &&  <span style={{marginTop : "10px", display : "flex",
+       flexDirection : "row", alignContent : "center", justifyContent : "center",
+       color : "rgba(255, 255, 255, 0.6)"
+       }}>
+        Redirecting To Login In&nbsp;<CounterBackward start={3}/>&nbsp;seconds
+       </span>
+   }
         
           
         </form>

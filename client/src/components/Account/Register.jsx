@@ -6,6 +6,8 @@ import SpinnerLoader from "../Loaders/SpinnerLoader"
 import { useEffect, useState } from "react"
 import { axiosConfig } from "../../api/axiosConfig"
 import { FaCheck, FaTimes } from "react-icons/fa"
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+
 import Button from "./Button"
 const Register = () => {
   const [password, setPassword] = useState("")
@@ -14,6 +16,7 @@ const Register = () => {
   const [mobile, setMobile] = useState("")
   const [isChecking, setIsChecking] = useState(false)
   const [nameError, setNameError] = useState(false)
+  const [passwordVisibility, setPasswordVisibility] = useState(true)
   const { showToast } = useToastContext()
   const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
   useEffect(() => {
@@ -69,7 +72,7 @@ if(response){
           <span style={{position : "absolute", top : "122px", right : "30px"}}>
           <SpinnerLoader  width={10}/>
           </span>
-         :  <span style={{position : "absolute", top : "122px", right : "40px"}}>
+         :  <span style={{position : "absolute", top : "122px", right : "40px"}}    >
           {  nameError  ?  username &&<FaTimes color="#ff5e62" style={{ position : "absolute", right : "7px", top : "3px"}}/>
        :   username && <FaCheck size={10} color="green" style={{ position : "absolute", right : "7.5px", top : "5px"}}/>
          
@@ -85,10 +88,23 @@ if(response){
              value={email}
              onChange = {(e) => setEmail(e.target.value)}
           />
-          <Input type="password" placeholder="Password" className="litenote-register-input-group" animate="&#10094;"
+          <Input type={passwordVisibility ? "text" : "password"} placeholder="Password" className="litenote-register-input-group" animate="&#10094;"
              value={password}
              onChange = {(e) => setPassword(e.target.value)}
           />
+          <span     style={{position : "absolute", top : "250px", right : "40px"}}
+          onClick={() => {setPasswordVisibility(!passwordVisibility)}}
+          >
+                 { passwordVisibility ?  <MdVisibility
+                   size={15}
+                    color="white" style={{ position : "absolute", right : "7px", top : "3px"}}/>
+                    : 
+                    <MdVisibilityOff
+                   size={15}
+                    color="white" style={{ position : "absolute", right : "7px", top : "3px"}}/>
+                 }
+          </span>
+   
           <Input type="text" placeholder="Mobile Number" className="litenote-register-input-group" animate="&#10095;"
             value={mobile}
             onChange = {(e) => setMobile(e.target.value)}

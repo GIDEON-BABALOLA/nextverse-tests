@@ -75,14 +75,14 @@
     style="font-size: 2rem; font-weight: 1000; "
     ><%=code%></p>
     <h1>Please verify your email</h1>
-    <p>To use Litenote, click the verification button. This helps keep your account secure.</p>
+    <p>To use Litenote, click the verification button. This helps keep your account secure, This Link and Button expires in <%=minute %> minutes</p>
     <a
     style="color: white; text-decoration: none;"
     href="<%= frontendUrl %>/verify/<%=email%>/<%=token %>" class="btn">Verify my account</a>
 <p>Or Copy the link below</p>
 <span
 style="color: #777777;"
-><%= frontendUrl %>/confirm-email/<%=email%>/<%=token %></span>
+><%= frontendUrl %>/verify/<%=email%>/<%=token %></span>
     <p>Thanks for signing up with Lite Note! Copy the One-Time-Passcode above, then click the button to confirm your email address and start your writing journey.</p>
     <div class="footer">
       <p>Need Help?<br />Please send feedback or bug information to nextverse74@gmail.com</p>
