@@ -9,7 +9,7 @@ import FeedCard from "../components/Dashboard/common/FeedCard";
 import girly from "../assets/30.jpg"
 import blackman from "../assets/3.jpg"
 import { MdOutlineCreate } from "react-icons/md";
-
+import ErrorMessage from "../components/common/ErrorMessage";
 import gidiboy from "../assets/3.jpg"
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
 import { useThemeContext } from "../hooks/useThemeContext";

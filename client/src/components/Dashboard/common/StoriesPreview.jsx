@@ -128,10 +128,11 @@ const StoriesPreview = () => {
               // storyRef.current.classList.add("active")
               // observer.unobserve(entry.target);
             }else{
+              console.log("not intersecting")
               contextMenu.current.style.visibility = "hidden";
             }
           },
-          { threshold: 1, rootMargin : "-100px"} // 10% of the element needs to be visible
+          { threshold: 1, rootMargin : ""} // 10% of the element needs to be visible
         );
         if (storyRef.current) {
           console.log(storyRef.current)

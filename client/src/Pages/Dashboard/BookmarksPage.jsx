@@ -2,7 +2,7 @@ import DashboardToast from "../../components/common/DashboardToast.jsx"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader.jsx';
 import RotationLoader from "../../components/Loaders/RotationLoader.jsx"
 import { useState, useEffect, useRef } from "react";
-import BookmarkCard from "../../components/Dashboard/common/BookmarkCard.jsx";
+import BookmarkList from "../../components/Dashboard/common/BookmarkList.jsx";
 
 import "../../styles/components/Dashboard/bookmark-page.css"
 
@@ -130,7 +130,7 @@ ref={tabRef}
 >
       
         <label htmlFor="tab0"
-        style={{color : tabs.all == true && "var(--color-primary)"  }}
+        style={{color : tabs.all == true && "var(--color-primary)",  }}
          onClick={clickMe} >All</label>
 
             <label htmlFor="tab1"
@@ -151,8 +151,8 @@ ref={tabRef}
     </div>
    </div>
  
-    <div className="litenote-browse-bookmark-grid"  >
-    <BookmarkCard />
+    <div className="litenote-browse-bookmark-grid" style={{marginTop : "20px"}}>
+    <BookmarkList />
       </div>
     </main>
 
