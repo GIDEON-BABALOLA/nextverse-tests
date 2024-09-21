@@ -1,34 +1,22 @@
 import "../../styles/components/common/newslettersignup.css"
-import { FaTimes } from "react-icons/fa"
-import {  useRef, useEffect, useState } from "react"
-import useWindowScroll from "../../hooks/useWindowScroll"
+import {  useRef} from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import { setCookie } from "../../helpers/CookiesConfiguration"
-const NewsletterSignup = ({ page, showNewsLetter, setShowNewsLetter}) => {
-   const [i, setI] = useState()
+import { useConsentContext } from "../../hooks/useConsentContext"
+const NewsletterSignup = () => {
+   const {  closeNewsletter, newsletter, showNewsletter } = useConsentContext()
    const fullNewsletter = useRef()
-   const  { y } = useWindowScroll()
-   const { height, width} = useWindowSize()
-// const [close, setClose] = useState(null)
-const closeNewsletter = () => {
-   setShowNewsLetter(false)
-}
-const subScribeToNewsletter = () => {
-   setCookie("newsletter-mode", false, 10)
-}
-useEffect(() => {
-   const scrollPercent = ((y / (parseInt(page.current.scrollHeight) - height)) * 100) + 20;
-if(showNewsLetter === true){
-   setI( scrollPercent + "%")
-}
-}, [showNewsLetter])
+   const {  width} = useWindowSize()
 
+const subScribeToNewsletter = () => {
+   setCookie("newsletter-mode", true, 10)
+   showNewsletter(false)
+}
   return (
     <>
         <main 
-      //   style={{top : i}}
         className={`litenote-newsletter-main`}>
-   <div className={`litenote-newsletter-container litenote-newsletter-news litenote-newsletter-flow ${showNewsLetter  ? 'slide-down'  : "" }`}   ref={fullNewsletter}>
+   <div className={`litenote-newsletter-container litenote-newsletter-news litenote-newsletter-flow ${newsletter  ? 'slide-down'  : "" }`}   ref={fullNewsletter}>
 <div style={{display : 'flex', flexDirection : "row", justifyContent : "space-between"}}>
 <div> 
 {/* <img src={litenote} alt="lite note" width="150px" height="100" /> */}
@@ -36,7 +24,9 @@ if(showNewsLetter === true){
 
       <svg
       style={{cursor : "pointer"}}
-      onClick={closeNewsletter}
+      onClick={() => {
+         closeNewsletter()
+      }}
        xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width= {width < 768 ? "20" : "50"} height= {width < 768 ? "20" : "50"} viewBox="0 0 256 256" xmlSpace="preserve">
 
 <defs>

@@ -286,37 +286,45 @@ await validateEmail(email)
 await validatePassword(password)
 const foundUser = await User.findOne({email : email})
 if(!foundUser){
-    throw new userError("User Does Not Exist", 404)
+    throw new userError("Your Account Does Not Exist", 404)
+}
+if(foundUser.status === false){
+    throw new userError("Your Account Has Not Yet Been Verified", 400)
 }
 const match = await bcrypt.compare(password, foundUser.password)
 if(foundUser && match){
     const id = foundUser?._id.toString()
     const refreshToken = generateRefreshToken(id, foundUser.role)
     await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
-    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 3, sameSite : "None", /* secure : true */})
+    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 3, sameSite : "None",  secure : true })
     //Three Day Refresh Token
-    res.status(201).json({
-        id : foundUser?._id,
-        username : foundUser?.username,
-        email : foundUser?.email,
-        accessToken : generateAccessToken(id, foundUser.role),
-        password : foundUser?.password,
-        picture : foundUser?.picture,
-        mobile : foundUser?.mobile
-    })
-}
+    const detailsOfUserToBeSent = _.omit(foundUser.toObject(), "refreshToken",
+"verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress",
+)
+//     res.status(201).json({
+//         id : foundUser?._id,
+//         username : foundUser?.username,
+//         email : foundUser?.email,
+//         accessToken : generateAccessToken(id, foundUser.role),
+//         password : foundUser?.password,
+//         picture : foundUser?.picture,
+//         mobile : foundUser?.mobile
+//     })
+res.status(201).json({...detailsOfUserToBeSent, accessToken : generateAccessToken(id, foundUser.role)})
+ }
 else{
     throw new userError("Invalid Credentials", 401)
 }
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "loginUserError.txt", "userError")
     if (error instanceof userError) {
-       return  res.status(error.statusCode).json({ error : error.message})
+       return  res.status(error.statusCode).json({ message : error.message})
     }else if(error instanceof validatorError){
-        return  res.status(error.statusCode).json({ error : error.message})  
+        return  res.status(error.statusCode).json({ message : error.message})  
     }
     else{
-        return res.status(500).json({error : "Internal Server Error"})
+        return res.status(500).json({message : "Internal Server Error"})
         }
 }
 }
@@ -328,13 +336,18 @@ const getCurrentUser = async  (req, res) => {
             throw new userError("Your Account Does Not Exist", 404)
         }
 const { id } = req.user
+console.log(id)
 validateMongoDbId(id)
 const user = await User.findById(id)
+console.log(user)
 if(!user){
     throw new userError("You Are Not Logged In", 401)
 }
- const newUser = _.omit(user.toObject(), "refreshToken")
-res.status(200).json(newUser)
+const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
+"verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress",
+)
+//  const newUser = _.omit(user.toObject(), "refreshToken")
+res.status(200).json(detailsOfUserToBeSent)
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
@@ -355,12 +368,15 @@ const logoutUser = async (req, res) => {
         const refreshToken = cookies.refreshToken;
         const user = await User.findOne({refreshToken})
         if(!user){
-            res.clearCookie("refreshToken", {httpOnly: true, sameSite : "None"  /*secure  : true */})
+            console.log("gold")
+            res.clearCookie("refreshToken", {httpOnly: true, sameSite : "None" , secure  : true })
             return res.status(204).json({message : "Successfully Logged Out", "success" : true})
         }
         user.refreshToken = ""
         await user.save();      
-        res.clearCookie("refreshToken", {httpOnly: true,  sameSite : "None", /*secure : true */})
+        console.log("caveman")
+        res.clearCookie("refreshToken", {httpOnly: true,  sameSite : "None", secure : true })
+        console.log("caveboy")
         return res.status(204).json({message : "Successfully Logged Out now", "success" : true})
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "logoutUserError.txt", "userError")

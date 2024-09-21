@@ -97,11 +97,13 @@ if(response){
           >
                  { passwordVisibility ?  <MdVisibility
                    size={15}
-                    color="white" style={{ position : "absolute", right : "7px", top : "3px"}}/>
+                     color="rgba(255, 255, 255, 0.6)"
+                     style={{ position : "absolute", right : "7px", top : "3px", cursor : "pointer"}}/>
                     : 
                     <MdVisibilityOff
                    size={15}
-                    color="white" style={{ position : "absolute", right : "7px", top : "3px"}}/>
+                     color="rgba(255, 255, 255, 0.6)"
+                     style={{ position : "absolute", right : "7px", top : "3px", cursor : "pointer"}}/>
                  }
           </span>
    

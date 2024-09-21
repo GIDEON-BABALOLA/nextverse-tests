@@ -7,8 +7,10 @@ const Admin =  require(path.join(__dirname, "..", "models", "adminModel.js"))
 const Developer = require(path.join(__dirname, "..", "models", "developerModel.js"))
 const Designer = require(path.join(__dirname, "..", "models", "designerModel.js"))
 const authMiddleware = async (req, res, next)=>{
+    
     let token;
     if(req?.headers?.authorization?.startsWith("Bearer") || req.cookies.refreshToken){
+    
       switch (true) {
        case req?.headers?.authorization?.startsWith("Bearer"):
           token = req.headers.authorization.split(" ")[1] 

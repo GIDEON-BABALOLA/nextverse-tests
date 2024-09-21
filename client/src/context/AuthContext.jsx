@@ -1,4 +1,5 @@
 import { createContext, useReducer, useEffect} from "react"
+import { axiosConfig } from "../api/axiosConfig"
 export const AuthContext = createContext()
 export const authReducer = (state, action) => {
     switch(action.type){
@@ -16,6 +17,23 @@ export const AuthContextProvider = ({ children }) => {
 const  [ state, dispatch] = useReducer(authReducer, {
     user : null
 })
+useEffect(() => {
+    // Function to check if user is logged in
+    const fetchUser = async () => {
+      try {
+        const response = await axiosConfig.get("/user/get-current-user"); // Your API route
+        const userData = response.data;
+        dispatch({ type: "LOGIN", payload: userData }); // Dispatch login action with user data
+      } catch (error) {
+        console.log("Not logged in or error occurred:", error.message);
+        dispatch({ type: "LOGOUT" }); // Dispatch logout action if no user
+      }
+    };
+
+    fetchUser();
+  }, []); 
+  
+  // Runs once on component mount
 console.log("AuthContext state", state)
 return (
     <AuthContext.Provider value = {{

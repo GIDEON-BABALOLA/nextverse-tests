@@ -8,10 +8,12 @@ import { AuthContextProvider } from './context/AuthContext.jsx'
 import { ThemeContextProvider } from './context/ThemeContext.jsx'
 import { ModalContextProvider } from "./context/ModalContext.jsx"
 import { ToastContextProvider } from './context/ToastContext.jsx'
+import { ConsentContextProvider } from './context/ConsentContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <AuthContextProvider>
   <ThemeContextProvider>
+  <ConsentContextProvider>
   <ModalContextProvider>
   <ToastContextProvider>
   <ChatBotProvider>  
@@ -23,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </ChatBotProvider>
   </ToastContextProvider>
   </ModalContextProvider>
+  </ConsentContextProvider>
   </ThemeContextProvider>
   </AuthContextProvider>
   </React.StrictMode>,

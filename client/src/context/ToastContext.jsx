@@ -1,7 +1,6 @@
 import {
 createContext,
 useState,
-useEffect,
 useRef
 } from "react"
 export const ToastContext = createContext()

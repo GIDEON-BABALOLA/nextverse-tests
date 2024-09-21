@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from './components/common/Layout';
 import Home from './Pages/Home';
 import NotFound from "./Pages/NotFound"
@@ -24,13 +24,13 @@ import MessagesPage from "./Pages/Dashboard/MessagesPage"
 import StoryPage from './Pages/StoryPage';
 import FollowPage from './Pages/FollowPage';
 import { useLocation } from "react-router-dom"
+import { useAuthContext } from './hooks/useAuthContext';
 import TeamPage from "./Pages/TeamPage"
-import { useEffect } from 'react';
 function App() {
+  const { user } = useAuthContext()
   const location = useLocation();
   console.log(location)
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
-  const [showCookieConsent, setShowCookieConsent] = useState(false)
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
 //   useEffect(() => {
@@ -48,22 +48,19 @@ function App() {
     <>
 { appReady ?   <Routes>
   <Route path="/" element={<Layout className="pages"
-  setShowCookieConsent={setShowCookieConsent}
    setShowTermsAndConditions={ setShowTermsAndConditions}/>}>
 <Route index element={<Home 
-showCookieConsent={showCookieConsent}
-setShowCookieConsent={setShowCookieConsent}
 showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>} />
-<Route path="publish" element={<Publish />} />
-<Route path="profile" element={< ProfilePage/>}/>
-<Route path="explore" element={< BrowsePage/>}/>
+<Route path="publish" element={ user == null ? <Navigate to="/login" /> : <Publish />} />
+<Route path="profile" element={ user == null ? <Navigate to="/login" /> : <ProfilePage/>}/>
+<Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>
   </Route>
   <Route path="our-team" element={<TeamPage />} />
   <Route path="login" element={<LoginPage />} />
-  <Route path="feed" element={<FeedPage />} />
-  <Route path="story" element={<StoryPage />}/>
-  <Route path="follow-suggestions" element={<FollowPage />}/>
-  <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
+  <Route path="feed" element={  user == null ? <Navigate to="/login" /> : <FeedPage />} />
+  <Route path="story" element={user == null ? <Navigate to="/login" /> : <StoryPage />}  />
+  <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>
+  <Route path="dashboard" element={user == null ? <Navigate to = "/login" /> : <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
@@ -72,7 +69,6 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
           <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="profile" element={<DashboardProfilePage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="messages" element={<MessagesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          
         </Route>
 
 <Route path="register" element={<RegisterPage />} />

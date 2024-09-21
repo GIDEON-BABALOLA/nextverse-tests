@@ -3,20 +3,27 @@ import {  Link } from 'react-router-dom'
 import { useRef } from "react"
 import Headroom from "react-headroom"
 import avatar from "../../assets/28.jpg"
+import defaultavatar from "../../assets/defaultavatar.svg"
 import { FaAngleRight } from "react-icons/fa"
+import Toast from "../common/Toast"
 import NavbarContextMenu from "./NavbarContextMenu"
 import Hamburger from 'hamburger-react'
-import { MdGridView, MdLogout, MdSettings, MdManageSearch ,  MdAutoStories }from "react-icons/md"
+import { MdGridView, MdLogout,
+  MdPersonAdd,
+  MdLogin, MdSettings, MdManageSearch ,  MdAutoStories }from "react-icons/md"
 import { useState, useEffect } from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import { useParams } from "react-router-dom"
 import { FaUser, FaHome } from "react-icons/fa"
 import { CgFeed } from "react-icons/cg";
+import Avatar from "./Avatar"
 import { MdOpenInNew, MdOutlinePersonAddAlt } from 'react-icons/md';
 import useInternetMode from "../../hooks/useInternetMode"
 import SpecialModal from "./SpecialModal"
 import LogoutConsent from "./LogoutConsent"
+import { useAuthContext } from "../../hooks/useAuthContext"
 const NavBar = () => {
+  const { user } = useAuthContext()
 const [isOpen, setOpen] = useState(false)
 const [openModal, setOpenModal] = useState("")
   useEffect(() => {
@@ -118,6 +125,7 @@ contextMenu.current.style.visibility = "visible"
       }, [contextMenu]);
   return (
 <>
+<Toast />
 <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
 
 setOpenModal={setOpenModal} />} height={350} width={400}/>
@@ -166,9 +174,23 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                     </span>
                                   
       <div className='nav-user-info' style={{cursor : "pointer"}}>
-<img src={avatar}
-className="navbar-context-profile-photo-home"/> 
-<h4>Gideon Babalola</h4>
+{/* <img src={avatar}
+className="navbar-context-profile-photo-home"/>  */}
+{user ? 
+<>
+<Avatar image={user["picture"]} className="navbar-context-profile-photo-home"/>
+<h4>{user["username"]}</h4>
+</>
+: 
+<>
+<div className="defaultavatar">
+  <FaUser 
+  color="#525252"
+  size={20}/>
+</div>
+<h4>&nbsp;&nbsp;Guest</h4>
+</>
+}
 
 
 </div>
@@ -258,44 +280,75 @@ className="navbar-context-profile-photo-home"/>
     
    
      
-     : <img 
+     : 
+     /* <img 
     onClick={showLoggedInUserOptions}
-className="profile-photo-home skeleton"
+className="profile-photo-home "
 style={{width : width < 768 ? "7%": "3%"}}
-src={avatar}></img>
+src={user && user["picture"]}></img> */
+<>{
+  user ?
+<Avatar className="profile-photo-home"
+onClick={showLoggedInUserOptions}
+ image={user["picture"]}
+ style={{width : width < 768 ? "7%": "3%"}}
+ /> : 
+ <div className="defaultavatar"
+ onClick={showLoggedInUserOptions}
+ >
+      
+  <FaUser color="#525252" size={20}/>
+ </div>
+}
+</>
+
     }
 
 
+
 <NavbarContextMenu contextMenu={contextMenu} setContextMenu={setContextMenu}  
+setOpenModal={setOpenModal}
 contextMenuData={[
-  {
+   {  
   id : 1,
   icon : <MdGridView className="imags" size={40}/>,
   label : "Dashboard",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
-  link : "/dashboard/analytics"
+  link : "/dashboard/analytics",
+  access : "user"
 },
 {
   id : 2,
   icon : <FaUser className="imags" size={40}/>,
   label : "Edit Profile",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
-     link : "/dashboard/profile"
+  link : "/dashboard/profile",
+  access : "user"
 },
 {
   id : 3,
   icon : <MdSettings className="imags settings-rotate" size={40}/>,
   label : "Settings & Privacy",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
-     link : "/dashboard/settings"
+  link : "/dashboard/settings",
+  access : "user"
 },
 {
-  id : 4,
-  icon : <MdLogout className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
-  label : "Sign Out",
+  id : 5,
+  icon : <MdLogin className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
+  label : "Sign In",
   arrow :   <MdOpenInNew />,
-     link : "/"
-} 
+  link : "/login",
+  access : "guest"
+},
+{
+  id : 6,
+  icon : <MdPersonAdd className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
+  label : "Sign Up",
+  arrow :   <MdOpenInNew />,
+  link : "/register",
+  access : "guest"
+},
 ]}
 />
   </header>

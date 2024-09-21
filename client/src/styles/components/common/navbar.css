@@ -162,6 +162,19 @@ border-radius: var(--border-radius-1);
     .litenote-nav-sidebar-aside .logo{
         margin-left: 1rem;
     }
+    .defaultavatar{
+  
+        background-color: #E5E5E5;
+        border-radius: 50%;
+        box-sizing: border-box;
+        cursor: pointer;
+        fill: #525252;
+        
+        overflow: hidden;
+        padding: 10px;
+        vertical-align: middle;
+      
+    }
     .litenote-nav-sidebar-aside .logo h2{
        display: inline;
     }

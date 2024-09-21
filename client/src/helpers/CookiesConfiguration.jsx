@@ -19,3 +19,6 @@ export const setCookie = (cookieName, cookieValue, expiryDate) => {
     }
     return undefined
   }
+  export const checkCookie = (cookieName) => {
+    return document.cookie.includes(cookieName)
+  }

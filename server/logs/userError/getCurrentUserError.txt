@@ -16,3 +16,19 @@
 20240512	18:36:40	0f8c0505-456d-4356-8d2f-e42c4626a76d	userError: You Are Not Logged In
 20240512	18:36:41	9e19a65f-56dd-48ab-841b-a279bf106a83	userError: You Are Not Logged In
 20240527	12:18:19	cb35896f-d3f7-4ac0-ac22-f07fae26763b	userError: You Are Not Logged In
+20240921	05:29:12	3d3d6d48-b60e-4c20-a405-a1da5787f554	ReferenceError: foundUser is not defined
+20240921	05:29:13	e73f498f-9182-485e-8ec0-e1f563f1253a	ReferenceError: foundUser is not defined
+20240921	05:29:47	6a8ec0d0-bd60-4993-bf93-c1fffccfdb74	ReferenceError: foundUser is not defined
+20240921	05:29:47	8984fdaa-e144-4ead-9e91-0be076d541c5	ReferenceError: foundUser is not defined
+20240921	05:30:45	550290f7-b0e4-4091-ace5-d121a9d8e953	ReferenceError: foundUser is not defined
+20240921	05:30:45	f4a4245d-8668-42b6-9508-7e2345db890d	ReferenceError: foundUser is not defined
+20240921	05:31:25	a71db5ad-a1ea-41de-8cf5-92d9241ed159	ReferenceError: foundUser is not defined
+20240921	05:31:26	bad5d935-1bb9-4e7d-9729-4e0c9e8eb0f8	ReferenceError: foundUser is not defined
+20240921	05:32:44	4bbc6a08-17e8-434e-bedf-6e2dfdb88340	ReferenceError: foundUser is not defined
+20240921	05:32:45	52f2a1da-6345-425f-8152-0682fbb44215	ReferenceError: foundUser is not defined
+20240921	05:33:08	562c3d1f-571a-476f-8152-4173df769095	ReferenceError: foundUser is not defined
+20240921	05:33:08	64d2a4bd-c84f-4e83-ba1c-f0eaeac33ec6	ReferenceError: foundUser is not defined
+20240921	05:33:45	645010c4-d2d0-4461-b9f5-8e6d90c84c38	ReferenceError: foundUser is not defined
+20240921	05:33:45	81adc578-9eeb-49ea-83df-416014659a42	ReferenceError: foundUser is not defined
+20240921	05:34:08	09e1b4d9-bcd8-4bec-a515-0e2eb5128a89	ReferenceError: foundUser is not defined
+20240921	05:34:08	8814427b-7a02-4680-b4fd-0aa19a7ca3f1	ReferenceError: foundUser is not defined

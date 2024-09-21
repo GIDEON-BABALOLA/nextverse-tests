@@ -58,8 +58,8 @@ export const ModalContextProvider = ({children}) => {
         <>
         <ModalContext.Provider
         value={{
-            contextMenu,
-            shareModal,
+        contextMenu,
+        shareModal,
         shareRef,
         fireClick,
         setContextMenu,

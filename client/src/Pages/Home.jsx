@@ -10,36 +10,20 @@ import CookieConsent from "../components/common/CookieConsent.jsx"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import { TrustedBy } from "../components/Home/TrustedBy.jsx"
 import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
-import useNewsletterMode from "../hooks/useNewsletterMode.jsx"
-const Home = ({ showTermsAndConditions, setShowTermsAndConditions, setShowCookieConsent, showCookieConsent}) => {
-const { newsletterMode } = useNewsletterMode()
-console.log(newsletterMode)
-  const [showNewsLetter, setShowNewsLetter] = useState(null)
+const Home = ({ showTermsAndConditions, setShowTermsAndConditions}) => {
 const page = useRef()
-useEffect(() => {
-  if(newsletterMode){
-    setTimeout(() => {
-        console.log("Fff")
-        setShowNewsLetter(!showNewsLetter)
-    }, 3000);
-  }
-
-
-}, [newsletterMode])
-
   return (
     <>
     <main ref={page}>
     <ConnectivityToast />
     
   
-    <NewsletterSignup page={page}
-    showNewsLetter={showNewsLetter} setShowNewsLetter={setShowNewsLetter} />
+    <NewsletterSignup page={page}/>
     
     <Intro />
     {/* <LanguageSelect /> */}
     <TermsAndConditions showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>
-    <CookieConsent setShowCookieConsent={setShowCookieConsent} showCookieConsent={showCookieConsent}/>
+    <CookieConsent/>
 <PopularStories />
 <GetStartedTimeline />
 {/* <TrustedBy /> */}
