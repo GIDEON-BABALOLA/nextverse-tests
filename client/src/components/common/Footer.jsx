@@ -8,8 +8,12 @@ import LanguageSelect from "./LanguageSelect";
 import SpecialModal from "../../components/common/SpecialModal"
 import { useConsentContext } from "../../hooks/useConsentContext";
 import gsap from "gsap";
-const Footer = ({ setShowTermsAndConditions}) => {
-  const { showCookieConsent, cookieConsentWrapper} = useConsentContext()
+const Footer = () => {
+  const { showCookieConsent,
+     cookieConsentWrapper,
+     showTermsAndConditions,
+     showNewsLetter
+    } = useConsentContext()
   const [openModal, setOpenModal] = useState(false)
   const showLanguageModal = () => {
     setOpenModal(true)
@@ -24,7 +28,7 @@ const Footer = ({ setShowTermsAndConditions}) => {
       <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%"}}>
       <FaShieldAlt/>
       <span style={{cursor : "pointer"}}
-      onClick={() =>  setShowTermsAndConditions(true)}>
+      onClick={() =>  showTermsAndConditions(true)}>
       Terms and Conditions 
       
       </span>
@@ -84,7 +88,7 @@ const Footer = ({ setShowTermsAndConditions}) => {
       <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%"}}>
       <FaCookieBite/>
       <span style={{cursor : "pointer"}}
-      onClick={() =>  showCookieConsent(true)}>
+      onClick={() =>  showNewsLetter(true)}>
       Join Our Newsletter
       </span>
       </div>

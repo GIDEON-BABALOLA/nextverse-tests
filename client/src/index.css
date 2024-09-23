@@ -44,6 +44,9 @@ html, body, #root {
     color: red;
     background: red !important;
   }
+  .checkmeout{
+    accent-color: #FF5E62;
+  }
   .status-active {
     /* This should be used to style a span*/
     background-color: #166534;

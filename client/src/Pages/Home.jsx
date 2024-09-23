@@ -4,13 +4,11 @@ import Faq from "../components/Home/faq.jsx"
 import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import NewsletterSignup from "../components/common/NewsletterSignup.jsx"
 import Testimonial from "../components/Home/Testimonial.jsx"
-import TermsAndConditions from "../components/common/TermsAndConditions.jsx"
-import { useState, useEffect, useRef } from "react"
-import CookieConsent from "../components/common/CookieConsent.jsx"
+import { useRef } from "react"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import { TrustedBy } from "../components/Home/TrustedBy.jsx"
 import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
-const Home = ({ showTermsAndConditions, setShowTermsAndConditions}) => {
+const Home = () => {
 const page = useRef()
   return (
     <>
@@ -22,8 +20,6 @@ const page = useRef()
     
     <Intro />
     {/* <LanguageSelect /> */}
-    <TermsAndConditions showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>
-    <CookieConsent/>
 <PopularStories />
 <GetStartedTimeline />
 {/* <TrustedBy /> */}

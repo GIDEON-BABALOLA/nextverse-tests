@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default : ""
     },
+    newsletter : {
+        type : Boolean,
+        default : false
+    },
     role : {
         type : String,
         default : "user",

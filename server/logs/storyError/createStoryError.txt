@@ -124,3 +124,33 @@
 20240528	10:11:03	38dc9197-28ad-416c-ad36-d828e006411f	userError: A story with this title already exists, pls pick another title
 20240528	10:48:02	d828143d-a759-4ffe-b90f-cece93385dc6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
 20240528	10:58:13	41a66d43-7b68-45cf-adba-3d501b73fe23	userError: A story with this title already exists, pls pick another title
+20240922	15:26:49	c743ffd6-95ce-45c1-a47f-ab2fbe2dbd36	Error: slugify: string argument expected
+20240922	15:26:58	21824524-2d49-4c63-9391-5188783ce65d	Error: slugify: string argument expected
+20240922	15:26:59	c1ee295a-4d64-42c1-8d25-69787f74a2ee	Error: slugify: string argument expected
+20240922	15:28:45	b62c492c-b8d1-4a5b-b007-2751bb601446	Error: slugify: string argument expected
+20240922	15:28:45	0629ca31-1502-42aa-b47d-014bbc24ba61	Error: slugify: string argument expected
+20240922	15:28:46	ddca2341-425e-47a3-b45e-e9445d49acd1	Error: slugify: string argument expected
+20240922	15:28:52	18b976c5-b7b6-4eeb-90fb-3c2c7d94c539	Error: slugify: string argument expected
+20240922	15:31:42	865b5252-8aeb-4f4c-bb00-b84c486e1aa6	userError: Please Kindly Fill In All The Fields
+20240922	15:31:44	d17041fc-d54f-4c64-8774-03721080e25f	userError: Please Kindly Fill In All The Fields
+20240922	15:34:36	161b909a-86d0-4d2d-a7b0-6d3879d2eb08	userError: Please Kindly Fill In All The Fields
+20240922	15:35:26	29761088-b4fa-490d-83bc-cb33087958df	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:35:28	64535d46-8bbb-429a-95e1-c8d1d36709b6	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:36:00	e35ec2bb-59e5-4595-9ff2-83c155a0c488	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:36:19	2eb46a66-11b9-4faa-8d56-fadfe1fd4faf	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:37:39	e0928bf5-6f85-4c60-88ab-f9dfdbfe803d	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:38:28	86cbb8db-7bed-457b-afc7-9fe69dae2634	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:38:29	692ab081-4854-4c89-b2e0-bf4f49364881	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:38:30	0128c64f-7752-4207-af07-1051aac4b2c9	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:43:54	fc6a803d-1881-48ad-b473-c5931849a524	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:44:00	02e79527-ea65-4d27-b20e-109e55f25195	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:44:01	8b3cdf29-1120-4715-b41c-49db761ab9d4	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:44:31	108a9795-3713-4de6-b3ca-ebbe4b423320	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:45:11	c3f557c2-b250-4ced-a696-e0614693b487	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:45:30	dceb505a-5b41-4cf6-9b96-9aa4a7c8fe7d	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:46:08	fe1cb49b-5e75-400f-82b4-2c12cff3674d	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:55:00	0017c8d8-629f-4b52-8c4f-2861f449c22b	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:56:55	e9b7a48c-47d4-4321-8295-609a4db1e9d0	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:57:24	d201327e-66ce-42f1-820f-a726002cf9e1	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:58:02	9f07ff42-ba8d-4eac-87ed-09089f9e8002	TypeError: Cannot read properties of undefined (reading 'length')
+20240922	15:58:11	49e06b9a-e29f-4444-8386-590ffec8ad97	TypeError: Cannot read properties of undefined (reading 'length')

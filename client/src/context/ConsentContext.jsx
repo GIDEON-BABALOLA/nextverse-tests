@@ -24,23 +24,21 @@ export const ConsentContextProvider = ({ children}) => {
         showCookieConsent(false)
     }
     const closeNewsletter = () => {
-        setCookie("newsletter-mode", false, 10)
         showNewsLetter(false)
+        if(checkCookie("newsletter-mode")){
+            return
+        }
+        setCookie("newsletter-mode", "false", 10)
     }
     useEffect(() => {
 const displayNewsletter = () => {
-    console.log("mighty man of war")
-    console.log(typeof getCookie("newsletter-mode"))
     if(checkCookie("newsletter-mode")){
-        if(getCookie("newsletter-mode") === false){
+        if(getCookie("newsletter-mode") == "false"){
             showNewsLetter(true)
-        }
-        else{
-return
         }
     }
 else{
-    setCookie("newsletter-mode", true, 10) //10 days
+    setCookie("newsletter-mode", "false", 10) //10 days, Newsletter consent will keep appearing for 10 days, if you do not accpt it
     showNewsLetter(true)
 }
 }
@@ -77,7 +75,7 @@ displayCookieConsent();
                 termsAndConditions,
                 showTermsAndConditions,
                 newsletter,
-                showNewsLetter,
+                showNewsLetter  ,
                 closeCookieConsent,
                 cookieConsentWrapper,
                 closeNewsletter

@@ -101,7 +101,7 @@ cookieConsent
 
     <div className="litenote-cookie-buttons" ref={buttons}>
         <button className="litenote-cookie-button" id="acceptBtn" onClick={()=> {
-               setCookie("cookie-consent", true, 1);
+               setCookie("cookie-consent", true, 30); //cookie consent will only appear 30 days, after if you accept it
                showCookieConsent(false)
         }}>Accept</button>
         <button className="litenote-cookie-button decline" onClick={() => {

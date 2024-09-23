@@ -20,9 +20,12 @@ const createStory = async(req, res) => {
     validateMongoDbId(id)
     const {title, caption, content,  category } = req.body
 try{
+    if(!title || !caption || !content || !category){
+        throw new userError("Please Kindly Fill In All The Fields", 400)
+    }
     const foundStory = await Story.findOne({slug : slugify(req.body.title)})
     if(foundStory){
-        throw new userError("A story with this title already exists, pls pick another title", 400)
+     throw new userError("Pls Kindly Choose Another Titlt, This title Has already Been Taken")
     }
     if(req.files.length === 0){
         throw new userError("Pls Choose An Image To Upload", 400)
@@ -53,6 +56,7 @@ const time = countWordsAndEstimateReadingTime(content)
 
     const newStory = {
         author : req.user.username,
+        avatar : req.user.picture,
         userId : id,
         title : title,
         slug : slugify(title),
@@ -76,6 +80,7 @@ const time = countWordsAndEstimateReadingTime(content)
     date : `${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`
  })
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "createStoryError.txt", "storyError")
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ error : error.message})
@@ -249,6 +254,19 @@ res.status(200).json(allStories)
     return res.status(500).json({error : "Internal Server Error"})
         }
 }
+}
+const getPopularStories = async (req, res) => {
+try{
+
+}catch(error){
+    logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")
+    if (error instanceof userError) {
+    return  res.status(error.statusCode).json({ error : error.message})
+    }
+     else{
+    return res.status(500).json({error : "Internal Server Error"})
+        }
+} 
 }
 
 //To Update A Story

@@ -250,3 +250,6 @@
 20240919	15:21:23	3fabf56a-91b1-47d3-bf63-ae826688c341	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20240919	15:22:12	f035d2cc-7dbd-465f-9172-e1964e47c190	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20240919	16:30:33	64edd094-ffab-47e2-9928-3d31949893d1	userError: User Already Exists
+20240922	15:25:52	8c98f678-07f3-43c7-81e0-c6a149fbd20a	userError: Please Fill In All The Fields
+20240922	15:26:09	4d9093b8-b795-47de-b507-f510c60962b9	userError: Please Fill In All The Fields
+20240922	15:26:09	ace35253-2971-40e3-844c-20dac9889c8d	userError: Please Fill In All The Fields

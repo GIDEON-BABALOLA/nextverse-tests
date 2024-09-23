@@ -70,8 +70,11 @@
 }
 
 .litenote-newsletter-custom {
-  opacity: 0;
+  /* opacity: 0; */
+  top: 1px;
+  left: 25px;
   position: relative;
+  display: none;
 }
 
 
@@ -86,7 +89,7 @@
   cursor: pointer;
 }
 
-.litenote-newsletter-custom[type=checkbox] + label::before {
+ .litenote-newsletter-custom[type=checkbox] + label::before {
   content: "";
   width: 24px;
   height: 24px;
@@ -95,7 +98,7 @@
   background: transparent;
 }
 
-.litenote-newsletter-custom[type=checkbox] + label::after {
+.golang .litenote-newsletter-custom[type=checkbox] + label::after {
   content: "✓";
   color: white;
   font-size: 1.25rem;
@@ -106,11 +109,11 @@
   transition: all 300ms ease-in-out;
 }
 
-.litenote-newsletter-custom[type=checkbox]:checked + label::before {
+.golang .litenote-newsletter-custom[type=checkbox] + label::before {
   background-color: var(--clr-accent);
 }
 
-.litenote-newsletter-custom[type=checkbox]:checked + label::after {
+.golang .litenote-newsletter-custom[type=checkbox] + label::after {
   transform: scale(1);
 }
 
@@ -128,7 +131,7 @@
 }
 
 .litenote-newsletter-card {
-  padding: 15px 12px;
+  padding: 20px 15px;
 }
 
 /* :hover.litenote-newsletter-card{
@@ -205,7 +208,7 @@ to {
     width: 95%;
   }
 }
-@media (min-width: 550px) {
+@media (min-width: 1200px) {
   .litenote-newsletter-news-grid {
     grid-auto-flow: column;
     grid-template-columns: repeat(3, 1fr);

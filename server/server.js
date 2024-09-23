@@ -10,6 +10,7 @@ const corsOptions = require(path.join(__dirname, "config", "corsConfig.js"))
 const userRouter = require(path.join(__dirname,  "routes", "userRoute.js"))
 const adminRouter = require(path.join(__dirname,  "routes", "adminRoute.js"))
 const storyRouter = require(path.join(__dirname,  "routes", "storyRoute.js"))
+const newsletterRouter = require(path.join(__dirname,  "routes", "newsletterRoute.js"))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors(corsOptions))
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/story", storyRouter); 
+app.use("/api/newsletter", newsletterRouter); 
 mongoose.connect(process.env.LIGHTNOTE_MONGODB_URL)
 .then(() => {
     app.listen(PORT, () => {

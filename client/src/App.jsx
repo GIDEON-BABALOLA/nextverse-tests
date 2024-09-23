@@ -28,9 +28,8 @@ import { useAuthContext } from './hooks/useAuthContext';
 import TeamPage from "./Pages/TeamPage"
 function App() {
   const { user } = useAuthContext()
+  console.log(user)
   const location = useLocation();
-  console.log(location)
-  const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
 //   useEffect(() => {
@@ -47,10 +46,8 @@ function App() {
     
     <>
 { appReady ?   <Routes>
-  <Route path="/" element={<Layout className="pages"
-   setShowTermsAndConditions={ setShowTermsAndConditions}/>}>
-<Route index element={<Home 
-showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>} />
+  <Route path="/" element={<Layout className="pages"/>}>
+<Route index element={<Home/>    } />
 <Route path="publish" element={ user == null ? <Navigate to="/login" /> : <Publish />} />
 <Route path="profile" element={ user == null ? <Navigate to="/login" /> : <ProfilePage/>}/>
 <Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>

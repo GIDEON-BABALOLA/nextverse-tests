@@ -2,14 +2,17 @@ import "../../styles/components/common/termsandconditions.css"
 import styles from "../../styles/components/common/test.module.css"
 import { FaShieldAlt, FaTimes } from "react-icons/fa";
 import { useRef } from "react"
-const TermsAndConditions = ({ showTermsAndConditions, setShowTermsAndConditions}) => {
+import { useConsentContext } from "../../hooks/useConsentContext";
+const TermsAndConditions = () => {
+	const { termsAndConditions, showTermsAndConditions } = useConsentContext()
   const modalRef = useRef()
   const closeModal = ( ) => {
-    setShowTermsAndConditions(false)
+	showTermsAndConditions(false)
+    // setShowTermsAndConditions(false)
 // modalRef.current.style.display = "none"
   }
   return (
-    <>{showTermsAndConditions && 
+    <>{termsAndConditions && 
     <div className="litenote-terms-and-conditions-modal">
 	<article 
      

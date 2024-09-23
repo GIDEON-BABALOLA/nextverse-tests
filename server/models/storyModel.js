@@ -19,10 +19,21 @@ const likeSchema = new mongoose.Schema({
         required: true,
     }
 });
+const bookmarkSchema = new mongoose.Schema({
+    bookmarkBy : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        required : true
+    }
+})
 const storySchema = new mongoose.Schema({
     author:{
         type:String,
         required:true,
+    },
+    avatar : {
+        type : String,
+        required : true,
     },
     title:{
         type:String,
@@ -33,17 +44,6 @@ const storySchema = new mongoose.Schema({
         required:true,
         unique:true,
         lowercase :true
-    },
-    price: {
-        type: mongoose.Types.Decimal128,
-        required: true,
-        default : 0.00
-    },
-    currency: {
-        type: String,
-        required: true,
-        enum: ['USD', 'NGN'], // Include only dollars and naira
-        default : "NGN"
     },
     estimatedReadingTime : {
         minutes: {
@@ -66,7 +66,7 @@ const storySchema = new mongoose.Schema({
     category:{
         type:String,
         required:true,
-        enum : ["fiction", "non-fiction", "romance", "adventure", "memoir"]
+        enum : ["fiction", "non-fiction", "romance", "adventure", "memoir", "technology"]
     },
     date : {
         month: {
@@ -93,11 +93,12 @@ const storySchema = new mongoose.Schema({
             validator : function(p){
                 return p.length <= 2; //Setting The Maximum Length Of The Array Here
             },
-            message: props => `The array exceeds the maximum allowed length (10).`
+            message: props => `The array exceeds the maximum allowed length (2).`
         }
     },
     comments : [commentSchema],
     likes : [likeSchema],
+    bookmarks : [bookmarkSchema],
     totalLikes : {
     type : String,
     default : 0
@@ -106,8 +107,6 @@ const storySchema = new mongoose.Schema({
     type : String,
     default : 0
     }
-    
-
 }, {
     timestamps : true
 });

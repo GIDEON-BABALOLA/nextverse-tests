@@ -14,6 +14,7 @@ const { loginAccount, isLoading, error, data, statusCode } = useLoginAccount()
 const { showToast } = useToastContext()
   const [passwordVisibility, setPasswordVisibility] = useState(true)
   const [email, setEmail] = useState();
+  const [check, setCheck] = useState(false)
   const [password, setPassword] = useState();
   useEffect(() => {
     if(error){
@@ -40,7 +41,19 @@ showToast("Error", error, false)
   const handleLogin = (e) => {
     e.preventDefault()
 loginAccount(email, password)
+check ? localStorage.setItem("remember-me", JSON.stringify({email, password})) : localStorage.removeItem("remember-me")
   }
+  const rememberMe = () => {
+    setCheck(!check)
+  }
+  useEffect(() => {
+    const userCredentials = JSON.parse(localStorage.getItem("remember-me"))
+    if(userCredentials){
+      console.log(userCredentials)
+        setEmail(userCredentials.email)
+        setPassword(userCredentials.password)
+    }
+    }, [])
     return (
       <>
       <Toast />
@@ -71,6 +84,19 @@ loginAccount(email, password)
                    color="rgba(255, 255, 255, 0.6)" style={{ position : "absolute", right : "7px", top : "3px", cursor : "pointer"}}/>
                  }
           </span>
+          <div style={{display : "flex",
+          marginTop : "30px",
+          gap : "5px",
+        
+           alignItems : "center", }}>
+          <input type="checkbox" className="checkmeout"
+onClick={rememberMe}
+          />
+          <section
+          style={{color : "rgba(255, 255, 255, 0.6)",}}
+          >Remember me</section>
+          </div>
+        
         <Button
         isLoading={isLoading}
          className="litenote-login-submit-btn" onClick={handleLogin} text={"Login"}/>
