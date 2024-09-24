@@ -33,7 +33,8 @@ if(subscribedUser){
     })
 const allTrue = mapper.every((val) => val === true)
 if(allTrue){
-    throw new userError("You Have Subscribed To All This Options Before", 400)
+        throw new userError("You Have Subscribed To All This Options Before", 400)
+   
 }
 const dataToBeInputed = new Set([...options, ...subscribedUser.category])
 subscribedUser.category = Array.from(dataToBeInputed)

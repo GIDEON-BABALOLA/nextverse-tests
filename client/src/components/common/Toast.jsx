@@ -6,7 +6,7 @@ const Toast = () => {
   const { closeToast, toastProgress, toastRef, mode } = useToastContext()
   return ( 
     <div className="litenote-toast" ref={toastRef}
-    style={{fontFamily : "Poppins", fontWeight : "2rem"}}
+    style={{fontFamily : "Poppins", fontWeight : "2rem", zIndex : "300"}}
     >
         <div className="litenote-toast-content">
         <span className="toast-check" >

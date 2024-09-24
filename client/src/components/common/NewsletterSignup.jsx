@@ -127,7 +127,7 @@ const pickAnOption = (e) => {
 
       <svg
       style={{cursor : "pointer"}}
-      onChange={() => {
+      onClick={() => {
          closeNewsletter()
       }}
        xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width= {width < 768 ? "20" : "50"} height= {width < 768 ? "20" : "50"} viewBox="0 0 256 256" xmlSpace="preserve">
@@ -253,7 +253,9 @@ onChange={(e) => setEmail(e.target.value)}
          onClick={subScribeToNewsletter}
           className="litenote-newsletter-news__btn" style={{fontSize : "1.4rem"}}>
           { isLoading ?
-          <SpinnerLoader width={15}/>
+            <span style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
+  <SpinnerLoader width={15} />
+  </span> 
           : "Subscribe"
           }
           
