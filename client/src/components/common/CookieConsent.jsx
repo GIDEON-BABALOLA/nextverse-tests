@@ -10,9 +10,6 @@ showCookieConsent,
 closeCookieConsent,
 cookieConsent
     } = useConsentContext()
-    
-    console.log(cookieConsent)
-    const item = useRef()
     let startX, startY, endX, endY;
     const minSwipeDistance = 50;
     const handleTouchStart = (event) => {
@@ -37,43 +34,7 @@ cookieConsent
         }
       }
     const buttons = useRef()
-    // const removeCookie = () => {
-    //     gsap.to(cookieWrapper.current, {
-    //         y: null,
-    //         rotation: null,
-    //         yoyo: null,
-    //         repeat: null,
-    //         ease: null,
-    //         duration: null
-    //     })
-    //     setShowCookieConsent(false)
 
-    // }
-    // const setCookie = () => {
-    //     document.cookie = "cookieBy= cookie-consent; max-age=" + 60 * 60 * 24 * 30
-    //     setShowCookieConsent(false)
-    // }
-
-// useEffect(() => {
-//         const executeCodes = () => {
-//             if(document.cookie.includes("litenote")) return;
-//             setShowCookieConsent(true)   
-//             setTimeout(() => {
-//                 gsap.to(cookieWrapper.current, {
-//                     y: 1,
-//                     rotation: 3,
-//                     yoyo: true,
-//                     repeat: -1,
-//                     ease: "sine.inOut",
-//                     duration: 0.4
-//                 })
-//             }, 2000);
-//         }
-//     setTimeout(() => {
-//        executeCodes()    
-//     }, 4000);
-
-// }, [])
   return (
     <div className={`litenote-cookie-wrapper ${cookieConsent ? "show" : ""}`} 
     onTouchStart={handleTouchStart}
@@ -82,7 +43,7 @@ cookieConsent
 
     
 <h3>
-<FaCookieBite ref={item} style={{transform : ""}}
+<FaCookieBite  style={{transform : ""}}
     className="cookie-image"
     size={30}
 />

@@ -19,6 +19,13 @@ const likeSchema = new mongoose.Schema({
         required: true,
     }
 });
+const viewsSchema = new mongoose.Schema({
+    likedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    }
+});
 const bookmarkSchema = new mongoose.Schema({
     bookmarkBy : {
         type : mongoose.Schema.Types.ObjectId,
@@ -99,6 +106,7 @@ const storySchema = new mongoose.Schema({
     comments : [commentSchema],
     likes : [likeSchema],
     bookmarks : [bookmarkSchema],
+    views : [viewsSchema],
     totalLikes : {
     type : String,
     default : 0
@@ -106,6 +114,14 @@ const storySchema = new mongoose.Schema({
     totalComments : {
     type : String,
     default : 0
+    },
+    totalViews : {
+        type : String,
+        default : 0
+    },
+    totalBookmarks : {
+        type : String,
+        default : 0
     }
 }, {
     timestamps : true

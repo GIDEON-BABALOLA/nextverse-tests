@@ -25,7 +25,6 @@ useEffect(() => {
         const userData = response.data;
         dispatch({ type: "LOGIN", payload: userData }); // Dispatch login action with user data
       } catch (error) {
-        console.log("Not logged in or error occurred:", error.message);
         dispatch({ type: "LOGOUT" }); // Dispatch logout action if no user
       }
     };

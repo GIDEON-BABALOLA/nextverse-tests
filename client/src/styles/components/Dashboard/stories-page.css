@@ -148,7 +148,7 @@ padding-right: 0px;
     }
 
 }
-@media screen and (max-width:765px) {
+@media screen and (max-width:1200px) {
 
 	.litenote-stories-select-menu{
 		width: 380px;
@@ -222,17 +222,6 @@ padding-right: 0px;
 		box-shadow: #0000001A 0px 2px 5px 0px;
 		display: none;
 z-index: 2;
-	
-		/* position: relative;
-		padding: 20px;
-		margin-top: 10px;
-		border-radius: 8px;
-		background: #ffff;
-		box-shadow: 0 0 3px rgba(0,0,0,0.1);
-		display: none;
-		*/
-	
-	
 	}
 	
 	.litenote-stories-options.show {
@@ -287,12 +276,11 @@ z-index: 2;
 		font-size: 18px;
 		color : var(--dropdown-settings-category-text)
 	}
-	
-	@media screen and (max-width: 768px) {
-		.litenote-stories-select-menu{
-			width: 350px;
-			margin: 10px auto;
-			margin-bottom: 0px;
-		}
+}
+@media screen and (max-width: 768px) {
+	.litenote-stories-select-menu{
+		width: 350px;
+		margin: 10px auto;
+		margin-bottom: 0px;
 	}
 }

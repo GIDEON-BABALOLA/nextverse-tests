@@ -28,7 +28,6 @@ import { useAuthContext } from './hooks/useAuthContext';
 import TeamPage from "./Pages/TeamPage"
 function App() {
   const { user } = useAuthContext()
-  console.log(user)
   const location = useLocation();
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)

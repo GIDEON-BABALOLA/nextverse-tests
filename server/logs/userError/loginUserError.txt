@@ -90,3 +90,7 @@
 20240919	19:07:32	9e9db153-4d96-4594-92ae-f32d09a8a90e	userError: Your Account Does Not Exist
 20240919	19:21:17	83256328-4231-4d22-aa4d-18cf19046970	userError: Invalid Credentials
 20240921	07:13:17	df46d98c-3fb7-4e23-99b5-f41308708446	userError: Invalid Credentials
+20240924	08:08:39	c838e261-09ce-42b4-9230-75087e048be9	userError: Your Account Does Not Exist
+20240924	10:28:41	2666ee86-3210-4014-a630-bb175149d3d6	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240924	11:37:15	3b61cab3-5f75-474c-9af5-ce3fefbb14fe	validatorError: Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits
+20240924	11:38:49	4e521b5e-d5ad-4037-912c-b8e6ea76f959	userError: Please Provide An Email And A Password

@@ -5,8 +5,10 @@ import great from "../../assets/Great.jpg"
 import { useModalContext } from "../../hooks/useModalContext"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
 import { MdReadMore,  } from "react-icons/md"
+import Tab from "../common/Tab"
 import ContextMenu from "../common/ContextMenu"
 import Share from "../common/Share"
+import { useState, useRef, useEffect } from "react"
 const PopularStories = () => {
   const {
     contextMenu,
@@ -45,11 +47,24 @@ const PopularStories = () => {
       date : "March 17, 2020"
     }
   ]
+  const [tabs, setTab] = useState({
+    all : true,
+    fiction : false,
+    adventure : false,
+    nonfiction : false
+  })
+
   return (
    <>
     <section className="popular-stories-featured-stories" onClick={closeContextMenu}>
     <Share  share={shareRef} shareModal={shareModal}/>
       <h2>Popular Stories</h2>
+    <Tab tabs={tabs} setTab={setTab}  
+    
+         style={{display : "flex", justifyContent : "center", marginBottom : "20px"}}
+
+          
+         />
       <div className="popular-stories-story-grid">
       {featuredStories.map((story, index) => (
 <StoryCard key={index} story={story} fireClick={fireClick}/>

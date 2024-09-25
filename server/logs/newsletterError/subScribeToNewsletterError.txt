@@ -100,3 +100,5 @@
 20240924	08:05:49	5b31dad1-f917-4ca4-b760-117d99b6429d	userError: You Have Subscribed To All This Options Before
 20240924	08:05:58	53c8dc06-6b5c-4135-ba65-49c5658bd462	userError: You Have Subscribed To All This Options Before
 20240924	08:06:04	7897f808-196f-49e8-ab33-affc98765c00	userError: You Have Subscribed To All This Options Before
+20240924	19:12:06	ee094097-4263-43b0-a515-b58ac6c0a2cb	userError: You Have Subscribed To All This Options Before
+20240924	19:12:20	4de489cf-bb7e-488e-8004-c80fd924a67c	userError: You Have Subscribed To All This Options Before

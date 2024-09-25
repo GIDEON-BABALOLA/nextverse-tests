@@ -45,75 +45,79 @@ const subScribeToNewsletter = () => {
     });
    newsletterSignup(email, Object.keys(newObj))
 }
-const pickAnOption = (e) => {
-   const option = e.currentTarget.id
-   console.log(option)
-   switch (option) {
-      case "check1":
-       setNewsLetterOptions((prevState) => {
-        const { fiction } = prevState;
-        return {...prevState, fiction : !fiction}
-       })
-        break;
-        case "check2":
-          setNewsLetterOptions((prevState) => {
-           const { nonFiction } = prevState;
-           return {...prevState, nonFiction: !nonFiction}
-          })
-           break;
-           case "check3":
-            setNewsLetterOptions((prevState) => {
-             const { adventure } = prevState;
-             return {...prevState, adventure: !adventure}
-            })
+// const pickAnOption = (e) => {
+//    const option = e.currentTarget.id
+//    console.log(option)
+//    switch (option) {
+//       case "check1":
+//        setNewsLetterOptions((prevState) => {
+//         const { fiction } = prevState;
+//         return {...prevState, fiction : !fiction}
+//        })
+//         break;
+//         case "check2":
+//           setNewsLetterOptions((prevState) => {
+//            const { nonFiction } = prevState;
+//            return {...prevState, nonFiction: !nonFiction}
+//           })
+//            break;
+//            case "check3":
+//             setNewsLetterOptions((prevState) => {
+//              const { adventure } = prevState;
+//              return {...prevState, adventure: !adventure}
+//             })
             
-             break;
-             case "check4":
-              setNewsLetterOptions((prevState) => {
-               const { liteNoteUpdates } = prevState;
-               return {...prevState, liteNoteUpdates: !liteNoteUpdates}
-              })
+//              break;
+//              case "check4":
+//               setNewsLetterOptions((prevState) => {
+//                const { liteNoteUpdates } = prevState;
+//                return {...prevState, liteNoteUpdates: !liteNoteUpdates}
+//               })
               
-               break;
-               case "check5":
-                setNewsLetterOptions((prevState) => {
-                 const { romance } = prevState;
-                 return {...prevState, romance: !romance}
-                })
+//                break;
+//                case "check5":
+//                 setNewsLetterOptions((prevState) => {
+//                  const { romance } = prevState;
+//                  return {...prevState, romance: !romance}
+//                 })
                 
-                 break;
-                 case "check6":
-                  setNewsLetterOptions((prevState) => {
-                   const { weeklyUpdates } = prevState;
-                   return {...prevState, weeklyUpdates: !weeklyUpdates}
-                  })
-                   break;
+//                  break;
+//                  case "check6":
+//                   setNewsLetterOptions((prevState) => {
+//                    const { weeklyUpdates } = prevState;
+//                    return {...prevState, weeklyUpdates: !weeklyUpdates}
+//                   })
+//                    break;
                   
                  
                       
       
     
-      default:
-        break;
-    }
-}
-// const pickAnOption = (e) => {
-//    const optionKey = e.target.id.replace("check", "");
-//    const optionMapping = {
-//      1: "fiction",
-//      2: "nonFiction",
-//      3: "adventure",
-//      4: "liteNoteUpdates",
-//      5: "romance",
-//      6: "weeklyUpdates"
-//    };
+//       default:
+//         break;
+//     }
+// }
 
-//    const selectedOption = optionMapping[optionKey];
-//    setNewsLetterOptions(prevState => ({
-//       ...prevState,
-//       [selectedOption]: !prevState[selectedOption]
-//    }));
-// };
+
+
+
+const pickAnOption = (e) => {
+   const optionKey =  e.currentTarget.id.replace("check", "");
+   const optionMapping = {
+     1: "fiction",
+     2: "nonFiction",
+     3: "adventure",
+     4: "liteNoteUpdates",
+     5: "romance",
+     6: "weeklyUpdates"
+   };
+
+   const selectedOption = optionMapping[optionKey];
+   setNewsLetterOptions(prevState => ({
+      ...prevState,
+      [selectedOption]: !prevState[selectedOption]
+   }));
+}
 
   return (
     <>

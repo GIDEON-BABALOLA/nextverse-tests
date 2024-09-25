@@ -154,3 +154,7 @@
 20240922	15:57:24	d201327e-66ce-42f1-820f-a726002cf9e1	TypeError: Cannot read properties of undefined (reading 'length')
 20240922	15:58:02	9f07ff42-ba8d-4eac-87ed-09089f9e8002	TypeError: Cannot read properties of undefined (reading 'length')
 20240922	15:58:11	49e06b9a-e29f-4444-8386-590ffec8ad97	TypeError: Cannot read properties of undefined (reading 'length')
+20240924	08:53:00	f30cea15-195e-467d-be86-28222ad81ad5	TypeError: Cannot read properties of undefined (reading 'length')
+20240924	08:56:06	205d0596-57c0-4377-9513-a9e6ea92f61a	userError: You Cannot Create A Story With The Category gaming
+20240924	08:56:09	988d3409-6546-4e3f-b455-76d6327593e5	userError: You Cannot Create A Story With The Category gaming
+20240924	08:56:16	2533e69f-c56b-4ea3-8641-c014d10bc45d	TypeError: Cannot read properties of undefined (reading 'length')

@@ -18,8 +18,20 @@ const createStory = async(req, res) => {
     console.log(`${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`)
     const { id } = req.user
     validateMongoDbId(id)
+    const defaultCategory = [
+        'adventure',
+        'romance',
+        'fiction',
+        'nonFiction', 
+        'liteNoteUpdates', 
+        "weeklyUpdates"      
+]
     const {title, caption, content,  category } = req.body
 try{
+    const isValidCategory = defaultCategory.includes(category)
+    if(!isValidCategory){
+        throw new userError(`You Cannot Create A Story With The Category ${category}`, 400)
+    }
     if(!title || !caption || !content || !category){
         throw new userError("Please Kindly Fill In All The Fields", 400)
     }
