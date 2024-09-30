@@ -1,8 +1,10 @@
 
 import { FaRegTrashAlt} from "react-icons/fa"
 import Spinner from "../../Loaders/Spinner"
-import { forwardRef, useRef } from "react"
-const StickyNotesCard = forwardRef(({ content, initialPosition, ...props }, ref) => {
+import { forwardRef, useRef, useEffect, useState } from "react"
+const StickyNotesCard = forwardRef(({ content, initialPosition,
+    saveStickyNote,
+    ...props }, ref) => {
     const colors = JSON.parse(content.colors)
     const textAreaRef = useRef(null)
     function autoGrow(textAreaRef) {
@@ -11,9 +13,14 @@ const StickyNotesCard = forwardRef(({ content, initialPosition, ...props }, ref)
         current.style.height = "auto"; // Reset the height 
         current.style.height = textAreaRef.current.scrollHeight + "px"; // Set the new height
     }
-    const saving = true
-    const saveStickyNote = () => {
-        
+    const [isLoading, setIsLoading] = useState(false)
+    useEffect(() => {
+autoGrow(textAreaRef)
+    }, [])
+    const startSaving = (id, body) => {
+        setIsLoading(true)
+        saveStickyNote(id, body)
+        setIsLoading(false)
     }
   return (
     <div
@@ -33,9 +40,12 @@ const StickyNotesCard = forwardRef(({ content, initialPosition, ...props }, ref)
             backgroundColor: colors.colorHeader,
         }}
     >
-        <FaRegTrashAlt  />
+        <FaRegTrashAlt  
+        // onClick={deleteStickyNote()}
 
-        {saving && (
+        />
+
+        {isLoading && (
             <div className="">
                 <Spinner color={colors.colorText} />
                 <span style={{ color: colors.colorText }}>
@@ -51,14 +61,18 @@ const StickyNotesCard = forwardRef(({ content, initialPosition, ...props }, ref)
                 
             
             }}
+            onKeyUp={(e) => {
+                startSaving(content.id, e.target.value)
+              
+            }}
             onInput={() => {
                 autoGrow(textAreaRef);
-                saveStickyNote()
+        
             }}
         
           
-            style={{ color: colors.colorText }}
-            defaultValue={`📌 ${content.body}`}
+            style={{ color: colors.colorText, }}
+            defaultValue={`${content.body}`}
           
         >
                      </textarea>

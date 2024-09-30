@@ -22,5 +22,25 @@
         "colorHeader":"#FED0FD",
         "colorBody":"#FEE5FD",
         "colorText":"#18181A"
+    },
+    {
+        "id":"color-purple",
+        "colorHeader":"#FCA590",
+        "colorBody":"#FEE5FD",
+        "colorText":"#18181A"
+    },
+    {
+        "id":"color-purple",
+        "colorHeader":"#FFFFA0",
+        "colorBody":"#FEE5FD",
+        "colorText":"#18181A"
+    },
+    {
+        "id":"color-purple",
+        "colorHeader":"#F8E7B4",
+        "colorBody":"#FEE5FD",
+        "colorText":"#18181A"
     }
+    
+   
 ]

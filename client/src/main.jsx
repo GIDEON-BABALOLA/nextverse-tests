@@ -9,6 +9,7 @@ import { ThemeContextProvider } from './context/ThemeContext.jsx'
 import { ModalContextProvider } from "./context/ModalContext.jsx"
 import { ToastContextProvider } from './context/ToastContext.jsx'
 import { ConsentContextProvider } from './context/ConsentContext.jsx'
+import { StickyNotesContextProvider } from './context/StickyNotesContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <AuthContextProvider>
@@ -17,11 +18,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <ModalContextProvider>
   <ToastContextProvider>
   <ChatBotProvider>  
+  <StickyNotesContextProvider>
   <Router>
   <Routes>
   <Route path="/*" element={<App/>}/> 
   </Routes>
   </Router>
+  </StickyNotesContextProvider>
   </ChatBotProvider>
   </ToastContextProvider>
   </ModalContextProvider>

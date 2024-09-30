@@ -1,10 +1,12 @@
 
 import { FaPlus, FaMinus } from "react-icons/fa"
-import { useState } from 'react'
 import colors from "../../../assets/colors.json"
-const StickyNotesControls = ({ createStickyNote, pageNumber, setPageNumber }) => {
+const StickyNotesControls = ({ createStickyNote, stickyNotesCount, pageNumber, setPageNumber }) => {
   const nextPage = () => {
-setPageNumber(pageNumber + 1)
+    console.log(Math.ceil(stickyNotesCount / 5))
+ if( pageNumber < Math.ceil(stickyNotesCount / 5)){
+  setPageNumber(pageNumber + 1)
+ }
   }
   const prevPage = () => {
     if(pageNumber == 1){

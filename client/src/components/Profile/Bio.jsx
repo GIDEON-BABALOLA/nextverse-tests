@@ -19,7 +19,7 @@ setTimeout(() => {
 
             <h2 className="litenote-profile-name">{`${username}`} 
             {/* <FcRating style={{marginLeft : "1%"}} /> */}
-            <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF5E62"}}/>
+            <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}}/>
           {/* <span className="checkbot">
     
           <FaCertificate style={{color : "#ff5e62", margin: "1%"}} />
@@ -33,7 +33,7 @@ setTimeout(() => {
           {spin ? 
           
         <span className="spinner-loader-container">
-        <SpinnerLoader />
+        <SpinnerLoader  width={13}/>
         </span>
         
       
@@ -41,6 +41,7 @@ setTimeout(() => {
      
           </span></button> 
           </h2>
+          <span><b>Technical Writer</b></span>
         <p className="litenote-profile-bio">I love sharing my life experiences and connecting with others.</p>
    </>
   )

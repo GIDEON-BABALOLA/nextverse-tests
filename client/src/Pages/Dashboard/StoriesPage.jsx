@@ -14,6 +14,7 @@ import colors from "../../assets/colors.json"
 import SearchFilter  from "../../components/Browse/SearchFilter"
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
+  const [stickyNotesCount, setStickyNotesCount ] = useState(JSON.parse(localStorage.getItem("stickyNotes"))?.length || 0 )
   const selectMenu = useRef() 
   const list = useRef()
   const selectButton = useRef()
@@ -208,7 +209,7 @@ switch (e.target.innerText.split("\n")[0]) {
      className="tab"  htmlFor="radio-3" >Sticky Notes
       <span className="notification"
      style={{backgroundColor : tabs.stickyNotes == true && "var(--primary-cocolor)", color : "#ffff", fontSize : "1rem" }}
-     >5</span>
+     >{stickyNotesCount}</span>
      </label>
 		<span className="stories-glider"
    
@@ -251,7 +252,10 @@ switch (e.target.innerText.split("\n")[0]) {
 {tabs.write && <TextEditor />}
 {tabs.notes && <NotesPreview />}
 {tabs.stories && <StoriesPreview />}
-{tabs.stickyNotes && <StickyNotes />}
+{tabs.stickyNotes && <StickyNotes 
+  stickyNotesCount={stickyNotesCount}
+  setStickyNotesCount={setStickyNotesCount}
+/>}
 
 
     </main>

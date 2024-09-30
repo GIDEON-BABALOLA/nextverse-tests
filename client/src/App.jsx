@@ -47,7 +47,7 @@ function App() {
 { appReady ?   <Routes>
   <Route path="/" element={<Layout className="pages"/>}>
 <Route index element={<Home/>    } />
-<Route path="publish" element={ user == null ? <Navigate to="/login" /> : <Publish />} />
+{/* <Route path="publish" element={ user == null ? <Navigate to="/login" /> : <Publish />} /> */}
 <Route path="profile" element={ user == null ? <Navigate to="/login" /> : <ProfilePage/>}/>
 <Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>
   </Route>
@@ -56,7 +56,7 @@ function App() {
   <Route path="feed" element={  user == null ? <Navigate to="/login" /> : <FeedPage />} />
   <Route path="story" element={user == null ? <Navigate to="/login" /> : <StoryPage />}  />
   <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>
-  <Route path="dashboard" element={user == null ? <Navigate to = "/login" /> : <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
+  <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>

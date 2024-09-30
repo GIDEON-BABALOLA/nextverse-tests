@@ -2,7 +2,7 @@ import "../../styles/components/common/cookie-consent.css"
 import { FaCookieBite } from "react-icons/fa"
 import { setCookie } from "../../helpers/CookiesConfiguration"
 import { useConsentContext } from "../../hooks/useConsentContext"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 const CookieConsent = () => {
     const {
 cookieConsentWrapper,
@@ -10,6 +10,7 @@ showCookieConsent,
 closeCookieConsent,
 cookieConsent
     } = useConsentContext()
+    const [readMore, setReadMore] = useState(false)
     let startX, startY, endX, endY;
     const minSwipeDistance = 50;
     const handleTouchStart = (event) => {
@@ -51,11 +52,22 @@ cookieConsent
     
 </h3>
 </header>
-    <div className="litenote-cookie-data">
+    <div className="litenote-cookie-data" style={{textAlign : "center"}}>
         <p>
             This website use cookies to help you have a superior and more relevant
             browsing experience on the website.
-            <a href="#">Read more...</a>
+            { readMore && <span className="cookie-consent-read-more">
+            Cookies are used to track the activities of our users and helps us to deliver content that is fits the interest of our users, disabling cookies on our website will lead to the inactivity of
+            some features on our website.
+            <p>
+            <span
+            style={{textDecoration : "underline", color : "#FF5E62", cursor : "pointer"}}
+             onClick={() => { setReadMore(false)}}> Close Read more...</span>
+            </p>
+            </span> }
+            {!readMore && <span  
+             style={{textDecoration : "underline", color : "#FF5E62", cursor : "pointer"}}
+             onClick={() => { setReadMore(true)}}>Read more...</span>}
         </p>
         </div>
 

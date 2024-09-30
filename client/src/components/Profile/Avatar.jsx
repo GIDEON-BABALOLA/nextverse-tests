@@ -15,7 +15,7 @@ const Avatar = () => {
   }, [loaded, error])
   return (
     <>
-        <div className="litenote-profile-image">
+        <div className="litenote-profile-image" style={ { marginLeft : "5px"}}>
        { loading ?<div  className="skeleton-picture"/> : <img src={profileImage} alt="User Avatar" />
        }
       </div>

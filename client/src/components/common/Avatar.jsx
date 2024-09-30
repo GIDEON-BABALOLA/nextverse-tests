@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from "react"
 import useImageLoad from "../../hooks/useImageLoaded"
-import gideon from "../../assets/3.jpg"
 const Avatar = ({ image, ...props}) => {
   const [loading, setLoading] = useState(true)
   const { loaded, error } = useImageLoad(image);

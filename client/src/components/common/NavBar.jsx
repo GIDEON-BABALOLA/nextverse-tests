@@ -149,9 +149,9 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
         <Link to="/feed" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Feed
         </Link>
-        <Link to="/publish" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
+        {/* <Link to="/publish" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Publish
-        </Link>
+        </Link> */}
         <Link to="/explore" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Explore
         </Link>
@@ -208,12 +208,12 @@ className="navbar-context-profile-photo-home"/>  */}
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
                            
         </Link>
-        <Link to="/publish"  className={`nav-sidebar-link ${currentUrl === "publish" && "active"}`}
+        {/* <Link to="/publish"  className={`nav-sidebar-link ${currentUrl === "publish" && "active"}`}
          onClick={dave}
         >
                     <MdAutoStories size={20} />
                            <h3 className="litenote-dashboard-h-three">Publish</h3>
-        </Link>
+        </Link> */}
         <Link to="/browse"  className={`nav-sidebar-link ${currentUrl === "browse" && "active"}`}
          onClick={dave}
         >

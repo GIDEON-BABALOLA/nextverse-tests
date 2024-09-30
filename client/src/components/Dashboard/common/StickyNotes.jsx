@@ -1,41 +1,27 @@
 
 import "../../../styles/components/Dashboard/sticky-notes.css"
-import { FaRegTrashAlt, FaPlus } from "react-icons/fa"
-import { MdFormatShapes, MdOutlineRectangle } from "react-icons/md"
-import { FaRegTrashCan } from "react-icons/fa6";
+
 import StickyNotesCard from "./StickyNotesCard";
-import Spinner from "../../Loaders/Spinner";
 import SearchCircle from "./SearchCircle"
-import useWindowSize from "../../../hooks/useWindowSize"
 import { useState } from "react"
 import SpecialModal from "../../common/SpecialModal"
-import colors from "../../../assets/colors.json"
-import { MdOutlineDelete } from "react-icons/md";
 import { useEffect, useRef } from "react";
 import { createRef } from "react";
 import StickyNotesControls from "./StickyNotesControls";
-const StickyNotes = () => {
-  const saving = true
-  const { width } = useWindowSize()
-  const [blinkCursor, setBlinkCursor] = useState(true)
+const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
   const [openModal, setOpenModal]  = useState(false)
   const [modalTitle, setModalTitle] =  useState("")
   const [pageNumber, setPageNumber] = useState(1)
+  const [virtualList, setVirtualList] = useState([])
   const stickyNoteContainerRef = useRef()
   const stickyNotesRefs = useRef([])
+  useEffect(() => {
+    const originalList = JSON.parse(localStorage.getItem("stickyNotes"));
+setVirtualList(originalList.slice(0 + (pageNumber -1 ) * 5,
+5 + (pageNumber -1 )   * 5
+))
+  }, [pageNumber])
   const [modalContent, setModalContent] =  useState("")
-  // const  [stickyNotes, setStickyNotes] = useState([
-  //  {
-  //       id: 1,
-  //       body:"Welcome To Sticky Notes",
-  //       colors: JSON.stringify({
-  //            id: "color-purple",
-  //           colorHeader: "#FED0FD",
-  //           colorBody: "#FEE5FD",
-  //           colorText: "#18181A",
-  //       }),
-  //   }
-  // ])
    const [stickyNotes, setStickyNotes] = useState(JSON.parse(localStorage.getItem("stickyNotes")) || [])
   const searchForStickyNotes = () => {
     setModalTitle("Search Your Sticky Notes")
@@ -48,6 +34,7 @@ const StickyNotes = () => {
       </div>)
 setOpenModal(true)
   }
+  
 const determineNewPosition = () => {
 const maxX = window.innerWidth - 240;
 const maxY = window.innerHeight - 240
@@ -95,6 +82,7 @@ document.removeEventListener("touchend", handleMouseUp)
 || window.innerHeight - (finalRect.height + finalRect.top) > window.innerHeight - finalRect.height
 || window.innerHeight - finalRect.height < finalRect.top
 ){
+  console.log("push")
    stickyNoteRef.style.left = `${startPos.x}px`
     stickyNoteRef.style.top = `${startPos.y}px`
   }
@@ -136,17 +124,30 @@ const createStickyNote = (color) => {
   const newID =  oldStickyNotes.length ? oldStickyNotes[oldStickyNotes.length - 1].id + 1 : 1;
   const newStickyNote = {
   id : newID,
-  body:"Write Here",
+  body:"📌Write Here",
   colors: JSON.stringify(color)
 
   }
+  if( stickyNotesCount < 100){
   const newStickyNotes = [...oldStickyNotes, newStickyNote]
 setStickyNotes(newStickyNotes)
 // localStorage.setItem("stickyNotes", JSON.stringify(newStickyNotes))
+  }
+
+}
+const saveStickyNote = (id, body) => {
+  const updatedNotes = stickyNotes.map((note) => note.id === id 
+?
+{...note, body : body}
+: note)
+setStickyNotes(updatedNotes)
+localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
 
 }
 useEffect(() => {
+  console.log("peter")
 const savedNotes = JSON.parse(localStorage.getItem("stickyNotes")) || []
+setStickyNotesCount(savedNotes?.length + 1)
 const updatedNotes = stickyNotes.map((note) => {
     const savedNote = savedNotes.find((n) => n.id == note.id);
 if(savedNote){
@@ -168,7 +169,7 @@ useEffect(() => {
   if(savedNotes.length == 0){
       const welcomeNote = {
           id: 1,
-          body:"Welcome To Sticky Notes",
+          body:"📌Welcome To Sticky Notes",
           colors: JSON.stringify({
                id: "color-purple",
               colorHeader: "#FED0FD",
@@ -191,17 +192,18 @@ useEffect(() => {
         <StickyNotesControls  createStickyNote={createStickyNote}
 pageNumber={pageNumber}
 setPageNumber={setPageNumber}
+stickyNotesCount={stickyNotesCount}
         />
         <div style={{marginTop : "50px"}} 
         
        
         
         >
-        {
-            stickyNotes.slice(     0 + (pageNumber -1) * 5,
+          {/* slice(     0 + (pageNumber -1) * 5,
               5 + (pageNumber -1) * 5
-            ).
-            map((content, index) => (
+            ). */}
+        {
+           virtualList.map((content, index) => (
           <StickyNotesCard 
           key={index}
           ref={
@@ -211,8 +213,8 @@ setPageNumber={setPageNumber}
             
             }
           content={content}
+          saveStickyNote={saveStickyNote}
            initialPosition={content.position}
-            key={content.id}
             onTouchStart={(e) => handleDragStart(content, e)}
             onMouseDown={(e) => handleDragStart(content, e)} />
             ))

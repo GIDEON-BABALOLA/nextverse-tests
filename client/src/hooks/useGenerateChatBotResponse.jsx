@@ -34,7 +34,7 @@ const [isLoading, setIsLoading] = useState(null)
         }
        }catch(err){
         setError(true)
-        const alteredMessage = [...incomingArray, {id : incomingArray[incomingArray.length - 1].id + 1, type: "incoming", message:  "Oops! Something went wrong. Please try again", error : true, time : new Date().toISOString()}]
+        const alteredMessage = [...incomingArray, {id : incomingArray[incomingArray.length - 1].id + 1, type: "incoming", message:  "Oops! Something went wrong. Please try again, This feature is still in development.", error : true, time : new Date().toISOString()}]
         return alteredMessage
        }
       }

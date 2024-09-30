@@ -8,7 +8,7 @@ import great from "../../assets/Great.jpg"
 import girl from "../../assets/30.jpg"
 import ContextMenu from "../common/ContextMenu"
 import ErrorMessage from "../common/ErrorMessage"
-import { FaShareAlt } from "react-icons/fa";
+import { FaEllipsisH, FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { useModalContext } from "../../hooks/useModalContext"
 import { FaRegThumbsUp } from "react-icons/fa";
@@ -117,15 +117,26 @@ const Profile = () => {
 {   !badInternet ?     <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
         <Share  share={shareRef} shareModal={shareModal}/>
   <div className="litenote-profile-container">
-    <div className="litenote-profile-header">
+    <div className="litenote-profile-header" style={{backgroundColor : "#000000",
+ 
+    
+     borderRadius : "10px", padding : "30px"}}>
+    <div style={{display : "flex", flexDirection : "column", color : "white"}}>
    <Avatar />
-      <div className="litenote-profile-info">
- <Bio/>
-        <div className="litenote-profile-stats">
+   <Bio />
+   </div>
+      <div className="litenote-profile-info" style={ { color : "white"}}>
+ 
+        <div className="litenote-profile-stats"  style={{   color: "#FF4B33"}}>
      <Stats />
         </div>
       </div>
+ 
+      <span style={{color : "white", alignSelf : "flex-end"}}>
+        <FaEllipsisH />
+      </span>
     </div>
+    
     <div className="litenote-profile-stories">
       <h3 className="litenote-profile-section-title">{`${username}`} Stories</h3>
       <div className="litenote-profile-stories-grid">

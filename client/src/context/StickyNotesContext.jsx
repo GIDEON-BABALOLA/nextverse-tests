@@ -1,27 +1,27 @@
 import { createContext, useReducer, useEffect} from "react"
-export const AuthContext = createContext()
-export const authReducer = (state, action) => {
+export const StickyNotesContext = createContext()
+export const stickyNotesReducer = (state, action) => {
     switch(action.type){
-        case "LOGIN" :
-            return { user : action.payload}
-        case "LOGOUT" :
-            return { user : null}
-        case "LOADUSER":
-            return { user : action.payload}
+        case "CREATE_NOTE" :
+            return { stickyNotes : action.payload}
+        case "UPDATE_NOTE" :
+            return { stickyNotes : action.payload}
+        case "DELETE_NOTE":
+            return { stickyNotes : action.payload}
         default :
         return state
     }
 }
-export const AuthContextProvider = ({ children }) => {
-const  [ state, dispatch] = useReducer(authReducer, {
-    user : null
+export const StickyNotesContextProvider = ({ children }) => {
+const  [ state, dispatch] = useReducer(stickyNotesReducer, {
+    stickyNotes : JSON.parse(localStorage.getItem("stickyNotes")) || []
 })
-console.log("AuthContext state", state)
+console.log("StickyNotesContext state", state)
 return (
-    <AuthContext.Provider value = {{
+    <StickyNotesContext.Provider value = {{
         ...state, dispatch
     }}>
         { children }
-    </AuthContext.Provider>
+    </StickyNotesContext.Provider>
 )
 }

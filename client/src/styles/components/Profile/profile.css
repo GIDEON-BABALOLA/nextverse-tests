@@ -333,6 +333,10 @@ width: 90px;
     .litenote-profile-image {
       margin-right: 0;
     }
+    .litenote-profile-stats{
+      justify-content: space-between;
+     gap: 10px;
+    }
     .checkman{
       top : 24%;
       right: 24%;
