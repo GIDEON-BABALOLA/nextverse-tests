@@ -48,7 +48,7 @@ function App() {
   <Route path="/" element={<Layout className="pages"/>}>
 <Route index element={<Home/>    } />
 {/* <Route path="publish" element={ user == null ? <Navigate to="/login" /> : <Publish />} /> */}
-<Route path="profile" element={ user == null ? <Navigate to="/login" /> : <ProfilePage/>}/>
+<Route path="profile" element={<ProfilePage/>}/>
 <Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>
   </Route>
   <Route path="our-team" element={<TeamPage />} />
