@@ -13,6 +13,89 @@
     --texter : #ffff;
     --keyboard : black;
 }
+.attach-picture-icon{
+    background-color: var(--text-editor-button-background);
+    color: #020929;
+    color: (var(--text-editor-buttton));
+}
+.attach-picture-options{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-bottom: 5px;
+align-items: center;
+border-bottom: 2px solid rgba(229,229,229);
+font-weight: 600;
+cursor: pointer;
+position: relative;
+}
+.attach-picture-options div{
+    font-size: 18px;
+    padding: 7px 0px;
+  
+}
+.attach-picture-options div.active{
+    color:  #7360ff;
+}
+.slideline{
+    position: absolute;
+    top: 41px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    padding: 0px 0px !important;
+    background-color: #7360ff;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+}
+.connect-to-services-button{
+    display: block;
+	width: 80%;
+	padding: 16px 0;
+	border-radius: 15px;
+	background: #0071FF;
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease;
+    margin-top: 10px;
+}
+.attach-picture-main {
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: #E5E5E5;
+gap: 10px;
+padding: 30px 0px;
+border-radius: 10px;
+margin-top: 5px;
+display: none;
+animation: moving .5s ease;
+}
+@keyframes moving{
+    from{transform: translateX(50px); opacity: 0;}
+    to{transform: translateX(0px); opacity: 1;}
+}
+.attach-picture-main.active{
+    display: flex;
+}
+.attach-picture-button{
+    display: block;
+	width: 100%;
+	padding: 16px 0;
+	border-radius: 15px;
+	background: #0071FF;
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease;
+    margin-top: 10px;
+}
+
 .computerprogrammer{
 float: right;
 border: none;
@@ -171,7 +254,9 @@ input[type="color"]::-webkit-color-swatch {
     background-color: #e0e9ff;
     color: var(--keyboard);
 }
-
+.text-editor-bottom{
+    margin-top: 5px;
+}
 
 @media screen and (max-width:1200px) {
     .litenote-text-editor-container{
@@ -200,7 +285,7 @@ input[type="color"]::-webkit-color-swatch {
     }
     .litenote-text-editor-container{
         background-color: var(--text-editor-background);
-        width: 351px;
+        width: 400px;
         margin-top: 0px;
         }
  

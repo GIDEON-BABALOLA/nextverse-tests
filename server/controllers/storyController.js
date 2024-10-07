@@ -28,17 +28,18 @@ const createStory = async(req, res) => {
 ]
     const {title, caption, content,  category } = req.body
 try{
+    if(!title || !caption || !content || !category){
+        throw new userError("Please Fill In All The Fields", 400)
+    }
     const isValidCategory = defaultCategory.includes(category)
     if(!isValidCategory){
         throw new userError(`You Cannot Create A Story With The Category ${category}`, 400)
     }
-    if(!title || !caption || !content || !category){
-        throw new userError("Please Kindly Fill In All The Fields", 400)
-    }
     const foundStory = await Story.findOne({slug : slugify(req.body.title)})
     if(foundStory){
-     throw new userError("Pls Kindly Choose Another Titlt, This title Has already Been Taken")
+     throw new userError("Pls Kindly Choose Another Title, This title Has already Been Taken")
     }
+    console.log(req.files)
     if(req.files.length === 0){
         throw new userError("Pls Choose An Image To Upload", 400)
     }

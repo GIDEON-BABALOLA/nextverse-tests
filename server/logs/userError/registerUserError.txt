@@ -262,3 +262,6 @@
 20240924	11:37:08	0b3be1b6-ded9-41b8-a959-4624bb2f07ce	userError: Please Fill In All The Fields
 20240924	11:39:00	051ca497-b0b6-4f45-bc78-3b2febcdd1fa	userError: Please Fill In All The Fields
 20240924	11:39:16	a5d88a83-62ad-471c-8f5b-d968af3f282c	userError: User Already Exists
+20241007	05:37:22	4f126086-95a0-4905-b13b-cc73f95335f2	userError: User Already Exists
+20241007	05:38:47	474d3eec-a5ac-46e8-adbe-14bcdbc2ef76	userError: Please Fill In All The Fields
+20241007	05:39:02	e3e4fa4a-375d-41f6-9fd9-694d3ac64c62	userError: User Already Exists

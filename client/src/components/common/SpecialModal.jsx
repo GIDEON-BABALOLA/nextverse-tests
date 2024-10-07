@@ -1,5 +1,5 @@
 import "../../styles/components/common/special-modal.css"
-const SpecialModal = ({ openModal, setOpenModal, title, content, width, height }) => {
+const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, dismiss }) => {
   const closeModal = () => {
    setOpenModal(false)
   }
@@ -18,9 +18,9 @@ const SpecialModal = ({ openModal, setOpenModal, title, content, width, height }
      {content}
      </div>{ title !== "" &&
      <div className="dismiss-btn">
-       <button id="dismiss-popup-btn" onClick={closeModal}>
+      { dismiss == true && <button id="dismiss-popup-btn" onClick={closeModal}>
           Dismiss
-       </button>
+       </button> }
      </div>}
     </div>
     </section>

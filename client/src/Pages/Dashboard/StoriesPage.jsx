@@ -175,7 +175,7 @@ switch (e.target.innerText.split("\n")[0]) {
   className="show-me-hello"
   >  <h3> Hello Gideon Babalola <span className="hand-stories"> &#128075;</span></h3></div>
  
-   { width > 768 ? <div className="stories-page-title">
+   { width > 1200 ? <div className="stories-page-title">
     <div className="container stories-tabs-wrapper">
 	<div className="tabs">
   

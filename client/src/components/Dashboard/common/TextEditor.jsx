@@ -1,3 +1,10 @@
+import { MdAttachFile, MdCloudUpload } from "react-icons/md"
+import SpecialModal from "../../common/SpecialModal"
+import googledriveicon from "../../../assets/google-drive.svg"
+import devicecamera from "../../../assets/camera.svg"
+import dropbox from "../../../assets/dropbox.svg"
+import { FaGoogleDrive } from "react-icons/fa";
+import hdd from "../../../assets/hdd.svg"
 import { FaBold,
     FaItalic,
    FaUnderline,
@@ -23,6 +30,8 @@ import { FaBold,
  import "../../../styles/components/Dashboard/text-editor.css"
 const TextEditor = () => {
   const [wordCount, setWordCount] = useState(0)
+  const [openModal, setOpenModal] = useState(false)
+  const [attachmentLine, setAttachmentLine] = useState(0)
     const alignButtons = useRef([])
     const spacingButtons = useRef([])
     const formatButtons = useRef([])
@@ -45,7 +54,8 @@ const TextEditor = () => {
     });
     }
     const scrollTextArea = (e) => {
-      setWordCount(textAreaRef?.current?.innerText?.length)
+      const textWithoutTags = textAreaRef?.current?.innerText.replace(/<[^>]*>/g, '');
+      setWordCount(textWithoutTags.length)
     // what we Are going to be saving into the database from here is e.target.innerHtml, and we are going to be saving it as a string format
              textAreaRef.current.style.height ="63px"
         textAreaRef.current.style.height ="auto"
@@ -81,6 +91,48 @@ if (needsRemoval) {
     });
     });
 };
+const previewAttachmentHtml = () => {
+  const slideLine =(e, index) => {
+  setAttachmentLine(e.target.offsetLeft - 20)
+  const allAttachments = document.querySelectorAll(".attach-picture-main")
+  allAttachments.forEach((content) => content.classList.remove("active"))
+  allAttachments[index].classList.add("active")
+  }
+  return (
+  <>
+
+<section className="attach-picture-options">
+  <div ><img src={hdd} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span></div>
+  <div ><img src={googledriveicon} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
+  <div ><img src={devicecamera} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
+  <div ><img src={dropbox} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>
+  <div
+  onClick={slideLine}
+   className="slideline" style={{left : attachmentLine + "px"}}></div>
+  {/* <div>Picture To Text</div> */}
+</section>
+<section className="attach-picture-main active" >
+<span><MdCloudUpload size={80} /></span>
+<span><b>Upload Image</b></span>
+<span>Image Size Must Be Less Than <b>2MB</b></span>
+</section>
+<section className="attach-picture-main">
+  Upload Pictures from your google drive
+  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to Google Drive</button>
+</section>
+<section className="attach-picture-main">
+  snap a picture
+</section>
+<section   className="attach-picture-main">
+  Upload Pictures from your dropbox
+  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to DropBox</button>
+</section>
+<button className="attach-picture-button">Select Image</button>
+  </>)
+}
+const attachmentFunction = () => {
+  setOpenModal(true)
+}
 const initializer = () => {
     //function calls for highlighting buttons
     //no highlights for link, unlink, lists, undo, redo since they are one time operation
@@ -157,6 +209,15 @@ initializer()
       
   return (
     <div className="litenote-text-editor-container">
+    <SpecialModal 
+    openModal={openModal}
+    setOpenModal={setOpenModal}
+    content={previewAttachmentHtml()}
+    width={500}
+    height={400}
+    dismiss={false}
+
+    />
     <Toaster />
     <h5 style={{color : "#CED4DA"}}>Text</h5>
     <h3 style={{fontWeight : "800"}}>Editor</h3>
@@ -281,6 +342,10 @@ initializer()
    <b>Highlight Color</b>
    </span>
  </div>
+ <span style={{cursor : "pointer"}} 
+ onClick={attachmentFunction}
+ className="attach-picture-icon"
+ >  <MdAttachFile size={20}/>Attach Picture</span>
  <span style={{fontFamily : "Poppins"}}>{wordCount} words</span>
     </div>
    
@@ -295,8 +360,9 @@ initializer()
     onBlur={scrollTextArea}
     spellCheck="true"
     contentEditable="true" ></div>
-  
+  <div className="text-editor-bottom">
     <button className="computerprogrammer">Submit</button>
+    </div>
   
   
    

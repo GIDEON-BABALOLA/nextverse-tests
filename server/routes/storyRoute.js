@@ -14,7 +14,7 @@ const {
     commentAStory,
 } = require(path.join(__dirname, "..", "controllers", "storyController.js"))
 const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
-const { uploadMiddleware, uploadVideoMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
+const { uploadMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
 router.post("/create-story", authMiddleware, uploadMiddleware, createStory)
 router.post("/comment-a-story/:id", authMiddleware, commentAStory)
 router.put("/like-a-story/:id", authMiddleware, likeAStory)

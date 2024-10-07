@@ -158,3 +158,21 @@
 20240924	08:56:06	205d0596-57c0-4377-9513-a9e6ea92f61a	userError: You Cannot Create A Story With The Category gaming
 20240924	08:56:09	988d3409-6546-4e3f-b455-76d6327593e5	userError: You Cannot Create A Story With The Category gaming
 20240924	08:56:16	2533e69f-c56b-4ea3-8641-c014d10bc45d	TypeError: Cannot read properties of undefined (reading 'length')
+20241007	05:52:05	a1a2e7e6-f978-4f26-9a13-083f7cd14b1d	userError: Please Fill In All The Fields
+20241007	05:53:02	ad1f6763-1bb1-4487-9ebd-8601b5c87fa2	userError: Please Fill In All The Fields
+20241007	05:53:09	5d248198-f5d3-48b3-9004-8f097e004690	userError: Please Fill In All The Fields
+20241007	05:53:31	d9da29c9-0235-43f5-b795-378a617340f8	userError: You Cannot Create A Story With The Category undefined
+20241007	05:53:33	2978cf0d-87e0-44c6-9618-9226e8dc2b15	userError: You Cannot Create A Story With The Category undefined
+20241007	05:53:54	00349a2f-8919-440c-8140-d99234656c63	userError: Please Fill In All The Fields
+20241007	05:55:11	d43db1df-dfda-47ae-8409-579e2f5aba37	TypeError: Cannot read properties of undefined (reading 'length')
+20241007	05:55:33	2f793f87-09f7-4c44-83a1-51190e5f14bb	TypeError: Cannot read properties of undefined (reading 'length')
+20241007	05:56:16	95054ab9-deee-4ad8-a5b0-1c5310e21de8	TypeError: Cannot read properties of undefined (reading 'length')
+20241007	05:56:55	e8176dd1-0b73-428d-a0f7-80ac0d845fa2	ReferenceError: files is not defined
+20241007	05:57:11	b00ad623-6fc3-4525-bd52-04b086c37e42	TypeError: Cannot read properties of undefined (reading 'length')
+20241007	05:57:50	f1270b9b-070e-4afc-ace1-e42f310dcffd	userError: Please Fill In All The Fields
+20241007	05:57:59	6dcb35aa-2436-4588-9d37-983952774acf	userError: Please Fill In All The Fields
+20241007	05:58:16	75acf224-60c2-4401-8c4c-caf82bb58af8	TypeError: Cannot read properties of undefined (reading 'length')
+20241007	06:01:32	5bcc4db9-0a37-4b58-9479-71327dabfa71	userError: Please Fill In All The Fields
+20241007	06:02:14	177c4e63-2937-4175-a5c8-25fdb9791e87	userError: Pls Choose An Image To Upload
+20241007	06:02:58	93e387f4-b281-4806-9c65-17ef0cbe1c76	userError: Pls Upload Two Images For This Story
+20241007	06:03:18	35bc2304-5ab7-4fdd-b5f6-9cf12862d28a	cloudinaryError: Unable To Upload Picture, Check Internet Connection

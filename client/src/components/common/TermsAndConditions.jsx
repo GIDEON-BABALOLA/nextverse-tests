@@ -1,15 +1,24 @@
 import "../../styles/components/common/termsandconditions.css"
 import styles from "../../styles/components/common/test.module.css"
 import { FaShieldAlt, FaTimes } from "react-icons/fa";
+import { setCookie } from "../../helpers/CookiesConfiguration";
+
 import { useRef } from "react"
 import { useConsentContext } from "../../hooks/useConsentContext";
 const TermsAndConditions = () => {
 	const { termsAndConditions, showTermsAndConditions } = useConsentContext()
   const modalRef = useRef()
-  const closeModal = ( ) => {
+  const closeModal = (e) => {
+	console.log(e.target.innerHTML)
+	switch (e.target.innerHTML) {
+		case "Accept":
+			setCookie("terms-and-conditions", "accepted", 365 )
+			break;
+		case "Decline":
+		setCookie("terms-and-conditions", "declined", 365)
+		break;
+	}      
 	showTermsAndConditions(false)
-    // setShowTermsAndConditions(false)
-// modalRef.current.style.display = "none"
   }
   return (
     <>{termsAndConditions && 
@@ -45,6 +54,12 @@ const TermsAndConditions = () => {
 		<footer className="litenote-terms-and-conditions-modal-container-footer">
 			<button className="litenote-terms-and-conditions-button is-primary"
         onClick={closeModal}>Accept</button>
+		<button
+		onClick={closeModal} className="litenote-terms-and-conditions-button"
+		style={{backgroundColor : "#E5E5E5"}}
+		>
+			Decline
+		</button>
 		</footer>
 	</article>
 </div>
