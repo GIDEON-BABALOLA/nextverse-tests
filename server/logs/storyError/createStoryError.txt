@@ -176,3 +176,78 @@
 20241007	06:02:14	177c4e63-2937-4175-a5c8-25fdb9791e87	userError: Pls Choose An Image To Upload
 20241007	06:02:58	93e387f4-b281-4806-9c65-17ef0cbe1c76	userError: Pls Upload Two Images For This Story
 20241007	06:03:18	35bc2304-5ab7-4fdd-b5f6-9cf12862d28a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241007	20:22:03	0eb277c5-f293-4823-8387-4e23b951aba4	userError: Pls Choose An Image To Upload
+20241007	20:25:08	dbcc0a8b-2e84-41bb-be36-8c59c51d14b2	userError: Pls Upload Two Images For This Story
+20241007	20:25:40	590a3e77-c77b-4f05-9c4c-8550f2fdf0b5	ValidationError: Story validation failed: category: `nonFiction` is not a valid enum value for path `category`.
+20241007	20:29:39	c5e529f3-01f1-4205-9e0d-88c890981567	userError: You Cannot Create A Story With The Category nonFiction
+20241007	20:32:05	c394307a-80a8-4523-a1c7-473ba16467d7	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:00:45	6fdf35d6-86d7-4637-96f5-d4c6d283c75d	userError: Please Fill In All The Fields
+20241008	07:02:48	1b9495ea-d18b-463a-9c09-9758d3ddc31a	userError: Pls Choose An Image To Upload
+20241008	07:02:49	ccf1dbf9-c53b-4298-bd8a-d81395126a68	userError: Pls Choose An Image To Upload
+20241008	07:03:08	5cea09d8-b4a2-44a3-9ae5-322145ccce34	userError: Pls Upload Two Images For This Story
+20241008	07:03:10	3655972e-975d-4113-bff5-cf645ec95c9c	userError: Pls Upload Two Images For This Story
+20241008	07:09:10	3f532d94-8d17-4f3e-bdfb-fe148bf89e25	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:09:12	d5c51207-d98d-4b5f-91c0-bcd62863064f	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:09:13	e4091729-2c39-4c47-aa9c-3922c59f4b4b	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:09:40	5a76206c-cb57-4227-b47e-0253e1ab0449	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:09:41	717f6f13-e407-4cf5-9c08-037ee7e39fb1	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:10:53	e5361c24-fb27-40a0-8fb1-6d3bd4547ded	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:21	38634dcb-c263-4c90-8667-35f847357a6c	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:22	6fb4dd68-bb47-4ed4-8c77-e67b8fb2a103	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:24	25d69aac-c1c5-41bb-a13d-0225653f95e8	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:25	717abe60-a955-44b1-adf4-c0e867c10933	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:27	4efabe2e-d2a3-4555-853d-4f240bed162e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:34	3308d3e7-059f-48ab-a0a6-1470ee2af5d5	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:35	697c3275-5fab-4498-be04-e2c1b7499c39	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:36	1900a9c5-08f9-41ab-8c08-b68006b6144a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:36	91d6b53f-7005-4627-9314-0f93b97be933	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:36	50774170-ab7a-4e1d-83f5-16945bdbd30c	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:37	4a56944a-a7c3-42b4-8fc9-21338295ac4a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:38	1dbab220-286b-4059-ac7f-68b734f1ef52	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:39	94e28960-23ad-428c-b7c6-44793b6cb537	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:39	b4f18fce-513f-4b35-9783-67d410a43325	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:39	aa77f449-db36-43ef-983c-422fe30a7f98	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:39	8175f19c-0547-474a-9157-4bb50d30c3d8	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:39	e94703e2-bb34-4311-8f92-9ff120d8b751	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:39	19f4b015-4202-4f09-9311-1e9c78b6df1e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:40	d06609c5-f869-42e8-85c4-6332f4ddbbea	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:40	938c4204-ab22-4fd3-a729-25147752f604	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:47:40	2a510b03-8493-41c8-82aa-df90f5bedad4	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	07:49:00	923f8a89-8a04-4fc8-ba9e-a3cd311e6331	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	07:50:51	d0f50dd8-be74-43e9-878a-ead21ffac7b3	userError: Please Fill In All The Fields
+20241008	07:50:53	2a6930f5-a975-44f4-aa61-8ffae7023f3b	userError: Please Fill In All The Fields
+20241008	10:20:05	3b762293-9641-4bab-838e-ccb002e01666	userError: Please Fill In All The Fields
+20241008	10:21:03	8417e587-dcd4-4663-886b-19afee8e9863	userError: Pls Choose An Image To Upload
+20241008	10:21:36	0df2fbbc-1c4e-4108-91af-8b2b96f8b1b4	userError: Pls Upload Two Images For This Story
+20241008	10:21:41	add8e367-5a80-4b5e-a935-c61772e391e9	userError: Pls Upload Two Images For This Story
+20241008	10:22:02	0d118baf-973e-4881-943c-d50216773c3f	userError: Pls Upload Two Images For This Story
+20241008	10:22:42	daff62b0-b984-423a-9ff3-a472aa7ec004	userError: Pls Upload Two Images For This Story
+20241008	10:22:44	3e1c59f9-2066-4a24-a89f-be01bac5f962	userError: Pls Upload Two Images For This Story
+20241008	10:23:47	12f0133e-d634-4e97-a3b4-d426273bc903	userError: Pls Upload Two Images For This Story
+20241008	10:24:08	b835522e-37c4-427f-92f9-9a4b5a803776	userError: Pls Upload Two Images For This Story
+20241008	10:24:31	5b7c5419-5f3d-44b1-a056-a27d448e0be8	userError: Pls Upload Two Images For This Story
+20241008	10:27:40	68f89e73-d3b7-4e40-871b-abdd0f21e024	userError: Pls Upload Two Images For This Story
+20241008	10:27:41	e87e9839-e2aa-40e7-bb88-f0a29d6d697b	userError: Pls Upload Two Images For This Story
+20241008	10:28:01	31ce14bb-8dc2-4bc2-a95f-6c6f6420450b	userError: Pls Upload Two Images For This Story
+20241008	10:28:32	fbccd49d-2d23-4bae-8c0b-355982d3321d	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	10:31:31	b350d17c-1543-405e-a550-eb77bec619a4	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	10:40:54	423a3d1d-3774-4faa-9fec-22c0b1e0c196	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	10:40:55	fb473e37-6074-41c9-a8ae-9593532cb802	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	10:40:56	5b4ae6d7-508d-43bc-aaed-fb8bd541981a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	11:41:22	7251084f-6646-4ec9-8637-69417fefd23f	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	11:41:26	475464df-7c8d-435a-9b60-9d187f6532fe	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	11:45:09	4b45663c-a6eb-4263-98aa-a02a08c4f6d5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	11:45:10	525b5027-c6f8-47f8-b7da-9dba1d8a5e63	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	11:50:40	ea683a31-0186-4cf5-9fb5-720c4a063ddd	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	13:42:38	c3fae6ba-95ef-40a9-90e1-91af05ad4bf5	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	14:17:59	d797a322-8bcc-4eb2-b724-f11a50b6c52b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	14:19:45	ebda5385-5258-462f-a718-ad603a96e5b5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	14:20:59	1c27c446-86bb-413c-9383-3e53dca7c59b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	15:16:44	5c2e1ea7-860c-4f95-8581-b908f3b4cce1	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	15:24:20	78dda03a-c4d5-4a23-95dc-45f17ba00310	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241008	15:25:18	d536b65a-0f8f-4255-9fae-0fd04f9684c7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	15:27:03	949eeb3e-1f52-4d36-b72f-6f4a8f857a72	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	15:30:01	4098d284-cfc3-4b2a-aed6-870bd84cec9a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	15:35:41	ba06e23e-f68f-4b68-a28e-602b60a5efda	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	15:37:00	82c980ca-101f-4879-860d-4e18140bfe32	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241008	15:42:18	9f5c55d6-4edc-412f-be91-5d2fb067962c	cloudinaryError: Unable To Upload Picture, Check Internet Connection

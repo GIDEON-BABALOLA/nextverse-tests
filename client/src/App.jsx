@@ -22,6 +22,7 @@ import BookmarksPage from './Pages/Dashboard/BookmarksPage';
 import JoinWaitingListPage from './Pages/JoinWaitingListPage';
 import MessagesPage from "./Pages/Dashboard/MessagesPage"
 import StoryPage from './Pages/StoryPage';
+import NoteReaderPage from './Pages/NoteReaderPage';
 import FollowPage from './Pages/FollowPage';
 import { useLocation } from "react-router-dom"
 import { useAuthContext } from './hooks/useAuthContext';
@@ -55,6 +56,7 @@ function App() {
   <Route path="login" element={<LoginPage />} />
   <Route path="feed" element={  user == null ? <Navigate to="/login" /> : <FeedPage />} />
   <Route path="story" element={user == null ? <Navigate to="/login" /> : <StoryPage />}  />
+  <Route path="note" element={ <NoteReaderPage />} />
   <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

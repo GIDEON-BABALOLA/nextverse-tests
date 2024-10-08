@@ -19,12 +19,7 @@ const createStory = async(req, res) => {
     const { id } = req.user
     validateMongoDbId(id)
     const defaultCategory = [
-        'adventure',
-        'romance',
-        'fiction',
-        'nonFiction', 
-        'liteNoteUpdates', 
-        "weeklyUpdates"      
+ "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
     const {title, caption, content,  category } = req.body
 try{
@@ -37,15 +32,15 @@ try{
     }
     const foundStory = await Story.findOne({slug : slugify(req.body.title)})
     if(foundStory){
-     throw new userError("Pls Kindly Choose Another Title, This title Has already Been Taken")
+     throw new userError("Pls Kindly Choose Another Title, This title Has already Been Taken", 400)
     }
-    console.log(req.files)
     if(req.files.length === 0){
         throw new userError("Pls Choose An Image To Upload", 400)
     }
     if(req.files.length > 2){
         throw new userError("You are only allowed to upload Two Pictures", 400)
     }else if(req.files.length < 2){
+        console.log(req.files)
     throw new userError("Pls Upload Two Images For This Story", 400)
     }
     if(!title  || !caption ||!content || !category){
@@ -61,6 +56,7 @@ for( const file of req.files){
     }
 const newPath = await uploader(path)
 urls.push(newPath.url)
+console.log(path, "davies")
 fs.unlinkSync(path)
 }
 //number of words in the story
@@ -98,6 +94,10 @@ const time = countWordsAndEstimateReadingTime(content)
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ error : error.message})
     } else if(error instanceof cloudinaryError){
+        for(const file of req.files){
+            const { path } = file
+            fs.unlinkSync(path)
+        }
         return  res.status(error.statusCode).json({ error : error.message})
     }
      else{
@@ -162,6 +162,7 @@ const uploadStoryPicture = async (req, res) => {
     const newPath = await uploader(path)
     urls.push(newPath.url)
     fs.unlinkSync(path)
+    console.log("letsgo")
     }
     const updatedStory = await Story.findByIdAndUpdate(
         id,

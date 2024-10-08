@@ -1,0 +1,23 @@
+meta {
+  name: Create a Story
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/story/create-a-story
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWM2OWI5MjQ2NDhmNDhjODkwMDg2YiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI4Mzc5MDE5LCJleHAiOjE3Mjg0NjU0MTl9.oIPS7pSSq9ePfOJMY6mjAeVr6tlBWOWFxmqPI3owG0w
+}
+
+body:multipart-form {
+  title: Tesla-corp
+  caption: Tesla Corporation
+  content: tesla is a great company
+  category: technology
+  picture: @file(C:\Users\user\Pictures\IMG_4491.PNG|C:\Users\user\Pictures\IMG_4492.PNG)
+}

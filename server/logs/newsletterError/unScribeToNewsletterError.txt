@@ -7,3 +7,5 @@
 20240923	18:01:27	c4fa4d58-db69-489f-a971-df086494bfb3	TypeError: User.findOneByIdAndDelete is not a function
 20240923	18:01:29	bda74e42-95b4-40a2-b73b-647c9f295900	TypeError: User.findOneByIdAndDelete is not a function
 20240923	18:03:51	fdf2846d-7381-4308-a50a-c14f5a1d6102	userError: You Have Not Signed Up To Our Newsletter Before
+20241008	11:48:12	8462852d-609b-4658-83c2-ff44370e40b3	userError: Pls Provide Your Email
+20241008	11:48:23	0abdeafd-5f13-4e73-88ed-b7e8439f3c7c	userError: Pls Provide Your Email

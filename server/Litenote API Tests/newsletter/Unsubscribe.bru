@@ -1,0 +1,15 @@
+meta {
+  name: Unsubscribe
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{base_url}}/newsletter/unsubscribe-to-newsletter
+  body: json
+  auth: none
+}
+
+body:json {
+  {"email": "nextverse74@gmail.com"}
+}

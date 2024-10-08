@@ -54,7 +54,7 @@ const TextEditor = () => {
     });
     }
     const scrollTextArea = (e) => {
-      const textWithoutTags = textAreaRef?.current?.innerText.replace(/<[^>]*>/g, '');
+      const textWithoutTags = textAreaRef?.current?.innerText.replace(/\s+/g, ' ')
       setWordCount(textWithoutTags.length)
     // what we Are going to be saving into the database from here is e.target.innerHtml, and we are going to be saving it as a string format
              textAreaRef.current.style.height ="63px"
@@ -68,27 +68,29 @@ textAreaRef.current.style.height =`${e.target.scrollHeight}px`
     });
     };
 const highlighter = (className, needsRemoval) => {
+  
   className.forEach((button) => {
-    
-   button.addEventListener("click", () => {
-console.log("dav")
-if (needsRemoval) {
-    let alreadyActive = false;
- if ( button.classList.contains("active"))  {
-    alreadyActive = true;
- }
- 
- highlighterRemover(className);
- if(!alreadyActive) {
-    button.classList.add("active");
- }
-}
- else {
-  console.log(button.classList)
-  console.log(button.id)
-    button.classList.toggle("active");
-}
-    });
+    if(button){
+      button.addEventListener("click", () => {
+        console.log("dav")
+        if (needsRemoval) {
+            let alreadyActive = false;
+         if ( button.classList.contains("active"))  {
+            alreadyActive = true;
+         }
+         
+         highlighterRemover(className);
+         if(!alreadyActive) {
+            button.classList.add("active");
+         }
+        }
+         else {
+          console.log(button.classList)
+          console.log(button.id)
+            button.classList.toggle("active");
+        }
+            });
+    }
     });
 };
 const previewAttachmentHtml = () => {
@@ -100,7 +102,7 @@ const previewAttachmentHtml = () => {
   }
   return (
   <>
-
+AIzaSyAVDv1QzdbMiQuApFNifNFOCuMBMjPVhS8
 <section className="attach-picture-options">
   <div ><img src={hdd} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span></div>
   <div ><img src={googledriveicon} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>

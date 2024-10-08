@@ -77,7 +77,7 @@ const storySchema = new mongoose.Schema({
     },
     date : {
         month: {
-            type: String,
+            type: String,     
             required: true
         },
         year: {
@@ -92,7 +92,7 @@ const storySchema = new mongoose.Schema({
     userId : {
         type : String,
         required : true
-    },
+    },           
     picture : {
         type: Array,
         required : true,

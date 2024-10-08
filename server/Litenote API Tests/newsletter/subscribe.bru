@@ -1,0 +1,15 @@
+meta {
+  name: subscribe
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/newsletter/subscribe-to-newsletter
+  body: json
+  auth: none
+}
+
+body:json {
+  {"email" : "gideonbabalola69@gmail.com", "options" : ["romance", "adventure", "fiction", "nonFiction" ]}
+}
