@@ -1,7 +1,10 @@
-import { FaAngleLeft, FaShare, FaSearch } from "react-icons/fa"
+import { FaAngleLeft, FaShare, FaSearch, FaRegEdit, FaUserEdit } from "react-icons/fa"
 import "../../styles/components/Note/note.css"
 import { MdSettings } from "react-icons/md"
-const NoteHeader = () => {
+import { useToastContext } from "../../hooks/useToastContext"
+import NoteSettings from "./NoteSettings"
+const NoteHeader = ({setOpenModal, openModal, setNoteSettings, noteSettings}) => {
+  const { showToast } = useToastContext()
     let title = "Software Development"
   return (
     <section className="note-header-css">
@@ -19,9 +22,22 @@ const NoteHeader = () => {
             <button>
                 Save
             </button>
-            <MdSettings size={20}/>
+            <MdSettings size={20} onClick={() => {
+              setOpenModal(!openModal)
+            }}/>
             <FaShare size={20}/>
-            <FaSearch size={20}/>
+            <FaRegEdit size={20} onClick={() => {
+                  if(noteSettings["editable"] == false){
+      showToast("Success", "Enabled Editor Mode", true)
+    }else{
+      showToast("Success", "Disabled Editor Mode", true)
+    }
+                  setNoteSettings((prevState) => {
+                    const { editable } = prevState
+      return {...prevState, editable : !editable}
+    });
+ 
+            }}/>
 
         </div>
     </section>

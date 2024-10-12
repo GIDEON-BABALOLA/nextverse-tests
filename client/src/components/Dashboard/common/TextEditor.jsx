@@ -104,7 +104,9 @@ const previewAttachmentHtml = () => {
   <>
 AIzaSyAVDv1QzdbMiQuApFNifNFOCuMBMjPVhS8
 <section className="attach-picture-options">
-  <div ><img src={hdd} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span></div>
+  <div ><img src={hdd} width="15%"/>
+  <span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span>
+  </div>
   <div ><img src={googledriveicon} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
   <div ><img src={devicecamera} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
   <div ><img src={dropbox} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>

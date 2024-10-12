@@ -1,2 +1,8 @@
 20240528	11:39:39	b6f0fe09-b35f-4e1c-8a9e-2f40612d4122	ValidationError: Story validation failed: comments.0.commentBy: Cast to ObjectId failed for value "This is a very nice story" (type string) at path "commentBy" because of "BSONError"
 20240528	11:40:43	815f3908-5131-4913-9719-20b554e1ac34	ValidationError: Story validation failed: comments.0.commentBy: Cast to ObjectId failed for value "This is a very nice story" (type string) at path "commentBy" because of "BSONError"
+20241009	08:40:18	8f97a24a-9333-4f18-a943-81ebd798ef8f	userError: Pls enter a parameter recognized by the database
+20241009	08:40:19	a69bb6d0-5839-4d19-9b96-494b40ddce03	userError: Pls enter a parameter recognized by the database
+20241009	08:40:33	eb1cd90c-6ff2-4719-9dbb-4c67744c67b8	ValidationError: Story validation failed: comments.0.comment: Path `comment` is required.
+20241009	08:41:30	bb6f9a86-4b24-4841-9f34-43d289ad47e5	userError: Pls enter your comment for this story
+20241009	08:42:53	358898a6-8a3e-4c6e-89bb-e9290dcc38a1	userError: Pls enter your comment for this story
+20241009	08:42:54	2dd2ad06-d8a2-4f3d-9c3d-8c8f47e24782	userError: Pls enter your comment for this story

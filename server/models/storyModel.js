@@ -133,6 +133,24 @@ storySchema.methods.addComment = async function (comment, userId) {
     await this.save();
     return this;
 };
+storySchema.methods.addBookmark = async function (userId) {
+    if (!this.bookmarks.some(bookmark => bookmark.bookmarkBy.toString() === userId.toString())) { //.some works just like .find
+        this.bookmarks.push({ bookmarkBy: userId });
+        this.totalBookmarks = this.bookmarks.length;
+        await this.save();
+    }
+    return this;
+};
+storySchema.methods.removeBookmark = async function(userId){
+    if (this.bookmarks.some(bookmark => bookmark.bookmarkBy.toString() === userId.toString())) {
+        this.bookmarks.pull({ bookmarkBy: userId });
+        console.log(this.bookmarks)
+        this.totalBookmarks = this.bookmarks.length
+        await this.save(); 
+    }
+    return this
+}
+
 
 storySchema.methods.addLike = async function (userId) {
     if (!this.likes.some(like => like.likedBy.toString() === userId.toString())) { //.some works just like .find

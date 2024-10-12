@@ -32,3 +32,29 @@
 20240525	21:44:28	9b604801-f5f3-40e5-852d-1f59df893b3b	userError: This page does not exist
 20240525	21:44:29	e97d4946-3dec-4fdb-b256-fc6db35c652d	userError: This page does not exist
 20240526	20:40:09	2672a77a-8afb-4f96-b8a0-9e2d6ed902bf	userError: This Story Does Not Exist
+20241009	08:24:31	6bbd157e-fb6b-40b1-983a-18d84176480c	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:25:29	dcf3c607-d0b8-46fa-96c9-0c6d56ff1e89	CastError: Cast to ObjectId failed for value "123456" (type string) at path "_id" for model "Story"
+20241009	08:25:31	e2de6498-6b20-458f-9270-375c66b6139e	CastError: Cast to ObjectId failed for value "123456" (type string) at path "_id" for model "Story"
+20241009	08:26:40	c59da6cf-fe84-4e89-a859-210a3d953d88	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:27:21	6c0b2e81-1027-4ade-b448-38410fc62a89	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:32:14	d74a0447-9623-4d15-91ea-dced94c0cb96	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:32:27	cd515cb5-8f4e-46bd-8be0-c5bf69ed1bf8	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:32:28	4034f202-018e-4470-bcfc-96cb41baf9b7	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:33:13	42f9363f-db9f-4bea-aa55-19aa6eaf91be	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:33:41	afbd43dd-fc13-49bc-ae9e-377e8d617b51	CastError: Cast to ObjectId failed for value "id" (type string) at path "_id" for model "Story"
+20241009	08:35:07	e1347fdd-1685-4bf2-871f-2fe957c9126a	userError: Pls enter a parameter recognized by the database
+20241009	08:35:08	818f146a-7500-4e57-a4b1-9c9241ddaa97	userError: Pls enter a parameter recognized by the database
+20241009	08:35:09	b1f065bf-c12e-45e1-96cd-d8ecfed92f01	userError: Pls enter a parameter recognized by the database
+20241009	08:35:10	73b5df32-4f07-41b9-9273-b985b5bec017	userError: Pls enter a parameter recognized by the database
+20241009	08:35:11	b0738972-26a4-4ca5-b9a1-8fa61f7317ff	userError: Pls enter a parameter recognized by the database
+20241009	08:35:12	c18bff6c-b031-4495-8b3d-96967e517c7d	userError: Pls enter a parameter recognized by the database
+20241009	08:35:12	6d8fd11f-f9c4-4cea-97b9-6f465fdd8b7f	userError: Pls enter a parameter recognized by the database
+20241009	08:35:12	758a6e0e-3d37-44ab-9cc2-7467e7e200c9	userError: Pls enter a parameter recognized by the database
+20241009	08:35:12	7d76eb31-74c7-4e4f-8175-5bc576f06346	userError: Pls enter a parameter recognized by the database
+20241009	08:35:12	5ae7d4b3-f651-4728-8a3d-dcc227250ffe	userError: Pls enter a parameter recognized by the database
+20241009	08:35:12	22620a1f-ed03-4c93-b2f0-fe7b5fd944e4	userError: Pls enter a parameter recognized by the database
+20241009	08:35:13	3835d0a3-a149-4b8c-884e-c06700a2bd67	userError: Pls enter a parameter recognized by the database
+20241009	08:35:13	7cebbd0c-06a5-404a-bff6-6d99c1555670	userError: Pls enter a parameter recognized by the database
+20241009	08:35:13	f298b91a-c31a-4dae-8cf7-3bec751f04ac	userError: Pls enter a parameter recognized by the database
+20241009	08:35:13	100084a1-91c5-408d-80b3-e3e2627ad0b3	userError: Pls enter a parameter recognized by the database
+20241009	08:35:13	87576126-25ef-4d2c-b6ed-01971a52ca34	userError: Pls enter a parameter recognized by the database

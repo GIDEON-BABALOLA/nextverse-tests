@@ -6,5 +6,6 @@ const validateMongoDbId = (id)=>{
     if(!isValid){
         logEvents(`This id is invalid`, "validMongoDbIdError.txt")
     }
+    return isValid
 }
 module.exports = validateMongoDbId;

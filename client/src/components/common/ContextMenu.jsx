@@ -1,7 +1,6 @@
 import "../../styles/components/common/context.css"
 import { useRef, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import useWindowSize from "../../hooks/useWindowSize"
 const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu, state}) => {
     const navigate = useNavigate()
     const context = useRef()

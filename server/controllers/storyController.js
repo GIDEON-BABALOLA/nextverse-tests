@@ -51,12 +51,12 @@ const urls = []
 for( const file of req.files){
     const { path, size } = file;
     if(size > 2000000){
+        console.log(path)
         fs.unlinkSync(path) //delete the image from server
         throw new userError("Image size too large (max 2MB)", 400)
     }
 const newPath = await uploader(path)
 urls.push(newPath.url)
-console.log(path, "davies")
 fs.unlinkSync(path)
 }
 //number of words in the story
@@ -94,10 +94,6 @@ const time = countWordsAndEstimateReadingTime(content)
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ error : error.message})
     } else if(error instanceof cloudinaryError){
-        for(const file of req.files){
-            const { path } = file
-            fs.unlinkSync(path)
-        }
         return  res.status(error.statusCode).json({ error : error.message})
     }
      else{
@@ -185,8 +181,10 @@ const uploadStoryPicture = async (req, res) => {
 //To Get A Story
 const getAStory = async (req, res) => {
     const { id } = req.params;
-    validateMongoDbId(id)
 try{
+    if(!validateMongoDbId(id)){
+throw new userError("Pls enter a parameter recognized by the database", 400)
+    }
 if(!id){
     throw new userError("Pls Enter The Id Of The Story You Want To View", 400)
 }
@@ -286,8 +284,10 @@ try{
 //To Update A Story
 const updateAStory = async (req, res) => {
     const { id } = req.params;
-    validateMongoDbId(id)
-    try{
+        try{
+        if(!validateMongoDbId(id)){
+            throw new userError("Pls enter a parameter recognized by the database", 400)
+                }
         if(Object.keys(req.body).length === 0){
             throw new userError("Pls Enter The Values You Want To Update", 400)
         }
@@ -318,8 +318,13 @@ res.status(201).json(updateStory)
 const commentAStory = async (req, res) => {
     const { id } = req.params;  // The story ID
     const { comment } = req.body;  // The comment text
-    validateMongoDbId(id);  // Ensure the ID is a valid MongoDB ObjectID
     try {
+        if(!validateMongoDbId(id)){
+            throw new userError("Pls enter a parameter recognized by the database", 400)
+                }
+        if(!comment){
+            throw new userError("Pls enter your comment for this story", 400)
+        }
         const story = await Story.findById(id);
         // Add the comment to the story using static method
         const commentedStory = await story.addComment( comment, req.user._id);
@@ -340,8 +345,10 @@ const commentAStory = async (req, res) => {
 
 const likeAStory = async(req, res) => {
     const { id } = req.params
-    validateMongoDbId(id);
 try{
+    if(!validateMongoDbId(id)){
+        throw new userError("Pls enter a parameter recognized by the database", 400)
+            }
     const story = await Story.findById(id);
   // Add the like to the story using static method
  const likedStory = await story.addLike(id, req.user._id);
@@ -362,8 +369,10 @@ try{
 //To Bookmark A Story
 const bookmarkAStory = async (req, res) => {
     const { id } = req.params;
-    validateMongoDbId(id)
     try{
+        if(!validateMongoDbId(id)){
+            throw new userError("Pls enter a parameter recognized by the database", 400)
+                }
 const storyToBeBookmarked = await Story.findById(id)
 if(!storyToBeBookmarked){
     throw new userError("This story does not exist", 400)
@@ -375,9 +384,9 @@ switch (req.user.role) {
     case "admin":
         await Admin.bookmarkStory(req.user._id, storyToBeBookmarked._id)
 }
-res.status(201).json(storyToBeBookmarked)
+const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
+res.status(201).json(bookmarkedStory)
     }catch(error){
-
         logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
         if (error instanceof userError) {
             return  res.status(error.statusCode).json({ error : error.message})
@@ -389,10 +398,12 @@ res.status(201).json(storyToBeBookmarked)
 }
 const unBookmarkAStory = async (req, res) => {
     const { id } = req.params;
-    validateMongoDbId(id);
     try {
+        if(!validateMongoDbId(id)){
+            throw new userError("Pls enter a parameter recognized by the database", 400)
+                }
         const storyToBeUnbookmarked = await Story.findById(id);
-        if(!storyToBeUnBookmarked){
+        if(!storyToBeUnbookmarked ){
             throw new userError("This story does not exist", 400)
         }
         switch (req.user.role) {
@@ -402,8 +413,10 @@ const unBookmarkAStory = async (req, res) => {
             case "admin":
                 await Admin.unbookmarkStory(req.user._id, storyToBeUnbookmarked._id);
         }
-        res.status(201).json(storyToBeUnbookmarked);
+        const unBookmarkedStory = await storyToBeUnbookmarked.removeBookmark(req.user._id);
+        res.status(201).json(unBookmarkedStory);
     } catch (error) {
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unbookmarkAStoryError.txt", "storyError");
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ error: error.message });

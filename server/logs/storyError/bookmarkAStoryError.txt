@@ -5,3 +5,7 @@
 20240527	12:36:16	4a67ed71-e173-4bcc-9701-bcdec170b57d	TypeError: Cannot read properties of undefined (reading 'toString')
 20240528	11:34:57	0464c7b7-ae34-42bd-8929-e90c7ef7bc2d	TypeError: Cannot read properties of null (reading '_id')
 20240528	11:36:41	735db51a-fd23-475c-a3ba-929d8ea55ed2	userError: This story does not exist
+20241009	08:48:38	f4fae4b9-b8b3-4777-9dfb-70de8eba5f93	CastError: Cast to ObjectId failed for value "ik" (type string) at path "_id" for model "Story"
+20241009	08:48:59	544cfe1f-f309-423e-b9e8-6ed334e0f3e9	userError: Pls enter a parameter recognized by the database
+20241009	08:49:00	9dc26e8e-d23f-49e7-ac75-84d8afb4497a	userError: Pls enter a parameter recognized by the database
+20241009	08:49:02	7710a620-9995-4af6-b3a6-6a03788ecc18	userError: Pls enter a parameter recognized by the database

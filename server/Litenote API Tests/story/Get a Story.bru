@@ -1,11 +1,15 @@
 meta {
   name: Get a Story
   type: http
-  seq: 5
+  seq: 4
 }
 
 get {
-  url: {{base_url}}/user/get-a-story/id
+  url: {{base_url}}/story/get-a-story/670437702a8d6596940c9bf6
   body: none
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWM2OWI5MjQ2NDhmNDhjODkwMDg2YiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI4NDU4NjM1LCJleHAiOjE3Mjg1NDUwMzV9.0it3iNN2qswagWO1uTDrrZru7lqG0WJh333C3-lUo5o
 }

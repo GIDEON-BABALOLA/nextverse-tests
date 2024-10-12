@@ -564,3 +564,8 @@
 20240903	20:09:05	db215c16-5860-4707-809a-9b70d4f64217	waitingListError: This page does not exist
 20240916	11:13:11	7f1dcaab-c932-4f15-9b67-3d4dc38b7903	waitingListError: You Have Not Subscribed To Our Newsletter
 20240916	11:13:35	97595b24-2a95-4204-b5d8-1754d56b980f	waitingListError: You Have Not Subscribed To Our Newsletter
+20241009	12:29:54	bffbc874-0014-4e06-925a-dada79925a02	waitingListError: This page does not exist
+20241009	12:29:54	5ec68e73-ecfc-4882-9760-a870748bec64	waitingListError: This page does not exist
+20241009	12:29:54	8873d090-cb2f-470a-8892-0738d28d9a1b	waitingListError: This page does not exist
+20241009	12:29:54	0195c96b-783b-4d62-95c3-8375ea2edabc	waitingListError: This page does not exist
+20241009	12:34:11	d341f61d-4fce-4b3b-ba5a-3d43e953b1dc	waitingListError: This page does not exist
