@@ -1,14 +1,20 @@
 
 import { FaCheck } from "react-icons/fa"
 import colors from "../../../assets/colors.json"
+import { FaAngleLeft } from "react-icons/fa"
 import { useState } from "react"
-const ColorOptionList = ({colorType, setNoteSettings }) => {
+const ColorOptionList = ({colorType, setNoteSettings, savedSelection, slideLine, formatHighlightedText }) => {
   const [markerPosition, setMarkerPosition] = useState(13)
+  const highlightColor = (color) => {
+    console.log(color)
+     formatHighlightedText("backColor", color)
+     console.log(savedSelection)
+  }
   const handleChosenColor = (e, color) => {
     setMarkerPosition(e.target.offsetLeft + 13)
 switch (colorType) {
   case "Highlight Color":
-    
+    highlightColor(color)
     break;
     case "Text Color":
     setNoteSettings((prevState) => {
@@ -23,12 +29,17 @@ switch (colorType) {
   return (
    <section 
     className="settings-main"
-   style={{display : "flex", flexDirection : "column", alignItems : "center", marginTop : "5%"}}>
+   style={{display : "flex", flexDirection : "column", alignItems : "center", marginTop : "5%", 
+   justifyContent : "space-between", gap : "5px"
+   }}>
     <div
-     style={{ display : "flex", alignSelf : "left",}}
+     style={{ display : "flex", width : "100%", flexDirection : "row", alignItems : "center", justifyContent : "space-between"}}
     
     >
+    <FaAngleLeft style={{cursor : "pointer"}} id="Color Option" onClick={(e) => slideLine(e) }/>
+    <span style={{ justifySelf : "center", width : "100%", fontFamily : "Montserrat", fontStyle  : "bold"}}>
   {colorType}
+  </span>
 
   </div>
   <div

@@ -1,50 +1,20 @@
 import { FaBold, FaFillDrip ,FaItalic, FaUnderline } from "react-icons/fa"
-import { MdInsertComment } from "react-icons/md"
 import { useModalContext } from "../../hooks/useModalContext"
-import { useToastContext } from "../../hooks/useToastContext"
 import { useEffect, useRef } from "react"
 const NoteTooltip = ({ savedSelection,
    setSavedSelection,
   noteSettings,
   openModal,
-  setOpenModal
+  setOpenModal,
+  formatHighlightedText,
+  slideLine
 }) => {
   const { contextMenu, setContextMenu, } = useModalContext()
-  const { showToast } = useToastContext()
-  // Function to restore the saved selection
-  const restoreSelection = () => {
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    if (savedSelection) {
-      selection.addRange(savedSelection);
-    }
-  };
-const handleChangeHighlightColor = () => {
-  setOpenModal(!openModal)
-  formatHighlightedText("backColor", "yellow")
-}
-  // Format the highlighted text with execCommand
-  const formatHighlightedText = (command, value = null) => {
-    restoreSelection(); // Restore selection before formatting
-    if(noteSettings["editable"] == false){
-      showToast("Error", "Pls Switch To Editor Mode To Edit Content", false)
-      return;
-    }
-    document.execCommand(command, false, value);
-      contextMenu.current.style.visibility = "hidden";      
-    // Clear saved selection after applying formatting if needed
-    setSavedSelection(null)
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-  };
-
-  // const formatHighlightedText = (e, params, value = null) => {
-  //   e.preventDefault()
-  //   document.execCommand(params, false, value)
-  // }
+// const handleChangeHighlightColor = () => {
+//   setOpenModal(!openModal)
+//   formatHighlightedText("backColor", "yellow")
+// }
   const tooltipRef = useRef()
-  // const triangle = useRef()
-  // const rectangle = useRef()
   useEffect(() => {
       setContextMenu(tooltipRef)
   }, [setContextMenu])
@@ -66,7 +36,7 @@ const handleChangeHighlightColor = () => {
     <FaUnderline onClick={() => {formatHighlightedText("underline")}} />        
         </span>
         <span>
-    <FaFillDrip onClick={() => handleChangeHighlightColor()  } />      
+    <FaFillDrip  id="Color Option List" onClick={(e) => {formatHighlightedText("highlightcolor"); slideLine(e)}} />      
         </span>
 
 
