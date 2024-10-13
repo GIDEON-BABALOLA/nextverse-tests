@@ -57,6 +57,7 @@ setTimeout(() => {
         <div style={{border : "none", outline : "none",
          fontFamily : noteSettings["fontFamily"],
          fontSize : noteSettings["fontSize"] + "rem",
+         color : noteSettings["textColor"], 
             userSelect: noteSettings["editable"] ? "text" : "none",
         }}
         onMouseUp={saveSelection}

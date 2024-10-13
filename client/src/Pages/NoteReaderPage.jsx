@@ -18,8 +18,9 @@ const NoteReaderPage = () => {
     fontSize : 1.1,
     wordsPerPage : 12000,
     page : 1,
-    color : "black",
+    textColor : "black",
     editable : false,
+    highlightColor : "black"
   })
   const saveSelection = (e) => {
     if(noteSettings["editable"] == false){

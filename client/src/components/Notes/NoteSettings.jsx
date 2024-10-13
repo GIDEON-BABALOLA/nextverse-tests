@@ -20,7 +20,10 @@ const NoteSettings = ({ noteSettings, setNoteSettings}) => {
     const slideLine =(e) => {
 
   let tab;
-        setAttachmentLine(e.target.offsetLeft - 20)
+  // if(e.target.offsetLeft - 20 == 113){
+
+  // }
+       
          tab = e.target.id.split(" ").join("")
         if(tab == ""){
           tab = e.currentTarget.id.split(" ").join("")
@@ -37,7 +40,13 @@ console.log(selectedOption)
             .reduce((acc, key) => ({ ...acc, [key]: false }), {}),
             [tab]: true
          }))
+         if(tab == "ColorOptionList"){
+          setAttachmentLine(113)
+          return;
         }
+        setAttachmentLine(e.target.offsetLeft - 20)
+        }
+        
         //inter, poppins, montserrat, roboto, lato
   return (
     

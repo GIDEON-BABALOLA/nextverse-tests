@@ -24,7 +24,7 @@ const ColorOption = ({ slideLine, setColorType}) => {
  
 </div>
    <div
- onClick={(e) => {slideLine(e, 1); setColorType("Text Color") }}
+ onClick={(e) => {slideLine(e); setColorType("Text Color") }}
  id="ColorOptionList"
  style={{display
  : "flex", flexDirection : "row", width : "100%", justifyContent : "space-between", alignItems : "center",
