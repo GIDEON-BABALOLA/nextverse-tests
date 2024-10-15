@@ -256,3 +256,5 @@
 20241009	08:17:33	56542c0c-990a-4c8c-ae3e-935bb7f23051	cloudinaryError: Unable To Upload Picture, Check Internet Connection
 20241009	08:20:14	8f0bdfec-334a-4379-88ca-e9b430bb0587	cloudinaryError: Unable To Upload Picture, Check Internet Connection
 20241009	08:23:08	e3ff9e34-68d2-4c8f-b3d9-5aee3647ccb4	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241015	14:58:49	6802102b-0b37-4ed5-82ba-73ecc98894c9	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241015	14:58:59	a6b7460c-4e4b-416b-bc13-3ed08aefa4d9	cloudinaryError: Unable To Upload Picture, Check Internet Connection

@@ -1,6 +1,7 @@
 import { FaPlus, FaEdit,  FaReadme } from "react-icons/fa" 
 import { FaEllipsis } from "react-icons/fa6"
 import { MdDelete, MdSend } from "react-icons/md"
+import { useNavigate } from "react-router-dom"
 import "../../../styles/components/Dashboard/notes-preview-page.css"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { MdReadMore } from "react-icons/md"
@@ -12,6 +13,7 @@ const NotesPreview = () => {
     const [openModal, setOpenModal] = useState(false)
     const [modalTitle, setModalTitle] =  useState("")
     const [modalContent, setModalContent] =  useState("")
+    const navigate = useNavigate()
     const triggerNoteDelete = () => {
         setModalTitle("Delete Note")
         setModalContent("Are you sure you want to delete this note")
@@ -80,7 +82,9 @@ return <>
 </div>
 <div className="wrapper">
 
-<li className="add-box">
+<li className="add-box" onClick={() => {
+    navigate("/note/gideonbabalola69@gmail.com/283938") //This is just a test
+}}>
 <div className="icon"><FaPlus /></div>
 <p>Add new note</p>
 </li>

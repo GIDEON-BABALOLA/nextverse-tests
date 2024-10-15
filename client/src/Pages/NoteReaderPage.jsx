@@ -61,20 +61,17 @@ const NoteReaderPage = () => {
       window.speechSynthesis.speak(utterance)
   }
   const formatHighlightedText = (command, value = null) => {
-console.log("again")
-    if(command == "highlightcolor"){
-      console.log("david")
-      setColorType("Highlight Color")
-      contextMenu.current.style.visibility = "hidden";  
-      // restoreSelection()
-      setOpenModal(!openModal)
-      return;
-    }
-    restoreSelection();
     if(noteSettings["editable"] == false){ 
       showToast("Error", "Pls Switch To Editor Mode To Edit Content", false)
       return;
     }
+    if(command == "highlightcolor"){
+      setColorType("Highlight Color")
+      restoreSelection()
+      setOpenModal(!openModal)
+      return;
+    }
+    restoreSelection();
     document.execCommand(command, false, value);
     console.log("I am also here")
     contextMenu.current.style.visibility = "hidden";
