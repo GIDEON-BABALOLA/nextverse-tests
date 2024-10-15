@@ -17,7 +17,9 @@ const NoteSettings = ({
   setAttachmentLine,
   slideLine,
   colorType,
-  setColorType
+  setColorType,
+  openModal,
+  restoreSelection
 }) => {
 
         
@@ -71,6 +73,7 @@ id="Line Sizing"
     slideLine={slideLine} setNoteSettings={setNoteSettings}
     formatHighlightedText={formatHighlightedText}
       noteSettings={noteSettings}
+      openModal={openModal}
     />
     }
    { tabSettings["FontSize"] &&  <FontSize  noteSettings={noteSettings} setNoteSettings={setNoteSettings}/>

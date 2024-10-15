@@ -2,49 +2,27 @@
 import { FaCheck } from "react-icons/fa"
 import colors from "../../../assets/noteEditorColors.json"
 import { FaAngleLeft } from "react-icons/fa"
-import { useState, useEffect } from "react"
-const ColorOptionList = ({colorType,
-  openModal,
-  setNoteSettings, savedSelection, slideLine, formatHighlightedText }) => {
+import { useState } from "react"
+const ColorOptionList = ({colorType, setNoteSettings, savedSelection, slideLine, formatHighlightedText }) => {
   const [markerPosition, setMarkerPosition] = useState(13)
-  const [isReady, setIsReady] = useState(false)
-  // const [ready, setReady] = useState(false)
-//   const highlightColor = (e, color) => {
-//     console.log(savedSelection)
-//     setMarkerPosition(e.target.offsetLeft + 13)
-//   if(savedSelection.commonAncestorContainer.previousSibling){
-// if(ready == true){
-//      savedSelection.commonAncestorContainer.previousSibling.style.backgroundColor = color
-//      setTimeout(() => {
-//       setReady(false)
-//     }, 2000); 
-// }
-//   }
-//   if(ready == false){
-//     formatHighlightedText("backColor", color)
-//   }
-//    setTimeout(() => {
-//       setReady(true)
-//     }, 1000); 
-//   }
-useEffect(() => {
-if(openModal == false){
-  setIsReady(false)
+  const [ready, setReady] = useState(false)
+  const highlightColor = (e, color) => {
+    setMarkerPosition(e.target.offsetLeft + 13)
+  if(savedSelection.commonAncestorContainer.previousSibling){
+if(ready == true){
+     savedSelection.commonAncestorContainer.previousSibling.style.backgroundColor = color
+     setTimeout(() => {
+      setReady(false)
+    }, 1000); 
 }
-}, [openModal])
-const highlightColor = (e, color) => {
-  console.log(isReady)
-  console.log(savedSelection)
-  setMarkerPosition(e.target.offsetLeft + 13)
-if(savedSelection.commonAncestorContainer.previousSibling && isReady){
-  console.log("GOLANF")
-   savedSelection.commonAncestorContainer.previousSibling.style.backgroundColor = color
-}
-  formatHighlightedText("backColor", color)
- setIsReady(true)
-
-}
-
+  }
+  if(ready == false){
+    formatHighlightedText("backColor", color)
+  }
+   setTimeout(() => {
+      setReady(true)
+    }, 1000); 
+  }
   const handleChosenColor = (e, color) => {
 switch (colorType) {
   case "Highlight Color":
@@ -80,10 +58,10 @@ switch (colorType) {
     className="settings-color-section"
     style={{marginTop : "2%"}}
     >
-                  {colors.map((color) => (
+                  {colors.map((color, index) => (
           <>
           <div
-          key={color.value}
+          key={index}
         className="sticky-notes-color"
         onClick={(e) => handleChosenColor(e, color.value)}
         style={{ backgroundColor: color.value,

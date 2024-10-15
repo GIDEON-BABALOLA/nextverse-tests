@@ -1,13 +1,15 @@
-import { FaBold, FaFillDrip ,FaItalic, FaUnderline } from "react-icons/fa"
+import { FaBold, FaFillDrip, FaMicrophone, FaItalic, FaUnderline } from "react-icons/fa"
 import { useModalContext } from "../../hooks/useModalContext"
+import eyedropper from "../../assets/eyedropper.svg"
 import { useEffect, useRef } from "react"
-const NoteTooltip = ({ savedSelection,
-   setSavedSelection,
+const NoteTooltip = ({
   noteSettings,
   openModal,
   setOpenModal,
   formatHighlightedText,
-  slideLine
+  savedSelection,
+  slideLine,
+  speakHighlightedText
 }) => {
   const { contextMenu, setContextMenu, } = useModalContext()
 // const handleChangeHighlightColor = () => {
@@ -29,6 +31,11 @@ const NoteTooltip = ({ savedSelection,
              onClick={() =>{formatHighlightedText("bold")}}
     />
     </span>
+    <span >
+    <img
+    width={"90%"}
+     src={eyedropper}  id="Color Option List" onClick={(e) => {formatHighlightedText("highlightcolor"); slideLine(e)}} />      
+        </span>
     <span>
     <FaItalic onClick={() => {formatHighlightedText("italic")}}/>
     </span>
@@ -36,8 +43,9 @@ const NoteTooltip = ({ savedSelection,
     <FaUnderline onClick={() => {formatHighlightedText("underline")}} />        
         </span>
         <span>
-    <FaFillDrip  id="Color Option List" onClick={(e) => {formatHighlightedText("highlightcolor"); slideLine(e)}} />      
+    <FaMicrophone onClick={() => speakHighlightedText()}  />        
         </span>
+  
 
 
  

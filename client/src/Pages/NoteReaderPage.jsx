@@ -2,13 +2,13 @@ import NoteHeader from "../components/Notes/NoteHeader"
 import NotePage from "../components/Notes/NotePage"
 import NoteFooter from "../components/Notes/NoteFooter"
 import NoteTooltip from "../components/Notes/NoteTooltip"
-import SpecialModal from "../components/common/SpecialModal"
+import NoteModal from "../components/Notes/NoteModal"
 import NoteSettings from "../components/Notes/NoteSettings"
 import Toast from "../components/common/Toast"
 import "../styles/components/Note/note.css"
 import { useModalContext } from "../hooks/useModalContext"
 import { useToastContext } from "../hooks/useToastContext"
-import { useState } from "react"
+import { useState, useRef } from "react"
 const NoteReaderPage = () => {
   const { fireClick } = useModalContext()
   const [openModal, setOpenModal] = useState(false)
@@ -35,6 +35,7 @@ const NoteReaderPage = () => {
   })
   const [attachmentLine, setAttachmentLine] = useState(0)
   const [colorType, setColorType] = useState("")
+  const noteContent  = useRef()
   const saveSelection = (e) => {
     if(noteSettings["editable"] == false){
       return;
@@ -54,27 +55,33 @@ const NoteReaderPage = () => {
       selection.addRange(savedSelection);
     }
   };
+  const speakHighlightedText = () => {
+ restoreSelection()
+      const utterance = new SpeechSynthesisUtterance(savedSelection.toString())
+      window.speechSynthesis.speak(utterance)
+  }
   const formatHighlightedText = (command, value = null) => {
+console.log("again")
     if(command == "highlightcolor"){
+      console.log("david")
       setColorType("Highlight Color")
       contextMenu.current.style.visibility = "hidden";  
-      restoreSelection()
+      // restoreSelection()
       setOpenModal(!openModal)
-      console.log("happy")
       return;
     }
-    console.log("shakabula")
-    console.log(command)
-    restoreSelection(); // Restore selection before formatting
-    console.log(command)
-    if(noteSettings["editable"] == false){
+    restoreSelection();
+    if(noteSettings["editable"] == false){ 
       showToast("Error", "Pls Switch To Editor Mode To Edit Content", false)
       return;
     }
     document.execCommand(command, false, value);
-    console.log(command)
-      contextMenu.current.style.visibility = "hidden";
-    // setSavedSelection(null)
+    console.log("I am also here")
+    contextMenu.current.style.visibility = "hidden";
+    if(command !== "backColor"){
+      setSavedSelection(null)   
+    }
+ 
     const selection = window.getSelection();
     selection.removeAllRanges();
   };
@@ -90,7 +97,7 @@ const NoteReaderPage = () => {
           })
           
   const selectedOption = optionMapping[tab];
-  console.log(selectedOption)
+
           setTabSettings(prevState => ({
         ...Object.keys(prevState)
               .filter(key => key !== selectedOption) // Reset all others
@@ -103,21 +110,28 @@ const NoteReaderPage = () => {
           }
           setAttachmentLine(e.target.offsetLeft - 20)
           }
+          const submitNote = () => {
+console.log(noteContent.current)
+          }
   return (
     <section className="note-page-css-container-total">
     <Toast />
-    <NoteTooltip savedSelection={savedSelection}
-      setSavedSelection={setSavedSelection}
+    <NoteTooltip
       noteSettings={noteSettings}
       openModal={openModal}
       setOpenModal={setOpenModal}
+      savedSelection={savedSelection}
       formatHighlightedText={formatHighlightedText}
       slideLine={slideLine}
+      speakHighlightedText={speakHighlightedText}
     />
         <NoteHeader setOpenModal={setOpenModal} openModal={openModal}
          noteSettings={noteSettings}
-         setNoteSettings={setNoteSettings}/>
-        <SpecialModal openModal={openModal} setOpenModal={setOpenModal}
+         setNoteSettings={setNoteSettings}
+submitNote={submitNote}
+
+         />
+        <NoteModal openModal={openModal} setOpenModal={setOpenModal}
         width={450}
         height={300}
           content={<NoteSettings
@@ -132,6 +146,7 @@ const NoteReaderPage = () => {
           slideLine={slideLine}
           colorType={colorType}
           setColorType={setColorType}
+          openModal={openModal}
           
            />
           }
@@ -142,6 +157,7 @@ const NoteReaderPage = () => {
         savedSelection={savedSelection}
         setSavedSelection={setSavedSelection}
         noteSettings={noteSettings}
+        noteContent={noteContent}
         />
     
     </section>

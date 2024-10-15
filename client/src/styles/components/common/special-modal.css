@@ -5,7 +5,10 @@
     transform: translate(-50%,-50%);
     
 }
-
+.litenote-special-modal{
+position: absolute;
+left: 10px;
+}
 .litenote-special-modal .popup {
     width:350px;
     height:300px;

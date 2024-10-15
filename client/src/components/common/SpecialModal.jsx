@@ -1,13 +1,15 @@
 import "../../styles/components/common/special-modal.css"
+import {  useRef } from "react"
 const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, dismiss }) => {
+  const myShareModal = useRef()
   const closeModal = () => {
    setOpenModal(false)
-  }
-
-  
+  }  
   return (
-    <section className="litenote-special-modal">
-            <div className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`}}>
+    <section className="litenote-special-modal" >
+            <div 
+            ref={myShareModal}
+            className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`}}>
      <div className="icon">
     
      </div>

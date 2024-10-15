@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useModalContext } from "../../hooks/useModalContext";
-const NotePage = ({noteSettings, saveSelection}) => {
+const NotePage = ({noteSettings, saveSelection, noteContent}) => {
   const { fireClick, closeContextMenu } = useModalContext()
   const notePage = useRef();
   const [note, setNote] = useState(["note"])
@@ -62,9 +62,11 @@ setTimeout(() => {
         }}
         onMouseUp={saveSelection}
         spellCheck="false"
+        
         onInput={(e) => { handleNoteInput(e, content["id"])}}
         suppressContentEditableWarning={true}
         contentEditable={noteSettings["editable"]}
+        ref={noteContent}
         >
          {content["note"]} 
         </div>

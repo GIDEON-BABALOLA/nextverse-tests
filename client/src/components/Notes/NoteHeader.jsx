@@ -3,8 +3,10 @@ import "../../styles/components/Note/note.css"
 import { MdSettings } from "react-icons/md"
 import { useToastContext } from "../../hooks/useToastContext"
 import NoteSettings from "./NoteSettings"
-const NoteHeader = ({setOpenModal, openModal, setNoteSettings, noteSettings}) => {
+const NoteHeader = ({setOpenModal, openModal, setNoteSettings, noteSettings, submitNote}) => {
   const { showToast } = useToastContext()
+console.log(submitNote
+)
     let title = "Software Development"
   return (
     <section className="note-header-css">
@@ -19,7 +21,7 @@ const NoteHeader = ({setOpenModal, openModal, setNoteSettings, noteSettings}) =>
         </b>
         </span>
         <div className="note-header-icons">
-            <button>
+            <button onClick={() => { submitNote()}}>
                 Save
             </button>
             <MdSettings size={20} onClick={() => {
