@@ -342,7 +342,32 @@ const commentAStory = async (req, res) => {
         }
     }
 };
-
+const unCommentAStory = async(req, res) => {
+    const { id, commentId } = req.params
+    console.log(id, commentId, "gideon")
+    try{
+        if(!id || !commentId){
+            throw new userError("Pls Choose A Story And A Comment", 400)   
+        }
+        if(!validateMongoDbId(id)){
+            throw new userError("Pls enter a parameter recognized by the database", 400)
+                }
+        const storyToBeUnCommented = await Story.findById(id);
+        if(!storyToBeUnCommented){
+            throw new userError("This story does not exist", 400)
+        }
+        const unLikedStory = await storyToBeUnCommented.removeComment(commentId, req.user._id);
+        res.status(201).json(unLikedStory);
+    }catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "unCommentAStoryError.txt", "storyError");
+        if (error instanceof userError) {
+            return res.status(error.statusCode).json({ error: error.message });
+        } else {
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
+    }
+}
 const likeAStory = async(req, res) => {
     const { id } = req.params
 try{
@@ -351,14 +376,13 @@ try{
             }
     const story = await Story.findById(id);
   // Add the like to the story using static method
- const likedStory = await story.addLike(id, req.user._id);
+ const likedStory = await story.addLike(req.user._id);
         
   // Respond with the updated story
   res.status(201).json(likedStory);
 }catch(error){
     console.log(error);
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
-
     if (error instanceof userError) {
         return res.status(error.statusCode).json({ error: error.message });
     } else {
@@ -366,6 +390,35 @@ try{
     }
 }
 }
+
+const unLikeAStory = async(req, res) => {
+    const { id } = req.params
+try{
+    if(!validateMongoDbId(id)){
+        throw new userError("Pls enter a parameter recognized by the database", 400)
+            }
+    const storyToBeUnLiked = await Story.findById(id);
+    if(!storyToBeUnLiked){
+        throw new userError("This story does not exist", 400)
+    }
+    const unLikedStory = await storyToBeUnLiked.removeLike(req.user._id);
+    res.status(201).json(unLikedStory);
+}
+catch(error){
+    console.log(error)
+    logEvents(`${error.name}: ${error.message}`, "unlikeAStoryError.txt", "storyError");
+    if (error instanceof userError) {
+        return res.status(error.statusCode).json({ error: error.message });
+    } else {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+}
+
+
+
+
+
 //To Bookmark A Story
 const bookmarkAStory = async (req, res) => {
     const { id } = req.params;
@@ -460,6 +513,8 @@ module.exports = {
     bookmarkAStory,
     unBookmarkAStory,
     likeAStory,
+    unLikeAStory,
     commentAStory,
+    unCommentAStory,
     uploadNow
 }

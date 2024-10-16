@@ -15,6 +15,24 @@ const NoteReaderPage = () => {
   const [savedSelection, setSavedSelection] = useState(null)
   const { showToast } = useToastContext()
   const { contextMenu } = useModalContext()
+  const noteModal = useRef()
+  const closeNoteModal  = (e) => {
+    console.log(openModal)
+    console.log(e.target)
+    if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"){
+      return;
+    }
+          if( e.clientX < parseInt(noteModal.current.getBoundingClientRect().left) || e.clientX > parseInt(noteModal.current.getBoundingClientRect().left) + noteModal.current.getBoundingClientRect().width)
+            {
+              setOpenModal(false)
+            }else if(
+              e.clientY < parseInt(noteModal.current.getBoundingClientRect().top) || e.clientY > parseInt(noteModal.current.getBoundingClientRect().top) + noteModal.current.getBoundingClientRect().height
+            ){
+              setOpenModal(false)
+            }
+        
+    
+    }
   const [noteSettings, setNoteSettings] = useState({
     lineHeight : 2.5,
     fontFamily : "Poppins",
@@ -111,7 +129,7 @@ const NoteReaderPage = () => {
 console.log(noteContent.current)
           }
   return (
-    <section className="note-page-css-container-total">
+    <section className="note-page-css-container-total" onClick={closeNoteModal}>
     <Toast />
     <NoteTooltip
       noteSettings={noteSettings}
@@ -131,6 +149,7 @@ submitNote={submitNote}
         <NoteModal openModal={openModal} setOpenModal={setOpenModal}
         width={450}
         height={300}
+        ref={noteModal}
           content={<NoteSettings
           tabSettings={tabSettings}
           setTabSettings={setTabSettings}

@@ -126,40 +126,78 @@ const storySchema = new mongoose.Schema({
 }, {
     timestamps : true
 });
-
-storySchema.methods.addComment = async function (comment, userId) {
-    this.comments.push({ comment, commentBy: userId });
+storySchema.methods.addViews = async function (comment, userId) {
+    this.comments.unshift({ comment, commentBy: userId });
     this.totalComments = this.comments.length;
     await this.save();
     return this;
 };
+
+storySchema.methods.addComment = async function (comment, userId) {
+    this.comments.unshift({ comment, commentBy: userId });
+    this.totalComments = this.comments.length;
+    await this.save();
+    return this;
+};
+
+storySchema.methods.removeComment = async function (commentId, userId) {
+    const index = this.comments.findIndex(
+        comment => comment._id.toString() === commentId.toString() &&
+                   comment.commentBy.toString() === userId.toString()
+    );
+    if (index > -1) {
+        this.comments.splice(index, 1);
+        await this.save();
+    }
+    return this;
+};
+
+
 storySchema.methods.addBookmark = async function (userId) {
     if (!this.bookmarks.some(bookmark => bookmark.bookmarkBy.toString() === userId.toString())) { //.some works just like .find
-        this.bookmarks.push({ bookmarkBy: userId });
+        this.bookmarks.unshift({ bookmarkBy: userId });
         this.totalBookmarks = this.bookmarks.length;
         await this.save();
     }
     return this;
 };
 storySchema.methods.removeBookmark = async function(userId){
-    if (this.bookmarks.some(bookmark => bookmark.bookmarkBy.toString() === userId.toString())) {
-        this.bookmarks.pull({ bookmarkBy: userId });
-        console.log(this.bookmarks)
-        this.totalBookmarks = this.bookmarks.length
-        await this.save(); 
+    const initialLength = this.bookmarks.length;
+    this.bookmarks = this.bookmarks.filter(
+        bookmark => bookmark.bookmarkBy.toString() !== userId.toString()
+    );
+
+    // If the length has changed, it means a bookmark was removed
+    if (this.bookmarks.length !== initialLength) {
+        this.totalBookmarks = this.bookmarks.length;
+        await this.save();
     }
-    return this
+    
+    return this;
 }
 
 
 storySchema.methods.addLike = async function (userId) {
     if (!this.likes.some(like => like.likedBy.toString() === userId.toString())) { //.some works just like .find
-        this.likes.push({ likedBy: userId });
+        this.likes.unshift({ likedBy: userId });
         this.totalLikes = this.likes.length;
         await this.save();
     }
     return this;
 };
+storySchema.methods.removeLike = async function (userId) {
+    const initialLength = this.likes.length;
+    this.likes = this.likes.filter(
+    likes => likes.likedBy.toString() !== userId.toString()
+    );
+    // If the length has changed, it means a Like was removed
+    if (this.likes.length !== initialLength) {
+        this.totalLikes = this.likes.length;
+        await this.save();
+    }
+    return this;
+};
+
 
 
 //Export the model

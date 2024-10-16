@@ -33,7 +33,11 @@ const NoteTooltip = ({
     />
     </span>
     <span >
-    <Eyedropper  id="Color Option List" onClick={(e) => {formatHighlightedText("highlightcolor"); slideLine(e)}}/>  
+    <Eyedropper
+    size={20}
+      id="Color Option List" onClick={(e) => {formatHighlightedText("highlightcolor"); 
+      setOpenModal(true)
+      slideLine(e)}}/>  
         </span>
     <span>
     <FaItalic onClick={() => {formatHighlightedText("italic")}}/>

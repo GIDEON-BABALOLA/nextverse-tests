@@ -58,3 +58,5 @@
 20241009	08:35:13	f298b91a-c31a-4dae-8cf7-3bec751f04ac	userError: Pls enter a parameter recognized by the database
 20241009	08:35:13	100084a1-91c5-408d-80b3-e3e2627ad0b3	userError: Pls enter a parameter recognized by the database
 20241009	08:35:13	87576126-25ef-4d2c-b6ed-01971a52ca34	userError: Pls enter a parameter recognized by the database
+20241016	08:44:02	89d6c7f2-833d-45cb-8d48-b22da1f39ad4	userError: This Story Does Not Exist
+20241016	08:44:03	acc8908f-9ffe-46be-b214-4992e8c9499b	userError: This Story Does Not Exist
