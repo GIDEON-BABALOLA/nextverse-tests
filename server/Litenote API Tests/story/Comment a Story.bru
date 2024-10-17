@@ -5,7 +5,15 @@ meta {
 }
 
 post {
-  url: {{base_url}}/story/comment-a-story/id
-  body: none
-  auth: none
+  url: {{base_url}}/story/comment-a-story/670438502a8d6596940c9c00
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWM2OWI5MjQ2NDhmNDhjODkwMDg2YiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5MDgxODQ0LCJleHAiOjE3Mjk2ODY2NDR9.p4ZDiETQbzi37f0AUbyQq8JoXi0M8QsvcubG5a_UgIw
+}
+
+body:json {
+  {"comment" : "This is my latest comment"}
 }

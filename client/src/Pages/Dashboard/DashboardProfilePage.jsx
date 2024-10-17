@@ -81,6 +81,76 @@ cursor : "pointer"
     <MdOutlineCreate /> Edit
   </div>
    </div>
+
+
+
+<div className="dashboard-edit-profile-page-photo-section">
+<section className="editme-profile-page-photo-section">
+<div style={{display : "flex", 
+   flexDirection : "row", alignItems :"center", gap : width  < 768 ?  "10px" : "20px",
+   width :  width < 768 ? "200px" : "400px",
+    paddingTop : "10px"}}>
+    <img src={profileImage} 
+    className="dash-profile-photo-work"/>
+  <span>
+  {width < 768 ? <h4><b>Profile Picture</b></h4> : <h3><b>Profile Picture</b></h3>}
+  <h6 style={{color: "#9CA3AF"}}>PNG, SVG under 2MB</h6>
+  <h6 style={{color : "#9CA3AF"}}>Technical Writer</h6>
+  </span>
+</div>
+<div style={{display : "flex", flexDirection  :"row", alignItems : "center", gap : "20px",
+justifyContent : "space-between",
+padding : "5px 15px",
+borderRadius : "5px",
+cursor : "pointer"
+}}>
+    <span className="our-buttons upload">
+      Upload New Picture
+    </span>
+    <span className="our-buttons delete">
+      Delete
+    </span>
+  </div>
+</section>
+<section className="editme-profile-page-photo-section-second">
+<h6>Full Name</h6>
+  <div style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between"}}>
+  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
+Firstname
+<input type="text"></input>
+  </div>
+  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
+  Lastname
+  <input type="text"></input>
+  </div>
+
+  </div>
+  <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
+  <span className="save-changes">
+    Save Changes
+    </span>
+  </div>
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div className="dashboard-profile-page-personal-information"
 >
 <section style={{display : "flex", flexDirection : "row", justifyContent : "space-between",

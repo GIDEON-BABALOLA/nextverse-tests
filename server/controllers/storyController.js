@@ -192,6 +192,9 @@ const foundStory = await Story.findById(id)
 if(!foundStory){
     throw new userError("This Story Does Not Exist", 404)
 }
+const totalViews =  (Number(foundStory.totalViews) || 0) + 1;
+foundStory.totalViews = totalViews.toString()
+await foundStory.save()
 res.status(200).json(foundStory)
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
@@ -230,6 +233,7 @@ let query;
  // Combine the query object and date filter
 query = Story.find({...JSON.parse(queryString), ...dateFilter})
 //Sorting, arrangement of the data you want 
+console.log(req.query.sort)
 if(req.query.sort){
     const sortBy = req.query.sort.split(",").join(" ")
     query = query.sort(sortBy)

@@ -1,3 +1,22 @@
+
+:root{
+--profile-input-color : black;
+--profile-color-background : white;
+--profile-color-border : #E5E5E5;
+--profile-delete-button-background : #E5E5E5;
+--profile-upload-button-background : white;
+--profile-upload-button-border :  #E5E5E5 ;
+--profile-button-color : black;
+}
+.dark-theme-variables{
+    --profile-input-color : white;
+    --profile-color-background : #00000066;
+--profile-color-border : #202528;
+--profile-delete-button-background : #B91C1C;
+--profile-upload-button-background : #4338CA;
+--profile-upload-button-border :   #4338CA;
+--profile-button-color : white;
+}
 .dashboard-profile-page-photo-section{
     border : 1.4px solid #9CA3AF;
     box-shadow: #0000001A 0px 2px 5px 0px;
@@ -7,7 +26,66 @@
     justify-content: space-between ;
     flex-direction: row;
     padding: 20px 20px;
+}
+.dashboard-edit-profile-page-photo-section{
+    border : 1.4px solid #9CA3AF;
+    box-shadow: #0000001A 0px 2px 5px 0px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.editme-profile-page-photo-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between ;
+    flex-direction: row;
+    padding: 20px 20px;
+}
+.editme-profile-page-photo-section-second{
+    display: flex;
+    justify-content: space-between ;
+    flex-direction: column;
+    gap : 10px;
+    padding: 20px 20px;
+    padding-top: 5px;
+}
+.editme-profile-page-photo-section .our-buttons, .save-changes{
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 
+}
+.editme-profile-page-photo-section .our-buttons.upload, .save-changes{
+    background-color: #4338CA;
+    color: var(--profile-button-color);
+    background-color: var(--profile-upload-button-background);
+    box-shadow: #0000001A 0px 2px 5px 0px;
+    border: 1.5px solid var(--profile-upload-button-border);
+
+}
+.editme-profile-page-photo-section .our-buttons.delete{
+    padding: 10px 15px;
+    background-color: var(--profile-delete-button-background);
+    color: white;
+      color: var(--profile-button-color);
+    
+}
+.editme-profile-page-photo-section-second input{
+    width: 300px;
+    padding: 7px 5px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    appearance: auto;
+    font-size: 1.2rem;
+	background-color: var(--profile-color-background);
+	border: 2px solid var(--profile-color-border);
+    color: var(--profile-input-color);
+	border-radius: 5px;
+	box-sizing: border-box;
+	cursor: text;
+	overflow: clip;
+	user-select: none;
 }
 .dashboard-profile-page-personal-information{
     border : 1.4px solid #9CA3AF;
