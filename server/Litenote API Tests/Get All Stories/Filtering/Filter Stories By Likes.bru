@@ -1,13 +1,17 @@
 meta {
-  name: Get a Story
+  name: Filter Stories By Likes
   type: http
-  seq: 4
+  seq: 2
 }
 
 get {
-  url: {{base_url}}/story/get-a-story/671a538ed680c75d4c01cfb1
+  url: {{base_url}}/story/get-all-stories?totalLikes[gte]=1
   body: none
   auth: bearer
+}
+
+params:query {
+  totalLikes[gte]: 1
 }
 
 auth:bearer {

@@ -16,13 +16,16 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 const createStory = async(req, res) => {
     const datetime = new Date()
     console.log(`${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`)
+    console.log(req.user)
     const { id } = req.user
-    validateMongoDbId(id)
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
     const {title, caption, content,  category } = req.body
 try{
+    if(!validateMongoDbId(id)){
+        throw new userError("Pls enter a parameter recognized by the database", 400)
+            }
     if(!title || !caption || !content || !category){
         throw new userError("Please Fill In All The Fields", 400)
     }
@@ -214,6 +217,9 @@ const excludeFields = ["page", "sort", "limit", "fields"]
 excludeFields.forEach((el) => delete queryObj[el])
    // Handle date filtering specifically
    let dateFilter = {};
+//    if (queryObj.totalLikes) {
+//     queryObj.totalLikes = { gt: parseInt(queryObj.totalLikes["gt"]) }; // Convert to number
+// }
    if (queryObj.year) {
        dateFilter['date.year'] = queryObj.year;
        delete queryObj.year;
@@ -228,12 +234,13 @@ excludeFields.forEach((el) => delete queryObj[el])
    }
 let queryString;
 queryString = JSON.stringify(queryObj)
-queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
+queryString = queryString.replace(/\b(gte|gt|lte|lt|eq)\b/g, (match) => `$${match}`)
 let query;
+const queryToBeSent = {...JSON.parse(queryString), ...dateFilter}
  // Combine the query object and date filter
-query = Story.find({...JSON.parse(queryString), ...dateFilter})
+query = Story.find(queryToBeSent)
 //Sorting, arrangement of the data you want 
-console.log(req.query.sort)
+console.log(req.query)
 if(req.query.sort){
     const sortBy = req.query.sort.split(",").join(" ")
     query = query.sort(sortBy)
@@ -262,6 +269,7 @@ if(req.query.page){
 const allStories = await query
 res.status(200).json(allStories)
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ error : error.message})
@@ -320,6 +328,7 @@ res.status(201).json(updateStory)
 
 }
 const commentAStory = async (req, res) => {
+    console.log(req.user)
     const { id } = req.params;  // The story ID
     const { comment } = req.body;  // The comment text
     try {

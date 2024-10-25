@@ -1,13 +1,18 @@
 meta {
-  name: Get a Story
+  name: Paginate Stories By Page And Limit
   type: http
-  seq: 4
+  seq: 1
 }
 
 get {
-  url: {{base_url}}/story/get-a-story/671a538ed680c75d4c01cfb1
+  url: {{base_url}}/story/get-all-stories?page=20&limit=5
   body: none
   auth: bearer
+}
+
+params:query {
+  page: 20
+  limit: 5
 }
 
 auth:bearer {

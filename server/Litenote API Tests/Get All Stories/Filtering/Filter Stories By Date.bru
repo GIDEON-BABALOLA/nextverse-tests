@@ -1,13 +1,19 @@
 meta {
-  name: Get a Story
+  name: Filter Stories By Date
   type: http
-  seq: 4
+  seq: 1
 }
 
 get {
-  url: {{base_url}}/story/get-a-story/671a538ed680c75d4c01cfb1
+  url: {{base_url}}/story/get-all-stories?year=2024&day=8&month=October
   body: none
   auth: bearer
+}
+
+params:query {
+  year: 2024
+  day: 8
+  month: October
 }
 
 auth:bearer {

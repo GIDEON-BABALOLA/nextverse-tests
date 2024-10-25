@@ -1,13 +1,18 @@
 meta {
-  name: Get a Story
+  name: Selecting Only Some Fields From Stories
   type: http
-  seq: 4
+  seq: 1
 }
 
 get {
-  url: {{base_url}}/story/get-a-story/671a538ed680c75d4c01cfb1
+  url: {{base_url}}/story/get-all-stories?fields=author, title
   body: none
   auth: bearer
+}
+
+params:query {
+  fields: author, title
+  : 
 }
 
 auth:bearer {

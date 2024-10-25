@@ -260,3 +260,9 @@
 20241015	14:58:59	a6b7460c-4e4b-416b-bc13-3ed08aefa4d9	cloudinaryError: Unable To Upload Picture, Check Internet Connection
 20241016	08:42:38	80fc1c30-fdf5-4627-b142-e0c898ed7900	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
 20241016	08:42:47	52f0861a-10b4-4f8d-a9eb-2d59b58ead75	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241023	13:26:10	d296f425-7aa3-4849-83f3-7714b6880c34	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241023	13:45:21	6bbd15a5-4234-44b6-b0a4-2fe8cd23102e	userError: Image size too large (max 2MB)
+20241023	13:51:57	81974970-0b6d-47b9-a203-4ef833927fac	userError: You Cannot Create A Story With The Category Memoir
+20241023	14:17:35	88c4d087-2d7b-46fa-afa2-22e040a0daf3	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241023	14:18:34	e1445581-f2ad-424d-9a4e-be453208984e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241024	15:02:27	184c6d27-8d05-42df-ba8f-83f2e1e4b41a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken

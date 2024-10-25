@@ -9,3 +9,4 @@
 20241009	08:48:59	544cfe1f-f309-423e-b9e8-6ed334e0f3e9	userError: Pls enter a parameter recognized by the database
 20241009	08:49:00	9dc26e8e-d23f-49e7-ac75-84d8afb4497a	userError: Pls enter a parameter recognized by the database
 20241009	08:49:02	7710a620-9995-4af6-b3a6-6a03788ecc18	userError: Pls enter a parameter recognized by the database
+20241024	00:03:53	15575523-0f70-4353-90ad-51f383267749	TypeError: Cannot read properties of null (reading 'role')

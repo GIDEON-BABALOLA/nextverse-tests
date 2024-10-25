@@ -1,13 +1,25 @@
 meta {
-  name: Get a Story
+  name: Filter Stories By Comments
   type: http
-  seq: 4
+  seq: 3
 }
 
 get {
-  url: {{base_url}}/story/get-a-story/671a538ed680c75d4c01cfb1
+  url: {{base_url}}/story/get-all-stories?totalComments[gt]=11
   body: none
   auth: bearer
+}
+
+params:query {
+  totalComments[gt]: 11
+  ~totalComments[gte]: 5
+  ~totalComments[lte]: 5
+  ~totalComments[lt]: 5
+  ~totalComments[eq]: 11
+}
+
+headers {
+  : 
 }
 
 auth:bearer {

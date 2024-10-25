@@ -143,7 +143,7 @@ res.status(200).json(newAdmin)
 const logoutAdmin = async (req, res) => {
     const cookies = req.cookies
     try{
-        if(!cookies?.refreshToken){
+        if(!cookies?.refreshTokea){
             throw new adminError("You Are Not Logged In", 401)
         }
         const refreshToken = cookies.refreshToken;

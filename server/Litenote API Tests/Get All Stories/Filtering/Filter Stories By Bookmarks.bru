@@ -1,0 +1,23 @@
+meta {
+  name: Filter Stories By Bookmarks
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/story/get-all-stories?totalBookmarks[gte]=5&totalBookmarks[lte]=5&totalBookmarks[gt]=1&totalBookmarks[lte]=1&totalBookmarks[eq]=2
+  body: none
+  auth: bearer
+}
+
+params:query {
+  totalBookmarks[gte]: 5
+  totalBookmarks[lte]: 5
+  totalBookmarks[gt]: 1
+  totalBookmarks[lte]: 1
+  totalBookmarks[eq]: 2
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWM2OWI5MjQ2NDhmNDhjODkwMDg2YiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5MTgwMDE0LCJleHAiOjE3Mjk3ODQ4MTR9.0c6KNuPVPL8ahgndaoKkX_HO1IgRZxueGTe8tggiSSk
+}

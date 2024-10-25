@@ -54,11 +54,11 @@ const storySchema = new mongoose.Schema({
     },
     estimatedReadingTime : {
         minutes: {
-            type: String,
+            type: Number,
             required: true
         },
         seconds: {
-            type: String,
+            type: Number,
             required: true
         }
     },
@@ -108,23 +108,24 @@ const storySchema = new mongoose.Schema({
     bookmarks : [bookmarkSchema],
     views : [viewsSchema],
     totalLikes : {
-    type : String,
+    type : Number,
     default : 0
     },
     totalComments : {
-    type : String,
+    type : Number,
     default : 0
     },
     totalViews : {
-        type : String,
+        type : Number,
         default : 0
     },
     totalBookmarks : {
-        type : String,
+        type : Number,
         default : 0
     }
 }, {
-    timestamps : true
+    timestamps : true,
+    autoIndex: false
 });
 storySchema.methods.addViews = async function (comment, userId) {
     this.comments.unshift({ comment, commentBy: userId });

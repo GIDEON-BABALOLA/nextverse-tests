@@ -12,15 +12,8 @@ const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
   const [openModal, setOpenModal]  = useState(false)
   const [modalTitle, setModalTitle] =  useState("")
   const [pageNumber, setPageNumber] = useState(1)
-  const [virtualList, setVirtualList] = useState([])
   const stickyNoteContainerRef = useRef()
   const stickyNotesRefs = useRef([])
-  useEffect(() => {
-    const originalList = JSON.parse(localStorage.getItem("stickyNotes"));
-setVirtualList(originalList.slice(0 + (pageNumber -1 ) * 5,
-5 + (pageNumber -1 )   * 5
-))
-  }, [pageNumber])
   const [modalContent, setModalContent] =  useState("")
    const [stickyNotes, setStickyNotes] = useState(JSON.parse(localStorage.getItem("stickyNotes")) || [])
   const searchForStickyNotes = () => {
@@ -203,7 +196,7 @@ stickyNotesCount={stickyNotesCount}
               5 + (pageNumber -1) * 5
             ). */}
         {
-           virtualList.map((content, index) => (
+           stickyNotes.map((content, index) => (
           <StickyNotesCard 
           key={index}
           ref={

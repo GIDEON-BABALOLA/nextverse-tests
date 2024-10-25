@@ -62,3 +62,13 @@
 20241016	08:44:03	acc8908f-9ffe-46be-b214-4992e8c9499b	userError: This Story Does Not Exist
 20241016	15:48:36	363121ff-78bb-46b6-997e-58f066974258	ReferenceError: story is not defined
 20241017	12:40:33	fd536526-8a5e-4bc6-a3b7-406fa68aea11	ReferenceError: rust is not defined
+20241017	17:06:09	6d3efbcf-dae2-4e2d-947e-38ca7e0d5ea8	userError: This page does not exist
+20241017	17:52:08	86a7ebc1-d2e9-492a-9ae0-8b5597225ae4	Error: Can't use $$gt with String.
+20241017	17:52:08	7dd3a58c-cf5d-4459-b55b-db766397a6a7	Error: Can't use $$gt with String.
+20241017	17:52:08	bc578289-9472-420b-b8d9-c22ac1cdb3a9	Error: Can't use $$gt with String.
+20241017	17:52:30	797ac9c9-15b0-4b49-86de-eebe15ade6a5	Error: Can't use $$gt with String.
+20241018	10:32:07	dfa3a123-571b-4dc3-9c26-091d7f1f2ed9	TypeError: Cannot read properties of undefined (reading 'sort')
+20241024	00:25:56	78209fc5-6fab-4fcd-ae40-1b4cc69de33f	userError: This page does not exist
+20241024	00:26:02	1deb8e17-d38a-47ff-82d7-7d9ec3ea0764	userError: This page does not exist
+20241024	00:26:06	a03b69eb-48fd-4c39-9143-972edefb5e7e	userError: This page does not exist
+20241024	00:26:10	26d03211-bd58-477e-a232-c59e22da29b9	userError: This page does not exist
