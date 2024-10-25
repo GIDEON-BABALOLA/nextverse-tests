@@ -1,0 +1,20 @@
+meta {
+  name: Sort By Total Comments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/story/get-all-stories?sort=-totalComments&sort=totalComments
+  body: none
+  auth: bearer
+}
+
+params:query {
+  sort: -totalComments
+  sort: totalComments
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTdlY2M5MWFiNWRlZDUyZDBmZWZjOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5ODU2NjI0LCJleHAiOjE3MzA0NjE0MjR9.7kHl5UI9lOzZBKxJGpkP0HgfBL9MVIRxdSfWYRW5DJY
+}

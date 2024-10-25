@@ -40,7 +40,8 @@ const populateStories = async (req, res) => {
       console.log(element)
       const picture = pictureArray[index]
       const nextPicture = pictureArray[index + 1]
-      const foundStory = await Story.findOne({slug : slugify(element["title"])})
+      const title = `${element["title"]}${index}`
+      const foundStory = await Story.findOne({slug : slugify(title)})
       if(foundStory){
         throw new Error("Pls Kindly Choose Another Title, This title Has already Been Taken", 400)
        }
@@ -50,7 +51,7 @@ const populateStories = async (req, res) => {
         author : "Gideon Babalola",
         avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1716408705/Avatars/nqygbbqcueadblm4mxjo.jpg",
         userId : "6717ecc91ab5ded52d0fefc8",
-        slug : slugify(`${element["title"]}index`),
+        slug : slugify(title),
         title : element["title"],
         caption : element["caption"],
         content : element["content"],

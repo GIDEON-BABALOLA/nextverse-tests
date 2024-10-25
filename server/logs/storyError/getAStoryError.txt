@@ -72,3 +72,6 @@
 20241024	00:26:02	1deb8e17-d38a-47ff-82d7-7d9ec3ea0764	userError: This page does not exist
 20241024	00:26:06	a03b69eb-48fd-4c39-9143-972edefb5e7e	userError: This page does not exist
 20241024	00:26:10	26d03211-bd58-477e-a232-c59e22da29b9	userError: This page does not exist
+20241025	13:07:28	0c6f7d25-2297-411d-af28-60d87360c722	CastError: Cast to Number failed for value "[ '5', '1' ]" (type Array) at path "totalBookmarks" for model "Story"
+20241025	13:07:51	cc361ebf-653b-405a-9d38-e113b90c21c2	CastError: Cast to Number failed for value "[ '5', '1' ]" (type Array) at path "totalBookmarks" for model "Story"
+20241025	13:08:03	b2ae952c-6c8e-40e8-863e-bb05a0dc5b5b	CastError: Cast to Number failed for value "[ '5', '1' ]" (type Array) at path "totalBookmarks" for model "Story"
