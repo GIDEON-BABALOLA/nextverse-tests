@@ -5,14 +5,14 @@ meta {
 }
 
 get {
-  url: {{base_url}}/story/get-all-stories?sort=-totalComments&sort=totalComments
+  url: {{base_url}}/story/get-all-stories?sort=-totalViews
   body: none
   auth: bearer
 }
 
 params:query {
-  sort: -totalComments
-  sort: totalComments
+  sort: -totalViews
+  ~sort: totalViews
 }
 
 auth:bearer {

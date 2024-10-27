@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{base_url}}/story/get-all-stories?totalComments[gt]=11
+  url: {{base_url}}/story/get-all-stories?totalComments[gt]=8
   body: none
   auth: bearer
 }
 
 params:query {
-  totalComments[gt]: 11
+  totalComments[gt]: 8
   ~totalComments[gte]: 5
   ~totalComments[lte]: 5
   ~totalComments[lt]: 5
@@ -23,5 +23,5 @@ headers {
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWM2OWI5MjQ2NDhmNDhjODkwMDg2YiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5MTgwMDE0LCJleHAiOjE3Mjk3ODQ4MTR9.0c6KNuPVPL8ahgndaoKkX_HO1IgRZxueGTe8tggiSSk
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTdlY2M5MWFiNWRlZDUyZDBmZWZjOCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5ODU2NjI0LCJleHAiOjE3MzA0NjE0MjR9.7kHl5UI9lOzZBKxJGpkP0HgfBL9MVIRxdSfWYRW5DJY
 }
