@@ -75,3 +75,9 @@
 20241025	13:07:28	0c6f7d25-2297-411d-af28-60d87360c722	CastError: Cast to Number failed for value "[ '5', '1' ]" (type Array) at path "totalBookmarks" for model "Story"
 20241025	13:07:51	cc361ebf-653b-405a-9d38-e113b90c21c2	CastError: Cast to Number failed for value "[ '5', '1' ]" (type Array) at path "totalBookmarks" for model "Story"
 20241025	13:08:03	b2ae952c-6c8e-40e8-863e-bb05a0dc5b5b	CastError: Cast to Number failed for value "[ '5', '1' ]" (type Array) at path "totalBookmarks" for model "Story"
+20241028	08:35:29	5c42ecad-a90c-43d7-a93d-84c3cd437b76	TypeError: req.query.sort.split is not a function
+20241028	08:36:19	7fce5278-73d8-4464-a8f3-1e6164592bf5	TypeError: req.query.sort.split is not a function
+20241028	08:36:20	3fdc287c-acaf-49d7-8055-b489f3322912	TypeError: req.query.sort.split is not a function
+20241028	08:36:52	e3e816f8-296c-419b-a682-130c9773fd3f	TypeError: req.query.sort.split is not a function
+20241028	08:37:41	7ce10556-bddc-4dac-9977-e76055c1849f	Error: Invalid field "" passed to sort()
+20241028	22:11:54	b2fa0289-3d2e-42c3-92de-4ab88e07e88c	userError: Pls enter a parameter recognized by the database

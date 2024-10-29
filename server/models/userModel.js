@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt")
 const userSchema = new mongoose.Schema({
     username : {
         type : String,
-        required : true
+        required : true,
+        unique : true
     },
     email:{
         type:String,
@@ -17,9 +18,18 @@ const userSchema = new mongoose.Schema({
         required : true,
         default : false
     },
-    verificationToken : String,
-    verificationCode: Number,
-    verificationTokenExpires: Date,
+    verificationToken : {
+        type : String,
+        default : null
+    },
+    verificationCode : {
+        type : Number,
+        default : null
+    },
+    verificationTokenExpires : {
+        type : Date,
+        default : null
+    },
     password:{
         type:String,
         required:true,
@@ -51,10 +61,6 @@ const userSchema = new mongoose.Schema({
     },
     ipAddress : {
         type : String
-    },
-    verification : {
-        type : Boolean,
-        default : false
     },
     followers : [
         {

@@ -8,3 +8,4 @@
 20241008	13:51:55	1e28f51d-6396-4f42-9fad-795f989b1e4f	TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
 20241022	19:20:23	cf2bf69f-9c53-4ea5-87f8-cf0fd2d9f0dd	userError: Wrong OTP, Pls Enter the correct One-time-passsword
 20241022	19:32:08	5d80f9c2-8732-469a-98ce-a420d7ad80d0	userError: OTP Has Expired, Click On Resend Verification Link
+20241029	17:36:32	6a55f632-5473-4898-974b-f65504f1b1f0	userError: OTP Has Expired, Click On Resend Verification Link

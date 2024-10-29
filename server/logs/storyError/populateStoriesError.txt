@@ -31,3 +31,6 @@
 20241025	12:32:10	a6114975-cf37-4876-974b-d390af4c3bf8	Error: Pls Kindly Choose Another Title, This title Has already Been Taken
 20241025	12:37:11	454fa177-98d7-4c26-ab06-4e4ae9ef3880	TypeError: Cannot read properties of undefined (reading 'title')
 20241025	12:37:45	16eeb5b7-0596-46ba-9ff4-3561ea9dd311	TypeError: Cannot read properties of undefined (reading 'title')
+20241029	17:28:52	6228ca72-afd5-4cee-8c3f-b7a61c54b355	ReferenceError: email is not defined
+20241029	17:29:15	34996e69-146d-4f76-9e93-d6d9cb4c7203	ReferenceError: email is not defined
+20241029	17:31:04	2092cfee-f6a3-4180-8149-55af33b2e4da	Error: Phone Number Has Been Used

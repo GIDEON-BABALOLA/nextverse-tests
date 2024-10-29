@@ -242,6 +242,7 @@ query = Story.find(queryToBeSent)
 //Sorting, arrangement of the data you want 
 console.log(req.query)
 if(req.query.sort){
+    console.log(req.query.sort)
     const sortBy = req.query.sort.split(",").join(" ")
     query = query.sort(sortBy)
 }else{

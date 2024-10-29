@@ -266,3 +266,8 @@
 20241023	14:17:35	88c4d087-2d7b-46fa-afa2-22e040a0daf3	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
 20241023	14:18:34	e1445581-f2ad-424d-9a4e-be453208984e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
 20241024	15:02:27	184c6d27-8d05-42df-ba8f-83f2e1e4b41a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241029	17:49:43	75e13719-8d6d-480a-86f8-4adc404fa4b5	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241029	17:51:22	25f5b7e3-3b79-41f4-ae74-1e2355490c24	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241029	17:54:18	90314936-17f6-4e1d-a911-e37dcdd2d4ec	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241029	17:54:38	1964b27e-1761-4c48-9bde-f69b1d3c294d	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241029	18:12:21	39a215cc-aca4-4063-9b5b-a8f32b0337f5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
