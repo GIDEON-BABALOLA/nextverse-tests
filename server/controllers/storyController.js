@@ -1,5 +1,6 @@
 const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
+const { rankStories } = require(path.join(__dirname, "..", "utils", "rankStories.js"))
 const fs = require('fs');
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"))
@@ -281,9 +282,20 @@ res.status(200).json(allStories)
 }
 }
 const getPopularStories = async (req, res) => {
+    const { category } = req.body;
+    const defaultCategory = [
+        "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
+       ]
 try{
-
+    const isValidCategory = defaultCategory.includes(category)
+    if(!isValidCategory){
+        throw new userError(`You Cannot Get Popular Stories From This Category ${category}`, 400)
+    }
+    const foundStories = await Story.find({ category : category})
+    const mostPopularStories = rankStories(foundStories, 5)
+    res.status(200).json(mostPopularStories)
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ error : error.message})
@@ -530,5 +542,6 @@ module.exports = {
     unLikeAStory,
     commentAStory,
     unCommentAStory,
-    uploadNow
+    uploadNow,
+    getPopularStories
 }
