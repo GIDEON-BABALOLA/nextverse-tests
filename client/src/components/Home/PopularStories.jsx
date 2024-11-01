@@ -1,5 +1,6 @@
 import "../../styles/components/Home/popularstories.css"
 import StoryCard from "../Profile/StoryCard"
+import PopularStoriesCard from "../common/PopularStoriesCard"
 import favour from "../../assets/29.jpg"
 import great from "../../assets/Great.jpg"
 import { useModalContext } from "../../hooks/useModalContext"
@@ -9,7 +10,13 @@ import Tab from "../common/Tab"
 import ContextMenu from "../common/ContextMenu"
 import Share from "../common/Share"
 import { useState, useRef, useEffect } from "react"
+import { useGetPopularStories } from "../../hooks/useGetPopularStories"
+import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
+import { useToastContext } from "../../hooks/useToastContext"
 const PopularStories = () => {
+  const { getPopularStories, isLoading, error, data, statusCode } = useGetPopularStories()
+  const { setPopularStories, popularStories } = usePopularStoriesContext()
+  const popularStoriesRef = useRef()
   const {
     contextMenu,
      shareModal,
@@ -18,45 +25,49 @@ const PopularStories = () => {
  setContextMenu,
  closeContextMenu
 } = useModalContext()
-
-
-  const featuredStories = [
-    {
-      title: "Mastering the Art of Photography",
-      category: "Photography",
-      image: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
-      link: "#",
-      avatar : favour,
-      date : "March 17, 2024"
-    },
-    {
-      title: "A Guide to Sustainable Living",
-      category: "Lifestyle",
-      image: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
-      link: "#", 
-      avatar : great,
-      date : "March 17, 2025"
-
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : favour,
-      date : "March 17, 2020"
-    }
-  ]
   const [tabs, setTab] = useState({
-    all : true,
+    technology : true,
     fiction : false,
     adventure : false,
-    nonfiction : false
+    nonfiction : false,
+    romance : false,
+    memoir : false
   })
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          console.log("Popular Stories Is Been Observed")
+          let selectedCategory;
+          selectedCategory = Object.keys(tabs).find(key => tabs[key] === true);
+          if(selectedCategory == "nonfiction"){
+  selectedCategory = "non-fiction"
+          }
+          getPopularStories(selectedCategory, 3)
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 } // 10% of the element needs to be visible
+    );
+    if (popularStoriesRef.current) {
+      observer.observe(popularStoriesRef.current);
+    }
+    
+    return () => {
+      if (popularStoriesRef.current) {
+        observer.unobserve(popularStoriesRef.current);
+      }
+    };
+  
+  }, [tabs])
+  useEffect(() => {
+    console.log(data)
+setPopularStories(data)
+  }, [data, statusCode])
 
   return (
    <>
-    <section className="popular-stories-featured-stories" onClick={closeContextMenu}>
+    <section className="popular-stories-featured-stories" onClick={closeContextMenu} ref={popularStoriesRef}>
     <Share  share={shareRef} shareModal={shareModal}/>
       <h2>Popular Stories</h2>
     <Tab tabs={tabs} setTab={setTab}  
@@ -66,8 +77,8 @@ const PopularStories = () => {
           
          />
       <div className="popular-stories-story-grid">
-      {featuredStories.map((story, index) => (
-<StoryCard key={index} story={story} fireClick={fireClick}/>
+      {popularStories.map((story, index) => (
+<PopularStoriesCard key={index} story={story} fireClick={fireClick}/>
       ))
       }
       <ContextMenu

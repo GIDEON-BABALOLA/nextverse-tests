@@ -55,7 +55,7 @@ function App() {
   <Route path="our-team" element={<TeamPage />} />
   <Route path="login" element={<LoginPage />} />
   <Route path="feed" element={  user == null ? <Navigate to="/login" /> : <FeedPage />} />
-  <Route path="story" element={user == null ? <Navigate to="/login" /> : <StoryPage />}  />
+  <Route path="story" element={<StoryPage />}  />
   <Route path="note/:email/:id" element={ <NoteReaderPage />} />
   <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>

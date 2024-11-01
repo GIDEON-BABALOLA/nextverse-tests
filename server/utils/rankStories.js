@@ -1,4 +1,4 @@
-const rankStories = (stories, topNumbers) => {
+const rankStories = (stories, number) => {
     const weights = {
         totalViews: 1,      
         totalComments: 2,        
@@ -14,7 +14,7 @@ const rankStories = (stories, topNumbers) => {
         return {...storyConvertedToObject, popularityScore}
     })
  const topStories = storiesToBeRanked.sort((a, b) => b.popularityScore - a.popularityScore)
- .slice(0, topNumbers)
+ .slice(0, number)
 return topStories
 
 }

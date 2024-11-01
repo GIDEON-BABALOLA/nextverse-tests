@@ -1,4 +1,5 @@
 import PopularStories from "../components/Home/PopularStories"
+import { PopularStoriesContextProvider } from "../context/PopularStoriesContext.jsx"
 import Intro from "../components/Home/Intro.jsx"
 import Faq from "../components/Home/faq.jsx"
 import ChatBot from "../components/ChatBot/ChatBot.jsx"
@@ -20,7 +21,10 @@ const page = useRef()
     
     <Intro />
     {/* <LanguageSelect /> */}
-<PopularStories />
+    <PopularStoriesContextProvider>
+    <PopularStories />
+    </PopularStoriesContextProvider>
+
 <GetStartedTimeline />
 {/* <TrustedBy /> */}
 <ChatBot />

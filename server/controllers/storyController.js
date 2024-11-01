@@ -282,7 +282,7 @@ res.status(200).json(allStories)
 }
 }
 const getPopularStories = async (req, res) => {
-    const { category } = req.body;
+    const { category, number } = req.params;
     const defaultCategory = [
         "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
        ]
@@ -292,7 +292,7 @@ try{
         throw new userError(`You Cannot Get Popular Stories From This Category ${category}`, 400)
     }
     const foundStories = await Story.find({ category : category})
-    const mostPopularStories = rankStories(foundStories, 5)
+    const mostPopularStories = rankStories(foundStories, number)
     res.status(200).json(mostPopularStories)
 }catch(error){
     console.log(error)

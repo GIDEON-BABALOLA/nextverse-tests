@@ -38,3 +38,5 @@
 20241029	17:36:14	b74a35e7-5c35-42de-836c-03f7fe3daed2	userError: Your Account Does Not Exist
 20241029	17:36:49	7cf3ee92-4f7b-4fcf-a509-d3cfe094f393	userError: Your Account Does Not Exist
 20241029	17:36:49	9447fb58-310a-49c7-85d3-c972ff0e05b8	userError: Your Account Does Not Exist
+20241101	17:25:10	a52fafdf-7a55-49a1-a1e3-7e433fc09e96	userError: Your Account Does Not Exist
+20241101	17:25:10	ff39b002-5bd4-41fd-b14d-908f2c657de4	userError: Your Account Does Not Exist

@@ -29,7 +29,7 @@ router.put("/unlike-a-story/:id", authMiddleware, unLikeAStory)
 // router.post("/upload-now",  uploadVideoMiddleware, uploadNow)
 router.get("/get-a-story/:id", authMiddleware,   getAStory)
 router.get("/get-all-stories", authMiddleware, getAllStories)
-router.get("/get-popular-stories", authMiddleware, getPopularStories)
+router.get("/get-popular-stories/:category/:number", getPopularStories)
 router.get("/bookmark-a-story/:id", authMiddleware, bookmarkAStory)
 router.delete("/delete-a-story/:id", authMiddleware, deleteAStory)
 module.exports = router
