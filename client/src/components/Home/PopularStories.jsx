@@ -12,6 +12,7 @@ import Share from "../common/Share"
 import { useState, useRef, useEffect } from "react"
 import { useGetPopularStories } from "../../hooks/useGetPopularStories"
 import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
+import ErrorMessage from "../common/ErrorMessage"
 import { useToastContext } from "../../hooks/useToastContext"
 const PopularStories = () => {
   const { getPopularStories, isLoading, error, data, statusCode } = useGetPopularStories()
@@ -63,8 +64,7 @@ const PopularStories = () => {
   useEffect(() => {
     console.log(data)
 setPopularStories(data)
-  }, [data, statusCode])
-
+  }, [data, statusCode, setPopularStories])
   return (
    <>
     <section className="popular-stories-featured-stories" onClick={closeContextMenu} ref={popularStoriesRef}>
@@ -77,9 +77,17 @@ setPopularStories(data)
           
          />
       <div className="popular-stories-story-grid">
-      {popularStories.map((story, index) => (
-<PopularStoriesCard key={index} story={story} fireClick={fireClick}/>
+      { !error && popularStories.map((story, index) => (
+<PopularStoriesCard
+isLoading={isLoading}
+error={error}
+ key={index} story={story} fireClick={fireClick}/>
       ))
+      }
+      { error && <ErrorMessage title={"Something went wrong"} 
+  message={"We are unable to load this content, check your connection"}
+  height={60}
+ />
       }
       <ContextMenu
        state={"feed"}

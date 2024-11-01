@@ -8,13 +8,14 @@ import goldMedal from "../../assets/gold-medal.png"
 import { FaTimes } from "react-icons/fa";
 import useImageLoad from "../../hooks/useImageLoaded";
 
-const PopularStoriesCard = ({ fireClick, story}) => {
+const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const { popularStories } = usePopularStoriesContext()
   const position = popularStories.indexOf(story)
-  const image = story.picture[Math.round(Math.random())] 
+  console.log(isLoading)
+  console.log("gidiboy")
   const [loading, setLoading] = useState(true)
   
-  const { loaded, error } = useImageLoad(image);
+  const { loaded, error } = useImageLoad(story.picture);
   useEffect(() => {
     if (error) {
       console.log("failed to load images")
@@ -28,7 +29,7 @@ const PopularStoriesCard = ({ fireClick, story}) => {
   return (
  <> {
 
-  loading ? 
+  isLoading ? 
     <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
               <div className="litenote-profile-story-image">
@@ -48,9 +49,14 @@ const PopularStoriesCard = ({ fireClick, story}) => {
    :
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
+              { loading ?
+                <div className="litenote-profile-story-image">
+                <div  className="skeleton-image caller" />
+              </div>:
               <div className="litenote-profile-story-image">
-                <img src={image} alt="Story Image" />
+                <img src={story.picture} alt="Story Image" />
               </div>
+              }
               
               <div className="litenote-profile-story-content">
              
@@ -70,9 +76,9 @@ const PopularStoriesCard = ({ fireClick, story}) => {
               
                 <div style={{display : "flex", flexDirection  : "row", justifyContent : "space-between"}}>
               <p className="litenote-profile-story-category">{story.category}</p>
-             { position == 0 ? <FaMedal color={"#FFD700"} size={15}/>
-               : position == 1 ? <FaMedal color={"#C0C0C0"} size={15}/>
-              : <FaMedal color={"#CD7F32"} size={15}/>
+             { position == 0 ? <FaMedal color={"#FFD700"} size={20}/>
+               : position == 1 ? <FaMedal color={"#C0C0C0"} size={20}/>
+              : <FaMedal color={"#CD7F32"} size={20}/>
            }
              </div>
                 <div className="story-card-bottom-info">
