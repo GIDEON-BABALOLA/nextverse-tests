@@ -11,9 +11,10 @@ import useImageLoad from "../../hooks/useImageLoaded";
 const PopularStoriesCard = ({ fireClick, story}) => {
   const { popularStories } = usePopularStoriesContext()
   const position = popularStories.indexOf(story)
+  const image = story.picture[Math.round(Math.random())] 
   const [loading, setLoading] = useState(true)
   
-  const { loaded, error } = useImageLoad(story.picture[0]);
+  const { loaded, error } = useImageLoad(image);
   useEffect(() => {
     if (error) {
       console.log("failed to load images")
@@ -48,7 +49,7 @@ const PopularStoriesCard = ({ fireClick, story}) => {
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
               <div className="litenote-profile-story-image">
-                <img src={story.picture[0]} alt="Story Image" />
+                <img src={image} alt="Story Image" />
               </div>
               
               <div className="litenote-profile-story-content">
@@ -60,18 +61,20 @@ const PopularStoriesCard = ({ fireClick, story}) => {
                </div>
 
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>
-             <div style={{display : "flex", flexDirection  : "row", justifyContent : "space-between"}}>
-             <h4 className="litenote-profile-story-title">{story.title}</h4>
-             { position == 0 ? <FaMedal color={"#FFD700"}/>
-               : position == 1 ? <FaMedal color={"#C0C0C0"}/>
-              : <FaMedal color={"#CD7F32"}/>
-           }
-             </div>
+               <h4 className="litenote-profile-story-title">{story.title}</h4>
+           
              {/* <h4 className="litenote-profile-story-title">{story.title}</h4> */}
     
               
                 
-                <p className="litenote-profile-story-category">{story.category}</p>
+              
+                <div style={{display : "flex", flexDirection  : "row", justifyContent : "space-between"}}>
+              <p className="litenote-profile-story-category">{story.category}</p>
+             { position == 0 ? <FaMedal color={"#FFD700"} size={15}/>
+               : position == 1 ? <FaMedal color={"#C0C0C0"} size={15}/>
+              : <FaMedal color={"#CD7F32"} size={15}/>
+           }
+             </div>
                 <div className="story-card-bottom-info">
                {/* <span>{story.date}</span><span>5 min read</span> */}
                </div>
