@@ -26,7 +26,7 @@ import NoteReaderPage from './Pages/NoteReaderPage';
 import FollowPage from './Pages/FollowPage';
 import { useLocation } from "react-router-dom"
 import { useAuthContext } from './hooks/useAuthContext';
-import TeamPage from "./Pages/TeamPage"
+import DevelopersPage from "./Pages/DevelopersPage"
 function App() {
   const { user } = useAuthContext()
   const location = useLocation();
@@ -52,7 +52,7 @@ function App() {
 <Route path="profile" element={<ProfilePage/>}/>
 <Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>
   </Route>
-  <Route path="our-team" element={<TeamPage />} />
+  <Route path="our-developers" element={<DevelopersPage />} />
   <Route path="login" element={<LoginPage />} />
   <Route path="feed" element={  user == null ? <Navigate to="/login" /> : <FeedPage />} />
   <Route path="story" element={<StoryPage />}  />

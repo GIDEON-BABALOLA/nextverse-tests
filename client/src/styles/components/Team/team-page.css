@@ -67,6 +67,16 @@ icons svg:hover{
     transform: translateY(-10px);
     cursor: pointer;
 }
+.skeleton-image-developer-avatar{
+    border-radius: 15px;
+    margin-bottom: 15px;
+height: 100px;
+width: 40%;
+/* object-fit: cover;
+overflow: hidden;
+place-content: center; */
+
+}
 @media(max-width: 1240px){
     .team{
         width:100%;

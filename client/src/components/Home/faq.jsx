@@ -67,7 +67,7 @@ return <div className="accorder">
       <div className="accordion__details">
       <ul>
               <li>
-              Our platform is designed to help writers,Bloggers of all skill levels improve their writing abilities and connect with other writers and writing enthusiasts.
+              Our platform is designed to help writers, Bloggers of all skill levels improve their writing abilities and connect with other writers and writing enthusiasts.
               </li>
           
             </ul>
@@ -99,7 +99,7 @@ return <div className="accorder">
       <div className="accordion__details">
       <ul>
               <li>
-              You can post your write-ups under various categories that are specified on the platform that suites the content given
+              You can post your write-ups under various categories that are specified on our platform that suites the content given
               </li>
            
             </ul>

@@ -57,7 +57,7 @@ cookieConsent
             This website use cookies to help you have a superior and more relevant
             browsing experience on the website.
             { readMore && <span className="cookie-consent-read-more">
-            Cookies are used to track the activities of our users and helps us to deliver content that is fits the interest of our users, disabling cookies on our website will lead to the inactivity of
+            Cookies are used to track the activities of our users and helps us to deliver content that  fits the interest of our users, disabling cookies on our website will lead to the inactivity of
             some features on our website.
             <p>
             <span

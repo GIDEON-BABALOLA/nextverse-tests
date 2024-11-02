@@ -9,6 +9,9 @@ const Dropdown = ({ tabs, setTab}) => {
  
     const chooseOption = (e) => {
         const tab = e.target.innerText.toLowerCase().split("\n")[0]
+     if(e.target.className == "dropdown-stories-select-notification"){
+      return
+     }
         const optionMapping = {}
         Object.entries(tabs).map(([key, value]) => {
             optionMapping[key] = value

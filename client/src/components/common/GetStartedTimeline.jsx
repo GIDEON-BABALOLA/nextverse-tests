@@ -81,7 +81,7 @@ case "secondSection":
             <div className="text-box">
               <h2>Step 1</h2>
               <small><b>Create An Account</b></small>
-              <p>Navigate to the navbar of the application, click on the avatar illustration, a context menu will appear with several options, click on Sign In.</p>
+              <p>Navigate to the navbar of the application, click on the avatar illustration, a context menu will appear with several options, click on Sign Up.</p>
               <span className="left-container-arrow"></span>
             </div>
         </div>
@@ -91,7 +91,7 @@ case "secondSection":
             <div className="text-box">
               <h2>Step 2</h2>
               <small><b>Fill In Your Details</b></small>
-              <p>After Clicking on the login button, It will take you to a page where you are required to enter a username, an email, password and a phone number, after this you are required to click on the register button.</p>
+              <p>After Clicking on the Sign Up button, It will take you to a page where you are required to enter a username, an email, password and a phone number, after this you are required to click on the register button.</p>
               <span className="right-container-arrow"></span>
             </div>
         </div>
@@ -100,7 +100,7 @@ case "secondSection":
             <div className="text-box">
               <h2>Step 3</h2>
               <small><b>Verify Your Account</b></small>
-              <p>After cliking the register button on the register page, if your credentials are correct, then you will be routed to another page to login with your email and password, if your credentials matched what your registered with, then you will be routed back to the home pag, now you are logged in.</p>
+              <p>After cliking the register button on the register page, An email will be sent to you to verify your account, after successful verification, then you will be routed to another page to login with your email and password, if your credentials matched what your registered with, then you will be routed back to the home page, now you are logged in.</p>
               <span className="left-container-arrow"></span>
             </div>
         </div>
@@ -119,7 +119,7 @@ case "secondSection":
             <div className="text-box">
               <h2>Step 5</h2>
               <small><b>Visiting Your Dashboard</b></small>
-              <p>The Dashboard Is Where the main action takes place, inside your dashboard you get to edit your profile, you also get to write your notes with our powerful editor, I wont tell you everythink now more features are waiting for you in the dashboard.</p>
+              <p>The Dashboard Is Where the main action takes place, inside your dashboard you get to edit your profile, you also get to write your notes with our powerful editor, I {"won't"} tell you everythink now, more features are waiting for you in the dashboard.</p>
               <span className="left-container-arrow"></span>
             </div>
         </div>

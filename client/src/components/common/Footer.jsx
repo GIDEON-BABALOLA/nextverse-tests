@@ -80,8 +80,12 @@ const Footer = () => {
       <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%"}}>
       <FaShieldAlt/>
       <span style={{cursor : "pointer"}}
-      onClick={() =>  setShowTermsAndConditions(true)}>
-    Developers Page
+     >
+     <Link to = "our-developers">
+     Developers Page
+
+      </Link>
+  
       
       </span>
       </div>

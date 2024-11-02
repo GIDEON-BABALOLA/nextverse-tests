@@ -4,3 +4,11 @@
 20241031	23:37:32	f609d04b-36c4-4fcc-b5de-97a43afaa09d	TypeError: rankStories is not a function
 20241031	23:39:22	2ef07f05-9603-4a90-b5b8-e8d9402600b2	ReferenceError: story is not defined
 20241101	20:53:52	c0838a4e-a4e2-4891-9bda-016b50dea5e7	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:06:15	7a981f8c-584d-4005-bb69-2c8e465ed116	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:10:19	b6506a8a-6375-4b70-b0ac-62890059a3f3	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:10:44	678d708d-6f19-4edc-993f-1c15b77fe054	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:11:12	7e2dd333-fff3-4303-bdb9-7641805c546a	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:11:27	eecc38d1-22bd-4c7c-88cd-3657b53f6e39	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:11:49	ef180f71-5ed9-46c1-b27f-943dca45802e	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:12:01	13b5f785-229b-43be-a46b-6b629e946601	userError: You Cannot Get Popular Stories From This Category 3
+20241102	00:12:06	fd41aaac-68a9-4d45-a8b7-b5176c637b4f	userError: You Cannot Get Popular Stories From This Category 3
