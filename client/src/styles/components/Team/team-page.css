@@ -1,5 +1,5 @@
 :root{
-    --skeletal-background: linear-gradient(110deg, #1B1229 8%, #2A2C30 18%, #1B1229 33%);
+    --skeletal-background: linear-gradient(110deg, #281C3E 8%, #2A2C30 18%, #281C3E 33%);
 }
 .team{
     position: relative;
@@ -71,14 +71,56 @@ icons svg:hover{
     cursor: pointer;
 }
 
-.skeleton-image-developer-avatar{
-    border-radius: 15px;
+.skeletal-image{
+
+        height: 130px;
+        width: 160px;
+        background: var(--skeletal-background);
+        -webkit-animation: 1.5s shiner linear infinite;
+        animation: 1.5s shiner linear infinite; 
+        background-size: 200% 100%;
+        border-radius: 5px;
+        
+}
+.skeletal-name{
+
+    height: 20px;
+    width: 200px;
     background: var(--skeletal-background);
-    margin-bottom: 15px;
-height: 100px;
-width: 40%;
--webkit-animation: 1.5s shiner linear infinite;
-animation: 1.5s shiner linear infinite;
+    -webkit-animation: 1.5s shiner linear infinite;
+    animation: 1.5s shiner linear infinite; 
+    background-size: 200% 100%;
+    border-radius: 5px;
+    
+}
+.facemenow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    
+}
+.skeletal-icon{
+    height: 36px;
+    width: 36px;
+    background: var(--skeletal-background);
+    -webkit-animation: 1.5s shiner linear infinite;
+    animation: 1.5s shiner linear infinite; 
+    background-size: 200% 100%;
+    border-radius: 5px;
+}
+.skeletal-title{
+
+    height: 20px;
+    width: 200px;
+    background: var(--skeletal-background);
+    -webkit-animation: 1.5s shiner linear infinite;
+    animation: 1.5s shiner linear infinite; 
+    background-size: 200% 100%;
+    border-radius: 5px;
+    
 }
 @-webkit-keyframes shiner {
     to {
@@ -102,6 +144,16 @@ animation: 1.5s shiner linear infinite;
     }
 }
 @media (max-width: 768px) {
+    .skeletal-image{
+        height: 200px;
+        width: 260px;
+    }
+    .skeletal-title{
+        width: 300px;
+    }
+    .skeletal-name{
+        width: 300px;
+    }
     .team-content {
         grid-template-columns: 1fr;
         gap: 1rem;
