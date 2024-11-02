@@ -21,7 +21,7 @@ const DevelopersCard = ({ developer }) => {
  !loaded ? <div>
  <div className="box">
     <div style={{display : "flex", flexDirection : "row", width : "100%", alignItems : "center", justifyItems : "center", justifyContent : "center"}}>
-<div className="skeleton-image skeleton-image-developer-avatar">  </div>
+<div className=" skeleton-image-developer-avatar">  </div>
     </div>
     <h3>{developer.name}</h3>
     <h5>{developer.role}</h5>

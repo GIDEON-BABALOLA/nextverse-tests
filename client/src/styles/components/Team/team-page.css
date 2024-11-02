@@ -1,3 +1,6 @@
+:root{
+    --skeletal-background: linear-gradient(110deg, #1B1229 8%, #2A2C30 18%, #1B1229 33%);
+}
 .team{
     position: relative;
     width: 100%;
@@ -67,16 +70,27 @@ icons svg:hover{
     transform: translateY(-10px);
     cursor: pointer;
 }
+
 .skeleton-image-developer-avatar{
     border-radius: 15px;
+    background: var(--skeletal-background);
     margin-bottom: 15px;
 height: 100px;
 width: 40%;
-/* object-fit: cover;
-overflow: hidden;
-place-content: center; */
-
+-webkit-animation: 1.5s shiner linear infinite;
+animation: 1.5s shiner linear infinite;
 }
+@-webkit-keyframes shiner {
+    to {
+      background-position-x: -200%;
+    }
+  }
+  
+  @keyframes shiner {
+    to {
+      background-position-x: -200%;
+    }
+  }
 @media(max-width: 1240px){
     .team{
         width:100%;
