@@ -47,7 +47,7 @@ if(req.file){
     profilePicture = picture.url
     fs.unlinkSync(req.file.path) //delete the image from server
 }else{
-    profilePicture = avatars[Math.floor((Math.random() * 30) + 1)]
+    profilePicture = avatars[Math.floor((Math.random() * 50) + 1)]
 }
 
 const hashedPassword = await bcrypt.hash(password, 10);
