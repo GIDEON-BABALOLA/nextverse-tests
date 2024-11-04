@@ -13,3 +13,23 @@
 20241103	16:21:38	c1f4f801-5ce8-42ae-a921-4d0c491ea3be	developerError: Please Fill In All The Fields
 20241103	16:22:03	b1ee8891-0883-4561-b1d5-fbca86d4aaeb	developerError: Developer Already Exists
 20241103	16:22:05	f4a9d6d4-0b9e-44bb-84d3-d53e3ccdaa24	developerError: Developer Already Exists
+20241104	08:17:43	e3985d6c-df9b-4911-bc76-3463c85d25e6	developerError: Developer Already Exists
+20241104	08:22:48	e794726b-756f-41e8-afe8-550b3d502503	developerError: You Are Not A Developer For Litenote
+20241104	08:23:44	fcfd5712-9192-43db-a6d6-14b5361c9ed4	developerError: Developer Already Exists
+20241104	08:54:29	09432ec2-3777-4f2d-8855-fa646e745cbc	developerError: Developer Already Exists
+20241104	08:57:45	d91e0adf-1e2e-4a6c-a4f5-9cd051fc33f5	developerError: Developer Already Exists
+20241104	08:58:54	86ca9e33-9a75-49fe-b5ce-a2d4e1f8839d	TypeError: true is not a function
+20241104	08:59:09	84baefcd-92fb-4ecf-81ca-a2a5f7ea4bb2	TypeError: true is not a function
+20241104	08:59:35	aec70028-df8f-4e49-ac5d-6d3f8e265504	TypeError: true is not a function
+20241104	09:00:22	6f2d3e52-cd64-4514-afef-9e0edd64e0ea	TypeError: true is not a function
+20241104	09:00:35	3c8aa0d8-2642-4cbb-a342-45f745062759	TypeError: false is not a function
+20241104	09:00:36	177a169c-8618-43bb-b5e2-1fd467d2d932	TypeError: false is not a function
+20241104	09:00:55	de373cdf-5ac2-48b1-8776-b16146d7f0ed	TypeError: true is not a function
+20241104	09:01:12	8cf7f7a7-5ddd-41ec-b5c4-3ed3305c87ac	developerError: Developer Already Exists
+20241104	09:01:19	e1ff4c29-10b4-4cc8-82ac-0c006fe0e257	developerError: Developer Already Exists
+20241104	09:01:25	7f57fd4e-f4dc-4e67-ad85-f0232aeb7baf	developerError: Developer Already Exists
+20241104	09:01:34	cf46361b-0f9f-4ffb-b0af-9fc8368eed62	developerError: Please Fill In All The Fields
+20241104	09:01:41	1173b332-63e0-4d32-9c7c-bb142336b4c6	developerError: Developer Already Exists
+20241104	09:04:10	b3253bf4-5c0d-4c99-94d6-a7278140bfcf	validatorError: Pls Enter A Valid Link To Your Social Media Account
+20241104	09:04:50	c6d8c4c6-eb7a-4f98-8aca-90d51e310d76	developerError: Developer Already Exists
+20241104	09:05:57	48e3eb66-c4ac-4e6b-bd75-1d161120b823	developerError: Developer Already Exists
