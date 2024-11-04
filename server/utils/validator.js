@@ -26,4 +26,10 @@ const validateEmail = async (email) => {
 throw new validatorError("Invalid Email", 400)
     }
 }
-module.exports = { validatePassword, validateEmail}
+const validateURL = async (url) => {
+    const isValid = new URL(url)
+    if(!isValid){
+        throw new validatorError("Invalid URL", 400)
+    }
+}
+module.exports = { validatePassword, validateEmail, validateURL}

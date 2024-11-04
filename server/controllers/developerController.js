@@ -7,22 +7,26 @@ const Developer = require(path.join(__dirname, "..", "models", "developerModel.j
 const { developerError, cloudinaryError, validatorError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
-const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
+const { validateEmail, validatePassword, validateURL } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { developerConfirmationArray, hashDeveloperEmail }= require(path.join(__dirname, "..", "config", "developerConfig.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 
 const signupDeveloper = async (req, res) => {
+    console.log(req.body)
+    const { username, email, password, mobile, instagram, linkedin, twitter, title} = req.body;
 try{
     //
     let profilePicture
-const { username, email, password, mobile, instagram, linkedin, twitter, title} = req.body;
 if(!username || !email || !password || !mobile || !instagram || !twitter || !title || !linkedin ){
     throw new developerError("Please Fill In All The Fields", 400)
 }
 await validateEmail(email)
 await validatePassword(password)
+await validateURL(instagram)
+await validateURL(twitter)
+await validateURL(linkedin)
 const hashedText = hashDeveloperEmail(email)
 const isDeveloper = developerConfirmationArray.includes(hashedText)
 if(!isDeveloper){
