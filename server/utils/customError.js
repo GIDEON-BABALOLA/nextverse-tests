@@ -19,6 +19,13 @@ class developerError extends Error {
         this.statusCode = statusCode; //status code
     }
 }
+class designerError extends Error {
+    constructor(message, statusCode){
+        super(message);
+        this.name = this.constructor.name;
+        this.statusCode = statusCode; //status code
+    }
+}
 class validatorError extends Error {
     constructor(message, statusCode){
         super(message);
@@ -57,5 +64,5 @@ class emailError extends Error{
     }
 }
 module.exports = { userError, cloudinaryError, uploadError, adminError, validatorError, storyError, emailError,
-developerError
+developerError, designerError
  }

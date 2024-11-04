@@ -11,6 +11,7 @@ const userRouter = require(path.join(__dirname,  "routes", "userRoute.js"))
 const adminRouter = require(path.join(__dirname,  "routes", "adminRoute.js"))
 const storyRouter = require(path.join(__dirname,  "routes", "storyRoute.js"))
 const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
+const designerRouter = require(path.join(__dirname,  "routes", "designerRoute.js"))
 const fixRouter = require(path.join(__dirname,  "routes", "fixRoute.js"))
 const newsletterRouter = require(path.join(__dirname,  "routes", "newsletterRoute.js"))
 app.use(express.json())
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/developer", developerRouter);
+app.use("/api/designer", designerRouter);
 app.use("/api/story", storyRouter); 
 app.use("/api/newsletter", newsletterRouter); 
 app.use("/api/fix", fixRouter); 

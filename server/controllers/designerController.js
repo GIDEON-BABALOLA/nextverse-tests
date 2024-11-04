@@ -3,23 +3,23 @@ const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEven
 const fs = require('fs');
 const bcrypt = require("bcrypt")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
-const Developer = require(path.join(__dirname, "..", "models", "developerModel.js"))
-const { developerError, cloudinaryError, validatorError } = require(path.join(__dirname, "..", "utils", "customError.js"))
+const Designer = require(path.join(__dirname, "..", "models", "designerModel.js"))
+const { designerError, cloudinaryError, validatorError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword, validateURL } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
-const  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
-const { developerConfirmationArray, hashDeveloperEmail }= require(path.join(__dirname, "..", "config", "developerConfig.js"))
+const  { cloudinaryUpload, cloudinaryDesignerDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
+const { designerConfirmationArray, hashDesignerEmail }= require(path.join(__dirname, "..", "config", "designerConfig.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 
-const signupDeveloper = async (req, res) => {
+const signupDesigner = async (req, res) => {
     const { username, email, password, mobile, instagram, linkedin, twitter, title} = req.body;
 try{
     //
     let profilePicture
 if(!username || !email || !password || !mobile || !instagram || !twitter || !title || !linkedin ){
-    throw new developerError("Please Fill In All The Fields", 400)
+    throw new designerError("Please Fill In All The Fields", 400)
 }
 await validateEmail(email)
 await validatePassword(password)
@@ -31,15 +31,15 @@ if(!isValidURL){
 const hashedText = hashDeveloperEmail(email)
 const isDeveloper = developerConfirmationArray.includes(hashedText)
 if(!isDeveloper){
-    throw new developerError("You Are Not A Developer For Litenote", 401)
+    throw new designerError("You Are Not A Developer For Litenote", 401)
 }
-const foundDeveloper = await Developer.findOne({email : email})
+const foundDesigner = await Developer.findOne({email : email})
 const foundMobile = await Developer.findOne({mobile : mobile})
-if(foundDeveloper) {
-    throw new developerError("Developer Already Exists", 400)
+if(foundDesigner) {
+    throw new designerError("Developer Already Exists", 400)
 }
 if(foundMobile){
-    throw new developerError("Phone Number Has Been Used", 400)
+    throw new designerError("Phone Number Has Been Used", 400)
 }
 if(req.file){
     if(req.file.size > 2000000){
@@ -54,7 +54,7 @@ if(req.file){
 }
 
 const hashedPassword = await bcrypt.hash(password, 10);
-const newDeveloper = await Developer.create({
+const newDesigner = await Developer.create({
     username,
     email,
     password :  hashedPassword,
@@ -64,10 +64,10 @@ const newDeveloper = await Developer.create({
     title : title,
     socials : { instagram : instagram, twitter : twitter, linkedin : linkedin}
 })
-res.status(201).json(newDeveloper)
+res.status(201).json(newDesigner)
 }catch(error){
-logEvents(`${error.name}: ${error.message}`, "registerDeveloperError.txt", "developerError")
-    if (error instanceof developerError) {
+logEvents(`${error.name}: ${error.message}`, "registerdesignerError.txt", "designerError")
+    if (error instanceof designerError) {
        return res.status(error.statusCode).json({ error : error.message})
     }
     else if(error instanceof validatorError){
@@ -79,45 +79,45 @@ logEvents(`${error.name}: ${error.message}`, "registerDeveloperError.txt", "deve
 }
 }
 
-const loginDeveloper = async (req, res) => {
+const loginDesigner = async (req, res) => {
 try{
 const { email, password } = req.body;
 if(!email || !password){
-    throw new developerError("Please Provide An Email And A Password", 400)
+    throw new designerError("Please Provide An Email And A Password", 400)
 }
 await validateEmail(email)
 await validatePassword(password)
 const hashedText = hashDeveloperEmail(email)
 const isDeveloper = developerConfirmationArray.includes(hashedText)
 if(!isDeveloper){
-    throw new developerError("You Are Not A Developer For Litenote", 401)
+    throw new designerError("You Are Not A Developer For Litenote", 401)
 }
-const foundDeveloper = await Developer.findOne({email : email})
-if(!foundDeveloper){
-    throw new developerError("You Are Not A Developer", 404)
+const foundDesigner = await Developer.findOne({email : email})
+if(!foundDesigner){
+    throw new designerError("You Are Not A Developer", 404)
 }
-const match = await bcrypt.compare(password, foundDeveloper.password)
-if(foundDeveloper && match){
-    const id = foundDeveloper?._id.toString()
-    const refreshToken = generateRefreshToken(id, foundDeveloper.role)
+const match = await bcrypt.compare(password, foundDesigner.password)
+if(foundDesigner && match){
+    const id = foundDesigner?._id.toString()
+    const refreshToken = generateRefreshToken(id, foundDesigner.role)
     await Developer.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
     res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 3, sameSite : "None", /* secure : true */})
     //Three Day Refresh Token
     res.status(201).json({
-        id : foundDeveloper?._id,
-        username : foundDeveloper?.username,
-        email : foundDeveloper?.email,
-        accessToken : generateAccessToken(id, foundDeveloper.role),
-        password : foundDeveloper?.password,
-        picture : foundDeveloper?.picture,
+        id : foundDesigner?._id,
+        username : foundDesigner?.username,
+        email : foundDesigner?.email,
+        accessToken : generateAccessToken(id, foundDesigner.role),
+        password : foundDesigner?.password,
+        picture : foundDesigner?.picture,
     })
 }
 else{
-    throw new developerError("Invalid Credentials", 401)
+    throw new designerError("Invalid Credentials", 401)
 }
 }catch(error){
-    logEvents(`${error.name}: ${error.message}`, "loginDeveloperError.txt", "developerError")
-    if (error instanceof developerError) {
+    logEvents(`${error.name}: ${error.message}`, "logindesignerError.txt", "designerError")
+    if (error instanceof designerError) {
        return  res.status(error.statusCode).json({ error : error.message})
     }
     else if(error instanceof validatorError){
@@ -129,19 +129,19 @@ else{
 }
 }
 
-const getCurrentDeveloper = async  (req, res) => {
+const getCurrentDesigner = async  (req, res) => {
     try{
 const { id } = req.user
 validateMongoDbId(id)
 const developer = await Developer.findById(id)
 if(!developer){
-    throw new developerError("You Are Not Logged In", 401)
+    throw new designerError("You Are Not Logged In", 401)
 }
- const newDeveloper = _.omit(developer.toObject(), "refreshToken")
-res.status(200).json(newDeveloper)
+ const newDesigner = _.omit(developer.toObject(), "refreshToken")
+res.status(200).json(newDesigner)
     }catch(error){
-        logEvents(`${error.name}: ${error.message}`, "getCurrentDeveloperError.txt", "developerError")
-        if (error instanceof developerError) {
+        logEvents(`${error.name}: ${error.message}`, "getCurrentdesignerError.txt", "designerError")
+        if (error instanceof designerError) {
             return res.status(error.statusCode).json({ error : error.message})
         }
         else{
@@ -150,12 +150,12 @@ res.status(200).json(newDeveloper)
     }
 }
 
-const logoutDeveloper = async (req, res) => {
+const logoutDesigner = async (req, res) => {
     const cookies = req.cookies
     console.log(cookies)
     try{
         if(!cookies?.refreshToken){
-            throw new developerError("You Are Not Logged In", 401)
+            throw new designerError("You Are Not Logged In", 401)
         }
         const refreshToken = cookies.refreshToken;
         const developer = await Developer.findOne({refreshToken})
@@ -168,8 +168,8 @@ const logoutDeveloper = async (req, res) => {
         res.clearCookie("refreshToken", {httpOnly: true,  sameSite : "None", /*secure : true */})
         return res.status(204).json({message : "Successfully Logged Out now", "success" : true})
     }catch(error){
-        logEvents(`${error.name}: ${error.message}`, "logoutDeveloperError.txt", "developerError")
-        if (error instanceof developerError) {
+        logEvents(`${error.name}: ${error.message}`, "logoutdesignerError.txt", "designerError")
+        if (error instanceof designerError) {
             return res.status(error.statusCode).json({ error : error.message})
         }
         else{
@@ -178,29 +178,29 @@ const logoutDeveloper = async (req, res) => {
     }
 }
 
-const developerRefreshToken = async (req, res) => {
+const designerRefreshToken = async (req, res) => {
     try{
         const cookies = req.cookies;
         if(!cookies?.refreshToken){
-            throw new developerError("Please Login Again To, No RefreshToken In Cookies", 401)
+            throw new designerError("Please Login Again To, No RefreshToken In Cookies", 401)
         }
         const refreshToken = cookies.refreshToken;
-        const foundDeveloper = await Developer.findOne({refreshToken})
-        if(!foundDeveloper){
-            throw new developerError("No RefreshToken In Database", 400)
+        const foundDesigner = await Developer.findOne({refreshToken})
+        if(!foundDesigner){
+            throw new designerError("No RefreshToken In Database", 400)
         }
-        const id = foundDeveloper._id.toString();
+        const id = foundDesigner._id.toString();
         jwt.verify(refreshToken, process.env.LIGHTNOTE_JWT_TOKEN_SECRET, (err, decoded) => {
             if(err || id !== decoded.id){
-                throw new developerError("Wrong refresh token, because it has expired", 404)
+                throw new designerError("Wrong refresh token, because it has expired", 404)
             }
             const accessToken = generateAccessToken(id, decoded.role)
             res.status(201).json({accessToken : accessToken})
         })
         
     }catch(error){
-        logEvents(`${error.name}: ${error.message}`, "developerRefreshTokenError.txt", "developerError")
-        if (error instanceof developerError) {
+        logEvents(`${error.name}: ${error.message}`, "developerRefreshTokenError.txt", "designerError")
+        if (error instanceof designerError) {
             return res.status(error.statusCode).json({ error : error.message})
         }
         else{
@@ -209,17 +209,17 @@ const developerRefreshToken = async (req, res) => {
     }
 }
 
-const uploadDeveloperPicture = async (req, res) => {
+const uploadDesignerPicture = async (req, res) => {
     try{
     const { _id } = req.user
     validateMongoDbId(_id)
     const developer =  await Developer.findOne({_id : _id})
     if(!req.file){
-        throw new developerError("Pls Choose An Image To Upload", 400)
+        throw new designerError("Pls Choose An Image To Upload", 400)
     }
     if(req.file.size > 2000000){
         fs.unlinkSync(req.file.path) //delete the image from server
-        throw new developerError("Image size too large (max 2MB)", 400)
+        throw new designerError("Image size too large (max 2MB)", 400)
     }
     if(developer.picture.length > 0){
         const publicId = developer.picture.split("/").slice(-3).join("/").split(".").slice(0, 2).join("")
@@ -232,13 +232,13 @@ const uploadDeveloperPicture = async (req, res) => {
     fs.unlinkSync(req.file.path) //delete the image from server
     developer.picture = picture.url;
     await developer.save()
-    const newDeveloper = _.omit(developer.toObject(), "refreshToken")
-    res.status(200).json(newDeveloper)
+    const newDesigner = _.omit(developer.toObject(), "refreshToken")
+    res.status(200).json(newDesigner)
     }catch(error){
-        logEvents(`${error.name}: ${error.message}`, "uploadDeveloperPictureError.txt", "developerError")
+        logEvents(`${error.name}: ${error.message}`, "uploadDeveloperPictureError.txt", "designerError")
         if (error instanceof cloudinaryError) {
             return res.status(error.statusCode).json({ error : error.message})
-        }else if(error instanceof developerError){
+        }else if(error instanceof designerError){
             return res.status(error.statusCode).json({ error : error.message})
         }
         else{
@@ -246,12 +246,12 @@ const uploadDeveloperPicture = async (req, res) => {
             }
         }
 }
-const updateDeveloper = async (req, res) => {
+const updateDesigner = async (req, res) => {
     const { username, mobile, title, instagram, twitter, linkedin} = req.body
     const { _id } = req.user;
 try{
     if(!Object.keys(req.body).length === 0 || !Object.values(req.body).length === 0){
-        throw new developerError("Enter The Details You Want To Update", 400)
+        throw new designerError("Enter The Details You Want To Update", 400)
     }
 validateMongoDbId(_id)
 const urlValidations = []
@@ -274,12 +274,12 @@ title : title,
     {
         new : true
     })
-    const newDeveloper = _.omit(updatedDeveloper.toObject(), "refreshToken")
-    res.status(201).json(newDeveloper)
+    const newDesigner = _.omit(updatedDeveloper.toObject(), "refreshToken")
+    res.status(201).json(newDesigner)
 }catch(error){
     console.log(error)
-    logEvents(`${error.name}: ${error.message}`, "UpdateDeveloperError.txt", "developerError")
-    if (error instanceof developerError) {
+    logEvents(`${error.name}: ${error.message}`, "UpdatedesignerError.txt", "designerError")
+    if (error instanceof designerError) {
         return res.status(error.statusCode).json({ error : error.message})
     }
     else if(error instanceof validatorError){
@@ -290,24 +290,26 @@ title : title,
         }
 }
 }
-const deleteDeveloper = async (req, res) => {
+const deleteDesigner = async (req, res) => {
     try{
         if(req.user == null){
-            throw new developerError("Your Account Does Not Exist", 404)
+            throw new designerError("Your Account Does Not Exist", 404)
         }
-        if(developer.picture.length > 0){
-            await cloudinaryDelete(developer.email)
+        const foundDesigner = await Developer.findOne({_id: req.user._id})
+        console.log(foundDesigner.email)
+        if(foundDesigner.picture.length > 0){
+            await cloudinaryDeveloperDelete(foundDesigner.email)
         }
-        const developer = await Developer.findOneAndDelete({_id: req.user._id})
-        if(!developer){
-            throw new developerError("Developer Does Not Exist", 404)
+        if(!foundDesigner){
+            throw new designerError("Developer Does Not Exist", 404)
         }
-        const newDeveloper = _.omit(developer.toObject(), "refreshToken")
-        res.status(200).json(newDeveloper)
+        await foundDesigner.deleteOne()
+        const newDesigner = _.omit(foundDesigner.toObject(), "refreshToken")
+        res.status(200).json(newDesigner)
     }catch(error){
         console.log(error)
-        logEvents(`${error.name}: ${error.message}`, "deleteDeveloperError.txt", "developerError")
-         if(error instanceof developerError){
+        logEvents(`${error.name}: ${error.message}`, "deletedesignerError.txt", "designerError")
+         if(error instanceof designerError){
             return res.status(error.statusCode).json({ error : error.message})
         }
       else  if (error instanceof cloudinaryError) {
@@ -319,12 +321,12 @@ const deleteDeveloper = async (req, res) => {
     }
 }
 module.exports = {
-    signupDeveloper,
-    loginDeveloper,
-    logoutDeveloper,
-    uploadDeveloperPicture,
-    developerRefreshToken,
-    getCurrentDeveloper,
-    deleteDeveloper,
-    updateDeveloper,
+    signupDesigner,
+    loginDesigner,
+    logoutDesigner,
+    uploadDesignerPicture,
+    designerRefreshToken,
+    getCurrentDesigner,
+    deleteDesigner,
+    updateDesigner,
 }

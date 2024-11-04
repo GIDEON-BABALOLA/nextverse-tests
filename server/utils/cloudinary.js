@@ -31,6 +31,14 @@ const cloudinaryDelete = async (folderName) => {
     throw new cloudinaryError("Unable To Delete Your Picture, Check Internet Connection", 400)
   }
 }
+const cloudinaryDeveloperDelete = async (folderName) => {
+  try{
+    await cloudinary.api.delete_resources_by_prefix(`Developer/${folderName}`);
+    await cloudinary.api.delete_folder(`/Developer/${folderName}`)
+  }catch(error){
+    throw new cloudinaryError("Unable To Delete Your Picture, Check Internet Connection", 400)
+  }
+}
 //This deletes a single asset with the publicID
 const cloudinarySingleDelete = async (publicId, folderName) => {
   try{
@@ -44,4 +52,4 @@ const cloudinarySingleDelete = async (publicId, folderName) => {
   }
 }
 
-module.exports =  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete }
+module.exports =  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryDeveloperDelete }

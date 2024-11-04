@@ -74,7 +74,6 @@ const isAdministrator = async (req, res, next) => {
     }
 }
 const isDeveloper = async (req, res, next) => {
-    console.log(req.user)
     if(req.user && req.user.role === "developer"){
         next()  
     }

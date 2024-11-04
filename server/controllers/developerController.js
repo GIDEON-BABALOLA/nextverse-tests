@@ -9,7 +9,7 @@ const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword, validateURL } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
-const  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
+const  { cloudinaryUpload, cloudinaryDeveloperDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { developerConfirmationArray, hashDeveloperEmail }= require(path.join(__dirname, "..", "config", "developerConfig.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 
@@ -296,8 +296,9 @@ const deleteDeveloper = async (req, res) => {
             throw new developerError("Your Account Does Not Exist", 404)
         }
         const foundDeveloper = await Developer.findOne({_id: req.user._id})
+        console.log(foundDeveloper.email)
         if(foundDeveloper.picture.length > 0){
-            await cloudinaryDelete(foundDeveloper.email)
+            await cloudinaryDeveloperDelete(foundDeveloper.email)
         }
         if(!foundDeveloper){
             throw new developerError("Developer Does Not Exist", 404)
