@@ -295,14 +295,15 @@ const deleteDeveloper = async (req, res) => {
         if(req.user == null){
             throw new developerError("Your Account Does Not Exist", 404)
         }
-        if(developer.picture.length > 0){
-            await cloudinaryDelete(developer.email)
+        const foundDeveloper = await Developer.findOne({_id: req.user._id})
+        if(foundDeveloper.picture.length > 0){
+            await cloudinaryDelete(foundDeveloper.email)
         }
-        const developer = await Developer.findOneAndDelete({_id: req.user._id})
-        if(!developer){
+        if(!foundDeveloper){
             throw new developerError("Developer Does Not Exist", 404)
         }
-        const newDeveloper = _.omit(developer.toObject(), "refreshToken")
+        await foundDeveloper.deleteOne()
+        const newDeveloper = _.omit(foundDeveloper.toObject(), "refreshToken")
         res.status(200).json(newDeveloper)
     }catch(error){
         console.log(error)

@@ -1,1 +1,5 @@
 20241104	10:16:16	ff343a33-4ecc-4761-b987-3490d8635cac	cloudinaryError: Unable To Delete Your Picture, Check Internet Connection
+20241104	11:38:44	f882880f-ae33-42bf-9417-57c5b57a9795	ReferenceError: Cannot access 'developer' before initialization
+20241104	11:46:19	d14d1cd4-aaff-43b0-bf3d-476d22771361	cloudinaryError: Unable To Delete Your Picture, Check Internet Connection
+20241104	11:50:24	c224dc8f-4d35-4660-ac13-5e4253a6528a	cloudinaryError: Unable To Delete Your Picture, Check Internet Connection
+20241104	11:50:39	ef4b5b1d-2bfe-44d5-a240-7275ab1ede55	cloudinaryError: Unable To Delete Your Picture, Check Internet Connection

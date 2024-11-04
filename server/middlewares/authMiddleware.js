@@ -74,7 +74,8 @@ const isAdministrator = async (req, res, next) => {
     }
 }
 const isDeveloper = async (req, res, next) => {
-    if(req.user.role === "developer"){
+    console.log(req.user)
+    if(req.user && req.user.role === "developer"){
         next()  
     }
     else{
@@ -82,7 +83,8 @@ const isDeveloper = async (req, res, next) => {
     }
 }
 const isDesigner = async (req, res, next) => {
-    if(req.user.role === "designer"){
+    
+    if(req.user && req.user.role === "designer"){
         next()  
     }
     else{
@@ -90,7 +92,7 @@ const isDesigner = async (req, res, next) => {
     }
 }
 const isUser = async (req, res, next) => {
-    if(req.user.role === "user"){
+    if(req.user && req.user.role === "user"){
         next()  
     }
     else{

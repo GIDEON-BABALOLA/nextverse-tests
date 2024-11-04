@@ -3,6 +3,7 @@ import SpecialModal from "../../common/SpecialModal"
 import googledriveicon from "../../../assets/google-drive.svg"
 import devicecamera from "../../../assets/camera.svg"
 import dropbox from "../../../assets/dropbox.svg"
+import CloudinaryIcon from "../../../styles/components/common/Icons/CloudinaryIcon"
 import { FaGoogleDrive } from "react-icons/fa";
 import hdd from "../../../assets/hdd.svg"
 import { FaBold,
@@ -102,7 +103,6 @@ const previewAttachmentHtml = () => {
   }
   return (
   <>
-AIzaSyAVDv1QzdbMiQuApFNifNFOCuMBMjPVhS8
 <section className="attach-picture-options">
   <div ><img src={hdd} width="15%"/>
   <span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span>
@@ -132,6 +132,10 @@ AIzaSyAVDv1QzdbMiQuApFNifNFOCuMBMjPVhS8
   <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to DropBox</button>
 </section>
 <button className="attach-picture-button">Select Image</button>
+<div style={{display : "flex", flexDirection :"row", alignItems : "center", justifyContent : "center"}}>
+<span style={{fontSize : "10px"}}>Powered By</span> <CloudinaryIcon size={55}/>
+</div>
+
   </>)
 }
 const attachmentFunction = () => {
@@ -223,6 +227,7 @@ initializer()
 
     />
     <Toaster />
+
     <h5 style={{color : "#CED4DA"}}>Text</h5>
     <h3 style={{fontWeight : "800"}}>Editor</h3>
     <section >
