@@ -1,0 +1,5 @@
+20241105	00:13:05	57ac83f6-71b4-4bd7-b14c-c977d9013917	ReferenceError: isDesigner is not defined
+20241105	00:13:34	e6fdd3c8-ca5b-4322-8fd9-781badedae47	ReferenceError: isDesigner is not defined
+20241105	01:04:57	e6e0e721-b205-4b9d-9f0d-72cfe7dd4225	designerError: You Are Not A Designer
+20241105	01:10:23	e06785cc-ba58-4b3a-8f46-ee00851a1de7	designerError: Please Provide An Email And A Password
+20241105	02:13:35	ecc97e20-c9a4-4df0-986c-e8b63870e828	designerError: You Are Not A Designer

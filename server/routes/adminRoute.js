@@ -26,7 +26,7 @@ router.get("/get-current-admin", authMiddleware, isAdministrator, getCurrentAdmi
 router.get("/get-a-user/:email", authMiddleware, isAdministrator, getAUser)
 router.get("/get-all-users", authMiddleware, isAdministrator, getAllUsers)
 router.get("/get-total-number-of-users", authMiddleware, isAdministrator, getTotalNumberOfUsers)
+router.get("/logout-admin", authMiddleware, isAdministrator, logoutAdmin)
 router.delete("/delete-user/:email", authMiddleware, isAdministrator, adminDeleteUser)
 router.delete("/delete-admin", authMiddleware, isAdministrator, deleteAdmin)
-router.get("/logout-admin", logoutAdmin)
 module.exports = router

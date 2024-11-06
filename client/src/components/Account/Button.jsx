@@ -1,5 +1,6 @@
 import SpinnerLoader from "../Loaders/SpinnerLoader"
 const Button = ({ isLoading, text,  ...props}) => {
+  console.log(isLoading)
   return (
     <button className="litenote-register-submit-btn"
     type="submit" 

@@ -68,10 +68,10 @@ res.status(201).json(newDeveloper)
 }catch(error){
 logEvents(`${error.name}: ${error.message}`, "registerDeveloperError.txt", "developerError")
     if (error instanceof developerError) {
-       return res.status(error.statusCode).json({ error : error.message})
+       return res.status(error.statusCode).json({ message : error.message})
     }
     else if(error instanceof validatorError){
-        return  res.status(error.statusCode).json({ error : error.message})  
+        return  res.status(error.statusCode).json({ message : error.message})  
     }
     else{
     return res.status(500).json({error : "Internal Server Error"})
@@ -118,10 +118,10 @@ else{
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "loginDeveloperError.txt", "developerError")
     if (error instanceof developerError) {
-       return  res.status(error.statusCode).json({ error : error.message})
+       return  res.status(error.statusCode).json({ message : error.message})
     }
     else if(error instanceof validatorError){
-        return  res.status(error.statusCode).json({ error : error.message})  
+        return  res.status(error.statusCode).json({ message : error.message})  
     }
     else{
         return res.status(500).json({error : "Internal Server Error"})
@@ -142,10 +142,10 @@ res.status(200).json(newDeveloper)
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getCurrentDeveloperError.txt", "developerError")
         if (error instanceof developerError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -170,10 +170,10 @@ const logoutDeveloper = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "logoutDeveloperError.txt", "developerError")
         if (error instanceof developerError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -201,10 +201,10 @@ const developerRefreshToken = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "developerRefreshTokenError.txt", "developerError")
         if (error instanceof developerError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -237,9 +237,9 @@ const uploadDeveloperPicture = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "uploadDeveloperPictureError.txt", "developerError")
         if (error instanceof cloudinaryError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }else if(error instanceof developerError){
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
             return res.status(500).json({error : "Internal Server Error"})
@@ -280,10 +280,10 @@ title : title,
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "UpdateDeveloperError.txt", "developerError")
     if (error instanceof developerError) {
-        return res.status(error.statusCode).json({ error : error.message})
+        return res.status(error.statusCode).json({ message : error.message})
     }
     else if(error instanceof validatorError){
-        return  res.status(error.statusCode).json({ error : error.message})  
+        return  res.status(error.statusCode).json({ message : error.message})  
     }
     else{
         return res.status(500).json({error : "Internal Server Error"})
@@ -310,14 +310,46 @@ const deleteDeveloper = async (req, res) => {
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "deleteDeveloperError.txt", "developerError")
          if(error instanceof developerError){
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
       else  if (error instanceof cloudinaryError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
             return res.status(500).json({error : "Internal Server Error"})
         }
+    }
+}
+const getAllDevelopers = async(req, res) => {
+    let query
+    try{
+    query = Developer.find()
+//Pagination, for different pages
+const page = req.query.page;
+const limit = req.query.limit
+const skip = (page - 1) * limit
+query = query.skip(skip).limit(limit)
+if(req.query.page){
+    const developerCount = await Developer.countDocuments();
+    if(skip >= developerCount){
+        throw new developerError( "This page does not exist",404)
+    }
+}
+const allDevelopers = await query
+    res.status(200).json(allDevelopers)  
+  
+    }catch(error){
+        logEvents(`${error.name}: ${error.message}`, "getAllDevelopersError.txt", "userError")
+        if(error instanceof developerError){
+           return res.status(error.statusCode).json({ message : error.message})
+       }
+       else  if (error instanceof cloudinaryError) {
+        console.log("shoot")
+        return res.status(error.statusCode).json({ message : error.message})
+    }
+       else{
+           return res.status(500).json({error : "Internal Server Error"})
+       }  
     }
 }
 module.exports = {
@@ -329,4 +361,5 @@ module.exports = {
     getCurrentDeveloper,
     deleteDeveloper,
     updateDeveloper,
+    getAllDevelopers
 }

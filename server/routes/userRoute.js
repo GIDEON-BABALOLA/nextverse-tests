@@ -29,6 +29,6 @@ router.post("/duplicate-username", duplicateUsername)
 router.put("/update-user", authMiddleware,  updateUser)
 router.get("/user-refresh-token", authMiddleware,  userRefreshToken)
 router.get("/get-current-user", authMiddleware, getCurrentUser)
+router.get("/logout-user",  authMiddleware, isUser, logoutUser)
 router.delete("/delete-user", authMiddleware, deleteUser)
-router.get("/logout-user", logoutUser)
 module.exports = router

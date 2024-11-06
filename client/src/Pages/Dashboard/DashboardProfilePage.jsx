@@ -17,9 +17,30 @@ import { MdOutlineThumbUpAlt,
 import "../../styles/components/Dashboard/dashboard-profile-page.css"
 import profileImage from "../../assets/29.jpg"
 import { useState, useEffect } from "react";
+import { FaSmileBeam } from "react-icons/fa";
 const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const { width } =  useWindowSize()
   const [loadPage, setLoadPage] = useState(true)
+  const [profile, setProfile] = useState({
+    names : true,
+    personal : true,
+    statistics : true
+  })
+  const startEditing = (params) => {
+    console.log(params)
+switch (params) {
+  case "names":
+    setProfile((prevState) => {
+      const { names } = prevState;
+      return {...prevState, names : !names}
+    })
+    
+    break;
+
+  default:
+    break;
+}
+  }
   useEffect(() => {
     setTimeout(() => {
       setLoadPage(false)
@@ -56,7 +77,7 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
    
    <h4><b>My Profile</b></h4>   </span>
    <section className="our-profile-content">
-   <div className="dashboard-profile-page-photo-section"
+   { profile["names"] ?<div className="dashboard-profile-page-photo-section"
    >
    <div style={{display : "flex", 
    flexDirection : "row", alignItems :"center", gap : width  < 768 ?  "10px" : "20px",
@@ -71,7 +92,9 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   <h6 style={{color : "#9CA3AF"}}>Technical Writer</h6>
   </span>
 </div>
-<div style={{display : "flex", flexDirection  :"row", alignItems : "center", gap : "1px",
+<div
+onClick={() => { startEditing("names")}}
+ style={{display : "flex", flexDirection  :"row", alignItems : "center", gap : "1px",
 border : "1px solid #777777",
 justifyContent : "space-around",
 padding : "5px 15px",
@@ -82,7 +105,7 @@ cursor : "pointer"
   </div>
    </div>
 
-
+:
 
 <div className="dashboard-edit-profile-page-photo-section">
 <section className="editme-profile-page-photo-section">
@@ -111,27 +134,28 @@ cursor : "pointer"
       Delete
     </span>
   </div>
-</section>
+</section> 
 <section className="editme-profile-page-photo-section-second">
 <h6>Full Name</h6>
   <div style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between"}}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
-Firstname
+First name
 <input type="text"></input>
   </div>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
-  Lastname
+  Last name
   <input type="text"></input>
   </div>
 
   </div>
   <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
-  <span className="save-changes">
+  <span className="save-changes" onClick={() => { startEditing("names")}}>
     Save Changes
     </span>
   </div>
 </section>
-</div>
+
+</div>}
 
 
 
@@ -218,6 +242,44 @@ Password
 </section>
 </section>
 </div>
+
+<div className="dashboard-profile-page-edit-personal-information">
+<h4><b>Contact Email</b></h4>
+<span>Manage Your Email Address</span>
+<section className="editme-profile-page-photo-section-second">
+  <div style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between"}}>
+  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
+First name
+<input type="text"></input>
+  </div>
+  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
+  Last name
+  <input type="text"></input>
+  </div>
+
+  </div>
+  <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
+  <span className="save-changes" onClick={() => { startEditing("names")}}>
+    Save Changes
+    </span>
+  </div>
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

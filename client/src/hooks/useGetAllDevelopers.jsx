@@ -1,21 +1,28 @@
 import { useState } from "react";
-// import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig } from "../api/axiosConfig";
-export const useGetPopularStories = () => {
+export const useGetAllDevelopers = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
-    const getPopularStories = async (category, number) => {
+    const getAllDevelopers = async (page, limit) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/story/get-popular-stories/${category}/${parseInt(number)}`)
+const response = await axiosConfig.get("/developer/get-all-developers", {
+    params : {
+        page : page,
+        limit : limit
+    }
+})
 if(response && response.data){
     setData(response.data)
     setStatusCode(response.status)
     setError(null)
-    setIsLoading(false)
+    setTimeout(() => {
+        setIsLoading(false)
+    }, 10)
+    
 }
         }
         
@@ -35,5 +42,5 @@ setError("Your Request Has Timed Out")
         }
     }
     }
-    return {getPopularStories, isLoading, error, data, statusCode} 
+    return {getAllDevelopers, isLoading, error, data, statusCode} 
 }

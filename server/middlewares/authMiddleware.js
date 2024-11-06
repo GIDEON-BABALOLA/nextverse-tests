@@ -9,13 +9,13 @@ const Designer = require(path.join(__dirname, "..", "models", "designerModel.js"
 const authMiddleware = async (req, res, next)=>{
     let token;
     if(req?.headers?.authorization?.startsWith("Bearer") || req.cookies.refreshToken){
-    
       switch (true) {
+        case Boolean(req?.cookies?.refreshToken):
+            token = req.cookies.refreshToken
+            break;
        case req?.headers?.authorization?.startsWith("Bearer"):
           token = req.headers.authorization.split(" ")[1] 
           break;
-        case req.cookies.refreshToken:
-            token = req.cookies.refreshToken
        default:
           token = req.cookies.refreshToken
           break;
@@ -46,6 +46,8 @@ const authMiddleware = async (req, res, next)=>{
                     break;
             }
             next()
+        }else{
+            return res.status(401).json({"error" : "No Authorization token in the request headers, You are not logged in"})      
         }
     }catch(error){
         logEvents(`${error.name}:${error.message}`, "authenticationErrorLog.txt", "authError")
@@ -78,7 +80,7 @@ const isDeveloper = async (req, res, next) => {
         next()  
     }
     else{
-        return res.status(404).json({"message" : "You are not a Developer For Lightnote", "success": false})
+        return res.status(404).json({"message" : "You are not a Developer For Litenote", "success": false})
     }
 }
 const isDesigner = async (req, res, next) => {
@@ -87,7 +89,7 @@ const isDesigner = async (req, res, next) => {
         next()  
     }
     else{
-        return res.status(404).json({"message" : "You are not a Product Designer For Lightnote", "success": false})
+        return res.status(404).json({"message" : "You are not a Designer For Litenote", "success": false})
     }
 }
 const isUser = async (req, res, next) => {

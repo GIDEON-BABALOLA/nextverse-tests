@@ -6,7 +6,7 @@ import {
     } from "react"
     export const PopularStoriesContext = createContext()
     export const PopularStoriesContextProvider = ({children}) => {
-        const [popularStories, setPopularStories] = useState([])
+        const [popularStories, setPopularStories] = useState([{}, {}, {}])
         return (
             <>
             <PopularStoriesContext.Provider

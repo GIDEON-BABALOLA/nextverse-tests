@@ -10,6 +10,7 @@ uploadDesignerPicture,
 designerRefreshToken,
 deleteDesigner,
 updateDesigner,
+getAllDesigners
 } = require(path.join(__dirname, "..", "controllers", "designerController.js"))
 const { authMiddleware, isDesigner, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
@@ -19,7 +20,8 @@ router.post("/upload-designer-picture", authMiddleware, isDesigner, uploadProfil
 router.put("/update-designer", authMiddleware, isDesigner, updateDesigner)
 router.get("/designer-refresh-token", authMiddleware, isDesigner, designerRefreshToken)
 router.get("/get-current-designer", authMiddleware, isDesigner, getCurrentDesigner)
+router.get("/get-all-designers",  getAllDesigners)
+router.get("/logout-designer", authMiddleware, isDesigner, logoutDesigner)
 router.delete("/delete-designer", authMiddleware, isDesigner, deleteDesigner)
-router.get("/logout-designer", logoutDesigner)
 module.exports = router
 // 0807748966five

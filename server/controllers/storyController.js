@@ -293,7 +293,10 @@ try{
     }
     const foundStories = await Story.find({ category : category})
     const mostPopularStories = rankStories(foundStories, number)
-    res.status(200).json(mostPopularStories)
+    setTimeout(() => {
+        res.status(200).json(mostPopularStories)       
+    }, 4000);
+ 
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")

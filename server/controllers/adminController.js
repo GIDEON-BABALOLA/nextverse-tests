@@ -349,7 +349,7 @@ res.status(200).json(newUser);
 const getTotalNumberOfUsers  = async(req, res) => {
 try{
 const totalCount = await User.countDocuments()
-res.status(200).json({ users : totalCount, message : `The total number of users using the lightnote application are ${totalCount}`})
+res.status(200).json({ users : totalCount, message : `The total number of users using the litenote application are ${totalCount}`})
 }catch(error){
 
 }

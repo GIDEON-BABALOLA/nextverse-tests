@@ -542,6 +542,7 @@ const followUser = async (req, res) => {
        }   
     }
 }
+
 const unfollowUser = async(req, res) => {
     try{
         const { _id } = req.user;

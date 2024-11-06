@@ -36,3 +36,7 @@
 20241104	19:56:41	a289918f-3e79-4ea6-84b1-96c725612da8	developerError: Developer Already Exists
 20241104	19:56:42	2b62a60a-4c38-42ff-911b-6c6797bba805	developerError: Developer Already Exists
 20241104	20:02:46	eba5e265-130a-4ced-b4ae-55809f4df542	developerError: Developer Already Exists
+20241105	02:15:25	28f05d1a-a455-47bb-8c19-112657041fcb	developerError: Developer Already Exists
+20241105	10:25:52	d2f80efb-22a7-47c1-9fd7-00fa3c20c0a2	developerError: Developer Already Exists
+20241105	11:00:27	1215efd1-a2ab-497b-84ba-27020ba2618c	developerError: You Are Not A Developer For Litenote
+20241105	11:02:47	5deb1565-abcc-420e-9c99-d4adbc55569d	developerError: Phone Number Has Been Used
