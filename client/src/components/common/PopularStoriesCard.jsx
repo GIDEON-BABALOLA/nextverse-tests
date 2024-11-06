@@ -8,6 +8,7 @@ import goldMedal from "../../assets/gold-medal.png"
 import { FaTimes } from "react-icons/fa";
 import useImageLoad from "../../hooks/useImageLoaded";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
+import { useMemo } from "react";
 
 const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const { popularStories } = usePopularStoriesContext()
@@ -15,12 +16,12 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
 
-  const imageStatus = useMultipleImageLoad([story.picture, story.avatar]);
+  const imageStatus = useMultipleImageLoad(story.picture, story.avatar);
   useEffect(() => {
-    imageStatus.map(({url, loaded, error}) => {
+    imageStatus.forEach(({url, loaded, error}) => {
       switch (url) {
         case story.picture:
-          console.log(loaded, url, error, "picture")
+          console.log(loaded, error, url, "picture")
           if(loaded == true){
             setPictureLoading(false)
           }
@@ -29,7 +30,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
           }
           break;
           case story.avatar:
-            console.log(loaded, url, error, "avatar")
+            console.log(loaded, error, url, "avatar")
             if(loaded == true){
               setAvatarLoading(false)
             }
@@ -39,7 +40,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
           break;
       }
         } )
-  }, [imageStatus, story.picture, story.avatar])
+  }, [popularStories])
 
 
 

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
-const useMultipleImageLoad = (urls) => {
-  const [imageStatus, setImageStatus] = useState(
-    urls.map((url) => ({ url, loaded: false, error: false }))
-  );
+const useMultipleImageLoad = (...urls) => {
+  const pictures =  urls.map((url) => {
+    return { url, loaded : false, error : false}
+  })
+  const [imageStatus, setImageStatus] = useState(pictures);
 
   useEffect(() => {
-    if (!urls || (Array.isArray(urls) && urls.length === 0)) {
+    if (pictures.length === 0) {
       return;
     }
 
@@ -17,7 +18,7 @@ const useMultipleImageLoad = (urls) => {
       img.src = url;
       img.onload = () => {
         if (!isCancelled) {
-          setImageStatus((prevStatus) => 
+          return setImageStatus((prevStatus) => 
             prevStatus.map((status, i) => 
               i === index ? { ...status, loaded: true } : status
             )
@@ -26,7 +27,7 @@ const useMultipleImageLoad = (urls) => {
       };
       img.onerror = () => {
         if (!isCancelled) {
-          setImageStatus((prevStatus) => 
+          return setImageStatus((prevStatus) => 
             prevStatus.map((status, i) => 
               i === index ? { ...status, error: true } : status
             )
@@ -35,18 +36,93 @@ const useMultipleImageLoad = (urls) => {
       };
     };
 
-    if (Array.isArray(urls)) {
-      urls.forEach((url, index) => loadImage(url, index));
-    } else {
-      loadImage(urls, 0);
-    }
-
+    
+    // const loadImage = async (url, index) => {
+    //   try {
+    //     const response = await fetch(url, { method: 'HEAD' }); // Check if image exists
+    //     console.log(response.status)
+    //     if (response.status === 404) {
+    //       console.log("false man")
+    //       console.log(url)
+    //       // If 404, set error state and exit early
+    //       setImageStatus((prevStatus) =>
+    //         prevStatus.map((status, i) =>
+    //           i === index ? { ...status, error: true } : status
+    //         )
+    //       );
+    //       return;
+    //     }
+    
+    //     // If not 404, proceed with loading image
+    //     const img = new Image();
+    //     img.src = url;
+    //     img.onload = () => {
+    //       if (!isCancelled) {
+    //         setImageStatus((prevStatus) =>
+    //           prevStatus.map((status, i) =>
+    //             i === index ? { ...status, loaded: true } : status
+    //           )
+    //         );
+    //       }
+    //     };
+    //     img.onerror = () => {
+    //       if (!isCancelled) {
+    //         setImageStatus((prevStatus) =>
+    //           prevStatus.map((status, i) =>
+    //             i === index ? { ...status, error: true } : status
+    //           )
+    //         );
+    //       }
+    //     };
+    //   } catch (error) {
+    //     console.error("Error checking image status:", error);
+    //     setImageStatus((prevStatus) =>
+    //       prevStatus.map((status, i) =>
+    //         i === index ? { ...status, error: true } : status
+    //       )
+    //     );
+    //   }
+    // };    
+    urls.forEach((url, index) => loadImage(url, index));
     return () => {
       isCancelled = true;
     };
-  }, [urls]);
+  }, []);
 
   return imageStatus;
 };
-
 export default useMultipleImageLoad;
+
+
+
+
+
+
+
+
+
+
+
+
+// const loadImage = (url, index) => {
+//   const img = new Image();
+//   img.src = url;
+//   img.onload = () => {
+//     if (!isCancelled) {
+//       return setImageStatus((prevStatus) => 
+//         prevStatus.map((status, i) => 
+//           i === index ? { ...status, loaded: true } : status
+//         )
+//       );
+//     }
+//   };
+//   img.onerror = () => {
+//     if (!isCancelled) {
+//       return setImageStatus((prevStatus) => 
+//         prevStatus.map((status, i) => 
+//           i === index ? { ...status, error: true } : status
+//         )
+//       );
+//     }
+//   };
+// };
