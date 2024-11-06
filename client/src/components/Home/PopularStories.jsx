@@ -62,8 +62,8 @@ const PopularStories = () => {
   
   }, [tabs])
   useEffect(() => {
-    console.log(data)
-setPopularStories(data)
+    setPopularStories(data)
+   
   }, [data, statusCode, setPopularStories])
   return (
    <>

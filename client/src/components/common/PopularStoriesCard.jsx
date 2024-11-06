@@ -7,25 +7,52 @@ import { FaMedal } from "react-icons/fa";
 import goldMedal from "../../assets/gold-medal.png"
 import { FaTimes } from "react-icons/fa";
 import useImageLoad from "../../hooks/useImageLoaded";
+import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 
 const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const { popularStories } = usePopularStoriesContext()
   const position = popularStories.indexOf(story)
-  console.log(isLoading)
-  console.log("gidiboy")
-  const [loading, setLoading] = useState(true)
-  
-  const { loaded, error } = useImageLoad(story.picture);
-  useEffect(() => {
-    if (error) {
-      console.log("failed to load images")
-    }
-  
-    if (loaded === true) {
-    setLoading(false)
-    }
-  }, [loaded, error])
+  const [pictureLoading, setPictureLoading] = useState(true);
+  const [avatarLoading, setAvatarLoading] = useState(true);
 
+  const imageStatus = useMultipleImageLoad([story.picture, story.avatar]);
+  useEffect(() => {
+    imageStatus.map(({url, loaded, error}) => {
+      switch (url) {
+        case story.picture:
+          console.log(loaded, url, error, "picture")
+          if(loaded == true){
+            setPictureLoading(false)
+          }
+          if(error){
+            console.log("failed to load picture image")
+          }
+          break;
+          case story.avatar:
+            console.log(loaded, url, error, "avatar")
+            if(loaded == true){
+              setAvatarLoading(false)
+            }
+            if(error){
+              console.log("failed to load avatar image")
+            }
+          break;
+      }
+        } )
+  }, [imageStatus, story.picture, story.avatar])
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
  <> {
 
@@ -36,12 +63,15 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
                 <div  className="skeleton-image caller" />
               </div>
               <div className="litenote-profile-story-content">
-                <h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
-                <p className="litenote-profile-story-category skeleton-subtitle">&nbsp;</p>
+              <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", alignItems  : "center", gap : "10px"}}>
+ <div className="skeleton-story-avatar " style={{marginBottom : "10px"}}>&nbsp;</div><h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
+              </div>
+               
+              <h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
                 <FaEllipsisH  className="litenote-profile-read-more-share skeleton-options"
                   onClick={fireClick}/>
               
-                <a  className="litenote-profile-read-more skeleton-button">&nbsp;</a>
+                <a  className=" skeleton-button">&nbsp;</a>
              
               </div>
             </div>
@@ -49,7 +79,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
    :
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
-              { loading ?
+              { pictureLoading ?
                 <div className="litenote-profile-story-image">
                 <div  className="skeleton-image caller" />
               </div>:
@@ -61,9 +91,12 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
               <div className="litenote-profile-story-content">
              
                <div className="story-card-user-info">
-               
-               <img className="story-card-avatar" src={story.avatar} /><span>Gideon Babalola</span>
-             
+               { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
+               style={{alignSelf  :"center"}}
+               >&nbsp;</span>
+              : <img className="story-card-avatar" src={story.avatar} />
+               }
+               <span>{story.author}</span>
                </div>
 
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>

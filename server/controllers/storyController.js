@@ -293,9 +293,7 @@ try{
     }
     const foundStories = await Story.find({ category : category})
     const mostPopularStories = rankStories(foundStories, number)
-    setTimeout(() => {
         res.status(200).json(mostPopularStories)       
-    }, 4000);
  
 }catch(error){
     console.log(error)

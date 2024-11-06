@@ -15,7 +15,10 @@ if(response && response.data){
     setData(response.data)
     setStatusCode(response.status)
     setError(null)
-    setIsLoading(false)
+    setTimeout(() => {
+        setIsLoading(false)
+    }, 100)
+    
 }
         }
         
