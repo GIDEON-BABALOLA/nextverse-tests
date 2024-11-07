@@ -93,6 +93,27 @@
     border-radius: 5px;
     padding: 20px 20px;
 }
+.dashboard-profile-page-loading-avatar, .dashboard-profile-page-edit-loading-avatar{
+
+        border-radius: 50%;
+        width: 70px;
+        height:70px;
+        object-fit: cover;
+        
+        background:var(--skeleton-background);
+        background-size: 200% 100%;
+        box-sizing: border-box;
+          vertical-align: middle;
+        -webkit-animation: 1.5s shine linear infinite;
+                animation: 1.5s shine linear infinite;
+                margin-top: 0;
+               
+      }
+      .dashboard-profile-page-edit-loading-avatar{
+        width: 55px;
+        height:55px;
+      }
+
 .dashboard-profile-page-edit-personal-information{
     border : 1.4px solid #9CA3AF;
     box-shadow: #0000001A 0px 2px 5px 0px;
