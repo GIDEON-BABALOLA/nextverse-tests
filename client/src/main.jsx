@@ -12,6 +12,7 @@ import { ConsentContextProvider } from './context/ConsentContext.jsx'
 import { StickyNotesContextProvider } from './context/StickyNotesContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Router>
   <AuthContextProvider>
   <ThemeContextProvider>
   <ConsentContextProvider>
@@ -19,11 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <ToastContextProvider>
   <ChatBotProvider>  
   <StickyNotesContextProvider>
-  <Router>
+
   <Routes>
   <Route path="/*" element={<App/>}/> 
   </Routes>
-  </Router>
   </StickyNotesContextProvider>
   </ChatBotProvider>
   </ToastContextProvider>
@@ -31,5 +31,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </ConsentContextProvider>
   </ThemeContextProvider>
   </AuthContextProvider>
-  </React.StrictMode>,
+  </Router>
+  </React.StrictMode>
 )

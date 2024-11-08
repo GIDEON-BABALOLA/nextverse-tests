@@ -336,7 +336,10 @@ if(req.query.page){
     }
 }
 const allDevelopers = await query
-    res.status(200).json(allDevelopers)  
+const developersToBeSent = allDevelopers.map((developer) => {
+return _.omit(developer.toObject(), "password", "refreshToken", "bookmarks", "stories")
+})
+    res.status(200).json(developersToBeSent)  
   
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getAllDevelopersError.txt", "userError")
