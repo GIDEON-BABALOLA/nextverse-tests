@@ -11,7 +11,6 @@ const useImageLoad = (urls) => {
     if (!urls || (Array.isArray(urls) && urls.length === 0)) {
       return;
     }
-
     let isCancelled = false;
     const handleLoad = () => {
       if (!isCancelled) {

@@ -22,6 +22,12 @@
             animation: 1.5s shine linear infinite;
   
   }
+  .profile-rotation-parent-container{
+    position: relative;
+    width: 100%;
+    height: 90vh; /* Full viewport height */
+    overflow: hidden; /* Ensure the box-loader doesn't go out of bounds */
+  }
 .skeleton-story-avatar{
   border-radius: 50%;
   width: 12%;

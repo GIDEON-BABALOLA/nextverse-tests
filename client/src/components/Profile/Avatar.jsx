@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import useImageLoad from "../../hooks/useImageLoaded";
-const Avatar = () => {
+const Avatar = ({ image }) => {
   const [loading, setLoading] = useState(true)
-    let profileImage = "https://res.cloudinary.com/doctr0fct/image/upload/v1716408724/Avatars/qsxouazfwl38xzqjzs0n.jpg"
-  const { loaded, error } = useImageLoad(profileImage);
+  const { loaded, error } = useImageLoad(image);
   useEffect(() => {
     if (error) {
       console.log("failed to load images")
@@ -16,7 +15,7 @@ const Avatar = () => {
   return (
     <>
         <div className="litenote-profile-image" style={ { marginLeft : "5px"}}>
-       { loading ?<div  className="skeleton-picture"/> : <img src={profileImage} alt="User Avatar" />
+       { loading ?<div  className="skeleton-image"/> : <img src={image} alt="User Avatar" />
        }
       </div>
     </>

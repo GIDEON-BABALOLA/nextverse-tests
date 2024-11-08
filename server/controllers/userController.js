@@ -338,16 +338,30 @@ const getCurrentUser = async  (req, res) => {
 const { id } = req.user
 console.log(id)
 validateMongoDbId(id)
-const user = await User.findById(id)
-console.log(user)
+const user = await User.findById(id).populate({
+    path: 'stories.storyId',
+})
+// const mapper = await User.findById(id).populate({
+//     path: 'stories.storyId',
+// })
+// console.log(Object.keys(mapper.toObject()))
+const mark = user.toObject();
 if(!user){
     throw new userError("You Are Not Logged In", 401)
 }
+// user.stories = user.stories.map(story => ({
+//         ...story.storyId.toObject(), // Extracts the fields from the populated storyId
+//         _id: story._id  // Preserve the _id of the subdocument in the array if needed
+//     }));
+mark.stories = mark.stories.map((story) => {
+    return { ...story.storyId}
+})
+console.log(typeof mark)
 const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress",
 )
 //  const newUser = _.omit(user.toObject(), "refreshToken")
-res.status(200).json(detailsOfUserToBeSent)
+res.status(200).json(mark)
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {

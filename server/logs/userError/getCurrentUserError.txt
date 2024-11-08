@@ -40,3 +40,15 @@
 20241029	17:36:49	9447fb58-310a-49c7-85d3-c972ff0e05b8	userError: Your Account Does Not Exist
 20241101	17:25:10	a52fafdf-7a55-49a1-a1e3-7e433fc09e96	userError: Your Account Does Not Exist
 20241101	17:25:10	ff39b002-5bd4-41fd-b14d-908f2c657de4	userError: Your Account Does Not Exist
+20241108	15:38:19	1b031cf7-099e-4623-8b84-9a81dc2af4d8	TypeError: User.findById(...).populate(...).populate(...).map is not a function
+20241108	15:38:21	3bbf5fe0-d6d9-49b0-866c-309a8454cf3c	TypeError: User.findById(...).populate(...).populate(...).map is not a function
+20241108	15:38:45	db1d38a0-b271-4c59-bf57-4bd96721abbb	TypeError: User.findById(...).populate(...).populate(...).map is not a function
+20241108	15:38:45	56860b6c-7b05-491e-8c18-69b0ee7b1446	TypeError: User.findById(...).populate(...).populate(...).map is not a function
+20241108	15:40:33	c30f793d-9981-4a43-b038-727a61da9fb7	TypeError: User.findById(...).populate(...).populate(...).toObject is not a function
+20241108	15:40:33	83fd5de5-865e-48bf-83e3-74afd233e39a	TypeError: User.findById(...).populate(...).populate(...).toObject is not a function
+20241108	15:42:33	16075518-2280-45d4-98fb-ea44d36cac61	ReferenceError: mapper is not defined
+20241108	15:42:33	04ecdac5-452b-42ed-8a39-c27753d4db82	ReferenceError: mapper is not defined
+20241108	15:52:30	768774be-4d19-4cea-8501-ea9c418cc1e0	TypeError: User.findById(...).populate(...).toObject is not a function
+20241108	15:52:30	4c60afed-6e7a-4f56-9e2f-7335693f577f	TypeError: User.findById(...).populate(...).toObject is not a function
+20241108	15:58:54	c47ea4db-4532-43dc-b153-a5c9b75bbf72	TypeError: mark.toObject is not a function
+20241108	15:58:54	00467fae-035e-4ddd-bec9-06ea74fea0bd	TypeError: mark.toObject is not a function

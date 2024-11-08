@@ -14,7 +14,9 @@ import { useModalContext } from "../../hooks/useModalContext"
 import { FaRegThumbsUp } from "react-icons/fa";
 import { MdReadMore } from "react-icons/md"
 import Toast from "../common/Toast"
+import { useAuthContext } from "../../hooks/useAuthContext"
 const Profile = () => {
+  const { user } = useAuthContext();
   const {
            contextMenu,
             shareModal,
@@ -122,7 +124,7 @@ const Profile = () => {
     
      borderRadius : "10px", padding : "30px"}}>
     <div style={{display : "flex", flexDirection : "column", color : "white"}}>
-   <Avatar />
+<Avatar image={user["picture"]}/>
    <Bio />
    </div>
       <div className="litenote-profile-info" style={ { color : "white"}}>
