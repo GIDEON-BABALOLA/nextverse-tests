@@ -1,6 +1,6 @@
 import {  useEffect, useState } from "react";
 import ContextMenu from "../common/ContextMenu";
-import { FaShareAlt } from "react-icons/fa";
+import { FaBatteryThreeQuarters, FaShareAlt } from "react-icons/fa";
 import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
 import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
 import { FaMedal } from "react-icons/fa";
@@ -28,6 +28,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
           setPictureLoading(false);
         }
         if (error) {
+          setPictureLoading(true)
           console.log("Failed to load picture image");
         }
       } else if (url === story.avatar) {
@@ -37,11 +38,12 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
           setAvatarLoading(false);
         }
         if (error) {
+          setAvatarLoading(FaBatteryThreeQuarters)
           console.log("Failed to load avatar image");
         }
       }
     });
-  }, [ popularStories, story.picture, story.avatar]); // Triggers every time imageStatus changes
+  }, [imageStatus, story.avatar, story.picture]); // Triggers every time imageStatus changes
   
 
 
