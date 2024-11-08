@@ -15,32 +15,34 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const position = popularStories.indexOf(story)
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
-
   const imageStatus = useMultipleImageLoad(story.picture, story.avatar);
   useEffect(() => {
-    imageStatus.forEach(({url, loaded, error}) => {
-      switch (url) {
-        case story.picture:
-          console.log(loaded, error, url, "picture")
-          if(loaded == true){
-            setPictureLoading(false)
-          }
-          if(error){
-            console.log("failed to load picture image")
-          }
-          break;
-          case story.avatar:
-            console.log(loaded, error, url, "avatar")
-            if(loaded == true){
-              setAvatarLoading(false)
-            }
-            if(error){
-              console.log("failed to load avatar image")
-            }
-          break;
+    if (!imageStatus) return; // Ensures imageStatus is defined
+  
+    imageStatus.forEach(({ url, loaded, error }) => {
+      console.log("why", url)
+      if (url === story.picture) {
+        console.log(loaded, error, url, "picture");
+        if (loaded) {
+          console.log("Picture loaded successfully");
+          setPictureLoading(false);
+        }
+        if (error) {
+          console.log("Failed to load picture image");
+        }
+      } else if (url === story.avatar) {
+        console.log(loaded, error, url, "avatar");
+        if (loaded) {
+          console.log("Avatar loaded successfully");
+          setAvatarLoading(false);
+        }
+        if (error) {
+          console.log("Failed to load avatar image");
+        }
       }
-        } )
-  }, [popularStories])
+    });
+  }, [ popularStories, story.picture, story.avatar]); // Triggers every time imageStatus changes
+  
 
 
 

@@ -1,8 +1,6 @@
 import {
     createContext,
     useState,
-    useRef,
-    useEffect,
     } from "react"
     export const PopularStoriesContext = createContext()
     export const PopularStoriesContextProvider = ({children}) => {

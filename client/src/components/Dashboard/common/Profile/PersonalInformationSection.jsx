@@ -178,6 +178,37 @@ onClick={()=> toggleVisibility("newPassword")}
   </div>
 
   </div>
+
+</section>
+</div>
+
+<div>
+<h4><b>Bio</b></h4><section className="editme-profile-page-photo-section-second" style={{padding : "0px 0px"}}>
+  <div style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between",
+  marginTop : "5px"
+  }}>
+  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
+Current Bio Information
+<input  value={"I am a great writer"}
+  type="text"
+  style={{fontSize: "1.2rem"}}
+  ></input>
+
+
+
+
+
+  </div>
+  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
+ New Bio Information
+  <input  value={"Technical Writer"}
+  type="text"
+  style={{fontSize: "1.2rem"}}
+  ></input>
+
+  </div>
+
+  </div>
   <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
   <span className="save-changes" onClick={() => { startEditing("personal")}}>
     Save Changes

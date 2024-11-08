@@ -23,18 +23,6 @@ getAllDevelopers(page, limit)
     useEffect(() => {
       console.log("let me log twice")
       console.log(data)
-      // switch (data.length) {
-      //   case 0:
-      //     console.log("devops")
-      //     // setDevelopersArray([{}, {}, {}])
-      //     break;
-      //     case 3:
-      //       console.log("dave")
-      //       setDevelopersArray(data)
-      //     break;
-      //   default:
-      //     break;
-      // }
       if(data.length > 1){
         console.log("wow")
         setDevelopersArray(data)
