@@ -15,6 +15,7 @@ import nl from "../../assets/countryflags/nl.png"
 import { useRef, useState, useEffect } from "react"
 const LanguageSelect = () => {
   const[searchInput, setSearchInput] = useState()
+  let featureDevelopment = false
   const [data, setData] = useState([])
   const [searchResults, setSearchResults] = useState([])
   const languagePicked = useRef()
@@ -76,7 +77,7 @@ flag : sa
     scrollToTop();
   }, [searchInput]);
   const scrollToTop = () => {
-    console.log(selectOptions.current.scrollHeight)
+    // console.log(selectOptions.current.scrollHeight)
     if (selectOptions.current) {
       selectOptions.current.scrollTo({
         top: 0,
@@ -142,7 +143,12 @@ const resultsArray = (search) => {
     <span ref={languagePicked}>Select Language</span>
 <FaAngleDown />
     </div>
-    <div className="country-select-content">
+  { featureDevelopment ? 
+    <span style={{fontFamily : "Poppins"}}>
+    Pls Bear With Us, This Feature Is Still In Development
+    </span>
+  :
+   <div className="country-select-content">
 <div className="country-select-search">
 <FaSearch />
 <input type="text" placeholder="Search Language" onChange={searchLanguage} value={searchInput}/>
@@ -162,9 +168,8 @@ Oops! Country not found
 </ul>
 
     </div>
-    <span style={{fontFamily : "Poppins"}}>
-    Pls Bear With Us, This Feature Is Still In Development
-    </span>
+
+  }
 </div>
     
   )

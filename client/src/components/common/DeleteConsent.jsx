@@ -1,14 +1,47 @@
 
 import "../../styles/components/common/delete-consent.css"
 import Trash from "../../styles/components/common/Icons/Trash"
+import { useEffect,useRef } from "react"
 const DeleteConsent = ({ openModal, setOpenModal}) => {
+  const myDeleteModal = useRef()
   const closeModal = () => {
     setOpenModal(false)
    }
+   const closeDeleteModal  = (e) => {
+    console.log(myDeleteModal.current.getBoundingClientRect())
+    if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
+      || Object.values(e.target.classList).includes("special-modal-client")
+    ){
+      console.log("caught you")
+      return;
+    }
+          if( e.clientX < parseInt(myDeleteModal.current.getBoundingClientRect().left) || e.clientX > parseInt(myDeleteModal.current.getBoundingClientRect().left) + myDeleteModal.current.getBoundingClientRect().width)
+            {
+              setOpenModal(false)
+            }else if(
+              e.clientY < parseInt(myDeleteModal.current.getBoundingClientRect().top) || e.clientY > parseInt(myDeleteModal.current.getBoundingClientRect().top) + myDeleteModal.current.getBoundingClientRect().height
+            ){
+              setOpenModal(false)
+            }
+        
+    
+    }
+    useEffect(() => {
+      document.addEventListener("click", (e) => {
+        console.log("i got clicked")
+    closeDeleteModal(e)
+      })
+      return () =>{
+        document.removeEventListener('click', (e) => {
+        closeDeleteModal(e)
+        }
+      )
+      }
+      }, [])
  
   return (
-    <section className="litenote-delete-modal">
-    <div className={`popup center  ${openModal == true ? "active" : ""}`} style={{}}>
+    <section className="litenote-delete-modal" >
+    <div className={`popup center  ${openModal == true ? "active" : ""}`} style={{}}  ref={myDeleteModal}>
 <section
 style={{
   display : "flex",

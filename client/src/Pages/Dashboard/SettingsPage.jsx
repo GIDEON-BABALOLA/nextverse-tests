@@ -217,7 +217,7 @@ alignItems : "center",
 <div style={{display : "flex", flexDirection : "row", alignItems :"center", gap : "20px", paddingTop : "10px"}}>
 <h5>Permanently delete your account and all of your content.</h5>
 </div>
-<button className = " edit-profile-button-long edit-profile-button-delete"
+<button className = " edit-profile-button-long edit-profile-button-delete special-modal-client"
 onClick={ () => {setOpenModal(true)}}
 >Delete Account</button>
 </div>

@@ -4,9 +4,6 @@ const NoteModal = forwardRef(({ openModal, setOpenModal, title, content, width, 
   const closeModal = () => {
    setOpenModal(false)
   }
-
-
-  
   return (
     <section className="litenote-special-modal" >
             <div 

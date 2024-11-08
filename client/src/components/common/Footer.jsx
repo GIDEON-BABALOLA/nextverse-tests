@@ -21,7 +21,8 @@ const Footer = () => {
   return (
   <>
     <footer>
-    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="Language Select" content={<LanguageSelect />}/>
+    <SpecialModal
+     openModal={openModal} setOpenModal={setOpenModal} title="Language Select" content={<LanguageSelect />}/>
     <div className="footer-content">
       <div className="logo" style={{display : "flex", flexDirection : "column", gap : "20px"}}>
       <h6>Legal</h6>
@@ -75,7 +76,7 @@ const Footer = () => {
       </div>
       </div>
       <div className="logo" style={{display : "flex", flexDirection : "column", gap : "20px"}}>
-      <h6>Policies</h6>
+      <h6>Community & Resources</h6>
       
       <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%"}}>
       <FaShieldAlt/>
@@ -98,13 +99,24 @@ const Footer = () => {
       </div>
       </div>
       <div className="social-links-container">
- <div onClick={showLanguageModal} style={{cursor : "pointer"}}>
+ <div onClick={showLanguageModal} style={{cursor : "pointer"}} className="special-modal-client">
   <MdLanguage size={25}/>&nbsp;Change Language
  </div>
  <div className="social-links">
- <FaFacebookSquare  className="footer-social-icons" size={35}/>
+      <a 
+      href="https://www.instagram.com/litenote.101/" target="_blank" rel="noopener noreferrer">
+      <FaFacebookSquare  className="footer-social-icons" size={35}/>
+      </a>
+      <a 
+      href="https://www.instagram.com/litenote.101/" target="_blank" rel="noopener noreferrer">
       <FaTwitter  className="footer-social-icons" size={35}/>
+      </a>
+      <a 
+      href="https://www.instagram.com/litenote.101/" target="_blank" rel="noopener noreferrer">
       <FaInstagram  className="footer-social-icons" size={35}/>
+      </a>
+      
+      
    
  </div>
 
