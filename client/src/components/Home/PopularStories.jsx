@@ -26,6 +26,11 @@ const PopularStories = () => {
  setContextMenu,
  closeContextMenu
 } = useModalContext()
+const resendRequest = () => {
+  let selectedCategory;
+  selectedCategory = Object.keys(tabs).find(key => tabs[key] === true);
+  getPopularStories(selectedCategory, 3)
+}
   const [tabs, setTab] = useState({
     technology : true,
     fiction : false,
@@ -90,6 +95,7 @@ error={error}
       { error && <ErrorMessage title={"Something went wrong"} 
   message={"We are unable to load this content, check your connection"}
   height={60}
+  fireClick = {resendRequest}
  />
       }
       <ContextMenu

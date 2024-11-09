@@ -16,6 +16,9 @@ const TeamPage = () => {
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(3)
     const [developersArray, setDevelopersArray] = useState([{}, {}, {}])
+    const resendRequest = () => {
+getAllDevelopers(page, limit)
+    }
     useEffect(() => {
 dispatch({type : "dark-mode", payload : "dark-mode"})
 getAllDevelopers(page, limit)
@@ -56,7 +59,9 @@ console.log(isLoading)
     { !error && developersArray.map((content, index) => (
   <DevelopersCard developer={content} key={index} isLoading={isLoading}/>
     ))}
-    { error && <ErrorMessage title={<span style={{color : "white"}}>Something went wrong</span>} 
+    { error && <ErrorMessage
+  fireClick={resendRequest}  
+  title={<span style={{color : "white"}}>Something went wrong</span>} 
   message={<span style={{color : "white"}}>We are unable to load this content, check your connection</span>}
   height={70}
  />

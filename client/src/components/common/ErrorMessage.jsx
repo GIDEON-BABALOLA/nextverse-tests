@@ -1,7 +1,7 @@
 
 import { MdCloudOff, MdOutlineRefresh } from "react-icons/md"
 import "../../styles/components/common/error-message.css"
-const ErrorMessage = ({ title, message, height}) => {
+const ErrorMessage = ({ title, message, height, fireClick}) => {
   return (
      <section className="something-went-wrong"
      style={{height : `${height}vh`}}
@@ -11,7 +11,7 @@ const ErrorMessage = ({ title, message, height}) => {
  <div>
  {message}</div>
  <div><button className="offline-button"
- onClick={() => location.reload()}
+ onClick={() => fireClick()}
  ><MdOutlineRefresh size={20}/> Refresh</button></div>
 </section>
   )
