@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-// import { usePopularStoriesContext } from "./usePopularStoriesContext";
+import { usePopularStoriesContext } from "./usePopularStoriesContext";
 const useMultipleImageLoad = (...urls) => {
-  // const { popularStories } = usePopularStoriesContext()
+  const { popularStories } = usePopularStoriesContext()
   const [imageStatus, setImageStatus] = useState([]);
     useEffect(() => {
     if (urls && urls.length > 0) {
@@ -46,7 +46,7 @@ const useMultipleImageLoad = (...urls) => {
     return () => {
       isCancelled = true;
     };
-  }, [JSON.stringify(urls)]);
+  }, [popularStories]);
 
   return imageStatus;
 };

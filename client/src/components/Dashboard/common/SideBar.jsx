@@ -149,7 +149,7 @@ clickSidebarMenu()
                         </Link>
                        }
                
-                        <Link to="/dashboard/messages" className={`sidebar-links ${currentUrl === "notifications" && "active"}`}
+                        <Link to="/dashboard/notifications" className={`sidebar-links ${currentUrl === "notifications" && "active"}`}
                         
                         onClick={dave}>
                         <MdNotifications size={24} />

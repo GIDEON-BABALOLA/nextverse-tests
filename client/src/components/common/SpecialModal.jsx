@@ -27,12 +27,16 @@ const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, 
     }
 useEffect(() => {
   document.addEventListener("click", (e) => {
-    console.log("i got clicked")
-closeSpecialModal(e)
+    if(myShareModal.current){
+      closeSpecialModal(e)
+    }
+
   })
   return () =>{
     document.removeEventListener('click', (e) => {
-    closeSpecialModal(e)
+      if(myShareModal.current){
+        closeSpecialModal(e)
+      }
     }
   )
   }

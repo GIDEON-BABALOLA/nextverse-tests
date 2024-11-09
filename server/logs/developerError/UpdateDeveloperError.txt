@@ -26,3 +26,7 @@
 20241104	09:07:14	83d531ac-d2fe-454e-a339-35ec9b8a4bf1	validatorError: Pls Enter A Valid Link To Your Social Media Account
 20241104	09:11:31	c5b2143f-175b-457b-bbe0-85e7fa90d237	validatorError: Pls Enter A Valid Link To Your Social Media Account
 20241104	09:17:55	b21b141d-b177-4edc-bf2a-21c621a136f5	validatorError: Pls Enter A Valid Link To Your Social Media Account
+20241109	16:46:29	7b16cb57-3faf-4a9a-829f-56c5f7a51435	validatorError: Pls Enter A Valid Link To Your Social Media Account
+20241109	16:46:43	769cddcd-ba29-41d4-9015-0d36d9961685	validatorError: Pls Enter A Valid Link To Your Social Media Account
+20241109	16:47:25	51dc1e2d-cec1-4c9e-8922-42ddc1aed92f	validatorError: Pls Enter A Valid Link To Your Social Media Account
+20241109	16:51:57	e9ffe2f1-ba83-40b0-8d61-7f04f527b338	validatorError: Pls Enter A Valid Link To Your Social Media Account

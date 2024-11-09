@@ -15,7 +15,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const position = popularStories.indexOf(story)
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
-  const imageStatus = useMultipleImageLoad(story.picture, story.avatar);
+  const imageStatus = useMultipleImageLoad(story.picture, story.avatar, popularStories);
   useEffect(() => {
     if (!imageStatus) return; // Ensures imageStatus is defined
   
@@ -38,12 +38,12 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
           setAvatarLoading(false);
         }
         if (error) {
-          setAvatarLoading(FaBatteryThreeQuarters)
+          setAvatarLoading(true)
           console.log("Failed to load avatar image");
         }
       }
     });
-  }, [imageStatus, story.avatar, story.picture]); // Triggers every time imageStatus changes
+  }, [imageStatus, story.avatar, story.picture, popularStories]); // Triggers every time imageStatus changes
   
 
 
@@ -113,7 +113,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
                 
               
                 <div style={{display : "flex", flexDirection  : "row", justifyContent : "space-between"}}>
-              <p className="litenote-profile-story-category">{story.category}</p>
+              <p className="litenote-profile-story-category">{story.category.charAt(0).toUpperCase() + story.category.slice(1)}</p>
              { position == 0 ? <FaMedal color={"#FFD700"} size={20}/>
                : position == 1 ? <FaMedal color={"#C0C0C0"} size={20}/>
               : <FaMedal color={"#CD7F32"} size={20}/>

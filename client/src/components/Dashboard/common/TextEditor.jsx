@@ -353,7 +353,7 @@ initializer()
  </div>
  <span style={{cursor : "pointer"}} 
  onClick={attachmentFunction}
- className="attach-picture-icon"
+ className="attach-picture-icon special-modal-client"
  >  <MdAttachFile size={20}/>Attach Picture</span>
  <span style={{fontFamily : "Poppins"}}>{wordCount} words</span>
     </div>

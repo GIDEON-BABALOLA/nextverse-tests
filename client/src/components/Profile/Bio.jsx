@@ -2,11 +2,13 @@
 import SpinnerLoader from "../Loaders/SpinnerLoader";
 import { useState } from "react";
 import { useToastContext } from "../../hooks/useToastContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { MdVerified } from "react-icons/md";
 const Bio = () => {
   const { showToast } = useToastContext()
+const { user } = useAuthContext();
   const [spin,  setSpin] = useState(false)
-  const username = "Chris James"
+
   const followUser = () => {
     setSpin(true)
 showToast()
@@ -17,7 +19,7 @@ setTimeout(() => {
   return (
    <>
 
-            <h2 className="litenote-profile-name">{`${username}`} 
+            <h2 className="litenote-profile-name">{user["username"]} 
             {/* <FcRating style={{marginLeft : "1%"}} /> */}
             <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}}/>
           {/* <span className="checkbot">

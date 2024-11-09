@@ -1,6 +1,6 @@
 import "../../styles/components/common/footer.css"
 import { FaShieldAlt, FaCookieBite} from "react-icons/fa";
-import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaFacebookSquare, FaTiktok } from "react-icons/fa";
 import { MdLanguage, MdCode, MdInfo } from "react-icons/md";
 import { Link } from "react-router-dom"
 import { useState } from "react"
@@ -114,6 +114,10 @@ const Footer = () => {
       <a 
       href="https://www.instagram.com/litenote.101/" target="_blank" rel="noopener noreferrer">
       <FaInstagram  className="footer-social-icons" size={35}/>
+      </a>
+      <a 
+      href="https://www.instagram.com/litenote.101/" target="_blank" rel="noopener noreferrer">
+      <FaTiktok className="footer-social-icons" size={35}/>
       </a>
       
       

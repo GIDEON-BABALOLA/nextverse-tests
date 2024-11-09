@@ -19,17 +19,16 @@ import ReportsPage from './Pages/Dashboard/ReportsPage';
 import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 import BookmarksPage from './Pages/Dashboard/BookmarksPage';
+import NotificationsPage from './Pages/Dashboard/NotificationsPage';
 import JoinWaitingListPage from './Pages/JoinWaitingListPage';
 import MessagesPage from "./Pages/Dashboard/MessagesPage"
 import StoryPage from './Pages/StoryPage';
 import NoteReaderPage from './Pages/NoteReaderPage';
 import FollowPage from './Pages/FollowPage';
-import { useLocation } from "react-router-dom"
 import { useAuthContext } from './hooks/useAuthContext';
 import DevelopersPage from "./Pages/DevelopersPage"
 function App() {
   const { user } = useAuthContext()
-  const location = useLocation();
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
 //   useEffect(() => {
@@ -60,6 +59,7 @@ function App() {
   <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          <Route path="notifications" element={<NotificationsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="settings" element={<SettingsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

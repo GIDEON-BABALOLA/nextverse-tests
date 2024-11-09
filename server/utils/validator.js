@@ -28,9 +28,11 @@ throw new validatorError("Invalid Email", 400)
 }
 const validateURL = async (url) => {
   try{
-new URL(url)
+    const encodedUrl = encodeURI(url);
+new URL(encodedUrl)
 return true
   }catch(error){
+    console.log(error)
 return false
   }
 }
