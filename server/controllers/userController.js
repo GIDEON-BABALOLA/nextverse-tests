@@ -338,8 +338,7 @@ const getCurrentUser = async  (req, res) => {
 const { id } = req.user
 console.log(id)
 validateMongoDbId(id)
-const user = await User.findById(id).populate({
-    path: 'stories.storyId',
+const user = await User.findById(id).populate({ path: 'stories.storyId',
 })
 // const mapper = await User.findById(id).populate({
 //     path: 'stories.storyId',
