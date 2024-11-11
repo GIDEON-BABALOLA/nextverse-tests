@@ -14,7 +14,9 @@ const NotificationsTab = ({slideLine,
     onClick={(e) => {slideLine(e);
     changeNotificationState()
     }}
-    >Profile</span>
+    >Profile
+ <span className="my-notifications-badge">7</span>
+    </span>
     {/* <div
 className="slideline-notification" style={{left : attachmentLine + "px"}}></div> */}
 </div>

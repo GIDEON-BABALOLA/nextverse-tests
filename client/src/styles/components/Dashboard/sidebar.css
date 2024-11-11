@@ -1,3 +1,11 @@
+:root{
+--sidebar-badge-background : #FF7782EC;
+--sidebar-badge-color : white;
+}
+.dark-theme-variables{
+    --sidebar-badge-background : #FF7782EC;
+    --sidebar-badge-color : #333;
+}
 .litenote-sidebar-aside{
     height:100vh;
     font-family: "Poppins", sans-serif;
@@ -100,9 +108,9 @@ height: 4rem;
 }
 
 .sidebar_button__badge {
-    background-color: #fa3e3e;
+    background-color: var(--sidebar-badge-background);
     border-radius: 50%;
-    color: white;
+    color: var(--sidebar-badge-color);
    
     padding: 1.8px 5px;
     font-size: 10px;

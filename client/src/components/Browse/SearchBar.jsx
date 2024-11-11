@@ -87,7 +87,7 @@ value={searchQuery}
 className="litenote-browse-search-input"
 type="text"
 id="input-box"
-placeholder="Search Any Stories"
+placeholder=" Search Your Favourite Stories, Or Your Favourite authors"
 autoComplete="off"
 onChange={startSearch}
 />
