@@ -5,7 +5,7 @@ import "../../../styles/components/Dashboard/stories-preview-page.css"
 import ContextMenu from "../../common/ContextMenu"
 import { MdDelete, MdReadMore } from "react-icons/md"
 import Share from "../../common/Share"
-import { FaShareAlt, FaRegThumbsUp, FaTimes } from "react-icons/fa"
+import { FaShareAlt, FaTimes } from "react-icons/fa"
 import { useEffect, useRef } from "react"
 const StoriesPreview = () => {
   const storyRef = useRef([])
@@ -34,91 +34,146 @@ const StoriesPreview = () => {
         {
           title: "Mastering the Art of Photography",
           category: "Photography",
-          image: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
-          date : "March 17, 2024"
+          date : "March 17, 2024",
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "A Guide to Sustainable Living",
           category: "Lifestyle",
-          image: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
           link: "#", 
           avatar : gideon,
           date : "March 17, 2025"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
     
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         },
+
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          image: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
           avatar : gideon,
           date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
         }
       ]
       useEffect(() => {

@@ -29,7 +29,7 @@ const FontSize = ({noteSettings, setNoteSettings}) => {
         }
       }
   return (
-    <section className="settings-main ">
+    <section className="settings-main">
     <div 
     className="shoe-size"
     style={{display : "flex", flexDirection : "row", justifyContent :"space-between", alignItems : "center", gap : "35px", textAlign : "center", fontFamily : "Poppins"}}>

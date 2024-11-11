@@ -116,7 +116,7 @@ const Footer = () => {
       <FaInstagram  className="footer-social-icons" size={35}/>
       </a>
       <a 
-      href="https://www.instagram.com/litenote.101/" target="_blank" rel="noopener noreferrer">
+      href="https://tiktok.com/@litenote.101" target="_blank" rel="noopener noreferrer">
       <FaTiktok className="footer-social-icons" size={35}/>
       </a>
       

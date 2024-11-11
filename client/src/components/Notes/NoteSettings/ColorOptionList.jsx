@@ -1,4 +1,3 @@
-
 import { FaCheck } from "react-icons/fa"
 import colors from "../../../assets/noteEditorColors.json"
 import { FaAngleLeft } from "react-icons/fa"
@@ -8,25 +7,6 @@ const ColorOptionList = ({colorType,
   setNoteSettings, savedSelection, slideLine, formatHighlightedText }) => {
   const [markerPosition, setMarkerPosition] = useState(13)
   const [isReady, setIsReady] = useState(false)
-  // const [ready, setReady] = useState(false)
-//   const highlightColor = (e, color) => {
-//     console.log(savedSelection)
-//     setMarkerPosition(e.target.offsetLeft + 13)
-//   if(savedSelection.commonAncestorContainer.previousSibling){
-// if(ready == true){
-//      savedSelection.commonAncestorContainer.previousSibling.style.backgroundColor = color
-//      setTimeout(() => {
-//       setReady(false)
-//     }, 2000); 
-// }
-//   }
-//   if(ready == false){
-//     formatHighlightedText("backColor", color)
-//   }
-//    setTimeout(() => {
-//       setReady(true)
-//     }, 1000); 
-//   }
 useEffect(() => {
 if(openModal == false){
   setIsReady(false)

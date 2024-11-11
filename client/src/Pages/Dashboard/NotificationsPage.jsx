@@ -5,11 +5,111 @@ import "../../styles/components/Dashboard/notifications.css"
 import useWindowSize from "../../hooks/useWindowSize";
 import { useState, useEffect, useRef } from "react";
 import "../../styles/components/Dashboard/messages-page.css"
+import NotificationsTab from "../../components/Dashboard/common/Profile/Notifications/NotificationsTab";
+import NotificationsList from "../../components/Dashboard/common/Profile/Notifications/NotificationsList";
+
 const NotificationsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     const { width } = useWindowSize();
   const [loadPage, setLoadPage] = useState(true)
-  console.log(width)
+  const [currentNotification, setCurrentNotification] = useState({
+    profile : true,
+    stories : false
+  })
+  const dummyNotifications = [
+    {
+username :"Gideon Babalola",
+avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
+title : "Writer",
+message : "Just Followed You",
+time : "2 days ago",
+type : "profile"
+    },
+    {
+        username :"Jacob David",
+        avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507546/Avatars/i5fs4w9lukc3zdcqmiam_fnlvfi.jpg",
+        title : "Writer",
+        message : "Just Followed You",
+        time : "3 mins ago",
+        type : "profile"
+            },
+            {
+                username :"Samuel Arise",
+                avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507550/Avatars/nqygbbqcueadblm4mxjo_ntgxmg.jpg",
+                title : "Writer",
+                message : "Just Liked Your Story",
+                time : "2 days ago",
+                type : "story"
+                    },  
+                    
+                    
+                    {
+                        username :"Femi Jacobs",
+                        avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507567/Avatars/xeny3iz73ogfcbaarisv_wox5wd.jpg",
+                        title : "Writer",
+                        message : "Commented On Your Story",
+                        time : "4 mins ago",
+                        type : "story"
+                            },
+                            {
+                                username :"Deborah Kingston",
+                                avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg",
+                                title : "Writer",
+                                message : "Just Liked Your Story",
+                                time : "3 days ago",
+                                type : "story"
+                                    },
+                                    {
+                                      username :"Gideon Babalola",
+                                      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
+                                      title : "Writer",
+                                      message : "Just Followed You",
+                                      time : "2 days ago",
+                                      type : "profile"
+                                          },
+                                          {
+                                              username :"Jacob David",
+                                              avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507546/Avatars/i5fs4w9lukc3zdcqmiam_fnlvfi.jpg",
+                                              title : "Writer",
+                                              message : "Just Followed You",
+                                              time : "3 mins ago",
+                                              type : "profile"
+                                                  },
+                                                  {
+                                                      username :"Samuel Arise",
+                                                      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507550/Avatars/nqygbbqcueadblm4mxjo_ntgxmg.jpg",
+                                                      title : "Writer",
+                                                      message : "Just Liked Your Story",
+                                                      time : "2 days ago",
+                                                      type : "story"
+                                                          },  
+                                                          
+                                                          
+                                                          {
+                                                              username :"Femi Jacobs",
+                                                              avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507567/Avatars/xeny3iz73ogfcbaarisv_wox5wd.jpg",
+                                                              title : "Writer",
+                                                              message : "Commented On Your Story",
+                                                              time : "4 mins ago",
+                                                              type : "story"
+                                                                  },
+                                                                  {
+                                                                      username :"Deborah Kingston",
+                                                                      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg",
+                                                                      title : "Writer",
+                                                                      message : "Just Liked Your Story",
+                                                                      time : "3 days ago",
+                                                                      type : "story"
+                                                                          },
+
+                            
+  ]
   const [attachmentLine, setAttachmentLine] = useState(0)
+  const changeNotificationState = () => {
+    setCurrentNotification((prevState) => {
+        const { stories, profile } = prevState;
+        return { stories : !stories, profile : !profile}
+    })
+  }
   const slideLine = (e) => {
     console.log(e.target.offsetLeft)
         setAttachmentLine(e.target.offsetLeft)
@@ -43,90 +143,12 @@ const NotificationsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
         <div className="my-notifications-header">
             <h1>Notifications</h1>
         </div>
-        <div className="my-notifications-tabs">
-            <span className="my-notifications-tab active" data-tab="stories"
-             onClick={(e) => slideLine(e)}
-            >
-                Stories <span className="my-notifications-badge">2</span>
-            </span>
-            <span className="my-notifications-tab" data-tab="profile"
-            onClick={(e) => slideLine(e)}
-            >Profile</span>
-            <div
-   className="slideline-notification" style={{left : attachmentLine + "px"}}></div>
-        </div>
-        <ul className="notification-list" id="notificationList">
-        
-        <li className="my-notifications-item">
-                <img src="http://localhost:5173/src/assets/3.jpg" alt="Seun Merrcy" className="my-notifications-avatar" />
-                <div style={{display : "flex", flexDirection : "column"}}>
-                <span className="my-notifications-name">Seun Merrcy</span>
-                <span className="my-notifications-status">Blogger</span>
-                </div>
-                <div className="my-notifications-content">
-                    <div className="my-notifications-header">
-                        <span className="my-notifications-action"> Just Followed You</span>
-                    </div>
-                    <div className="my-notifications-meta">
-                        {/* <span className="my-notifications-status">Blogger</span> */}
-                        <span className="my-notifications-time">3min ago</span>
-                        <a href="#" className="my-notifications-view-button">View Profile</a>
-                    </div>
-                </div>
-            </li>
-            <li className="my-notifications-item">
-                <img src="http://localhost:5173/src/assets/3.jpg" alt="Seun Merrcy" className="my-notifications-avatar" />
-                <div style={{display : "flex", flexDirection : "column"}}>
-                <span className="my-notifications-name">Seun Merrcy</span>
-                <span className="my-notifications-status">Blogger</span>
-                </div>
-                <div className="my-notifications-content">
-                    <div className="my-notifications-header">
-                        <span className="my-notifications-action"> Just Followed You</span>
-                    </div>
-                    <div className="my-notifications-meta">
-                        {/* <span className="my-notifications-status">Blogger</span> */}
-                        <span className="my-notifications-time">3min ago</span>
-                        <a href="#" className="my-notifications-view-button">View Profile</a>
-                    </div>
-                </div>
-            </li>
-            <li className="my-notifications-item">
-                <img src="http://localhost:5173/src/assets/3.jpg" alt="Seun Merrcy" className="my-notifications-avatar" />
-                <div style={{display : "flex", flexDirection : "column"}}>
-                <span className="my-notifications-name">Seun Merrcy</span>
-                <span className="my-notifications-status">Blogger</span>
-                </div>
-                <div className="my-notifications-content">
-                    <div className="my-notifications-header">
-                        <span className="my-notifications-action"> Just Followed You</span>
-                    </div>
-                    <div className="my-notifications-meta">
-                        {/* <span className="my-notifications-status">Blogger</span> */}
-                        <span className="my-notifications-time">3min ago</span>
-                        <a href="#" className="my-notifications-view-button">View Profile</a>
-                    </div>
-                </div>
-            </li>
-            <li className="my-notifications-item">
-                <img src="http://localhost:5173/src/assets/3.jpg" alt="Seun Merrcy" className="my-notifications-avatar" />
-                <div style={{display : "flex", flexDirection : "column"}}>
-                <span className="my-notifications-name">Seun Merrcy</span>
-                <span className="my-notifications-status">Blogger</span>
-                </div>
-                <div className="my-notifications-content">
-                    <div className="my-notifications-header">
-                        <span className="my-notifications-action"> Just Followed You</span>
-                    </div>
-                    <div className="my-notifications-meta">
-                        {/* <span className="my-notifications-status">Blogger</span> */}
-                        <span className="my-notifications-time">3min ago</span>
-                        <a href="#" className="my-notifications-view-button">View Profile</a>
-                    </div>
-                </div>
-            </li>
-         
-        </ul>
+       <NotificationsTab slideLine={slideLine} attachmentLine={attachmentLine}
+changeNotificationState={changeNotificationState}
+       />
+       <NotificationsList 
+       
+       notifications={dummyNotifications} currentNotification={currentNotification}/>
     </div>
     </main>
 

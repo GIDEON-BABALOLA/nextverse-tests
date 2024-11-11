@@ -1,4 +1,4 @@
-const allowedOrigins = ["http://localhost:3000", "http://localhost:5173", "https://litenote.vercel.app"]
+const allowedOrigins = ["http://196.223.124.161:5173", "http://localhost:3000", "http://localhost:5173", "https://litenote.vercel.app"]
 const path = require("path")
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents"))
 const corsOptions = {

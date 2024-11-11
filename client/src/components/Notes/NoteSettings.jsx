@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { FaFonticonsFi, FaFont, FaPalette, FaGripLines } from "react-icons/fa"
 import LineSizing from "./NoteSettings/LineSizing";
 import ColorOption from "./NoteSettings/ColorOption";
