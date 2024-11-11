@@ -45,6 +45,9 @@
     display: flex;
     border-bottom: 1px solid #eee;
 }
+.my-notifications-tab.active {
+border-bottom: 2px solid var(--notification-slideline)
+}
 .slideline-notification{
     position: absolute;
     top: 106.8px;

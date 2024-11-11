@@ -145,6 +145,7 @@ type : "profile"
         </div>
        <NotificationsTab slideLine={slideLine} attachmentLine={attachmentLine}
 changeNotificationState={changeNotificationState}
+currentNotification={currentNotification}
        />
        <NotificationsList 
        
