@@ -29,7 +29,7 @@ showToast("Error", error, false)
   }
   return (
 <>
-<div>
+<div style={{overflowY : "hidden", overflowX : "hidden"}}>
 <MdLogout
 size={80} 
 style={{color: "#FF5E62", backgroundColor : "#E5E5E5",borderRadius : "50%", padding : "5%",

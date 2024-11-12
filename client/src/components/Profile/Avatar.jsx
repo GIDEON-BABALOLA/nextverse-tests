@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useImageLoad from "../../hooks/useImageLoaded";
-const Avatar = ({ image }) => {
+import { useProfileContext } from "../../hooks/useProfileContext";
+const Avatar = () => {
   const [loading, setLoading] = useState(true)
-  const { loaded, error } = useImageLoad(image);
+  const { profile } = useProfileContext();
+  const { loaded, error } = useImageLoad(profile["picture"]);
   useEffect(() => {
     if (error) {
       console.log("failed to load images")
@@ -15,7 +17,8 @@ const Avatar = ({ image }) => {
   return (
     <>
         <div className="litenote-profile-image" style={ { marginLeft : "5px"}}>
-       { loading ?<div  className="skeleton-image"/> : <img src={image} alt="User Avatar" />
+       { loading ?
+       <div  className="skeleton-image"/> : <img src={profile["picture"]} alt="User Avatar" />
        }
       </div>
     </>

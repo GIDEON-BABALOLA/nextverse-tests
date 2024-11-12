@@ -9,7 +9,11 @@ import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 const StoryCard = ({ fireClick, story, isLoading}) => {
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
- const storyPicture = story.picture[Math.round(Math.random())]
+  let storyPicture = ""
+  if(isLoading === false){
+     storyPicture = story.picture[Math.round(Math.random())]
+  }
+
   const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)
   useEffect(() => {
     if (!imageStatus) return; // Ensures imageStatus is defined
@@ -17,36 +21,22 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
     imageStatus.forEach(({ url, loaded, error }) => {
       if (url === storyPicture) {
         if (loaded) {
-          console.log("Picture loaded successfully");
           setPictureLoading(false);
         }
         if (error) {
           setPictureLoading(true)
-          console.log("Failed to load picture image");
         }
       } else if (url === story.avatar) {
-        console.log(loaded, error, url, "avatar");
         if (loaded) {
-          console.log("Avatar loaded successfully");
           setAvatarLoading(false);
         }
         if (error) {
           setAvatarLoading(true)
-          console.log("Failed to load avatar image");
+
         }
       }
     });
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
-  // const { loaded, error } = useImageLoad(story.image);
-  // useEffect(() => {
-  //   if (error) {
-  //     console.log("failed to load images")
-  //   }
-  
-  //   if (loaded === true) {
-  //   setLoading(false)
-  //   }
-  // }, [loaded, error])
 
   return (
  <> {

@@ -45,31 +45,38 @@ console.log(isLoading)
        
         <MenuBar  nav={nav} setNav={setNav}/>
     <ConnectivityToast />
-    {!error &&
-    <div className="center">
+<>{
+  !error ? <>
+  <div className="center">
       <h1>LiteNote Developers </h1>
       <span style={{ display : "flex", alignItems : "center", justifyContent : "center", color : "white"}}>
       <u>  &nbsp;Our Developers&nbsp;</u>
     </span>
     </div>
-    }
+    
 
     <div className="team-content">
     
-    { !error && developersArray.map((content, index) => (
+    {  developersArray.map((content, index) => (
   <DevelopersCard developer={content} key={index} isLoading={isLoading}/>
     ))}
-    { error && <ErrorMessage
+
+      
+      
+    
+  
+    </div>
+  </>
+  :
+  
+    <ErrorMessage
   fireClick={resendRequest}  
   title={<span style={{color : "white"}}>Something went wrong</span>} 
   message={<span style={{color : "white"}}>We are unable to load this content, check your connection</span>}
   height={70}
  />
-      }
-      
-    
-  
-    </div>
+}
+ </>
   </section>
   )
 }

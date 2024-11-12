@@ -2,11 +2,11 @@
 import SpinnerLoader from "../Loaders/SpinnerLoader";
 import { useState } from "react";
 import { useToastContext } from "../../hooks/useToastContext";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useProfileContext } from "../../hooks/useProfileContext";
 import { MdVerified } from "react-icons/md";
-const Bio = () => {
+const Bio = ({ isLoading }) => {
   const { showToast } = useToastContext()
-const { user } = useAuthContext();
+  const { profile } = useProfileContext()
   const [spin,  setSpin] = useState(false)
 
   const followUser = () => {
@@ -18,8 +18,21 @@ setTimeout(() => {
   }
   return (
    <>
+   { isLoading ? <section style={{display : "flex", flexDirection : "column", gap : "6px", alignItems : "flex-start"}}>
+   <div style={{display : "flex", flexDirection : "row", gap : "6px", alignItems : "center"}}>
+<div className="profile-loader profile-loader-username"></div>
+{/* <div className="profile-loader profile-loader-verification"></div> */}
+<div className="profile-loader profile-loader-follow-button"></div>
 
-            <h2 className="litenote-profile-name">{user["username"]} 
+</div>
+<div  style={{display : "flex", flexDirection : "column", gap : "6px", alignItems : "flex-start"}}>
+<div className="profile-loader profile-loader-title"></div>
+<div className="profile-loader profile-loader-bio"></div>
+</div>
+   </section>
+    :
+<section>
+            <h2 className="litenote-profile-name">{profile["username"]} 
             {/* <FcRating style={{marginLeft : "1%"}} /> */}
             <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}}/>
           {/* <span className="checkbot">
@@ -45,6 +58,9 @@ setTimeout(() => {
           </h2>
           <span><b>Technical Writer</b></span>
         <p className="litenote-profile-bio">I love sharing my life experiences and connecting with others.</p>
+</section>
+   }
+
    </>
   )
 }

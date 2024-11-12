@@ -14,6 +14,7 @@ followUser,
 unfollowUser,
 duplicateUsername,
 verifyUserRegistration,
+getUserProfile,
 resendUserVerification
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { authMiddleware, isUser, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
@@ -29,6 +30,7 @@ router.post("/duplicate-username", duplicateUsername)
 router.put("/update-user", authMiddleware,  updateUser)
 router.get("/user-refresh-token", authMiddleware,  userRefreshToken)
 router.get("/get-current-user", authMiddleware, getCurrentUser)
+router.get("/get-user-profile", authMiddleware, getUserProfile)
 router.get("/logout-user",  authMiddleware, isUser, logoutUser)
 router.delete("/delete-user", authMiddleware, deleteUser)
 module.exports = router

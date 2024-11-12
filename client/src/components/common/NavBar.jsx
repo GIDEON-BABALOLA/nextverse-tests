@@ -254,7 +254,7 @@ className="navbar-context-profile-photo-home"/>  */}
                         onClick={dave}>
                         <MdOpenInNew size={24} />
 
-                           <h3 className="litenote-dashboard-h-three">Sign Out</h3>
+                           <h3 className="litenote-dashboard-h-three special-modal-client">Sign Out</h3>
                         </Link>
                       
                       

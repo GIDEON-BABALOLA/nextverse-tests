@@ -10,10 +10,12 @@ import { ModalContextProvider } from "./context/ModalContext.jsx"
 import { ToastContextProvider } from './context/ToastContext.jsx'
 import { ConsentContextProvider } from './context/ConsentContext.jsx'
 import { StickyNotesContextProvider } from './context/StickyNotesContext.jsx'
+import { ProfileContextProvider } from './context/ProfileContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
   <AuthContextProvider>
+  <ProfileContextProvider>
   <ThemeContextProvider>
   <ConsentContextProvider>
   <ModalContextProvider>
@@ -30,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </ModalContextProvider>
   </ConsentContextProvider>
   </ThemeContextProvider>
+  </ProfileContextProvider>
   </AuthContextProvider>
   </Router>
   </React.StrictMode>

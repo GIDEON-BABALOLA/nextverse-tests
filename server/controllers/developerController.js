@@ -342,6 +342,7 @@ return _.omit(developer.toObject(), "password", "refreshToken", "bookmarks", "st
     res.status(200).json(developersToBeSent)  
   
     }catch(error){
+        console.log("error")
         logEvents(`${error.name}: ${error.message}`, "getAllDevelopersError.txt", "userError")
         if(error instanceof developerError){
            return res.status(error.statusCode).json({ message : error.message})
@@ -351,7 +352,7 @@ return _.omit(developer.toObject(), "password", "refreshToken", "bookmarks", "st
         return res.status(error.statusCode).json({ message : error.message})
     }
        else{
-           return res.status(500).json({error : "Internal Server Error"})
+           return res.status(500).json({message : "Internal Server Error"})
        }  
     }
 }

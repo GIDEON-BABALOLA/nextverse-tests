@@ -9,9 +9,11 @@ export const ToastContextProvider = ({ children }) => {
     const toastProgress = useRef()
     const [mode, setMode] = useState()
     const showToast = (title, content, state) => {
+      if(toastRef.current){
       if(Object.values(toastRef.current.classList).includes("active")){
         return;
       }
+    
     toastRef.current.classList.add("active")
     state ? setMode(true) : setMode(false)
     toastRef.current.children[0].children[1].children[0].innerText = title;
@@ -23,6 +25,7 @@ export const ToastContextProvider = ({ children }) => {
     setTimeout(() => {
       toastProgress.current.classList.remove("active")
     }, 5500);
+  }
       }
     const closeToast = () => {   
             toastRef.current.classList.remove("active")

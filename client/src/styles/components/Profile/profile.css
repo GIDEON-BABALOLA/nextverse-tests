@@ -104,6 +104,42 @@
             padding: 10px 20px;
             border-radius: 5px;
   }
+  .profile-loader{
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+            /* padding: 10px 20px; */
+            border-radius: 5px;
+}
+  .profile-loader-username{
+    width: 230px;
+    height: 20px;
+}
+.profile-loader-follow-button{
+  width: 100px;
+  height: 25px;
+}
+.profile-loader-verification{
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.profile-loader-stats{
+  width: 80px;
+  height: 20px;
+}
+.profile-loader-title{
+  width: 100px;
+  height: 20px;
+}
+.stats-profile-loader{
+  margin-left: 40px;
+}
+.profile-loader-bio{
+  width: 350px;
+  height: 25px;
+}
   .roller{
   
   }
@@ -368,5 +404,15 @@ width: 90px;
     .checkman{
       top : 24%;
       right: 24%;
+    }
+    .stats-profile-loader{
+      margin-left: 0px;
+      margin-top: 4px;
+    }
+    .profile-loader-username{
+width: 140px;
+    }
+    .profile-loader-bio{
+      width: 260px;
     }
   }

@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect} from "react"
+import { createContext, useReducer, useState, useEffect} from "react"
 import { axiosConfig } from "../api/axiosConfig"
 export const AuthContext = createContext()
 export const authReducer = (state, action) => {
@@ -17,6 +17,7 @@ export const AuthContextProvider = ({ children }) => {
 const  [ state, dispatch] = useReducer(authReducer, {
     user : null
 })
+const [appLoading, setLoading] = useState(true);
 useEffect(() => {
     // Function to check if user is logged in
     const fetchUser = async () => {
@@ -27,6 +28,9 @@ useEffect(() => {
       } catch (error) {
         dispatch({ type: "LOGOUT" }); // Dispatch logout action if no user
       }
+      finally {
+        setLoading(false); // Set loading to false once data is fetched
+      }
     };
 
     fetchUser();
@@ -36,7 +40,7 @@ useEffect(() => {
 console.log("AuthContext state", state)
 return (
     <AuthContext.Provider value = {{
-        ...state, dispatch
+        ...state, dispatch, appLoading
     }}>
         { children }
     </AuthContext.Provider>

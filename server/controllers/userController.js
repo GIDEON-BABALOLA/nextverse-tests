@@ -336,7 +336,33 @@ const getCurrentUser = async  (req, res) => {
             throw new userError("Your Account Does Not Exist", 404)
         }
 const { id } = req.user
-console.log(id)
+validateMongoDbId(id)
+const user = await User.findById(id)
+if(!user){
+    throw new userError("You Are Not Logged In", 401)
+}
+const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
+"verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
+)
+    res.status(200).json(detailsOfUserToBeSent)
+//  const newUser = _.omit(user.toObject(), "refreshToken")
+    }catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
+        if (error instanceof userError) {
+            return res.status(error.statusCode).json({ error : error.message})
+        }
+        else{
+            return res.status(500).json({error : "Internal Server Error"})
+            }
+    }
+}
+const getUserProfile = async  (req, res) => {
+    try{
+        if(req.user == null){
+            throw new userError("Your Account Does Not Exist", 404)
+        }
+const { id } = req.user
 validateMongoDbId(id)
 const user = await User.findById(id).populate({ path: 'stories.storyId',
 })
@@ -351,15 +377,17 @@ mark.stories = mark.stories.map((story) => {
 const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
 )
+    res.status(200).json(detailsOfUserToBeSent)    
+
 //  const newUser = _.omit(user.toObject(), "refreshToken")
-res.status(200).json(detailsOfUserToBeSent)
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -585,5 +613,6 @@ module.exports = {
     unfollowUser,
     duplicateUsername,
     verifyUserRegistration,
+    getUserProfile,
     resendUserVerification
 }

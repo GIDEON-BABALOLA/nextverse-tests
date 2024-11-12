@@ -24,22 +24,14 @@ import JoinWaitingListPage from './Pages/JoinWaitingListPage';
 import MessagesPage from "./Pages/Dashboard/MessagesPage"
 import StoryPage from './Pages/StoryPage';
 import NoteReaderPage from './Pages/NoteReaderPage';
+import LoadingPage from './Pages/LoadingPage';
 import FollowPage from './Pages/FollowPage';
 import { useAuthContext } from './hooks/useAuthContext';
 import DevelopersPage from "./Pages/DevelopersPage"
 function App() {
-  const { user } = useAuthContext()
+  const { user, appLoading } = useAuthContext()
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)
-//   useEffect(() => {
-
-// const dashboardPattern = /^\/dashboard\/?.*$/
-// const feedPattern = /^\/feed\/?.*$/
-
-//     if (!dashboardPattern.test(location.pathname)) {
-//       document.body.classList.remove('dark-theme-variables');
-//     } 
-//   }, [location.pathname]);
   let appReady = true
   return (
     
@@ -47,8 +39,17 @@ function App() {
 { appReady ?   <Routes>
   <Route path="/" element={<Layout className="pages"/>}>
 <Route index element={<Home/>    } />
-{/* <Route path="publish" element={ user == null ? <Navigate to="/login" /> : <Publish />} /> */}
-<Route path="profile" element={<ProfilePage/>}/>
+<Route path="profile" 
+    element={
+          appLoading ? (
+        <LoadingPage />
+          ) : user ? (
+            <ProfilePage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+/>
 <Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>
   </Route>
   <Route path="our-developers" element={<DevelopersPage />} />

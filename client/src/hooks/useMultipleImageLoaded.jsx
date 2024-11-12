@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-// import { usePopularStoriesContext } from "./usePopularStoriesContext";
 const useMultipleImageLoad = (...urls) => {
-  // const { popularStories } = usePopularStoriesContext()
   const [imageStatus, setImageStatus] = useState([]);
     useEffect(() => {
     if (urls && urls.length > 0) {

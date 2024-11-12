@@ -13,7 +13,6 @@ import { useState, useRef, useEffect } from "react"
 import { useGetPopularStories } from "../../hooks/useGetPopularStories"
 import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
 import ErrorMessage from "../common/ErrorMessage"
-import { useToastContext } from "../../hooks/useToastContext"
 const PopularStories = () => {
   const { getPopularStories, isLoading, error, data, statusCode } = useGetPopularStories()
   const { setPopularStories, popularStories } = usePopularStoriesContext()
@@ -70,8 +69,6 @@ const resendRequest = () => {
     if(data.length > 1){
       setPopularStories(data)
     }
-
-   
   }, [data, statusCode, setPopularStories])
   return (
    <>
