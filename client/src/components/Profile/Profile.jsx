@@ -111,7 +111,9 @@ borderRadius : "10px", padding : "30px"}}>
   message={"We are unable to load this content, check your connection"}
   height={80}
   fireClick = {resendRequest}
- />}
+ />
+ 
+ }
 </div>
     </>
   )

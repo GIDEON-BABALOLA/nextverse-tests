@@ -3,13 +3,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from './components/common/Layout';
 import Home from './Pages/Home';
 import NotFound from "./Pages/NotFound"
-import Publish from './Pages/Publish';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import VerifyPage from "./Pages/Verify"
 import ProfilePage from './Pages/Profile';
 import FeedPage from "./Pages/Feed"
-import BrowsePage from "./Pages/Browse"
+import ExplorePage from "./Pages/ExplorePage"
 import { useState, useRef } from "react"
 import AnalyticsPage from "./Pages/Dashboard/AnalyticsPage"
 import UsersPage from "./Pages/Dashboard/UsersPage"
@@ -50,11 +49,31 @@ function App() {
           )
         }
 />
-<Route path="explore" element={user == null ? <Navigate to="/login" /> : <BrowsePage/>}/>
+<Route path="explore" 
+    element={
+          appLoading ? (
+        <LoadingPage />
+          ) : user ? (
+            <ExplorePage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+/>
   </Route>
+  <Route path="feed" 
+    element={
+          appLoading ? (
+        <LoadingPage />
+          ) : user ? (
+            <FeedPage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+/>
   <Route path="our-developers" element={<DevelopersPage />} />
   <Route path="login" element={<LoginPage />} />
-  <Route path="feed" element={  user == null ? <Navigate to="/login" /> : <FeedPage />} />
   <Route path="story" element={<StoryPage />}  />
   <Route path="note/:email/:id" element={ <NoteReaderPage />} />
   <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>

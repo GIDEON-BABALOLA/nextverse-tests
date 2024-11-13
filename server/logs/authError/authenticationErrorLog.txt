@@ -71,3 +71,5 @@
 20241025	13:09:02	1e80c348-b16e-4ee9-8fca-4784bf454bbc	TokenExpiredError:jwt expired
 20241025	13:21:46	6d60a9af-679a-4f3b-b746-e0fa6aa747e6	TokenExpiredError:jwt expired
 20241031	12:34:41	d2ef7142-9e6b-4c24-9ab6-91a41448cf2f	JsonWebTokenError:invalid token
+20241112	16:45:49	60ff45da-b91d-4ce9-8bc3-b3c7c20281ae	TokenExpiredError:jwt expired
+20241112	16:48:20	19280989-1cbb-4449-9560-1cea9568ad84	TokenExpiredError:jwt expired

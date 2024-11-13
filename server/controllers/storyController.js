@@ -262,22 +262,29 @@ const page = req.query.page;
 const limit = req.query.limit
 const skip = (page - 1) * limit
 query = query.skip(skip).limit(limit)
+let storyCount;
 if(req.query.page){
-    const storyCount = await Story.countDocuments();
+    if(req.query.category){
+        storyCount =  await Story.countDocuments({category : req.query.category});
+    }else{
+        storyCount = await Story.countDocuments();
+    }
+
+    console.log(skip, storyCount)
     if(skip >= storyCount){
-        throw new userError( "This page does not exist",404)
+        throw new userError( "This page does not exist", 404)
     }
 }
 const allStories = await query
-res.status(200).json(allStories)
+    res.status(200).json({stories : allStories, count : storyCount})       
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
     if (error instanceof userError) {
-    return  res.status(error.statusCode).json({ error : error.message})
+    return  res.status(error.statusCode).json({ message : error.message})
     }
      else{
-    return res.status(500).json({error : "Internal Server Error"})
+    return res.status(500).json({message : "Internal Server Error"})
         }
 }
 }

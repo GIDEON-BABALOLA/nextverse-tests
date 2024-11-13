@@ -1,0 +1,43 @@
+// useEffect(() => {
+//   console.log("why are you here")
+//   const observer = new IntersectionObserver(
+//     ([entry]) => {
+//       if (entry.isIntersecting) {
+//         console.log("Popular Stories Is Been Observed")
+//         setPageStatus((prevState) => {
+//           const { page } = prevState
+//           return {...prevState, page : page + 1}
+//         })
+//         observer.unobserve(entry.target);
+//       }
+//     },
+//     { threshold: 0.1 } // 10% of the element needs to be visible
+//   );
+//   if (lastItemRef.current) {
+//     observer.observe(lastItemRef.current);
+//   }
+  
+//   return () => {
+//     if (lastItemRef.current) {
+//       observer.unobserve(lastItemRef.current);
+//     }
+//   };
+
+// }, [tabs, pageStatus])
+
+
+
+  const lastItemRef = (node) => {
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPageStatus((prevState) => {
+          const { page } = prevState;
+          return {...prevState, page : page + 1}
+        });
+      }
+    });
+
+    if (node) observer.current.observe(node);
+  };

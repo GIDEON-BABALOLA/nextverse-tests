@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { axiosConfig } from "../api/axiosConfig";
-export const useGetAllDevelopers = () => {
+export const useGetExploreStories = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
+    const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
-    const getAllDevelopers = async (page, limit) => {
+    const getExploreStories = async (page, limit, category) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/developer/get-all-developers", {
+const response = await axiosConfig.get("/story/get-all-stories", {
     params : {
         page : page,
-        limit : limit
+        limit : limit,
+        category : category
     }
 })
 if(response && response.data){
-    setData(response.data)
+    console.log(response.data)
+    setData(response.data.stories)
+    setStoryCount(response.data.count)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -27,6 +31,7 @@ if(response && response.data){
         }
         
         catch(error){
+            setStoryCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
 setError("Your Request Has Timed Out")
@@ -42,5 +47,5 @@ setError("Your Request Has Timed Out")
         }
     }
     }
-    return {getAllDevelopers, isLoading, error, data, statusCode} 
+    return {getExploreStories, isLoading, error, data, statusCode, storyCount} 
 }

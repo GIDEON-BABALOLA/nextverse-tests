@@ -2,9 +2,7 @@
 import "../../styles/components/Browse/pagination.css"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState } from "react"
-const SearchPagination = () => {
-
-  const [currentValue, setCurrentValue] = useState(1);
+const SearchPagination = ({ currentValue, setCurrentValue}) => {
   const [prev, disablePrev] = useState(false);
   const [next, disableNext] =  useState(false);
   const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
