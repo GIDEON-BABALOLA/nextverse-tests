@@ -90,13 +90,13 @@ handleCategoryChange()
 }, [lastItemRef, isLoading, hasMore]);
 
 useEffect(() => {
-  if(statusCode == 404){
-    const maximum = (storyCount / limit) + 1
-    const skip = (page - 1) * limit;
-    if(skip >= storyCount){
-      setPage(Math.floor((Math.random() * maximum) + 1))
-    }
-  }
+  // if(statusCode == 404){
+  //   const maximum = (storyCount / limit) + 1
+  //   const skip = (page - 1) * limit;
+  //   if(skip >= storyCount){
+  //     setPage(Math.floor((Math.random() * maximum) + 1))
+  //   }
+  // }
 }, [error, statusCode])
 function filterUniqueById(data) {
   return data.reduce((accumulator, current) => {
@@ -174,7 +174,8 @@ const [lastScrollY, setLastScrollY] = useState(0);
 
 
 const resendRequest = () => {
-  getExploreStories(page, limit, category)
+  // setStories([])
+  getExploreStories(1, limit, category)
 }
   return (
     <>
@@ -187,9 +188,12 @@ const resendRequest = () => {
      <SearchBar  />    
      {hasMore &&
      <>
+     <div className="litenote-browse-stories">
+     <Tab tabs={tabs} setTab={setTab} labelWidth={165} />
+     </div>
+
      { !error ? 
      <section className="litenote-browse-stories">
-     <Tab tabs={tabs} setTab={setTab} labelWidth={165} />
      <div className="litenote-browse-story-grid">
   {
     categoryChanged ?
