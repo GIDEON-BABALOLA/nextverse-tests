@@ -1,11 +1,12 @@
 import "../styles/components/Browse/browse.css"
 import SearchBar from "../components/Browse/SearchBar"
 import SearchPagination from "../components/Browse/SearchPagination"
-import StoryCard from "../components/Profile/StoryCard"
+import LoadingCard from "../components/Profile/LoadingCard"
 import Share from "../components/common/Share"
 import ContextMenu from "../components/common/ContextMenu"
 import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
 import { useEffect, useState, useRef} from "react"
+import useWindowSize from "../hooks/useWindowSize"
 import { useModalContext } from "../hooks/useModalContext"
 import Tab from "../components/common/Tab"
 import { MdReadMore } from "react-icons/md"
@@ -13,6 +14,7 @@ import ErrorMessage from "../components/common/ErrorMessage"
 import { useGetExploreStories } from "../hooks/useGetExploreStories"
 import ExploreCard from "../components/common/ExploreCard"
 const ExplorePage = () => {
+  const { width } = useWindowSize()
   const lastItemRef= useRef();
 
   const [tabs, setTab] = useState({
@@ -25,10 +27,10 @@ const ExplorePage = () => {
   })
   const [page, setPage] = useState(1);
   const [loadIt, setLoadIt] = useState(false)
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(0);
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
   const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState([{}, {}, {}])
+  const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
   const { getExploreStories, isLoading, error, data, statusCode, storyCount } = useGetExploreStories()
   const {
@@ -40,8 +42,6 @@ const ExplorePage = () => {
  closeContextMenu
 } = useModalContext()
 useEffect(() => {
-  console.log("dave")
-  console.log(category)
   getExploreStories(page, limit, category)
 }, [page, category, limit])
 const handleCategoryChange = () => {
@@ -51,7 +51,6 @@ let selectedCategory;
   selectedCategory = "non-fiction"
           }
 if (category !== selectedCategory) {
-  console.log("gray")
   setStories([])
 setCategory(selectedCategory)
 }  
@@ -91,9 +90,6 @@ useEffect(() => {
     if(skip >= storyCount){
       setPage(Math.floor((Math.random() * maximum) + 1))
     }
-setHasMore(false)
-  }else{
-   setHasMore(true)
   }
 }, [error, statusCode])
 function filterUniqueById(data) {
@@ -106,7 +102,7 @@ function filterUniqueById(data) {
   }, []);
 }
 useEffect(() => {
-    if(data.length > 1){
+    if(data.length > 0){
     const oldStories = stories.map((story) => {
       return {...story, isLoading : false}
     })
@@ -115,17 +111,62 @@ useEffect(() => {
     })
   
 const storiesToBeSent = [...oldStories, ...newStories]
-const wipe = filterUniqueById(storiesToBeSent)
-console.log(wipe)
-   setStories(wipe)
+const exploreStories = filterUniqueById(storiesToBeSent)
+   setStories(exploreStories)
   }
 
 }, [data, isLoading])
 useEffect(() => {
-  console.log("slow mans")
+if(width < 767){
+  setLimit(1)
+  setLoading([{}])
+}else{
+  setLimit(3)
+  setLoading([{}, {}, {}])
+}
+}, [width])
+useEffect(() => {
   setPage(1);
-  setStories([])
 }, [category, tabs]);
+
+
+const loadingRef = useRef(null);
+const isVisibleInViewport = (element) => {
+  const rect = element.getBoundingClientRect()
+  return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  )
+}
+
+
+const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+    
+      // If the user is trying to scroll down, prevent the scroll
+      if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current)) {
+        window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
+      } else {
+        // Update the last scroll position if scrolling up
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    // Add the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]); // Only re-run the effect when lastScrollY changes
+
+
 const resendRequest = () => {
   getExploreStories(page, limit, category)
 }
@@ -152,12 +193,16 @@ const resendRequest = () => {
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
     ))
   }
-  {isLoading && 
-    loading.map((story, index) => (
-      <StoryCard
+  { isLoading && 
+
+  loading.map((story, index) => (
+      <LoadingCard
+      ref={loadingRef}
       isLoading={true}
-       shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
+      shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
     ))
+  
+ 
   }
   
 <Share  share={shareRef} shareModal={shareModal}/>

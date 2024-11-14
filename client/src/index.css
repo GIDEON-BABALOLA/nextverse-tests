@@ -6,7 +6,9 @@
   font-family: 'Poppins', sans-serif;
 
 }
-
+.no-scroll {
+  overflow: hidden;
+}
 html, body, #root {
     /* width: 100%;
     min-height: 100%;
