@@ -27,8 +27,8 @@ const ExplorePage = () => {
     memoir : false
   })
   const [page, setPage] = useState(1);
-  const [loadIt, setLoadIt] = useState(false)
   const [limit, setLimit] = useState(3);
+  const [isCycling, setIsCycling] = useState(false)
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState([])
@@ -44,8 +44,15 @@ const ExplorePage = () => {
  closeContextMenu
 } = useModalContext()
 useEffect(() => {
-  getExploreStories(page, limit, category)
-}, [page, category, limit])
+  if (isCycling) {
+    
+    // Cycle back to a random page or a specific page
+    const randomPage = 4
+    getExploreStories(randomPage, limit, category);
+  } else {
+    getExploreStories(page, limit, category);
+  }
+}, [page, category, limit, isCycling]);
 const handleCategoryChange = () => {
 let selectedCategory;
  selectedCategory = Object.keys(tabs).find(key => tabs[key]);
@@ -68,14 +75,18 @@ handleCategoryChange()
  useEffect(() => {
   const observer = new IntersectionObserver(
     ([entry]) => {
-      if (entry.isIntersecting && !isLoading && hasMore) {
-        setLoadIt(true)
+      if (entry.isIntersecting && !isLoading) {
         console.log("Observed last item, loading new page...");
-        setPage((prevPage) => prevPage + 1);
+        if(hasMore){
+          setPage((prevPage) => prevPage + 1);
+        }
+        else{
+       setIsCycling(true)
+           }
         observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
       }
     },
-    { threshold: 0.1, rootMargin: "" } // Adjust threshold as needed
+    { threshold: 0.1, rootMargin: '100px' } // Adjust threshold as needed
   );
 
   if (lastItemRef.current && !isLoading) {
@@ -90,13 +101,10 @@ handleCategoryChange()
 }, [lastItemRef, isLoading, hasMore]);
 
 useEffect(() => {
-  // if(statusCode == 404){
-  //   const maximum = (storyCount / limit) + 1
-  //   const skip = (page - 1) * limit;
-  //   if(skip >= storyCount){
-  //     setPage(Math.floor((Math.random() * maximum) + 1))
-  //   }
-  // }
+  if(statusCode == 404){
+    console.log("no more page content")
+   setHasMore(false)
+  }
 }, [error, statusCode])
 function filterUniqueById(data) {
   return data.reduce((accumulator, current) => {
@@ -109,6 +117,7 @@ function filterUniqueById(data) {
 }
 useEffect(() => {
     if(data.length > 0){
+      setIsCycling(false)
     const oldStories = stories.map((story) => {
       return {...story, isLoading : false}
     })
@@ -174,8 +183,7 @@ const [lastScrollY, setLastScrollY] = useState(0);
 
 
 const resendRequest = () => {
-  // setStories([])
-  getExploreStories(1, limit, category)
+    getExploreStories(1, limit, category)
 }
   return (
     <>
@@ -186,13 +194,16 @@ const resendRequest = () => {
    
      <h3 className="title-browse">Search Your Favourite Stories</h3>
      <SearchBar  />    
-     {hasMore &&
-     <>
-     <div className="litenote-browse-stories">
+     <div className="litenote-browse-stories" >
      <Tab tabs={tabs} setTab={setTab} labelWidth={165} />
+    
      </div>
+     <>
 
-     { !error ? 
+{
+
+statusCode !== 500 ? 
+ 
      <section className="litenote-browse-stories">
      <div className="litenote-browse-story-grid">
   {
@@ -246,22 +257,13 @@ const resendRequest = () => {
       :
       <ErrorMessage title={"Something went wrong"} 
   message={"We are unable to load this content, check your connection"}
-  height={80}
+  height={40}
   fireClick = {resendRequest}
  />
-     }
-     </>
-     }
-     {/* {!hasMore && 
-     <>
-     <div style={{display : "flex", flexDirection : "row", width : "100%", alignItems : "center",
-     justifyContent : "center", margin : "90px auto" 
-     }}>
-      Sorry, But the page you are looking for does not exist
-     </div>
+}
+     
      </>
 
-     } */}
    </div>
 
  </section>

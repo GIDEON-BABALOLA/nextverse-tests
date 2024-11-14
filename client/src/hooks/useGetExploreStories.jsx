@@ -35,6 +35,7 @@ if(response && response.data){
         }
         
         catch(error){
+            console.log(error.response.data)
             setStoryCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){

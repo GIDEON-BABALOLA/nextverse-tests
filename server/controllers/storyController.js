@@ -96,9 +96,9 @@ const time = countWordsAndEstimateReadingTime(content)
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "createStoryError.txt", "storyError")
     if (error instanceof userError) {
-        return  res.status(error.statusCode).json({ error : error.message})
+        return  res.status(error.statusCode).json({ message : error.message})
     } else if(error instanceof cloudinaryError){
-        return  res.status(error.statusCode).json({ error : error.message})
+        return  res.status(error.statusCode).json({ message : error.message})
     }
      else{
         return res.status(500).json({error : "Internal Server Error"})
@@ -218,9 +218,6 @@ const excludeFields = ["page", "sort", "limit", "fields"]
 excludeFields.forEach((el) => delete queryObj[el])
    // Handle date filtering specifically
    let dateFilter = {};
-//    if (queryObj.totalLikes) {
-//     queryObj.totalLikes = { gt: parseInt(queryObj.totalLikes["gt"]) }; // Convert to number
-// }
    if (queryObj.year) {
        dateFilter['date.year'] = queryObj.year;
        delete queryObj.year;
@@ -277,7 +274,8 @@ if(req.query.page){
     }
 }
 const allStories = await query
-    res.status(200).json({stories : allStories, count : storyCount}) 
+    res.status(200).json({stories : allStories, count : storyCount})     
+
 
 }catch(error){
     console.log(error)
