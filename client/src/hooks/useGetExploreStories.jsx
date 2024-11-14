@@ -7,15 +7,19 @@ export const useGetExploreStories = () => {
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
     const getExploreStories = async (page, limit, category) => {
+        const parameters = {
+            page : page,
+            limit : limit,
+            category : category
+        }
+        if(category == "all"){
+delete parameters.category
+        }
         setIsLoading(true) //starting the request
         try{
             setError(null)
 const response = await axiosConfig.get("/story/get-all-stories", {
-    params : {
-        page : page,
-        limit : limit,
-        category : category
-    }
+    params : parameters
 })
 if(response && response.data){
     console.log(response.data)

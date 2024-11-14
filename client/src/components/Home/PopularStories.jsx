@@ -76,6 +76,7 @@ const resendRequest = () => {
     <Share  share={shareRef} shareModal={shareModal}/>
       <h2>Popular Stories</h2>
     <Tab tabs={tabs} setTab={setTab}  
+    labelWidth={200}
     
          style={{display : "flex", justifyContent : "center", marginBottom : "20px"}}
 

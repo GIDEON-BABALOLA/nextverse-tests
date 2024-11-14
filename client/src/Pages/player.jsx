@@ -1,6 +1,6 @@
 import "../styles/components/Browse/browse.css"
 import SearchBar from "../components/Browse/SearchBar"
-// import SearchPagination from "../components/Browse/SearchPagination"
+import SearchPagination from "../components/Browse/SearchPagination"
 import LoadingCard from "../components/Profile/LoadingCard"
 import Share from "../components/common/Share"
 import ContextMenu from "../components/common/ContextMenu"
@@ -18,8 +18,7 @@ const ExplorePage = () => {
   const lastItemRef= useRef();
 
   const [tabs, setTab] = useState({
-    all : true,
-    technology : false,
+    technology : true,
     fiction : false,
     adventure : false,
     nonfiction : false,
@@ -27,14 +26,12 @@ const ExplorePage = () => {
     memoir : false
   })
   const [page, setPage] = useState(1);
-  const [loadIt, setLoadIt] = useState(false)
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(0);
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
-  const [categoryChanged, setCategoryChanged] = useState(false)
-  const { getExploreStories, isLoading, error, data, statusCode, storyCount } = useGetExploreStories()
+  const { getExploreStories, isLoading, error, data, storyCount } = useGetExploreStories()
   const {
     contextMenu,
      shareModal,
@@ -47,19 +44,16 @@ useEffect(() => {
   getExploreStories(page, limit, category)
 }, [page, category, limit])
 const handleCategoryChange = () => {
+  // setCategoryChanged(true)
 let selectedCategory;
  selectedCategory = Object.keys(tabs).find(key => tabs[key]);
-
  if(selectedCategory == "nonfiction"){
   selectedCategory = "non-fiction"
           }
 if (category !== selectedCategory) {
-setCategoryChanged(true)
-setStories([])
+  setStories([])
 setCategory(selectedCategory)
-} else{
-  setCategoryChanged(false)
-}
+}  
 }
 useEffect(() => {
 handleCategoryChange()
@@ -81,23 +75,22 @@ handleCategoryChange()
   if (lastItemRef.current && !isLoading) {
     observer.observe(lastItemRef.current);
   }
-
   return () => {
     if (lastItemRef.current) {
       observer.unobserve(lastItemRef.current);
     }
   };
 }, [lastItemRef, isLoading, hasMore]);
-
-useEffect(() => {
-  if(statusCode == 404){
-    const maximum = (storyCount / limit) + 1
-    const skip = (page - 1) * limit;
-    if(skip >= storyCount){
-      setPage(Math.floor((Math.random() * maximum) + 1))
-    }
+useEffect (() => {
+  console.log("jacob")
+  const skip = (page - 1) * limit
+  const maximum = ((storyCount / limit) + 1) - 1
+  console.log(skip)
+  if(skip >= storyCount){
+    setPage(Math.floor((Math.random() * maximum) + 1))
   }
-}, [error, statusCode])
+
+}, [storyCount, page, limit])
 function filterUniqueById(data) {
   return data.reduce((accumulator, current) => {
     // Check if there's an item in the accumulator with the same id
@@ -132,18 +125,19 @@ if(width < 767){
 }
 }, [width])
 useEffect(() => {
+  console.log("where are we")
   setPage(1);
 }, [category, tabs]);
 
 
 const loadingRef = useRef(null);
 const isVisibleInViewport = (element) => {
-  const rect = element.getBoundingClientRect()
+  const rect = element?.getBoundingClientRect()
   return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      rect?.top >= 0 &&
+      rect?.left >= 0 &&
+      rect?.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect?.right <= (window.innerWidth || document.documentElement.clientWidth)
   )
 }
 
@@ -151,11 +145,12 @@ const isVisibleInViewport = (element) => {
 const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (e) => {
       const currentScrollY = window.scrollY;
     
       // If the user is trying to scroll down, prevent the scroll
       if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current)) {
+        e.preventDefault()
         window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
       } else {
         // Update the last scroll position if scrolling up
@@ -185,20 +180,15 @@ const resendRequest = () => {
    
      <h3 className="title-browse">Search Your Favourite Stories</h3>
      <SearchBar  />    
+     <div className="litenote-browse-stories-tabs">
+     <Tab tabs={tabs} setTab={setTab}  />
+     </div>
      {hasMore &&
      <>
      { !error ? 
      <section className="litenote-browse-stories">
-     <Tab tabs={tabs} setTab={setTab} labelWidth={165} />
      <div className="litenote-browse-story-grid">
   {
-    categoryChanged ?
-    stories.slice(3).map((story, index) => (
-      <ExploreCard
-       shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
-    ))
-    :
-    
     stories.map((story, index) => (
       <ExploreCard
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
@@ -215,6 +205,7 @@ const resendRequest = () => {
   
  
   }
+  
   
 <Share  share={shareRef} shareModal={shareModal}/>
 <ContextMenu
@@ -267,3 +258,5 @@ const resendRequest = () => {
 }
 
 export default ExplorePage
+
+

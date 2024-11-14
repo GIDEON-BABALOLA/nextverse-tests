@@ -7,11 +7,12 @@
   padding: 0 20px;
 }
 .litenote-browse-stories-tabs{
-display: flex;
+/* display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: center;
-padding: 0 20px;
+padding: 0px 40px; */
+
 }
 .explore-loader {
   width: 48px;
@@ -40,6 +41,9 @@ padding: 0 20px;
     50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
     100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+.litenote-browse-container{
+  margin-bottom: 200px;
 }
  .title-browse {
     text-align: center;

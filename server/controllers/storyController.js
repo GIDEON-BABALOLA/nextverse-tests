@@ -260,6 +260,7 @@ query = query.select("-__v")
 //Pagination, for different pages
 const page = req.query.page;
 const limit = req.query.limit
+console.log(page, limit)
 const skip = (page - 1) * limit
 query = query.skip(skip).limit(limit)
 let storyCount;
@@ -277,6 +278,7 @@ if(req.query.page){
 }
 const allStories = await query
     res.status(200).json({stories : allStories, count : storyCount}) 
+
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")

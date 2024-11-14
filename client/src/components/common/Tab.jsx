@@ -2,7 +2,7 @@
 import { useRef, useState} from "react"
 import  useWindowSize  from "../../hooks/useWindowSize"
 import Dropdown from "./Dropdown"
-const Tab = ({ setTab, tabs, ...props}) => {
+const Tab = ({ setTab, tabs, labelWidth, ...props}) => {
     const [slideDistance, setSlideDistance] = useState(0)
     const { width } = useWindowSize()
     const tabRef = useRef()
@@ -12,7 +12,7 @@ const Tab = ({ setTab, tabs, ...props}) => {
         const distanceMap = {}
         Object.entries(tabs).map(([key, value], index) => {
             optionMapping[key] = value
-            distanceMap[key] = index * 200
+            distanceMap[key] = index * labelWidth
         })
 const selectedOption = optionMapping[tab];
 setSlideDistance(distanceMap[tab])
@@ -36,10 +36,12 @@ ref={tabRef}
     <label htmlFor={`tab${index}`}
     key={key}
         style={{color : 
-        tabs[key] == true && "var(--color-primary)" }}
+        tabs[key] == true && "var(--color-primary)", width : `${labelWidth}px` }}
          onClick={clickMe}>{key[0].toUpperCase() + key.slice(1)}</label>
   ))}
-        <div className="glider" style={{   transform: `translateX(${slideDistance}px)`}}></div>
+        <div className="glider" style={{   transform: `translateX(${slideDistance}px)`,
+         width : `${labelWidth}px`
+        }}></div>
     </div>
 </div>
     }
