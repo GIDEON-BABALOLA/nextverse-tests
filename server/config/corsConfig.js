@@ -1,4 +1,4 @@
-const allowedOrigins = ["http://localhost:3000", "https://litenote.vercel.app",
+const allowedOrigins = ["http://localhost:3000", "http://localhost:5173", "https://litenote.vercel.app",
   "https://nextverse-beta.vercel.app"
 ]
 const corsOptions = {
