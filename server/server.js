@@ -35,6 +35,7 @@ mongoose.connect(process.env.LITENOTE_MONGODB_URL)
     })
 })
 .catch((error) => {
+    console.log(error)
     console.log(error.name)
     console.log("Unable To Connect To Database")
 })
