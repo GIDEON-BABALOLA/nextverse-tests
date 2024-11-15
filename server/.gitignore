@@ -1,6 +1,6 @@
 node_modules
 .env
 COMPANY_INFORMATION.md
-/data/
+/data/mockUsers.js
 test.js
 /Litenote API Tests
