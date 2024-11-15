@@ -21,6 +21,18 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
   })
+app.use((err, req, res, next) => {
+    console.log(`Error occurred at ${req.method} ${req.path}`);
+    console.log(`Error message: ${err.message}`);
+    // Handle specific error: Not allowed by CORS
+    if (err.message === "Not allowed by CORS") {
+      res.status(403).json({"message" : "CORS Policy Violation, Leave Now"}); // Use 403 for forbidden requests
+    } else {
+      // For other errors, pass to the default error handler
+      next(err);
+    }
+  });
+  
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/developer", developerRouter);
