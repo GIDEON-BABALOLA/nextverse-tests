@@ -5,10 +5,10 @@ const corsOptions = {
   origin: function (origin, callback) {
         // use !origin during development and not during production
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
+      callback(null, true);
     } else {
-      console.log("Blocked By Cors")
-      callback(new Error('Not allowed by CORS'))
+      console.log("Blocked By Cors");
+      callback(new Error('Not allowed by CORS'));
     }
   }, 
   credentials: true, 
