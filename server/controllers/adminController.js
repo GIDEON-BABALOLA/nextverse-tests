@@ -179,7 +179,7 @@ const adminRefreshToken = async (req, res) => {
             throw new adminError("No RefreshToken In Database", 400)
         }
         const id = foundAdmin._id.toString();
-        jwt.verify(refreshToken, process.env.LIGHTNOTE_JWT_TOKEN_SECRET, (err, decoded) => {
+        jwt.verify(refreshToken, process.env.LITENOTE_JWT_TOKEN_SECRET, (err, decoded) => {
             if(err || id !== decoded.id){
                 throw new adminError("Wrong refresh token, because it has expired", 404)
             }

@@ -22,7 +22,7 @@ const authMiddleware = async (req, res, next)=>{
     }
     try{
         if(token){
-            const decoded = jwt.verify(token, process.env.LIGHTNOTE_JWT_TOKEN_SECRET);
+            const decoded = jwt.verify(token, process.env.LITENOTE_JWT_TOKEN_SECRET);
 
             switch (decoded?.role) {
                 case "user":

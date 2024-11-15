@@ -190,7 +190,7 @@ const developerRefreshToken = async (req, res) => {
             throw new developerError("No RefreshToken In Database", 400)
         }
         const id = foundDeveloper._id.toString();
-        jwt.verify(refreshToken, process.env.LIGHTNOTE_JWT_TOKEN_SECRET, (err, decoded) => {
+        jwt.verify(refreshToken, process.env.LITENOTE_JWT_TOKEN_SECRET, (err, decoded) => {
             if(err || id !== decoded.id){
                 throw new developerError("Wrong refresh token, because it has expired", 404)
             }

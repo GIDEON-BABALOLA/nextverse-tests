@@ -437,7 +437,7 @@ const userRefreshToken = async (req, res) => {
             throw new userError("No RefreshToken In Database", 400)
         }
         const id = foundUser._id.toString();
-        jwt.verify(refreshToken, process.env.LIGHTNOTE_JWT_TOKEN_SECRET, (err, decoded) => {
+        jwt.verify(refreshToken, process.env.LITENOTE_JWT_TOKEN_SECRET, (err, decoded) => {
             if(err || id !== decoded.id){
                 throw new userError("Wrong refresh token, because it has expired", 404)
             }

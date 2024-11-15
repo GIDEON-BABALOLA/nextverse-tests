@@ -5,7 +5,7 @@ const path = require("path")
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const app = express();
-const PORT = process.env.LIGHTNOTE_PORT
+const PORT = process.env.LITENOTE_PORT
 const corsOptions = require(path.join(__dirname, "config", "corsConfig.js"))
 const userRouter = require(path.join(__dirname,  "routes", "userRoute.js"))
 const adminRouter = require(path.join(__dirname,  "routes", "adminRoute.js"))
@@ -28,7 +28,7 @@ app.use("/api/designer", designerRouter);
 app.use("/api/story", storyRouter); 
 app.use("/api/newsletter", newsletterRouter); 
 app.use("/api/fix", fixRouter); 
-mongoose.connect(process.env.LIGHTNOTE_MONGODB_URL)
+mongoose.connect(process.env.LITENOTE_MONGODB_URL)
 .then(() => {
     app.listen(PORT, () => {
         console.log(` Connected To Database && Server is running on port ${PORT}`)
