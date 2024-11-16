@@ -14,8 +14,9 @@ getAllDesigners
 } = require(path.join(__dirname, "..", "controllers", "designerController.js"))
 const { authMiddleware, isDesigner, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
-router.post("/register-designer", uploadProfileImageMiddleware,  signupDesigner);
-router.post("/login-designer", bruteForceLimiter, loginDesigner)
+const {verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
+router.post("/register-designer", verifyReCAPTCHA, uploadProfileImageMiddleware,  signupDesigner);
+router.post("/login-designer", verifyReCAPTCHA, bruteForceLimiter, loginDesigner)
 router.post("/upload-designer-picture", authMiddleware, isDesigner, uploadProfileImageMiddleware,  uploadDesignerPicture)
 router.put("/update-designer", authMiddleware, isDesigner, updateDesigner)
 router.get("/designer-refresh-token", authMiddleware, isDesigner, designerRefreshToken)

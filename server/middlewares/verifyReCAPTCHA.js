@@ -3,23 +3,29 @@
 
 const axios = require("axios")
 const path = require("path");
+const qs = require("qs")
 const { userError } = require("../utils/customError");
 const { logEvents } = require(path.join(__dirname, "logEvents.js"))
 const verifyReCAPTCHA = async (req, res, next) => {
-    console.log(process.env.LITENOTE_RECAPTCHA_SERVER_SIDE_INTEGRATION_SECRET_KEY)
     const { recaptchaToken } = req.body;
-    console.log(recaptchaToken)
     try{
-const response = await axios.post("https://www.google.com/recaptcha/api/siteverify", {
-    secret : process.env.LITENOTE_RECAPTCHA_SERVER_SIDE_INTEGRATION_SECRET_KEY,
-    response : recaptchaToken
-})
-console.log(response.data)
+        const response = await axios.post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            qs.stringify({
+              secret: process.env.LITENOTE_RECAPTCHA_SERVER_SIDE_INTEGRATION_SECRET_KEY,
+              response: recaptchaToken
+            }),
+            {
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              }
+            }
+          )
 if(response && response.data.success == true){
     next()
 }
 else{
-    throw new userError(response.data["error-codes"][0], 400)
+    throw new userError("Unable To Verify ReCAPTCHA", 400)
 }
     }catch(error){
 logEvents(`${error.name}: ${error.message}`, "verifyreCAPTCHAError.txt", "reCAPTCHAError")

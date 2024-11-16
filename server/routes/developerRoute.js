@@ -14,8 +14,9 @@ getAllDevelopers
 } = require(path.join(__dirname, "..", "controllers", "developerController.js"))
 const { authMiddleware, isDeveloper, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
-router.post("/register-developer", uploadProfileImageMiddleware,  signupDeveloper);
-router.post("/login-developer", bruteForceLimiter, loginDeveloper)
+const {verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
+router.post("/register-developer", verifyReCAPTCHA, uploadProfileImageMiddleware,  signupDeveloper);
+router.post("/login-developer", verifyReCAPTCHA, bruteForceLimiter, loginDeveloper)
 router.post("/upload-developer-picture", authMiddleware, isDeveloper, uploadProfileImageMiddleware,  uploadDeveloperPicture)
 router.put("/update-developer", authMiddleware, isDeveloper, updateDeveloper)
 router.get("/developer-refresh-token", authMiddleware, isDeveloper, developerRefreshToken)

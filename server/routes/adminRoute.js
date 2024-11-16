@@ -17,8 +17,9 @@ getTotalNumberOfUsers
 } = require(path.join(__dirname, "..", "controllers", "adminController.js"))
 const { authMiddleware, isAdministrator, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
-router.post("/register-admin", signupAdmin);
-router.post("/login-admin", bruteForceLimiter, loginAdmin)
+const {verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
+router.post("/register-admin", verifyReCAPTCHA, signupAdmin);
+router.post("/login-admin", verifyReCAPTCHA,  bruteForceLimiter, loginAdmin)
 router.post("/upload-admin-picture", authMiddleware, isAdministrator, uploadProfileImageMiddleware,  uploadAdminPicture)
 router.put("/update-admin", authMiddleware, isAdministrator, updateAdmin)
 router.get("/admin-refresh-token", authMiddleware, isAdministrator, adminRefreshToken)
