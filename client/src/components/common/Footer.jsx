@@ -93,7 +93,9 @@ const Footer = () => {
       <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%"}}>
       <FaCookieBite/>
       <span style={{cursor : "pointer"}}
-      onClick={() =>  showNewsLetter(true)}>
+      onClick={() =>  {showNewsLetter(true);
+        window.scrollTo(0, 0);
+      }}>
       Join Our Newsletter
       </span>
       </div>
