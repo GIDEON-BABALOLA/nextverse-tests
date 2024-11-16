@@ -3,13 +3,15 @@ import { useRegisterAccount } from "../../hooks/useRegisterAccount"
 import Toast from "../common/Toast"
 import { useToastContext } from "../../hooks/useToastContext"
 import SpinnerLoader from "../Loaders/SpinnerLoader"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { axiosConfig } from "../../api/axiosConfig"
 import { FaCheck, FaTimes } from "react-icons/fa"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 import Button from "./Button"
+import Recaptcha from "../common/Recaptcha"
 const Register = () => {
+  const recaptchaRef = useRef(null);
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
@@ -17,6 +19,7 @@ const Register = () => {
   const [isChecking, setIsChecking] = useState(false)
   const [nameError, setNameError] = useState(false)
   const [passwordVisibility, setPasswordVisibility] = useState(true)
+  const [captchaValue, setCaptchaValue] = useState(null)
   const { showToast } = useToastContext()
   const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
   useEffect(() => {
@@ -28,6 +31,8 @@ showToast("Error", error, false)
 
   useEffect(() => {
 if(data.message){
+  setCaptchaValue(null)
+  recaptchaRef.current.reset();
   const { message } = data
   showToast("Success", message, true)
 }
@@ -49,6 +54,10 @@ if(response){
   }
   const handleRegister = (e) => {
     e.preventDefault()
+    if(!captchaValue){
+      showToast("Pls Click The ReCAPTCHA button", error, false)
+      return;
+    }
     registerAccount(email, password, mobile, username)
   }
     return (
@@ -111,9 +120,16 @@ if(response){
             value={mobile}
             onChange = {(e) => setMobile(e.target.value)}
           />
-         <Button onClick={handleRegister} isLoading={isLoading} text={"Register"}/>
+         <Button 
+         onClick={handleRegister} isLoading={isLoading} text={"Register"}/>
+
+<Recaptcha 
+ref={recaptchaRef}
+setCaptchaValue={setCaptchaValue}/>
         </div>
+     
       </div>
+      
       </>
       
     )

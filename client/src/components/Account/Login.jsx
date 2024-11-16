@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import Recaptcha from "../common/Recaptcha"
 import Input from "./Input"
 import Button from "./Button"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
@@ -8,6 +9,7 @@ import { useToastContext } from "../../hooks/useToastContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import Toast from "../common/Toast"
 const Login = () => {
+  const recaptchaRef = useRef(null);
 const router =  useNavigate()
 const { dispatch } = useAuthContext()
 const { loginAccount, isLoading, error, data, statusCode } = useLoginAccount()
@@ -15,31 +17,34 @@ const { showToast } = useToastContext()
   const [passwordVisibility, setPasswordVisibility] = useState(false)
   const [email, setEmail] = useState();
   const [check, setCheck] = useState(false)
+  const [captchaValue, setCaptchaValue] = useState(null)
   const [password, setPassword] = useState();
   useEffect(() => {
     if(error){
 showToast("Error", error, false)
     }
   }, [error, showToast])
-
   useEffect(() => {
-    console.log(data)
+console.log(captchaValue)
+  }, [captchaValue])
+  useEffect(() => {
     if(data.username){
-    dispatch({type : "LOGIN", payload : data})
+      setCaptchaValue(null)
+     dispatch({type : "LOGIN", payload : data})
+    recaptchaRef.current.reset();
       const { username } = data
       showToast("Success", `Welcome Back ${username}`, true)
       setTimeout(() => {
         router("/")
       }, 2000);
     }
-// if(data.message){
-//   const { message } = data
-//   console.log(data)
-//   showToast("Success", message, true)
-// }
   }, [data, statusCode, router, showToast])
   const handleLogin = (e) => {
     e.preventDefault()
+    if(!captchaValue){
+      showToast("Pls Click The ReCAPTCHA button", error, false)
+      return;
+    }
 loginAccount(email, password)
 check ? localStorage.setItem("remember-me", JSON.stringify({email, password})) : localStorage.removeItem("remember-me")
   }
@@ -99,10 +104,17 @@ onClick={rememberMe}
         
         <Button
         isLoading={isLoading}
-         className="litenote-login-submit-btn" onClick={handleLogin} text={"Login"}/>
+         className="litenote-login-submit-btn" onClick={handleLogin} text={"Login"}
+
+         />
+  
+ 
         <div className="litenote-login-register-link">
         <Link to="/register" >Dont have an account? Register</Link>
         </div>
+       <Recaptcha
+       ref={recaptchaRef}
+        setCaptchaValue={setCaptchaValue}/>
       </div>
     </div>
       </>

@@ -4,12 +4,18 @@ import useWindowSize from "../../hooks/useWindowSize"
 import SpinnerLoader from "../Loaders/SpinnerLoader"
 import { useConsentContext } from "../../hooks/useConsentContext"
 import { useNewsletterSignup } from "../../hooks/useNewsletterSignup"
+import { emailValidate } from "../../helpers/Validator"
+import SpecialModal from "./SpecialModal"
+import Recaptcha from "./Recaptcha"
 import { useToastContext } from "../../hooks/useToastContext"
 import { setCookie } from "../../helpers/CookiesConfiguration"
 const NewsletterSignup = () => {
-   const {  closeNewsletter, newsletter, showNewsLetter } = useConsentContext()
+   const recaptchaRef = useRef(null);
+   const { closeNewsletter, newsletter, showNewsLetter } = useConsentContext()
+   const [openModal, setOpenModal] = useState(false)
    const { showToast } = useToastContext()
    const [email, setEmail] = useState()
+   const [captchaValue, setCaptchaValue] = useState(null)
    const {newsletterSignup, isLoading, error, data, statusCode } = useNewsletterSignup()
    const fullNewsletter = useRef()
    const {  width } = useWindowSize()
@@ -23,20 +29,34 @@ const NewsletterSignup = () => {
    })
    useEffect(() => {
       if(error){
+         setEmail("")
   showToast("Error", error, false)
       }
     }, [error, showToast])
   
     useEffect(() => {
   if(data.message){
+   setCaptchaValue(null)
+   recaptchaRef.current.reset();
     const { message } = data
     setCookie("newsletter-mode", "true", 30) 
     showToast("Success", message, true)
     showNewsLetter(false)
+    setEmail("")
   }
     }, [data, statusCode, showToast])
 
 const subScribeToNewsletter = () => {
+   const trueEmail = emailValidate(email)
+   if(!trueEmail){
+      showToast("Error", "Please Enter A Valid Email", false)
+      return;
+         }
+   if(!captchaValue){
+      setOpenModal(true)
+      return
+   }
+
    const newObj = {}
    Object.entries(newsletterOptions).map(([key, value]) => {
       if(value == true){
@@ -45,6 +65,20 @@ const subScribeToNewsletter = () => {
     });
    newsletterSignup(email, Object.keys(newObj))
 }
+useEffect(() => {
+   console.log("I still got here")
+   console.log(captchaValue)
+if(captchaValue){
+   setTimeout(() => {
+      setOpenModal(!openModal)      
+   }, 1000);
+   setTimeout(() => {
+      subScribeToNewsletter()     
+   }, 2000);
+ 
+
+}
+}, [captchaValue])
 // const pickAnOption = (e) => {
 //    const option = e.currentTarget.id
 //    console.log(option)
@@ -121,6 +155,7 @@ const pickAnOption = (e) => {
 
   return (
     <>
+       <SpecialModal openModal={openModal} setOpenModal={setOpenModal}  content={<Recaptcha message={true} setCaptchaValue={setCaptchaValue} ref={recaptchaRef}/>} height={200} width={400}/>
         <main 
         className={`litenote-newsletter-main`}>
    <div className={`litenote-newsletter-container litenote-newsletter-news litenote-newsletter-flow ${newsletter  ? 'slide-down'  : "" }`}   ref={fullNewsletter}>
@@ -260,7 +295,11 @@ onChange={(e) => setEmail(e.target.value)}
             <span style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
   <SpinnerLoader width={15} />
   </span> 
-          : "Subscribe"
+          :
+          <span className="special-modal-client">
+Subscribe
+          </span>
+       
           }
           
           </button>

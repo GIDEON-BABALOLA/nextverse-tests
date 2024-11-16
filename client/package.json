@@ -23,6 +23,7 @@
     "react-bootstrap": "^2.10.2",
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
+    "react-google-recaptcha": "^3.1.0",
     "react-headroom": "^3.2.1",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.1",
