@@ -3,4 +3,5 @@ node_modules
 COMPANY_INFORMATION.md
 /data/mockUsersCorrect.js
 test.js
+recaptchaVerification.js
 /Litenote API Tests

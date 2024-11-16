@@ -69,8 +69,6 @@ const subScribeToNewsletter = () => {
 }
 useEffect(() => {
 if(captchaValue){
-   const recaptchaToken = recaptchaRef.current.getValue();
-
    setTimeout(() => {
       setOpenModal(!openModal)      
    }, 1000);
