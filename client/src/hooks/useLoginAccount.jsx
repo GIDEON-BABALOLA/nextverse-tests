@@ -11,7 +11,7 @@ export const useLoginAccount = () => {
     const [statusCode, setStatusCode] = useState(null)
     const { showToast } = useToastContext()
     const [data, setData] = useState([])
-    const loginAccount = async (email, password) => {
+    const loginAccount = async (email, password, captchaValue) => {
         const trueEmail = emailValidate(email)
         const truePassword = passwordValidate(password)
         if(!trueEmail){
@@ -28,6 +28,7 @@ export const useLoginAccount = () => {
 const response = await axiosConfig.post("/user/login-user", {
     email : email,
     password : password,
+    recaptchaToken : captchaValue
 },
 {
     signal : AbortSignal.timeout(10000) //times out after 10 seconds

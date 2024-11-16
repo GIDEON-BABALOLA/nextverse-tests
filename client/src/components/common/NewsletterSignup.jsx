@@ -29,6 +29,8 @@ const NewsletterSignup = () => {
    })
    useEffect(() => {
       if(error){
+         setCaptchaValue(null)
+recaptchaRef.current.reset();
          setEmail("")
   showToast("Error", error, false)
       }
@@ -63,12 +65,11 @@ const subScribeToNewsletter = () => {
          newObj[key] = key;
       }
     });
-   newsletterSignup(email, Object.keys(newObj))
+   newsletterSignup(email, Object.keys(newObj), captchaValue)
 }
 useEffect(() => {
-   console.log("I still got here")
-   console.log(captchaValue)
 if(captchaValue){
+   const recaptchaToken = recaptchaRef.current.getValue();
    setTimeout(() => {
       setOpenModal(!openModal)      
    }, 1000);

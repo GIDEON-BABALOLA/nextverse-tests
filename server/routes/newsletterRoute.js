@@ -6,7 +6,8 @@ subScribeToNewsletter,
 unSubscribeFromNewsletter,
 getSubscribedUsers
 } = require(path.join(__dirname, "..", "controllers", "newsletterController"))
-router.post("/subscribe-to-newsletter", subScribeToNewsletter)
+const {verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
+router.post("/subscribe-to-newsletter", verifyReCAPTCHA,  subScribeToNewsletter)
 router.delete("/unsubscribe-to-newsletter", unSubscribeFromNewsletter)
 router.get("/get-subscribed-users", getSubscribedUsers)
 module.exports = router

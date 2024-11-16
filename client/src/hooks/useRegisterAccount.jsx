@@ -14,7 +14,7 @@ export const useRegisterAccount = () => {
     const { showToast } = useToastContext()
     const [data, setData] = useState([])
     // const { dispatch } = useAuthContext()
-    const registerAccount = async (email, password, mobile, username) => {
+    const registerAccount = async (email, password, mobile, username, captchaValue) => {
         console.log(username)
         const trueEmail = emailValidate(email)
         const truePassword = passwordValidate(password)
@@ -46,6 +46,7 @@ const response = await axiosConfig.post("/user/register-user", {
     password : password,
     username : username,
     mobile : mobile,
+    recaptchaToken : captchaValue
 },
 {
     signal : AbortSignal.timeout(10000) //times out after 10 seconds

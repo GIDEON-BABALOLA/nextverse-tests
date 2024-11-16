@@ -10,7 +10,7 @@ export const useNewsletterSignup = () => {
     const [statusCode, setStatusCode] = useState(null)
     const { showToast } = useToastContext()
     const [data, setData] = useState([])
-    const newsletterSignup = async (email, options) => {
+    const newsletterSignup = async (email, options, captchaValue) => {
         const trueEmail = emailValidate(email)
         if(!trueEmail){
             showToast("Error", "Please Enter A Valid Email", false)
@@ -21,7 +21,8 @@ export const useNewsletterSignup = () => {
             setError(null)
 const response = await axiosConfig.post("/newsletter/subscribe-to-newsletter", {
     email : email,
-    options : options
+    options : options,
+    recaptchaToken : captchaValue
 }
 )
 if(response && response.data){

@@ -24,6 +24,8 @@ const Register = () => {
   const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
   useEffect(() => {
     if(error){
+      setCaptchaValue(null)
+recaptchaRef.current.reset();
       console.log("daveeeeee")
 showToast("Error", error, false)
     }
@@ -58,7 +60,7 @@ if(response){
       showToast("Pls Click The ReCAPTCHA button", error, false)
       return;
     }
-    registerAccount(email, password, mobile, username)
+    registerAccount(email, password, mobile, username, captchaValue)
   }
     return (
       <>

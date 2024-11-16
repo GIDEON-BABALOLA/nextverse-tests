@@ -21,6 +21,8 @@ const { showToast } = useToastContext()
   const [password, setPassword] = useState();
   useEffect(() => {
     if(error){
+setCaptchaValue(null)
+recaptchaRef.current.reset();
 showToast("Error", error, false)
     }
   }, [error, showToast])
@@ -45,7 +47,7 @@ console.log(captchaValue)
       showToast("Pls Click The ReCAPTCHA button", error, false)
       return;
     }
-loginAccount(email, password)
+loginAccount(email, password, captchaValue)
 check ? localStorage.setItem("remember-me", JSON.stringify({email, password})) : localStorage.removeItem("remember-me")
   }
   const rememberMe = () => {
