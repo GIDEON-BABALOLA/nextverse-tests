@@ -12,7 +12,7 @@ const verifyReCAPTCHA = async (req, res, next) => {
     try{
 const response = await axios.post("https://www.google.com/recaptcha/api/siteverify", {
     secret : process.env.LITENOTE_RECAPTCHA_SERVER_SIDE_INTEGRATION_SECRET_KEY,
-    response : recaptchaToken.toString()
+    response : recaptchaToken
 })
 console.log(response.data)
 if(response && response.data.success == true){
