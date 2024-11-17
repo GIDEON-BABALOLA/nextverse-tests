@@ -981,3 +981,46 @@
         "isLoading": false
     }
 ]
+
+
+const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      // If the user is trying to scroll down, prevent the scroll
+      if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current)) {
+        window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
+      } else {
+        // Update the last scroll position if scrolling up
+        setLastScrollY(currentScrollY);
+      }
+    }
+  
+
+    // Add the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]); // Only re-run the effect when lastScrollY changes
+  useEffect(()=> {
+    if(isLoading && isVisibleInViewport(loadingRef.current) ){
+      document.body.classList.add("remove-scrolling"); 
+    }
+    else{
+       document.body.classList.remove("remove-scrolling"); 
+    }
+    }, [isLoading])
+
+    function filterUniqueById(data) {
+  return data.reduce((accumulator, current) => {
+    // Check if there's an item in the accumulator with the same id
+    if (!accumulator.some(item => item._id === current._id)) {
+      accumulator.push(current);
+    }
+    return accumulator;
+  }, []);
+}

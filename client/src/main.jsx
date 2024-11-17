@@ -12,7 +12,6 @@ import { ConsentContextProvider } from './context/ConsentContext.jsx'
 import { StickyNotesContextProvider } from './context/StickyNotesContext.jsx'
 import { ProfileContextProvider } from './context/ProfileContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <Router>
   <AuthContextProvider>
   <ProfileContextProvider>
@@ -35,5 +34,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </ProfileContextProvider>
   </AuthContextProvider>
   </Router>
-  </React.StrictMode>
+
 )

@@ -11,6 +11,7 @@ import { useModalContext } from "../hooks/useModalContext"
 import Tab from "../components/common/Tab"
 import { MdReadMore } from "react-icons/md"
 import ErrorMessage from "../components/common/ErrorMessage"
+import StoryCard from "../components/Profile/StoryCard"
 import { useGetExploreStories } from "../hooks/useGetExploreStories"
 import ExploreCard from "../components/common/ExploreCard"
 const ExplorePage = () => {
@@ -28,12 +29,10 @@ const ExplorePage = () => {
   })
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(3);
-  const [isCycling, setIsCycling] = useState(false)
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
-  const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
-  const [categoryChanged, setCategoryChanged] = useState(false)
+  const [categoryChanged, setCategoryChanged] = useState(null)
   const { getExploreStories, isLoading, error, data, statusCode, storyCount } = useGetExploreStories()
   const {
     contextMenu,
@@ -44,15 +43,31 @@ const ExplorePage = () => {
  closeContextMenu
 } = useModalContext()
 useEffect(() => {
-  if (isCycling) {
-    
-    // Cycle back to a random page or a specific page
-    const randomPage = 4
-    getExploreStories(randomPage, limit, category);
-  } else {
-    getExploreStories(page, limit, category);
+  const skip = (page - 1) * limit;
+  if (skip >= storyCount && storyCount > 0) {
+    console.log("quick here")
+    setPage(1);
+    return;
   }
-}, [page, category, limit, isCycling]);
+  getExploreStories(page, limit, category);
+}, [page, category,  limit]);
+useEffect(() => {
+  setPage(1); // Reset to the first page when the category changes
+  setStories([]); // Clear current stories to avoid mixing old and new category data
+}, [category, tabs]);
+
+useEffect(() => {
+if(data.length > 0){
+  // console.log(data.length)
+  const newStories = data.map((story) => {
+    return {...story, loading : false}
+  })
+setStories((prev) => {
+  return [...prev, ...newStories]
+})
+}
+
+}, [data])
 const handleCategoryChange = () => {
 let selectedCategory;
  selectedCategory = Object.keys(tabs).find(key => tabs[key]);
@@ -61,11 +76,11 @@ let selectedCategory;
   selectedCategory = "non-fiction"
           }
 if (category !== selectedCategory) {
+  console.log("I got changed")
+  setPage(1);
 setCategoryChanged(true)
 setStories([])
 setCategory(selectedCategory)
-} else{
-  setCategoryChanged(false)
 }
 }
 useEffect(() => {
@@ -77,16 +92,15 @@ handleCategoryChange()
     ([entry]) => {
       if (entry.isIntersecting && !isLoading) {
         console.log("Observed last item, loading new page...");
-        if(hasMore){
+        if(!categoryChanged){
           setPage((prevPage) => prevPage + 1);
+        }else{
+            setCategoryChanged(false)
         }
-        else{
-       setIsCycling(true)
-           }
         observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
       }
     },
-    { threshold: 0.1, rootMargin: '100px' } // Adjust threshold as needed
+    { threshold: 0.1 } // Adjust threshold as needed
   );
 
   if (lastItemRef.current && !isLoading) {
@@ -98,39 +112,13 @@ handleCategoryChange()
       observer.unobserve(lastItemRef.current);
     }
   };
-}, [lastItemRef, isLoading, hasMore]);
+}, [lastItemRef, isLoading, data, categoryChanged]);
 
 useEffect(() => {
   if(statusCode == 404){
     console.log("no more page content")
-   setHasMore(false)
   }
 }, [error, statusCode])
-function filterUniqueById(data) {
-  return data.reduce((accumulator, current) => {
-    // Check if there's an item in the accumulator with the same id
-    if (!accumulator.some(item => item._id === current._id)) {
-      accumulator.push(current);
-    }
-    return accumulator;
-  }, []);
-}
-useEffect(() => {
-    if(data.length > 0){
-      setIsCycling(false)
-    const oldStories = stories.map((story) => {
-      return {...story, isLoading : false}
-    })
-    const newStories = data.map((story) => {
-      return {...story, isLoading : true}
-    })
-  
-const storiesToBeSent = [...oldStories, ...newStories]
-const exploreStories = filterUniqueById(storiesToBeSent)
-   setStories(exploreStories)
-  }
-
-}, [data, isLoading])
 useEffect(() => {
 if(width < 767){
   setLimit(1)
@@ -140,10 +128,6 @@ if(width < 767){
   setLoading([{}, {}, {}])
 }
 }, [width])
-useEffect(() => {
-  setPage(1);
-}, [category, tabs]);
-
 
 const loadingRef = useRef(null);
 const isVisibleInViewport = (element) => {
@@ -206,19 +190,13 @@ statusCode !== 500 ?
  
      <section className="litenote-browse-stories">
      <div className="litenote-browse-story-grid">
-  {
-    categoryChanged ?
-    stories.slice(3).map((story, index) => (
-      <ExploreCard
-       shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
-    ))
-    :
-    
+{
     stories.map((story, index) => (
-      <ExploreCard
+      <StoryCard
+      isLoading={story.loading}
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
     ))
-  }
+    }
   { isLoading && 
 
   loading.map((story, index) => (
