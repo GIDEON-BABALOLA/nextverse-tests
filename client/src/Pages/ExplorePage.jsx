@@ -46,7 +46,9 @@ useEffect(() => {
   const skip = (page - 1) * limit;
   if (skip >= storyCount && storyCount > 0) {
     console.log("quick here")
-    setPage(1);
+    const sentPage = page
+    const randomPage = Math.floor(Math.random() * (sentPage - 1)) + 1
+    setPage(randomPage);
     return;
   }
   getExploreStories(page, limit, category);
