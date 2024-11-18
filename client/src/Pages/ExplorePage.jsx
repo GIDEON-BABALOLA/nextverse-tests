@@ -13,6 +13,7 @@ import { MdReadMore } from "react-icons/md"
 import ErrorMessage from "../components/common/ErrorMessage"
 import StoryCard from "../components/Profile/StoryCard"
 import { useGetExploreStories } from "../hooks/useGetExploreStories"
+import { generateRandomPage } from "../helpers/generateRandomPage"
 import ExploreCard from "../components/common/ExploreCard"
 const ExplorePage = () => {
   const { width } = useWindowSize()
@@ -45,10 +46,11 @@ const ExplorePage = () => {
 useEffect(() => {
   const skip = (page - 1) * limit;
   if (skip >= storyCount && storyCount > 0) {
-    console.log("quick here")
-    const sentPage = page
-    const randomPage = Math.floor(Math.random() * (sentPage - 1)) + 1
+    const randomPage = generateRandomPage(page)
     setPage(randomPage);
+    // const sentPage = page
+    // const randomPage = Math.floor(Math.random() * (sentPage - 1)) + 1
+    // setPage(randomPage);
     return;
   }
   getExploreStories(page, limit, category);

@@ -1,18 +1,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* :root{
+#181A1E
+} */
+.dark-theme-variables{
 
+}
 .litenote-browse-stories {
   max-width: 1200px;
   margin: 10px auto;
   padding: 0 20px;
 }
-.litenote-browse-stories-tabs{
-/* display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-padding: 0px 40px; */
-
+.litenote-browse-container{
+  /* background-color:#111111; */
 }
 .explore-loader {
   width: 48px;
