@@ -124,10 +124,15 @@ useEffect(() => {
   }
 }, [error, statusCode])
 useEffect(() => {
-if(width < 767){
+if(width < 768){
+  setLimit(2)
+  setLoading([{}])
+}
+else if(width < 767){
   setLimit(1)
   setLoading([{}])
-}else{
+}
+else{
   setLimit(3)
   setLoading([{}, {}, {}])
 }
