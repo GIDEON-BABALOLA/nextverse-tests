@@ -64,10 +64,11 @@
     padding: 20px 0;
     display: flex;
     flex-direction: column;
+    
     align-items: center;
     position: fixed;
     height: 100vh;
-   justify-content: center;
+   justify-content: space-between;
    box-shadow: #0000001A 0px 2px 5px 0px;
 }
 .phone-feed-nav{
@@ -510,3 +511,30 @@ color: var(--searcher-color);
     color :  #7380EC;
 
 }
+
+.litenote-feed-theme-toggler{
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    justify-self: flex-end;
+    height: 1.6rem;
+    /* width:3.2rem; */
+    width:3rem;
+    /* margin-left: 18px; */
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+   }
+  .litenote-feed-theme-toggler span{
+   font-size: 1.2rem;
+   width: 50%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   }
+   .litenote-feed-theme-toggler span.active{
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--border-radius-1);
+   }

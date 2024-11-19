@@ -7,8 +7,10 @@ import { FaMicrophone } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import SoundWave from "../../components/common/SoundWave"
+import useWindowSize from "../../hooks/useWindowSize";
 import toast from "react-hot-toast"
 const SearchBar = () => {
+  const { width } = useWindowSize()
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
   const startListening = () => SpeechRecognition.startListening({ continuous: true })
   useEffect(() => {
@@ -80,14 +82,14 @@ return <span>{
       <div className="litenote-browse-search-box">
 <div className="litenote-browse-search-row">
 
-<button className="litenote-browse-search-button">   <FaSearch className="fa-magnifying-glass" size={20}/>
+<button className="litenote-browse-search-button">   
 </button>
 <input 
 value={searchQuery}
 className="litenote-browse-search-input"
 type="text"
 id="input-box"
-placeholder=" Search Your Favourite Stories, Or Your Favourite authors"
+placeholder=" Search Your Favourite Stories"
 autoComplete="off"
 onChange={startSearch}
 />
@@ -96,14 +98,17 @@ onChange={startSearch}
    size={50} onClick={clearInput}/> }
 
 <button className="litenote-browse-trigger-search-button" onClick={searchStory}>
-<MdSearch style={{fontWeight : 500}} size={20}/>
+<MdSearch color="white" style={{fontWeight : 500}} size={20}/>
 </button>
    
    
 </button>
+ 
+ { width > 1200 &&
  <span className="litenote-browse-microphone">
    <FaMicrophone style={{fontWeight : 500}} size={20} onClick={startListening}/>
    </span> 
+   }
 
 {/* <SoundWave /> */}
 

@@ -1,0 +1,16 @@
+:root{
+--filter-by-category-color : black;
+--general-tabs-color : black;
+}
+.dark-theme-variables{
+    --filter-by-category-color : white;
+    --general-tabs-color : white;
+
+}
+.litenote-stories-sBtn-text{
+color: var(--filter-by-category-color);
+}
+.litenote-angle-down{
+    color: var(--filter-by-category-color);
+}
+/* litenote.app */

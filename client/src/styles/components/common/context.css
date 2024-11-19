@@ -2,15 +2,18 @@
 :root{
     --context-background : white;
     --context-link-hover : #eeeeee;
+    --context-full-color : black;
 }
 
 .dark-theme-variables{
     --context-background:#181a1e;
     --context-link-hover :  rgba(132,139,200,0.18);
+    --context-full-color : white;
 
 }
 .litenote-context{
     background-color: var(--context-background);
+    color: var(--context-full-color);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     box-sizing: border-box;
     border-radius: 5px;
@@ -18,6 +21,7 @@
 -moz-box-shadow: 2px 6px 21px -2px rgba(0,0,0,0.75);
 box-shadow: 2px 6px 21px -2px rgba(0,0,0,0.75);
 z-index: 5;
+
 
 }
 .david{

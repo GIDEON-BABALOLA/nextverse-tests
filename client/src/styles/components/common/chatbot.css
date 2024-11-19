@@ -285,7 +285,6 @@ font-size: 30px;
     height: 1px; /* Height of the underline */
     background-color: #000; /* Color of the underline */
 }
-/* HTML: <div class="loader"></div> */
 .litenotechatbot-loaderdot {
     width: 30px;
     aspect-ratio: 2;

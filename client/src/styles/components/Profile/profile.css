@@ -1,15 +1,35 @@
   :root{
      /* --skeleton-background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%); */
      --skeleton-background: linear-gradient(110deg, #e0e0e0 8%, #f5f5f5 18%, #e0e0e0 33%);
+     --litenote-story-card : #ffff;
+     --litenote-story-card-color : black;
+     --story-card-dark-box-shadow : 0 0 20px rgba(0, 0, 0, 0.1);
+     --litenote-profile-section-title : black;
+     --litenote-profile-header : black;
+     --litenote-profile-header-box-shadow : none;
+
+     --litenote-profile-page : #f8f8f8;
   }
   .dark-theme-variables{
     --skeleton-background: linear-gradient(110deg, #1C1E21 8%, #2A2C30 18%, #1C1E21 33%);
+    --litenote-story-card : #181a1e;
+    --litenote-story-card-color : white;
+    --story-card-dark-box-shadow : 2px 6px 21px -2px rgba(0,0,0,0.75);
+    --litenote-profile-section-title : white;
+    --litenote-profile-header : #131618;
+    --litenote-profile-page : #181A1E;
+    --litenote-profile-header-box-shadow : 0 2px 6px rgba(0, 0, 0, 0.6);
     
+  }
+  .litenote-profile-header{
+background-color: var(--litenote-profile-header);
+box-shadow: var(--litenote-profile-header-box-shadow);
   }
   .litenote-profile-user-profile {
     padding: 60px 20px;
     overflow-x: hidden;
     overflow-y: auto;
+    background-color: var(--litenote-profile-page);
   }
   .skeleton-image{
     width: 100%;
@@ -251,6 +271,7 @@
   
   .litenote-profile-stories .litenote-profile-section-title {
     margin-bottom: 30px;
+    color: var(--litenote-profile-section-title);
   }
   
   .litenote-profile-stories-grid {
@@ -265,6 +286,9 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     transform: translateY(50px);
     opacity: 1;
+    background-color:  var(--litenote-story-card);
+    color: var(--litenote-story-card-color);
+    box-shadow: var(--story-card-dark-box-shadow);
     /* animation: slide-up 0.5s ease-in-out forwards; */
   }
   

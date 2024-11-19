@@ -53,7 +53,7 @@ console.log(error)
  <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
   <Share  share={shareRef} shareModal={shareModal}/>
 <div className="litenote-profile-container">
-<div className="litenote-profile-header" style={{backgroundColor : "#000000",
+<div className="litenote-profile-header" style={{
 
 
 borderRadius : "10px", padding : "30px"}}>

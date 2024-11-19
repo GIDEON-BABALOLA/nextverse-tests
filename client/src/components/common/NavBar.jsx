@@ -2,13 +2,11 @@ import "../../styles/components/common/navbar.css"
 import {  Link } from 'react-router-dom'
 import { useRef } from "react"
 import Headroom from "react-headroom"
-import avatar from "../../assets/28.jpg"
-import defaultavatar from "../../assets/defaultavatar.svg"
 import { FaAngleRight } from "react-icons/fa"
 import Toast from "../common/Toast"
 import NavbarContextMenu from "./NavbarContextMenu"
 import Hamburger from 'hamburger-react'
-import { MdGridView, MdLogout,
+import { MdGridView, MdLogout, MdLightMode, MdDarkMode,
   MdPersonAdd,
   MdLogin, MdSettings, MdManageSearch ,  MdAutoStories }from "react-icons/md"
 import { useState, useEffect } from "react"
@@ -18,11 +16,67 @@ import { FaUser, FaHome } from "react-icons/fa"
 import { CgFeed } from "react-icons/cg";
 import Avatar from "./Avatar"
 import { MdOpenInNew, MdOutlinePersonAddAlt } from 'react-icons/md';
+import { useThemeContext } from "../../hooks/useThemeContext"
 import useInternetMode from "../../hooks/useInternetMode"
 import SpecialModal from "./SpecialModal"
 import LogoutConsent from "./LogoutConsent"
 import { useAuthContext } from "../../hooks/useAuthContext"
 const NavBar = () => {
+  const { colorMode , dispatch} = useThemeContext()
+  const themeRef = useRef();
+  useEffect(() => {
+    console.log("mercy")
+    if(colorMode == undefined || colorMode == ""){
+      console.log("griezman")
+      themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
+    }
+    // }
+ 
+
+      
+    
+switch (colorMode) {
+  
+  case "dark-mode":
+    if(themeRef.current){
+    themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
+    themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
+    }
+    break;
+    case "light-mode":
+      if(themeRef.current){
+
+      
+      themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
+      themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
+      }
+    break;
+}
+    
+  }, [colorMode])
+  const themeMode = (e) => {
+    let id;
+    const correctId = e.currentTarget.closest('span').id;
+        if(e.target.id == ""){
+         id = correctId
+        }
+    switch (id) {
+      case "dark-mode":
+        dispatch({type : "dark-mode", payload : "dark-mode"})
+        themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
+        themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
+        break;
+        case "light-mode":
+        dispatch({type : "light-mode", payload : "light-mode"})
+          themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
+          themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
+          break;
+      
+    
+      default:
+        break;
+    }
+  }
   const { user } = useAuthContext()
 const [isOpen, setOpen] = useState(false)
 const [openModal, setOpenModal] = useState("")
@@ -135,31 +189,44 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
       
       <div className="navbar-logo">
       
-        <Link to="/" className="navbar-header-links">{ 
-         "Lite Note"  
+        <Link to="/" className="navbar-header-links navbar-header-links-lite-note"
+        style={{color : "var(--navbar-header-links-lite-note-color)"}}
+        >
+         Lite Note  
         
 
-}</Link>
-      </div>{ 
+</Link>
+      </div>
+      
+      { 
       width > 768  ?
       <div className="navbar-nav-links">
-      <Link to="/" className="navbar-header-links navbar-active" style={{fontSize : "1.3rem"}}  >
+      <Link to="/" 
+     className={`navbar-header-links ${currentUrl === "" && "navbar-active"}`}
+   style={{fontSize : "1.3rem"}}  >
         Home
         </Link>
-        <Link to="/feed" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
+        <Link to="/feed" 
+        className={`navbar-header-links ${currentUrl === "feed" && "navbar-active"}`}
+         style={{fontSize : "1.3rem"}}  >
         Feed
         </Link>
         {/* <Link to="/publish" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
         Publish
         </Link> */}
-        <Link to="/explore" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
+        <Link to="/explore" 
+        className={`navbar-header-links ${currentUrl === "explore" && "navbar-active"}`}
+         style={{fontSize : "1.3rem"}}  >
         Explore
         </Link>
-        <Link to="/profile" className="navbar-header-links" style={{fontSize : "1.3rem"}}  >
+        <Link
+        className={`navbar-header-links ${currentUrl === "profile" && "navbar-active"}`}
+         to="/profile"  style={{fontSize : "1.3rem"}}  >
         Profile
         </Link>
      
       </div>
+      
       :
       <section className="litenote-nav-sidebar-aside" ref={navSidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
 
@@ -174,8 +241,6 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                     </span>
                                   
       <div className='nav-user-info' style={{cursor : "pointer"}}>
-{/* <img src={avatar}
-className="navbar-context-profile-photo-home"/>  */}
 {user ? 
 <>
 <Avatar image={user["picture"]} className="navbar-context-profile-photo-home"/>
@@ -247,15 +312,31 @@ className="navbar-context-profile-photo-home"/>  */}
                         onClick={dave}>
                         <FaUser size={20} />
 
-                           <h3 className="litenote-dashboard-h-three">Search Profile</h3>
+                           <h3 className="litenote-dashboard-h-three">Search Profile
+  
+                           </h3>
                         </Link>
+                        
+
+
+
                             <Link to="/login" className={`nav-sidebar-link ${currentUrl === "login" && "active"}`} 
                         
                         onClick={dave}>
                         <MdOpenInNew size={24} />
-
+  
                            <h3 className="litenote-dashboard-h-three special-modal-client">Sign Out</h3>
                         </Link>
+                        <div style={{display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
+<div className="litenote-nav-theme-toggler "  ref={themeRef}>
+    <span className="" id = "light-mode"  onClick={themeMode}>
+    <MdLightMode />
+    </span>
+    <span id = "dark-mode" onClick={themeMode} >
+    <MdDarkMode  />
+      </span>
+    </div>
+</div>
                       
                       
                      
@@ -281,18 +362,21 @@ className="navbar-context-profile-photo-home"/>  */}
    
      
      : 
-     /* <img 
-    onClick={showLoggedInUserOptions}
-className="profile-photo-home "
-style={{width : width < 768 ? "7%": "3%"}}
-src={user && user["picture"]}></img> */
-<>{
+<>
+
+{
+  
   user ?
-<Avatar className="profile-photo-home"
+  <>
+
+
+    <Avatar className="profile-photo-home"
 onClick={showLoggedInUserOptions}
  image={user["picture"]}
  style={{width : width < 768 ? "7%": "3%"}}
- /> : 
+ />
+  </>
+ : 
  <div className="defaultavatar"
  onClick={showLoggedInUserOptions}
  >
@@ -343,6 +427,14 @@ contextMenuData={[
 },
 {
   id : 6,
+  icon : <MdPersonAdd className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
+  label : "Sign Up",
+  arrow :   <MdOpenInNew />,
+  link : "/register",
+  access : "guest"
+},
+{
+  id : 7,
   icon : <MdPersonAdd className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
   label : "Sign Up",
   arrow :   <MdOpenInNew />,

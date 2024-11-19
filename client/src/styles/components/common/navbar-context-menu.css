@@ -24,11 +24,15 @@
     transform: scale(0);
 transform-origin: top right;
 transition: transform 0.5s ease;
-z-index: 5;
+z-index: 1;
 
 }
 .sub-menu-wrap.active{
     transform: scale(1);
+    position: absolute;
+    
+
+    z-index: 100000;
 }
 .sub-menu{
     background: var(--sub-menu-background);

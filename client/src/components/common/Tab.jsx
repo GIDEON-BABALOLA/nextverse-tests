@@ -1,6 +1,7 @@
 
 import { useRef, useState} from "react"
 import  useWindowSize  from "../../hooks/useWindowSize"
+import "../../styles/components/common/tab.css"
 import Dropdown from "./Dropdown"
 const Tab = ({ setTab, tabs, labelWidth, ...props}) => {
     const [slideDistance, setSlideDistance] = useState(0)
@@ -34,14 +35,19 @@ ref={tabRef}
 >
   {   Object.entries(tabs).map(([key, value], index) => (
     <label htmlFor={`tab${index}`}
+    className="tab-label"
     key={key}
         style={{color : 
-        tabs[key] == true && "var(--color-primary)", width : `${labelWidth}px` }}
+        
+        tabs[key] == true ? "var(--color-primary)" : "var(--general-tabs-color)", width : `${labelWidth}px` }}
          onClick={clickMe}>{key[0].toUpperCase() + key.slice(1)}</label>
-  ))}
+  ))}      
         <div className="glider" style={{   transform: `translateX(${slideDistance}px)`,
          width : `${labelWidth}px`
-        }}></div>
+        }}><span>{
+          Object.keys(tabs).find(key => tabs[key] === true)[0].toUpperCase()
+           +Object.keys(tabs).find(key => tabs[key] === true).slice(1)
+           }</span></div>
     </div>
 </div>
     }

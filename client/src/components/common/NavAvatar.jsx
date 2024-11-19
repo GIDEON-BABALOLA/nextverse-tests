@@ -15,8 +15,7 @@ const Avatar = ({ image, ...props}) => {
   }, [loaded, error])
   return (
     <>{ loading ? 
-      <span
-       className="donot-spoil-my-work">&nbsp;</span>
+      <div className=" nav-skeleton-image skeleton-image-avatar" ></div>
     :
     <img src={image} {...props}></img>
     }

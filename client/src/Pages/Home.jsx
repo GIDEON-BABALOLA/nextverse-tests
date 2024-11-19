@@ -9,8 +9,26 @@ import { useRef } from "react"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import { TrustedBy } from "../components/Home/TrustedBy.jsx"
 import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
+import { useThemeContext } from "../hooks/useThemeContext.jsx"
+import { useEffect } from "react"
 const Home = () => {
+  const { colorMode } = useThemeContext()
 const page = useRef()
+useEffect(() => {
+  console.log(colorMode)
+  if(colorMode == ""){
+    document.body.classList.remove("dark-theme-variables")
+  }
+switch (colorMode) {
+case "dark-mode":
+  console.log("lego")
+  document.body.classList.remove("dark-theme-variables")
+  break;
+  case "light-mode":
+      document.body.classList.remove("dark-theme-variables")
+  break;
+}
+}, [colorMode])
   return (
     <>
     <main ref={page}>

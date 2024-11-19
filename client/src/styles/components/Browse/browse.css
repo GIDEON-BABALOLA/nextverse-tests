@@ -1,18 +1,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-/* :root{
-#181A1E
-} */
-.dark-theme-variables{
-
+:root{
+--explore-page-background :   #f8f8f8;
+--typewriter-text : black;
 }
+.dark-theme-variables{
+  --explore-page-background :   #181A1E;
+  --typewriter-text : white;
+}
+ .litenote-explore-page{
+  background-color: var(--explore-page-background);
+}
+
 .litenote-browse-stories {
   max-width: 1200px;
   margin: 10px auto;
   padding: 0 20px;
-}
-.litenote-browse-container{
-  /* background-color:#111111; */
 }
 .explore-loader {
   width: 48px;
@@ -41,9 +44,6 @@
     50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
     100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
-}
-.litenote-browse-container{
-  margin-bottom: 200px;
 }
  .title-browse {
     text-align: center;

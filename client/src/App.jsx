@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import Layout from './components/common/Layout';
 import Home from './Pages/Home';
 import NotFound from "./Pages/NotFound"
@@ -9,7 +9,7 @@ import VerifyPage from "./Pages/Verify"
 import ProfilePage from './Pages/Profile';
 import FeedPage from "./Pages/Feed"
 import ExplorePage from "./Pages/ExplorePage"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import AnalyticsPage from "./Pages/Dashboard/AnalyticsPage"
 import UsersPage from "./Pages/Dashboard/UsersPage"
 import SettingsPage from "./Pages/Dashboard/SettingsPage"
@@ -26,8 +26,35 @@ import NoteReaderPage from './Pages/NoteReaderPage';
 import LoadingPage from './Pages/LoadingPage';
 import FollowPage from './Pages/FollowPage';
 import { useAuthContext } from './hooks/useAuthContext';
+import { useThemeContext } from './hooks/useThemeContext';
 import DevelopersPage from "./Pages/DevelopersPage"
 function App() {
+  const location = useParams()
+  const { colorMode } = useThemeContext()
+  useEffect(() => {
+    console.log(location["*"])
+switch (location["*"]) {
+  case "":
+    console.log("change me now")
+    document.body.classList.add('body-height-override');
+    break;
+  default:
+    document.body.classList.remove('body-height-override');
+    break;
+}
+if(location["*"]  !== ""){
+  switch (colorMode) {
+    case "dark-mode":
+      console.log("lego")
+      document.body.classList.add("dark-theme-variables")
+      break;
+      case "light-mode":
+          document.body.classList.remove("dark-theme-variables")
+      break;
+  }
+}
+
+  }, [location, colorMode])
   const { user, appLoading } = useAuthContext()
   const sidebarRef = useRef()
   const [dashboardToast, setDashboardToast] = useState(false)

@@ -10,15 +10,14 @@ import useWindowSize from "../hooks/useWindowSize"
 import { useModalContext } from "../hooks/useModalContext"
 import Tab from "../components/common/Tab"
 import { MdReadMore } from "react-icons/md"
+import { Typewriter } from 'react-simple-typewriter'
 import ErrorMessage from "../components/common/ErrorMessage"
 import StoryCard from "../components/Profile/StoryCard"
 import { useGetExploreStories } from "../hooks/useGetExploreStories"
 import { generateRandomPage } from "../helpers/generateRandomPage"
-import ExploreCard from "../components/common/ExploreCard"
 const ExplorePage = () => {
   const { width } = useWindowSize()
   const lastItemRef= useRef();
-
   const [tabs, setTab] = useState({
     all : true,
     technology : false,
@@ -181,11 +180,26 @@ const resendRequest = () => {
   return (
     <>
 
-    <section className="" onClick={closeContextMenu} >
+    <section className="litenote-explore-page" onClick={closeContextMenu} >
    
    <div className="litenote-browse-container">
    
-     <h3 className="title-browse">Search Your Favourite Stories</h3>
+     <h3 className="title-browse" style={{marginTop : "50px"}}>Search Your Favourite
+     <span style={{color : "var(--typewriter-text)"}}>
+     &nbsp;<Typewriter
+          style={{color : "white"}}
+        words={['Stories', 'adventure', 'drama']}
+        loop={5} // The number of times to loop through the words (0 for infinite)
+        cursor
+        cursorStyle="|"
+        typeSpeed={70} // Speed in ms for typing
+        deleteSpeed={50} // Speed in ms for deleting
+        delaySpeed={1000} // Delay between each word
+      />
+     </span>
+        
+     </h3>
+     
      <SearchBar  />    
      <div className="litenote-browse-stories" >
      <Tab tabs={tabs} setTab={setTab} labelWidth={165} />
@@ -244,7 +258,7 @@ statusCode !== 500 ?
       :
       <ErrorMessage title={"Something went wrong"} 
   message={"We are unable to load this content, check your connection"}
-  height={40}
+  height={70}
   fireClick = {resendRequest}
  />
 }

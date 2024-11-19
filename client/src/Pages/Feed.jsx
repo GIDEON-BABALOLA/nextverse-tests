@@ -4,6 +4,7 @@ import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
     MdOutlineBookmarks,
 
 } from "react-icons/md";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 import favour from "../assets/29.jpg"
 import FeedCard from "../components/Dashboard/common/FeedCard";
 import girly from "../assets/30.jpg"
@@ -15,25 +16,63 @@ import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
 import { useThemeContext } from "../hooks/useThemeContext";
 import useWindowSize from "../hooks/useWindowSize";
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 const FeedPage = () => {
-    const { colorMode } = useThemeContext()
-    console.log(colorMode)
+    const { colorMode, dispatch } = useThemeContext()
+    const themeRef = useRef();
     useEffect(() => {
-        console.log(colorMode)
-        if(colorMode == ""){
-            console.log("ddhd")
+      console.log("mercy")
+      if(colorMode == undefined || colorMode == ""){
+        console.log("griezman")
+        themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
+      }
+      // }
+   
+  
+        
+      
+  switch (colorMode) {
+    
+    case "dark-mode":
+      if(themeRef.current){
+      themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
+      themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
+      }
+      break;
+      case "light-mode":
+        if(themeRef.current){
+  
+        
+        themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
+        themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
         }
-        // }
-    switch (colorMode) {
-      case "dark-mode":
-        document.body.classList.add("dark-theme-variables")
-        break;
-        case "light-mode":
-            document.body.classList.remove("dark-theme-variables")
-        break;
+      break;
+  }
+      
+    }, [colorMode])
+    const themeMode = (e) => {
+      let id;
+      const correctId = e.currentTarget.closest('span').id;
+          if(e.target.id == ""){
+           id = correctId
+          }
+      switch (id) {
+        case "dark-mode":
+          dispatch({type : "dark-mode", payload : "dark-mode"})
+          themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
+          themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
+          break;
+          case "light-mode":
+          dispatch({type : "light-mode", payload : "light-mode"})
+            themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
+            themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
+            break;
+        
+      
+        default:
+          break;
+      }
     }
-      }, [colorMode])
     const [view, setView] = useState({
         list : false,
         grid : true
@@ -71,46 +110,150 @@ console.log()
     }
     const feedData = [
         {
-image : "https://wallpapercave.com/wp/wp11326328.jpg",
-category : "Technology",
-title : "The Impact of Technology on the Workplace: How Technology is Changing",
-content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
-avatar : favour,
-author : "Gideon Babalola",
-date : "April 12, 2025",
-time : "3 min read"
-        }, 
+          title: "Mastering the Art of Photography",
+          category: "Photography",
+          picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2024",
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
         {
-            image : "https://wallpapercave.com/wp/wp11326335.jpg",
-            category : "Technology",
-            title : "The Impact of Technology on the Workplace: How Technology is Changing",
-            avatar : blackman,
-            author : "Gideon Babalola",
-            date : "April 12, 2025",
-            content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
-            time : "3 min read"
-                    }, 
-                    {
-                        image : "https://wallpapercave.com/wp/wp11326368.jpg",
-                        category : "Technology",
-                        title : "The Impact of Technology on the Workplace: How Technology is Changing",
-                        avatar : favour,
-                        author : "Gideon Babalola", 
-                        date : "April 12, 2025",
-                        content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
-                        time : "3 min read"
-                                }, 
-                                {
-                                    image : "https://wallpapercave.com/wp/wp11326350.jpg",
-                                    category : "Technology",
-                                    title : "The Impact of Technology on the Workplace: How Technology is Changing",
-                                    avatar : girly,
-                                    author : "Gideon Babalola",
-                                    content : "Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from Victor James Osimhen MON MFR is a Nigerian professional footballer who plays as a striker for Süper Lig club Galatasaray, on loan from",
-                                    date : "April 12, 2025",
-                                    time : "3 min read"
-                                            }, 
-    ]
+          title: "A Guide to Sustainable Living",
+          category: "Lifestyle",
+          picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
+          link: "#", 
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2025"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+    
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        },
+
+        {
+          title: "Top 10 Hiking Trails in the US",
+          category: "Adventure",
+          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          link: "#",
+          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          date : "March 17, 2020"
+          ,
+          estimatedReadingTime : {
+            minutes : 4,
+            seconds : 30
+          }
+        }
+      ]
   const { width } = useWindowSize()
   return (
    <section className="total-feed">
@@ -161,8 +304,10 @@ time : "3 min read"
    </div>
    </div>
  
-       <div className="feed-sidebar">
-      
+   <div className="feed-sidebar">
+      <div style={{marginTop : "90px"}}>
+
+    
         <div className="feed-sidebar-icon">
         <Link to={"/dashboard/profile"}>
 
@@ -203,6 +348,21 @@ time : "3 min read"
         onClick={changeView}
         
          /><span style={{display : "none"}}>grid</span></div>
+       
+       </div>
+       
+         <div className="litenote-feed-theme-toggler " 
+         style={{justifySelf : "fle"}}
+          ref={themeRef}>
+    <span className="" id = "light-mode"  onClick={themeMode}>
+    <MdLightMode />
+    </span>
+    <span id = "dark-mode" onClick={themeMode} >
+    <MdDarkMode  />
+      </span>
+  
+         </div>
+    
     </div>
     <div className="feed-main-content">
         <div className="feed-header">
@@ -244,7 +404,10 @@ time : "3 min read"
         
         {view.grid && <div className="feed-grid">
 {feedData.map((content, index) => (
-  <FeedCard content={content} key={index} view={"grid"}/>
+    
+  <FeedCard story={content}
+  isLoading={true}
+   key={index} view={"grid"}/>
 ))
 
 }          
@@ -254,7 +417,10 @@ time : "3 min read"
         <div className="feed-list-view">
         {feedData.map((content, index) => (
             <>
-  <FeedCard content={content} key={index}/>
+  <FeedCard story={content} key={index}
+  isLoading={true}
+
+  />
 <hr  style={{color : "#9CA3AF"}}/>
 
 </>

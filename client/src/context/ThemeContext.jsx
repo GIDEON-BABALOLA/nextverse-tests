@@ -30,15 +30,6 @@ export const ThemeContextProvider = ({ children }) => {
         colorMode : getCookie("color-mode")
     })
        // Effect to automatically switch to light mode on excluded paths
-       useEffect(() => {
-        const excludePaths = ["/"]
-        if ( excludePaths.some(path => path === "/" ? location.pathname === "/" : location.pathname.startsWith(path))) {
-            if (state.colorMode === "dark-mode") {
-                document.body.classList.remove('dark-theme-variables');
-
-            }
-        }
-    }, [location.pathname, state.colorMode]);
     console.log("ThemeContext", state)
     return (
         <ThemeContext.Provider value = {{

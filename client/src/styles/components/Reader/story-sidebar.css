@@ -1,7 +1,14 @@
-
+:root{
+--story-sidebar-background : #f8f8f8;
+--story-sidebar-box-shadow : #0000001A 0px 2px 5px 0px;
+}
+.dark-theme-variables{
+    --story-sidebar-background : #202528;
+    --story-sidebar-box-shadow : #00000066 0px 12px 12px 0px;
+}
 .story-sidebar {
     width: 60px;
-    background-color: #ffffff;
+    background-color: var(--story-sidebar-background);
     padding: 20px 0;
     display: flex;
     flex-direction: column;
@@ -9,7 +16,7 @@
     position: fixed;
     height: 100vh;
    justify-content: center;
-   box-shadow: #0000001A 0px 2px 5px 0px;
+   box-shadow: var(--story-sidebar-box-shadow);
 }
 .story-sidebar-icon {
     width: 40px;
