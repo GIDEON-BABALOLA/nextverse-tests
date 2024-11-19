@@ -5,6 +5,7 @@ import Headroom from "react-headroom"
 import { FaAngleRight } from "react-icons/fa"
 import Toast from "../common/Toast"
 import NavbarContextMenu from "./NavbarContextMenu"
+import { useToastContext } from "../../hooks/useToastContext"
 import Hamburger from 'hamburger-react'
 import { MdGridView, MdLogout, MdLightMode, MdDarkMode,
   MdPersonAdd,
@@ -279,11 +280,11 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                     <MdAutoStories size={20} />
                            <h3 className="litenote-dashboard-h-three">Publish</h3>
         </Link> */}
-        <Link to="/browse"  className={`nav-sidebar-link ${currentUrl === "browse" && "active"}`}
+        <Link to="/explore"  className={`nav-sidebar-link ${currentUrl === "explore" && "active"}`}
          onClick={dave}
         >
                     <MdManageSearch  size={20} />
-                           <h3 className="litenote-dashboard-h-three">Browse</h3>
+                           <h3 className="litenote-dashboard-h-three">Explore</h3>
         </Link>
                     <Link to="/dashboard/profile"  className={`nav-sidebar-link ${currentUrl === "dashboard" && "active"}`}>
                     <MdOutlinePersonAddAlt size={20} />
@@ -312,7 +313,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                         onClick={dave}>
                         <FaUser size={20} />
 
-                           <h3 className="litenote-dashboard-h-three">Search Profile
+                           <h3 className="litenote-dashboard-h-three">My Profile
   
                            </h3>
                         </Link>

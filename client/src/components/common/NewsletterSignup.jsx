@@ -199,7 +199,7 @@ const pickAnOption = (e) => {
           
                <label htmlFor="check1">
                   <h5 className="litenote-newsletter-h-five">Fiction</h5>
-                  <p className="litenote-newsletter-p">Get Latest fictional stories</p>
+                  <p className="litenote-newsletter-p" style={{fontSize : "1.2rem"}}>Get Latest fictional stories</p>
                </label>
             </div>
             <div
@@ -215,7 +215,7 @@ const pickAnOption = (e) => {
                 />
                <label htmlFor="check2">
                   <h5 className="litenote-newsletter-h-five">Non Fiction</h5>
-                  <p className="litenote-newsletter-p">The week’s biggest news</p>
+                  <p className="litenote-newsletter-p" style={{fontSize : "1.2rem"}}>The week’s biggest news</p>
                </label>
             </div>
          </div>
@@ -232,7 +232,7 @@ const pickAnOption = (e) => {
                 />
                <label htmlFor="check3">
                   <h5 className="litenote-newsletter-h-five">Adventure</h5>
-                  <p className="litenote-newsletter-p">Get Exciting  Adventure Stories </p>
+                  <p className="litenote-newsletter-p" style={{fontSize : "1.2rem"}}>Get Exciting  Adventure Stories </p>
                </label>
             </div>
             <div
@@ -247,7 +247,7 @@ const pickAnOption = (e) => {
                />
                <label htmlFor="check4">
                   <h5 className="litenote-newsletter-h-five">Lite Note Updates</h5>
-                  <p className="litenote-newsletter-p">Announcements and Updates</p>
+                  <p className="litenote-newsletter-p" style={{fontSize : "1.2rem"}}>Announcements and Updates</p>
                </label>
             </div>
          </div>
@@ -264,7 +264,7 @@ const pickAnOption = (e) => {
                />
                <label htmlFor="check5">
                   <h5 className="litenote-newsletter-h-five">Romance</h5>
-                  <p className="litenote-newsletter-p">Get exciting experiences </p>
+                  <p className="litenote-newsletter-p" style={{fontSize : "1.2rem"}}>Get exciting experiences </p>
                </label>
             </div>
             <div
@@ -277,7 +277,7 @@ const pickAnOption = (e) => {
           />
                <label htmlFor="check6">
                   <h5 className="litenote-newsletter-h-five">Weekly Updates</h5>
-                  <p className="litenote-newsletter-p">Get Updates Every Week</p>
+                  <p className="litenote-newsletter-p" style={{fontSize : "1.2rem"}}>Get Updates Every Week</p>
                </label>
             </div>
         
