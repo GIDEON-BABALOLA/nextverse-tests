@@ -433,15 +433,7 @@ contextMenuData={[
   arrow :   <MdOpenInNew />,
   link : "/register",
   access : "guest"
-},
-{
-  id : 7,
-  icon : <MdPersonAdd className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
-  label : "Sign Up",
-  arrow :   <MdOpenInNew />,
-  link : "/register",
-  access : "guest"
-},
+}
 ]}
 />
   </header>
