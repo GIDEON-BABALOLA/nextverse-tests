@@ -15,8 +15,13 @@
     align-items: center;
     position: fixed;
     height: 100vh;
-   justify-content: center;
+   justify-content: space-between;
    box-shadow: var(--story-sidebar-box-shadow);
+
+
+
+   
+   
 }
 .story-sidebar-icon {
     width: 40px;
@@ -29,4 +34,7 @@
 }
 .feed-sidebar-icon a{
     color : #757575
+}
+.story-sidebar-first-links{
+    margin-top: 90px;
 }

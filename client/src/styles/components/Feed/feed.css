@@ -24,6 +24,7 @@
     --searcher-placeholder : black;
     --searcher-color : black;
     --icon-color : #757575;
+    --feed-sidebar-box-shadow : #0000001A 0px 2px 5px 0px;
 }
 .dark-theme-variables{
     --icon-color : white;
@@ -50,7 +51,7 @@
     --feed-header : white;
     --searcher-color : white;
     --list-view-text : white;
-    
+    --feed-sidebar-box-shadow : #00000066 0px 12px 12px 0px;
 
 
 }
@@ -63,13 +64,15 @@
     background-color: var(--feed-sidebar-background);
     padding: 20px 0;
     display: flex;
+    
+    
     flex-direction: column;
     
     align-items: center;
     position: fixed;
     height: 100vh;
    justify-content: space-between;
-   box-shadow: #0000001A 0px 2px 5px 0px;
+   box-shadow: var(--feed-sidebar-box-shadow)
 }
 .phone-feed-nav{
     display: none;

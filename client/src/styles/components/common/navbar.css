@@ -36,7 +36,9 @@
   color: #333;
   text-decoration: none;
 }
-
+.navbar-nav-links{
+  width: 950px;
+}
 .navbar-nav-links .navbar-header-links {
   margin-left: 20px;
   color:var(--navbar-colors);
@@ -248,7 +250,7 @@ border-radius: var(--border-radius-1);
     height: 1.6rem;
     /* width:3.2rem; */
     width:4rem;
-    margin-left: 18px;
+    /* margin-left: 18px; */
     cursor: pointer;
     border-radius: var(--border-radius-1);
    }
@@ -275,3 +277,11 @@ border-radius: var(--border-radius-1);
     -webkit-animation: 1.5s shine linear infinite;
             animation: 1.5s shine linear infinite;
    }
+
+
+   @media screen and (max-width:1200px) {
+    .navbar-nav-links{
+      width: 500px;
+    }
+   }
+ 

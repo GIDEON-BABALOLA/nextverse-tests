@@ -4,7 +4,6 @@ import  ChatBotContext  from "../../context/ChatBotContext"
 import { FaRobot } from "react-icons/fa";
 const ChatBox = ({ apiError }) => {
   const { messages, chatBoxRef } = useContext(ChatBotContext)
-  console.log(messages)
   return (
     <section>
              <ul className="litenotechatbot-chatbox" ref={chatBoxRef}>

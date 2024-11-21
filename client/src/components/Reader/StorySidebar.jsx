@@ -8,6 +8,7 @@ import { MdOutlineBookmark, MdCreate,  MdOutlineFavoriteBorder,
   MdOutlineShare,
   MdOutlineCreate
  } from "react-icons/md"
+ import ModeToggler from "../common/ModeToggler"
  import { FaRegBookmark } from "react-icons/fa"
 const StorySidebar = () => {
   const { width } = useWindowSize()
@@ -56,8 +57,8 @@ const StorySidebar = () => {
    </div>
    :
     <div className="story-sidebar">
-      
-    <div className="story-sidebar-icon">
+      <div className="story-sidebar-first-links">
+      <div className="story-sidebar-icon">
     <Link to={"/dashboard/profile"}>
 
      <img src={favour} alt="Author" className="feed-man"/>
@@ -86,6 +87,9 @@ const StorySidebar = () => {
     <MdOutlineShare size={20}  />
     </Link>
     </div>
+      </div>
+  
+    <ModeToggler style={{marginLeft : "0px"}}/>
 </div>
 }
 </>

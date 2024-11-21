@@ -17,67 +17,12 @@ import { FaUser, FaHome } from "react-icons/fa"
 import { CgFeed } from "react-icons/cg";
 import Avatar from "./Avatar"
 import { MdOpenInNew, MdOutlinePersonAddAlt } from 'react-icons/md';
-import { useThemeContext } from "../../hooks/useThemeContext"
 import useInternetMode from "../../hooks/useInternetMode"
 import SpecialModal from "./SpecialModal"
 import LogoutConsent from "./LogoutConsent"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import ModeToggler from "./ModeToggler"
 const NavBar = () => {
-  const { colorMode , dispatch} = useThemeContext()
-  const themeRef = useRef();
-  useEffect(() => {
-    console.log("mercy")
-    if(colorMode == undefined || colorMode == ""){
-      console.log("griezman")
-      themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
-    }
-    // }
- 
-
-      
-    
-switch (colorMode) {
-  
-  case "dark-mode":
-    if(themeRef.current){
-    themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
-    themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
-    }
-    break;
-    case "light-mode":
-      if(themeRef.current){
-
-      
-      themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
-      themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
-      }
-    break;
-}
-    
-  }, [colorMode])
-  const themeMode = (e) => {
-    let id;
-    const correctId = e.currentTarget.closest('span').id;
-        if(e.target.id == ""){
-         id = correctId
-        }
-    switch (id) {
-      case "dark-mode":
-        dispatch({type : "dark-mode", payload : "dark-mode"})
-        themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
-        themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
-        break;
-        case "light-mode":
-        dispatch({type : "light-mode", payload : "light-mode"})
-          themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
-          themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
-          break;
-      
-    
-      default:
-        break;
-    }
-  }
   const { user } = useAuthContext()
 const [isOpen, setOpen] = useState(false)
 const [openModal, setOpenModal] = useState("")
@@ -200,7 +145,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
       </div>
       
       { 
-      width > 768  ?
+      width > 767  ?
       <div className="navbar-nav-links">
       <Link to="/" 
      className={`navbar-header-links ${currentUrl === "" && "navbar-active"}`}
@@ -329,14 +274,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                            <h3 className="litenote-dashboard-h-three special-modal-client">Sign Out</h3>
                         </Link>
                         <div style={{display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
-<div className="litenote-nav-theme-toggler "  ref={themeRef}>
-    <span className="" id = "light-mode"  onClick={themeMode}>
-    <MdLightMode />
-    </span>
-    <span id = "dark-mode" onClick={themeMode} >
-    <MdDarkMode  />
-      </span>
-    </div>
+<ModeToggler />
 </div>
                       
                       
@@ -369,7 +307,9 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
   
   user ?
   <>
-
+  <div style={{display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
+<ModeToggler />
+</div>
 
     <Avatar className="profile-photo-home"
 onClick={showLoggedInUserOptions}
