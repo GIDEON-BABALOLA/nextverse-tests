@@ -1,4 +1,11 @@
 
+:root{
+--litenote-chatbot-toggler-background : #ff5e62;
+}
+.dark-theme-variables{
+--litenote-chatbot-toggler-background : #7380EC;
+}
+
 ::-webkit-scrollbar {
     width: 0.5px; /* Set the width of the vertical scrollbar */
     height: 0.5px; /* Set the height of the horizontal scrollbar */
@@ -42,7 +49,7 @@ z-index: 3;
     bottom: 20px;
     height: 50px;
     width: 50px;
-    background: #ff5e62;
+    background: var(--litenote-chatbot-toggler-background);
     color: white;
     border-radius: 50%;
     border: none;

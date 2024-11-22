@@ -7,6 +7,7 @@ import ContextMenu from "../components/common/ContextMenu"
 import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
 import { useEffect, useState, useRef} from "react"
 import useWindowSize from "../hooks/useWindowSize"
+import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import { useModalContext } from "../hooks/useModalContext"
 import Tab from "../components/common/Tab"
 import { MdReadMore } from "react-icons/md"
@@ -268,6 +269,7 @@ statusCode !== 500 ?
    </div>
 
  </section>
+ <ChatBot />
     </>
 
   )

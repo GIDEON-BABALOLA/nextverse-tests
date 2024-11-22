@@ -1,4 +1,5 @@
 import favour from "../../assets/29.jpg"
+
 import "../../styles/components/Reader/story-author.css"
 const StoryAuthor = () => {
   return (

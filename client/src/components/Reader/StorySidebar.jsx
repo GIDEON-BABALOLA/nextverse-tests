@@ -2,16 +2,27 @@ import { Link } from "react-router-dom"
 import favour from "../../assets/29.jpg"
 import { FaHome  } from "react-icons/fa"
 import "../../styles/components/Reader/story-sidebar.css"
+import { useModalContext } from "../../hooks/useModalContext"
 import useWindowSize from "../../hooks/useWindowSize"
+import Share from "../common/Share"
 import { MdOutlineBookmark, MdCreate,  MdOutlineFavoriteBorder,
   MdOutlineBookmarks,
   MdOutlineShare,
   MdOutlineCreate
  } from "react-icons/md"
+ import { FaCommentAlt } from "react-icons/fa"
  import ModeToggler from "../common/ModeToggler"
  import { FaRegBookmark } from "react-icons/fa"
-const StorySidebar = () => {
+const StorySidebar = ({ setOpenModal, openModal}) => {
   const { width } = useWindowSize()
+  const { shareModal, shareRef } = useModalContext()
+  const openShare = () => {
+    shareModal.current.showModal()
+    shareModal.current.classList.add("slide-dow")
+  }
+const openCommentLikeModal = () => {
+  setOpenModal(!openModal)
+}
   return (
     <>
     { width < 768 ?
@@ -47,10 +58,10 @@ const StorySidebar = () => {
     </li>
     
     <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
-<MdOutlineShare className="phone-feed-sidebar-icon" />
-<span className="phone-feed-sidebar-nav-name">Write</span>
-</Link>
+<span className="phone-feed-sidebar-nav-link">
+<MdOutlineShare className="phone-feed-sidebar-icon" onClick={() => {openShare()}}/>
+<span className="phone-feed-sidebar-nav-name">Share</span>
+</span>
     </li>
 </ul>
    </div>
@@ -77,22 +88,34 @@ const StorySidebar = () => {
   
     </div>
     <div className="feed-sidebar-icon">
-    <Link to={"/dashboard/bookmarks"}>
-    <MdOutlineFavoriteBorder size={20}  />
+    <Link>
+    <MdOutlineFavoriteBorder size={20}  onClick={() => { openCommentLikeModal()}}/>
     </Link>
   
     </div>
     <div className="feed-sidebar-icon">
-    <Link to={"/dashboard/stories"}>
-    <MdOutlineShare size={20}  />
+    <Link>
+    <MdOutlineShare size={20} 
+     onClick={() => {openShare()}}   
+
+
+    />
+    </Link>
+    </div>
+    <div className="feed-sidebar-icon">
+    <Link>
+    <FaCommentAlt size={20} onClick={() => { openCommentLikeModal()}}/>
     </Link>
     </div>
       </div>
+      
   
     <ModeToggler style={{marginLeft : "0px"}}/>
 </div>
 }
+<Share  share={shareRef} shareModal={shareModal}/>
 </>
+
   )
 }
 

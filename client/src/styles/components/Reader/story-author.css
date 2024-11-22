@@ -1,9 +1,23 @@
+:root{
+--story-follow-button-background :#ffffff;
+--story-follow-button-border : #FF5e62;
+--story-follow-button-color : ;
+--story-follow-suggestion-color : black;
+}
+.dark-theme-variables{
+    --story-follow-button-background :   #181A1E;
+    --story-follow-button-border : white;
+    --story-follow-button-color : ;
+    --story-follow-suggestion-color : white;
+}
 .story-follow-suggestion {
     display: flex;
+
     align-items: center;
     margin-bottom: 15px;
     gap: 10px;
     align-self: flex-start;
+    color: var(--story-follow-suggestion-color);
 }
 .story-follow-suggestion img {
     width: 30px;
@@ -12,8 +26,8 @@
     margin-right: 10px;
 }
 .story-follow-button {
-    background-color: #ffffff;
-    border: 2px solid #FF5e62;
+    background-color: var(--story-follow-button-background);
+    border: 2px solid var(--story-follow-button-border);
     color: #FF5e62;
     padding: 5px 10px;
     border-radius: 20px;

@@ -3,6 +3,7 @@ import SuggestionCard from "./SuggestionCard"
 import { useModalContext } from "../../hooks/useModalContext"
 import ContextMenu from "../common/ContextMenu"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
+import StoryAuthor from "./StoryAuthor"
 import { MdReadMore } from "react-icons/md"
 import Share from "../common/Share"
 const StorySuggestions = () => {
@@ -11,8 +12,7 @@ const StorySuggestions = () => {
          shareModal,
      shareRef,
      fireClick,
-     setContextMenu,
-     closeContextMenu
+     setContextMenu
     } = useModalContext()
     const suggestionData = [
         {
@@ -44,13 +44,17 @@ const StorySuggestions = () => {
       ]
   return (
     <>
-
+<div  className="suggestion-container">
 <section>
     <div className="litenote-more-from-stories" style={{flexDirection : "row"}}>
     
     <span className="for-me-title"><b>
    More From Elon Jamas
     </b></span>
+    <span style={{display : "flex", flexDirection :"row", justifyContent : "flex-start", alignItems: "center",paddingTop : "30px"}}>
+    <StoryAuthor />
+    </span>
+   
     
     <div
     className="suggest-more-for-me">
@@ -100,6 +104,8 @@ const StorySuggestions = () => {
             , label : "Like Story"}
 ]} />
   <Share  share={shareRef} shareModal={shareModal}/>
+</div>
+
     </>
     
 

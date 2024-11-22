@@ -274,7 +274,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                            <h3 className="litenote-dashboard-h-three special-modal-client">Sign Out</h3>
                         </Link>
                         <div style={{display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
-<ModeToggler />
+{currentUrl !== "" && <ModeToggler />}
 </div>
                       
                       
@@ -308,7 +308,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
   user ?
   <>
   <div style={{display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
-<ModeToggler />
+  {currentUrl !== "" && <ModeToggler />}
 </div>
 
     <Avatar className="profile-photo-home"
