@@ -1,12 +1,14 @@
 
 :root{
 --suggestions-title : black;
+--story-display-page-background : #f8f8f8;
 }
 .dark-theme-variables{
     --suggestions-title : white;
+    --story-display-page-background : #0E1012;
 }
 .story-display-page-lets-go{
-
+background-color: var(--story-display-page-background);
    /* background-color: red;
  height: 100%; */
  /* height: 5000px; */

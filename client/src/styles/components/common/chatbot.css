@@ -49,7 +49,6 @@ z-index: 3;
     bottom: 20px;
     height: 50px;
     width: 50px;
-    background: var(--litenote-chatbot-toggler-background);
     color: white;
     border-radius: 50%;
     border: none;

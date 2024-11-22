@@ -94,6 +94,9 @@ height: 10px;
     background-color: #d61d45;
     color: #ffffff
 }
+.follow-sidebar-first-links{
+    margin-top: 90px;
+}
 @media (max-width: 768px) {
    .followers-body-prefix .sidebar {
         width: 100%;

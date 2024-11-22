@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { FaHome } from "react-icons/fa"
 import { MdGridView } from "react-icons/md"
 import { CgFeed} from "react-icons/cg"
+import ModeToggler from "../common/ModeToggler"
 import favour from "../../assets/29.jpg"
 const FollowSidebar = () => {
   const { width } = useWindowSize()
@@ -42,8 +43,8 @@ const FollowSidebar = () => {
    </div>
    :
     <div className="feed-sidebar">
-      
-    <div className="feed-sidebar-icon">
+      <div className="follow-sidebar-first-links">
+      <div className="feed-sidebar-icon">
     <Link to={"/dashboard/profile"}>
 
      <img src={favour} alt="Author" className="feed-man"/>
@@ -65,6 +66,9 @@ const FollowSidebar = () => {
     <CgFeed size={20}  />
     </Link>
     </div>
+      </div>
+
+    <ModeToggler style={{marginLeft : "0px"}}/>
 </div>
 }
 </>
