@@ -147,3 +147,6 @@ html, #root {
   background-color: #ccc;
   border: 4px solid #fff;
 } 
+.profile-rotation-parent-container{
+  height: 100vh;
+}

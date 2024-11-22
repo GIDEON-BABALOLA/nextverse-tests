@@ -5,8 +5,12 @@ import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import useImageLoad from "../../../hooks/useImageLoaded";
 import useMultipleImageLoad from "../../../hooks/useMultipleImageLoaded";
+import useWindowSize from "../../../hooks/useWindowSize";
+import { MdVisibility, MdOutlineFavoriteBorder, MdOutlineBookmarkAdd  } from "react-icons/md";
 
-const FeedCard = ({ fireClick, story, isLoading}) => {
+const FeedCard = ({ fireClick, story, isLoading, view}) => {
+  console.log(story.picture)
+  const { width } = useWindowSize();
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
   let storyPicture = ""
@@ -40,8 +44,11 @@ const FeedCard = ({ fireClick, story, isLoading}) => {
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
 
   return (
- <> {
-
+ <> 
+ {
+  view == "grid" ?
+<>
+{
   isLoading ? 
   <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
@@ -85,7 +92,7 @@ const FeedCard = ({ fireClick, story, isLoading}) => {
                <span>Gideon Babalola</span>
              
                </div>
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>
+               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} onClick={fireClick}/>
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>
@@ -95,8 +102,260 @@ const FeedCard = ({ fireClick, story, isLoading}) => {
               </div>
             </div>
           </div>
-        
  }
+</>
+:
+<>
+        {isLoading ? 
+        <div>
+          <div className="feed-list-view-card">
+<section className="list-view-card-first-section">
+    <div className="list-view-card-profile-section">
+    <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
+    {/* <img src={content.avatar}></img> */}
+    <div className="feed-loaders feed-loaders-avatar"></div>
+    <div style={{display :"flex", flexDirection : "column", justifyContent : "space-between", gap : "5px"}}>
+<span className="feed-loaders feed-loaders-name"><b></b></span>
+<span className="feed-loaders feed-loaders-bio"></span>
+    </div>
+
+
+    </span>
+    </div>
+    <div className="list-view-card-story-section">
+<h3 className="feed-loaders feed-loaders-title"></h3>
+<h3 className="feed-loaders feed-loaders-first"></h3>
+<h3 className="feed-loaders feed-loaders-second"></h3>
+    </div>
+    { width > 768 && <div style={{display :"flex", flexDirection : "row",
+    
+    justifyContent: "space-between",
+    paddingTop : "35px"
+    }}>
+    <span style={{display : "flex",
+    flexDirection : "row",
+    justifyContent : "space-between",
+    gap  : "20px",
+    color : "#777777"
+    }}>
+    <span className="feed-loaders feed-loaders-date"></span>
+    <span className="feed-loaders feed-loaders-date"></span>
+   
+     </span>
+    <span style={{display : "flex",
+    alignItems : "center",
+    justifyContent : "space-between",
+    gap : "20px"
+    }}>
+    <span><MdVisibility 
+        color=" #333333"
+        size={20}/></span>
+     <span>
+     <MdOutlineFavoriteBorder size={20}
+        color="#E0245E" /> 
+     </span>
+        <span><MdOutlineBookmarkAdd 
+        color="#4A90E2"
+        size={20}/></span>
+        
+       
+        </span>
+    </div>}
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section
+className="list-view-card-second-section"
+>
+<div className="feed-loaders feed-loaders-picture"></div>
+
+</section>
+</div>
+{ width < 768 &&
+  <div style={{display :"flex", flexDirection : "row",
+    
+    justifyContent: "space-between",
+    paddingTop : "5px"
+    }}>
+    <span style={{display : "flex",
+    flexDirection : "row",
+    justifyContent : "space-between",
+    gap  : "20px",
+    color : "#777777"
+    }}>
+ <span className="feed-loaders feed-loaders-date"></span>
+ <span className="feed-loaders feed-loaders-date"></span>
+     </span>
+    <span style={{display : "flex",
+    alignItems : "center",
+    justifyContent : "space-between",
+    gap : "20px"
+    }}>
+    <span><MdVisibility 
+        color=" #333333"
+        size={20}/></span>
+     <span>
+     <MdOutlineFavoriteBorder size={20}
+        color="#E0245E" />
+     </span>
+        <span><MdOutlineBookmarkAdd 
+        color="#4A90E2"
+        size={20}/></span>
+        
+       
+        </span>
+    </div>
+}
+</div>
+         : 
+         <div>
+          <div className="feed-list-view-card">
+<section className="list-view-card-first-section">
+    <div className="list-view-card-profile-section">
+    <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
+    { avatarLoading ? <div className="feed-loaders feed-loaders-avatar"></div>
+:
+    <img src={story.avatar}></img>
+    }
+    <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
+<span><b>{story.author}</b></span>
+<span>Blogger</span>
+    </div>
+
+
+    </span>
+    </div>
+    <div className="list-view-card-story-section">
+{ width < 768 ? <h6>
+<b>
+Your profile is stopping you from getting that job
+</b>
+</h6> : <h3>Your Profile is stopping you from getting that job</h3>} 
+<span>
+{story.content.slice(0, width < 768 ? 100 : 200)  + "..." }
+</span>
+    </div>
+    { width > 768 && <div style={{display :"flex", flexDirection : "row",
+    
+    justifyContent: "space-between",
+    paddingTop : "35px"
+    }}>
+    <span style={{display : "flex",
+    flexDirection : "row",
+    justifyContent : "space-between",
+    gap  : "20px",
+    color : "#777777"
+    }}>
+     <span>8 days ago</span>
+    <span>34 min read</span>
+    <span style={{cursor :"pointer"}}><FaEllipsisH  onClick={fireClick}/></span>
+    
+     </span>
+    <span style={{display : "flex",
+    alignItems : "center",
+    justifyContent : "space-between",
+    gap : "20px"
+    }}>
+    <span><MdVisibility 
+        color=" #333333"
+        size={20}/> 30</span>
+     <span>
+     <MdOutlineFavoriteBorder size={20}
+        color="#E0245E" /> 80
+     </span>
+        <span><MdOutlineBookmarkAdd 
+        color="#4A90E2"
+        size={20}/> 40</span>
+        
+       
+        </span>
+    </div>}
+</section>
+<section
+className="list-view-card-second-section"
+>
+
+{
+  pictureLoading ? 
+<div className="feed-loaders feed-loaders-picture">
+</div> 
+:
+  <img
+src={storyPicture}
+>
+
+</img>
+}
+
+</section>
+
+</div>
+{ width < 768 &&
+  <div style={{display :"flex", flexDirection : "row",
+    
+    justifyContent: "space-between",
+    paddingTop : "5px"
+    }}>
+    <span style={{display : "flex",
+    flexDirection : "row",
+    justifyContent : "space-between",
+    gap  : "20px",
+    color : "#777777"
+    }}>
+    
+    <span>8 days ago</span>
+    <span>34 min read</span>
+    <span style={{cursor :"pointer"}}><FaEllipsisH onClick={fireClick}/></span>
+    
+     </span>
+    <span style={{display : "flex",
+    alignItems : "center",
+    justifyContent : "space-between",
+    gap : "20px"
+    }}>
+    <span><MdVisibility 
+        color=" #333333"
+        size={20}/> 30</span>
+     <span>
+     <MdOutlineFavoriteBorder size={20}
+        color="#E0245E" /> 80
+     </span>
+        <span><MdOutlineBookmarkAdd 
+        color="#4A90E2"
+        size={20}/> 40</span>
+        
+       
+        </span>
+    </div>
+}
+</div>
+
+        }
+      </>
+ }
+
+        
+ 
  </>
   )
 }

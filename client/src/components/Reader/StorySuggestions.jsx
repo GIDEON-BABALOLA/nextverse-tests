@@ -20,7 +20,7 @@ const StorySuggestions = () => {
           category: "Photography",
           picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2024",
           estimatedReadingTime : {
             minutes : 4,
@@ -30,9 +30,9 @@ const StorySuggestions = () => {
         {
           title: "A Guide to Sustainable Living",
           category: "Lifestyle",
-          picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg"],
           link: "#", 
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2025"
           ,
           estimatedReadingTime : {
@@ -45,7 +45,7 @@ const StorySuggestions = () => {
   return (
     <>
 <div  className="suggestion-container">
-<section>
+<div>
     <div className="litenote-more-from-stories" style={{flexDirection : "row"}}>
     
     <span className="for-me-title"><b>
@@ -67,9 +67,9 @@ const StorySuggestions = () => {
 
     </div>
     </div>
-    </section>
+    </div>
 
-<section>
+<div>
     <div className="litenote-suggestion-stories" style={{flexDirection : "row"}}>
     
     <span className="suggestion-title"><b>
@@ -87,7 +87,7 @@ const StorySuggestions = () => {
 
     </div>
     </div>
-    </section>
+    </div>
     <ContextMenu
  state={"feed"}
  contextMenu={contextMenu}

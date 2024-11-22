@@ -9,6 +9,7 @@ import { useEffect, useState, useRef} from "react"
 import useWindowSize from "../hooks/useWindowSize"
 import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import { useModalContext } from "../hooks/useModalContext"
+import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import Tab from "../components/common/Tab"
 import { MdReadMore } from "react-icons/md"
 import { Typewriter } from 'react-simple-typewriter'
@@ -270,6 +271,7 @@ statusCode !== 500 ?
 
  </section>
  <ChatBot />
+ <ConnectivityToast />
     </>
 
   )

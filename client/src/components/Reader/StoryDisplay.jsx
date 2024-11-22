@@ -10,7 +10,7 @@ const StoryDisplay = () => {
   const {  closeContextMenu } = useModalContext()
   return (
     <>
- <section className="story-display-page-lets-go" onClick={closeContextMenu}>
+ <section className="s" onClick={closeContextMenu}>
     <StorySidebar setOpenModal={setOpenModal} openModal={openModal}/>
     <div className="story-display-main">
       <StoryBody />

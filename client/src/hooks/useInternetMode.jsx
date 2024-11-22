@@ -6,12 +6,14 @@ const useInternetMode = () => {
     })
     useEffect(() => {
   const handleOnline = () => {
+    console.log("I am online")
     setInternetMode({
         online : true,
         offline : false
     })
   }
   const handleOffline = () => {
+    console.log("I am offline")
     setInternetMode({
         online : false,
         offline : true
@@ -20,8 +22,10 @@ const useInternetMode = () => {
   window.addEventListener("online", handleOnline)
   window.addEventListener("offline", handleOffline)
 
-  return () => window.removeEventListener("online", handleOnline),
-  window.removeEventListener("offline", handleOnline)
+  return () => {
+    window.removeEventListener("online", handleOnline);
+    window.removeEventListener("offline", handleOffline);
+  }
     }, [])
     return internetMode
 }

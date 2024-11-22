@@ -73,6 +73,7 @@ background-color: var(--story-display-page-background);
 }
 .suggestion-container{
     margin-top: 30px;
+    padding-bottom: 100px;
     /* height: 1000px; */
 }
 @media (max-width: 1200px) {

@@ -1,5 +1,5 @@
 import { FaWifi} from "react-icons/fa"
-import { MdClose, MdOutlineNetworkWifi } from "react-icons/md"
+import { MdClose} from "react-icons/md"
 import "../../styles/components/common/connectivity-toast.css"
 import { useEffect, useRef } from "react"
 import { BiWifiOff } from "react-icons/bi"

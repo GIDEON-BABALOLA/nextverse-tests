@@ -4,6 +4,7 @@ import NoteFooter from "../components/Notes/NoteFooter"
 import NoteTooltip from "../components/Notes/NoteTooltip"
 import NoteModal from "../components/Notes/NoteModal"
 import NoteSettings from "../components/Notes/NoteSettings"
+import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import Toast from "../components/common/Toast"
 import "../styles/components/Note/note.css"
 import { useModalContext } from "../hooks/useModalContext"
@@ -129,6 +130,7 @@ const NoteReaderPage = () => {
 console.log(noteContent.current)
           }
   return (
+    <>
     <section className="note-page-css-container-total" onClick={closeNoteModal}>
     <Toast />
     <NoteTooltip
@@ -177,6 +179,9 @@ submitNote={submitNote}
         />
     
     </section>
+      <ChatBot />
+    </>
+   
   )
 }
 

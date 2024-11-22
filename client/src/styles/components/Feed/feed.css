@@ -101,6 +101,7 @@
     max-width: 800px;
     margin-left: 60px;
     font-family:  "Poppins";
+    padding-bottom: 100px;
     background-color: var(--feed-main-content-background);
 }
 .feed-header {
@@ -323,6 +324,51 @@
     display: none;
     
 }
+  .feed-loaders{
+    object-fit: cover;
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+   }
+   .feed-loaders-picture{
+    width: 90px;
+    height: 90px;
+   }
+   .feed-loaders-avatar{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+   }
+
+   .feed-loaders-name{
+    width: 80px;
+    height: 10px;
+   }
+   .feed-loaders-bio{
+    width: 40px;
+    height: 10px;
+   }
+   .feed-loaders-title{
+    width: 52vw;
+    height: 15px;
+   }
+   .feed-loaders-first{
+    width: 52vw;
+    height: 15px;
+   }
+   .feed-loaders-second{
+    width: 30vw;
+    height: 15px;
+   }
+   .feed-loaders-date{
+    height: 15px;
+    width: 40px;
+   }
+   .feed-loaders-time{
+    height: 15px;
+    width: 40px;
+   }
 .feed-list-view{
     margin-top: 10px;
 }

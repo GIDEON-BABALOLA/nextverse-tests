@@ -1,78 +1,22 @@
 
 import "../styles/components/Feed/feed.css"
-import { MdBookmarks, MdCreate, MdFormatListBulleted, MdGridView,
+import {  MdFormatListBulleted, MdGridView,
     MdOutlineBookmarks,
 
 } from "react-icons/md";
-import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { useModalContext } from "../hooks/useModalContext";
+import FeedList from "../components/Feed/FeedList";
+import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
+import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
 import favour from "../assets/29.jpg"
-import FeedCard from "../components/Dashboard/common/FeedCard";
-import girly from "../assets/30.jpg"
-import blackman from "../assets/3.jpg"
+import ChatBot from "../components/ChatBot/ChatBot";
 import { MdOutlineCreate } from "react-icons/md";
-import ErrorMessage from "../components/common/ErrorMessage";
-import gidiboy from "../assets/3.jpg"
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
-import { useThemeContext } from "../hooks/useThemeContext";
 import useWindowSize from "../hooks/useWindowSize";
 import { Link } from "react-router-dom"
-import { useEffect, useState, useRef } from "react"
+import {  useState } from "react"
 const FeedPage = () => {
-    const { colorMode, dispatch } = useThemeContext()
-    const themeRef = useRef();
-    useEffect(() => {
-      console.log("mercy")
-      if(colorMode == undefined || colorMode == ""){
-        console.log("griezman")
-        themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
-      }
-      // }
-   
-  
-        
-      
-  switch (colorMode) {
-    
-    case "dark-mode":
-      if(themeRef.current){
-      themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
-      themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
-      }
-      break;
-      case "light-mode":
-        if(themeRef.current){
-  
-        
-        themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
-        themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
-        }
-      break;
-  }
-      
-    }, [colorMode])
-    const themeMode = (e) => {
-      let id;
-      const correctId = e.currentTarget.closest('span').id;
-          if(e.target.id == ""){
-           id = correctId
-          }
-      switch (id) {
-        case "dark-mode":
-          dispatch({type : "dark-mode", payload : "dark-mode"})
-          themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
-          themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
-          break;
-          case "light-mode":
-          dispatch({type : "light-mode", payload : "light-mode"})
-            themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
-            themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
-            break;
-        
-      
-        default:
-          break;
-      }
-    }
+    const { closeContextMenu } = useModalContext();
     const [view, setView] = useState({
         list : false,
         grid : true
@@ -112,9 +56,11 @@ console.log()
         {
           title: "Mastering the Art of Photography",
           category: "Photography",
-          picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2024",
           estimatedReadingTime : {
             minutes : 4,
@@ -124,9 +70,11 @@ console.log()
         {
           title: "A Guide to Sustainable Living",
           category: "Lifestyle",
-          picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg"],
           link: "#", 
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2025"
           ,
           estimatedReadingTime : {
@@ -138,9 +86,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -151,9 +101,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -164,9 +116,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -177,9 +131,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -190,9 +146,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -203,9 +161,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -216,9 +176,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -229,9 +191,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -243,9 +207,11 @@ console.log()
         {
           title: "Top 10 Hiking Trails in the US",
           category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          author : "Gideon_Babalola",
+          content : "Automata theory is the study of abstract machines and complex problems using abstract machines to solve them. Abstract machines are also known as automata",
+          picture: ["https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg"],
           link: "#",
-          avatar : "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -256,7 +222,8 @@ console.log()
       ]
   const { width } = useWindowSize()
   return (
-   <section className="total-feed">
+    <>
+       <section className="total-feed" onClick={closeContextMenu}>
    <div className="galacticus">
    <div className="phone-feed-sidebar-menu">
 <ul className="phone-feed-sidebar-list">
@@ -304,66 +271,7 @@ console.log()
    </div>
    </div>
  
-   <div className="feed-sidebar">
-      <div style={{marginTop : "90px"}}>
-
-    
-        <div className="feed-sidebar-icon">
-        <Link to={"/dashboard/profile"}>
-
-         <img src={favour} alt="Author" className="feed-man"/>
-
-         </Link>
-       </div>
-        <div className="feed-sidebar-icon">
-        <Link to={"/"}>
-        <FaHome size={20} color="var(--icon-color)"   />
-        </Link>
-        </div>
-        <div className="feed-sidebar-icon">
-        <Link to={"/dashboard/bookmarks"}>
-        <MdBookmarks size={20} color="
-        var(--icon-color) 
-        "  />
-        </Link>
-    
-      
-        </div>
-        <div className="feed-sidebar-icon" style={{background : view.list && "var(--feed-sidebar-icon)", borderRadius : view.list && "50%",
-        color : view.list ?  "var(--feed-sidebar-icon-color)" : " var(--icon-color) "
-        }}><MdFormatListBulleted 
-        onClick={changeView}
-        size={20} 
-        /><span style={{display : "none"}} >list</span></div>
-        <div className="feed-sidebar-icon">
-        <Link to={"/dashboard/stories"}>
-        <MdCreate size={20}  color=" var(--icon-color)"  />
-        </Link>
-        </div>
-        <div className="feed-sidebar-icon" 
-        style={{background : view.grid && "var(--feed-sidebar-icon)", borderRadius : view.grid && "50%",
-        color : view.grid ?  "var(--feed-sidebar-icon-color)" : " var(--icon-color) "}}
-        >
-        <MdGridView size={20}
-        onClick={changeView}
-        
-         /><span style={{display : "none"}}>grid</span></div>
-       
-       </div>
-       
-         <div className="litenote-feed-theme-toggler " 
-         style={{justifySelf : "fle"}}
-          ref={themeRef}>
-    <span className="" id = "light-mode"  onClick={themeMode}>
-    <MdLightMode />
-    </span>
-    <span id = "dark-mode" onClick={themeMode} >
-    <MdDarkMode  />
-      </span>
-  
-         </div>
-    
-    </div>
+ <FeedLeftSidebar view={view} changeView={changeView}/>
     <div className="feed-main-content">
         <div className="feed-header">
             <div className="feed-logo">Lite Note</div>
@@ -402,116 +310,14 @@ console.log()
         </div>
         <hr />
         
-        {view.grid && <div className="feed-grid">
-{feedData.map((content, index) => (
-    
-  <FeedCard story={content}
-  isLoading={true}
-   key={index} view={"grid"}/>
-))
-
-}          
-        </div>}
-        { view.list &&
-        <>
-        <div className="feed-list-view">
-        {feedData.map((content, index) => (
-            <>
-  <FeedCard story={content} key={index}
-  isLoading={true}
-
-  />
-<hr  style={{color : "#9CA3AF"}}/>
-
-</>
-        ))}
-
-
-
-        </div>
-        
-        </>
-        }
+  <FeedList view={view} feedData={feedData} />
     </div>
         
-    <div className="feed-right-sidebar">
-  
-    <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
-  <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-    <FaSearch className="search-mag" />
-    <input
-      type="text"
-      placeholder="Search Anything"
-      className="feed-search-bar"
-      style={{
-        paddingLeft: '35px', // Add padding to the left to accommodate the search icon
-        paddingRight: '35px', // Add padding to the right to accommodate the times icon
-        width: '100%',
-      }}
-    />
-    <FaTimes
-    className="searchX" />
-  </div>
-</div>
-
-       <div className="feed-behind">
-        <h3><b>Who to follow</b></h3>
-        <div className="feed-follow-suggestion">
-            <img src={favour} alt="Elon Jaman" />
-            <div>
-                <div><b>Elon Jaman</b></div>
-                <div>Blogger Researcher Content Manager</div>
-            </div>
-            <button className="feed-follow-button">Follow</button>
-        </div>
-        <div className="feed-follow-suggestion">
-            <img src={gidiboy} alt="Dogecoin" />
-            <div>
-                <div><b>Dogecoin</b></div>
-                <div>Writer , Dogecoin Expert</div>
-            </div>
-            <button className="feed-follow-button">Follow</button>
-        </div>
-        <div className="feed-first"><Link
-        style={{textDecoration : "none", color : "#7380EC", cursor : "pointer"}}
-         to={"/follow-suggestions"}>Show more</Link>
-        </div>
-    </div>
-
-<div style={{marginTop  : "30px"}}>
-    <h3><b>Trending Stories</b></h3>
-        <div className="feed-trendy-story">
-           
-            <div>
-            <section style={{display : "flex", flexDirection : "row", alignItems : "center", marginBottom  :"5px"}}>
-            <img src={favour} alt="Elon Jaman" className="feed-profile-images" style={{width : "10px", height : "10px"}} />
-            <div><b>Trending in Colombia</b> <span style={{color : ""}}>- 2 months</span></div>
-            </section>
-                <div>
-                <b>The pros and cons of the new iPhone - Tips and tricks</b></div>
-            </div>
-            <img src={favour} alt="Trending in Colombia" />
-        </div>
-        </div>
-        <div className="feed-trendy-story-image"></div>
-        <div className="feed-first">Show more</div>
-        <div style={{marginTop  : "30px"}}>
-        <h3>Recommended Topic</h3>
-        <div className="feed-topics">
-            <span className="feed-topic">Technology</span>
-            <span className="feed-topic">Money</span>
-            <span className="feed-topic">Business</span>
-            <span className="feed-topic">Productivity</span>
-            <span className="feed-topic">Art</span>
-            <span className="feed-topic">Mindfulness</span>
-            <span className="feed-topic">Fitness</span>
-            <span className="feed-topic">Love</span>
-            <span className="feed-topic">Gaming</span>
-        </div>
-        </div>
-     
-    </div>
+  <FeedRightSidebar />
    </section>
+      <ChatBot />
+    </>
+
   )
 }
 
