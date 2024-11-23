@@ -1,7 +1,7 @@
 
 import { MdCloudOff, MdOutlineRefresh } from "react-icons/md"
 import "../../styles/components/common/error-message.css"
-const ErrorMessage = ({ title, message, height, fireClick}) => {
+const ErrorMessage = ({ title, type, message, height, fireClick}) => {
   return (
      <section className="something-went-wrong"
      style={{height : `${height}vh`}}

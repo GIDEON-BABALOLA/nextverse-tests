@@ -3,6 +3,7 @@ import "../../styles/components/Reader/story-display.css"
 import SpecialModal from "../common/SpecialModal"
 import StoryBody from "./StoryBody"
 import { useModalContext } from "../../hooks/useModalContext"
+import Comment from "../../components/common/Comment"
 import { useState } from "react"
 import StorySuggestions from "./StorySuggestions"
 const StoryDisplay = () => {
@@ -18,7 +19,10 @@ const StoryDisplay = () => {
     <StorySuggestions />  
    
  </section>
- <SpecialModal openModal={openModal} setOpenModal={setOpenModal} height={500} width={700}/>
+ <SpecialModal openModal={openModal} setOpenModal={setOpenModal} height={500} width={700}
+content={<Comment />}
+
+ />
     </>
 
   )
