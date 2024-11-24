@@ -1,3 +1,4 @@
+import { RiEmojiStickerLine } from "react-icons/ri";
 const Comment = () => {
   return (
     <div>Comment</div>
