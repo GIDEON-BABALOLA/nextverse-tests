@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import  useAuthContext  from "../context/AuthContext";
-import { axiosConfig } from "../api/axiosConfig";
+import { axiosConfig, axiosProperties } from "../api/axiosConfig";
 export const useGetPopularStories = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -10,7 +10,11 @@ export const useGetPopularStories = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/story/get-popular-stories/${category}/${parseInt(number)}`)
+const response = await axiosConfig.get(`/story/get-popular-stories/${category}/${parseInt(number)}`, 
+    {
+        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
+    }
+)
 if(response && response.data){
     setData(response.data)
     setStatusCode(response.status)
@@ -21,19 +25,18 @@ if(response && response.data){
     
 }
         }
-        
         catch(error){
 setIsLoading(false)
             if(error.message == "canceled"){
-setError("Your Request Has Timed Out")
+setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
-                setError("Our Service Is Currently Offline")
+                setError({message : "Our Service Is Currently Offline", code : error.code})
             }
             else{
             setData([])
             setIsLoading(false)
-            setError(error.response.data.message)
+            setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)
         }
     }

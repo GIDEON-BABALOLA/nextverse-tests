@@ -19,7 +19,34 @@
     height: 90vh;
     font-family: "Poppins";
      }
+     .our-error-title{
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 43.2px;
+      margin: 0px 0px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+     }
+     .our-error-title-message{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.2rem;
+     }
      .something-went-wrong h2{
+        color: var(--error-title);
+     }
+     .error-title{
+        font-size: 3rem;
+        font-weight: 700;
+        font-family: "Poppins";
         color: var(--error-title);
      }
      .something-went-wrong div{

@@ -35,7 +35,7 @@ const ExplorePage = () => {
   const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
   const [categoryChanged, setCategoryChanged] = useState(null)
-  const { getExploreStories, isLoading, error, data, statusCode, storyCount } = useGetExploreStories()
+  const { getExploreStories, isLoading, error, data,  storyCount } = useGetExploreStories()
   const {
     contextMenu,
      shareModal,
@@ -120,10 +120,8 @@ handleCategoryChange()
 }, [lastItemRef, isLoading, data, categoryChanged]);
 
 useEffect(() => {
-  if(statusCode == 404){
-    console.log("no more page content")
-  }
-}, [error, statusCode])
+  console.log(error)
+}, [error])
 useEffect(() => {
 if(width < 768){
   setLimit(2)
@@ -211,7 +209,7 @@ const resendRequest = () => {
 
 {
 
-statusCode !== 500 ? 
+!error &&  
  
      <section className="litenote-browse-stories">
      <div className="litenote-browse-story-grid">
@@ -257,13 +255,40 @@ statusCode !== 500 ?
  </div>
   {/* <SearchPagination currentValue={currentValue} setCurrentValue={setCurrentValue}/> */}
      </section>
-      :
-      <ErrorMessage title={"Something went wrong"} 
-  message={"We are unable to load this content, check your connection"}
-  height={70}
-  fireClick = {resendRequest}
- />
 }
+
+
+{error && <>
+
+
+{ error?.code == "ERR_NETWORK" ? 
+  <ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</>
+}
+
      
      </>
 

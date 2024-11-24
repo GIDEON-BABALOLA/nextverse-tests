@@ -8,6 +8,7 @@ import { useModalContext } from "../hooks/useModalContext";
 import FeedList from "../components/Feed/FeedList";
 import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
 import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
+import FeedBottomNav from "../components/Feed/FeedBottomNav";
 import favour from "../assets/29.jpg"
 import ChatBot from "../components/ChatBot/ChatBot";
 import { MdOutlineCreate } from "react-icons/md";
@@ -224,52 +225,7 @@ console.log()
   return (
     <>
        <section className="total-feed" onClick={closeContextMenu}>
-   <div className="galacticus">
-   <div className="phone-feed-sidebar-menu">
-<ul className="phone-feed-sidebar-list">
-    <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/profile"}>
-<img src={favour} alt="Author" className="feed-man"/>
-<span className="phone-feed-sidebar-nav-name">Profile</span>
-</Link>
-    </li>
-    <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/"}>
-<FaHome className="phone-feed-sidebar-icon"  color=" var(--icon-color)"/>
-<span className="phone-feed-sidebar-nav-name">Home</span>
-</Link>
-    </li>
-    <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/bookmarks"}>
-
-    <MdOutlineBookmarks className="phone-feed-sidebar-icon" color=" var(--icon-color)"/>
-
-
-<span className="phone-feed-sidebar-nav-name">Bookmarks</span>
-</Link>
-    </li>
-    <li className="phone-feed-sidebar-item">
-    <Link className={`phone-feed-sidebar-nav-link ${ view.list && "active-structure"}`} >
-<MdFormatListBulleted className="phone-feed-sidebar-icon" onClick={changeView}/>
-<span className="phone-feed-sidebar-nav-name">List</span>
-</Link>
-    </li>
-    <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
-<MdOutlineCreate className="phone-feed-sidebar-icon" color=" var(--icon-color)"/>
-<span className="phone-feed-sidebar-nav-name">Write</span>
-</Link>
-    </li>
-    <li className="phone-feed-sidebar-item ">
-<Link className={`phone-feed-sidebar-nav-link ${ view.grid && "active-structure"}`} >
-<MdGridView className="phone-feed-sidebar-icon " onClick={changeView}  />
-<span className="phone-feed-sidebar-nav-name">Grid</span>
-{/* <div className="feed-sidebar-icon" style={{background : "#F5F5F5", borderRadius : "50%"}}><MdGridView size={20} /></div> */}
-</Link>
-    </li>
-</ul>
-   </div>
-   </div>
+<FeedBottomNav view={view} changeView={changeView}/>
  
  <FeedLeftSidebar view={view} changeView={changeView}/>
     <div className="feed-main-content">

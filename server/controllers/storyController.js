@@ -275,9 +275,7 @@ if(req.query.page){
     }
 }
 const allStories = await query
-    res.status(200).json({stories : allStories, count : storyCount})      
-    
-  
+    res.status(200).json({stories : allStories, count : storyCount})    
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
@@ -302,6 +300,9 @@ try{
     const foundStories = await Story.find({ category : category})
     const mostPopularStories = rankStories(foundStories, number)
         res.status(200).json(mostPopularStories)    
+          
+              
+
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")

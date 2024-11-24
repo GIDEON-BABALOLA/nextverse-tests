@@ -49,7 +49,7 @@ console.log(error)
     <>
 <Toast/>
 <div>
-{  !error   ?
+{  !error   &&
  <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
   <Share  share={shareRef} shareModal={shareModal}/>
 <div className="litenote-profile-container">
@@ -74,7 +74,7 @@ borderRadius : "10px", padding : "30px"}}>
 </div>
 
 <div className="litenote-profile-stories">
-<h3 className="litenote-profile-section-title">{profile["username"]} Stories</h3>
+{isLoading ? <div className="profile-loader profile-loader-bio"></div> : <h3 className="litenote-profile-section-title">{profile["username"]} Stories</h3>}
 <div className="litenote-profile-stories-grid">
 
   {
@@ -107,13 +107,37 @@ borderRadius : "10px", padding : "30px"}}>
 </div>
 </section> 
 
-         : <ErrorMessage title={"Something went wrong"} 
-  message={"We are unable to load this content, check your connection"}
-  height={80}
-  fireClick = {resendRequest}
- />
- 
  }
+ {error && <>
+
+
+{ error?.code == "ERR_NETWORK" ? 
+  <ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={90}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={90}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content, Pls click on the refresh button"}
+height={90}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</>
+}
 </div>
     </>
   )

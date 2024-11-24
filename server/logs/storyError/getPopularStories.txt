@@ -12,3 +12,14 @@
 20241102	00:11:49	ef180f71-5ed9-46c1-b27f-943dca45802e	userError: You Cannot Get Popular Stories From This Category 3
 20241102	00:12:01	13b5f785-229b-43be-a46b-6b629e946601	userError: You Cannot Get Popular Stories From This Category 3
 20241102	00:12:06	fd41aaac-68a9-4d45-a8b7-b5176c637b4f	userError: You Cannot Get Popular Stories From This Category 3
+20241123	18:41:40	b3cbae80-8bce-48f1-9c99-595364eac056	ReferenceError: Cow is not defined
+20241123	18:41:46	f7f43be1-79b9-4729-acd8-97ea8e11d0b1	ReferenceError: Cow is not defined
+20241123	18:41:58	fcc722e4-c5de-473d-81e4-8f9a1b2f84aa	ReferenceError: Cow is not defined
+20241123	18:42:35	da5e0bdd-c813-4790-96df-4f63acb19641	ReferenceError: Cow is not defined
+20241123	18:43:19	3dbceb9f-92d0-40ab-95cc-64545d773927	ReferenceError: Cow is not defined
+20241123	18:43:26	395c6622-b7ab-43f2-93e3-1e9b8602df61	ReferenceError: Cow is not defined
+20241123	18:45:58	e39ca266-1991-4a30-80d8-9f1e6546d55f	ReferenceError: Cow is not defined
+20241123	18:46:00	481dca19-2f1c-4ab3-93ba-ce4e8e6c5290	ReferenceError: Cow is not defined
+20241123	18:47:01	7e199835-944b-4848-a5ef-9d924295b639	ReferenceError: Cow is not defined
+20241123	18:47:38	99ca0463-8e68-45d5-96af-be1ac9edb0bd	ReferenceError: Cow is not defined
+20241123	19:03:19	10b08fb6-a658-4407-9687-12bc6745bed5	userError: You Cannot Get Popular Stories From This Category nonfiction

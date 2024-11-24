@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { axiosConfig } from "../api/axiosConfig";
+import { axiosConfig, axiosProperties } from "../api/axiosConfig";
 export const useGetExploreStories = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -19,8 +19,10 @@ delete parameters.category
         try{
             setError(null)
 const response = await axiosConfig.get("/story/get-all-stories", {
-    params : parameters
-})
+    params : parameters,
+    signal : AbortSignal.timeout(axiosProperties["timeout"])
+}
+)
 if(response && response.data){
     console.log(response.data)
     setData(response.data.stories)
@@ -35,19 +37,20 @@ if(response && response.data){
         }
         
         catch(error){
-            console.log(error.response.data)
+            console.log(error.code)
+            console.log(error)
             setStoryCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
-setError("Your Request Has Timed Out")
+                setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
-                setError("Our Service Is Currently Offline")
+                setError({message : "Our Service Is Currently Offline", code : error.code})
             }
             else{
             setData([])
             setIsLoading(false)
-            setError(error.response.data.message)
+            setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)
         }
     }

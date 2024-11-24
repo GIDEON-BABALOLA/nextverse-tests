@@ -90,12 +90,38 @@ error={error}
  key={index} story={story} fireClick={fireClick}/>
       ))
       }
-      { error && <ErrorMessage title={"Something went wrong"} 
+{error && <>
+
+
+      { error?.code == "ERR_NETWORK" ? 
+        <ErrorMessage title={"Check Your Internet Connection"} 
   message={"We are unable to load this content, check your connection"}
   height={60}
+  type={error.code}
+  fireClick = {resendRequest}
+ />
+      :
+      error?.code == "ERR_CANCELED"
+
+      ?
+      <ErrorMessage title={"Timeout Error"} 
+  message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+  height={60}
+  type={error.code}
+  fireClick = {resendRequest}
+ />
+      :
+      <ErrorMessage title={"Something went wrong"} 
+  message={"We are unable to load this content,Pls click on the refresh button"}
+  height={60}
+  type={error.code}
   fireClick = {resendRequest}
  />
       }
+      </>
+}
+
+
       <ContextMenu
        state={"feed"}
        contextMenu={contextMenu}

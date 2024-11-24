@@ -1,13 +1,22 @@
 
+import { MdOutlineBookmarks, MdFormatListBulleted, MdOutlineCreate, MdGridView } from "react-icons/md"
+import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
-const FeedBottomNav = () => {
+import FeedAvatar from "./FeedAvatar"
+import { useAuthContext } from "../../hooks/useAuthContext"
+const FeedBottomNav = ({ view, changeView }) => {
+    const { user } = useAuthContext()
   return (
     <div className="galacticus">
    <div className="phone-feed-sidebar-menu">
 <ul className="phone-feed-sidebar-list">
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/profile"}>
-<img src={favour} alt="Author" className="feed-man"/>
+<FeedAvatar
+         image={user["picture"]}
+         className="feed-man"
+         alt="Author"
+          />
 <span className="phone-feed-sidebar-nav-name">Profile</span>
 </Link>
     </li>

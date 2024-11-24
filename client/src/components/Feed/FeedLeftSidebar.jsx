@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
 import { FaHome } from "react-icons/fa"
+import { useAuthContext } from "../../hooks/useAuthContext"
 import { MdBookmarks, MdFormatListBulleted, MdCreate, MdGridView   } from "react-icons/md"
 import ModeToggler from "../common/ModeToggler"
+import FeedAvatar from "./FeedAvatar"
 const FeedLeftSidebar = ({ view, changeView }) => {
+  const { user } = useAuthContext();
   return (
     <div className="feed-sidebar">
       <div style={{marginTop : "90px"}}>
@@ -10,9 +13,14 @@ const FeedLeftSidebar = ({ view, changeView }) => {
     
         <div className="feed-sidebar-icon">
         <Link to={"/dashboard/profile"}>
+{
 
-         <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} alt="Author" className="feed-man"/>
-
+         <FeedAvatar
+         image={user["picture"]}
+         className="feed-man"
+         alt="Author"
+          />
+}
          </Link>
        </div>
         <div className="feed-sidebar-icon">

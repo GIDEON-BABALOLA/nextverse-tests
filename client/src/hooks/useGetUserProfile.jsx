@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { axiosConfig } from "../api/axiosConfig";
+import { axiosConfig, axiosProperties } from "../api/axiosConfig";
 export const useGetUserProfile = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -9,7 +9,11 @@ export const useGetUserProfile = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-            const response = await axiosConfig.get("/user/get-user-profile"); // Your API route
+            const response = await axiosConfig.get("/user/get-user-profile",
+    {
+        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
+    }
+            ); // Your API route
 if(response && response.data){
     setData(response.data)
     setStatusCode(response.status)
@@ -22,14 +26,14 @@ if(response && response.data){
         catch(error){
 setIsLoading(false)
             if(error.message == "canceled"){
-setError("Your Request Has Timed Out")
+                setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
-                setError("Our Service Is Currently Offline")
+                setError({message : "Our Service Is Currently Offline", code : error.code})
             }
             else{
-                console.log("mad error")
             setData([])
+            setError({message : error.response.data.message, code : error.code})
             setError(error.response.data.message)
             setStatusCode(error.response.status)
         }

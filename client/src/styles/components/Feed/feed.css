@@ -369,6 +369,13 @@
     height: 15px;
     width: 40px;
    }
+   .feed-loader-avatar{
+  padding: 15px;
+    border-radius: 50%; 
+   }
+   .feed-left-sidebar-avatar{
+    width: 10%;
+   }
 .feed-list-view{
     margin-top: 10px;
 }

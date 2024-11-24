@@ -52,6 +52,9 @@ setError("Your Request Has Timed Out")
             else if(error.message == "Network Error"){
                 setError("Our Service Is Currently Offline")
             }
+            else if(error.message == "Your Request Has Timed out"){
+                setError("Your Request Has Timed Out")
+            }
             else{
             setData([])
             setIsLoading(false)

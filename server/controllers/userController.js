@@ -377,8 +377,8 @@ mark.stories = mark.stories.map((story) => {
 const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
 )
-    res.status(200).json(detailsOfUserToBeSent)    
-
+    res.status(200).json(detailsOfUserToBeSent) 
+   
 //  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
         console.log(error)

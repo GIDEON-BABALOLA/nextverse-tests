@@ -27,7 +27,11 @@ app.use((err, req, res, next) => {
     // Handle specific error: Not allowed by CORS
     if (err.message === "Not allowed by CORS") {
       res.status(403).json({"message" : "CORS Policy Violation, Leave Now"}); // Use 403 for forbidden requests
-    } else {
+    }
+    else if(err.code === 'ECONNRESET'){
+       res.status(504).json({ error: 'Your Request Has Timed out' });
+    }
+    else {
       // For other errors, pass to the default error handler
       next(err);
     }
@@ -42,7 +46,7 @@ app.use("/api/newsletter", newsletterRouter);
 app.use("/api/fix", fixRouter); 
 mongoose.connect(process.env.LITENOTE_MONGODB_URL)
 .then(() => {
-    app.listen(PORT, () => {
+      app.listen(PORT, () => {
         console.log(` Connected To Database && Server is running on port ${PORT}`)
     })
 })
