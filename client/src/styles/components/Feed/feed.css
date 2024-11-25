@@ -262,12 +262,14 @@
     margin-bottom: 15px;
     margin-top: 10px;
 }
-.feed-trendy-story img {
+.feed-trendy-story .story-picture-trending {
     width: 40px;
     height: 40px;
     border-radius: 5px;
     margin-right: 10px;
+    object-fit: cover;
 }
+
 .feed-topics {
     display: flex;
     flex-wrap: wrap;
@@ -313,9 +315,9 @@
     border: none;
     background: transparent;
 }
-.feed-profile-images{
-    width: 5px;
-    height: 5px;
+.feed-profile-images-trending{
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -373,6 +375,13 @@
   padding: 15px;
     border-radius: 50%; 
    }
+   .feed-loaders-trending-picture{
+    width: 45px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+    object-fit: cover;
+}
    .feed-left-sidebar-avatar{
     width: 10%;
    }

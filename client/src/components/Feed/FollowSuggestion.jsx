@@ -1,5 +1,6 @@
 import { FaAngleDown } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import FeedAvatar from "./FeedAvatar"
 const FollowSuggestion = () => {
   return (
     <section>

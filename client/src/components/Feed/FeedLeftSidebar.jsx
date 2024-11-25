@@ -13,14 +13,14 @@ const FeedLeftSidebar = ({ view, changeView }) => {
     
         <div className="feed-sidebar-icon">
         <Link to={"/dashboard/profile"}>
-{
+
 
          <FeedAvatar
          image={user["picture"]}
          className="feed-man"
          alt="Author"
           />
-}
+
          </Link>
        </div>
         <div className="feed-sidebar-icon">

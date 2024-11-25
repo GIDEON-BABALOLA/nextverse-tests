@@ -1,6 +1,6 @@
 import { FaSearch, FaTimes } from "react-icons/fa"
 import { Link } from "react-router-dom"
-import TrendingStories from "./TrendingStories"
+import FeedTrendingStories from "./FeedTrendingStories"
 import FeedTopics from "./FeedTopics"
 import FollowSuggestion from "./FollowSuggestion"
 const FeedRightSidebar = () => {
@@ -29,7 +29,7 @@ const FeedRightSidebar = () => {
        <FollowSuggestion />
 
     </div>
-<TrendingStories />
+<FeedTrendingStories />
        <FeedTopics />
      
     </div>

@@ -1,0 +1,9 @@
+:root{
+    --no-content-color : black;
+}
+.dark-theme-variables{
+    --no-content-color : white;
+}
+.no-content-section{
+    color: var(--no-content-color);
+}
