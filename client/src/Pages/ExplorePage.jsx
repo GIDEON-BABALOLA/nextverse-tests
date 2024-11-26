@@ -5,8 +5,10 @@ import LoadingCard from "../components/Profile/LoadingCard"
 import Share from "../components/common/Share"
 import ContextMenu from "../components/common/ContextMenu"
 import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
+import NoContent from "../components/common/NoContent.jsx"
 import { useEffect, useState, useRef} from "react"
 import useWindowSize from "../hooks/useWindowSize"
+import RotationLoader from "../components/Loaders/RotationLoader.jsx"
 import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import { useModalContext } from "../hooks/useModalContext"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
@@ -206,12 +208,24 @@ const resendRequest = () => {
     
      </div>
      <>
-
 {
 
 !error &&  
  
      <section className="litenote-browse-stories">
+
+     {
+  stories.length === 0 && 
+   <div className="litenote-browse-story-grid" style={{marginTop : "80px"}}>
+   <div style={{display :"flex", flexDirection : "column", 
+        alignItems : "center", justifyContent : "center", padding : "40px 0px"}}>
+   <span className="still-no-stories-loader"></span>
+   </div>
+
+
+  </div> 
+
+}
      <div className="litenote-browse-story-grid">
 {
     stories.map((story, index) => (
@@ -220,7 +234,7 @@ const resendRequest = () => {
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
     ))
     }
-  { isLoading && 
+  { isLoading && stories.length !== 0 &&
 
   loading.map((story, index) => (
       <LoadingCard
@@ -251,7 +265,6 @@ const resendRequest = () => {
 ]} />
  </div>
  <div ref={lastItemRef}>
-
  </div>
   {/* <SearchPagination currentValue={currentValue} setCurrentValue={setCurrentValue}/> */}
      </section>

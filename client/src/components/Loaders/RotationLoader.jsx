@@ -1,11 +1,13 @@
 import "../../styles/components/Loaders/rotation-loader.css"
-const BoxLoader = () => {
+const RotationLoader = ({...props}) => {
   return (
     <div className="box-loader-container">
-    <div className="box-loader"></div>
+    <div 
+    {...props}
+    className="box-loader"></div>
     </div>
 
   )
 }
 
-export default BoxLoader
+export default RotationLoader

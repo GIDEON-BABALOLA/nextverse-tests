@@ -275,7 +275,7 @@ if(req.query.page){
     }
 }
 const allStories = await query
-    res.status(200).json({stories : allStories, count : storyCount})    
+    res.status(200).json({stories : allStories, count : storyCount})      
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")

@@ -236,6 +236,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    gap : 5px
 }
 .feed-follow-suggestion img {
     width: 30px;
