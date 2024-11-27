@@ -1,4 +1,5 @@
-import FeedCard from "../Dashboard/common/FeedCard"
+import FeedCard from "./FeedCard"
+import FeedLoadingCard from "./FeedLoadingCard"
 import ContextMenu from "../common/ContextMenu"
 import ErrorMessage from "../common/ErrorMessage"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
@@ -8,19 +9,20 @@ import { MdReadMore } from "react-icons/md"
 import { useModalContext } from "../../hooks/useModalContext"
 import { usePopulateFeed } from "../../hooks/usePopulateFeed"
 import { generateRandomPage } from "../../helpers/generateRandomPage"
+import { isVisibleInViewport } from "../../helpers/isVisibleInViewPort"
 import useWindowSize from "../../hooks/useWindowSize"
 const FeedList = ({ view}) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4);
-  const [category, setCategory] = useState("adventure")
+  const [category, setCategory] = useState("all")
   const [feedStories, setFeedStories] = useState([])
   const { width } = useWindowSize();
   const [categoryChanged, setCategoryChanged] = useState(null);
   const { contextMenu, setContextMenu, shareRef,  shareModal, fireClick } = useModalContext();
-  const  { populateFeed, isLoading, error, data, statusCode, storyCount } = usePopulateFeed(); 
+  const  { populateFeed, isLoading, error, data, storyCount } = usePopulateFeed(); 
   const [loading, setLoading] = useState([])
   const lastItemRef = useRef();
-  const loadingRef = useRef();
+  const loadingRef = useRef(null);
   useEffect(() => {
     if(data.length > 0){
       // console.log(data.length)
@@ -42,6 +44,33 @@ const FeedList = ({ view}) => {
     }
     populateFeed(page, limit, category);
   }, [page, category,  limit]);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      console.log(loadingRef)
+      // If the user is trying to scroll down, prevent the scroll
+      if(isLoading){
+        if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current, 0.8)) {
+          console.log("Scroll back up")
+          window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
+        } else {
+          // Update the last scroll position if scrolling up
+          setLastScrollY(currentScrollY);
+        }
+      }
+
+    };
+
+    // Add the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY, isLoading]); // Only re-run the effect when lastScrollY changes
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -71,11 +100,11 @@ const FeedList = ({ view}) => {
   useEffect(() => {
     if(width < 768){
       setLimit(4)
-      setLoading([{}])
+      setLoading([{}, {}, {}])
     }
     else if(width < 767){
-      setLimit(3)
-      setLoading([{}])
+      setLimit(4)
+      setLoading([{}, {}, {}])
     }
     else{
       setLimit(4)
@@ -91,17 +120,14 @@ const resendRequest = () => {
    {
     !error &&  
     <section>
-    {
-      
-      view.grid && 
       <> 
-      <div className="feed-grid">
+      <div className={`${view.grid ? "feed-grid" : "feed-list-view"}`}>
 {feedStories.map((content, index) => (
    
  <FeedCard story={content}
  isLoading={false}
  fireClick={fireClick}
-  key={index} view={"grid"}/>
+  key={index} view={`${view.grid ? "grid" : "list"}`}/>
 ))
 
 }  
@@ -109,10 +135,10 @@ const resendRequest = () => {
 { 
 isLoading &&  feedStories.length !== 0  &&
 loading.map((story, index) => (
-    <FeedCard
+    <FeedLoadingCard
     ref={loadingRef}
     isLoading={true}
-    view={"grid"}
+    view={`${view.grid ? "grid" : "list"}`}
     shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
   ))
 }
@@ -120,40 +146,6 @@ loading.map((story, index) => (
       <div ref={lastItemRef}>
       </div>
       </>
-       }
-       { view.list &&
-       <>
-       <div className="feed-list-view">
-       {feedStories.map((content, index) => (
-           <>
- <FeedCard story={content} key={index}
- isLoading={false}
- view={"list"}
- fireClick={fireClick}
-
- />
-<hr  style={{color : "#9CA3AF"}}/>
-
-</>
-       ))}
-
-
-
-       </div>
-       { 
-isLoading  && feedStories.length !== 0 &&
-loading.map((story, index) => (
-    <FeedCard
-    ref={loadingRef}
-    isLoading={true}
-    view={"list"}
-    shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
-  ))
-}
-       <div ref={lastItemRef}>
-       </div>
-       </>
-       }
     </section>
     }
     {error && 

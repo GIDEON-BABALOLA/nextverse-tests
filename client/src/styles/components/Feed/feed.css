@@ -353,11 +353,11 @@
     height: 10px;
    }
    .feed-loaders-title{
-    width: 52vw;
+    width: 45vw;
     height: 15px;
    }
    .feed-loaders-first{
-    width: 52vw;
+    width: 45vw;
     height: 15px;
    }
    .feed-loaders-second{
@@ -463,6 +463,12 @@ color: var(--searcher-color);
         width: 10%;
         border-radius: 50%;
         }
+        .feed-loaders-title{
+            width: 52vw;
+           }
+           .feed-loaders-first{
+            width: 52vw;
+           }
     .feed-sidebar{
         display: none;
     }

@@ -1,15 +1,14 @@
-import {  useEffect, useState } from "react";
-import ContextMenu from "../../common/ContextMenu";
+import {  forwardRef, useEffect, useState } from "react";
+import ContextMenu from "../common/ContextMenu";
 import { FaShareAlt } from "react-icons/fa";
 import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import useImageLoad from "../../../hooks/useImageLoaded";
-import useMultipleImageLoad from "../../../hooks/useMultipleImageLoaded";
-import useWindowSize from "../../../hooks/useWindowSize";
+import useImageLoad from "../../hooks/useImageLoaded";
+import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
+import useWindowSize from "../../hooks/useWindowSize";
 import { MdVisibility, MdOutlineFavoriteBorder, MdOutlineBookmarkAdd  } from "react-icons/md";
 
-const FeedCard = ({ fireClick, story, isLoading, view}) => {
-  console.log(story.picture)
+const FeedLoadingCard = forwardRef(({ fireClick, story, isLoading, view}, ref) => {
   const { width } = useWindowSize();
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
@@ -44,7 +43,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
 
   return (
- <> 
+ <div ref={ref}> 
  {
   view == "grid" ?
 <>
@@ -87,7 +86,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={story.avatar} />
+              : <img className="story-card-avatar" src={storyPicture} />
                }
                <span>Gideon Babalola</span>
              
@@ -235,7 +234,7 @@ className="list-view-card-second-section"
     <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
     { avatarLoading ? <div className="feed-loaders feed-loaders-avatar"></div>
 :
-    <img src={story.avatar}></img>
+    <img src={storyPicture}></img>
     }
     <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
 <span><b>{story.author}</b></span>
@@ -252,7 +251,7 @@ Your profile is stopping you from getting that job
 </b>
 </h6> : <h3>Your Profile is stopping you from getting that job</h3>} 
 <span>
-{story.content.slice(0, width < 768 ? 100 : 200)  + "..." }
+{story.content.slice(0, width < 768 ? 70 : 200)  + "..." }
 </span>
     </div>
     { width > 768 && <div style={{display :"flex", flexDirection : "row",
@@ -356,8 +355,9 @@ src={storyPicture}
 
         
  
- </>
+ </div>
   )
 }
-
-export default FeedCard
+)
+FeedLoadingCard.displayName = "FeedLoadingCard";
+export default FeedLoadingCard

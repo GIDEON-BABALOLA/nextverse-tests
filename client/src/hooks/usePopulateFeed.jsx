@@ -7,6 +7,7 @@ export const usePopulateFeed = () => {
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
     const populateFeed = async (page, limit, category) => {
+        console.log(category)
         const parameters = {
             page : page,
             limit : limit,

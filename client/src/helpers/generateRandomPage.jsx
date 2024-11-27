@@ -8,3 +8,4 @@ export const generateRandomPage = (sentPage) => {
     }
     return number; 
 }
+
