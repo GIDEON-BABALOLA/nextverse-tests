@@ -51,7 +51,6 @@ const FeedPage = () => {
             })
             break;
     }
-console.log()
     }
   const { width } = useWindowSize()
   return (
