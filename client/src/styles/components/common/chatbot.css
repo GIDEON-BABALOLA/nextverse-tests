@@ -75,7 +75,7 @@ z-index: 3;
 }
 
 .litenotechatbot-chatbot .litenotechatbot-header {
-    background: #0f0f20;
+    background: #1B1B20;
     padding: 25px 0;
     text-align: center;
 }
@@ -89,7 +89,7 @@ z-index: 3;
     height: 380px;
     overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: #0f0f20 white;
+      scrollbar-color: #1B1B20 white;
     padding: 30px 20px 100px;
 }
 .litenotechatbot-chatbot .litenotechatbot-chat{
@@ -98,9 +98,9 @@ z-index: 3;
 .litenotechatbot-chatbot .litenotechatbot-chat p {
     padding: 12px 16px;
     border-radius: 10px 10px 0 10px;
-    background:#0f0f20;
+    background:#1B1B20;
     color: #ffff;
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     max-width: 75%;
     white-space: pre-wrap;
     margin-bottom: 0%;
@@ -164,7 +164,7 @@ z-index: 3;
     max-height: 180px;
     resize: none;
     padding: 16px 0px 16px 16px;
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     overflow-y: hidden;
 }
 .litenotechatbot-chat-input span{
@@ -193,7 +193,7 @@ font-size: 30px;
 
 }
 
-@media(max-width: 800px){
+@media(max-width: 1200px){
 .litenotechatbot-chatbot{
     right: 0;
     bottom: 0;

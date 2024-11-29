@@ -163,6 +163,9 @@ html, #root {
   box-sizing: border-box;
   animation: stillrotation 1s linear infinite;
   }
+  .st0{
+    fill: #1B1B20;
+  }
 
   @keyframes stillrotation {
   0% {

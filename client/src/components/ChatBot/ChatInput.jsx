@@ -6,10 +6,11 @@ import { BiSolidSend } from "react-icons/bi";
 import  ChatBotContext  from "../../context/ChatBotContext"
 const ChatInput = ( { handleChat } ) => {
    const { inputText, setInputText, inputInitHeight, setInputInitHeight } = useContext(ChatBotContext)
-   const { transcript } = useSpeechRecognition()
+   const { transcript, resetTranscript } = useSpeechRecognition()
    useEffect(() => {
+      console.log(transcript)
       const first = transcript.split(" ")[transcript.split(" ").length -1]
-      setInputText(first)
+      setInputText(transcript)
    }, [transcript, setInputText])
 const chatInputRef = useRef();
 const handleInput = (e) => {
@@ -26,6 +27,8 @@ const handleEnter = (e) => {
    if(e.key === "Enter" && !e.shiftKey && window.innerWidth > 800){
       e.preventDefault();
       handleChat()
+      SpeechRecognition.stopListening();
+      resetTranscript()
   }
 }
   return(   
@@ -36,7 +39,9 @@ const handleEnter = (e) => {
   </span>
   <span id="litenotechatbot-send-btn" className="litenotechatbot-sendButton"  onClick={
    () => { handleChat()
-      SpeechRecognition.stopListening();}
+      SpeechRecognition.stopListening();
+      resetTranscript()
+      }
    
    }>
    <BiSolidSend /></span>

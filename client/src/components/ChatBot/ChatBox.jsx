@@ -8,7 +8,9 @@ const ChatBox = ({ apiError }) => {
     <section>
              <ul className="litenotechatbot-chatbox" ref={chatBoxRef}>
             <li className="litenotechatbot-chat litenotechatbot-incoming">
-                <span  id= "litenotechatbot-robot" ><FaRobot size="1.5em"  /></span>
+                <span  id= "litenotechatbot-robot" >
+                <img src="https://res.cloudinary.com/doctr0fct/image/upload/v1732896392/company/svgexport-10_zojfxu.svg" style={{width : "80%"}}/>
+                </span>
  
 <p className="litenotechatbot-jump-text">Hi there,<br />How can I help you today?</p>
             </li>

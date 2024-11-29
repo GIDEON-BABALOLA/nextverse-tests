@@ -93,7 +93,8 @@ const ChatElement = ({ message, type, apiError, error, id, time}) => {
     : 
 <><li className= "litenotechatbot-chat litenotechatbot-incoming">
     <span id="litenotechatbot-robot">
-    <FaRobot size="1.5em" /></span><p className={error ? "litenotechatbot-error" : ""}>{formatTextWithJSX(message)} { message === "Thinking" &&  <div className="litenotechatbot-loaderdot"></div> }
+    <img src="https://res.cloudinary.com/doctr0fct/image/upload/v1732896392/company/svgexport-10_zojfxu.svg" style={{width : "80%"}}/>
+  </span><p className={error ? "litenotechatbot-error" : ""}>{formatTextWithJSX(message)} { message === "Thinking" &&  <div className="litenotechatbot-loaderdot"></div> }
        
        { message !== "Thinking" && 
         <div className='litenotechatbot-incoming-options' style={{cursor : "pointer"}}>
