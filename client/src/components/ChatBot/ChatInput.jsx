@@ -8,7 +8,6 @@ const ChatInput = ( { handleChat } ) => {
    const { inputText, setInputText, inputInitHeight, setInputInitHeight } = useContext(ChatBotContext)
    const { transcript, resetTranscript } = useSpeechRecognition()
    useEffect(() => {
-      console.log(transcript)
       const first = transcript.split(" ")[transcript.split(" ").length -1]
       setInputText(transcript)
    }, [transcript, setInputText])
@@ -33,7 +32,9 @@ const handleEnter = (e) => {
 }
   return(   
      <div className="litenotechatbot-chat-input">
-  <textarea placeholder="Enter a message..." value={inputText} onKeyDown = {handleEnter}  ref={chatInputRef} onChange={handleInput} style={{height : inputInitHeight}}/>
+  <textarea 
+  className="input-with-placeholder"
+  placeholder="Enter a message..." value={inputText} onKeyDown = {handleEnter}  ref={chatInputRef} onChange={handleInput} style={{height : inputInitHeight, color : "black"}}/>
   <span id="litenotechatbot-mic-btn" className="" onClick={handleRecord}>
    <BiMicrophone />
   </span>
@@ -41,6 +42,7 @@ const handleEnter = (e) => {
    () => { handleChat()
       SpeechRecognition.stopListening();
       resetTranscript()
+      
       }
    
    }>
