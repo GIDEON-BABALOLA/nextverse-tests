@@ -15,27 +15,14 @@ import { useGenerateChatBotResponse } from "../../hooks/useGenerateChatBotRespon
 import { usePlayChime } from "../../hooks/usePlayChime"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { AiOutlineSound } from "react-icons/ai";
-const ChatElement = ({ message, type, apiError, audio, error, id, time}) => {
+const ChatElement = ({ message, type, apiError, error, id, time}) => {
   const { playChime } =usePlayChime()
   const { generateResponse } = useGenerateChatBotResponse()
   const { setMessages, messages } = useContext(ChatBotContext)
   const [like, setLike] = useState(false)
   const [dislike, setDisLike] = useState(false)
 
-  const handlePlay = async () => {
-    try{
-        // Trigger download of audio file
-          const audioBlob = await fetch(audio).then((response) => response.blob());
-          console.log(audioBlob);
-          const audioUrl = URL.createObjectURL(audioBlob);
-          console.log(audioUrl);
-          const audioElement = new Audio(audioUrl);
-          audioElement.play();
-    }catch(err){
-      console.log(err)
-      toast.success("Unable To Say Pronunciation")
-    }
-  };
+
 
   const handleCopy = () => {
     navigator.clipboard.writeText(message)
@@ -57,6 +44,36 @@ const ChatElement = ({ message, type, apiError, audio, error, id, time}) => {
     const update = messages.filter((chat) => chat.id !== id)
     setMessages(update)
   }
+
+  function formatTextWithJSX(inputText) {
+    const regex = /(\*\*(.*?)\*\*)|(\*(.*?)\*)/g; // Match **bold** or *bold*
+    const parts = [];
+    let lastIndex = 0;
+  
+    inputText.replace(regex, (match, boldMatch, boldText, italicMatch, italicText, offset) => {
+      // Add plain text before the match
+      if (lastIndex < offset) {
+        parts.push(inputText.slice(lastIndex, offset));
+      }
+  
+      // Add the bold text
+      const textToBold = boldText || italicText; // Use whichever is captured
+      if (textToBold) {
+        parts.push(<strong key={offset}>{textToBold}</strong>);
+      }
+  
+      lastIndex = offset + match.length;
+    });
+  
+    // Add remaining plain text
+    if (lastIndex < inputText.length) {
+      parts.push(inputText.slice(lastIndex));
+    }
+  
+    return parts;
+  }
+  
+
   const handleRefresh = async () => {
     console.log("gideon")
     let newArray = messages.slice(0, messages.length - 1);
@@ -76,41 +93,47 @@ const ChatElement = ({ message, type, apiError, audio, error, id, time}) => {
     : 
 <><li className= "litenotechatbot-chat litenotechatbot-incoming">
     <span id="litenotechatbot-robot">
-    <FaRobot size="1.5em" /></span><p className={error ? "litenotechatbot-error" : ""}>{message} { message === "Thinking" &&  <div className="litenotechatbot-loaderdot"></div> }
+    <FaRobot size="1.5em" /></span><p className={error ? "litenotechatbot-error" : ""}>{formatTextWithJSX(message)} { message === "Thinking" &&  <div className="litenotechatbot-loaderdot"></div> }
        
        { message !== "Thinking" && 
         <div className='litenotechatbot-incoming-options' style={{cursor : "pointer"}}>
 
         <BiMicrophone style={{margin : "2%"}}
-          onClick={handlePlay}
+        size={15}
+            onClick={handleSpeak} 
         /><BiClipboard style={{margin : "2%"}}
+        size={15}
           onClick={handleCopy}
         /><BiRefresh style={{margin : "2%"}}
         onClick={handleRefresh}
+        size={15}
          />
-         <AiOutlineSound  style={{margin : "2%"}}
-        onClick={handleSpeak} />
        { like ? 
         <BiSolidLike 
           style={{margin : "2%"}}
           onClick={() => setLike(!like)}
+          size={15}
         />: <BiLike 
           style={{margin : "2%"}}
           onClick={() => setLike(!like)}
+          size={15}
         /> }
        { 
         dislike ?
         <BiSolidDislike 
           style={{margin : "2%"}}
           onClick={() => setDisLike(!dislike)}
+          size={15}
         /> : 
         <BiDislike 
           style={{margin : "2%"}}
           onClick={() => setDisLike(!dislike)}
+          size={15}
         />
        }
         <BiSolidTrashAlt
            onClick={handleDelete}
+           size={15}
         style={{margin : "2%"}} />
         </div>
        }

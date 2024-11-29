@@ -2,9 +2,11 @@
 
 :root{
 --lite-note-mode : #f8f8f8;
+--still-no-stories-loader : black;
 }
 .dark-theme-variables{
   --lite-note-mode : #181A1E;
+  --still-no-stories-loader : #fff;
 }
 * {
   margin: 0;
@@ -154,7 +156,7 @@ html, #root {
 .still-no-stories-loader {
   width: 48px;
   height: 48px;
-  border: 5px solid #FFF;
+  border: 5px solid var(--still-no-stories-loader);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

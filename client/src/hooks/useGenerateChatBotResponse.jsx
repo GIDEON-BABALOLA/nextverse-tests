@@ -1,7 +1,6 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useState } from "react";
-import { litenotechatbot } from "../api/liteNoteChatBotAPI";
 export const useGenerateChatBotResponse =  () => {
   const apiKey = import.meta.env.VITE_REACT_GOOGLE_GEMINI_API_KEY
   const genAI = new GoogleGenerativeAI(apiKey);
@@ -15,17 +14,6 @@ const [isLoading, setIsLoading] = useState(null)
       console.log(incomingArray)
       console.log(Math.floor((Math.random() * 3) + 1))
         setIsLoading(true)
-        class myExplanation {
-          constructor(definition, partOfSpeech, transcription) {
-              this.messages = [
-                  {
-                      definition: definition,
-                      partOfSpeech : partOfSpeech,
-                      transcription : transcription
-                  }
-              ];
-          }
-        }
        incomingArray.pop()
        const latestMessage = incomingArray.slice(-1)
        const prompt = latestMessage[0].message.toString()
@@ -37,7 +25,7 @@ const [isLoading, setIsLoading] = useState(null)
           console.log("david")
           console.log(result.response.text());
             setIsLoading(false)
-        const alteredMessage = [...incomingArray, {id : incomingArray[incomingArray.length - 1].id + 1, type: "incoming", message: result.response.text(), audio : "", error : false, time : new Date().toISOString()}]
+        const alteredMessage = [...incomingArray, {id : incomingArray[incomingArray.length - 1].id + 1, type: "incoming", message: result.response.text(), error : false, time : new Date().toISOString()}]
         return alteredMessage
         }
        }catch(err){

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import FeedTrendingStories from "./FeedTrendingStories"
 import FeedTopics from "./FeedTopics"
 import FollowSuggestion from "./FollowSuggestion"
-const FeedRightSidebar = () => {
+const FeedRightSidebar = ({ feedCategory, setFeedCategory}) => {
   return (
     <div className="feed-right-sidebar">
   
@@ -30,7 +30,7 @@ const FeedRightSidebar = () => {
 
     </div>
 <FeedTrendingStories />
-       <FeedTopics />
+       <FeedTopics feedCategory={feedCategory} setFeedCategory={setFeedCategory}/>
      
     </div>
   )

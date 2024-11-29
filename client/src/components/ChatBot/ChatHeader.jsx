@@ -1,9 +1,13 @@
 import { CgClose } from "react-icons/cg";
-const chatHeader = ({setToggleChatBot, toggleChatBot}) => {
+import { useAuthContext } from "../../hooks/useAuthContext";
+const ChatHeader = ({setToggleChatBot, toggleChatBot}) => {
+  const { user } = useAuthContext();
   return (
     <>
     <section className="litenotechatbot-header">
-            <div className="litenotechatbot-header-contain">            <h2>Good Morning User</h2>
+            <div className="litenotechatbot-header-contain">            <h2> Good Morning  
+            
+            &nbsp;{ user ? user["username"] : "Guest"}</h2>
             <span className="litenotechatbot-spanner"
             onClick={
             () =>
@@ -15,4 +19,4 @@ const chatHeader = ({setToggleChatBot, toggleChatBot}) => {
   )
 }
 
-export default chatHeader
+export default ChatHeader

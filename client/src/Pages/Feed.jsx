@@ -2,7 +2,6 @@
 import "../styles/components/Feed/feed.css"
 import {  MdFormatListBulleted, MdGridView,
     MdOutlineBookmarks,
-
 } from "react-icons/md";
 import { useModalContext } from "../hooks/useModalContext";
 import FeedList from "../components/Feed/FeedList";
@@ -18,6 +17,15 @@ import { Link } from "react-router-dom"
 import {  useState } from "react"
 const FeedPage = () => {
     const { closeContextMenu } = useModalContext();
+    const [feedCategory, setFeedCategory] = useState({
+      all : true,
+      technology : false,
+      fiction : false,
+      adventure : false,
+      nonfiction : false,
+      romance : false,
+      memoir : false
+    })
     const [view, setView] = useState({
         list : false,
         grid : true
@@ -97,10 +105,10 @@ const FeedPage = () => {
         </div>
         <hr />
         
-  <FeedList view={view} />
+  <FeedList view={view} feedCategory={feedCategory}/>
     </div>
         
-  <FeedRightSidebar />
+  <FeedRightSidebar feedCategory={feedCategory} setFeedCategory ={setFeedCategory}/>
    </section>
       <ChatBot />
     </>

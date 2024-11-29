@@ -280,8 +280,13 @@
     background-color: var(--feed-topic-background);
     color: var(--feed-topic-color);
     padding: 5px 10px;
+    cursor: pointer;
     border-radius: 20px;
     font-size: 12px;
+}
+.feed-topic.active{
+    background-color: var(--feed-topic-color);
+    color: white;
 }
 /* .phone-feed-nav{
     display: none;

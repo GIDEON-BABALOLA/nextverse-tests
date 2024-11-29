@@ -11,10 +11,9 @@ import { usePopulateFeed } from "../../hooks/usePopulateFeed"
 import { generateRandomPage } from "../../helpers/generateRandomPage"
 import { isVisibleInViewport } from "../../helpers/isVisibleInViewPort"
 import useWindowSize from "../../hooks/useWindowSize"
-const FeedList = ({ view}) => {
+const FeedList = ({ view, feedCategory}) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4);
-  const [category, setCategory] = useState("all")
   const [feedStories, setFeedStories] = useState([])
   const { width } = useWindowSize();
   const [categoryChanged, setCategoryChanged] = useState(null);
@@ -23,6 +22,10 @@ const FeedList = ({ view}) => {
   const [loading, setLoading] = useState([])
   const lastItemRef = useRef();
   const loadingRef = useRef(null);
+  useEffect(() => {
+    setPage(1); // Reset to the first page when the category changes
+    setFeedStories([]); // Clear current stories to avoid mixing old and new category data
+  }, [feedCategory]);
   useEffect(() => {
     if(data.length > 0){
       // console.log(data.length)
@@ -36,6 +39,8 @@ const FeedList = ({ view}) => {
     
     }, [data])
   useEffect(() => {
+    const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
+    console.log(category)
     const skip = (page - 1) * limit;
     if (skip >= storyCount && storyCount > 0) {
       const randomPage = generateRandomPage(page)
@@ -43,7 +48,7 @@ const FeedList = ({ view}) => {
       return;
     }
     populateFeed(page, limit, category);
-  }, [page, category,  limit]);
+  }, [page,  limit]);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
@@ -112,6 +117,7 @@ const FeedList = ({ view}) => {
     }
     }, [width])
 const resendRequest = () => {
+  const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
   populateFeed(1, limit, category)
 }
   return (

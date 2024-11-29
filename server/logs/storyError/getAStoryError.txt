@@ -3675,3 +3675,19 @@
 20241126	20:30:42	8d09467b-0a1a-48b6-8bb8-0609964684a9	ReferenceError: shoot is not defined
 20241126	20:30:43	3a9e2972-f7a4-43b9-9abf-7bb341d902a5	ReferenceError: shoot is not defined
 20241126	20:30:44	a81f740f-9f98-40e3-ab44-ce00781e94bf	ReferenceError: shoot is not defined
+20241129	15:09:28	ce494d3d-8bb5-4de0-827f-dd643562f517	userError: This page does not exist
+20241129	15:13:05	6fd252a9-1f74-446f-a84b-e95f1a02f462	userError: This page does not exist
+20241129	15:14:51	c503532a-c41a-4061-a02d-e5bfbfd919af	userError: This page does not exist
+20241129	15:17:13	728f245d-f09c-4fcc-bc4e-4d8367bc6773	userError: This page does not exist
+20241129	15:17:50	e82e4365-3a18-4702-8756-d3ed90cb11da	userError: This page does not exist
+20241129	15:18:53	ad8ca477-807a-46b5-87c6-2b6328b4aa64	userError: This page does not exist
+20241129	15:20:21	f7528005-866d-47ae-8692-6f473f7f2b03	userError: This page does not exist
+20241129	15:21:45	a493aff4-ba14-4c22-8f9e-ff5283f38455	userError: This page does not exist
+20241129	15:23:12	c1170e18-7c60-4c05-a519-b2798d794a3c	userError: This page does not exist
+20241129	15:24:06	ecb6d4f3-e133-49b7-bdd7-535a61b9ffd6	userError: This page does not exist
+20241129	15:25:28	55c73578-ef72-445f-b21c-ca86af9a9478	userError: This page does not exist
+20241129	15:26:18	2ead454f-ded3-49a4-ba7f-0aa500a77a8c	userError: This page does not exist
+20241129	15:29:48	768b9d9d-7e86-46d8-af25-a09ddaf7708c	userError: This page does not exist
+20241129	15:29:51	a040ec98-c185-42c7-b474-0e540698f0a6	userError: This page does not exist
+20241129	15:29:58	7cdcd456-e490-4b8d-94b5-721a73e7084a	userError: This page does not exist
+20241129	15:30:06	937ac4f3-9b32-4509-8935-86a53df5773c	userError: This page does not exist

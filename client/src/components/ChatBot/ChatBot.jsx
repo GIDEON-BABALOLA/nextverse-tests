@@ -22,6 +22,7 @@ const  ChatBot = () => {
     const [toggleChatBot, setToggleChatBot] = useState(false)
     let userMessage
     const handleChat = async () => {
+      playChime()
       console.log(inputText)
       userMessage = inputText.trim();
       if(!userMessage){
@@ -32,7 +33,6 @@ return //closes the function;
       setInputInitHeight("50px")
        //Append the users message to the chatbox
        const outgoingArray = [...messages, {id : messages[messages.length - 1].id + 1, type: "outgoing", message: userMessage,  time : new Date().toISOString()}]
-       playChime()
        setMessages(outgoingArray)
        setInputText("")                            
   handleIncomingMessage(outgoingArray)
