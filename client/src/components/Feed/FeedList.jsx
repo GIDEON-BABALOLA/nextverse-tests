@@ -54,7 +54,7 @@ const FeedList = ({ view, feedCategory}) => {
 
     useEffect(() => {
 if(!isLoading){
-  if(data.length == 0){
+  if(data.length == 0 && !error){
     setEmptyData(true)
   }
 }
@@ -131,6 +131,8 @@ const resendRequest = () => {
 }
   return (
     <>
+    { !error &&
+    <section>
     {
 emptyData ? 
 <div style={{padding : "70px 0px", height : "100vh"}}>
@@ -142,10 +144,7 @@ message={"Empty Feed"}
  :
     
     <div>
-    {
 
-    
-!error &&  
 <section>
   <> 
   <div className={`${view.grid ? "feed-grid" : "feed-list-view"}`}>
@@ -174,39 +173,6 @@ shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
   </div>
   </>
 </section>
-}
-{error && 
-
-<div style={{paddingBottom : "100px"}}>
-
-
-{ error?.code == "ERR_NETWORK" ? 
-<ErrorMessage title={"Check Your Internet Connection"} 
-message={"We are unable to load this content, check your connection"}
-height={60}
-type={error.code}
-fireClick = {resendRequest}
-/>
-:
-error?.code == "ERR_CANCELED"
-
-?
-<ErrorMessage title={"Timeout Error"} 
-message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
-height={60}
-type={error.code}
-fireClick = {resendRequest}
-/>
-:
-<ErrorMessage title={"Something went wrong"} 
-message={"We are unable to load this content, Pls click on the refresh button"}
-height={60}
-type={error.code}
-fireClick = {resendRequest}
-/>
-}
-</div>
-}
 
 {
 feedStories.length === 0 && 
@@ -244,7 +210,44 @@ shareModal={shareModal}
           , label : "Read More"}
 ]} />
     </div>
+    
     }
+    </section>
+    }
+
+    {error && 
+
+<div style={{paddingBottom : "100px"}}>
+
+
+{ error?.code == "ERR_NETWORK" ? 
+<ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</div>
+}
+
 
     </>
   )

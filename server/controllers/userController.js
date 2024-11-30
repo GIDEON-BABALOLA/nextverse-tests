@@ -604,20 +604,22 @@ const getAllUsers = async (req, res) => {
     const { page, limit} = req.query;
     console.log(page, limit)
     try{
+        console.log(shsh)
         const skip = (page - 1) * limit;
     const gotUsers = await User.find().skip(skip).limit(limit).exec();
     if(!gotUsers){
-        throw new adminError("No User Has Been Registered For Your Application", 204)
+        throw new userError("No User Has Been Registered For Your Application", 204)
     }
     const userCount = await User.countDocuments();
     const usersToBeSent = gotUsers.map((user) => {
         return _.omit(user.toObject(), "refreshToken")
     })
-        res.status(200).json({ users : usersToBeSent, count : userCount})     
+        res.status(200).json({ users : usersToBeSent, count : userCount})         
+    
     }
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
-        if(error instanceof adminError){
+        if(error instanceof userError){
             return res.status(error.statusCode).json({ error : error.message})
         }else{
             return res.status(500).json({error : "Internal Server Error"})

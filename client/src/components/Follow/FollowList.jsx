@@ -56,12 +56,12 @@ getUsersToFollow(page, limit)
       }, [data])
       useEffect(() => {
         if(!isLoading){
-          console.log("no stories at all")
-          if(data.length === 0){
+          if(data.length == 0 && !error){
             setEmptyData(true)
           }
         }
             }, [data, isLoading])
+            //Setting up intersection observer
     useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -106,11 +106,14 @@ getUsersToFollow(page, limit)
       };
     }, [lastScrollY, isLoading]);
     const resendRequest = () => {
-      
+      getUsersToFollow(1, 6) 
     }  
   return (
     <>
-    {emptyData ? 
+    {
+    !error &&
+    <section>
+        {emptyData  ? 
       <div style={{ height : "100vh"}}>
 <NoContent
 message={"There is nobody to follow"}
@@ -159,12 +162,14 @@ height : "100vh"}}>
 
     </section>
     }
+    </section>
+    }
 {error && <>
 
 { error?.code == "ERR_NETWORK" ? 
   <ErrorMessage title={"Check Your Internet Connection"} 
 message={"We are unable to load this content, check your connection"}
-height={60}
+height={80}
 type={error.code}
 fireClick = {resendRequest}
 />
@@ -174,14 +179,14 @@ error?.code == "ERR_CANCELED"
 ?
 <ErrorMessage title={"Timeout Error"} 
 message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
-height={60}
+height={80}
 type={error.code}
 fireClick = {resendRequest}
 />
 :
 <ErrorMessage title={"Something went wrong"} 
 message={"We are unable to load this content, Pls click on the refresh button"}
-height={60}
+height={80}
 type={error.code}
 fireClick = {resendRequest}
 />

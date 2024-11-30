@@ -58,7 +58,7 @@ useEffect(() => {
     return;
   }
   getExploreStories(page, limit, category);
-}, [page, category,  limit]);
+}, [page, category,limit]);
 useEffect(() => {
   setPage(1); // Reset to the first page when the category changes
   setStories([]); // Clear current stories to avoid mixing old and new category data
@@ -78,7 +78,7 @@ setStories((prev) => {
 }, [data])
 useEffect(() => {
   if(!isLoading){
-    if(data.length == 0){
+    if(data.length == 0 && !error){
       setEmptyData(true)
     }
   }
