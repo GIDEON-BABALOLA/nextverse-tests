@@ -295,3 +295,7 @@
 20241103	16:18:56	0f5e6ac5-8e03-4197-8731-9e266441b7c8	userError: Please Fill In All The Fields
 20241103	16:20:47	d08e5756-0dc4-4bf4-9e77-2eb9deb9cb78	userError: Please Fill In All The Fields
 20241108	14:09:37	81cd5c1d-d244-4b8a-ab44-ddb604c349f7	userError: User Already Exists
+20241130	12:35:47	9b3ce8b3-b58d-4efb-97c6-fa4ac53caed5	userError: Phone Number Has Been Used
+20241130	12:36:02	d720e8cf-25c8-4997-85d0-43d6eb22cc71	ReferenceError: MailtrapTransport is not defined
+20241130	13:03:25	b3a56ec4-d682-4d28-a298-255c3adb4f09	userError: User Already Exists
+20241130	13:04:11	a917f9c7-15bb-4a20-aed6-bc591f501b72	MongoServerError: E11000 duplicate key error collection: litenoteDB.users index: username_1 dup key: { username: "Gidiboy" }

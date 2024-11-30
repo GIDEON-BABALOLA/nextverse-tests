@@ -1,22 +1,23 @@
 import useImageLoad from "../../hooks/useImageLoaded"
-import { useState, useEffect } from "react"
-const FollowCard = ({ content }) => {
-  const [loading, setLoading] = useState(true)
-  
-  const { loaded, error } = useImageLoad(content.avatar);
+import { useState, useEffect, forwardRef } from "react"
+const FollowCard = forwardRef(({ content, isLoading }, ref) => {
+  const [avatarLoading, setAvatarLoading] = useState(true)
+  const { loaded, error } = useImageLoad(content.picture);
   useEffect(() => {
     if (error) {
       console.log("failed to load images")
     }
   
     if (loaded === true) {
-    setLoading(false)
+    setAvatarLoading(false)
+    }else{
+      setAvatarLoading(true)
     }
   }, [loaded, error])
   return (
-    <>
+    <section ref={ref}>
    {
-    loading ?
+    isLoading ?
     <div className="follower-item">
       <div className="skeleton-image skeleton-image-follower-avatar"></div>
       <div className="follower-info">
@@ -27,16 +28,23 @@ const FollowCard = ({ content }) => {
     </div>
     :
     <div className="follower-item">
-                <img src={content.avatar} alt="User Avatar" className="follower-avatar" />
+    {
+      avatarLoading ?
+      <div className="skeleton-image skeleton-image-follower-avatar"></div>
+       : 
+      <img src={content.picture} alt="User Avatar" className="follower-avatar" />
+    }
+                
                 <div className="follower-info">
                     <div className="follower-name">{content.username}</div>
-                    <div className="follower-username">{content.bio}</div>
+                    <div className="follower-username">{content.email}</div>
                 </div>
                 <button className="follow-button">Follow</button>
             </div>
    }
-            </>
+            </section>
   )
-}
+})
+FollowCard.displayName = "FollowCard";
 
 export default FollowCard

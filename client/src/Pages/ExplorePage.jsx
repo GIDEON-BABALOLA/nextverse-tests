@@ -66,7 +66,6 @@ useEffect(() => {
 
 useEffect(() => {
 if(data.length > 0){
-  console.log(data)
   setEmptyData(false)
   const newStories = data.map((story) => {
     return {...story, loading : false}

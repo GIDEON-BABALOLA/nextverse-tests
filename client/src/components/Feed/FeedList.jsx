@@ -133,7 +133,7 @@ const resendRequest = () => {
     <>
     {
 emptyData ? 
-<div style={{padding : "70px 0px"}}>
+<div style={{padding : "70px 0px", height : "100vh"}}>
 <NoContent
 message={"Empty Feed"}
  />

@@ -110,10 +110,20 @@ if(location["*"]  !== ""){
           )
         }
 />
+<Route path="follow-suggestions" 
+    element={
+          appLoading ? (
+        <LoadingPage />
+          ) : user ? (
+            <FollowPage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+/>
   <Route path="our-developers" element={<DevelopersPage />} />
   <Route path="login" element={<LoginPage />} />
   <Route path="note/:email/:id" element={ <NoteReaderPage />} />
-  <Route path="follow-suggestions" element={ user == null ? <Navigate to="/login" /> : <FollowPage />}/>
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="notifications" element={<NotificationsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

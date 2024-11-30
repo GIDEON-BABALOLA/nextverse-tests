@@ -10,6 +10,7 @@ import { useModalContext } from "../../hooks/useModalContext"
 import { useProfileContext } from "../../hooks/useProfileContext"
 import ErrorMessage from "../common/ErrorMessage"
 import { FaRegThumbsUp } from "react-icons/fa";
+import NoContent from "../common/NoContent"
 import { MdReadMore } from "react-icons/md"
 import Toast from "../common/Toast"
 import { useGetUserProfile } from "../../hooks/useGetUserProfile"
@@ -18,11 +19,12 @@ const Profile = () => {
   const { dispatch, profile } = useProfileContext()
   const { getUserProfile, data, isLoading, error, statusCode  } = useGetUserProfile();
   const [stories, setStories] = useState([{}, {}, {}])
-
+  const [emptyData, setEmptyData] = useState(false)
   useEffect(() => {
     if(Object.keys(profile).length == 0){
       console.log(" I do not always want to be called.")
     }
+    setEmptyData(false)
     getUserProfile();
   }, [])
   const resendRequest = () => {
@@ -34,6 +36,16 @@ const Profile = () => {
     dispatch({ type: "LOAD_PROFILE", payload:data });
   }
   }, [data, dispatch])
+  useEffect(() => {
+    if(!isLoading){
+      if(data["stories"].length == 0){
+        console.log("This is gidiboy")
+        setEmptyData(true)
+      }else{
+        setEmptyData(false)
+      }
+    }
+        }, [data, isLoading])
   useEffect(() => {
 console.log(error)
   }, [error])
@@ -75,8 +87,13 @@ borderRadius : "10px", padding : "30px"}}>
 
 <div className="litenote-profile-stories">
 {isLoading ? <div className="profile-loader profile-loader-bio"></div> : <h3 className="litenote-profile-section-title">{profile["username"]} Stories</h3>}
-<div className="litenote-profile-stories-grid">
-
+{
+  emptyData ? 
+  <div>
+    <NoContent message={"Share your favorite moments and make this space yours"}/>
+  </div>
+  :
+  <div className="litenote-profile-stories-grid">
   {
     stories.map((story, index) => (
       <StoryCard  shareModal={shareModal} 
@@ -101,8 +118,9 @@ borderRadius : "10px", padding : "30px"}}>
             {id : 4, icon : <FaRegThumbsUp />
             , label : "Like Story"}
 ]} />
-   {/* Add more story cards as needed  */}
 </div>
+}
+
 </div>
 </div>
 </section> 

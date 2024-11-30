@@ -602,6 +602,7 @@ const unfollowUser = async(req, res) => {
 }
 const getAllUsers = async (req, res) => {
     const { page, limit} = req.query;
+    console.log(page, limit)
     try{
         const skip = (page - 1) * limit;
     const gotUsers = await User.find().skip(skip).limit(limit).exec();
@@ -612,7 +613,7 @@ const getAllUsers = async (req, res) => {
     const usersToBeSent = gotUsers.map((user) => {
         return _.omit(user.toObject(), "refreshToken")
     })
-    res.status(200).json({ users : usersToBeSent, count : userCount})
+        res.status(200).json({ users : usersToBeSent, count : userCount})     
     }
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")

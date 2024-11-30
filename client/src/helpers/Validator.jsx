@@ -15,7 +15,7 @@ schema
 .is().max(100)                                  // Maximum length 100
 .has().uppercase()                              // Must have uppercase letters
 .has().lowercase()                              // Must have lowercase letters
-.has().digits(2)                                // Must have at least 2 digits
+.has().digits(1)                                // Must have at least 2 digits
 .has().not().spaces() 
 .has().symbols(1)                           // Should not have spaces
 .is().not().oneOf(['Passw0rd', 'Password123']);
@@ -27,7 +27,7 @@ schema
         return "Invalid Password"
       }
       else if(!isValid){
-        return "Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits"
+        return "Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 1 digits"
       }
       else if(password.length < 4){
         return "Passwords Must Be Four Characters Long"
@@ -40,7 +40,7 @@ return "Password Must Contain Special Characters"
     }
 }
 export const mobileValidate = (mobile) => {
-const mobileRegex = /^(0|\+234)(7|8)(0|1)\d{8}$/;
+const mobileRegex = /^(0|\+234)(7|8|9)(0|1)\d{8}$/;
 const isMobileValid = mobileRegex.test(mobile)
 return isMobileValid
 }
