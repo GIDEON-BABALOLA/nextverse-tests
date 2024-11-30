@@ -8,7 +8,6 @@ import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
 import NoContent from "../components/common/NoContent.jsx"
 import { useEffect, useState, useRef} from "react"
 import useWindowSize from "../hooks/useWindowSize"
-import RotationLoader from "../components/Loaders/RotationLoader.jsx"
 import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import { useModalContext } from "../hooks/useModalContext"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
@@ -23,6 +22,7 @@ import { isVisibleInViewport } from "../helpers/isVisibleInViewPort.jsx"
 const ExplorePage = () => {
   const { width } = useWindowSize()
   const lastItemRef= useRef();
+  const loadingRef = useRef(null);
   const [tabs, setTab] = useState({
     all : true,
     technology : false,
@@ -34,9 +34,11 @@ const ExplorePage = () => {
   })
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(3);
+  const [emptyData, setEmptyData] = useState(false)
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
   const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [categoryChanged, setCategoryChanged] = useState(null)
   const { getExploreStories, isLoading, error, data,  storyCount } = useGetExploreStories()
   const {
@@ -48,13 +50,11 @@ const ExplorePage = () => {
  closeContextMenu
 } = useModalContext()
 useEffect(() => {
+  setEmptyData(false)
   const skip = (page - 1) * limit;
   if (skip >= storyCount && storyCount > 0) {
     const randomPage = generateRandomPage(page)
     setPage(randomPage);
-    // const sentPage = page
-    // const randomPage = Math.floor(Math.random() * (sentPage - 1)) + 1
-    // setPage(randomPage);
     return;
   }
   getExploreStories(page, limit, category);
@@ -66,7 +66,8 @@ useEffect(() => {
 
 useEffect(() => {
 if(data.length > 0){
-  // console.log(data.length)
+  console.log(data)
+  setEmptyData(false)
   const newStories = data.map((story) => {
     return {...story, loading : false}
   })
@@ -76,6 +77,13 @@ setStories((prev) => {
 }
 
 }, [data])
+useEffect(() => {
+  if(!isLoading){
+    if(data.length == 0){
+      setEmptyData(true)
+    }
+  }
+      }, [data, isLoading])
 const handleCategoryChange = () => {
 let selectedCategory;
  selectedCategory = Object.keys(tabs).find(key => tabs[key]);
@@ -121,14 +129,36 @@ handleCategoryChange()
     }
   };
 }, [lastItemRef, isLoading, data, categoryChanged]);
-
 useEffect(() => {
-  console.log(error)
-}, [error])
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    console.log(loadingRef)
+    // If the user is trying to scroll down, prevent the scroll
+    if(isLoading){
+      if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current, 0.1)) {
+        console.log("Scroll back up")
+        window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
+      } else {
+        // Update the last scroll position if scrolling up
+        setLastScrollY(currentScrollY);
+      }
+    }
+
+  };
+
+  // Add the scroll event listener
+  window.addEventListener("scroll", handleScroll);
+
+  // Clean up the event listener on component unmount
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, [lastScrollY, isLoading]);
+// Only re-run the effect when lastScrollY changes
 useEffect(() => {
 if(width < 768){
   setLimit(2)
-  setLoading([{}])
+  setLoading([{}, {}])
 }
 else if(width < 767){
   setLimit(1)
@@ -139,34 +169,6 @@ else{
   setLoading([{}, {}, {}])
 }
 }, [width])
-
-const loadingRef = useRef(null);
-
-const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-    
-      // If the user is trying to scroll down, prevent the scroll
-      if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current)) {
-        window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
-      } else {
-        // Update the last scroll position if scrolling up
-        setLastScrollY(currentScrollY);
-      }
-    };
-
-    // Add the scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]); // Only re-run the effect when lastScrollY changes
-
-
 const resendRequest = () => {
     getExploreStories(1, limit, category)
 }
@@ -198,7 +200,11 @@ const resendRequest = () => {
      <Tab tabs={tabs} setTab={setTab} labelWidth={165} />
     
      </div>
-     <>
+    { emptyData ? 
+      emptyData && <NoContent
+      message={"No Explore Stories To Display"}
+       />
+    : <>
 {
 
 !error &&  
@@ -295,6 +301,7 @@ fireClick = {resendRequest}
 
      
      </>
+    }
 
    </div>
 

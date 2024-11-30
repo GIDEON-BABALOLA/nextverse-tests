@@ -23,3 +23,28 @@
 20241123	18:47:01	7e199835-944b-4848-a5ef-9d924295b639	ReferenceError: Cow is not defined
 20241123	18:47:38	99ca0463-8e68-45d5-96af-be1ac9edb0bd	ReferenceError: Cow is not defined
 20241123	19:03:19	10b08fb6-a658-4407-9687-12bc6745bed5	userError: You Cannot Get Popular Stories From This Category nonfiction
+20241129	18:48:37	9b1d6c1d-f086-433f-af45-c9c3540f5894	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:37	6f4a8918-a916-4618-81d7-823cb15c9dd2	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:37	948548f6-2df4-4041-b2f7-25972af535cf	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:37	6b28ab6e-903c-4417-b470-fcbc083ccff4	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:47	6bc35b25-a87e-4a16-a28a-13c190c0db56	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:47	c81ecc94-d936-4aba-9a89-e023ea84b44b	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:47	8884c4f4-3ec8-45cc-8c09-67a015db0fb6	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:47	d56c7a38-7c50-4dd4-805b-d4f8ecc1b766	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:49	ac522e91-7ee6-44d9-bce1-639c5f920b33	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:48:49	85f90465-c889-4491-8a1f-70af5bdec978	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:49:07	3623488c-d221-480a-b481-c2a1b3a5c55f	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:49:07	8771eec4-63c1-40d8-8448-b29cde53135b	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:49:35	ae25e9e7-bf68-4561-a37a-c8570da9e0e3	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:49:35	abfd1b63-ad33-40be-a449-5d7a023a032a	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:50:07	b0e61bab-ee5d-4190-b487-c4ac7f088cb6	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:50:08	f0d75eb8-1475-429f-8683-b7c3829a10ea	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:50:13	80c14f9d-73c2-4c35-beee-c1b00655c28c	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:50:14	47493d6f-632f-4de0-a69f-c7759e46d6bf	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:50:20	b4fa2bda-d4e5-45eb-b60c-13ab32e565df	userError: You Cannot Get Popular Stories From This Category all
+20241129	18:50:21	7d27df0c-4220-4fd0-a6a1-af19049a35da	userError: You Cannot Get Popular Stories From This Category all
+20241129	19:52:33	2cc474bc-525c-4d2a-973a-19368e9355fa	userError: You Cannot Get Popular Stories From This Category nonfiction
+20241129	19:52:34	7fd244f9-2558-4cb9-90d4-97502c8523bb	userError: You Cannot Get Popular Stories From This Category nonfiction
+20241129	19:52:35	40f20d05-d243-43bc-85f6-c2ba3f7c87fc	userError: You Cannot Get Popular Stories From This Category nonfiction
+20241129	19:52:35	9c44094a-cf80-41d7-bf2e-e6f9c45338a3	userError: You Cannot Get Popular Stories From This Category nonfiction
+20241129	19:52:46	e32ae561-1883-4584-bf38-df23bc0a51c2	userError: You Cannot Get Popular Stories From This Category nonfiction

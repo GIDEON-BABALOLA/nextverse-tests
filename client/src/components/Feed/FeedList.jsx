@@ -8,13 +8,16 @@ import { useRef, useEffect, useState } from "react"
 import { MdReadMore } from "react-icons/md"
 import { useModalContext } from "../../hooks/useModalContext"
 import { usePopulateFeed } from "../../hooks/usePopulateFeed"
+import NoContent from "../common/NoContent"
 import { generateRandomPage } from "../../helpers/generateRandomPage"
 import { isVisibleInViewport } from "../../helpers/isVisibleInViewPort"
 import useWindowSize from "../../hooks/useWindowSize"
 const FeedList = ({ view, feedCategory}) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4);
+  const [emptyData, setEmptyData] = useState(false)
   const [feedStories, setFeedStories] = useState([])
+  const [lastScrollY, setLastScrollY] = useState(0);
   const { width } = useWindowSize();
   const [categoryChanged, setCategoryChanged] = useState(null);
   const { contextMenu, setContextMenu, shareRef,  shareModal, fireClick } = useModalContext();
@@ -23,24 +26,8 @@ const FeedList = ({ view, feedCategory}) => {
   const lastItemRef = useRef();
   const loadingRef = useRef(null);
   useEffect(() => {
-    setPage(1); // Reset to the first page when the category changes
-    setFeedStories([]); // Clear current stories to avoid mixing old and new category data
-  }, [feedCategory]);
-  useEffect(() => {
-    if(data.length > 0){
-      // console.log(data.length)
-      const newStories = data.map((story) => {
-        return {...story, loading : false}
-      })
-    setFeedStories((prev) => {
-      return [...prev, ...newStories]
-    })
-    }
-    
-    }, [data])
-  useEffect(() => {
+    setEmptyData(false)
     const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
-    console.log(category)
     const skip = (page - 1) * limit;
     if (skip >= storyCount && storyCount > 0) {
       const randomPage = generateRandomPage(page)
@@ -48,9 +35,56 @@ const FeedList = ({ view, feedCategory}) => {
       return;
     }
     populateFeed(page, limit, category);
-  }, [page,  limit]);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  }, [page, feedCategory,limit]);
+  useEffect(() => {
+    setPage(1); // Reset to the first page when the category changes
+    setFeedStories([]); // Clear current stories to avoid mixing old and new category data
+  }, [feedCategory]);
+  useEffect(() => {
+    if(data.length > 0){
+      setEmptyData(false)
+      const newStories = data.map((story) => {
+        return {...story, loading : false}
+      })
+    setFeedStories((prev) => {
+      return [...prev, ...newStories]
+    })
+    }  
+    }, [data])
 
+    useEffect(() => {
+if(!isLoading){
+  if(data.length == 0){
+    setEmptyData(true)
+  }
+}
+    }, [data, isLoading])
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isLoading) {
+            console.log("Observed last item, loading new page...");
+            if(!categoryChanged){
+              setPage((prevPage) => prevPage + 1);
+            }else{
+                setCategoryChanged(false)
+            }
+            observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
+          }
+        },
+        { threshold: 0.1 } // Adjust threshold as needed
+      );
+    
+      if (lastItemRef.current && !isLoading) {
+        observer.observe(lastItemRef.current);
+      }
+    
+      return () => {
+        if (lastItemRef.current) {
+          observer.unobserve(lastItemRef.current);
+        }
+      };
+    }, [lastItemRef, isLoading, data, categoryChanged]);
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -75,33 +109,8 @@ const FeedList = ({ view, feedCategory}) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY, isLoading]); // Only re-run the effect when lastScrollY changes
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isLoading) {
-          console.log("Observed last item, loading new page...");
-          if(!categoryChanged){
-            setPage((prevPage) => prevPage + 1);
-          }else{
-              setCategoryChanged(false)
-          }
-          observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
-        }
-      },
-      { threshold: 0.1 } // Adjust threshold as needed
-    );
-  
-    if (lastItemRef.current && !isLoading) {
-      observer.observe(lastItemRef.current);
-    }
-  
-    return () => {
-      if (lastItemRef.current) {
-        observer.unobserve(lastItemRef.current);
-      }
-    };
-  }, [lastItemRef, isLoading, data, categoryChanged]);
+  }, [lastScrollY, isLoading]);
+  // Only re-run the effect when lastScrollY changes
   useEffect(() => {
     if(width < 768){
       setLimit(4)
@@ -121,19 +130,31 @@ const resendRequest = () => {
   populateFeed(1, limit, category)
 }
   return (
-
     <>
-   {
-    !error &&  
-    <section>
-      <> 
-      <div className={`${view.grid ? "feed-grid" : "feed-list-view"}`}>
+    {
+emptyData ? 
+<div style={{padding : "70px 0px"}}>
+<NoContent
+message={"Empty Feed"}
+ />
+</div>
+
+ :
+    
+    <div>
+    {
+
+    
+!error &&  
+<section>
+  <> 
+  <div className={`${view.grid ? "feed-grid" : "feed-list-view"}`}>
 {feedStories.map((content, index) => (
-   
- <FeedCard story={content}
- isLoading={false}
- fireClick={fireClick}
-  key={index} view={`${view.grid ? "grid" : "list"}`}/>
+
+<FeedCard story={content}
+isLoading={false}
+fireClick={fireClick}
+key={index} view={`${view.grid ? "grid" : "list"}`}/>
 ))
 
 }  
@@ -141,26 +162,26 @@ const resendRequest = () => {
 { 
 isLoading &&  feedStories.length !== 0  &&
 loading.map((story, index) => (
-    <FeedLoadingCard
-    ref={loadingRef}
-    isLoading={true}
-    view={`${view.grid ? "grid" : "list"}`}
-    shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
-  ))
+<FeedLoadingCard
+ref={loadingRef}
+isLoading={true}
+view={`${view.grid ? "grid" : "list"}`}
+shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
+))
 }
-       </div>
-      <div ref={lastItemRef}>
-      </div>
-      </>
-    </section>
-    }
-    {error && 
-    
-    <div style={{paddingBottom : "100px"}}>
+   </div>
+  <div ref={lastItemRef}>
+  </div>
+  </>
+</section>
+}
+{error && 
+
+<div style={{paddingBottom : "100px"}}>
 
 
 { error?.code == "ERR_NETWORK" ? 
-  <ErrorMessage title={"Check Your Internet Connection"} 
+<ErrorMessage title={"Check Your Internet Connection"} 
 message={"We are unable to load this content, check your connection"}
 height={60}
 type={error.code}
@@ -188,40 +209,43 @@ fireClick = {resendRequest}
 }
 
 {
-  feedStories.length === 0 && 
-   <div>
-   <div style={{
-    display : "flex",
-    flexDirection : "row",
-    padding : "200px 0px",
-    justifyContent : "space-around",
-    alignItems : "space-around",
-    
-    height : "100vh"}}>
-   <span className="still-no-stories-loader"></span>
-   </div>
+feedStories.length === 0 && 
+<div>
+<div style={{
+display : "flex",
+flexDirection : "row",
+padding : "200px 0px",
+justifyContent : "space-around",
+alignItems : "space-around",
+
+height : "100vh"}}>
+<span className="still-no-stories-loader"></span>
+</div>
 
 
-  </div> 
+</div> 
 
 }
-    <Share  share={shareRef} shareModal={shareModal}/>
+<Share  share={shareRef} shareModal={shareModal}/>
 <ContextMenu
-  state={"feed"}
-  contextMenu={contextMenu}
-  shareModal={shareModal}
-             setContextMenu={setContextMenu}
-             contextMenuData={[
-             {id : 1, icon : <FaShareAlt />
-             , label : "Share"},
-             {id : 2, icon : <FaBookmark />
-             , label : "Bookmark"},
-       
-             {id : 4, icon : <FaRegThumbsUp />
-             , label : "Like Story"},
-             {id : 5, icon : <MdReadMore />
-              , label : "Read More"}
+state={"feed"}
+contextMenu={contextMenu}
+shareModal={shareModal}
+         setContextMenu={setContextMenu}
+         contextMenuData={[
+         {id : 1, icon : <FaShareAlt />
+         , label : "Share"},
+         {id : 2, icon : <FaBookmark />
+         , label : "Bookmark"},
+   
+         {id : 4, icon : <FaRegThumbsUp />
+         , label : "Like Story"},
+         {id : 5, icon : <MdReadMore />
+          , label : "Read More"}
 ]} />
+    </div>
+    }
+
     </>
   )
 }

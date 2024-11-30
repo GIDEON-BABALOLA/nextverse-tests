@@ -1,9 +1,16 @@
 import FeedAvatar from "./FeedAvatar"
 import { useState, useEffect } from "react"
 import useImageLoad from "../../hooks/useImageLoaded"
-const TrendingCard = ({ trending }) => {
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { getMonthNumber } from "../../helpers/getMonthNumber";
+const TrendingCard = ({ trending, isLoading }) => {
     const [pictureLoading, setPictureLoading] = useState(true)
-    const { loaded, error } = useImageLoad(trending.image);
+    let storyPicture = ""
+    if(isLoading === false){
+      storyPicture = trending.picture
+    }
+  
+    const { loaded, error } = useImageLoad(storyPicture);
     useEffect(() => {
         if (error) {
             setPictureLoading(true)
@@ -13,40 +20,71 @@ const TrendingCard = ({ trending }) => {
         if (loaded === true) {
         setPictureLoading(false)
         }
-      }, [loaded, error])
+      }, [loaded, error, trending.picture])
   return (
-    <div className="feed-trendy-story">
+    <>
+      {
+        isLoading ? <div style={{display :"flex", flexDirection : "row", alignItems : "center",
+        justifyContent : "space-between", padding : "10px 0px"
+        }}>
+        <div className="">
+        <div style={{display : "flex", flexDirection : "column", gap : "5px"}}>
+        <div className="feed-loaders feed-loaders-trending-title"></div>
+        <div className="feed-loaders feed-loaders-trending-title"></div>
+        <div className="feed-loaders feed-loaders-trending-continuation"></div>
+        </div>
+     
+        </div>
+        <div className="feed-loaders feed-loaders-trending-picture">
+
+        </div>
+        </div>
+        : 
+        <div className="feed-trendy-story">
                
-    <div>
-    <section style={{display : "flex", flexDirection : "row", alignItems : "center", marginBottom  :"5px", gap : "3px"}}>
-       <div>
+               <div>
+               <section style={{display : "flex", flexDirection : "row", alignItems : "center", marginBottom  :"5px", gap : "3px"}}>
+                  <div>
+           
+                   <FeedAvatar
+           image={trending.avatar}
+           alt="Author"
+           className="feed-profile-images-trending" 
+           />
+           </div> 
+               <div><b>Trending in {trending.category}</b> <span style={{color : ""}}> - &nbsp;
+<span>
+{  
+  formatDistanceToNow(new Date(2024, getMonthNumber(`${trending.date.month.toLowerCase()}`),
+   trending.date.day), { addSuffix: true })
+   .split(" ").slice(1).join(" ")
+   }</span>
+               {/* {trending.date} */}
+               
+               </span></div>
+               </section>
+                   <div>
+                   <b>{trending.title}</b></div>
+                   <p>{trending.content.slice(0, 60)}...</p>
+               </div>
+           
+               
+           {
+             pictureLoading ? 
+           <div className="feed-loaders feed-loaders-trending-picture">
+           </div> 
+           :
+             <img
+           src={storyPicture}
+           className="story-picture-trending"
+           >
+           
+           </img>
+           }
+           </div>
+      }
+    </>
 
-        <FeedAvatar
-image={trending.avatar}
-alt="Author"
-className="feed-profile-images-trending" 
-/>
-</div> 
-    <div><b>Trending in {trending.category}</b> <span style={{color : ""}}>- {trending.date}</span></div>
-    </section>
-        <div>
-        <b>{trending.title}</b></div>
-    </div>
-
-    
-{
-  pictureLoading ? 
-<div className="feed-loaders feed-loaders-trending-picture">
-</div> 
-:
-  <img
-src={trending.image}
-className="story-picture-trending"
->
-
-</img>
-}
-</div>
   )
 }
 

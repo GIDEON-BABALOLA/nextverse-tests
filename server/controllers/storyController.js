@@ -256,10 +256,10 @@ query = query.select("-__v")
 }
 //Pagination, for different pages
 const page = req.query.page;
-const limit = req.query.limit
-console.log(page, limit)
-const skip = (page - 1) * limit
-query = query.skip(skip).limit(limit)
+const limit = req.query.limit;
+console.log(page, limit);
+const skip = (page - 1) * limit;
+query = query.skip(skip).limit(limit);
 let storyCount;
 if(req.query.page){
     if(req.query.category){
@@ -267,18 +267,13 @@ if(req.query.page){
     }else{
         storyCount = await Story.countDocuments();
     }
-
     console.log(skip, storyCount)
-    
     if(skip >= storyCount){
         throw new userError( "This page does not exist", 404)
     }
 }
 const allStories = await query
     res.status(200).json({stories : allStories, count : storyCount})     
-         
-
-
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
@@ -293,16 +288,25 @@ const allStories = await query
 const getPopularStories = async (req, res) => {
     const { category, number } = req.params;
     const defaultCategory = [
-        "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
+        "fiction", "all", "non-fiction", "romance", "adventure", "memoir", "technology"    
        ]
 try{
     const isValidCategory = defaultCategory.includes(category)
     if(!isValidCategory){
         throw new userError(`You Cannot Get Popular Stories From This Category ${category}`, 400)
     }
-    const foundStories = await Story.find({ category : category})
+    let foundStories;
+    if(category == "all"){
+        foundStories = await Story.find();
+    }
+    else{
+        foundStories = await Story.find({ category : category})
+    }
+
     const mostPopularStories = rankStories(foundStories, number)
-        res.status(200).json(mostPopularStories)    
+        res.status(200).json(mostPopularStories)         
+
+   
           
               
 

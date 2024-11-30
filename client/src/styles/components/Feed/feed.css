@@ -262,10 +262,11 @@
     align-items: center;
     margin-bottom: 15px;
     margin-top: 10px;
+    justify-content: space-between;
 }
 .feed-trendy-story .story-picture-trending {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 5px;
     margin-right: 10px;
     object-fit: cover;
@@ -327,6 +328,12 @@
     border-radius: 50%;
     margin-right: 10px;
 }
+.feed-profile-images-following{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 .galacticus{
     box-shadow: #0000001A 0px 2px 5px 0px;
     display: none;
@@ -382,11 +389,32 @@
     border-radius: 50%; 
    }
    .feed-loaders-trending-picture{
-    width: 45px;
-    height: 40px;
+    width: 60px;
+    height: 46px;
     border-radius: 5px;
     margin-right: 10px;
     object-fit: cover;
+}
+.feed-loaders-trending-title{
+    width: 40vh;
+    height: 9px;
+}
+.feed-loaders-trending-continuation{
+    width: 35vh;
+    height: 9px;
+}
+.feed-loaders-follow-text{
+    width: 10vw;
+    height: 10px;
+}
+.feed-loaders-follow-subtext{
+    width: 10vw;
+    height: 10px;
+}
+.feed-loaders-follow-button{
+    width: 4vw;
+    height: 4vh;
+    border-radius: 5px;
 }
    .feed-left-sidebar-avatar{
     width: 10%;
