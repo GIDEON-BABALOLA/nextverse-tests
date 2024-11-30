@@ -14,7 +14,6 @@ const FollowList = () => {
     const [limit, setLimit] = useState(6);
     const [loadingState, setLoadingState] = useState([{}, {}, {}, {}, {}, {}])
     const [emptyData, setEmptyData] = useState(false)
-    const [firstRequest, setFirstRequest] = useState(false)
     const [usersToFollow, setUsersToFollow] = useState([])
     const [lastScrollY, setLastScrollY] = useState(0);
     const {getUsersToFollow, isLoading, error, data, userCount} = useFollowSuggestion();
@@ -26,11 +25,6 @@ const FollowList = () => {
         setPage(randomPage);
         return;
       }
-      if(firstRequest && page == 1){
-
-      return
-      }
-      setFirstRequest(true)
 getUsersToFollow(page, limit)
     }, [page, limit])
     useEffect(() => {
