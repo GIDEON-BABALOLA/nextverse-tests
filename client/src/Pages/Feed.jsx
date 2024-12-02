@@ -52,7 +52,6 @@ const FeedPage = () => {
                 })
             break;
             case undefined :
-            console.log("Ddd") 
             setView({
                 list : !view.list,
                 grid : !view.grid

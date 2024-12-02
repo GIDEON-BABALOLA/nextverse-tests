@@ -14,7 +14,6 @@ const TrendingCard = ({ trending, isLoading }) => {
     useEffect(() => {
         if (error) {
             setPictureLoading(true)
-          console.log("failed to load images")
         }
       
         if (loaded === true) {

@@ -1,16 +1,11 @@
-import { BiConversation } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 const ChatToggler = ({toggleChatBot, setToggleChatBot}) => {
   const currentPage = useParams();
   const currentUrl = currentPage["*"]
     const openChatBot = () => {
 setToggleChatBot(!toggleChatBot)
     }
-    useEffect(() => {
-console.log(currentUrl.startsWith("dashboard"))
-    }, [currentUrl])
   return (
     <>
     <button className="litenotechatbot-chatbot-toggler" 

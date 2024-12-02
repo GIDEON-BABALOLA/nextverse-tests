@@ -33,7 +33,6 @@ if(width < 768){
   }, [isOpen])
   const currentPage = useParams();
   const navSidebarRef = useRef()
-  // console.log(linkRef.current.innerText)
   const currentUrl = currentPage["*"]
   const {width, height} = useWindowSize()
   const [contextMenu, setContextMenu] = useState()
@@ -46,7 +45,6 @@ if(width < 768){
   } 
 
   const showNavSidebar = () => {
-    console.log(isOpen)
     navSidebarRef.current.classList.remove("litenote-nav-sidebar-aside-close")
     navSidebarRef.current.style.display='block';
     if(width < 768){
@@ -62,15 +60,12 @@ if(width < 768){
   const handleTouchStart = (event) => {
      startX = event.touches[0].clientX;
      startY = event.touches[0].clientY;
- console.log("start")
    }
  const handleTouchEnd = (event) => {
      endX = event.changedTouches[0].clientX;
      endY = event.changedTouches[0].clientY;
      const deltaX = endX - startX;
      const deltaY = endY - startY;
-     console.log(deltaY)
- 
      if (Math.abs(deltaX) > minSwipeDistance) {
        if (deltaX > 0) {
         return
@@ -106,23 +101,7 @@ contextMenu.current.style.visibility = "visible"
     const maxLeftValue = width - contextMenu.current.offsetWidth; 
     contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
     contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
-      };
-      useEffect(() => {
-
-        // if (contextMenu) {
-        //   window.addEventListener('scroll', () => {
-        //     contextMenu.current.style.visibility = "hidden";
-        //   });
-        // }
-    console.log(contextMenu)
-        // return () => {
-        //   if (contextMenu) {
-        //     window.removeEventListener('scroll', () => {
-        //       contextMenu.current.style.visibility = "hidden";
-        //     });
-        //   }
-        // };
-      }, [contextMenu]);
+      }
   return (
 <>
 <Toast />

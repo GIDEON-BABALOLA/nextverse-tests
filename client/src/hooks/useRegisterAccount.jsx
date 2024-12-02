@@ -15,7 +15,6 @@ export const useRegisterAccount = () => {
     const [data, setData] = useState([])
     // const { dispatch } = useAuthContext()
     const registerAccount = async (email, password, mobile, username, captchaValue) => {
-        console.log(username)
         const trueEmail = emailValidate(email)
         const truePassword = passwordValidate(password)
         const trueMobile = mobileValidate(mobile)
@@ -53,8 +52,6 @@ const response = await axiosConfig.post("/user/register-user", {
 }
 )
 if(response && response.data){
-    // dispatch({type : "LOGIN", payload : response.data})
-    console.log(response.data)
     setData(response.data)
     setStatusCode(response.status)
     setError(null)

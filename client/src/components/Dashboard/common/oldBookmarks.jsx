@@ -63,12 +63,7 @@ const stories = [
       category: 'Non-Fiction',
         date : "April 3, 2022"
     }
-  ];
-  const showSettings = () => {
-  
-    
-  
-  }
+  ]
   return (
     <>
 

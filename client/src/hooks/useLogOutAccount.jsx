@@ -25,7 +25,6 @@ if(response && response.status){
         }
         
         catch(error){
-            console.log(error)
 setIsLoading(false)
             if(error.message == "canceled"){
 setError("Your Request Has Timed Out")

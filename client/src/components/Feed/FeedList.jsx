@@ -63,7 +63,6 @@ if(!isLoading){
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting && !isLoading) {
-            console.log("Observed last item, loading new page...");
             if(!categoryChanged){
               setPage((prevPage) => prevPage + 1);
             }else{
@@ -88,11 +87,8 @@ if(!isLoading){
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      console.log(loadingRef)
-      // If the user is trying to scroll down, prevent the scroll
       if(isLoading){
         if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current, 0.8)) {
-          console.log("Scroll back up")
           window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
         } else {
           // Update the last scroll position if scrolling up
@@ -126,7 +122,10 @@ if(!isLoading){
     }
     }, [width])
 const resendRequest = () => {
+  setEmptyData(false)
+  console.log(feedCategory)
   const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
+  console.log(category)
   populateFeed(1, limit, category)
 }
   return (
@@ -138,6 +137,7 @@ emptyData ?
 <div style={{padding : "70px 0px", height : "100vh"}}>
 <NoContent
 message={"Empty Feed"}
+fireClick={() => resendRequest()}
  />
 </div>
 

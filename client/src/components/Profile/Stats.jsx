@@ -2,7 +2,6 @@ import Counter from "./Counter"
 import { useProfileContext } from "../../hooks/useProfileContext";
 const Stats = ({ isLoading }) => {
   const  { profile } = useProfileContext()
-  console.log(profile)
   return (
     <>
     { isLoading ?

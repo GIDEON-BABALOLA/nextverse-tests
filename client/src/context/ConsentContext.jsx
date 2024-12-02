@@ -43,10 +43,8 @@ else{
 }
 }
         const displayCookieConsent = () => {
-            console.log("pig")
             if(checkCookie("cookie-consent")) return
             showCookieConsent(true)
-            console.log("piglet")
             setTimeout(() => {
                 gsap.to(cookieConsentWrapper.current, {
                     y: 1,

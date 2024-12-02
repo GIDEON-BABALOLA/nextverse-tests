@@ -18,8 +18,6 @@ const NoteReaderPage = () => {
   const { contextMenu } = useModalContext()
   const noteModal = useRef()
   const closeNoteModal  = (e) => {
-    console.log(openModal)
-    console.log(e.target)
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"){
       return;
     }
@@ -92,7 +90,6 @@ const NoteReaderPage = () => {
     }
     restoreSelection();
     document.execCommand(command, false, value);
-    console.log("I am also here")
     contextMenu.current.style.visibility = "hidden";
     if(command !== "backColor"){
       setSavedSelection(null)   
@@ -125,9 +122,6 @@ const NoteReaderPage = () => {
             return;
           }
           setAttachmentLine(e.target.offsetLeft - 20)
-          }
-          const submitNote = () => {
-console.log(noteContent.current)
           }
   return (
     <>

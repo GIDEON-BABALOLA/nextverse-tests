@@ -3,6 +3,7 @@ const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEven
 const fs = require('fs');
 const bcrypt = require("bcrypt")
 const crypto = require("crypto")
+const mongoose = require("mongoose")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
@@ -10,6 +11,7 @@ const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const { cloudinaryError, validatorError, emailError } = require("../utils/customError");
+const { count } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -557,8 +559,6 @@ const followUser = async (req, res) => {
                 return  res.status(201).json(user)                                
         }
             res.status(200).json(userToBeFollowed)            
-
-
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "followUserError.txt", "userError")
         if(error instanceof userError){
@@ -594,18 +594,29 @@ const unfollowUser = async(req, res) => {
     }
 }
 const getAllUsers = async (req, res) => {
-    const { page, limit} = req.query;
-    console.log(page, limit)
-    console.log(req.user.following)
+    const { page, limit } = req.query;
     try{
         const skip = (page - 1) * limit;
-    const gotUsers = await User.find().skip(skip).limit(limit).exec();
+    // const gotUsers = await User.find().skip(skip).limit(limit).exec();
+    const gotUsers = await User.find();
     if(!gotUsers){
         throw new userError("No User Has Been Registered For Your Application", 204)
     }
+    let alreadyFollowedId = [];
     const userCount = await User.countDocuments();
-    const usersToBeSent = gotUsers.map((user) => {
-        return _.omit(user.toObject(), "refreshToken")
+    req.user.following.map((user) => {
+        alreadyFollowedId.push(user.follows)
+    })
+    // const newUsersToFollow = gotUsers.filter((user) => !alreadyFollowedId.includes(user._id.toString()))
+    const newUsersToFollow = await User.find({
+        _id: { $nin: alreadyFollowedId },
+    })
+        .skip(skip)
+        .limit(limit)
+        .lean(); // Use lean if you want plain JavaScript objects    
+        console.log(newUsersToFollow.length)
+    const usersToBeSent = newUsersToFollow.map((user) => {
+        return _.pick(user, "email", "username", "picture")
     })
         res.status(200).json({ users : usersToBeSent, count : userCount})         
     

@@ -23,8 +23,6 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu,
 
         switch (e.target.innerText) {
             case "Share":
-                console.log("pops")
-                console.log(shareModal)
                      shareModal.current.showModal()
                      shareModal.current.classList.add("slide-dow")
                 break;
@@ -46,10 +44,7 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu,
                 navigate("/dashboard/analytics")
                 break;
                 case "Close":
-                    console.log("dave")
-                    console.log( contextMenu.current.style.visibility )
                     contextMenu.current.style.visibility = "hidden"
-                    console.log("why")
                 break;
         
             default:

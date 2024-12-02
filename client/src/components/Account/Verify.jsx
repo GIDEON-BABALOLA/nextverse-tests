@@ -42,7 +42,6 @@ showToast("Error", error, false)
 
   const handleInputChange = (index, value) => {
     const newOtpValues = [...otpValues];
-    console.log(typeof String(value))
     if(String(value).length !== 2){
 
     newOtpValues[index] = value;
@@ -91,7 +90,6 @@ showToast("Error", error, false)
 const handleVerification = (e) => {
   e.preventDefault();
   const otp = parseInt(otpValues.join(""))
-console.log(otp.toString().split(""))
   if(otp.toString().split("").length !== 4 ){
     showToast("Error", "Please Enter The Complete OTP", false)
     return

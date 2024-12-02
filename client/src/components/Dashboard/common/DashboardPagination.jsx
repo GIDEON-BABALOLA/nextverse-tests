@@ -8,7 +8,6 @@ const DashboardPagination = () => {
   const [next, disableNext] =  useState(false);
   const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3, 4, 5])
   const activeLink = (value) => { 
-    console.log(value)
     setCurrentValue(value)
    }
    const backBtn = () => {
@@ -19,7 +18,6 @@ const DashboardPagination = () => {
        setCurrentValue(currentValue - 1);
      }
       if(currentValue == paginationNumbers[0]){
-       console.log("letsgo")
        const firstNumber = paginationNumbers[paginationNumbers.length - paginationNumbers.length];
  const news = [firstNumber - 1, ...paginationNumbers.slice(0, 4)]
        // Update state

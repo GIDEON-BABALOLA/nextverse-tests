@@ -15,13 +15,11 @@ const Home = () => {
   const { colorMode } = useThemeContext()
 const page = useRef()
 useEffect(() => {
-  console.log(colorMode)
   if(colorMode == ""){
     document.body.classList.remove("dark-theme-variables")
   }
 switch (colorMode) {
 case "dark-mode":
-  console.log("lego")
   document.body.classList.remove("dark-theme-variables")
   break;
   case "light-mode":
@@ -48,6 +46,7 @@ case "dark-mode":
 <ChatBot />
 <Faq />
 <Testimonial />
+{/* <TrustedBy /> */}
     </main>
     </>
   )

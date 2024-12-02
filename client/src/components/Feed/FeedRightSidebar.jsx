@@ -1,5 +1,5 @@
 import { FaSearch, FaTimes } from "react-icons/fa"
-import { Link } from "react-router-dom"
+
 import FeedTrendingStories from "./FeedTrendingStories"
 import FeedTopics from "./FeedTopics"
 import FollowSuggestion from "./FollowSuggestion"

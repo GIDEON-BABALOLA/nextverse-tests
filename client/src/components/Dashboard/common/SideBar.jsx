@@ -32,7 +32,6 @@ const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
   }
     }, [colorMode])
    const currentPage = useParams();
-   // console.log(linkRef.current.innerText)
    const currentUrl = Object.values(currentPage)[0].split("/")[1]
    const closeSidebar = () => {
 sidebarRef.current.classList.add("litenote-sidebar-aside-close")
@@ -43,18 +42,15 @@ sidebarRef.current.style.display = "block";
    const handleTouchStart = (event) => {
       startX = event.touches[0].clientX;
       startY = event.touches[0].clientY;
-  console.log("start")
     }
   const handleTouchEnd = (event) => {
       endX = event.changedTouches[0].clientX;
       endY = event.changedTouches[0].clientY;
       const deltaX = endX - startX;
       const deltaY = endY - startY;
-      console.log(deltaY)
-  
       if (Math.abs(deltaX) > minSwipeDistance) {
         if (deltaX > 0) {
-         console.log("left")
+         return;
         } else {
     
       closeSidebar()

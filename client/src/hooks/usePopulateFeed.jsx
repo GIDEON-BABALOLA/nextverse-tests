@@ -7,7 +7,6 @@ export const usePopulateFeed = () => {
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
     const populateFeed = async (page, limit, category) => {
-        console.log(category)
         const parameters = {
             page : page,
             limit : limit,
@@ -23,7 +22,6 @@ const response = await axiosConfig.get("/story/get-all-stories", {
     params : parameters
 })
 if(response && response.data){
-    console.log(response.data)
     setData(response.data.stories)
     setStoryCount(response.data.count)
     setStatusCode(response.status)
@@ -36,7 +34,6 @@ if(response && response.data){
         }
         
         catch(error){
-            console.log(error.response.data)
             setStoryCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){

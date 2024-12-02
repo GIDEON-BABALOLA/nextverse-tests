@@ -27,7 +27,6 @@ showToast("Error", error, false)
     }
   }, [error, showToast])
   useEffect(() => {
-console.log(captchaValue)
   }, [captchaValue])
   useEffect(() => {
     if(data.username){
@@ -56,7 +55,6 @@ check ? localStorage.setItem("remember-me", JSON.stringify({email, password})) :
   useEffect(() => {
     const userCredentials = JSON.parse(localStorage.getItem("remember-me"))
     if(userCredentials){
-      console.log(userCredentials)
         setEmail(userCredentials.email)
         setPassword(userCredentials.password)
     }

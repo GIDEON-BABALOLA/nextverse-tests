@@ -11,7 +11,6 @@ const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, 
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
       || Object.values(e.target.classList).includes("special-modal-client")
     ){
-      console.log("caught you")
       return;
     }
           if( e.clientX < parseInt(myShareModal.current.getBoundingClientRect().left) || e.clientX > parseInt(myShareModal.current.getBoundingClientRect().left) + myShareModal.current.getBoundingClientRect().width)

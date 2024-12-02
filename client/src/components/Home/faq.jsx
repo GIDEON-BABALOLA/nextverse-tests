@@ -11,7 +11,6 @@ function Faq(){
 setOpenAccordion(Math.floor((Math.random() * 5)))
   }, [])
   const handleAccordionClick = (index) => {
-    console.log(openAccordion, index);
     if (index !== openAccordion) {
         setOpenAccordion(index);
      } else {

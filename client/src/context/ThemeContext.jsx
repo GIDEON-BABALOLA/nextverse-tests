@@ -24,13 +24,9 @@ switch(action.type){
 }
 
 export const ThemeContextProvider = ({ children }) => {
-    const location = useLocation()
-    
-    const  [ state, dispatch] = useReducer(themeReducer, {
+        const  [ state, dispatch] = useReducer(themeReducer, {
         colorMode : getCookie("color-mode")
     })
-       // Effect to automatically switch to light mode on excluded paths
-    console.log("ThemeContext", state)
     return (
         <ThemeContext.Provider value = {{
             ...state, dispatch

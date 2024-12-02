@@ -5,11 +5,7 @@ import "../../styles/components/Reader/story-sidebar.css"
 import { useModalContext } from "../../hooks/useModalContext"
 import useWindowSize from "../../hooks/useWindowSize"
 import Share from "../common/Share"
-import { MdOutlineBookmark, MdCreate,  MdOutlineFavoriteBorder,
-  MdOutlineBookmarks,
-  MdOutlineShare,
-  MdOutlineCreate
- } from "react-icons/md"
+import { MdOutlineFavoriteBorder} from "react-icons/md"
  import { FaCommentAlt } from "react-icons/fa"
  import ModeToggler from "../common/ModeToggler"
  import { FaRegBookmark } from "react-icons/fa"

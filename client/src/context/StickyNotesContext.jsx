@@ -16,7 +16,6 @@ export const StickyNotesContextProvider = ({ children }) => {
 const  [ state, dispatch] = useReducer(stickyNotesReducer, {
     stickyNotes : JSON.parse(localStorage.getItem("stickyNotes")) || []
 })
-console.log("StickyNotesContext state", state)
 return (
     <StickyNotesContext.Provider value = {{
         ...state, dispatch

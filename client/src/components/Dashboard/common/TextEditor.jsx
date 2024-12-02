@@ -73,7 +73,6 @@ const highlighter = (className, needsRemoval) => {
   className.forEach((button) => {
     if(button){
       button.addEventListener("click", () => {
-        console.log("dav")
         if (needsRemoval) {
             let alreadyActive = false;
          if ( button.classList.contains("active"))  {
@@ -86,8 +85,6 @@ const highlighter = (className, needsRemoval) => {
          }
         }
          else {
-          console.log(button.classList)
-          console.log(button.id)
             button.classList.toggle("active");
         }
             });
@@ -197,8 +194,6 @@ const initializer = () => {
     }
     //main logic
 const modifyText = (command,defaultui, value) => {
-    console.log(command)
-    //execCommand executes command on selected text 
 document.execCommand(command, defaultui, value);
 };
     let  fontList = [

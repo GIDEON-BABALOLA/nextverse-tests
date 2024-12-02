@@ -63,8 +63,6 @@ handleCategoryChange()
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting && !isLoading && hasMore) {
-        setLoadIt(true)
-        console.log("Observed last item, loading new page...");
         setPage((prevPage) => prevPage + 1);
         observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
       }
@@ -82,10 +80,8 @@ handleCategoryChange()
   };
 }, [lastItemRef, isLoading, hasMore]);
 useEffect (() => {
-  console.log("jacob")
   const skip = (page - 1) * limit
   const maximum = ((storyCount / limit) + 1) - 1
-  console.log(skip)
   if(skip >= storyCount){
     setPage(Math.floor((Math.random() * maximum) + 1))
   }
@@ -125,7 +121,6 @@ if(width < 767){
 }
 }, [width])
 useEffect(() => {
-  console.log("where are we")
   setPage(1);
 }, [category, tabs]);
 

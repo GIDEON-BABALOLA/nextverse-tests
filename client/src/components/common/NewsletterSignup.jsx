@@ -79,58 +79,6 @@ if(captchaValue){
 
 }
 }, [captchaValue])
-// const pickAnOption = (e) => {
-//    const option = e.currentTarget.id
-//    console.log(option)
-//    switch (option) {
-//       case "check1":
-//        setNewsLetterOptions((prevState) => {
-//         const { fiction } = prevState;
-//         return {...prevState, fiction : !fiction}
-//        })
-//         break;
-//         case "check2":
-//           setNewsLetterOptions((prevState) => {
-//            const { nonFiction } = prevState;
-//            return {...prevState, nonFiction: !nonFiction}
-//           })
-//            break;
-//            case "check3":
-//             setNewsLetterOptions((prevState) => {
-//              const { adventure } = prevState;
-//              return {...prevState, adventure: !adventure}
-//             })
-            
-//              break;
-//              case "check4":
-//               setNewsLetterOptions((prevState) => {
-//                const { liteNoteUpdates } = prevState;
-//                return {...prevState, liteNoteUpdates: !liteNoteUpdates}
-//               })
-              
-//                break;
-//                case "check5":
-//                 setNewsLetterOptions((prevState) => {
-//                  const { romance } = prevState;
-//                  return {...prevState, romance: !romance}
-//                 })
-                
-//                  break;
-//                  case "check6":
-//                   setNewsLetterOptions((prevState) => {
-//                    const { weeklyUpdates } = prevState;
-//                    return {...prevState, weeklyUpdates: !weeklyUpdates}
-//                   })
-//                    break;
-                  
-                 
-                      
-      
-    
-//       default:
-//         break;
-//     }
-// }
 
 
 

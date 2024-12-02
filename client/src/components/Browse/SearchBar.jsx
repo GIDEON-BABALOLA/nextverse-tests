@@ -15,7 +15,6 @@ const SearchBar = () => {
   const startListening = () => SpeechRecognition.startListening({ continuous: true })
   useEffect(() => {
 if(transcript == ""){
-  console.log("dave")
 toast.error("No Internet")
 }
     setSearchQuery(transcript)
@@ -54,10 +53,8 @@ toast.error("No Internet")
   }
   const getHighlightedText = (text, highlight) => {
 const parts = text.split(new RegExp(`(${highlight})`, "gi"))
-console.log(parts)
 return <span>{
   parts.map((part, index) => {
-    console.log(part)
     return part.toLowerCase() === searchQuery.toLocaleLowerCase() ? (
       <b key={index}>{part}</b>
     ) : (

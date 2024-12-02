@@ -9,7 +9,6 @@ import useWindowSize from "../../../hooks/useWindowSize"
 import NavbarContextMenu from "../../common/NavbarContextMenu"
 import { FaAngleRight } from "react-icons/fa"
 import useInternetMode from "../../../hooks/useInternetMode"
-import { setCookie } from "../../../helpers/CookiesConfiguration"
 import { useThemeContext } from "../../../hooks/useThemeContext"
 const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
   const { colorMode, dispatch } = useThemeContext()
@@ -17,9 +16,7 @@ const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
   const { online } = useInternetMode()
   const themeRef = useRef();
   useEffect(() => {
-    console.log("mercy")
     if(colorMode == undefined || colorMode == ""){
-      console.log("griezman")
       themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
     }
     // }
@@ -59,12 +56,6 @@ switch (colorMode) {
   }
 
   const showLoggedUserOptions = (e) => {
-    console.log("dave")
-    // if(width > 768){
-    //   return
-    // }
-    // updateMenuPosition(e.clientX, e.clientY)
-    // updateMenuPosition(e.clientX, width < 768 ? 45: 29)
     updateMenuPosition(width < 768 ? e.clientX: 1090, width < e.clientY ? 45: 50)
 contextMenu.current.style.visibility = "visible"
 contextMenu.current.classList.add("active")    
@@ -76,28 +67,10 @@ contextMenu.current.classList.add("active")
     contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
       };
   const showSidebar = () => {
-    console.log("dave")
        sidebarRef.current.classList.remove("litenote-sidebar-aside-close")
  sidebarRef.current.style.display='block';
   }
   
-  // useEffect(() => {
-
-  //   if (contextMenu) {
-  //     console.log(contextMenu)
-  //     window.addEventListener('scroll', () => {
-  //       contextMenu.current.style.visibility = "hidden";
-  //     });
-  //   }
-
-  //   return () => {
-  //     if (contextMenu) {
-  //       window.removeEventListener('scroll', () => {
-  //         contextMenu.current.style.visibility = "hidden";
-  //       });
-  //     }
-  //   };
-  // }, [contextMenu]);
     const userName = "Gideon"
   return (
     <div className="litenote-dashboard-top">

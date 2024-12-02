@@ -23,8 +23,6 @@ const selectedOption = optionMapping[tab];
             .reduce((acc, key) => ({ ...acc, [key]: false }), {}),
             [tab]: true
          }))
-         console.log(optionMapping)
-         console.log(selectedOption)
         setActive(!active)
         selectButton.current.innerText = e.target.innerText.split("\n")[0]
         list.current.style.padding = "20px";

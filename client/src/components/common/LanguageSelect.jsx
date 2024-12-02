@@ -77,7 +77,6 @@ flag : sa
     scrollToTop();
   }, [searchInput]);
   const scrollToTop = () => {
-    // console.log(selectOptions.current.scrollHeight)
     if (selectOptions.current) {
       selectOptions.current.scrollTo({
         top: 0,
@@ -109,7 +108,6 @@ const resultsArray = (search) => {
     const resultsArray = data.filter((content) => content.name.toLowerCase().includes(search.toLowerCase())
  ) //Returns Boolean
  if(resultsArray.length > 0) {
-  console.log("dave")
   return resultsArray
  }else{
   setSearchResults([])
@@ -124,7 +122,6 @@ const resultsArray = (search) => {
   }
   const getHighlightedText = (text, highlight) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"))
-    console.log(parts)
     return <span>{
       parts.map((part, index) => {
         return part.toLowerCase() === searchInput.toLocaleLowerCase() ? (

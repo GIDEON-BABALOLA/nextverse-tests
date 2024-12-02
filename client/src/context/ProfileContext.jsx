@@ -12,7 +12,6 @@ export const ProfileContextProvider = ({ children }) => {
 const  [ state, dispatch] = useReducer(profileReducer, {
     profile : {},
 })  
-console.log("ProfileContext state", state)
 return (
     <ProfileContext.Provider value = {{
         ...state, dispatch

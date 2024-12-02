@@ -178,3 +178,34 @@ html, #root {
       transform: rotate(360deg);
   }
   } 
+  .follow-loader {
+    color: #FFF;
+    display: inline-block;
+    position: relative;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+  .follow-loader::after {
+    content: '';  
+    width: 1px;
+    height: 1px;
+    background: currentColor;
+    position: absolute;
+    bottom: 10px;
+    right: -5px;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+  }
+  
+  @keyframes animloader {
+    0% {
+      box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+    }
+    50% {
+      box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 10px 0 white, 20px 0 white;
+    }
+  }

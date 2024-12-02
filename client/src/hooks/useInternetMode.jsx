@@ -6,14 +6,12 @@ const useInternetMode = () => {
     })
     useEffect(() => {
   const handleOnline = () => {
-    console.log("I am online")
     setInternetMode({
         online : true,
         offline : false
     })
   }
   const handleOffline = () => {
-    console.log("I am offline")
     setInternetMode({
         online : false,
         offline : true

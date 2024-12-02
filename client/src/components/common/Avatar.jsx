@@ -6,7 +6,7 @@ const Avatar = ({ image, ...props}) => {
   const { loaded, error } = useImageLoad(image);
   useEffect(() => {
     if (error) {
-      console.log("failed to load images")
+setLoading(true)
     }
   
     if (loaded === true) {

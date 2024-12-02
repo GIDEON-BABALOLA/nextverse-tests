@@ -12,11 +12,9 @@ const ProfilePictureSection = ({ profile, startEditing }) => {
 useEffect(() => {
 if(loaded){
     setAvatarLoading(false)
-console.log("success in loading your profile image")
 }
 if(error){
-    console.log(avatarLoading)
-    console.log("Error in loading your profile image")
+setAvatarLoading(true)
 }
 }, [error, loaded])
 

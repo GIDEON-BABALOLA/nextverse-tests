@@ -32,10 +32,8 @@ function App() {
   const location = useParams()
   const { colorMode } = useThemeContext()
   useEffect(() => {
-    console.log(location["*"])
 switch (location["*"]) {
   case "":
-    console.log("change me now")
     document.body.classList.add('body-height-override');
     break;
   default:
@@ -45,7 +43,6 @@ switch (location["*"]) {
 if(location["*"]  !== ""){
   switch (colorMode) {
     case "dark-mode":
-      console.log("lego")
       document.body.classList.add("dark-theme-variables")
       break;
       case "light-mode":

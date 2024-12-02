@@ -1,6 +1,5 @@
 import FeedAvatar from "./FeedAvatar"
 const FollowSuggestionCard = ({ isLoading, user }) => {
-    console.log(user)
   return (
 <>
 {

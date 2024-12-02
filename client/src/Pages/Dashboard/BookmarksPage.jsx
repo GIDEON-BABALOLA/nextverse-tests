@@ -16,28 +16,11 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     "read time" : false
   })
   useEffect(() => {
-    console.log(tabs)
     setTimeout(() => {
       setLoadPage(false)
     }, 2000);
       }, [])
       const [contextMenu, setContextMenu] = useState()
-  
-      //   if (contextMenu) {
-      //     window.addEventListener('scroll', () => {
-      //       console.log("dave")
-      //       contextMenu.current.style.visibility = "hidden";
-      //     });
-      //   }
-    
-      //   return () => {
-      //     if (contextMenu) {
-      //       window.removeEventListener('scroll', () => {
-      //         contextMenu.current.style.visibility = "hidden";
-      //       });
-      //     }
-      //   };
-      // }, [contextMenu]);
   return (
     <>
     {loadPage ? 

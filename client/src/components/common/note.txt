@@ -1,8 +1,0 @@
-Home
-Publish
-Browse
-Profile
-Dashboard
-Edit Profile
-Settings & Privacy
-Sign Out

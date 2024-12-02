@@ -21,9 +21,7 @@ const Profile = () => {
   const [stories, setStories] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
   useEffect(() => {
-    if(Object.keys(profile).length == 0){
-      console.log(" I do not always want to be called.")
-    }
+
     setEmptyData(false)
     getUserProfile();
   }, [])
@@ -39,16 +37,12 @@ const Profile = () => {
   useEffect(() => {
     if(!isLoading){
       if(data["stories"].length == 0){
-        console.log("This is gidiboy")
         setEmptyData(true)
       }else{
         setEmptyData(false)
       }
     }
         }, [data, isLoading])
-  useEffect(() => {
-console.log(error)
-  }, [error])
   const {
            contextMenu,
             shareModal,

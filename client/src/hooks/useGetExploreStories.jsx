@@ -24,7 +24,6 @@ const response = await axiosConfig.get("/story/get-all-stories", {
 }
 )
 if(response && response.data){
-    console.log(response.data)
     setData(response.data.stories)
     setStoryCount(response.data.count)
     setStatusCode(response.status)
@@ -37,8 +36,6 @@ if(response && response.data){
         }
         
         catch(error){
-            console.log(error.code)
-            console.log(error)
             setStoryCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){

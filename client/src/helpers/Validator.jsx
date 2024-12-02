@@ -1,10 +1,8 @@
 import PasswordValidator from 'password-validator';
 
 export const emailValidate = (email) => {
-    console.log("private")
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; 
     const isEmailValid = emailRegex.test(email)
-    console.log(isEmailValid)
     return isEmailValid
 }
 export const passwordValidate = (password) => {

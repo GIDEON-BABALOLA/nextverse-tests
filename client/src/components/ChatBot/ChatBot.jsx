@@ -23,7 +23,6 @@ const  ChatBot = () => {
     let userMessage
     const handleChat = async () => {
       playChime()
-      console.log(inputText)
       userMessage = inputText.trim();
       if(!userMessage){
         toast.error("Enter A Message")

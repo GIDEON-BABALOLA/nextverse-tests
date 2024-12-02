@@ -1,11 +1,27 @@
 import useImageLoad from "../../hooks/useImageLoaded"
 import { useState, useEffect, forwardRef } from "react"
+import { useFollowUser } from "../../hooks/useFollowUser"
+import SpinnerLoader from "../Loaders/SpinnerLoader"
 const FollowCard = forwardRef(({ content, isLoading }, ref) => {
   const [avatarLoading, setAvatarLoading] = useState(true)
   const { loaded, error } = useImageLoad(content.picture);
+  const [following, setFollowing] = useState(false)
+  const {followUser, isLoading : followIsLoading, error  : followError, data } = useFollowUser()
+  const followAUser = () => {
+    setFollowing(true)
+followUser(content.email)
+  }
+  useEffect(() => {
+    console.log(data)
+if(Object.keys(data).length > 0){
+  setFollowing(false)
+  console.log("wnwjjw")
+  console.log("data")
+}
+  }, [data])
   useEffect(() => {
     if (error) {
-      console.log("failed to load images")
+  setAvatarLoading(true)
     }
   
     if (loaded === true) {
@@ -39,7 +55,25 @@ const FollowCard = forwardRef(({ content, isLoading }, ref) => {
                     <div className="follower-name">{content.username}</div>
                     <div className="follower-username">{content.email}</div>
                 </div>
-                <button className="follow-button">Follow</button>
+                { Object.keys(data).length == 0 && !following &&
+                  
+                  <button className="follow-button"
+                onClick={() => followAUser()}
+                >Follow</button> 
+
+                }
+                {
+                  following  &&
+                  <button className="follow-button"
+                ><span style={{color: "white"}}>Following...</span></button> 
+
+                }
+                {
+                  !following &&  Object.keys(data).length > 0 &&
+                  <button className="follow-button"
+                >Following</button> 
+
+                }
             </div>
    }
             </section>

@@ -8,7 +8,7 @@ const DevelopersCard = ({ developer, isLoading }) => {
     const { loaded, error } = useImageLoad(developer.picture);
     useEffect(() => {
         if (error) {
-          console.log("failed to load images")
+          setLoading(true)
         }
         if (loaded === true) {
         setLoading(false)

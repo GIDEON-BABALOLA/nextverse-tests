@@ -13,9 +13,12 @@ import { useState, useRef, useEffect } from "react"
 import { useGetPopularStories } from "../../hooks/useGetPopularStories"
 import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
 import ErrorMessage from "../common/ErrorMessage"
+import NoContent from "../common/NoContent"
 const PopularStories = () => {
   const { getPopularStories, isLoading, error, data, statusCode } = useGetPopularStories()
   const { setPopularStories, popularStories } = usePopularStoriesContext()
+  const [loadingState, setLoadingState] = useState([{}, {}, {}])
+  const [emptyData, setEmptyData] = useState(false)
   const popularStoriesRef = useRef()
   const {
     contextMenu,
@@ -26,8 +29,12 @@ const PopularStories = () => {
  closeContextMenu
 } = useModalContext()
 const resendRequest = () => {
+  setEmptyData(false)
   let selectedCategory;
   selectedCategory = Object.keys(tabs).find(key => tabs[key] === true);
+  if(selectedCategory == "nonfiction"){
+    selectedCategory = "non-fiction"
+            }
   getPopularStories(selectedCategory, 3)
 }
   const [tabs, setTab] = useState({
@@ -42,12 +49,12 @@ const resendRequest = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          console.log("Popular Stories Is Been Observed")
           let selectedCategory;
           selectedCategory = Object.keys(tabs).find(key => tabs[key] === true);
           if(selectedCategory == "nonfiction"){
   selectedCategory = "non-fiction"
           }
+          setEmptyData(false)
           getPopularStories(selectedCategory, 3)
           observer.unobserve(entry.target);
         }
@@ -66,13 +73,23 @@ const resendRequest = () => {
   
   }, [tabs])
   useEffect(() => {
+    setEmptyData(false)
     if(data.length > 1){
+      setEmptyData(false)
       setPopularStories(data)
     }
   }, [data, statusCode, setPopularStories])
+  useEffect(() => {
+    if(!isLoading){
+      console.log("out")
+      if(data.length == 0 && !error){
+        setEmptyData(true)
+      }
+    }
+        }, [data, isLoading, error])
   return (
    <>
-    <section className="popular-stories-featured-stories" onClick={closeContextMenu} ref={popularStoriesRef}>
+       <section className="popular-stories-featured-stories" onClick={closeContextMenu} ref={popularStoriesRef}>
     <Share  share={shareRef} shareModal={shareModal}/>
       <h2>Popular Stories</h2>
     <Tab tabs={tabs} setTab={setTab}  
@@ -82,8 +99,20 @@ const resendRequest = () => {
 
           
          />
-      <div className="popular-stories-story-grid">
-      { !error && popularStories.map((story, index) => (
+         {
+          emptyData ?
+          <NoContent 
+          fireClick={
+            () => {
+
+            
+resendRequest()
+            }}
+          message={"There is no popular stories"} />
+           :
+          <div className="popular-stories-story-grid">
+      { !error && 
+      data.map((story, index) => (
 <PopularStoriesCard
 isLoading={isLoading}
 error={error}
@@ -120,7 +149,17 @@ error={error}
       }
       </>
 }
+{
+  data.length === 0 && !error &&
 
+      loadingState.map((story, index) => (
+<PopularStoriesCard
+isLoading={true}
+error={error}
+ key={index} story={story} fireClick={fireClick}/>
+      ))
+      
+}
 
       <ContextMenu
        state={"feed"}
@@ -139,7 +178,10 @@ error={error}
 ]} />
          {/* Featured stories will be dynamically added here  */}
       </div>
+         }
+   
     </section>
+   
    </>
   )
 }

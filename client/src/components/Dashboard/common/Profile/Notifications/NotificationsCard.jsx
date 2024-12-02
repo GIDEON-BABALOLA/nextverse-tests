@@ -7,7 +7,6 @@ const NotificationsCard = ({ notification, currentNotification }) => {
   const { loaded, error } = useImageLoad(notification.avatar);
   useEffect(() => {
     if (error) {
-      console.log("failed to load images")
       setAvatarLoading(true)
     }
   

@@ -8,11 +8,9 @@ const DeleteConsent = ({ openModal, setOpenModal}) => {
     setOpenModal(false)
    }
    const closeDeleteModal  = (e) => {
-    console.log(myDeleteModal.current.getBoundingClientRect())
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
       || Object.values(e.target.classList).includes("special-modal-client")
     ){
-      console.log("caught you")
       return;
     }
           if( e.clientX < parseInt(myDeleteModal.current.getBoundingClientRect().left) || e.clientX > parseInt(myDeleteModal.current.getBoundingClientRect().left) + myDeleteModal.current.getBoundingClientRect().width)
@@ -28,7 +26,6 @@ const DeleteConsent = ({ openModal, setOpenModal}) => {
     }
     useEffect(() => {
       document.addEventListener("click", (e) => {
-        console.log("i got clicked")
     closeDeleteModal(e)
       })
       return () =>{

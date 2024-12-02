@@ -1,5 +1,5 @@
 import { createContext, useState, useRef, useEffect, useContext } from "react";
-
+import useWindowSize from "../hooks/useWindowSize";
 // Create the Context
 const AppContext = createContext();
 

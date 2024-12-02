@@ -5,8 +5,6 @@ import { useToastContext } from "../../hooks/useToastContext"
 import NoteSettings from "./NoteSettings"
 const NoteHeader = ({setOpenModal, openModal, setNoteSettings, noteSettings, submitNote}) => {
   const { showToast } = useToastContext()
-console.log(submitNote
-)
     let title = "Software Development"
   return (
     <section className="note-header-css">

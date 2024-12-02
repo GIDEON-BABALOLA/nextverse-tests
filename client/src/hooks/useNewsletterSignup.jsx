@@ -28,7 +28,6 @@ const response = await axiosConfig.post("/newsletter/subscribe-to-newsletter", {
 if(response && response.data){
     // dispatch({type : "LOGIN", payload : response.data})
     setData(response.data)
-    console.log(response.data)
     setStatusCode(response.status)
     setError(null)
     setIsLoading(false)
@@ -36,7 +35,6 @@ if(response && response.data){
         }
         
         catch(error){
-            console.log(error.response.data.message)
 setIsLoading(false)
   if(error.message == "Network Error"){
                 setError("Our Service Is Currently Offline")

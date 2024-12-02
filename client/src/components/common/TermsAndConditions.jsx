@@ -9,7 +9,6 @@ const TermsAndConditions = () => {
 	const { termsAndConditions, showTermsAndConditions } = useConsentContext()
   const modalRef = useRef()
   const closeModal = (e) => {
-	console.log(e.target.innerHTML)
 	switch (e.target.innerHTML) {
 		case "Accept":
 			setCookie("terms-and-conditions", "accepted", 365 )

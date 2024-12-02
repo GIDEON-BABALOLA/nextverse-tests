@@ -13,11 +13,9 @@ if(openModal == false){
 }
 }, [openModal])
 const highlightColor = (e, color) => {
-  console.log(isReady)
-  console.log(savedSelection)
+
   setMarkerPosition(e.target.offsetLeft + 13)
 if(savedSelection.commonAncestorContainer.previousSibling && isReady){
-  console.log("GOLANF")
    savedSelection.commonAncestorContainer.previousSibling.style.backgroundColor = color
 }
   formatHighlightedText("backColor", color)

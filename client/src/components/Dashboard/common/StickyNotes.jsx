@@ -75,7 +75,6 @@ document.removeEventListener("touchend", handleMouseUp)
 || window.innerHeight - (finalRect.height + finalRect.top) > window.innerHeight - finalRect.height
 || window.innerHeight - finalRect.height < finalRect.top
 ){
-  console.log("push")
    stickyNoteRef.style.left = `${startPos.x}px`
     stickyNoteRef.style.top = `${startPos.y}px`
   }
@@ -138,7 +137,6 @@ localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
 
 }
 useEffect(() => {
-  console.log("peter")
 const savedNotes = JSON.parse(localStorage.getItem("stickyNotes")) || []
 setStickyNotesCount(savedNotes?.length + 1)
 const updatedNotes = stickyNotes.map((note) => {

@@ -111,7 +111,6 @@ type : "profile"
     })
   }
   const slideLine = (e) => {
-    console.log(e.target.offsetLeft)
         setAttachmentLine(e.target.offsetLeft)
         }
         useEffect(() => {

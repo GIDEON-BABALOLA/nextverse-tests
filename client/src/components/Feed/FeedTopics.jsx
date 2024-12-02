@@ -1,6 +1,5 @@
 const FeedTopics = ({ feedCategory, setFeedCategory}) => {
   const handleCategoryChange = (category) => {
-    console.log(feedCategory)
     const tab = category.toLowerCase()
     const optionMapping = {}
     Object.entries(feedCategory).map(([key, value], index) => {

@@ -26,7 +26,6 @@ const Register = () => {
     if(error){
       setCaptchaValue(null)
 recaptchaRef.current.reset();
-      console.log("daveeeeee")
 showToast("Error", error, false)
     }
   }, [error, showToast])

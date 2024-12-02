@@ -24,19 +24,10 @@ dispatch({type : "dark-mode", payload : "dark-mode"})
 getAllDevelopers(page, limit)
     }, [page, limit, dispatch])
     useEffect(() => {
-      console.log("let me log twice")
-      console.log(data)
       if(data.length > 1){
-        console.log("wow")
         setDevelopersArray(data)
       }
-   
     }, [data])
-
-    useEffect(() => {
-console.log(isLoading)
-    }, [isLoading])
-
   return (
     <section className="team">
     <Toast />

@@ -6,10 +6,7 @@ const ModeToggler = ({...props}) => {
   const { colorMode , dispatch} = useThemeContext()
   const themeRef = useRef();
   useEffect(() => {
-    console.log(colorMode)
-    console.log("mercy")
     if(colorMode == undefined || colorMode == ""){
-      console.log("griezman")
       themeRef.current.querySelector('span:nth-child(1)').classList.add('active');  
     }
     // }
@@ -20,16 +17,11 @@ const ModeToggler = ({...props}) => {
 switch (colorMode) {
   
   case "dark-mode":
-    console.log("I am dark mode")
-    console.log(themeRef.current.querySelector('span:nth-child(2)').classList)
     themeRef.current.querySelector('span:nth-child(2)').classList.add('active');
     themeRef.current.querySelector('span:nth-child(1)').classList.remove('active');
     
     break;
     case "light-mode":
-      console.log("I am light mode")
-
-      
       themeRef.current.querySelector('span:nth-child(1)').classList.add('active');
       themeRef.current.querySelector('span:nth-child(2)').classList.remove('active');
       

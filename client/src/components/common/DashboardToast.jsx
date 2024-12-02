@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 const DashboardToast = ({dashboardToast, setDashboardToast, loadPage}) => {
   const currentPage = useParams();
-  // console.log(linkRef.current.innerText)
   const currentUrl = Object.values(currentPage)[0].split("/")[1]
   const {width} = useWindowSize()
   const [trigger, setTrigger] = useState(false)

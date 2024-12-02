@@ -18,7 +18,6 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const selectMenu = useRef() 
   const list = useRef()
   const selectButton = useRef()
-  console.log(width)
   const [loadPage, setLoadPage] = useState(true)
   const [active, setActive] = useState(false)
   const [slideDistance, setSlideDistance] = useState(0)
@@ -30,7 +29,6 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
  
   })
   const chooseOption = (e) => {
-    console.log(e.target.innerText.split("\n")[0])
     switch (e.target.innerText.split("\n")[0]) {
       case "Write":
         setTab({
@@ -69,7 +67,6 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
         break;
     }
     setActive(!active)
-    console.log(e.target.innerText)
     selectButton.current.innerText = e.target.innerText.split("\n")[0]
     list.current.style.padding = "20px";
     setTimeout(() => {
@@ -89,7 +86,6 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     }
   }
   const slideTab = (e) => {
-    console.log(e.target.innerText)
 switch (e.target.innerText.split("\n")[0]) {
   case "Write":
     setSlideDistance( width < 768 ? 140 : 0)
@@ -143,23 +139,6 @@ switch (e.target.innerText.split("\n")[0]) {
     }, 2000);
       }, [])
       const [contextMenu, setContextMenu] = useState()
-      // useEffect(() => {
-  
-      //   if (contextMenu) {
-      //     window.addEventListener('scroll', () => {
-      //       console.log("dave")
-      //       contextMenu.current.style.visibility = "hidden";
-      //     });
-      //   }
-    
-      //   return () => {
-      //     if (contextMenu) {
-      //       window.removeEventListener('scroll', () => {
-      //         contextMenu.current.style.visibility = "hidden";
-      //       });
-      //     }
-      //   };
-      // }, [contextMenu]);
   return (
     <>
     {loadPage ? 

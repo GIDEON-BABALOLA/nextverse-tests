@@ -1,27 +1,23 @@
 import { useState } from "react";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useFollowSuggestion = () => {
+export const useFollowUser= () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
-    const [userCount, setUserCount] = useState(0)
     const [data, setData] = useState([])
-    const getUsersToFollow = async (page, limit) => {
-        const parameters = {
-            page : page,
-            limit : limit
-        }
+    const followUser = async (email) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/user/get-all-users", {
-    params : parameters,
-    signal : AbortSignal.timeout(axiosProperties["timeout"])
-}
-)
+            const response = await axiosConfig.post("/user/follow-user", {
+                email : email,
+            },
+            {
+                signal : AbortSignal.timeout(axiosProperties["timeout"])
+            }
+            )
 if(response && response.data){
-    setData(response.data.users)
-    setUserCount(response.data.count)
+    setData(response.data)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -32,7 +28,6 @@ if(response && response.data){
         }
         
         catch(error){
-            setUserCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
                 setError({message : "Your Request Has Timed Out", code : error.code})
@@ -48,5 +43,5 @@ setIsLoading(false)
         }
     }
     }
-    return {getUsersToFollow, isLoading, error, data, statusCode, userCount} 
+    return {followUser, isLoading, error, data, statusCode} 
 }

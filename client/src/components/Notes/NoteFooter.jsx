@@ -12,11 +12,6 @@ setNoteSettings((prevState) => {
 })
   }
   const nextPage = () => {
-    console.log(noteSettings["page"])
-    console.log(noteSettings["page"] / 2)
-    // if(noteSettings["page"]  === Math.ceil((noteSettings["page"] / 2))){
-    //   return
-    // }
     setNoteSettings((prevState) => {
       const { page } = prevState
       return {...prevState, page : page + 1 }

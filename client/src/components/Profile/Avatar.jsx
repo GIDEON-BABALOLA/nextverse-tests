@@ -7,7 +7,7 @@ const Avatar = () => {
   const { loaded, error } = useImageLoad(profile["picture"]);
   useEffect(() => {
     if (error) {
-      console.log("failed to load images")
+    setLoading(true)
     }
   
     if (loaded === true) {

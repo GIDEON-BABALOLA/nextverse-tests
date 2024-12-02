@@ -13,10 +13,6 @@ const NoteTooltip = ({
   speakHighlightedText
 }) => {
   const { contextMenu, setContextMenu, } = useModalContext()
-// const handleChangeHighlightColor = () => {
-//   setOpenModal(!openModal)
-//   formatHighlightedText("backColor", "yellow")
-// }
   const tooltipRef = useRef()
   useEffect(() => {
       setContextMenu(tooltipRef)

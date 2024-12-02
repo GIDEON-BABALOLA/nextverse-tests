@@ -19,7 +19,6 @@ const response = await axiosConfig.post("/user/verify-user-registration", {
 }
 )
 if(response && response.data){
-    console.log(response.data)
     setData(response.data)
     setStatusCode(response.status)
     setError(null)

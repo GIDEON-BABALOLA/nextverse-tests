@@ -11,23 +11,6 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     }, 2000);
       }, [])
       const [contextMenu, setContextMenu] = useState()
-      // useEffect(() => {
-  
-      //   if (contextMenu) {
-      //     window.addEventListener('scroll', () => {
-      //       console.log("dave")
-      //       contextMenu.current.style.visibility = "hidden";
-      //     });
-      //   }
-    
-      //   return () => {
-      //     if (contextMenu) {
-      //       window.removeEventListener('scroll', () => {
-      //         contextMenu.current.style.visibility = "hidden";
-      //       });
-      //     }
-      //   };
-      // }, [contextMenu]);
   return (
     <>
     {loadPage ? 

@@ -9,7 +9,7 @@ const StoryBody = () => {
   const { loaded, error } = useImageLoad("https://wallpapercave.com/wp/wp11326368.jpg");
   useEffect(() => {
     if (error) {
-      console.log("failed to load images")
+  setLoading(true)
     }
   
     if (loaded === true) {

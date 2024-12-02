@@ -66,42 +66,6 @@ const data = [
     "delete": false
   }
 ];
-// const large = []
-// const first = []
-// const second = []
-// const third = []
-// const fourth = []
-// const fifth = []
-// const algorithm = () => {
-//     const obj = {}
-//     const secondobj = {}
-//     const thirdobj = {}
-//     const fourthobj = {}
-//     const fifthobj = {}
-// data.map((dat) => {
-//     obj[dat.username] = dat.username
-//     first.push(obj)
-// })
-// data.map((dat) => {
-//     secondobj[dat.followers] = dat.followers
-//     second.push(secondobj)
-// })
-// data.map((dat) => {
-//     thirdobj[dat.following] = dat.following
-//     third.push(thirdobj)
-// })
-// data.map((dat) => {
-//     fourthobj[dat.likes] = dat.likes
-//     fourth.push(fourthobj)
-// })
-// data.map((dat) => {
-//     fifthobj[dat.delete] = dat.delete
-//     fifth.push(fifthobj)
-// })
-// const why = large.concat(first[0], second[0], third[0], fourth[0], fifth[0])
-// return why
-// }
-// algorithm()
 const combineData = (data) => {
   const result = data.reduce((acc, dat) => {
     acc.usernames = acc.usernames || [];
@@ -122,4 +86,3 @@ const combineData = (data) => {
   return result;
 };
 const globe = Object.entries(combineData(data)).flatMap(([key, value]) => value);
-console.log(globe);

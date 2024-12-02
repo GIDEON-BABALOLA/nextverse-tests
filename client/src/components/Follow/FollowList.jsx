@@ -106,6 +106,7 @@ getUsersToFollow(page, limit)
       };
     }, [lastScrollY, isLoading]);
     const resendRequest = () => {
+      setEmptyData(false)
       getUsersToFollow(1, 6) 
     }  
   return (
@@ -116,6 +117,7 @@ getUsersToFollow(page, limit)
         {emptyData  ? 
       <div style={{ height : "100vh"}}>
 <NoContent
+fireClick={()=> resendRequest()}
 message={"There is nobody to follow"}
  />
 </div>

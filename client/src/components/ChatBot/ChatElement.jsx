@@ -14,7 +14,6 @@ import ChatBotContext from "../../context/ChatBotContext"
 import { useGenerateChatBotResponse } from "../../hooks/useGenerateChatBotResponse";
 import { usePlayChime } from "../../hooks/usePlayChime"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { AiOutlineSound } from "react-icons/ai";
 const ChatElement = ({ message, type, apiError, error, id, time}) => {
   const { playChime } =usePlayChime()
   const { generateResponse } = useGenerateChatBotResponse()
@@ -28,7 +27,6 @@ const ChatElement = ({ message, type, apiError, error, id, time}) => {
     navigator.clipboard.writeText(message)
     .then(() => {
       toast.success("Text is copied to clipboard")
-      console.log('Text copied to clipboard');
       // Optionally, you can show a success message or perform other actions here
     })
     .catch(err => {
@@ -75,7 +73,6 @@ const ChatElement = ({ message, type, apiError, error, id, time}) => {
   
 
   const handleRefresh = async () => {
-    console.log("gideon")
     let newArray = messages.slice(0, messages.length - 1);
     const incomingArray = [...newArray, {id : newArray[newArray.length - 1].id + 1, type: "incoming", message: "Thinking", error : false}] 
     setMessages(incomingArray)

@@ -593,3 +593,32 @@
 20241202	09:03:31	856b3871-c6df-487c-9d7f-c52e34153b75	ReferenceError: show is not defined
 20241202	09:03:32	18d01052-ee50-4986-8b4e-cf05156c219a	ReferenceError: show is not defined
 20241202	09:03:33	6cd865dd-f41c-4759-887c-13ecfb502509	ReferenceError: show is not defined
+20241202	12:02:28	285c2445-dd11-4daa-87dd-9182a4809912	TypeError: user.toObject is not a function
+20241202	12:02:28	9f9bd43a-a744-4c3d-af34-c7f2a1d14ff3	TypeError: user.toObject is not a function
+20241202	12:02:31	153467b5-a972-40f7-bc7a-7f2dba643bcd	TypeError: user.toObject is not a function
+20241202	12:02:32	2ff6385c-7eb8-4462-95c0-07d04d361718	TypeError: user.toObject is not a function
+20241202	12:02:33	2899ca19-35cc-45cb-a5f4-329c2b5f25e1	TypeError: user.toObject is not a function
+20241202	12:11:06	a9cc1aa8-c0b8-4914-98e3-cf4e5c596f8c	StrictPopulateError: Cannot populate path `followers.followedBy` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20241202	12:11:07	cefb87fa-1565-4b3e-835d-17e60f385c4b	StrictPopulateError: Cannot populate path `followers.followedBy` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20241202	12:11:27	268cd3b5-feef-4274-8193-88af297cd696	StrictPopulateError: Cannot populate path `followers.followedBy` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20241202	12:13:58	1c9ba732-f7a2-49f6-8957-176619936a30	TypeError: gotUsers.toObject is not a function
+20241202	12:13:58	0e9524a8-a997-4b80-b084-09389670ed3d	TypeError: gotUsers.toObject is not a function
+20241202	15:34:07	d80c8de0-5053-4a35-8ce6-c33ed2fca953	TypeError: Cannot read properties of undefined (reading '_id')
+20241202	15:34:07	cdfeca6d-2c7b-490c-9cab-99f009c1423d	TypeError: Cannot read properties of undefined (reading '_id')
+20241202	15:34:35	f41f258d-21b0-4691-8317-1cd69446bd1b	TypeError: Cannot read properties of undefined (reading '_id')
+20241202	15:34:35	918ad4d9-460a-43c2-9c39-d71f49c8cbfc	TypeError: Cannot read properties of undefined (reading '_id')
+20241202	15:37:37	c8b8f92f-c0da-4db8-8c8b-f8c51eef7e1c	TypeError: Cannot read properties of undefined (reading '_id')
+20241202	15:37:38	b62c6b97-07b1-42dd-96e2-e62832ccd8b1	TypeError: Cannot read properties of undefined (reading '_id')
+20241202	15:38:22	bbf72c90-fd17-4738-9328-6bc22bd2a754	TypeError: Cannot read properties of undefined (reading '7')
+20241202	15:58:03	68cc9bdb-5acc-444f-8fd9-7451870cebc7	TypeError: User.find(...).toObject is not a function
+20241202	15:58:03	a24838c6-ed54-495b-87c2-9ccfd85eabd7	TypeError: User.find(...).toObject is not a function
+20241202	15:58:43	77b8a2bb-c6ad-47ab-b60b-f495f51ad549	TypeError: gotUsers.toObject is not a function
+20241202	15:58:43	eae44a0e-aa4e-427f-8184-790669e1e501	TypeError: gotUsers.toObject is not a function
+20241202	16:15:34	67589ad0-eea8-40eb-83ea-027f826f8cf9	ReferenceError: users is not defined
+20241202	16:15:35	332e2ccf-8632-4685-9be3-c5b6f9f350ca	ReferenceError: users is not defined
+20241202	16:30:33	e5c16b6c-6800-45c6-896d-0aa7a13a079d	ReferenceError: mongoose is not defined
+20241202	16:30:33	b604bc7a-ca25-454b-80bc-b1b48d9321f2	ReferenceError: mongoose is not defined
+20241202	16:31:07	2aa112bb-f52a-41d8-8cfa-2255a9af9d7f	TypeError: Class constructor ObjectId cannot be invoked without 'new'
+20241202	16:33:06	1f6c7445-c7cb-4691-8f54-a4c2db8088ff	TypeError: user.toObject is not a function
+20241202	16:33:35	33370376-54bb-4017-9656-b9439e451d67	TypeError: user.toObject is not a function
+20241202	16:33:51	bfd12b75-ca78-4338-8889-b13db45b4bc1	TypeError: user.toObject is not a function

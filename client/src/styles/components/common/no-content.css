@@ -1,5 +1,5 @@
 :root{
-    --no-content-color : black;
+    --no-content-color : #777777;
 }
 .dark-theme-variables{
     --no-content-color : white;

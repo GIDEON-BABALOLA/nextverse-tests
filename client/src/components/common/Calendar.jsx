@@ -54,7 +54,6 @@ useEffect(() => {
         liTag = liTag + `<li class="calendar-day-inactive">${i - lastDayOfMonth + 1}</li>`;
      }
     daysTag.current.innerHTML = liTag;
-    console.log(daysTag.current)
     currentDate.current.innerText = `${months[currentMonth]} ${currentYear}`
 
 }, [currentMonth, currentYear, daysTag])

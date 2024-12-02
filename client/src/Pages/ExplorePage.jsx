@@ -82,7 +82,7 @@ useEffect(() => {
       setEmptyData(true)
     }
   }
-      }, [data, isLoading])
+      }, [data, isLoading, error])
 const handleCategoryChange = () => {
 let selectedCategory;
  selectedCategory = Object.keys(tabs).find(key => tabs[key]);
@@ -91,7 +91,6 @@ let selectedCategory;
   selectedCategory = "non-fiction"
           }
 if (category !== selectedCategory) {
-  console.log("I got changed")
   setPage(1);
 setCategoryChanged(true)
 setStories([])
@@ -106,7 +105,6 @@ handleCategoryChange()
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting && !isLoading) {
-        console.log("Observed last item, loading new page...");
         if(!categoryChanged){
           setPage((prevPage) => prevPage + 1);
         }else{
@@ -131,11 +129,9 @@ handleCategoryChange()
 useEffect(() => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-    console.log(loadingRef)
     // If the user is trying to scroll down, prevent the scroll
     if(isLoading){
       if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current, 0.1)) {
-        console.log("Scroll back up")
         window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
       } else {
         // Update the last scroll position if scrolling up
@@ -169,6 +165,7 @@ else{
 }
 }, [width])
 const resendRequest = () => {
+  setEmptyData(false)
     getExploreStories(1, limit, category)
 }
   return (
@@ -200,7 +197,13 @@ const resendRequest = () => {
     
      </div>
     { emptyData ? 
-      emptyData && <NoContent
+ <NoContent
+       fireClick={
+            () => {
+
+            
+resendRequest()
+            }}
       message={"No Explore Stories To Display"}
        />
     : <>

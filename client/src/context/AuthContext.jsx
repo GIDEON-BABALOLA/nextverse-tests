@@ -35,9 +35,6 @@ useEffect(() => {
 
     fetchUser();
   }, []); 
-  
-  // Runs once on component mount
-console.log("AuthContext state", state)
 return (
     <AuthContext.Provider value = {{
         ...state, dispatch, appLoading

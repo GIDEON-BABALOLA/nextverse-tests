@@ -20,9 +20,6 @@ const NoteSettings = ({
   openModal,
   restoreSelection
 }) => {
-
-        
-        //inter, poppins, montserrat, roboto, lato
   return (
     
     <>

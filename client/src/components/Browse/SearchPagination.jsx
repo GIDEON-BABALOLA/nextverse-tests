@@ -17,7 +17,6 @@ const SearchPagination = ({ currentValue, setCurrentValue}) => {
       setCurrentValue(currentValue - 1);
     }
      if(currentValue == paginationNumbers[0]){
-      console.log("letsgo")
       const firstNumber = paginationNumbers[paginationNumbers.length - paginationNumbers.length];
 const news = [firstNumber - 1, ...paginationNumbers.slice(0, 9)]
       // Update state
@@ -30,7 +29,6 @@ const news = [firstNumber - 1, ...paginationNumbers.slice(0, 9)]
   };
 
   const nextBtn = () => {
-    console.log(currentValue)
     if(currentValue === 20){
       return disableNext(true)
     }
