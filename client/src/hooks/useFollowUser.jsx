@@ -4,6 +4,7 @@ export const useFollowUser= () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
+    
     const [data, setData] = useState([])
     const followUser = async (email) => {
         setIsLoading(true) //starting the request

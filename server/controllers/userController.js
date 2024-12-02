@@ -597,7 +597,6 @@ const getAllUsers = async (req, res) => {
     const { page, limit } = req.query;
     try{
         const skip = (page - 1) * limit;
-    // const gotUsers = await User.find().skip(skip).limit(limit).exec();
     const gotUsers = await User.find();
     if(!gotUsers){
         throw new userError("No User Has Been Registered For Your Application", 204)
@@ -618,7 +617,7 @@ const getAllUsers = async (req, res) => {
     const usersToBeSent = newUsersToFollow.map((user) => {
         return _.pick(user, "email", "username", "picture")
     })
-        res.status(200).json({ users : usersToBeSent, count : userCount})         
+        res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
     
     }
     catch(error){

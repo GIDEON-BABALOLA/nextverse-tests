@@ -12,7 +12,6 @@ const FollowCard = forwardRef(({ content, isLoading }, ref) => {
 followUser(content.email)
   }
   useEffect(() => {
-    console.log(data)
 if(Object.keys(data).length > 0){
   setFollowing(false)
   console.log("wnwjjw")

@@ -20,7 +20,18 @@ const FollowList = () => {
     useEffect(() => {
       setEmptyData(false)
       console.log(currentCount)
-getUsersToFollow(page, limit)
+      // const skip = (page - 1) * limit;
+      // if (skip >= userCount && userCount > 0) {
+      //   const randomPage = generateRandomPage(page)
+      //   setPage(randomPage);
+      //   return;
+      // }
+      if(emptyData == true){
+        return;
+      }else{
+        getUsersToFollow(page, limit)
+      }
+
     }, [page, limit])
     useEffect(() => {
      if(width < 767){
@@ -51,7 +62,7 @@ getUsersToFollow(page, limit)
       }, [data])
       useEffect(() => {
         if(!isLoading){
-          if(data.length == 0 && !error && page == 1){
+          if(data.length == 0 && !error){
             setEmptyData(true)
           }
         }
@@ -60,7 +71,7 @@ getUsersToFollow(page, limit)
     useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting && !isLoading && data.length !== 0 ) {
+          if (entry.isIntersecting && !isLoading) {
               setPage((prevPage) => prevPage + 1);
             observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
           }
@@ -109,14 +120,7 @@ getUsersToFollow(page, limit)
     {
     !error &&
     <section>
-        {emptyData  ? 
-      <div style={{ height : "100vh"}}>
-<NoContent
-fireClick={()=> resendRequest()}
-message={"There is nobody to follow"}
- />
-</div>
-    :
+
     <section>
     <div className="followers-list">
     {usersToFollow.map((content, index) => (
@@ -158,7 +162,7 @@ height : "100vh"}}>
 }
 
     </section>
-    }
+    
     </section>
     }
 {error && <>

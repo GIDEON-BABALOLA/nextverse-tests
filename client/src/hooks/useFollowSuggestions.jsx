@@ -5,6 +5,7 @@ export const useFollowSuggestion = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
     const [userCount, setUserCount] = useState(0)
+    const [currentCount, setCurrentCount] = useState(0)
     const [data, setData] = useState([])
     const getUsersToFollow = async (page, limit) => {
         const parameters = {
@@ -22,6 +23,8 @@ const response = await axiosConfig.get("/user/get-all-users", {
 if(response && response.data){
     setData(response.data.users)
     setUserCount(response.data.count)
+    console.log(response.data.currentCount)
+    setCurrentCount(response.data.currentCount)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -48,5 +51,5 @@ setIsLoading(false)
         }
     }
     }
-    return {getUsersToFollow, isLoading, error, data, statusCode, userCount} 
+    return {getUsersToFollow, isLoading, error, data, statusCode, userCount, currentCount} 
 }
