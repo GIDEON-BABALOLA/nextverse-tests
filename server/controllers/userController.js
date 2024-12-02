@@ -11,7 +11,7 @@ const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const { cloudinaryError, validatorError, emailError } = require("../utils/customError");
-const { count } = require("console");
+const { count, Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -618,7 +618,6 @@ const getAllUsers = async (req, res) => {
         return _.pick(user, "email", "username", "picture")
     })
         res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
-    
     }
     catch(error){
         console.log(error)

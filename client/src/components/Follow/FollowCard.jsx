@@ -1,7 +1,6 @@
 import useImageLoad from "../../hooks/useImageLoaded"
 import { useState, useEffect, forwardRef } from "react"
 import { useFollowUser } from "../../hooks/useFollowUser"
-import SpinnerLoader from "../Loaders/SpinnerLoader"
 const FollowCard = forwardRef(({ content, isLoading }, ref) => {
   const [avatarLoading, setAvatarLoading] = useState(true)
   const { loaded, error } = useImageLoad(content.picture);
@@ -62,7 +61,7 @@ if(Object.keys(data).length > 0){
 
                 }
                 {
-                  following  &&
+                  following  && !followError &&
                   <button className="follow-button"
                 ><span style={{color: "white"}}>Following...</span></button> 
 
@@ -72,6 +71,12 @@ if(Object.keys(data).length > 0){
                   <button className="follow-button"
                 >Following</button> 
 
+                }
+                {
+                  followError &&
+                   <button className="follow-button"
+                onClick={() => followAUser()}
+                >Follow</button> 
                 }
             </div>
    }

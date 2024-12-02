@@ -34,3 +34,14 @@
 20240518	22:18:28	6326571d-a862-4b53-9250-bba6ea2d86f4	TypeError: this.findByIdAndUpdate is not a function
 20241202	09:36:04	a786d9d2-51dc-4b9b-a7fb-87221ab8c0b0	ReferenceError: Cannot access '_id' before initialization
 20241202	09:36:15	de61cbfc-f7d2-4752-b3a2-ae62997096f1	ReferenceError: Cannot access '_id' before initialization
+20241202	17:35:29	801bcb2d-0038-413e-8730-27d70f24a633	ReferenceError: how is not defined
+20241202	17:36:31	5a012167-f0e0-4e8c-ad12-ee506f0308ea	ReferenceError: how is not defined
+20241202	17:36:35	012e5889-8eba-4081-a10d-842853551237	ReferenceError: how is not defined
+20241202	17:36:48	17b8ec92-3f35-4f57-b74b-169d7a92aeb5	ReferenceError: how is not defined
+20241202	17:37:07	60590375-88a0-49d4-8cd3-433c6daa1bce	ReferenceError: how is not defined
+20241202	17:37:09	4817cb57-0e90-4c5f-a184-683755ae67e9	ReferenceError: how is not defined
+20241202	17:37:53	4d23af0f-669c-4437-b870-3f3a1308e1d1	ReferenceError: how is not defined
+20241202	17:37:58	81d090bf-9a49-4fc9-9486-63d359904d01	ReferenceError: how is not defined
+20241202	17:38:17	616b75d6-3137-4cb7-a801-2d4411bf9f44	ReferenceError: how is not defined
+20241202	17:38:19	5783fa6b-4201-4158-9736-9304a24e8c0e	ReferenceError: how is not defined
+20241202	17:39:15	8251de1b-01e3-4f92-8d9d-a648e2945ae5	ReferenceError: k is not defined

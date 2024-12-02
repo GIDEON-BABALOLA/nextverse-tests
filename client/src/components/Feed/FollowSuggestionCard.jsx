@@ -1,5 +1,20 @@
 import FeedAvatar from "./FeedAvatar"
+import { useFollowUser } from "../../hooks/useFollowUser"
+import { useState, useEffect } from "react"
 const FollowSuggestionCard = ({ isLoading, user }) => {
+  const {followUser, data, error : followError } = useFollowUser()
+  const [following, setFollowing] = useState(false)
+  const followAUser = () => {
+    setFollowing(true)
+followUser(user.email)
+  }
+  useEffect(() => {
+    if(Object.keys(data).length > 0){
+      setFollowing(false)
+      console.log("wnwjjw")
+      console.log("data")
+    }
+      }, [data])
   return (
 <>
 {
@@ -31,7 +46,31 @@ className="feed-profile-images-trending"
              <div><b>{user["username"]}</b></div>
              <div>{user["email"]}</div>
          </div>
-         <button className="feed-follow-button">Follow</button>
+           { Object.keys(data).length == 0 && !following &&
+                  
+                  <button className="feed-follow-button"
+                onClick={() => followAUser()}
+                >Follow</button> 
+
+                }
+                {
+                  following  &&  !followError &&
+                  <button className="feed-follow-button"
+                ><span style={{color: "white"}}>Following...</span></button> 
+
+                }
+                {
+                  !following &&  Object.keys(data).length > 0 &&
+                  <button className="feed-follow-button"
+                >Following</button> 
+
+                }
+                {
+                  followError &&
+                   <button className="feed-follow-button"
+                onClick={() => followAUser()}
+                >Follow</button> 
+                }
      </div>
 }
 </>
