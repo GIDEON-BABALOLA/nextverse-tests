@@ -301,15 +301,6 @@ if(foundUser && match){
     const detailsOfUserToBeSent = _.omit(foundUser.toObject(), "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress",
 )
-//     res.status(201).json({
-//         id : foundUser?._id,
-//         username : foundUser?.username,
-//         email : foundUser?.email,
-//         accessToken : generateAccessToken(id, foundUser.role),
-//         password : foundUser?.password,
-//         picture : foundUser?.picture,
-//         mobile : foundUser?.mobile
-//     })
 res.status(201).json({...detailsOfUserToBeSent, accessToken : generateAccessToken(id, foundUser.role)})
  }
 else{
@@ -555,6 +546,7 @@ const followUser = async (req, res) => {
     try{
         const { _id } = req.user;
         const { email } = req.body;
+        console.log(_id, email)
         if(!email){
             throw new userError("What is the email of the user you want to follow", 400)
         }
@@ -562,9 +554,10 @@ const followUser = async (req, res) => {
         let alreadyFollowed = userToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(!alreadyFollowed){
             const user =  await User.followuser(_id, userToBeFollowed._id) //This has been configured in the users model
-            return  res.status(201).json(user)
+                return  res.status(201).json(user)                                
         }
-        res.status(200).json(userToBeFollowed)
+            res.status(200).json(userToBeFollowed)            
+
 
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "followUserError.txt", "userError")
@@ -603,8 +596,8 @@ const unfollowUser = async(req, res) => {
 const getAllUsers = async (req, res) => {
     const { page, limit} = req.query;
     console.log(page, limit)
+    console.log(req.user.following)
     try{
-        console.log(shsh)
         const skip = (page - 1) * limit;
     const gotUsers = await User.find().skip(skip).limit(limit).exec();
     if(!gotUsers){
@@ -618,6 +611,7 @@ const getAllUsers = async (req, res) => {
     
     }
     catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
         if(error instanceof userError){
             return res.status(error.statusCode).json({ error : error.message})

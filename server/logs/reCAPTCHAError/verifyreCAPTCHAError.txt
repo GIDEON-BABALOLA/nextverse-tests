@@ -14,3 +14,5 @@
 20241116	15:27:42	43a53347-3375-4cd5-88ea-036b62798e44	userError: invalid-input-response
 20241116	16:09:48	68299b49-4534-4bc9-bd64-a170addd0930	userError: invalid-input-response
 20241116	16:39:25	77e0c62e-4674-4df2-9ebb-0469337ef504	userError: invalid-input-response
+20241202	09:15:35	667b190c-aa13-4dfe-9acd-8a6d1e5ea98e	Error: Client network socket disconnected before secure TLS connection was established
+20241202	09:16:44	f89bf3d7-5864-45c9-a4cf-3a3807f51857	userError: Unable To Verify ReCAPTCHA

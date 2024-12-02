@@ -32,3 +32,5 @@
 20240518	22:17:13	f706db12-4519-4e67-9fd5-37f2da43f074	TypeError: this.findByIdAndUpdate is not a function
 20240518	22:17:29	ce47ab3f-f15e-41bc-986e-13ef2e3163b5	TypeError: this.findByIdAndUpdate is not a function
 20240518	22:18:28	6326571d-a862-4b53-9250-bba6ea2d86f4	TypeError: this.findByIdAndUpdate is not a function
+20241202	09:36:04	a786d9d2-51dc-4b9b-a7fb-87221ab8c0b0	ReferenceError: Cannot access '_id' before initialization
+20241202	09:36:15	de61cbfc-f7d2-4752-b3a2-ae62997096f1	ReferenceError: Cannot access '_id' before initialization

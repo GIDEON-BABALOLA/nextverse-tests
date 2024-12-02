@@ -3746,3 +3746,11 @@
 20241130	19:42:48	a5b924a9-4e4d-4adb-bcd1-7fa349c7d074	ReferenceError: show is not defined
 20241130	19:42:55	abffefa3-9146-4a2c-9353-9246517db9ea	ReferenceError: show is not defined
 20241130	19:42:55	175ccc2e-c0f0-479f-87e6-ccbcc2d52a05	ReferenceError: show is not defined
+20241201	21:54:42	d642eef5-d2db-43a2-bec1-d5ddcac0820b	userError: This page does not exist
+20241202	08:47:17	1ef787e0-1b8f-4e30-8baa-9811f4ab4ef3	ReferenceError: why is not defined
+20241202	08:47:18	e935ecc3-c0a0-4cf3-b1fc-84783efc2d7d	ReferenceError: why is not defined
+20241202	08:47:19	5b6de9b4-bb11-4fc7-845b-802fa6aa97ce	ReferenceError: why is not defined
+20241202	08:47:20	4e0b8880-34ca-412f-9ff5-69223e358dbb	ReferenceError: why is not defined
+20241202	08:47:21	39a7d512-f53f-4fd0-94dd-30881a30a425	ReferenceError: why is not defined
+20241202	08:57:54	62973b5e-0ea1-45eb-a319-8dc758c9c5d0	ReferenceError: ouy is not defined
+20241202	08:57:56	892e809b-c738-4d94-b359-998eae93d705	ReferenceError: ouy is not defined

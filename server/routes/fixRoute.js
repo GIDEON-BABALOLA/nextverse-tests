@@ -6,5 +6,5 @@ const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "au
 // router.get("/fix-developer-model", authMiddleware, isAdministrator, fixDeveloperModel)
 router.get("/fix-developer-model", authMiddleware, fixDeveloperModel)
 router.get("/fix-populate-stories", authMiddleware, populateStories)
-router.get("/fix-populate-users", authMiddleware, populateUsers)
+router.get("/fix-populate-users", populateUsers)
 module.exports = router

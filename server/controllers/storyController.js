@@ -305,11 +305,7 @@ try{
 
     const mostPopularStories = rankStories(foundStories, number)
         res.status(200).json(mostPopularStories)         
-
-   
-          
-              
-
+        
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")

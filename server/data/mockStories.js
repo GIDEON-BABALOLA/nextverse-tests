@@ -1485,5 +1485,5 @@ const mockPictures = [
 
 // Example usage
 // listImagesInFolder("Story/nextverse74@gmail.com");
-
+console.log(mockPictures.length)
   module.exports= { mockStories, mockPictures }
