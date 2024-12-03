@@ -96,7 +96,7 @@ if(location["*"]  !== ""){
           )
         }
 />
-<Route path="story" 
+<Route path="story/:username/:title/:id" 
     element={
           appLoading ? (
         <LoadingPage />

@@ -26,54 +26,31 @@ getAStory(id)
   const {  closeContextMenu } = useModalContext()
   return (
     <>
-        <StorySidebar setOpenModal={setOpenModal} openModal={openModal}/>
- <section className="story-page-total-screen" onClick={closeContextMenu}>
-
-  {!error &&
-  
-  <>
+ <section className="" onClick={closeContextMenu}>
+    <StorySidebar setOpenModal={setOpenModal} openModal={openModal}/>
+  {!error && <div className="story-display-main">
   {
-   isLoading ?  
-   
-   <>
-   <div style={{
+    isLoading ? 
+    <div style={{height : "100vh"}}>
+    <div style={{
 display : "flex",
 flexDirection : "row",
+padding : "200px 0px",
 justifyContent : "space-around",
 alignItems : "space-around",
-margin  : "0% auto",
 
-height : "100vh"}}
-className="story-display-main"
->
+height : "100vh"}}>
 <span className="still-no-stories-loader"></span>
 </div>
-   </>
-   : <>
-   <div className="story-display-main">
-      <StoryBody
-      content={data.content}
-      title={data.title}
-      picture={data.picture}
-      author={data.author}
-      avatar={data.avatar}
-      userId={data.userId}
-      />
-     
     </div>
-    <StorySuggestions
-    author={data.author}
-    avatar={data.avatar}
-    userId={data.userId}
+    :
+    <>
+    <StoryBody />
+    <StorySuggestions />  
+    </>
+  }
 
-     /> 
-   </>
-  }
-  
-  </>
-  }
-  {
-    isLoading && <div>still loading</div>
+    </div>
   }
    
  </section>

@@ -6,7 +6,7 @@ import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
 import StoryAuthor from "./StoryAuthor"
 import { MdReadMore } from "react-icons/md"
 import Share from "../common/Share"
-const StorySuggestions = () => {
+const StorySuggestions = ({ author, avatar, userId}) => {
     const {
         contextMenu,
          shareModal,
@@ -49,10 +49,10 @@ const StorySuggestions = () => {
     <div className="litenote-more-from-stories" style={{flexDirection : "row"}}>
     
     <span className="for-me-title"><b>
-   More From Elon Jamas
+   More From {author}
     </b></span>
     <span style={{display : "flex", flexDirection :"row", justifyContent : "flex-start", alignItems: "center",paddingTop : "30px"}}>
-    <StoryAuthor />
+    <StoryAuthor author={author} />
     </span>
    
     

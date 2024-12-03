@@ -288,6 +288,7 @@ box-shadow: var(--litenote-profile-header-box-shadow);
     opacity: 1;
     background-color:  var(--litenote-story-card);
     color: var(--litenote-story-card-color);
+    cursor: pointer;
     box-shadow: var(--story-card-dark-box-shadow);
     /* animation: slide-up 0.5s ease-in-out forwards; */
   }

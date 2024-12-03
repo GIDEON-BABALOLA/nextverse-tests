@@ -3754,3 +3754,15 @@
 20241202	08:47:21	39a7d512-f53f-4fd0-94dd-30881a30a425	ReferenceError: why is not defined
 20241202	08:57:54	62973b5e-0ea1-45eb-a319-8dc758c9c5d0	ReferenceError: ouy is not defined
 20241202	08:57:56	892e809b-c738-4d94-b359-998eae93d705	ReferenceError: ouy is not defined
+20241202	21:05:03	49ca018a-771b-4204-8aee-b21662925f90	userError: Pls enter a parameter recognized by the database
+20241202	21:05:19	461b4b7a-e3c1-4930-91e9-7fc7d3ea0127	userError: Pls enter a parameter recognized by the database
+20241202	21:05:25	3b0c9e26-63ae-448a-a5eb-b397da1a95f3	userError: Pls enter a parameter recognized by the database
+20241202	21:05:38	3a55b138-ef69-42c7-82a2-f43b7751abeb	userError: Pls enter a parameter recognized by the database
+20241202	21:05:39	4f252943-1f16-4286-abb3-2750bcfe2198	userError: Pls enter a parameter recognized by the database
+20241202	21:06:14	c2cfd2ae-258c-4f7e-ba68-3340da1d0933	CastError: Cast to ObjectId failed for value "1234" (type string) at path "_id" for model "Story"
+20241202	21:06:16	d7b604f9-b478-4016-82dc-3a9122be2300	CastError: Cast to ObjectId failed for value "1234" (type string) at path "_id" for model "Story"
+20241202	21:06:17	d9970cab-54f3-4ddb-9ced-b9e1fde414ff	CastError: Cast to ObjectId failed for value "1234" (type string) at path "_id" for model "Story"
+20241202	21:06:33	15b0c61a-f45e-4a9c-8bcf-8235a43f3d8a	userError: Pls enter a parameter recognized by the database
+20241202	21:06:34	00a96393-8f8f-4d05-b27a-cd45c245aff3	userError: Pls enter a parameter recognized by the database
+20241203	04:40:05	4c9c5458-6a1a-4189-ad99-7348b502d9cb	TypeError: foundStory.lean is not a function
+20241203	04:40:05	69a47d98-cdec-4e8d-b259-7498021d139d	TypeError: foundStory.lean is not a function

@@ -117,7 +117,7 @@ message={"There is nobody to follow"}
  />
 </div>
     :
-    <section>
+    <section style={{height : "100vh"}}>
     <div className="followers-list">
     {usersToFollow.map((content, index) => (
 <FollowCard key={index} content={content}

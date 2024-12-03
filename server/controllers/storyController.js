@@ -185,6 +185,7 @@ const uploadStoryPicture = async (req, res) => {
 //To Get A Story
 const getAStory = async (req, res) => {
     const { id } = req.params;
+    console.log(id)
 try{
     if(!validateMongoDbId(id)){
 throw new userError("Pls enter a parameter recognized by the database", 400)
@@ -199,7 +200,9 @@ if(!foundStory){
 const totalViews =  (Number(foundStory.totalViews) || 0) + 1;
 foundStory.totalViews = totalViews.toString()
 await foundStory.save()
-res.status(200).json(foundStory)
+const adjustedStory = foundStory.toObject();;
+    res.status(200).json({...adjustedStory, picture : adjustedStory.picture[Math.round(Math.random())]})    
+
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
     if (error instanceof userError) {
@@ -276,7 +279,7 @@ const allStories = await query
     res.status(200).json({stories : allStories, count : storyCount})     
 }catch(error){
     console.log(error)
-    logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
+    logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ message : error.message})
     }
