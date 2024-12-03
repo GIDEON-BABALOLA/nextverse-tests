@@ -2,7 +2,7 @@ import "../../styles/components/Reader/story-body.css"
 import useImageLoad from "../../hooks/useImageLoaded"
 import { useState, useEffect } from "react"
 import StoryAuthor from "./StoryAuthor"
-const StoryBody = ({ content, title, picture, avatar, author}) => {
+const StoryBody = ({ content, title, picture, avatar, author, userId}) => {
   const [loading, setLoading] = useState(true)
   console.log(picture)
   const { loaded, error } = useImageLoad(picture);
@@ -17,7 +17,7 @@ const StoryBody = ({ content, title, picture, avatar, author}) => {
   }, [loaded, error])
   return (
     <div className="read-story-body">
-    <StoryAuthor author={author} avatar={avatar}/>
+    <StoryAuthor author={author} avatar={avatar} userId={userId}/>
     <h2 style={{ textDecoration : "bolder", fontWeight : 700, marginBottom : "50px"}}>
     {title}
     

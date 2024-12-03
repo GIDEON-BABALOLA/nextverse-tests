@@ -12,6 +12,7 @@ deleteUser,
 updateUser,
 followUser,
 getAllUsers,
+getAUser,
 unfollowUser,
 duplicateUsername,
 verifyUserRegistration,
@@ -32,6 +33,7 @@ router.post("/duplicate-username", duplicateUsername)
 router.put("/update-user", authMiddleware,  updateUser)
 router.get("/user-refresh-token", authMiddleware,  userRefreshToken)
 router.get("/get-current-user", authMiddleware, getCurrentUser)
+router.get("/get-a-user/:id", authMiddleware, getAUser)
 router.get("/get-all-users", authMiddleware, getAllUsers)
 router.get("/get-user-profile", authMiddleware, getUserProfile)
 router.get("/logout-user",  authMiddleware, isUser, logoutUser)

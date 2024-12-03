@@ -52,7 +52,7 @@ const StorySuggestions = ({ author, avatar, userId}) => {
    More From {author}
     </b></span>
     <span style={{display : "flex", flexDirection :"row", justifyContent : "flex-start", alignItems: "center",paddingTop : "30px"}}>
-    <StoryAuthor author={author} />
+    <StoryAuthor author={author} userId={userId} avatar={avatar}/>
     </span>
    
     

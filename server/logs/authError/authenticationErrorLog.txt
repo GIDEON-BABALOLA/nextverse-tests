@@ -78,3 +78,4 @@
 20241115	01:20:54	ba13e374-33bb-4fdf-9b46-2caeafff9cba	JsonWebTokenError:secret or public key must be provided
 20241115	01:20:54	7b1c07a2-34af-4ce2-8331-eed465b88d09	JsonWebTokenError:secret or public key must be provided
 20241202	10:21:50	08e17a3a-0ec6-4df4-bb66-c4f0c5573bf3	TokenExpiredError:jwt expired
+20241203	10:50:53	cbe60c15-231f-4229-9925-6b13c4ea06d3	TokenExpiredError:jwt expired

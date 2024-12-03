@@ -45,3 +45,13 @@
 20241202	17:38:17	616b75d6-3137-4cb7-a801-2d4411bf9f44	ReferenceError: how is not defined
 20241202	17:38:19	5783fa6b-4201-4158-9736-9304a24e8c0e	ReferenceError: how is not defined
 20241202	17:39:15	8251de1b-01e3-4f92-8d9d-a648e2945ae5	ReferenceError: k is not defined
+20241203	10:05:07	f01598ab-2a9e-4dfb-8436-6d7270f17a82	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:05:09	69e31621-e4bd-4aeb-98bc-a5c94b995e08	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:05:11	f53ab474-7e7a-4931-85d1-5d453d7402d1	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:05:22	713bea2d-acd1-402c-96ca-cdb737e7586f	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:05:42	6eb13e1b-0899-4b63-88e0-8e75e84583a1	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:06:57	036221e7-a80d-4fba-a2a3-4208721eb7a4	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:07:16	b5385a77-4cf4-4cde-aa51-f2a5dc542443	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:52:47	48698419-6576-48d2-9256-fc82a23a586a	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:53:19	745903c1-07e6-44fb-8836-0a596de0c347	TypeError: Cannot read properties of null (reading 'followers')
+20241203	10:53:19	68709a34-7336-4454-849d-860cc428dcc6	TypeError: Cannot read properties of null (reading 'followers')

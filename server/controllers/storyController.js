@@ -254,7 +254,8 @@ if(req.query.fields){
     const fields = req.query.fields.split(",").join(" ")
     query = query.select(fields)
 
-}else{
+}
+else{
 query = query.select("-__v")
 }
 //Pagination, for different pages

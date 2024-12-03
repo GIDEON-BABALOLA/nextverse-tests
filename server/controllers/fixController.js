@@ -108,4 +108,42 @@ res.status(500).json({"message" : 'Internal Server Error.'});
   }
 }
 
-module.exports = { fixDeveloperModel, populateStories, populateUsers }
+const fixUserModel = async (req, res) => {
+  try {
+    // Generate a random bio for the user (customize this logic as needed)
+    const generateRandomBio = () => {
+      const bios = [
+        "A passionate learner.",
+        "Loves technology and innovation.",
+        "An adventurous spirit.",
+        "Aspiring developer.",
+        "Creative problem solver.",
+        "A dreamer and achiever.",
+        "Eager to explore new ideas.",
+        "Amazing Writer",
+        "Problem Solver",
+      ];
+      return bios[Math.floor(Math.random() * bios.length)];
+    };
+
+    // Fetch all users from the database
+    const allUsers = await User.find();
+
+    for (let user of allUsers) {
+      // Skip users who already have a bio
+      if (user.bio) continue;
+
+      // Update the user with a bio
+      const updatedBio = generateRandomBio();
+      await User.findByIdAndUpdate(user._id, { bio: updatedBio }, { new: true });
+    }
+
+    res.status(200).json({ message: "Bios updated successfully for all users." });
+  } catch (error) {
+    console.log(error);
+    logEvents(`${error.name}: ${error.message}`, "updateUsersWithBioError.txt", "userError");
+    res.status(500).json({ message: "Internal Server Error." });
+  }
+};
+
+module.exports = { fixDeveloperModel, populateStories, populateUsers, fixUserModel }

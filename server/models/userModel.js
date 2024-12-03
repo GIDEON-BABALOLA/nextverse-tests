@@ -13,6 +13,9 @@ const userSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
+    bio : {
+ type  : String,
+    },
     status: {
         type : Boolean,
         required : true,

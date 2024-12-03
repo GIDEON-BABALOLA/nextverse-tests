@@ -350,6 +350,33 @@ const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
             }
     }
 }
+const getAUser = async (req, res) => {
+    const { id } = req.params;
+
+try{
+    let query;
+    query =   User.findOne({_id : id})
+    if(req.query.fields){
+        const fields = req.query.fields.split(",").join(" ")
+        query = query.select(fields)
+    
+    }
+const gotUser = await query
+console.log(gotUser)
+if(!gotUser){
+    throw new userError(`This user does not exist`, 400)
+}
+const newUser = _.omit(gotUser.toObject(), "refreshToken")
+res.status(200).json(newUser);
+}catch(error){
+    logEvents(`${error.name}: ${error.message}`, "getAUserError.txt", "userError")
+    if(error instanceof userError){
+        return res.status(error.statusCode).json({ error : error.message})
+    }else{
+        return res.status(500).json({error : "Internal Server Error"})
+    }
+}
+}
 const getUserProfile = async  (req, res) => {
     try{
         if(req.user == null){
@@ -548,7 +575,6 @@ const followUser = async (req, res) => {
     try{
         const { _id } = req.user;
         const { email } = req.body;
-        console.log(_id, email)
         if(!email){
             throw new userError("What is the email of the user you want to follow", 400)
         }
@@ -644,5 +670,6 @@ module.exports = {
     verifyUserRegistration,
     getUserProfile,
     resendUserVerification,
-    getAllUsers
+    getAllUsers,
+    getAUser
 }
