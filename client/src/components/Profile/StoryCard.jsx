@@ -1,12 +1,10 @@
 import {  useEffect, useState } from "react";
-import ContextMenu from "../common/ContextMenu";
-import { FaShareAlt } from "react-icons/fa";
-import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
-import useImageLoad from "../../hooks/useImageLoaded";
+import { FaEllipsisH } from "react-icons/fa";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
-
+import useNavigateStory from "../../hooks/useNavigateStory";
+import { getStoryUrl } from "../../helpers/getStoryUrl";
 const StoryCard = ({ fireClick, story, isLoading}) => {
+  const navigateToStory = useNavigateStory();
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
   let storyPicture = ""
@@ -37,8 +35,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
         }
       }
     });
-  }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
-
+  }, [imageStatus, story.picture, story.avatar]); 
   return (
  <> {
 
@@ -65,14 +62,17 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
    :
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
+            <div  onClick={() => { navigateToStory(story)}}>
             { pictureLoading ?
-                <div className="litenote-profile-story-image">
+                <div className="litenote-profile-story-image" >
                 <div  className="skeleton-image caller" />
               </div>:
               <div className="litenote-profile-story-image">
                 <img src={storyPicture} alt="Story Image" />
               </div>
               }
+            </div>
+           
               
               <div className="litenote-profile-story-content">
              
@@ -82,10 +82,10 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                >&nbsp;</span>
               : <img className="story-card-avatar" src={story.avatar} />
                }
-               <span>Gideon Babalola</span>
+               <span>{story.author}</span>
              
                </div>
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>
+               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} onClick={(e) => fireClick(e, getStoryUrl(story))}/>
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>

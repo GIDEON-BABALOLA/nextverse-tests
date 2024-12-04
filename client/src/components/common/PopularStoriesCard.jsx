@@ -1,17 +1,12 @@
 import {  useEffect, useState } from "react";
-import ContextMenu from "../common/ContextMenu";
-import { FaBatteryThreeQuarters, FaShareAlt } from "react-icons/fa";
-import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
+import { FaEllipsisH} from "react-icons/fa";
 import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
 import { FaMedal } from "react-icons/fa";
-import goldMedal from "../../assets/gold-medal.png"
-import { FaTimes } from "react-icons/fa";
-import useImageLoad from "../../hooks/useImageLoaded";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
-import { useMemo } from "react";
-
+import useNavigateStory from "../../hooks/useNavigateStory";
 const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const { popularStories } = usePopularStoriesContext()
+  const navigateToStory = useNavigateStory();
   const position = popularStories.indexOf(story)
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
@@ -37,20 +32,6 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
       }
     });
   }, [imageStatus, story.avatar, story.picture, popularStories]); // Triggers every time imageStatus changes
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
   return (
  <> {
 
@@ -77,14 +58,17 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
    :
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
-              { pictureLoading ?
-                <div className="litenote-profile-story-image">
+            <div onClick={() => { navigateToStory(story)}}>
+            { pictureLoading ?
+                <div className="litenote-profile-story-image" >
                 <div  className="skeleton-image caller" />
               </div>:
               <div className="litenote-profile-story-image">
                 <img src={story.picture} alt="Story Image" />
               </div>
               }
+            </div>
+
               
               <div className="litenote-profile-story-content">
              

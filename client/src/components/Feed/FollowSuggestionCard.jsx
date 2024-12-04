@@ -2,6 +2,7 @@ import FeedAvatar from "./FeedAvatar"
 import { useFollowUser } from "../../hooks/useFollowUser"
 import { useState, useEffect } from "react"
 const FollowSuggestionCard = ({ isLoading, user }) => {
+  console.log(user)
   const {followUser, data, error : followError } = useFollowUser()
   const [following, setFollowing] = useState(false)
   const followAUser = () => {
@@ -38,7 +39,7 @@ style={{display : "flex", flexDirection :"row", alignItems : "center"}}
     :
 <div className="feed-follow-suggestion">
          <FeedAvatar
-image={user["avatar"]}
+image={user["picture"]}
 alt="Author"
 className="feed-profile-images-trending" 
 />

@@ -9,9 +9,11 @@ export const ModalContext = createContext()
 export const ModalContextProvider = ({children}) => {
     const [shareModal, setShareModal] = useState();
     const [contextMenu, setContextMenu] = useState();
+    const [shareUrl, setShareUrl] = useState(null)
     const shareRef = useRef();
     const { width, height} = useWindowSize();
-    const fireClick = (e) => {
+    const fireClick = (e, storyUrl) => {
+      setShareUrl(storyUrl)
         updateMenuPosition(e.clientX, e.clientY);
         contextMenu.current.style.visibility = "visible";
       };
@@ -61,6 +63,8 @@ export const ModalContextProvider = ({children}) => {
         contextMenu,
         shareModal,
         shareRef,
+        shareUrl,
+        setShareUrl,
         fireClick,
         setContextMenu,
         closeContextMenu

@@ -3,13 +3,15 @@ import "../../styles/components/Reader/story-author.css"
 import { useState, useEffect } from "react"
 import { useFollowUser } from "../../hooks/useFollowUser"
 import { useGetAUser } from "../../hooks/useGetAUser"
-const StoryAuthor = ({ author, avatar, userId}) => {
+import { useAuthContext } from "../../hooks/useAuthContext"
+const StoryAuthor = ({ author, avatar, userId, isFollowing}) => {
   const {followUser, error : followError, data} = useFollowUser();
+  const { user } = useAuthContext();
   const {getAUser, isLoading : userLoading, error : userError, data : userData} = useGetAUser();
-
-    const [loading, setLoading] = useState(true)
-    const [following, setFollowing] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [following, setFollowing] = useState(false)
   const { loaded, error } = useImageLoad(avatar);
+  console.log(user.following)
   useEffect(() => {
     if (error) {
   setLoading(true)
@@ -52,8 +54,15 @@ console.log(userData)
 
 
 
+<>
+{
+  isFollowing ? 
+  <button className="story-follow-button"
+                > <b>Following</b></button> 
 
-    { Object.keys(data).length == 0 && !following &&
+  :
+  <>
+  { Object.keys(data).length == 0 && !following &&
                   
                   <button className="story-follow-button"
                 onClick={() => followAUser()}
@@ -80,6 +89,9 @@ console.log(userData)
                 onClick={() => followAUser()}
                 > <b>Follow</b></button> 
                 }
+  </>
+}
+</>
 </div>
   )
 }

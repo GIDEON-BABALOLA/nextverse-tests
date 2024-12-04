@@ -4,7 +4,6 @@ import { FaHome } from "react-icons/fa"
 import { MdGridView } from "react-icons/md"
 import { CgFeed} from "react-icons/cg"
 import ModeToggler from "../common/ModeToggler"
-import favour from "../../assets/29.jpg"
 const FollowSidebar = () => {
   const { width } = useWindowSize()
   return (
@@ -15,7 +14,7 @@ const FollowSidebar = () => {
 <ul className="phone-feed-sidebar-list">
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/profile"}>
-<img src={favour} alt="Author" className="feed-man"/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} alt="Author" className="feed-man"/>
 <span className="phone-feed-sidebar-nav-name">Profile</span>
 </Link>
     </li>
@@ -47,7 +46,7 @@ const FollowSidebar = () => {
       <div className="feed-sidebar-icon">
     <Link to={"/dashboard/profile"}>
 
-     <img src={favour} alt="Author" className="feed-man"/>
+     <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} alt="Author" className="feed-man"/>
 
      </Link>
    </div>

@@ -1,8 +1,5 @@
 import "../../styles/components/Home/popularstories.css"
-import StoryCard from "../Profile/StoryCard"
 import PopularStoriesCard from "../common/PopularStoriesCard"
-import favour from "../../assets/29.jpg"
-import great from "../../assets/Great.jpg"
 import { useModalContext } from "../../hooks/useModalContext"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
 import { MdReadMore,  } from "react-icons/md"

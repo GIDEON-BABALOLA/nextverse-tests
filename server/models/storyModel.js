@@ -98,7 +98,7 @@ const storySchema = new mongoose.Schema({
         required : true,
         validate : {
             validator : function(p){
-                return p.length <= 2; //Setting The Maximum Length Of The Array Here
+                return p.length <= 3; //Setting The Maximum Length Of The Array Here
             },
             message: props => `The array exceeds the maximum allowed length (2).`
         }

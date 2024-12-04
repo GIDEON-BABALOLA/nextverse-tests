@@ -9,9 +9,6 @@ import NotesPreview from "../../components/Dashboard/common/NotesPreview";
 import StoriesPreview from "../../components/Dashboard/common/StoriesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 import StickyNotes from "../../components/Dashboard/common/StickyNotes";
-import { FaPlus } from "react-icons/fa";
-import colors from "../../assets/colors.json"
-import SearchFilter  from "../../components/Browse/SearchFilter"
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
   const [stickyNotesCount, setStickyNotesCount ] = useState(JSON.parse(localStorage.getItem("stickyNotes"))?.length || 0 )

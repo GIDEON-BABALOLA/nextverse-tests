@@ -6,11 +6,12 @@ export const useGetExploreStories = () => {
     const [statusCode, setStatusCode] = useState(null)
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
-    const getExploreStories = async (page, limit, category) => {
+    const getExploreStories = async (page, limit, category, userId) => {
         const parameters = {
             page : page,
             limit : limit,
-            category : category
+            category : category,
+            userId : userId
         }
         if(category == "all"){
 delete parameters.category

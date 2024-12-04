@@ -1,274 +1,37 @@
-20240518	22:44:08	8067427d-4502-4b58-a80b-94c61e9e2907	userError: Please Fill In All The Fields
-20240518	22:44:10	8a9f9127-f044-41fc-abf0-6498dd60ecb3	userError: Please Fill In All The Fields
-20240518	22:44:52	387194e2-6cf7-4ac3-ba23-d52d8fa71a32	userError: Please Fill In All The Fields
-20240518	22:48:01	775ecf26-bb1d-4a84-a0ed-b3252ff16083	ReferenceError: username is not defined
-20240518	22:48:02	b3c1d6a5-f67f-404b-8b29-33348b780cbc	ReferenceError: username is not defined
-20240518	22:48:33	d73aa4b6-bcb1-467a-b929-8e530d8415b2	ReferenceError: username is not defined
-20240518	22:48:34	ecfd2848-6aa1-4959-821f-e33e248b2bee	ReferenceError: username is not defined
-20240518	22:48:35	4513a606-0cd3-4fbd-ad9e-56748c8e27d4	ReferenceError: username is not defined
-20240518	22:49:23	de67590a-efa3-48ca-a401-bacf8d81f926	ReferenceError: username is not defined
-20240518	22:50:06	7845e150-6146-4c87-8cad-306e63a5579b	ReferenceError: Cannot access 'story' before initialization
-20240518	22:50:07	a4134899-dde4-4994-980e-5e120ac8338c	ReferenceError: Cannot access 'story' before initialization
-20240518	22:51:05	c38d5db8-1435-4edd-91c4-24546ddf3492	ReferenceError: Cannot access 'story' before initialization
-20240518	22:51:31	de7ff15d-f4a7-497d-aeea-5a369a4ab170	ReferenceError: picture is not defined
-20240518	22:51:47	2040789f-873c-443d-abb9-8dd57c49f930	TypeError: req.files is not iterable
-20240518	22:52:59	b2017d32-48fa-4c4a-96a2-22bd12e1cbd3	userError: Pls Choose An Image To Upload
-20240518	22:54:47	58cb2ffe-7cc3-4a16-8e1e-32dd21d4a07f	userError: Please Fill In All The Fields
-20240518	22:54:48	efed8ed7-e081-4fe6-bc09-6a08b788c7cc	userError: Please Fill In All The Fields
-20240518	22:54:49	b99fde62-60cd-4897-a47c-1cf56e8e88c5	userError: Please Fill In All The Fields
-20240518	22:54:58	e74c0ecc-6e51-4251-b01c-4aa2e22f24b8	userError: Pls Choose An Image To Upload
-20240518	22:55:18	c5021f25-0d25-45a0-93cf-b42ffb96bf94	userError: Please Fill In All The Fields
-20240518	22:55:19	f3c1ebc3-d9f4-4d30-baaf-79ee834c963f	userError: Please Fill In All The Fields
-20240518	22:55:20	b4a9b3bd-bfd0-4c06-b015-156207963a54	userError: Please Fill In All The Fields
-20240518	22:55:21	52359c72-a602-4c9f-a630-5839429d4194	userError: Please Fill In All The Fields
-20240518	22:55:33	2c547fc7-be53-4f7f-b2c4-ae13831fe5c5	userError: Please Fill In All The Fields
-20240518	22:56:08	efedf4db-8ec6-4df6-b47f-e34c6a9acc0a	userError: Pls Choose An Image To Upload
-20240518	22:56:09	7bde9494-f8d5-471d-a29a-515f2894e14b	userError: Pls Choose An Image To Upload
-20240518	22:56:10	8687af3e-a420-44e1-8777-464cc2f7b9fa	userError: Pls Choose An Image To Upload
-20240518	22:56:11	0df5b9e5-9239-4905-97d0-92a2f53b0709	userError: Pls Choose An Image To Upload
-20240518	22:56:13	a7ff8c90-fe6c-4e20-8aff-e56978c0d61d	userError: Pls Choose An Image To Upload
-20240518	22:56:14	992d3872-6187-4093-bd8b-a6274ec683ae	userError: Pls Choose An Image To Upload
-20240518	22:56:14	f576b51d-7b70-4fd8-bbe1-77a0fe58e9c1	userError: Pls Choose An Image To Upload
-20240518	22:56:42	c181981c-b715-4bba-b111-338741a6e1ba	userError: Please Fill In All The Fields
-20240518	22:56:43	93415dd9-66be-4cc6-969e-91efdf483551	userError: Please Fill In All The Fields
-20240518	22:56:44	d5abb640-7d40-493f-98a3-7ee46980de1a	userError: Please Fill In All The Fields
-20240518	22:56:53	e3a1b957-d977-4b8a-a647-92e9b60b12b8	userError: Please Fill In All The Fields
-20240518	22:56:54	13c968c0-e6ff-4d35-88c5-b93b5c2a3782	userError: Please Fill In All The Fields
-20240518	22:56:54	a63e4bea-5bf9-4d8e-83cb-8f58634f1b05	userError: Please Fill In All The Fields
-20240518	22:56:54	33af152b-ee2f-4da5-886a-53ddcfebc145	userError: Please Fill In All The Fields
-20240518	22:57:00	ec0e2b13-2d23-4e8a-9b90-57ae48e7745f	userError: Pls Choose An Image To Upload
-20240518	22:57:03	acd5c25d-74b0-47fd-b44b-124f2c334967	userError: Pls Choose An Image To Upload
-20240518	22:58:16	19674908-50ce-4d6b-8306-038b1793e657	userError: Pls Choose An Image To Upload
-20240518	22:58:26	a2260064-19e7-4f21-8f8b-3ee8d3a0655f	userError: Please Fill In All The Fields
-20240518	22:58:30	35dae32b-4148-4dfc-a5da-6ed8eb8e4088	userError: Please Fill In All The Fields
-20240518	22:58:30	d7d1bcda-fec1-4a72-b19f-f25f639da462	userError: Please Fill In All The Fields
-20240518	23:00:00	bf3bb6f2-0ba9-459e-a41d-27dd3df5e3a5	userError: Please Fill In All The Fields
-20240518	23:00:16	69b0b941-54e7-4814-a3a0-6f35d7c631ed	userError: Please Fill In All The Fields
-20240518	23:00:26	fa6d20e9-e210-4fe4-9478-4ef2e242dc4d	userError: Pls Choose An Image To Upload
-20240518	23:00:27	81411bce-0fbb-41f7-921e-d8ed3d90f703	userError: Pls Choose An Image To Upload
-20240518	23:00:52	e04ffcd9-c001-472d-9505-be21a43e44d6	userError: Please Fill In All The Fields
-20240518	23:00:54	bf21dee7-ab7a-4a1e-89c4-4db1d29d300d	userError: Please Fill In All The Fields
-20240518	23:04:04	c63ebe6f-1938-4a81-8a49-08ae8fdf0046	userError: Pls Choose An Image To Upload
-20240518	23:04:06	66c30cc6-ba0e-4990-8e59-d04ffc9eaaf2	userError: Pls Choose An Image To Upload
-20240518	23:04:06	3986697a-491c-4de7-9a87-91ac2a45ecf3	userError: Pls Choose An Image To Upload
-20240518	23:04:11	7efe726a-b738-4602-bdee-73f1e8c316ed	userError: Please Fill In All The Fields
-20240518	23:04:12	7268dac6-1f32-4ebb-9618-fd97ef6d5849	userError: Please Fill In All The Fields
-20240518	23:08:33	6c921de1-876e-4ec6-9bc3-ae3924e3ab3d	userError: Please Fill In All The Fields
-20240518	23:08:41	1b49d5cf-61f0-451e-8c7c-492639b4d0ea	userError: Pls Choose An Image To Upload
-20240518	23:09:46	5aeb5f74-f24e-4b62-a6ee-667ea4885d7a	userError: Pls Choose An Image To Upload
-20240518	23:09:47	74c3f429-b411-4dc7-8066-ac593f8989e4	userError: Pls Choose An Image To Upload
-20240518	23:09:49	4a665bba-c100-4c3a-9b79-4d86231ec2a0	userError: Pls Choose An Image To Upload
-20240518	23:09:54	13bc23b8-f51c-4811-83d4-b6659bc83e3c	userError: Please Fill In All The Fields
-20240518	23:09:56	0e47c80c-7990-40e9-b0f0-e523248ef24f	userError: Please Fill In All The Fields
-20240518	23:09:58	47dc9861-c0bd-4a60-be43-d8e560818390	userError: Please Fill In All The Fields
-20240519	13:25:18	4785f2e4-a916-4db2-b3c6-993a5526ca63	userError: Pls Choose An Image To Upload
-20240519	13:25:19	64e39b17-9e7b-4757-b7d7-88143beccd06	userError: Pls Choose An Image To Upload
-20240519	13:25:38	37f43ff8-3012-469c-a7f9-c2b66c16bc09	userError: Please Fill In All The Fields
-20240519	13:31:23	2aa61558-76b7-463a-a4b2-27674af14fbc	ReferenceError: cloudinaryUpload is not defined
-20240519	13:32:03	2bc38803-8897-4bc7-be6d-41e8c8183ffb	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240519	13:33:07	f665b21c-08d8-47c9-8fe9-0fb1b44ce220	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240519	13:33:44	b6a0f2bc-78be-4efd-a183-ded94654ffa5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240519	16:22:58	94f2bd7a-bbdc-45d6-a8cf-e63814859080	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240519	16:27:29	a50fa7ec-37e8-43c8-844f-cd1d12a49369	ValidationError: Story validation failed: category: `spiritual` is not a valid enum value for path `category`.
-20240519	16:28:15	f27f401a-6627-45d0-8cda-294f5c230c4a	ValidationError: Story validation failed: category: `fiction` is not a valid enum value for path `category`.
-20240519	16:29:49	377873da-3438-4139-ab19-fdd5bb95a985	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240519	22:13:25	a7b5e196-deb8-4ef1-b69a-eb1aa3c8b653	ValidationError: Story validation failed: storyId: Path `storyId` is required.
-20240519	22:15:27	47e739d7-2662-484c-8ffa-c2a7f081a9d7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240522	21:40:35	889474fc-37d7-4264-a0e5-629ddad5ad02	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240522	21:41:21	1ca223cf-071f-4390-a6d3-bbb917bbb7fd	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240522	21:41:22	eddbbad6-8efe-4c3a-89bc-83002a80058a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240523	20:50:25	bc4aa538-2941-444d-b9b9-c098bb1f60f1	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240523	21:10:07	d834381d-6be7-4a98-8943-1df332453ef7	ValidationError: Story validation failed: category: `Payday` is not a valid enum value for path `category`.
-20240523	21:10:21	58dd2cee-d299-408d-9170-6a16274f47b7	ValidationError: Story validation failed: category: `Payday` is not a valid enum value for path `category`.
-20240523	21:10:43	98f4a687-7899-49ba-a570-2f02d2e66d88	ValidationError: Story validation failed: category: `title` is not a valid enum value for path `category`.
-20240523	21:12:06	f229ea30-abb8-45e5-bfd8-5ef4a489f856	ValidationError: Story validation failed: category: `fictionu` is not a valid enum value for path `category`.
-20240523	21:12:56	17f3f94c-f38e-454a-8408-c4624882c0fd	ValidationError: Story validation failed: category: `fictionu` is not a valid enum value for path `category`.
-20240523	21:14:21	36bdf1b9-84be-4090-87b2-6c5318ded981	ValidationError: Story validation failed: category: `fictionu` is not a valid enum value for path `category`.
-20240523	22:07:26	95743f52-3284-492b-b7d7-30146da0f0e6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240523	22:07:27	dead7378-7be3-45bb-bc80-0d28b4d47a51	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240523	22:27:21	f4add602-d067-46ea-95ef-269f0235c2b6	MongoServerError: E11000 duplicate key error collection: lightnoteDB.stories index: slug_1 dup key: { slug: "payday" }
-20240523	22:28:28	4ac724b4-b65c-4233-bcb6-014b1d3864cb	MongoServerError: E11000 duplicate key error collection: lightnoteDB.stories index: slug_1 dup key: { slug: "payday-code" }
-20240523	22:29:46	c33d4f15-1f94-43be-8e0b-17e706f1d0fd	userError: Pls Choose An Image To Upload
-20240523	22:30:55	5955bdad-87a0-425f-80a7-890be4ab9a4c	userError: Pls Upload Two Images For This Story
-20240523	22:30:56	c253f868-26cb-40f5-a556-232923efaccf	userError: Pls Upload Two Images For This Story
-20240523	22:30:57	00d6d49d-9739-4c00-bea0-b4c96366aef9	userError: Pls Upload Two Images For This Story
-20240523	22:31:23	434118b2-1485-41bc-abc5-6905d96619a5	MongoServerError: E11000 duplicate key error collection: lightnoteDB.stories index: slug_1 dup key: { slug: "payday-code-man-dope" }
-20240523	22:34:00	56579bdd-e7bc-46b3-a539-9f81c2f99e3c	userError: A story with this title already exists, pls pick another title
-20240523	22:34:03	d683be6f-d5d6-4076-9701-a429ad91e002	userError: A story with this title already exists, pls pick another title
-20240523	22:34:04	6efdeb2b-fb0b-47b4-bf22-bd2afaf61c7a	userError: A story with this title already exists, pls pick another title
-20240523	22:34:04	683e6bda-2ce9-414f-be2d-503ef8fed275	userError: A story with this title already exists, pls pick another title
-20240523	22:40:44	6f715058-ab9d-41fa-b294-6a86526b9234	userError: A story with this title already exists, pls pick another title
-20240524	04:40:03	5562e04c-187e-4fdf-969e-06bdb35ff04f	userError: A story with this title already exists, pls pick another title
-20240524	04:40:16	40b4cf75-6ef5-4e42-8ff1-2860138f7648	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240524	04:41:19	22cd532e-5a0d-4e21-95f6-ad94bd6ac577	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240524	04:44:14	32d1d90d-41bb-4c26-9290-13fb998cb256	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240524	04:58:47	1fbc0640-ada9-4302-9efa-c3d037dfe028	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240524	04:59:46	e095f97c-37fe-4b3e-b01a-c7c26f1c1ac5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240525	20:49:33	24bcad53-1866-41d6-8886-12e8e41614f1	ValidationError: Story validation failed: currency: Path `currency` is required.
-20240525	21:11:07	8dc2e3a1-ac0d-421a-b4d1-04e4814a689a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240525	21:12:12	810f3cee-cbf2-4f1a-b677-b2d7a13eebb6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240525	21:31:20	80f37588-77a1-4b26-bfd3-c6d0ff8797eb	userError: A story with this title already exists, pls pick another title
-20240526	20:47:10	b95ee379-bf6f-45b6-966c-c95869d862b4	userError: A story with this title already exists, pls pick another title
-20240526	21:08:25	14c4b450-4af6-416b-a121-5fdc148c1807	userError: A story with this title already exists, pls pick another title
-20240526	21:10:31	f06a7b9d-f3d7-4246-b56d-ce7e5823972a	userError: A story with this title already exists, pls pick another title
-20240526	21:12:54	73d03dd1-082e-4320-b0d3-4c3a997a7897	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240526	21:14:16	39384fad-98fa-4b55-8f0c-9646a4244884	ReferenceError: text is not defined
-20240526	21:16:15	96989c24-1dba-4f04-94d7-18c15c3bd4d1	ReferenceError: text is not defined
-20240526	21:17:25	b36f1e7f-e76a-447a-8a50-80f0dad266fc	ReferenceError: text is not defined
-20240526	21:33:18	1eedbb2e-461a-4e5f-873f-997337f52e8e	userError: A story with this title already exists, pls pick another title
-20240526	21:40:11	396a02cd-aa92-4c76-9837-07f30eec59a7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240526	21:49:44	89007098-be62-4ef6-b1cc-757ea4b94c5f	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240526	21:55:07	d44a168e-355f-496d-8af5-903460ff706b	userError: A story with this title already exists, pls pick another title
-20240528	10:02:18	6807e71f-2910-4521-9786-b6cc6ee7a905	userError: A story with this title already exists, pls pick another title
-20240528	10:10:26	1389b24e-f3e9-4b27-a986-4a415adcd084	userError: A story with this title already exists, pls pick another title
-20240528	10:11:03	38dc9197-28ad-416c-ad36-d828e006411f	userError: A story with this title already exists, pls pick another title
-20240528	10:48:02	d828143d-a759-4ffe-b90f-cece93385dc6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20240528	10:58:13	41a66d43-7b68-45cf-adba-3d501b73fe23	userError: A story with this title already exists, pls pick another title
-20240922	15:26:49	c743ffd6-95ce-45c1-a47f-ab2fbe2dbd36	Error: slugify: string argument expected
-20240922	15:26:58	21824524-2d49-4c63-9391-5188783ce65d	Error: slugify: string argument expected
-20240922	15:26:59	c1ee295a-4d64-42c1-8d25-69787f74a2ee	Error: slugify: string argument expected
-20240922	15:28:45	b62c492c-b8d1-4a5b-b007-2751bb601446	Error: slugify: string argument expected
-20240922	15:28:45	0629ca31-1502-42aa-b47d-014bbc24ba61	Error: slugify: string argument expected
-20240922	15:28:46	ddca2341-425e-47a3-b45e-e9445d49acd1	Error: slugify: string argument expected
-20240922	15:28:52	18b976c5-b7b6-4eeb-90fb-3c2c7d94c539	Error: slugify: string argument expected
-20240922	15:31:42	865b5252-8aeb-4f4c-bb00-b84c486e1aa6	userError: Please Kindly Fill In All The Fields
-20240922	15:31:44	d17041fc-d54f-4c64-8774-03721080e25f	userError: Please Kindly Fill In All The Fields
-20240922	15:34:36	161b909a-86d0-4d2d-a7b0-6d3879d2eb08	userError: Please Kindly Fill In All The Fields
-20240922	15:35:26	29761088-b4fa-490d-83bc-cb33087958df	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:35:28	64535d46-8bbb-429a-95e1-c8d1d36709b6	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:36:00	e35ec2bb-59e5-4595-9ff2-83c155a0c488	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:36:19	2eb46a66-11b9-4faa-8d56-fadfe1fd4faf	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:37:39	e0928bf5-6f85-4c60-88ab-f9dfdbfe803d	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:38:28	86cbb8db-7bed-457b-afc7-9fe69dae2634	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:38:29	692ab081-4854-4c89-b2e0-bf4f49364881	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:38:30	0128c64f-7752-4207-af07-1051aac4b2c9	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:43:54	fc6a803d-1881-48ad-b473-c5931849a524	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:44:00	02e79527-ea65-4d27-b20e-109e55f25195	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:44:01	8b3cdf29-1120-4715-b41c-49db761ab9d4	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:44:31	108a9795-3713-4de6-b3ca-ebbe4b423320	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:45:11	c3f557c2-b250-4ced-a696-e0614693b487	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:45:30	dceb505a-5b41-4cf6-9b96-9aa4a7c8fe7d	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:46:08	fe1cb49b-5e75-400f-82b4-2c12cff3674d	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:55:00	0017c8d8-629f-4b52-8c4f-2861f449c22b	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:56:55	e9b7a48c-47d4-4321-8295-609a4db1e9d0	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:57:24	d201327e-66ce-42f1-820f-a726002cf9e1	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:58:02	9f07ff42-ba8d-4eac-87ed-09089f9e8002	TypeError: Cannot read properties of undefined (reading 'length')
-20240922	15:58:11	49e06b9a-e29f-4444-8386-590ffec8ad97	TypeError: Cannot read properties of undefined (reading 'length')
-20240924	08:53:00	f30cea15-195e-467d-be86-28222ad81ad5	TypeError: Cannot read properties of undefined (reading 'length')
-20240924	08:56:06	205d0596-57c0-4377-9513-a9e6ea92f61a	userError: You Cannot Create A Story With The Category gaming
-20240924	08:56:09	988d3409-6546-4e3f-b455-76d6327593e5	userError: You Cannot Create A Story With The Category gaming
-20240924	08:56:16	2533e69f-c56b-4ea3-8641-c014d10bc45d	TypeError: Cannot read properties of undefined (reading 'length')
-20241007	05:52:05	a1a2e7e6-f978-4f26-9a13-083f7cd14b1d	userError: Please Fill In All The Fields
-20241007	05:53:02	ad1f6763-1bb1-4487-9ebd-8601b5c87fa2	userError: Please Fill In All The Fields
-20241007	05:53:09	5d248198-f5d3-48b3-9004-8f097e004690	userError: Please Fill In All The Fields
-20241007	05:53:31	d9da29c9-0235-43f5-b795-378a617340f8	userError: You Cannot Create A Story With The Category undefined
-20241007	05:53:33	2978cf0d-87e0-44c6-9618-9226e8dc2b15	userError: You Cannot Create A Story With The Category undefined
-20241007	05:53:54	00349a2f-8919-440c-8140-d99234656c63	userError: Please Fill In All The Fields
-20241007	05:55:11	d43db1df-dfda-47ae-8409-579e2f5aba37	TypeError: Cannot read properties of undefined (reading 'length')
-20241007	05:55:33	2f793f87-09f7-4c44-83a1-51190e5f14bb	TypeError: Cannot read properties of undefined (reading 'length')
-20241007	05:56:16	95054ab9-deee-4ad8-a5b0-1c5310e21de8	TypeError: Cannot read properties of undefined (reading 'length')
-20241007	05:56:55	e8176dd1-0b73-428d-a0f7-80ac0d845fa2	ReferenceError: files is not defined
-20241007	05:57:11	b00ad623-6fc3-4525-bd52-04b086c37e42	TypeError: Cannot read properties of undefined (reading 'length')
-20241007	05:57:50	f1270b9b-070e-4afc-ace1-e42f310dcffd	userError: Please Fill In All The Fields
-20241007	05:57:59	6dcb35aa-2436-4588-9d37-983952774acf	userError: Please Fill In All The Fields
-20241007	05:58:16	75acf224-60c2-4401-8c4c-caf82bb58af8	TypeError: Cannot read properties of undefined (reading 'length')
-20241007	06:01:32	5bcc4db9-0a37-4b58-9479-71327dabfa71	userError: Please Fill In All The Fields
-20241007	06:02:14	177c4e63-2937-4175-a5c8-25fdb9791e87	userError: Pls Choose An Image To Upload
-20241007	06:02:58	93e387f4-b281-4806-9c65-17ef0cbe1c76	userError: Pls Upload Two Images For This Story
-20241007	06:03:18	35bc2304-5ab7-4fdd-b5f6-9cf12862d28a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241007	20:22:03	0eb277c5-f293-4823-8387-4e23b951aba4	userError: Pls Choose An Image To Upload
-20241007	20:25:08	dbcc0a8b-2e84-41bb-be36-8c59c51d14b2	userError: Pls Upload Two Images For This Story
-20241007	20:25:40	590a3e77-c77b-4f05-9c4c-8550f2fdf0b5	ValidationError: Story validation failed: category: `nonFiction` is not a valid enum value for path `category`.
-20241007	20:29:39	c5e529f3-01f1-4205-9e0d-88c890981567	userError: You Cannot Create A Story With The Category nonFiction
-20241007	20:32:05	c394307a-80a8-4523-a1c7-473ba16467d7	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:00:45	6fdf35d6-86d7-4637-96f5-d4c6d283c75d	userError: Please Fill In All The Fields
-20241008	07:02:48	1b9495ea-d18b-463a-9c09-9758d3ddc31a	userError: Pls Choose An Image To Upload
-20241008	07:02:49	ccf1dbf9-c53b-4298-bd8a-d81395126a68	userError: Pls Choose An Image To Upload
-20241008	07:03:08	5cea09d8-b4a2-44a3-9ae5-322145ccce34	userError: Pls Upload Two Images For This Story
-20241008	07:03:10	3655972e-975d-4113-bff5-cf645ec95c9c	userError: Pls Upload Two Images For This Story
-20241008	07:09:10	3f532d94-8d17-4f3e-bdfb-fe148bf89e25	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:09:12	d5c51207-d98d-4b5f-91c0-bcd62863064f	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:09:13	e4091729-2c39-4c47-aa9c-3922c59f4b4b	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:09:40	5a76206c-cb57-4227-b47e-0253e1ab0449	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:09:41	717f6f13-e407-4cf5-9c08-037ee7e39fb1	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:10:53	e5361c24-fb27-40a0-8fb1-6d3bd4547ded	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:21	38634dcb-c263-4c90-8667-35f847357a6c	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:22	6fb4dd68-bb47-4ed4-8c77-e67b8fb2a103	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:24	25d69aac-c1c5-41bb-a13d-0225653f95e8	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:25	717abe60-a955-44b1-adf4-c0e867c10933	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:27	4efabe2e-d2a3-4555-853d-4f240bed162e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:34	3308d3e7-059f-48ab-a0a6-1470ee2af5d5	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:35	697c3275-5fab-4498-be04-e2c1b7499c39	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:36	1900a9c5-08f9-41ab-8c08-b68006b6144a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:36	91d6b53f-7005-4627-9314-0f93b97be933	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:36	50774170-ab7a-4e1d-83f5-16945bdbd30c	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:37	4a56944a-a7c3-42b4-8fc9-21338295ac4a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:38	1dbab220-286b-4059-ac7f-68b734f1ef52	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:39	94e28960-23ad-428c-b7c6-44793b6cb537	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:39	b4f18fce-513f-4b35-9783-67d410a43325	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:39	aa77f449-db36-43ef-983c-422fe30a7f98	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:39	8175f19c-0547-474a-9157-4bb50d30c3d8	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:39	e94703e2-bb34-4311-8f92-9ff120d8b751	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:39	19f4b015-4202-4f09-9311-1e9c78b6df1e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:40	d06609c5-f869-42e8-85c4-6332f4ddbbea	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:40	938c4204-ab22-4fd3-a729-25147752f604	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:47:40	2a510b03-8493-41c8-82aa-df90f5bedad4	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	07:49:00	923f8a89-8a04-4fc8-ba9e-a3cd311e6331	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	07:50:51	d0f50dd8-be74-43e9-878a-ead21ffac7b3	userError: Please Fill In All The Fields
-20241008	07:50:53	2a6930f5-a975-44f4-aa61-8ffae7023f3b	userError: Please Fill In All The Fields
-20241008	10:20:05	3b762293-9641-4bab-838e-ccb002e01666	userError: Please Fill In All The Fields
-20241008	10:21:03	8417e587-dcd4-4663-886b-19afee8e9863	userError: Pls Choose An Image To Upload
-20241008	10:21:36	0df2fbbc-1c4e-4108-91af-8b2b96f8b1b4	userError: Pls Upload Two Images For This Story
-20241008	10:21:41	add8e367-5a80-4b5e-a935-c61772e391e9	userError: Pls Upload Two Images For This Story
-20241008	10:22:02	0d118baf-973e-4881-943c-d50216773c3f	userError: Pls Upload Two Images For This Story
-20241008	10:22:42	daff62b0-b984-423a-9ff3-a472aa7ec004	userError: Pls Upload Two Images For This Story
-20241008	10:22:44	3e1c59f9-2066-4a24-a89f-be01bac5f962	userError: Pls Upload Two Images For This Story
-20241008	10:23:47	12f0133e-d634-4e97-a3b4-d426273bc903	userError: Pls Upload Two Images For This Story
-20241008	10:24:08	b835522e-37c4-427f-92f9-9a4b5a803776	userError: Pls Upload Two Images For This Story
-20241008	10:24:31	5b7c5419-5f3d-44b1-a056-a27d448e0be8	userError: Pls Upload Two Images For This Story
-20241008	10:27:40	68f89e73-d3b7-4e40-871b-abdd0f21e024	userError: Pls Upload Two Images For This Story
-20241008	10:27:41	e87e9839-e2aa-40e7-bb88-f0a29d6d697b	userError: Pls Upload Two Images For This Story
-20241008	10:28:01	31ce14bb-8dc2-4bc2-a95f-6c6f6420450b	userError: Pls Upload Two Images For This Story
-20241008	10:28:32	fbccd49d-2d23-4bae-8c0b-355982d3321d	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	10:31:31	b350d17c-1543-405e-a550-eb77bec619a4	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	10:40:54	423a3d1d-3774-4faa-9fec-22c0b1e0c196	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	10:40:55	fb473e37-6074-41c9-a8ae-9593532cb802	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	10:40:56	5b4ae6d7-508d-43bc-aaed-fb8bd541981a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	11:41:22	7251084f-6646-4ec9-8637-69417fefd23f	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	11:41:26	475464df-7c8d-435a-9b60-9d187f6532fe	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	11:45:09	4b45663c-a6eb-4263-98aa-a02a08c4f6d5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	11:45:10	525b5027-c6f8-47f8-b7da-9dba1d8a5e63	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	11:50:40	ea683a31-0186-4cf5-9fb5-720c4a063ddd	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	13:42:38	c3fae6ba-95ef-40a9-90e1-91af05ad4bf5	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	14:17:59	d797a322-8bcc-4eb2-b724-f11a50b6c52b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	14:19:45	ebda5385-5258-462f-a718-ad603a96e5b5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	14:20:59	1c27c446-86bb-413c-9383-3e53dca7c59b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	15:16:44	5c2e1ea7-860c-4f95-8581-b908f3b4cce1	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	15:24:20	78dda03a-c4d5-4a23-95dc-45f17ba00310	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241008	15:25:18	d536b65a-0f8f-4255-9fae-0fd04f9684c7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	15:27:03	949eeb3e-1f52-4d36-b72f-6f4a8f857a72	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	15:30:01	4098d284-cfc3-4b2a-aed6-870bd84cec9a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	15:35:41	ba06e23e-f68f-4b68-a28e-602b60a5efda	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	15:37:00	82c980ca-101f-4879-860d-4e18140bfe32	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241008	15:42:18	9f5c55d6-4edc-412f-be91-5d2fb067962c	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241009	08:11:32	f801f560-fe78-4db1-b4e9-2d73512a314c	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241009	08:13:07	0fdbea3a-5fd4-45c0-a73e-4d435471bce4	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241009	08:17:33	56542c0c-990a-4c8c-ae3e-935bb7f23051	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241009	08:20:14	8f0bdfec-334a-4379-88ca-e9b430bb0587	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241009	08:23:08	e3ff9e34-68d2-4c8f-b3d9-5aee3647ccb4	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241015	14:58:49	6802102b-0b37-4ed5-82ba-73ecc98894c9	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241015	14:58:59	a6b7460c-4e4b-416b-bc13-3ed08aefa4d9	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241016	08:42:38	80fc1c30-fdf5-4627-b142-e0c898ed7900	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241016	08:42:47	52f0861a-10b4-4f8d-a9eb-2d59b58ead75	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241023	13:26:10	d296f425-7aa3-4849-83f3-7714b6880c34	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241023	13:45:21	6bbd15a5-4234-44b6-b0a4-2fe8cd23102e	userError: Image size too large (max 2MB)
-20241023	13:51:57	81974970-0b6d-47b9-a203-4ef833927fac	userError: You Cannot Create A Story With The Category Memoir
-20241023	14:17:35	88c4d087-2d7b-46fa-afa2-22e040a0daf3	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241023	14:18:34	e1445581-f2ad-424d-9a4e-be453208984e	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241024	15:02:27	184c6d27-8d05-42df-ba8f-83f2e1e4b41a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241029	17:49:43	75e13719-8d6d-480a-86f8-4adc404fa4b5	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241029	17:51:22	25f5b7e3-3b79-41f4-ae74-1e2355490c24	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241029	17:54:18	90314936-17f6-4e1d-a911-e37dcdd2d4ec	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241029	17:54:38	1964b27e-1761-4c48-9bde-f69b1d3c294d	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
-20241029	18:12:21	39a215cc-aca4-4063-9b5b-a8f32b0337f5	cloudinaryError: Unable To Upload Picture, Check Internet Connection
-20241103	12:19:22	8e4009e7-6a58-4ec0-a966-17869df6b3fa	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241204	04:43:13	5c10c327-97f9-4814-82a1-bd9df8bb8d56	ValidationError: Story validation failed: picture: The array exceeds the maximum allowed length (2).
+20241204	04:44:10	00546250-70b3-40ba-a7b7-6c81d00298db	userError: Pls Choose An Image To Upload
+20241204	04:44:32	389eb7c4-faaf-47cb-b577-da646249fc3c	ValidationError: Story validation failed: picture: The array exceeds the maximum allowed length (2).
+20241204	04:53:36	0140fb06-fb84-4691-b375-a26662497151	userError: Image size too large (max 2MB)
+20241204	04:55:56	343ba3e7-b740-4161-b776-22d84c2478e8	userError: Image size too large (max 2MB)
+20241204	05:05:48	ea0b3a7b-f87f-42a5-8851-38a35cd026e6	userError: Image size too large (max 2MB)
+20241204	05:10:21	e2124b64-dad9-42fd-abfb-6b003ba14a63	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241204	09:01:35	75661677-9b8b-4f3b-ad2c-2860f97746b8	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241204	09:03:25	f2035183-fa08-40a1-9adc-af8ce4126c9a	userError: Image size too large (max 2MB)
+20241204	09:19:13	79272a5a-ce42-485f-a0e3-b41a35e58aa7	userError: Image size too large (max 2MB)
+20241204	09:29:20	d201bb1d-a1c1-4db6-920c-c9bac95caac1	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241204	09:58:23	3fe850d7-4d0d-40f7-87c1-f92528ce520c	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	09:58:25	64bfaf26-f773-489e-9267-6d15a230a562	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	10:06:58	bdb0f87b-89b1-4d85-a053-577ecc6db8c5	userError: Image size too large (max 2MB)
+20241204	10:08:00	7d0af430-1fd5-40bc-b16c-8ba0f417b4fa	userError: Image size too large (max 2MB)
+20241204	10:08:35	85db4ea3-4bdd-4ff0-991b-7fa9a35abfa9	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	10:08:35	50e4d1a4-b8cf-4bc4-bffe-87ed9181da27	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	10:12:10	e39be40d-1239-4252-94eb-1d13a8d3a367	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	10:12:12	0284102b-c038-4e8e-8c0b-79810d143771	userError: You Cannot Create A Story With The Category  romance
+20241204	10:12:21	af377262-3dd9-4f6b-9500-ae7c9631664d	userError: You Cannot Create A Story With The Category  romance
+20241204	10:14:39	8a298d5a-f8c6-4c28-b4bf-cf36d1e042c7	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	10:17:12	71c419ff-cf99-4529-b620-aebfb3e4663d	userError: Image size too large (max 2MB)
+20241204	10:17:33	a7d267d3-f700-45fd-aa1d-c1751301fd46	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	11:48:22	bf647243-5639-4e4a-95c1-4419c865ca7f	userError: Image size too large (max 2MB)
+20241204	11:48:34	3bdc4e47-681f-4166-9e64-625153fed988	userError: Image size too large (max 2MB)
+20241204	11:50:06	7f684cc5-4474-44f4-a4f8-f9774b65c3e3	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	11:50:13	82cb5c7b-b761-4862-90aa-2231f54b3b5a	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241204	11:50:14	cf22a8d0-0abe-4f14-8e4d-b64e81984017	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20241204	12:13:54	ff877655-4b9a-493a-a2ab-6647b8db4ad5	userError: Image size too large (max 2MB)
+20241204	12:14:08	e2d66d68-7722-449f-8150-f8b7f0f6baf7	userError: Image size too large (max 2MB)
+20241204	12:17:47	14adefc3-ef94-404a-b77b-e44b8916281d	userError: Image size too large (max 2MB)
+20241204	12:19:33	fe28d1f7-70c7-4503-a391-19d350b01681	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	12:20:48	d762928e-be51-4c3b-bd31-6f3dcc8410f1	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	12:25:46	f6402ae7-6fe4-4c7f-b930-cd8bcb8682f8	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	12:27:11	ea6c5a46-a2eb-401c-bfa6-2415fabde6c6	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	12:29:11	17619871-a6fd-4380-a33d-40f7b886536b	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20241204	12:40:45	a6a0e8ec-128a-40bf-bc22-b86e7bbe5d21	userError: You Cannot Create A Story With The Category fantasy

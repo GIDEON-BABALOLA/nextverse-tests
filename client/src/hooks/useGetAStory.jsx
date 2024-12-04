@@ -4,6 +4,7 @@ export const useGetAStory = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
+    const [isFollowing, setIsFollowing] = useState(null)
     const [data, setData] = useState([])
     const getAStory = async (id) => {
         setIsLoading(true) //starting the request
@@ -14,7 +15,8 @@ const response = await axiosConfig.get(`/story/get-a-story/${id}`, {
 }
 )
 if(response && response.data){
-    setData(response.data)
+    setData(response.data.story)
+    setIsFollowing(response.data.isFollowing)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -26,6 +28,7 @@ if(response && response.data){
         
         catch(error){
 setIsLoading(false)
+setIsFollowing(null)
             if(error.message == "canceled"){
                 setError({message : "Your Request Has Timed Out", code : error.code})
             }
@@ -40,5 +43,5 @@ setIsLoading(false)
         }
     }
     }
-    return {getAStory, isLoading, error, data, statusCode} 
+    return {getAStory, isLoading, error, data, statusCode, isFollowing} 
 }

@@ -1,9 +1,8 @@
 import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
-import profileImage from "../../assets/29.jpg"
 import { useState, useEffect } from "react";
-import colors from "../../assets/colors.json"
+import colors from "../../data/colors.json"
 import { FaPlus } from "react-icons/fa";
 import { MdOutlineRectangle } from "react-icons/md";
 import "../../styles/components/Dashboard/dashboard-settings-page.css"
@@ -63,7 +62,7 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <h2>Profile</h2>
 </div>
 <div style={{display : "flex", flexDirection : "row", alignItems :"center", gap : "20px", paddingTop : "10px"}}>
-  <img src={profileImage} style={{width : "10%", borderRadius : "50%"}}/>
+  <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} style={{width : "10%", borderRadius : "50%"}}/>
   <div>
   <h3>Gideon Babalola</h3>
   <h6 style={{color: "#9CA3AF"}}>gideonbabalola69@gmail.com</h6>

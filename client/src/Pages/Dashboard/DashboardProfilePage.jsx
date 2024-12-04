@@ -5,22 +5,9 @@ import ProfilePictureSection from "../../components/Dashboard/common/Profile/Pro
 import PersonalInformationSection from "../../components/Dashboard/common/Profile/PersonalInformationSection";
 import PersonalStatisticsSession from "../../components/Dashboard/common/Profile/PersonalStatisticsSession";
 import useWindowSize from "../../hooks/useWindowSize";
-import { MdOutlineCreate, MdOutlineEmail, MdLockOutline, MdOutlineLock, MdContactPhone  } from "react-icons/md";
-import { MdOutlineThumbUpAlt,
-   MdOutlineInsertComment,
-   MdAutoStories,
-   MdBookmarks,
-   MdNotes,
-   MdOutlineStickyNote2,
-   MdEmojiPeople,
-   MdGroup,
-   MdVerifiedUser,
-   MdOutlinePersonPin,
-   MdVisibility
-  } from "react-icons/md";
+
   import { FaPhoneAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import "../../styles/components/Dashboard/dashboard-profile-page.css"
-import profileImage from "../../assets/29.jpg"
 import { useState, useEffect } from "react";
 import { FaSmileBeam } from "react-icons/fa";
 const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {

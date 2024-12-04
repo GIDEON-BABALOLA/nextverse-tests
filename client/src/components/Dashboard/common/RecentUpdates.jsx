@@ -1,28 +1,24 @@
 
 import "../../../styles/components/Dashboard/recent-updates.css"
-import profile from "../../../assets/profile.jpg"
-import avatar_hat from "../../../assets/avatar_hat.png"
-import lastimage from "../../../assets/29.jpg"
-import avatar3 from "../../../assets/avatar3.png"
 const RecentUpdates = () => {
     const recentUpdates = [
         {
-photo : profile,
+photo : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507548/Avatars/j2qjukxg92ezd4oerzqz_j0bjmo.jpg",
 name : "Mike Junior",
 update : "I love This site so much would love an app version though"
         },
         {
-photo : avatar3,           
+photo : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg",           
 name : "Joy Bliss",
 update : "So many Interesting stories i dont even know where to start from😍" 
         },
         {
-photo : avatar_hat,            
+photo : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507571/Avatars/yq7olsu4djjzlv643nsm_fkw9nr.jpg",            
 name : "Adenike Damilola",
 update : "I would really appreciate if i can sell my books on this Platform "
         },
         {
-photo : lastimage,            
+photo : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",            
 name : "Adigun Favour",
 update : " I would really appreciate if i can sell my books on this Platfor"
         }

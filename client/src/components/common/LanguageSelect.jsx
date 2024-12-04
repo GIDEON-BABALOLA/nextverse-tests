@@ -1,17 +1,5 @@
 import "../../styles/components/common/language-select.css"
 import { FaSearch, FaAngleDown } from "react-icons/fa"
-import fr from "../../assets/countryflags/fr.png"
-import us from "../../assets/countryflags/us.png"
-import de from "../../assets/countryflags/de.png"
-import gb from "../../assets/countryflags/gb-eng.png"
-import es from "../../assets/countryflags/es.png"
-import it from "../../assets/countryflags/it.png"
-import pt from "../../assets/countryflags/pt.png"
-import cn from "../../assets/countryflags/cn.png"
-import sa from "../../assets/countryflags/sa.png"
-import india from "../../assets/countryflags/in.png"
-import jp from "../../assets/countryflags/jp.png"
-import nl from "../../assets/countryflags/nl.png"
 import { useRef, useState, useEffect } from "react"
 const LanguageSelect = () => {
   const[searchInput, setSearchInput] = useState()
@@ -22,50 +10,51 @@ const LanguageSelect = () => {
   const selectOptions = useRef()
 const languageData = [ {
   name : "English(US)",
-  flag  : us},
+  flag  : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240294/Assets/Flags/us_g7f8fy.png"
+},
 {
   name : "English(UK)",
-  flag : gb
+  flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240274/Assets/Flags/gb_wk13vw.svg"
 },
 {
   name : "French",
-  flag : fr
+  flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240270/Assets/Flags/fr_mtj65f.png"
 },
 {
 name : "German",
-  flag : de
+  flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240265/Assets/Flags/de_debhlf.png"
 },
 {
 name : "Spanish",
-flag : es
+flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240268/Assets/Flags/es_yz3eno.png"
 },
 {
 name : "Italian",
-flag : it
+flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240279/Assets/Flags/it_vq17su.png"
 },
 {
 name : "Portugese",
-flag : pt
+flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240286/Assets/Flags/pt_swvfcr.png"
 },
 {
 name : "Chinese",
-flag : cn
+flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240265/Assets/Flags/cn_hdlygw.png"
 },
 {
 name : "Hindi",
-flag : india
+flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240276/Assets/Flags/in_zvyuyn.png"
 },
 {
 name : "Arabic",
-flag : sa
+flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240291/Assets/Flags/sa_c7wgsb.png"
 },
 {
   name : "Japanese",
-  flag : jp
+  flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240281/Assets/Flags/jp_qx05u7.png"
   },
   {
     name : "Dutch",
-    flag : nl
+    flag : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240283/Assets/Flags/nl_ap18pz.png"
     }]
 
   useEffect(() => {

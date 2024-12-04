@@ -9,7 +9,6 @@ import { useState, useEffect, useRef } from "react";
 import { MdCalendarToday } from "react-icons/md";
 import "../../styles/components/Reports/reports-page.css"
 import React from "react";
-import favour from "../../assets/29.jpg"
 import Calendar from "../../components/common/Calendar"
 const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const reportsListContainer = useRef()
@@ -52,7 +51,7 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <div className="litenote-reports-box-top">
 <div className="litenote-reports-box-profile">
   <div className="litenote-reports-profile-image">
-    <img src={favour}/>
+    <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"}/>
   </div>
   <div className="litenote-reports-box-name-user">
 <strong>Gideon Babalola</strong>
@@ -76,7 +75,7 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <div className="litenote-reports-box-top">
 <div className="litenote-reports-box-profile">
   <div className="litenote-reports-profile-image">
-    <img src={favour}/>
+    <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"}/>
   </div>
   <div className="litenote-reports-box-name-user">
 <strong>Gideon Babalola</strong>
@@ -103,7 +102,7 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <div className="litenote-reports-box-top">
 <div className="litenote-reports-box-profile">
   <div className="litenote-reports-profile-image">
-    <img src={favour}/>
+    <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"}/>
   </div>
   <div className="litenote-reports-box-name-user">
 <strong>Gideon Babalola</strong>
@@ -128,7 +127,7 @@ const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
 <div className="litenote-reports-box-top">
 <div className="litenote-reports-box-profile">
   <div className="litenote-reports-profile-image">
-    <img src={favour}/>
+    <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"}/>
   </div>
   <div className="litenote-reports-box-name-user">
 <strong>Gideon Babalola</strong>

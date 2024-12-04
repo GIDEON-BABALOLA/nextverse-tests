@@ -6,7 +6,6 @@ import { MdGridView, MdGroups,
 import { FaHome, FaBookmark } from 'react-icons/fa';
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
-import logo from "../../../../src/assets/litenote.png"
 import { CgFeed} from "react-icons/cg"
 import { useThemeContext } from '../../../hooks/useThemeContext';
 import { MdDynamicFeed } from "react-icons/md";
@@ -75,7 +74,7 @@ clickSidebarMenu()
 
                     <div className="top">
                         <div className="logo">
-                         <img src={logo} />
+                         <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png"} />
                          <h2 className="litenote-dashboard-h-two">Lite Note </h2>
                         </div>
              <div className="close" id="close-btn" onClick={closeSidebar}>

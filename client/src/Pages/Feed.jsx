@@ -8,7 +8,6 @@ import FeedList from "../components/Feed/FeedList";
 import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
 import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
 import FeedBottomNav from "../components/Feed/FeedBottomNav";
-import favour from "../assets/29.jpg"
 import ChatBot from "../components/ChatBot/ChatBot";
 import { MdOutlineCreate } from "react-icons/md";
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";

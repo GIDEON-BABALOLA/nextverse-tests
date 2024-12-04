@@ -4,7 +4,6 @@ import RotationLoader from "../../components/Loaders/RotationLoader"
 import { useState, useEffect, useRef } from "react";
 import { MdDelete,  MdClose } from "react-icons/md"
 import "../../styles/components/Dashboard/users-page.css"
-import avatar from "../../assets/29.jpg"
 import useWindowSize from "../../hooks/useWindowSize";
 import { MdCheckCircle, MdClear } from "react-icons/md";
 import SpecialModal  from "../../components/common/SpecialModal"
@@ -41,7 +40,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-11-14",
       "lastSeen": "2024-06-20",
       "email" : "dev@gmail.com",
-      "avatar": avatar,
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg",
       
     },
     {
@@ -54,7 +53,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-07-19",
       "lastSeen": "2024-12-18",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user3",
@@ -66,7 +65,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-10-26",
       "lastSeen": "2024-10-17",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user4",
@@ -78,7 +77,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-06-27",
       "lastSeen": "2024-07-25",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar":"https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user5",
@@ -90,7 +89,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-04-18",
       "lastSeen": "2024-09-21",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user6",
@@ -102,7 +101,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-03-15",
       "lastSeen": "2024-11-13",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user7",
@@ -114,7 +113,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-08-05",
       "lastSeen": "2024-03-06",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user8",
@@ -126,7 +125,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-07-11",
       "lastSeen": "2024-05-22",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user9",
@@ -138,7 +137,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-08-13",
       "lastSeen": "2024-07-23",
       "email" : "dev@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     {
       "username": "user10",
@@ -150,7 +149,7 @@ const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       "dateJoined": "2020-10-12",
       "lastSeen": "2024-12-14",
       "email" : "solution@gmail.com",
-      "avatar": avatar
+      "avatar": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507572/Avatars/yqsbhjvpt99uddtuy7tr_htvqzt.jpg"
     },
     
   ]

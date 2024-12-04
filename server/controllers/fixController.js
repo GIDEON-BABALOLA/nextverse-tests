@@ -39,7 +39,7 @@ const populateUsers = async(req, res) => {
   try{
     
 for (let index = 0; index < mockUsers.length; index++) {
-  profilePicture = avatars[Math.floor((Math.random() * 30) + 1)]
+  profilePicture = avatars[Math.floor((Math.random() * 50) + 1)]
   const element = mockUsers[index];
   const foundUser = await User.findOne({email : element["email"]})
 const foundMobile = await User.findOne({mobile : element["mobile"]})

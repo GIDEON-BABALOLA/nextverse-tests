@@ -1,11 +1,7 @@
 import { MdAttachFile, MdCloudUpload } from "react-icons/md"
 import SpecialModal from "../../common/SpecialModal"
-import googledriveicon from "../../../assets/google-drive.svg"
-import devicecamera from "../../../assets/camera.svg"
-import dropbox from "../../../assets/dropbox.svg"
 import CloudinaryIcon from "../../../styles/components/common/Icons/CloudinaryIcon"
 import { FaGoogleDrive } from "react-icons/fa";
-import hdd from "../../../assets/hdd.svg"
 import { FaBold,
     FaItalic,
    FaUnderline,
@@ -101,12 +97,12 @@ const previewAttachmentHtml = () => {
   return (
   <>
 <section className="attach-picture-options">
-  <div ><img src={hdd} width="15%"/>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257539/Assets/images/hdd_fpfs8i.svg"} width="15%"/>
   <span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span>
   </div>
-  <div ><img src={googledriveicon} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
-  <div ><img src={devicecamera} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
-  <div ><img src={dropbox} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257535/Assets/images/google-drive_o6oi9s.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257531/Assets/images/camera_z43upm.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257533/Assets/images/dropbox_v5sl8k.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>
   <div
   onClick={slideLine}
    className="slideline" style={{left : attachmentLine + "px"}}></div>

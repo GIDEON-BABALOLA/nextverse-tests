@@ -1,6 +1,5 @@
 import "../../../styles/components/Dashboard/dashboard-header.css"
 import { MdMenu, MdLightMode, MdDarkMode} from "react-icons/md"
-import image from "../../../assets/3.jpg"
 import { useRef, useState, useEffect } from "react"
 import ContextMenu from "../../common/ContextMenu"
 import {  MdLogout, MdSettings, MdClose, MdGridView, MdOpenInNew }from "react-icons/md"
@@ -97,7 +96,7 @@ contextMenu.current.classList.add("active")
             </div>
             <div> <img  
             style={{cursor: "pointer"}}
-             className="litenote-dashboard-profile-again-photo" src={image} alt=""
+             className="litenote-dashboard-profile-again-photo" src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} alt=""
             onClick={showLoggedUserOptions}
              /></div>
        

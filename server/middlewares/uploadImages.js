@@ -31,7 +31,7 @@ const uploadPhoto = multer({
     fileFilter : multerFilter,
     limits : {    fieldSize: 	2000000 } //2 megabytes at most // // 2 Megabyte in bytes (1 kilobyte = 1024 bytes)
 })
-const uploadImageMiddleware = uploadPhoto.array('picture', 2);
+const uploadImageMiddleware = uploadPhoto.array('picture', 3);
 const uploadProfileImage = uploadPhoto.single("profile-picture");
 const uploadMiddleware = (req, res, next) => {
   uploadImageMiddleware(req, res, (err) => {

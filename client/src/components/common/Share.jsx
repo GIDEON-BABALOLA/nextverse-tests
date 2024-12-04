@@ -10,10 +10,10 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import "../../styles/components/common/share.css"
 import { useEffect } from "react"
-const Share = ( { share, shareModal}) => {
+const Share = ( { share, shareModal, shareUrl, setShareUrl}) => {
 const [text, setText] = useState(false)
   const closeShareModal = () => {
-
+setShareUrl(null)
     shareModal.current.classList.remove("slide-dow")
     setTimeout(() => {
       shareModal.current.close()
@@ -45,7 +45,7 @@ setText(!text)
             </header>
             <div className="litenote-copy-link-dialog__content">
                 <div className="litenote-copy-link-wrapper">
-                    <input id="copy-link-input" type="text" required value="https://example.com/share-this" readOnly />
+                    <input id="copy-link-input" type="text" required value={shareUrl} readOnly />
                     <button
                     style={{color : "#ff5e62"}}
                      className="litenote-copy-btn" type="button" onClick={copyLink}>

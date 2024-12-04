@@ -1,4 +1,3 @@
-import gideon from "../../../assets/3.jpg"
 import { useModalContext } from "../../../hooks/useModalContext"
 import StoryCard from "../../Profile/StoryCard"
 import "../../../styles/components/Dashboard/stories-preview-page.css"
@@ -26,7 +25,7 @@ const StoriesPreview = () => {
           category: "Photography",
           picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2024",
           estimatedReadingTime : {
             minutes : 4,
@@ -38,7 +37,7 @@ const StoriesPreview = () => {
           category: "Lifestyle",
           picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
           link: "#", 
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2025"
           ,
           estimatedReadingTime : {
@@ -52,7 +51,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -65,7 +64,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -78,7 +77,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -91,7 +90,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -104,7 +103,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -117,7 +116,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -130,7 +129,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -143,7 +142,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {
@@ -157,7 +156,7 @@ const StoriesPreview = () => {
           category: "Adventure",
           picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
           link: "#",
-          avatar : gideon,
+          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
           date : "March 17, 2020"
           ,
           estimatedReadingTime : {

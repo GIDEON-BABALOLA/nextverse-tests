@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import favour from "../../assets/29.jpg"
 import { FaHome  } from "react-icons/fa"
 import "../../styles/components/Reader/story-sidebar.css"
 import { useModalContext } from "../../hooks/useModalContext"
@@ -8,8 +7,10 @@ import Share from "../common/Share"
 import { MdOutlineFavoriteBorder, MdOutlineShare} from "react-icons/md"
  import { FaCommentAlt } from "react-icons/fa"
  import ModeToggler from "../common/ModeToggler"
+ import { useAuthContext } from "../../hooks/useAuthContext"
  import { FaRegBookmark } from "react-icons/fa"
 const StorySidebar = ({ setOpenModal, openModal}) => {
+  const { user } = useAuthContext();
   const { width } = useWindowSize()
   const { shareModal, shareRef } = useModalContext()
   const openShare = () => {
@@ -27,7 +28,7 @@ const openCommentLikeModal = () => {
 <ul className="phone-feed-sidebar-list">
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/profile"}>
-<img src={favour} alt="Author" className="feed-man"/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} alt="Author" className="feed-man"/>
 <span className="phone-feed-sidebar-nav-name">Profile</span>
 </Link>
     </li>
@@ -68,7 +69,7 @@ const openCommentLikeModal = () => {
       <div className="story-sidebar-icon">
     <Link to={"/dashboard/profile"}>
 
-     <img src={favour} alt="Author" className="feed-man"/>
+     <img src={user["picture"]} alt="Author" className="feed-man"/>
 
      </Link>
    </div>

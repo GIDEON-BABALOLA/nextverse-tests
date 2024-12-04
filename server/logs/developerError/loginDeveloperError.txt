@@ -1,6 +1,0 @@
-20241103	16:19:54	8df301e2-140f-4799-a8c1-bdad921a7c37	developerError: Please Provide An Email And A Password
-20241104	08:23:53	a0cfda96-1d39-4226-ac38-a32dc51c4aaf	developerError: You Are Not A Developer For Litenote
-20241104	10:17:00	8f080c96-80cb-45c9-8cef-3c48a29ff393	developerError: You Are Not A Developer For Litenote
-20241104	10:17:33	75e191a6-3e7f-4d9e-a64f-69aef9023cd4	developerError: You Are Not A Developer
-20241104	20:13:32	93a0cece-c228-4bbf-b4b7-86cba7584ae4	developerError: You Are Not A Developer
-20241105	01:45:14	08d552a6-8554-439e-8c8e-2dc9d872f5bc	developerError: You Are Not A Developer

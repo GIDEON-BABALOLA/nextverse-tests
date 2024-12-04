@@ -47,6 +47,8 @@ const ExplorePage = () => {
  shareRef,
  fireClick,
  setContextMenu,
+ shareUrl,
+ setShareUrl,
  closeContextMenu
 } = useModalContext()
 useEffect(() => {
@@ -245,7 +247,7 @@ resendRequest()
  
   }
   
-<Share  share={shareRef} shareModal={shareModal}/>
+<Share  share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
 <ContextMenu
   state={"feed"}
   contextMenu={contextMenu}

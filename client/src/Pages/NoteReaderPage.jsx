@@ -123,6 +123,9 @@ const NoteReaderPage = () => {
           }
           setAttachmentLine(e.target.offsetLeft - 20)
           }
+          const submitNote = () => {
+            
+          }
   return (
     <>
     <section className="note-page-css-container-total" onClick={closeNoteModal}>

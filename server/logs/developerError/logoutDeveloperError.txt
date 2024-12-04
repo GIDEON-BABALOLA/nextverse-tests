@@ -1,7 +1,0 @@
-20241104	08:20:43	0802ddc5-85af-4e70-b014-5278f7628be9	developerError: You Are Not Logged In
-20241104	08:21:09	4fa061b7-cd30-45f8-a00e-f0da9c9dfc62	developerError: You Are Not Logged In
-20241104	08:21:11	20adc8bf-ac76-4f18-b8b0-ff960f4e6126	developerError: You Are Not Logged In
-20241104	08:21:12	bdb4a17b-2d19-4800-8c39-d41d62d4d9ab	developerError: You Are Not Logged In
-20241104	08:21:13	92454ca4-e46b-4b39-ba84-fd3a7bc04c75	developerError: You Are Not Logged In
-20241104	08:21:15	958c5d3b-82bc-4dd2-84a1-84c35d02ad06	developerError: You Are Not Logged In
-20241104	08:21:50	f9934fb2-16e1-41f2-abe0-dc14b1b0f75a	developerError: You Are Not Logged In

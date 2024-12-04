@@ -9,7 +9,7 @@ import { useState, useEffect } from "react"
 import StorySuggestions from "./StorySuggestions"
 import ErrorMessage from "../common/ErrorMessage"
 const StoryDisplay = ({ username, id, title} ) => {
-  const { getAStory, isLoading, error, data, statusCode, storyCount } = useGetAStory();
+  const { getAStory, isLoading, error, data, isFollowing } = useGetAStory();
   useEffect(() => {
 getAStory(id)
   }, [])
@@ -58,6 +58,7 @@ className="story-display-main"
       author={data.author}
       avatar={data.avatar}
       userId={data.userId}
+      isFollowing={isFollowing}
       />
      
     </div>
@@ -65,6 +66,7 @@ className="story-display-main"
     author={data.author}
     avatar={data.avatar}
     userId={data.userId}
+    isFollowing={isFollowing}
 
      /> 
    </>

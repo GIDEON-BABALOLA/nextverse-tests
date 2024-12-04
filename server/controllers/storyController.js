@@ -16,8 +16,6 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 // To Create A New Story
 const createStory = async(req, res) => {
     const datetime = new Date()
-    console.log(`${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`)
-    console.log(req.user)
     const { id } = req.user
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
@@ -41,12 +39,13 @@ try{
     if(req.files.length === 0){
         throw new userError("Pls Choose An Image To Upload", 400)
     }
-    if(req.files.length > 2){
+    if(req.files.length > 3){
         throw new userError("You are only allowed to upload Two Pictures", 400)
-    }else if(req.files.length < 2){
-        console.log(req.files)
-    throw new userError("Pls Upload Two Images For This Story", 400)
     }
+    // else if(req.files.length < 2){
+    // throw new userError("Pls Upload Two Images For This Story", 400)
+    // }
+    //users can now upload one picture per story
     if(!title  || !caption ||!content || !category){
         throw new userError("Please Fill In All The Fields", 400)
     }
@@ -185,7 +184,6 @@ const uploadStoryPicture = async (req, res) => {
 //To Get A Story
 const getAStory = async (req, res) => {
     const { id } = req.params;
-    console.log(id)
 try{
     if(!validateMongoDbId(id)){
 throw new userError("Pls enter a parameter recognized by the database", 400)
@@ -193,7 +191,16 @@ throw new userError("Pls enter a parameter recognized by the database", 400)
 if(!id){
     throw new userError("Pls Enter The Id Of The Story You Want To View", 400)
 }
+
 const foundStory = await Story.findById(id)
+console.log(foundStory.userId)
+console.log(req.user.email)
+const exists = await User.exists({
+    email: req.user.email,
+    "following.follows" : "674d7fc6f55403597bdf705a"
+});
+const isFollowing = !!exists;
+console.log(isFollowing)
 if(!foundStory){
     throw new userError("This Story Does Not Exist", 404)
 }
@@ -201,7 +208,11 @@ const totalViews =  (Number(foundStory.totalViews) || 0) + 1;
 foundStory.totalViews = totalViews.toString()
 await foundStory.save()
 const adjustedStory = foundStory.toObject();;
-    res.status(200).json({...adjustedStory, picture : adjustedStory.picture[Math.round(Math.random())]})    
+    res.status(200).json({ story :
+         {...adjustedStory, picture : adjustedStory.picture.length > 0 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0] },
+         isFollowing : isFollowing
+        
+        })    
 
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAStoryError.txt", "storyError")
@@ -277,7 +288,8 @@ if(req.query.page){
     }
 }
 const allStories = await query
-    res.status(200).json({stories : allStories, count : storyCount})     
+    res.status(200).json({stories : allStories, count : storyCount})      
+
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")

@@ -1,5 +1,0 @@
-20240528	09:45:27	6d59ccbe-6990-449b-b133-a5f7d77fcf24	TypeError: Story.addLike is not a function
-20240528	09:50:08	8bd68460-bab6-4ee4-ae04-a3439e2a12a8	TypeError: Story.addLike is not a function
-20240528	09:50:08	e550beb6-352e-46a7-bb1e-df592ceccdc5	TypeError: Story.addLike is not a function
-20241009	08:45:15	d5339add-ff50-4c03-86c9-63673333f949	userError: Pls enter a parameter recognized by the database
-20241029	18:54:13	d6c64082-3811-43c5-b3cb-3b07b2ecd883	TypeError: Cannot read properties of null (reading '_id')

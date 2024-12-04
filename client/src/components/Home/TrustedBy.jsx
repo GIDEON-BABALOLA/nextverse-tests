@@ -1,6 +1,5 @@
 
 import { useRef, useEffect } from "react"
-import visa from "../../assets/visa.svg"
 import "../../styles/components/Home/trustedby.css"
 export const TrustedBy = () => {
   const trustedBy = useRef();
@@ -14,14 +13,14 @@ export const TrustedBy = () => {
   return (
     <div className="trusted-by" ref={trustedBy}>
         <div className="trusted-by-logo-slide" ref={logoSlide}>
-<img src={visa}/>
-<img src={visa}/>
-<img src={visa}/>
-<img src={visa}/>
-<img src={visa}/>
-<img src={visa}/>
-<img src={visa}/>
-<img src={visa}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
+<img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257541/Assets/images/visa_hgoeyj.svg"}/>
         </div>
     </div>
   )

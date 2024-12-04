@@ -1,3 +1,4 @@
+require("dotenv").config()
 const mockStories = [
     {
       "title": "The Secret Language of Birds",
@@ -1460,9 +1461,9 @@ const mockPictures = [
   // Import Cloudinary SDK
 // const cloudinary = require('cloudinary').v2;
 // cloudinary.config({
-//   cloud_name : process.env.LIGHTNOTE_CLOUDINARY_CLOUD_NAME,
-//   api_key : process.env.LIGHTNOTE_CLOUDINARY_API_KEY,
-//   api_secret : process.env.LIGHTNOTE_CLOUDINARY_API_SECRET
+//   cloud_name : process.env.LITENOTE_CLOUDINARY_CLOUD_NAME,
+//   api_key : process.env.LITENOTE_CLOUDINARY_API_KEY,
+//   api_secret : process.env.LITENOTE_CLOUDINARY_API_SECRET
 // })
 // async function listImagesInFolder(folderPath) {
 //   try {
@@ -1482,8 +1483,6 @@ const mockPictures = [
 //     console.error('Error fetching images:', error);
 //   }
 // }
-
-// Example usage
-// listImagesInFolder("Story/nextverse74@gmail.com");
+// listImagesInFolder("Avatars");
 console.log(mockPictures.length)
   module.exports= { mockStories, mockPictures }

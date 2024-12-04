@@ -1,5 +1,5 @@
 import { FaCheck } from "react-icons/fa"
-import colors from "../../../assets/noteEditorColors.json"
+import colors from "../../../data/noteEditorColors.json"
 import { FaAngleLeft } from "react-icons/fa"
 import { useState, useEffect } from "react"
 const ColorOptionList = ({colorType,

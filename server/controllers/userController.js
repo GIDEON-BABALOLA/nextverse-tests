@@ -362,7 +362,6 @@ try{
     
     }
 const gotUser = await query
-console.log(gotUser)
 if(!gotUser){
     throw new userError(`This user does not exist`, 400)
 }
@@ -377,7 +376,7 @@ res.status(200).json(newUser);
     }
 }
 }
-const getUserProfile = async  (req, res) => {
+ const getUserProfile = async  (req, res) => {
     try{
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)

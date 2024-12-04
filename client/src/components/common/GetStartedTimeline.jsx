@@ -1,11 +1,6 @@
 import "../../styles/components/common/get-started-timeline.css"
 import { FaUserPlus, FaCheckCircle, FaEdit, FaTachometerAlt } from 'react-icons/fa';
 import { useRef, useEffect, useState } from "react"
-import pic from  "../../assets/29.jpg"
-import anotherpic from  "../../assets/Great.jpg"
-import woman from "../../assets/30.jpg"
-import picSecond from "../../assets/19.jpg"
-import picThird  from "../../assets/3.jpg"
 const GetStartedTimeline = () => {
 const elementRef = useRef()
 const firstSection =  useRef()
@@ -77,7 +72,7 @@ case "secondSection":
   <section className="get-started-timeline">
         <div className="timeline" ref={elementRef} id="elementRef">
         <div className="container jobs left-container" id="firstSection" ref={firstSection}>
-        <img src={pic} alt="" />
+        <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507577/Avatars/zjsir46bzy2k1rt3dwgu_ft2ibr.jpg"} alt="" />
             <div className="text-box">
               <h2>Step 1</h2>
               <small><b>Create An Account</b></small>
@@ -87,7 +82,7 @@ case "secondSection":
         </div>
         
         <div className="container  right-container" id="secondSection" ref={secondSection}>
-            <img src={anotherpic} alt="" />
+            <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507537/Avatars/11475225_sgqvqs.jpg"} alt="" />
             <div className="text-box">
               <h2>Step 2</h2>
               <small><b>Fill In Your Details</b></small>
@@ -96,7 +91,7 @@ case "secondSection":
             </div>
         </div>
         <div className="container left-container" id="thirdSection" ref={thirdSection}>
-            <img src={woman} alt="" />
+            <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507492/Avatars/7309707_rz9zsb.jpg"} alt="" />
             <div className="text-box">
               <h2>Step 3</h2>
               <small><b>Verify Your Account</b></small>
@@ -105,7 +100,7 @@ case "secondSection":
             </div>
         </div>
         <div className="container right-container" id="fourthSection" ref={fourthSection}>
-            <img src={picSecond} alt="" />
+            <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507492/Avatars/7309707_rz9zsb.jpg"} alt="" />
             <div className="text-box">
               <h2>Step 4</h2>
               <small><b>Take A Tour Of Our App</b></small>
@@ -115,7 +110,7 @@ case "secondSection":
         </div>
        
         <div className="container left-container" id="fifthSection" ref={fifthSection}>
-            <img src={picThird} alt="" />
+            <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507548/Avatars/j2qjukxg92ezd4oerzqz_j0bjmo.jpg"} alt="" />
             <div className="text-box">
               <h2>Step 5</h2>
               <small><b>Visiting Your Dashboard</b></small>

@@ -3,12 +3,14 @@ import ContextMenu from "../common/ContextMenu";
 import { FaShareAlt } from "react-icons/fa";
 import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import useImageLoad from "../../hooks/useImageLoaded";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 
 const SuggestionCard = ({ fireClick, story, isLoading}) => {
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
+  const navigate = useNavigate();
   let storyPicture = ""
   if(isLoading === false){
     //  storyPicture = story.picture[Math.round(Math.random())]
@@ -39,6 +41,13 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
     });
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
 
+  const showFullStory = () => {
+    const encodedTitle = story.title.toLowerCase() 
+    .replace(/[^a-z0-9]+/g, "-") 
+    .replace(/^-+|-+$/g, ""); 
+    console.log(encodedTitle)
+  navigate(`/story/${story.author}/${encodedTitle}/${story._id}`)
+  }
   return (
  <> {
 
@@ -65,6 +74,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
    :
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
+            <div onClick={() => {showFullStory()}}>
             { pictureLoading ?
                 <div className="litenote-profile-story-image">
                 <div  className="skeleton-image caller" />
@@ -73,6 +83,8 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                 <img src={storyPicture} alt="Story Image" />
               </div>
               }
+            </div>
+           
               
               <div className="litenote-profile-story-content">
              
@@ -82,7 +94,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                >&nbsp;</span>
               : <img className="story-card-avatar" src={story.avatar} />
                }
-               <span>Gideon Babalola</span>
+               <span>{story.author}</span>
              
                </div>
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>

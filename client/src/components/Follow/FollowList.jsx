@@ -117,7 +117,8 @@ message={"There is nobody to follow"}
  />
 </div>
     :
-    <section style={{height : "100vh"}}>
+    //I removed height from 100vh because when there are a lot of people to follow the infinite scrolling will not work again, I will come back to fix this issue
+    <section >
     <div className="followers-list">
     {usersToFollow.map((content, index) => (
 <FollowCard key={index} content={content}

@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { MdLightMode, MdDarkMode } from 'react-icons/md'
-import avatar from "../../assets/3.jpg"
 import { Link } from "react-router-dom"
 import { FaUser, FaTimes } from "react-icons/fa"
 import "../../styles/components/common/navbar-context-menu.css"
