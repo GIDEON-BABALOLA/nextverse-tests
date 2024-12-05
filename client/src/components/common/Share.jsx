@@ -1,27 +1,23 @@
-import { FaShareAlt } from "react-icons/fa";
-import { useState } from "react";
+import { useState } from "react"
 import { FaLink } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
-
 import { FaWhatsappSquare } from "react-icons/fa";
-
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import "../../styles/components/common/share.css"
-import { useEffect } from "react"
 const Share = ( { share, shareModal, shareUrl, setShareUrl}) => {
 const [text, setText] = useState(false)
   const closeShareModal = () => {
-setShareUrl(null)
     shareModal.current.classList.remove("slide-dow")
     setTimeout(() => {
       shareModal.current.close()
     }, 500);
-        
+    setShareUrl(null)
   }
   
   const copyLink = () => {
+navigator.clipboard.writeText(shareUrl);
 setText(!text)
   }
   
