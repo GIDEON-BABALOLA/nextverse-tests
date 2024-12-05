@@ -16,7 +16,7 @@ echo "Changes committed with message: $commitMessage"
 
 # Push to all branches
 echo "Pushing to all branches..."
-git pushall
+git push all
 echo "Push completed."
 
 # Deploy to Vercel (Production)
