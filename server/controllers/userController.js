@@ -620,7 +620,8 @@ const unfollowUser = async(req, res) => {
         let alreadyFollowed = userToBeUnFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(alreadyFollowed){
            const user =  await User.unfollowuser(_id, userToBeUnFollowed._id)//This has been configured in the users model
-          return  res.status(201).json(user)
+            return  res.status(201).json(user)            
+
         }
         res.status(200).json(userToBeUnFollowed)
     }

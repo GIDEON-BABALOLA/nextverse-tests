@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useFollowUser= () => {
+export const useUnFollowUser= () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
+    
     const [data, setData] = useState([])
-    const followUser = async (email) => {
+    const unFollowUser = async (email) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-            const response = await axiosConfig.post("/user/follow-user", {
+            const response = await axiosConfig.post("/user/unfollow-user", {
                 email : email,
             },
             {
@@ -43,5 +44,5 @@ setIsLoading(false)
         }
     }
     }
-    return {followUser, isLoading, error, data, statusCode} 
+    return {unFollowUser, isLoading, error, data, statusCode} 
 }

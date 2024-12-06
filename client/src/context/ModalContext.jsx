@@ -24,11 +24,11 @@ export const ModalContextProvider = ({children}) => {
         contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`;
       };
     const closeContextMenu  = (e) => {
-        if( e.clientX < parseInt(contextMenu.current.style.left) || e.clientX > parseInt(contextMenu.current.style.left) + contextMenu.current.offsetWidth )
+        if( e?.clientX < parseInt(contextMenu.current?.style.left) || e?.clientX > parseInt(contextMenu.current?.style.left) + contextMenu.current?.offsetWidth )
         {
           contextMenu.current.style.visibility = "hidden";
         }else if(
-          e.clientY < parseInt(contextMenu.current.style.top) || e.clientY > parseInt(contextMenu.current.style.top) + contextMenu.current.offsetHeight
+          e?.clientY < parseInt(contextMenu.current?.style.top) || e?.clientY > parseInt(contextMenu.current?.style.top) + contextMenu.current?.offsetHeight
         ){
           contextMenu.current.style.visibility = "hidden";
         }

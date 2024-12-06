@@ -58,7 +58,7 @@ console.log(decodeURIComponent(username))
     <>
 <div>
 {  !error   &&
- <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
+ <section className="litenote-profile-user-profile" onClick={() => closeContextMenu()}>
   <Share  share={shareRef} shareModal={shareModal}/>
 <div className="litenote-profile-container">
 <div className="litenote-profile-header" style={{

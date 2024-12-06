@@ -3,14 +3,14 @@ import { useEffect, useState } from "react"
 const FollowToast = ({followToast, setFollowToast, loadPage, message}) => {
   const [trigger, setTrigger] = useState(false)
   const closeDashboardToast = () => {
-   setFollowToast(false)
+   setFollowToast({ toast : false, message : ""})
    setTrigger(false)
   }
   useEffect(() => {
-      if(followToast== true){
+      if(followToast.toast == true){
         setTrigger(true)
       }      
-  }, [followToast])
+  }, [followToast.toast])
   return (
     
     <div className={`litenote-dashboard-slide-up ${trigger ? "show" : ""} `} >
