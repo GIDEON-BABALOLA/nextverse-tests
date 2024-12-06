@@ -62,7 +62,7 @@ if(location["*"]  !== ""){
 { appReady ?   <Routes>
   <Route path="/" element={<Layout className="pages"/>}>
 <Route index element={<Home/>    } />
-<Route path="profile" 
+<Route path="profile/:username" 
     element={
           appLoading ? (
         <LoadingPage />

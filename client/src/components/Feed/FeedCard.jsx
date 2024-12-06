@@ -2,8 +2,7 @@ import {  useEffect, useState } from "react";
 import ContextMenu from "../common/ContextMenu";
 import { FaShareAlt } from "react-icons/fa";
 import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
-import useImageLoad from "../../hooks/useImageLoaded";
+import useNavigateProfile from "../../hooks/useNavigateProfile";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -11,6 +10,7 @@ import { MdVisibility, MdOutlineFavoriteBorder, MdOutlineBookmarkAdd  } from "re
 
 const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const navigateToStory = useNavigateStory(); 
+  const navigateToProfile = useNavigateProfile()
   const { width } = useWindowSize();
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
@@ -92,7 +92,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                >&nbsp;</span>
               : <img className="story-card-avatar" src={story.avatar} />
                }
-               <span>{story.author}</span>
+               <span onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
              
                </div>
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} onClick={fireClick}/>

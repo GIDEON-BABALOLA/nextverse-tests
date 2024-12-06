@@ -1,15 +1,18 @@
 import useImageLoad from "../../hooks/useImageLoaded"
 import "../../styles/components/Reader/story-author.css"
+import useNavigateProfile from "../../hooks/useNavigateProfile"
 import { useState, useEffect } from "react"
 import { useFollowUser } from "../../hooks/useFollowUser"
 import { useGetAUser } from "../../hooks/useGetAUser"
 import { useAuthContext } from "../../hooks/useAuthContext"
 const StoryAuthor = ({ author, avatar, userId, isFollowing}) => {
+  const navigateToProfile = useNavigateProfile();
   const {followUser, error : followError, data} = useFollowUser();
   const { user } = useAuthContext();
-  const {getAUser, isLoading : userLoading, error : userError, data : userData} = useGetAUser();
+  const {getAUser, isLoading : userLoading, data : userData} = useGetAUser();
   const [loading, setLoading] = useState(true)
   const [following, setFollowing] = useState(false)
+  const [imPossibleToFollow, setImPossibleToFollow] = useState(false)
   const { loaded, error } = useImageLoad(avatar);
   console.log(user.following)
   useEffect(() => {
@@ -26,7 +29,12 @@ const StoryAuthor = ({ author, avatar, userId, isFollowing}) => {
 getAUser(userId, "email bio")
   }, [])
   useEffect(() => {
-console.log(userData)
+    if(userId === user["_id"]){
+setImPossibleToFollow(true)
+    }
+    else{
+    setImPossibleToFollow(false)
+    }
   }, [userData])
   const followAUser = () => {
     console.log(userId)
@@ -40,11 +48,10 @@ console.log(userData)
       }, [data])
   return (
     <div className="story-follow-suggestion">
-    <div style={{display : "flex", flexDirection : "row", alignItems : "center"}}>
+    <div style={{display : "flex", flexDirection : "row", alignItems : "center", cursor : "pointer"}}>
    { loading ? <div className="story-display-avatar-loader"></div> : <img src={avatar} alt={author} />}
     <div style={{display : "flex", flexDirection : "column"}}>
-        <span><b>{author}</b></span>
-       { userLoading ?  <div className="story-loaders story-loaders-info"></div>  :<span>{userData["email"]}</span> }
+        <span onClick={() => { navigateToProfile(author)}}><b>{author}</b></span>
        { userLoading ?  <div className="story-loaders story-loaders-info"></div>  :<span>{userData["bio"]}</span> }
     </div>
     </div>
@@ -53,7 +60,9 @@ console.log(userData)
 
 
 
+{
 
+!imPossibleToFollow &&
 <>
 {
   isFollowing ? 
@@ -92,6 +101,7 @@ console.log(userData)
   </>
 }
 </>
+}
 </div>
   )
 }

@@ -146,7 +146,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
         </Link>
         <Link
         className={`navbar-header-links ${currentUrl === "profile" && "navbar-active"}`}
-         to="/profile"  style={{fontSize : "1.3rem"}}  >
+         to={ user && `/profile/${user.username}`}  style={{fontSize : "1.3rem"}}  >
         Profile
         </Link>
      
@@ -232,7 +232,9 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                            <h3 className="litenote-dashboard-h-three">Settings & Privacy</h3>
                         </Link>
                      
-                        <Link to="/profile" className={`nav-sidebar-link ${currentUrl === "profile" && "active"}`} 
+                        <Link 
+                          to={ user && `/profile/${user.username}`} 
+                         className={`nav-sidebar-link ${currentUrl === "profile" && "active"}`} 
                         
                         onClick={dave}>
                         <FaUser size={20} />

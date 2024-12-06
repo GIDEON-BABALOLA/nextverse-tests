@@ -1,7 +1,9 @@
 import FeedAvatar from "./FeedAvatar"
 import { useFollowUser } from "../../hooks/useFollowUser"
+import useNavigateProfile from "../../hooks/useNavigateProfile"
 import { useState, useEffect } from "react"
 const FollowSuggestionCard = ({ isLoading, user }) => {
+  const navigateToProfile  = useNavigateProfile();
   console.log(user)
   const {followUser, data, error : followError } = useFollowUser()
   const [following, setFollowing] = useState(false)
@@ -44,8 +46,8 @@ alt="Author"
 className="feed-profile-images-trending" 
 />
          <div>
-             <div><b>{user["username"]}</b></div>
-             <div>{user["email"]}</div>
+             <div onClick={() => { navigateToProfile(user["username"])}}><b>{user["username"]}</b></div>
+             <div>{user["bio"]}</div>
          </div>
            { Object.keys(data).length == 0 && !following &&
                   

@@ -1,7 +1,9 @@
 import useImageLoad from "../../hooks/useImageLoaded"
 import { useState, useEffect, forwardRef } from "react"
+import useNavigateProfile from "../../hooks/useNavigateProfile"
 import { useFollowUser } from "../../hooks/useFollowUser"
 const FollowCard = forwardRef(({ content, isLoading }, ref) => {
+  const navigateToProfile = useNavigateProfile()
   const [avatarLoading, setAvatarLoading] = useState(true)
   const { loaded, error } = useImageLoad(content.picture);
   const [following, setFollowing] = useState(false)
@@ -49,9 +51,9 @@ if(Object.keys(data).length > 0){
       <img src={content.picture} alt="User Avatar" className="follower-avatar" />
     }
                 
-                <div className="follower-info">
-                    <div className="follower-name">{content.username}</div>
-                    <div className="follower-username">{content.email}</div>
+                <div className="follower-info" style={{cursor : "pointer"}}>
+                    <div className="follower-name" onClick={() => { navigateToProfile(content.username)}}>{content.username}</div>
+                    <div className="follower-username">{content.bio}</div>
                 </div>
                 { Object.keys(data).length == 0 && !following &&
                   

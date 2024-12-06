@@ -207,9 +207,10 @@ if(!foundStory){
 const totalViews =  (Number(foundStory.totalViews) || 0) + 1;
 foundStory.totalViews = totalViews.toString()
 await foundStory.save()
-const adjustedStory = foundStory.toObject();;
+const adjustedStory = foundStory.toObject();
+console.log(adjustedStory.picture.length )
     res.status(200).json({ story :
-         {...adjustedStory, picture : adjustedStory.picture.length > 0 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0] },
+         {...adjustedStory, picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]},
          isFollowing : isFollowing
         
         })    

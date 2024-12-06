@@ -1,0 +1,3 @@
+20241206	00:43:33	a597598b-c917-4d39-8091-36aa87afabd3	userError: You Cannot Follow Yourself On This Platform
+20241206	00:43:35	16ad66af-5301-424a-b4d7-ef5aa4c9e295	userError: You Cannot Follow Yourself On This Platform
+20241206	00:43:53	fe097ad2-908d-441f-b50b-29cb305770c6	userError: You Cannot Follow Yourself On This Platform

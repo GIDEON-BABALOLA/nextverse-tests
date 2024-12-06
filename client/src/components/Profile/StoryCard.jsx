@@ -2,9 +2,11 @@ import {  useEffect, useState } from "react";
 import { FaEllipsisH } from "react-icons/fa";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useNavigateStory from "../../hooks/useNavigateStory";
+import useNavigateProfile from "../../hooks/useNavigateProfile";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
 const StoryCard = ({ fireClick, story, isLoading}) => {
   const navigateToStory = useNavigateStory();
+  const navigateToProfile = useNavigateProfile()
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
   let storyPicture = ""
@@ -62,7 +64,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
    :
           <div className="litenote-profile-story-card">
             <div className="litenote-profile-story-card-inner">
-            <div  onClick={() => { navigateToStory(story)}}>
+            <div  onClick={() => { navigateToStory(story)}}   >
             { pictureLoading ?
                 <div className="litenote-profile-story-image" >
                 <div  className="skeleton-image caller" />
@@ -80,9 +82,10 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={story.avatar} />
+              : <img className="story-card-avatar" 
+               src={story.avatar} />
                }
-               <span>{story.author}</span>
+               <span  onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
              
                </div>
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} onClick={(e) => fireClick(e, getStoryUrl(story))}/>

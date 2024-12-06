@@ -11,7 +11,10 @@ const rankStories = (stories, number) => {
         (weights.totalComments * storyConvertedToObject.totalComments) +
         (weights.totalLikes * storyConvertedToObject.totalLikes) +
         (weights.totalBookmarks * storyConvertedToObject.totalBookmarks)
-        return {...storyConvertedToObject, picture : storyConvertedToObject.picture[Math.round(Math.random())], popularityScore}
+        return {...storyConvertedToObject,
+        picture  :storyConvertedToObject.picture == 2 ? storyConvertedToObject.picture[Math.round(Math.random())]
+        : storyConvertedToObject.picture[0],
+        popularityScore}
     })
  const topStories = storiesToBeRanked.sort((a, b) => b.popularityScore - a.popularityScore)
  .slice(0, number)

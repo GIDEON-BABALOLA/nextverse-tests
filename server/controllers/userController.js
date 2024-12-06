@@ -377,18 +377,19 @@ res.status(200).json(newUser);
 }
 }
  const getUserProfile = async  (req, res) => {
+    const username = req.query.username;
+    console.log(username)
     try{
-        if(req.user == null){
+        if(!username){
             throw new userError("Your Account Does Not Exist", 404)
         }
-const { id } = req.user
-validateMongoDbId(id)
-const user = await User.findById(id).populate({ path: 'stories.storyId',
+
+const user = await User.findOne({ username: username }).populate({ path: 'stories.storyId',
 })
-const mark = user.toObject();
 if(!user){
-    throw new userError("You Are Not Logged In", 401)
+    throw new userError("Your Account Does Not Exist", 401)
 }
+const mark = user.toObject();
 mark.stories = mark.stories.map((story) => {
     return { ...story.storyId}
 })
@@ -577,6 +578,9 @@ const followUser = async (req, res) => {
         if(!email){
             throw new userError("What is the email of the user you want to follow", 400)
         }
+        if(email == req.user.email){
+            throw new userError("You Cannot Follow Yourself On This Platform", 400)
+        }
         const userToBeFollowed = await User.findOne({email})
         let alreadyFollowed = userToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(!alreadyFollowed){
@@ -601,6 +605,9 @@ const unfollowUser = async(req, res) => {
         if(!email){
             throw new userError("What is the email of the user you want to follow", 400)
         }
+        if(email == req.user.email){
+            throw new userError("You Cannot UnFollow Yourself On This Platform", 400)
+        }
         const userToBeUnFollowed = await User.findOne({email})
         let alreadyFollowed = userToBeUnFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(alreadyFollowed){
@@ -621,7 +628,7 @@ const unfollowUser = async(req, res) => {
 const getAllUsers = async (req, res) => {
     const { page, limit } = req.query;
     try{
-        const skip = (page - 1) * limit;
+    const skip = (page - 1) * limit;
     const gotUsers = await User.find();
     if(!gotUsers){
         throw new userError("No User Has Been Registered For Your Application", 204)
@@ -639,9 +646,12 @@ const getAllUsers = async (req, res) => {
         .limit(limit)
         .lean(); // Use lean if you want plain JavaScript objects    
         console.log(newUsersToFollow.length)
-    const usersToBeSent = newUsersToFollow.map((user) => {
-        return _.pick(user, "email", "username", "picture")
+    const usersToBeSent = newUsersToFollow
+    .filter((user) => user.email !== req.user.email)
+    .map((user) => {
+        return _.pick(user, "email", "username", "picture", "bio")
     })
+
         res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
     }
     catch(error){

@@ -1,2 +1,81 @@
 20241203	21:03:46	b75282c5-974a-473a-882f-9c41eec653a8	userError: Your Account Does Not Exist
 20241203	21:03:46	d6d230da-8ea0-4772-bd7f-5c93b3988fc4	userError: Your Account Does Not Exist
+20241206	01:03:15	645aed16-c795-4340-9541-0d539f39e190	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:03:21	78390fdc-eccf-4744-ba10-b01f1b694714	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:03:21	f31dd5a4-4539-40bc-976b-8ab4539fb856	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:03:28	7935517c-02fc-4694-8ea7-27d41313e0f3	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:03:28	2fcc5713-5730-40fd-9303-61ec1e99da8e	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:03:57	fdaf16ca-ae7f-49fa-a519-172afe8a0050	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:03:58	a91706e5-d106-4b67-85ea-7bbca21cba0e	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:04:56	eac0266e-9962-44b6-b87c-8ded27388c3f	userError: Your Account Does Not Exist
+20241206	01:04:56	252dbb53-88d9-452c-9dc0-30cdd9bc560d	userError: Your Account Does Not Exist
+20241206	01:05:38	9b3de5d4-2995-45bb-abd3-88143453d173	userError: Your Account Does Not Exist
+20241206	01:05:38	7c45e575-abbc-4279-8daa-8ca8cd01201f	userError: Your Account Does Not Exist
+20241206	01:06:24	e0435823-2d07-4e4c-b298-38dcf8a3a015	userError: Your Account Does Not Exist
+20241206	01:06:25	97932c1d-5a71-406b-812c-2c15fbd5a6a7	userError: Your Account Does Not Exist
+20241206	01:07:15	61382832-867a-40ed-9c0b-b76b78578f30	userError: Your Account Does Not Exist
+20241206	01:07:15	4cd320ca-2f11-42f9-800d-eb4f14275a68	userError: Your Account Does Not Exist
+20241206	01:07:47	9cd147ce-8c6c-4773-90ff-e1c41d182239	userError: Your Account Does Not Exist
+20241206	01:07:47	1b468b0d-311c-47bc-b2cf-b56d90da78f7	userError: Your Account Does Not Exist
+20241206	01:08:06	791653f2-a6f0-4b25-9957-1b7a7d2a544d	userError: Your Account Does Not Exist
+20241206	01:08:06	7dd76c25-50da-4086-b11a-a3adcff41069	userError: Your Account Does Not Exist
+20241206	01:10:13	00b58701-6d47-4c61-a82b-edd2665c740e	userError: Your Account Does Not Exist
+20241206	01:10:13	97e60dd0-2c50-40f9-b97b-4cd794a17d12	userError: Your Account Does Not Exist
+20241206	01:10:46	d36123b6-5218-4e2d-bd9f-4688ce99bc15	userError: Your Account Does Not Exist
+20241206	01:10:47	8a895577-9c85-4307-902d-e3ed36822ce9	userError: Your Account Does Not Exist
+20241206	01:11:52	dfbb3b19-64e6-41c6-9aee-acd61d5e6224	userError: Your Account Does Not Exist
+20241206	01:11:52	b31d5508-ba3d-44d1-9ff4-e0fa2b0539ed	userError: Your Account Does Not Exist
+20241206	01:11:59	8f83fdf7-9cb1-4bc6-b757-e26c4f7069a3	userError: Your Account Does Not Exist
+20241206	01:11:59	3c0b7738-d6da-4ea8-b1cf-b8baa50c98c5	userError: Your Account Does Not Exist
+20241206	01:12:17	69b7a8a2-0aff-4067-a707-b7d86b2a02f1	userError: Your Account Does Not Exist
+20241206	01:12:17	a369a5cd-0da9-4e0a-9f84-38afb52348df	userError: Your Account Does Not Exist
+20241206	01:12:43	5e68b9cb-7b20-452d-9177-a756bece950a	userError: Your Account Does Not Exist
+20241206	01:12:43	8b2b8fc4-f9a3-4e99-a388-02365a326eb2	userError: Your Account Does Not Exist
+20241206	01:12:48	39bbb40c-b677-4e32-b2a9-736176523c87	userError: Your Account Does Not Exist
+20241206	01:12:48	f05cb805-bf1a-4155-ac9b-089b6aae2cf0	userError: Your Account Does Not Exist
+20241206	01:13:10	8bef9ccd-cd4f-45ed-9f8e-268872f3cac6	userError: Your Account Does Not Exist
+20241206	01:13:11	d477d1ad-0f15-4204-9328-d2a22a909fb8	userError: Your Account Does Not Exist
+20241206	01:13:27	a9ac90c0-e3c8-45dd-95da-ec5683e6f45e	userError: Your Account Does Not Exist
+20241206	01:13:27	6ed1b652-2c9d-48c1-86d2-41e0aa737819	userError: Your Account Does Not Exist
+20241206	01:14:43	5f9d73e7-857b-4e85-95a6-b15425b5091b	userError: Your Account Does Not Exist
+20241206	01:14:43	f1daf092-2ff1-492c-a3a2-19b750326491	userError: Your Account Does Not Exist
+20241206	01:15:13	018f06e1-cb09-4e33-80ba-761bb869227f	userError: Your Account Does Not Exist
+20241206	01:15:14	aca6d1ea-22db-4435-9d0a-6cbd9c423b1d	userError: Your Account Does Not Exist
+20241206	01:15:30	1e7f8495-2417-4288-b66d-f0c0e827c9e9	userError: Your Account Does Not Exist
+20241206	01:15:31	a9479fd5-447f-479c-af82-eb47ba146333	userError: Your Account Does Not Exist
+20241206	01:15:42	9d5dd324-5afe-4a6c-86cc-06df43a36f1d	userError: Your Account Does Not Exist
+20241206	01:15:43	26d3f673-5e5d-4ca6-8055-3997dbe63ebe	userError: Your Account Does Not Exist
+20241206	01:15:47	172e7a5f-9568-4363-a749-891eff5de31d	userError: Your Account Does Not Exist
+20241206	01:15:48	48ad4fd2-6c4a-468f-8e00-c4e0af8cfcce	userError: Your Account Does Not Exist
+20241206	01:16:17	8b3b33df-d8eb-4ad6-8704-715390cf4ca3	userError: Your Account Does Not Exist
+20241206	01:16:17	8de130ba-1818-41af-af38-0e7ee7c05199	userError: Your Account Does Not Exist
+20241206	01:17:51	ec1a1316-c347-4f5a-bde5-f86971678f7b	userError: Your Account Does Not Exist
+20241206	01:17:51	eb796da2-ba5c-4211-822e-75bfafac2875	userError: Your Account Does Not Exist
+20241206	01:18:00	21a07e60-09e1-43ec-8fe9-af8b8701edab	userError: Your Account Does Not Exist
+20241206	01:18:04	cc0bade1-3377-4a94-bf78-106a0e5e61d3	userError: Your Account Does Not Exist
+20241206	01:18:05	5e7592b0-5f8f-4d5b-b0cc-f27f7903126e	userError: Your Account Does Not Exist
+20241206	01:18:35	285da5cf-bc9c-45ad-9834-3d6afcbf235b	userError: Your Account Does Not Exist
+20241206	01:18:35	a64cf277-98f3-48fb-ac48-21d3b0d3e3df	userError: Your Account Does Not Exist
+20241206	01:18:56	d77d013c-d1ef-4e9b-89a3-9c5d6af2a346	userError: Your Account Does Not Exist
+20241206	01:19:02	65ca146a-4bc9-46d1-882e-49f29d913c47	userError: Your Account Does Not Exist
+20241206	01:19:24	2b0af1a8-97e0-4cec-b6cb-b4f3d9175927	userError: Your Account Does Not Exist
+20241206	01:19:24	11012ac1-820c-4603-b9b4-30e8ef9defc7	userError: Your Account Does Not Exist
+20241206	01:21:22	adb23bca-138a-4162-a01c-2dee158fc6a7	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:21:23	8150e140-df66-45a3-84f5-66ce94248c6f	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:21:46	d58f3557-db04-45ce-9e57-5a9777162aac	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:21:46	b0593a8c-0306-4491-ac2c-c38653b71dca	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:22:31	a41def26-a1ab-4ec7-82b6-3c43365eb1c3	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:22:31	e18c4657-79fd-4e1a-bf88-8fab01a9368d	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:23:17	38a90f69-4096-468f-9180-c71731561faa	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:23:17	0a514d05-a7f3-42cc-b629-a64846dc83ef	TypeError: Cannot read properties of null (reading 'toObject')
+20241206	01:30:23	a859fa18-fdf7-4d56-8259-77cfc0655688	ReferenceError: Cannot access 'mark' before initialization
+20241206	01:30:23	727798d1-6c24-438b-a04e-81c16768a91f	ReferenceError: Cannot access 'mark' before initialization
+20241206	01:32:41	a7429800-40ba-4607-bcbe-dab90fae2592	userError: Your Account Does Not Exist
+20241206	01:32:47	e77f7bc6-d27f-4a80-887f-7c91e9fa4ab6	userError: Your Account Does Not Exist
+20241206	01:32:47	b65a064f-2235-444e-b33e-70b661149282	userError: Your Account Does Not Exist
+20241206	01:32:54	97a2ef44-6e00-4a5c-8d14-d406a94079cd	userError: Your Account Does Not Exist
+20241206	01:33:19	4110145c-c171-486a-ae25-3bda81aefc15	userError: Your Account Does Not Exist
+20241206	01:33:19	ece9ce77-590e-49e3-a0d4-ef529751dea6	userError: Your Account Does Not Exist
+20241206	01:33:49	8957455c-3c83-4984-ba67-32441e36e6fb	ReferenceError: email is not defined
+20241206	01:34:13	70ecc089-f937-4bdd-b133-6ee6f2bfe35d	ReferenceError: email is not defined
+20241206	01:34:31	7bb61e32-8a19-4ded-b051-d76aa0111e01	userError: Your Account Does Not Exist

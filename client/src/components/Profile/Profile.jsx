@@ -8,6 +8,7 @@ import { FaEllipsisH, FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { useModalContext } from "../../hooks/useModalContext"
 import { useProfileContext } from "../../hooks/useProfileContext"
+import { useParams } from "react-router-dom"
 import ErrorMessage from "../common/ErrorMessage"
 import { FaRegThumbsUp } from "react-icons/fa";
 import NoContent from "../common/NoContent"
@@ -16,17 +17,18 @@ import Toast from "../common/Toast"
 import { useGetUserProfile } from "../../hooks/useGetUserProfile"
 import { useEffect, useState } from "react"
 const Profile = () => {
+  const { username} = useParams();
   const { dispatch, profile } = useProfileContext()
-  const { getUserProfile, data, isLoading, error, statusCode  } = useGetUserProfile();
+  const { getUserProfile, data, isLoading, error } = useGetUserProfile();
   const [stories, setStories] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
   useEffect(() => {
-
+console.log(decodeURIComponent(username))
     setEmptyData(false)
-    getUserProfile();
+    getUserProfile(decodeURIComponent(username));
   }, [])
   const resendRequest = () => {
-    getUserProfile()
+    getUserProfile(decodeURIComponent(username))
   }
   useEffect(() => {
   if(Object.keys(data).length > 1){
@@ -35,6 +37,7 @@ const Profile = () => {
   }
   }, [data, dispatch])
   useEffect(() => {
+    if(Object.keys(data).length > 1){
     if(!isLoading){
       if(data["stories"].length == 0){
         setEmptyData(true)
@@ -42,6 +45,7 @@ const Profile = () => {
         setEmptyData(false)
       }
     }
+  }
         }, [data, isLoading])
   const {
            contextMenu,

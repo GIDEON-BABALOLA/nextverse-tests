@@ -16,6 +16,7 @@ setLoading(true)
   return (
     <>{ loading ? 
       <span
+       {...props}
        className="donot-spoil-my-work">&nbsp;</span>
     :
     <img src={image} {...props}></img>

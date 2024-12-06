@@ -3,7 +3,9 @@ import { useState, useEffect } from "react"
 import useImageLoad from "../../hooks/useImageLoaded"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { getMonthNumber } from "../../helpers/getMonthNumber";
+import useNavigateStory from "../../hooks/useNavigateStory";
 const TrendingCard = ({ trending, isLoading }) => {
+  const navigateToStory = useNavigateStory();
     const [pictureLoading, setPictureLoading] = useState(true)
     let storyPicture = ""
     if(isLoading === false){
@@ -39,7 +41,7 @@ const TrendingCard = ({ trending, isLoading }) => {
         </div>
         </div>
         : 
-        <div className="feed-trendy-story">
+        <div className="feed-trendy-story" onClick={() => { navigateToStory(trending)}}   >
                
                <div>
                <section style={{display : "flex", flexDirection : "row", alignItems : "center", marginBottom  :"5px", gap : "3px"}}>
