@@ -13,13 +13,12 @@ import ErrorMessage from "../common/ErrorMessage"
 import { FaRegThumbsUp } from "react-icons/fa";
 import NoContent from "../common/NoContent"
 import { MdReadMore } from "react-icons/md"
-import Toast from "../common/Toast"
 import { useGetUserProfile } from "../../hooks/useGetUserProfile"
 import { useEffect, useState } from "react"
 const Profile = () => {
-  const { username} = useParams();
+  const { username } = useParams();
   const { dispatch, profile } = useProfileContext()
-  const { getUserProfile, data, isLoading, error } = useGetUserProfile();
+  const { getUserProfile, data, isLoading, error, isFollowing } = useGetUserProfile();
   const [stories, setStories] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
   useEffect(() => {
@@ -57,7 +56,6 @@ console.log(decodeURIComponent(username))
      } = useModalContext()
   return (
     <>
-<Toast/>
 <div>
 {  !error   &&
  <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
@@ -69,7 +67,7 @@ console.log(decodeURIComponent(username))
 borderRadius : "10px", padding : "30px"}}>
 <div style={{display : "flex", flexDirection : "column", color : "white"}}>
 <Avatar isLoading={isLoading}/>
-<Bio isLoading={isLoading}/>
+<Bio isLoading={isLoading} isFollowing={isFollowing} />
 </div>
 <div className="litenote-profile-info" style={ { color : "white"}}>
 

@@ -1,7 +1,7 @@
 import "../../styles/components/common/newslettersignup.css"
 import {  useState, useEffect, useRef} from "react"
 import useWindowSize from "../../hooks/useWindowSize"
-import SpinnerLoader from "../Loaders/SpinnerLoader"
+import LoadingSpinner from "../Loaders/LoadingSpinner"
 import { useConsentContext } from "../../hooks/useConsentContext"
 import { useNewsletterSignup } from "../../hooks/useNewsletterSignup"
 import { emailValidate } from "../../helpers/Validator"
@@ -74,7 +74,7 @@ if(captchaValue){
    }, 1000);
    setTimeout(() => {
       subScribeToNewsletter()     
-   }, 2000);
+   }, 1001);
  
 
 }
@@ -231,17 +231,21 @@ const pickAnOption = (e) => {
         
          </div>
       </div>
+      <form onSubmit={(e) => { e.preventDefault(); subScribeToNewsletter()}}>
       <div className="litenote-newsletter-news__form">
+   
+         
+  
          <input type="email" placeholder="Enter your email address" value={email} 
 onChange={(e) => setEmail(e.target.value)}
 
          />
          <button
-         onClick={subScribeToNewsletter}
+         type="submit"
           className="litenote-newsletter-news__btn" style={{fontSize : "1.4rem"}}>
           { isLoading ?
-            <span style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
-  <SpinnerLoader width={15} />
+            <span style={{display : "flex", alignItems :"center", justifyContent : "center", width : "90px"}}>
+  <LoadingSpinner/>
   </span> 
           :
           <span className="special-modal-client">
@@ -252,6 +256,7 @@ Subscribe
           
           </button>
       </div>
+      </form>
    </div>
 </main>
     </>

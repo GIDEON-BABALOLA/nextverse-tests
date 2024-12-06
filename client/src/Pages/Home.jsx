@@ -46,8 +46,6 @@ case "dark-mode":
 <ChatBot />
 <Faq />
 <Testimonial />
-
-<TrustedBy />
     </main>
     </>
   )

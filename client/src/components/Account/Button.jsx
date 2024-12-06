@@ -1,4 +1,5 @@
-import SpinnerLoader from "../Loaders/SpinnerLoader"
+
+import LoadingSpinner from "../Loaders/LoadingSpinner"
 const Button = ({ isLoading, text,  ...props}) => {
   return (
     <button className="litenote-register-submit-btn"
@@ -6,7 +7,7 @@ const Button = ({ isLoading, text,  ...props}) => {
     {...props}
   >
  { isLoading ? <span style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
-  <SpinnerLoader width={15} />
+  <LoadingSpinner width={15} />
   </span> : `${text}`
  }
 

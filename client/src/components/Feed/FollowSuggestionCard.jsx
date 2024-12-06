@@ -11,6 +11,34 @@ const FollowSuggestionCard = ({ isLoading, user }) => {
     setFollowing(true)
 followUser(user.email)
   }
+  const renderFollowButton = () => {
+    if(Object.keys(data).length == 0 && !following){
+      return (
+        <button className="feed-follow-button"
+        onClick={() => followAUser()}
+        >Follow</button> 
+      )
+    }
+    if(following  &&  !followError){
+      return(
+        <button className="feed-follow-button"
+                ><span style={{color: "white"}}>Following...</span></button> 
+      )
+    }
+    if(  !following &&  Object.keys(data).length > 0 ){
+return(
+  <button className="feed-follow-button"
+                >Following</button> 
+)
+    }
+if(followError){
+  return (
+    <button className="feed-follow-button"
+    onClick={() => followAUser()}
+    >Follow</button>
+  )
+}
+  }
   useEffect(() => {
     if(Object.keys(data).length > 0){
       setFollowing(false)
@@ -49,31 +77,7 @@ className="feed-profile-images-trending"
              <div onClick={() => { navigateToProfile(user["username"])}}><b>{user["username"]}</b></div>
              <div>{user["bio"]}</div>
          </div>
-           { Object.keys(data).length == 0 && !following &&
-                  
-                  <button className="feed-follow-button"
-                onClick={() => followAUser()}
-                >Follow</button> 
-
-                }
-                {
-                  following  &&  !followError &&
-                  <button className="feed-follow-button"
-                ><span style={{color: "white"}}>Following...</span></button> 
-
-                }
-                {
-                  !following &&  Object.keys(data).length > 0 &&
-                  <button className="feed-follow-button"
-                >Following</button> 
-
-                }
-                {
-                  followError &&
-                   <button className="feed-follow-button"
-                onClick={() => followAUser()}
-                >Follow</button> 
-                }
+   {renderFollowButton()}
      </div>
 }
 </>

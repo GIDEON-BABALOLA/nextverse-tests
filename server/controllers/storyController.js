@@ -197,7 +197,7 @@ console.log(foundStory.userId)
 console.log(req.user.email)
 const exists = await User.exists({
     email: req.user.email,
-    "following.follows" : "674d7fc6f55403597bdf705a"
+    "following.follows" : foundStory.userId
 });
 const isFollowing = !!exists;
 console.log(isFollowing)

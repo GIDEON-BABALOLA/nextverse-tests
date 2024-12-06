@@ -1,0 +1,16 @@
+.lucide-loader {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

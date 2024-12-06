@@ -7,6 +7,7 @@
      --litenote-profile-section-title : black;
      --litenote-profile-header : black;
      --litenote-profile-header-box-shadow : none;
+     --follow-toast-message : black;
 
      --litenote-profile-page : #f8f8f8;
   }
@@ -19,7 +20,11 @@
     --litenote-profile-header : #131618;
     --litenote-profile-page : #181A1E;
     --litenote-profile-header-box-shadow : 0 2px 6px rgba(0, 0, 0, 0.6);
+    --follow-toast-message : white;
     
+  }
+  .follow-toast-message{
+color: var(--follow-toast-message);
   }
   .litenote-profile-header{
 background-color: var(--litenote-profile-header);
@@ -137,8 +142,9 @@ box-shadow: var(--litenote-profile-header-box-shadow);
     height: 20px;
 }
 .profile-loader-follow-button{
-  width: 100px;
-  height: 25px;
+  width: 120px;
+  height: 30px;
+
 }
 .profile-loader-verification{
   border-radius: 50%;
@@ -296,7 +302,22 @@ box-shadow: var(--litenote-profile-header-box-shadow);
   .litenote-profile-story-card:nth-child(even) {
     animation-delay: 0.2s;
   }
-  
+  .unfollow-button{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: #FF5F62;
+  }
+  .unfollow-cancel-button{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: black;
+    background-color :#E5E5E5;
+  }
   .litenote-profile-story-card-inner {
     display: flex;
     flex-direction: column;
@@ -332,8 +353,15 @@ box-shadow: var(--litenote-profile-header-box-shadow);
     margin-bottom: 10px;
   }
   .spinner-loader-container{
-position: relative;
-width: 90px;
+    padding: 10px 20px;
+  }
+  .spinner-loader-container.text{
+    font-size: 1.2rem;
+    padding: 10px 5px;
+  }
+  .spinner-loader-container.text-following{
+    font-size: 1.2rem;
+    padding: 3px 5px;
   }
   .litenote-profile-story-category {
     margin: 0;
@@ -366,24 +394,22 @@ width: 90px;
     outline: none;
     background: transparent;
     background-color: var(--clr-accent);
-    padding: 10px 20px;
+    padding: 12px 35px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: "Poppins";
+    /* transition: all 0.3s ease; */
     margin-top: 0%;
     /* font-size: 10px; */
     margin-bottom: 0%;
-    transform: scale(0.7);
+    transform: scale(1);
 
     /* font-weight:bolder; */
   }
   .follow-text{
    
     transform: scale(10%);
-  }
-  .follow:active{
-    transform: scale(0.5);
   }
   
   .litenote-profile-read-more:hover {

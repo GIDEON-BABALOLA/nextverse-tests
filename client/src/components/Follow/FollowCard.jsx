@@ -30,6 +30,32 @@ if(Object.keys(data).length > 0){
       setAvatarLoading(true)
     }
   }, [loaded, error])
+  const renderFollowButton = () => {
+    switch(true){
+      case Object.keys(data).length == 0 && !following:
+        return(
+          <button className="follow-button"
+          onClick={() => followAUser()}
+          >Follow</button> 
+        )
+      case following  && !followError:
+        return(
+          <button className="follow-button"
+                ><span style={{color: "white"}}>Following...</span></button> 
+        )
+      case  !following &&  Object.keys(data).length > 0 :
+        return(
+          <button className="follow-button"
+                >Following</button> 
+        )
+        case followError : 
+        return(
+          <button className="follow-button"
+          onClick={() => followAUser()}
+          >Follow</button> 
+        )
+    }
+  }
   return (
     <section ref={ref}>
    {
@@ -55,31 +81,7 @@ if(Object.keys(data).length > 0){
                     <div className="follower-name" onClick={() => { navigateToProfile(content.username)}}>{content.username}</div>
                     <div className="follower-username">{content.bio}</div>
                 </div>
-                { Object.keys(data).length == 0 && !following &&
-                  
-                  <button className="follow-button"
-                onClick={() => followAUser()}
-                >Follow</button> 
-
-                }
-                {
-                  following  && !followError &&
-                  <button className="follow-button"
-                ><span style={{color: "white"}}>Following...</span></button> 
-
-                }
-                {
-                  !following &&  Object.keys(data).length > 0 &&
-                  <button className="follow-button"
-                >Following</button> 
-
-                }
-                {
-                  followError &&
-                   <button className="follow-button"
-                onClick={() => followAUser()}
-                >Follow</button> 
-                }
+             {renderFollowButton()}
             </div>
    }
             </section>

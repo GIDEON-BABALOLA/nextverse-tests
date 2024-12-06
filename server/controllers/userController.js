@@ -393,11 +393,17 @@ const mark = user.toObject();
 mark.stories = mark.stories.map((story) => {
     return { ...story.storyId}
 })
+const exists = await User.exists({
+    email: req.user.email,
+    "following.follows" : user._id
+});
+const isFollowing = !!exists;
+console.log(isFollowing)
 // picture : storyConvertedToObject.picture[Math.round(Math.random())]
 const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
 )
-    res.status(200).json(detailsOfUserToBeSent) 
+    res.status(200).json({user : detailsOfUserToBeSent, isFollowing : isFollowing}) 
    
 //  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
@@ -585,9 +591,11 @@ const followUser = async (req, res) => {
         let alreadyFollowed = userToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(!alreadyFollowed){
             const user =  await User.followuser(_id, userToBeFollowed._id) //This has been configured in the users model
-                return  res.status(201).json(user)                                
+                return  res.status(201).json(user)                   
+                             
         }
-            res.status(200).json(userToBeFollowed)            
+            res.status(200).json(userToBeFollowed)               
+         
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "followUserError.txt", "userError")
         if(error instanceof userError){

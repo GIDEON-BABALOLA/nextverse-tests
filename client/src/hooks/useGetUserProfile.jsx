@@ -4,6 +4,7 @@ export const useGetUserProfile = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
+    const [isFollowing, setIsFollowing] = useState(null)
     const [data, setData] = useState([])
     const getUserProfile = async (username) => {
         setIsLoading(true) //starting the request
@@ -16,8 +17,9 @@ export const useGetUserProfile = () => {
     }
             ); // Your API route
 if(response && response.data){
-    setData(response.data)
+    setData(response.data.user)
     setStatusCode(response.status)
+    setIsFollowing(response.data.isFollowing)
     setError(null)
     setTimeout(() => {
         setIsLoading(false)
@@ -44,5 +46,5 @@ setIsLoading(false)
         }
     }
     }
-    return {getUserProfile, isLoading, error, data, statusCode} 
+    return {getUserProfile, isLoading, error, data, statusCode, isFollowing} 
 }
