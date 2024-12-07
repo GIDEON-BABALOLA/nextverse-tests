@@ -14,7 +14,6 @@ const StoryAuthor = ({ author, avatar, userId, isFollowing}) => {
   const [following, setFollowing] = useState(false)
   const [imPossibleToFollow, setImPossibleToFollow] = useState(false)
   const { loaded, error } = useImageLoad(avatar);
-  console.log(user.following)
   useEffect(() => {
     if (error) {
   setLoading(true)
@@ -37,7 +36,6 @@ setImPossibleToFollow(true)
     }
   }, [userData])
   const followAUser = () => {
-    console.log(userId)
     setFollowing(true)
     followUser(userData["email"])
   }

@@ -9,9 +9,6 @@
 }
 .story-display-page-lets-go{
 background-color: var(--story-display-page-background);
-   /* background-color: red;
- height: 100%; */
- /* height: 5000px; */
 }
 .story-display-main{
     display: flex;

@@ -257,6 +257,12 @@ input[type="color"]::-webkit-color-swatch {
 .text-editor-bottom{
     margin-top: 5px;
 }
+.comment-editors{
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
+    align-items: center;
+}
 
 @media screen and (max-width:1200px) {
     .litenote-text-editor-container{

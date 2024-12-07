@@ -3,7 +3,7 @@ import { useLogoutAccount } from "../../hooks/useLogOutAccount"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useToastContext } from "../../hooks/useToastContext";
-import SpinnerLoader from "../Loaders/SpinnerLoader";
+import LoadingSpinner from "../Loaders/LoadingSpinner";
 import { useAuthContext } from "../../hooks/useAuthContext";
 const LogoutConsent = ({ setOpenModal }) => {
   const router = useNavigate()
@@ -58,7 +58,7 @@ Are you sure you want to log out?
                     >
                     {isLoading ? 
                       <section style={{display : "flex", alignItems :"center", justifyContent : "center"}}>
-  <SpinnerLoader width={15} />
+  <LoadingSpinner />
   </section>
                     : 
                     <section style={{paddingTop : "1%", paddingBottom : "1%"}}>Yes, Logout</section>

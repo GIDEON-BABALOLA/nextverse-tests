@@ -1,4 +1,4 @@
-import "../../styles/components/common/special-modal.css"
+import "../../styles/components/common/comment-modal.css"
 import {  useRef } from "react"
 import { useEffect } from "react"
 const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, dismiss, background }) => {
@@ -41,7 +41,7 @@ useEffect(() => {
   }
   }, [])
   return (
-    <section className="litenote-special-modal" >
+    <section className="litenote-comment-modal" >
             <div 
             ref={myShareModal}
             className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`, backgroundColor : {background}}}>

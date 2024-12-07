@@ -13,7 +13,7 @@ const FollowSuggestion = () => {
     useEffect(() => {
         setLoadingState([{}, {}, {}])
         setEmptyData(false)
-getUsersToFollow(1, 3)
+getUsersToFollow(1, 4)
     }, [])
     useEffect(() => {
         if(data.length > 0){
@@ -30,7 +30,7 @@ getUsersToFollow(1, 3)
     }, [data, isLoading, error])
     const resendRequest = () => {
         setEmptyData(false)
-        getUsersToFollow(1, 3)
+        getUsersToFollow(1, 4)
     }
   return (
     <>

@@ -9,16 +9,7 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu,
     useEffect(() => {
         setContextMenu(context)
     }, [setContextMenu])
-//     const showColor = (e) => {
-//         if(e.target.innerText == "Dashboard"){
-//    triangle.current.style.backgroundColor = "var(--context-link-hover)"
-// rectangle.current.style.backgroundColor = "var(--context-link-hover)"
-//         }
-//     }
-//     const closeColor = () => {
-//            triangle.current.style.backgroundColor = "var(--context-background)"
-// rectangle.current.style.backgroundColor = "var(--context-background)"
-//   }
+
     const openShare = (e) => {
 
         switch (e.target.innerText) {

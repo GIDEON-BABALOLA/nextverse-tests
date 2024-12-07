@@ -654,12 +654,14 @@ const getAllUsers = async (req, res) => {
         .skip(skip)
         .limit(limit)
         .lean(); // Use lean if you want plain JavaScript objects    
-        console.log(newUsersToFollow.length)
+        console.log(newUsersToFollow.length, "sugggestion length")
+        console.log(newUsersToFollow)
     const usersToBeSent = newUsersToFollow
     .filter((user) => user.email !== req.user.email)
     .map((user) => {
         return _.pick(user, "email", "username", "picture", "bio")
     })
+    console.log(usersToBeSent)
 
         res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
     }

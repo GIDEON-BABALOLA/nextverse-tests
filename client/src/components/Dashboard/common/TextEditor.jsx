@@ -361,7 +361,11 @@ initializer()
     spellCheck="true"
     contentEditable="true" ></div>
   <div className="text-editor-bottom">
-    <button className="computerprogrammer">Submit</button>
+    <button className="computerprogrammer">
+    <span style={{fontSize : "5px"}}>
+    Submit
+    </span>
+   </button>
     </div>
   
   

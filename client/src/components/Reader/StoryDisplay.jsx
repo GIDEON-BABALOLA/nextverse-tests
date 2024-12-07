@@ -1,15 +1,18 @@
 import StorySidebar from "./StorySidebar"
 import "../../styles/components/Reader/story-display.css"
-import SpecialModal from "../common/SpecialModal"
+import CommentModal from "../common/CommentModal"
 import StoryBody from "./StoryBody"
 import { useModalContext } from "../../hooks/useModalContext"
-import Comment from "../../components/common/Comment"
+import MobileComment from "./MobileComment"
+import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
 import { useState, useEffect } from "react"
 import StorySuggestions from "./StorySuggestions"
 import ErrorMessage from "../common/ErrorMessage"
 const StoryDisplay = ({ username, id, title} ) => {
   const { getAStory, isLoading, error, data, isFollowing } = useGetAStory();
+  const [isDrawerOpen, setDrawerOpen] = useState(false)
+  const toggleDrawer = () => setDrawerOpen((prev) => !prev);
   useEffect(() => {
 getAStory(id)
   }, [])
@@ -22,11 +25,12 @@ console.log(data)
 getAStory(id)
   }
   console.log(username, id, title)
-  const [openModal, setOpenModal] = useState();
+  const [openModal, setOpenModal] = useState(false);
   const {  closeContextMenu } = useModalContext()
   return (
-    <>
-        <StorySidebar setOpenModal={setOpenModal} openModal={openModal}/>
+<>
+    <MobileComment isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}/>
+        <StorySidebar setOpenModal={setOpenModal} openModal={openModal} toggleDrawer={toggleDrawer}/>
  <section className="story-page-total-screen" onClick={closeContextMenu}>
 
   {!error &&
@@ -109,7 +113,8 @@ fireClick = {resendRequest}
 }
 </section>
 }
- <SpecialModal openModal={openModal} setOpenModal={setOpenModal} height={500} width={700}
+ <CommentModal
+  openModal={openModal} setOpenModal={setOpenModal} height={570} width={600}
 content={<Comment />}
 
  />

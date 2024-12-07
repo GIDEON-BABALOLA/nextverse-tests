@@ -2,6 +2,7 @@ import Counter from "./Counter"
 import { useProfileContext } from "../../hooks/useProfileContext";
 const Stats = ({ isLoading }) => {
   const  { profile } = useProfileContext()
+  console.log(profile)
   return (
     <>
     { isLoading ?
@@ -26,11 +27,11 @@ const Stats = ({ isLoading }) => {
             <span className="litenote-profile-stat-label" style={{color : "white"}}   >Stories</span>
           </div>
           <div className="litenote-profile-stat">
-            <span className="litenote-profile-stat-value"><Counter end={profile["followers"].length}/></span>
+            <span className="litenote-profile-stat-value"><Counter end={profile["totalfollowers"]}/></span>
             <span className="litenote-profile-stat-label" style={{color : "white"}}   >Followers</span>
           </div>
           <div className="litenote-profile-stat">
-            <span className="litenote-profile-stat-value"><Counter end={profile["following"].length}/></span>
+            <span className="litenote-profile-stat-value"><Counter end={profile["totalfollowing"]}/></span>
             <span className="litenote-profile-stat-label" style={{color : "white"}}   >Following</span>
           </div>
     </>

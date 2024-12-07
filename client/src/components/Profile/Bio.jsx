@@ -22,7 +22,7 @@ const [followToast, setFollowToast] = useState({
   toast : false,
   message : ""
 })
-const { profile } = useProfileContext()
+const { profile, dispatch } = useProfileContext()
 const { user } = useAuthContext(); 
 const triggerFollow = useFollowUser()
 const triggerUnFollow = useUnFollowUser();
@@ -33,9 +33,9 @@ if(profile.email == user.email){
 }else{
   setImPossibleToFollow(false)
 }
-if(isFollowing){
-  setFollowing({following : false, followedData : profile})
-}
+// if(isFollowing){
+//   setFollowing({following : false, followedData : profile})
+// }
 }, [profile, user.email, isFollowing])
   const triggerFollowUser = () => {
   setFollowing({following : true, followedData : []})
@@ -47,19 +47,23 @@ triggerFollow.followUser(profile.email)
   }
   useEffect(() => {
     if(Object.keys(triggerFollow.data).length > 0){
+
+      console.log(triggerFollow.data)
       setFollowing({following : false, followedData : triggerFollow.data})
       setUnFollowing({ unfollowing : false, unfollowedData :[]})
       setFollowToast({ toast : true, message : `You have successfully followed ${profile.username}` })
+      dispatch({ type: "INCREASE_FOLLOWERS" });
     }
-      }, [triggerFollow.data, profile.username])
+      }, [triggerFollow.data, profile.username, dispatch])
       useEffect(() => {
         if(Object.keys(triggerUnFollow.data).length > 0){
           setUnFollowing({ unfollowing : false, unfollowedData : triggerUnFollow.data})
           setFollowing({following : false, followedData : []})
           setFollowToast({ toast : true, message : `You have successfully unfollowed ${profile.username}` })
+          dispatch({ type: "DECREASE_FOLLOWERS" });
           // setOpenModal(!openModal)
         }
-      }, [triggerUnFollow.data, profile.username])
+      }, [triggerUnFollow.data, profile.username, dispatch])
   const triggerUnFollowModal = () => {
     setOpenModal(!openModal)
   }
@@ -191,10 +195,15 @@ triggerFollow.followUser(profile.email)
           <span>{
           !imPossibleToFollow &&
           <>
-
+{isFollowing && Object.keys(unfollowing.unfollowedData).length == 0 ? 
+  <button className="follow special-modal-client" onClick={() => triggerUnFollowModal()}>
+          <span className="spinner-loader-container text special-modal-client">Following</span>
+        </button>
+:
 <>
   {renderFollowButton()}
 </>
+}
 
 
 

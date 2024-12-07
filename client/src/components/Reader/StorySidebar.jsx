@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom"
-import { FaHome  } from "react-icons/fa"
+import { FaHome, FaShareAlt  } from "react-icons/fa"
 import "../../styles/components/Reader/story-sidebar.css"
 import { useModalContext } from "../../hooks/useModalContext"
 import useWindowSize from "../../hooks/useWindowSize"
 import Share from "../common/Share"
 import { MdOutlineFavoriteBorder, MdOutlineShare} from "react-icons/md"
- import { FaCommentAlt } from "react-icons/fa"
+ import { FaRegCommentAlt } from "react-icons/fa"
  import ModeToggler from "../common/ModeToggler"
  import { useAuthContext } from "../../hooks/useAuthContext"
  import { FaRegBookmark } from "react-icons/fa"
-const StorySidebar = ({ setOpenModal, openModal}) => {
+const StorySidebar = ({ setOpenModal, openModal, toggleDrawer}) => {
   const { user } = useAuthContext();
   const { width } = useWindowSize()
   const { shareModal, shareRef } = useModalContext()
@@ -18,7 +18,12 @@ const StorySidebar = ({ setOpenModal, openModal}) => {
     shareModal.current.classList.add("slide-dow")
   }
 const openCommentLikeModal = () => {
-  setOpenModal(!openModal)
+  if(width < 768){
+toggleDrawer()
+  }else{
+    setOpenModal(!openModal)
+  }
+
 }
   return (
     <>
@@ -41,10 +46,10 @@ const openCommentLikeModal = () => {
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/bookmarks"}>
 
-    <FaRegBookmark className="phone-feed-sidebar-icon" />
+    <FaShareAlt className="phone-feed-sidebar-icon" />
 
 
-<span className="phone-feed-sidebar-nav-name">Bookmarks</span>
+<span className="phone-feed-sidebar-nav-name">Share</span>
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
@@ -54,10 +59,11 @@ const openCommentLikeModal = () => {
 </Link>
     </li>
     
+
     <li className="phone-feed-sidebar-item">
-<span className="phone-feed-sidebar-nav-link">
-<MdOutlineShare className="phone-feed-sidebar-icon" onClick={() => {openShare()}}/>
-<span className="phone-feed-sidebar-nav-name">Share</span>
+<span className="phone-feed-sidebar-nav-link" style={{cursor : "pointer"}}>
+<FaRegCommentAlt size={20}  onClick={() => { openCommentLikeModal()}}/>
+<span className="phone-feed-sidebar-nav-name">Comments</span>
 </span>
     </li>
 </ul>
@@ -101,7 +107,7 @@ const openCommentLikeModal = () => {
     </div>
     <div className="feed-sidebar-icon">
     <Link>
-    <FaCommentAlt size={20} onClick={() => { openCommentLikeModal()}}/>
+    <FaRegCommentAlt size={20} onClick={() => { openCommentLikeModal()}}/>
     </Link>
     </div>
       </div>
