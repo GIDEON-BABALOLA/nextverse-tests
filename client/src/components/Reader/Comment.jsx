@@ -1,18 +1,34 @@
-import "../../styles/components/Reader/desktop-comment.css"
+import "../../styles/components/Reader/comment.css"
 import CommentList from "./CommentList";
 import EmojiPicker from 'emoji-picker-react';
 import { RiEmojiStickerLine } from "react-icons/ri";
 import { useThemeContext } from "../../hooks/useThemeContext";
+import LoadingSpinner from "../Loaders/LoadingSpinner"
+import { useCommentAStory } from "../../hooks/useCommentAStory";
  import { useRef, useState, useEffect } from "react"
  import { MdKeyboardArrowDown } from "react-icons/md";
  import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
-const Comment = () => {
+const Comment = ({ id, openModal }) => {
+  const {commentAStory, isLoading, error : commentError, data, statusCode} = useCommentAStory()
   const { colorMode }  = useThemeContext()
   const textAreaRef = useRef();
   const [isPickerVisible, setPickerVisible] = useState(false);
   const [comment, setComment] = useState("")
+  const [loading, setLoading] = useState(false)
   const pickerRef = useRef(null);
-
+const submitComment = () => {
+  setLoading(true)
+commentAStory(id, comment)
+}
+useEffect(() => {
+  if( Object.keys(data).length > 0){
+    setComment("")
+    setLoading(false)
+  }
+    }, [data])
+    useEffect(() => {
+console.log(commentError)
+    }, [commentError])
   // Toggle emoji picker visibility
   const togglePicker = () => setPickerVisible(!isPickerVisible);
 
@@ -39,6 +55,38 @@ setComment((message) => message + emojiData.emoji)
 const height  =   Math.max(parseInt(e.target.scrollHeight), parseInt(textAreaRef.current.style.height))
 textAreaRef.current.style.height = `${height}px`
 
+  }
+  const renderReplyButton = () => {
+    console.log("how")
+       if( Object.keys(data).length == 0 && !loading){
+        return(
+          <button className="comment-submit-button"
+          onClick={() => submitComment()}
+          >Reply</button> 
+        )
+      }
+       if(loading  && !commentError){
+        return(
+          <button className="comment-submit-button"
+                ><LoadingSpinner /></button> 
+        )
+      }
+       if( !loading &&  Object.keys(data).length > 0 ){
+        return(
+          <button className="comment-submit-button"
+          onClick={() => submitComment()}
+                >Reply</button> 
+        )
+      }
+         if(commentError){
+        console.log("there is an error")
+        return(
+          <button className="comment-submit-button"
+          onClick={() => submitComment()}
+          >Reply</button> 
+        )
+      }
+    
   }
   return (
    <section className="desktop-comment">
@@ -67,7 +115,8 @@ size={20}
     />
     </span>
 </section>
-    <section><button className="comment-submit-button">Reply</button></section>
+    <section>{renderReplyButton()}
+    </section>
     </div>
     </div>
     {isPickerVisible && (
@@ -92,7 +141,7 @@ size={20}
 <MdArrowDownward /><MdArrowUpward/>Most Recents<MdKeyboardArrowDown />
 </span>
     </div>
-    <CommentList />
+    <CommentList storyId={id} openModal={openModal}/>
    </section>
   )
 }

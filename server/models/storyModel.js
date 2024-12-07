@@ -10,6 +10,10 @@ const commentSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
+    date : {
+        type : Date,
+        required : true
+    }
 });
 
 const likeSchema = new mongoose.Schema({
@@ -134,8 +138,8 @@ storySchema.methods.addViews = async function (comment, userId) {
     return this;
 };
 
-storySchema.methods.addComment = async function (comment, userId) {
-    this.comments.unshift({ comment, commentBy: userId });
+storySchema.methods.addComment = async function (comment, userId, date) {
+    this.comments.unshift({ comment, commentBy: userId, date });
     this.totalComments = this.comments.length;
     await this.save();
     return this;

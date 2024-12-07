@@ -16,15 +16,9 @@ const StoryDisplay = ({ username, id, title} ) => {
   useEffect(() => {
 getAStory(id)
   }, [])
-  useEffect(() => {
-if(Object.keys(data).length > 0){
-console.log(data)
-}
-  }, [data])
   const resendRequest = () => {
 getAStory(id)
   }
-  console.log(username, id, title)
   const [openModal, setOpenModal] = useState(false);
   const {  closeContextMenu } = useModalContext()
   return (
@@ -73,13 +67,16 @@ className="story-display-main"
     isFollowing={isFollowing}
 
      /> 
+      <CommentModal
+  openModal={openModal} setOpenModal={setOpenModal} height={570} width={600}
+content={<Comment id={data._id} openModal={openModal}/> 
+}
+
+ />
    </>
   }
   
   </>
-  }
-  {
-    isLoading && <div>still loading</div>
   }
    
  </section>
@@ -113,11 +110,6 @@ fireClick = {resendRequest}
 }
 </section>
 }
- <CommentModal
-  openModal={openModal} setOpenModal={setOpenModal} height={570} width={600}
-content={<Comment />}
-
- />
     </>
 
   )

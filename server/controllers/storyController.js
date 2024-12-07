@@ -370,7 +370,6 @@ res.status(201).json(updateStory)
 
 }
 const commentAStory = async (req, res) => {
-    console.log(req.user)
     const { id } = req.params;  // The story ID
     const { comment } = req.body;  // The comment text
     try {
@@ -382,7 +381,8 @@ const commentAStory = async (req, res) => {
         }
         const story = await Story.findById(id);
         // Add the comment to the story using static method
-        const commentedStory = await story.addComment( comment, req.user._id);
+        const date = new Date();
+        const commentedStory = await story.addComment( comment, req.user._id, date);
         
         // Respond with the updated story
         res.status(201).json(commentedStory);
@@ -423,6 +423,43 @@ const unCommentAStory = async(req, res) => {
         }
     }
 }
+const getStoryComments = async (req, res) => {
+    const { page, limit } = req.query;
+    console.log(page, limit)
+    const { id } = req.params
+    try{
+    const skip = (page - 1) * limit;
+    const gotUsers = await User.find();
+    if(!gotUsers){
+        throw new userError("No User Has Been Registered For Your Application", 204)
+    }
+    const story = await Story.findOne({ _id: id });
+    const commentCount = story ? story.comments.length : 0;
+    console.log(commentCount)
+    const storyComments = await Story.findOne({ _id: id })
+  .populate({
+    path: 'comments.commentBy', // This populates the user (commentBy) in the comments array
+    select: 'username picture' 
+    // You can add other fields here as needed
+  })
+  .slice('comments', [parseInt(skip), parseInt(limit)])
+  .lean();
+        // .skip(skip)
+        // .limit(limit)
+        // .lean(); 
+        // Use lean if you want plain JavaScript objects    
+        res.status(200).json({ comments : storyComments["comments"], count : commentCount})         
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
+        if(error instanceof userError){
+            return res.status(error.statusCode).json({ error : error.message})
+        }else{
+            return res.status(500).json({error : "Internal Server Error"})
+        }
+    }
+    }
 const likeAStory = async(req, res) => {
     const { id } = req.params
 try{
@@ -572,5 +609,6 @@ module.exports = {
     commentAStory,
     unCommentAStory,
     uploadNow,
-    getPopularStories
+    getPopularStories,
+    getStoryComments
 }
