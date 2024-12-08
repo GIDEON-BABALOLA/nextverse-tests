@@ -1,19 +1,16 @@
 import { useState } from "react";
 // import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useCommentAStory = () => {
+export const useDeleteAStoryComment = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
-    const commentAStory = async (id, comment) => {
+    const deleteAStoryComment = async (id, commentId) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post(`/story/comment-a-story/${id}`,
-    {
-        comment : comment
-    }, 
+const response = await axiosConfig.delete(`/story/uncomment-a-story/${id}/${commentId}`,
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
     }
@@ -48,5 +45,5 @@ setError({message : "Your Request Has Timed Out", code : error.code})
         }
     }
     }
-    return {commentAStory, isLoading, error, data, statusCode} 
+    return {deleteAStoryComment, isLoading, error, data, statusCode} 
 }

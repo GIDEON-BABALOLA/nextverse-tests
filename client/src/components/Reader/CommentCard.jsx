@@ -1,5 +1,5 @@
 
-import CommentAvatar from "./CommentAvatar"
+import { useDeleteAStoryComment } from '../../hooks/useDeleteAStoryComment';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import useWindowSize from "../../hooks/useWindowSize";
 import { FaEllipsisH } from "react-icons/fa";
@@ -77,7 +77,12 @@ const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
           </div>
             <div className="comment-card-container-second-section-body">
             {comment["comment"]}</div>
-            { width < 768 ? <Trash size={15}/> : <FaEllipsisH size={10} style={{cursor : "pointer"}} color="#555555" onClick={() => { openDeleteModal()}}/> }
+            {
+              <>  <FaEllipsisH size={10} style={{cursor : "pointer"}} color="#555555" onClick={() => { openDeleteModal()}}/>
+              </>
+
+            
+             }
             </section>
     </div>
     }

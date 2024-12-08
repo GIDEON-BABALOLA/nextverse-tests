@@ -49,7 +49,6 @@ getAStory(id)
 <>
     <MobileComment
     openModal={openModal} 
-    setDeleteModal={setDeleteModal} 
     id={id}
      isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}/>
         <StorySidebar setOpenModal={setOpenModal} openModal={openModal} toggleDrawer={toggleDrawer}/>
