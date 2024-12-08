@@ -3,50 +3,78 @@ import { useState, useEffect } from "react";
 import CommentCard from "./CommentCard"
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useGetStoryComments } from "../../hooks/useGetStoryComments";
-const CommentList = ({ storyId, openModal }) => {
-  console.log(storyId, openModal)
+import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
+import SpecialModal from "../../components/common/SpecialModal"
+const CommentList = ({ storyId, openModal, isOpen, comments, setComments, setDeleteModal }) => {
   const { getStoryComments, isLoading, error, data, statusCode, commentCount } = useGetStoryComments();
   const [loadingState, setLoadingState] = useState([{}, {}, {}, {}]);
-  const [comments, setComments] = useState([])
+  const [showMore, setShowMore] = useState(false)
   const [parameters, setParameters] = useState({
     page : 1,
     limit : 4
   })
   useEffect(() => {
-  if(openModal){
-    console.log("open now")
+  if(openModal || isOpen){
+    console.log("I have already started opening")
       getStoryComments(parameters["page"], parameters["limit"], storyId)
    }
-  }, [parameters.page, parameters.limit, openModal])
+  }, [parameters.page, parameters.limit, openModal, storyId, parameters, isOpen])
   useEffect(() => {
-console.log(data)
-setComments(data)
-  }, [data])
+    if (data) {
+      const skip = (parameters["page"]) * parameters["limit"];
+      if (skip >= commentCount && commentCount > 0) {
+  setShowMore(true)
+      }
+    setComments((prev) => {
+      // Ensure new comments are appended without duplicates
+      const newComments = data.filter(
+        (newComment) => !prev.some((prevComment) => prevComment._id === newComment._id)
+      );
+      return [...prev, ...newComments];
+    });
+    }
+  }, [data, commentCount]);
+const showMoreComments = () => {
+  console.log("sushi")
+  setParameters((prev) => {
+    const { page, limit} = prev;
+    return {page : page + 1, limit : limit}
+  })
+}
   return (
     <>
   <section>
+  <div className="comments-title">
+    <span>
+    Comments <span className="comment-badge">{commentCount}</span>
+    </span>
+<span>
+<MdArrowDownward /><MdArrowUpward/>Most Recents<MdKeyboardArrowDown />
+</span>
+    </div>
     <div className="comment-list">
     
-{ isLoading ? <>
-{loadingState.map((comment, index) => (
+
+<>
+{comments.map((comment, index) => (
+<CommentCard key={index} comment={comment} isLoading={false} setDeleteModal={setDeleteModal}/>
+  ))}
+</>
+<>
+{ isLoading && loadingState.map((comment, index) => (
 <CommentCard key={index} comment={comment} isLoading={true}/>
   ))}
 </>
-:
-<>
-{comments.map((comment, index) => (
-<CommentCard key={index} comment={comment} isLoading={false}/>
-  ))}
-</>
-}
+
 
     
 
 
     </div>
-    <div style={{fontSize : "1.1rem"}} className="comment-show-more">
-        Show more<MdKeyboardArrowDown size={20}/>
+   {!showMore && <div style={{fontSize : "1.1rem"}} className="comment-show-more" onClick={() => { showMoreComments()}}>
+        Show more<MdKeyboardArrowDown size={20} />
     </div>
+   }
     </section>
     </>
   

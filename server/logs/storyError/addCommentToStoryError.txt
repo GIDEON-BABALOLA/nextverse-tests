@@ -1,1 +1,2 @@
 20241207	22:13:15	6c3b4f7b-3d24-43b5-9fc6-5a89e39f5e19	userError: Pls enter a parameter recognized by the database
+20241208	13:08:58	1dc5e39d-6894-4c4a-9cc8-68fe1f23efd0	TypeError: story.addComment(...).populate is not a function

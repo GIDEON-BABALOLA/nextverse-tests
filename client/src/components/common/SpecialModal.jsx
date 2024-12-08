@@ -1,7 +1,7 @@
 import "../../styles/components/common/special-modal.css"
 import {  useRef } from "react"
 import { useEffect } from "react"
-const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, dismiss, background }) => {
+const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, dismiss, background, zIndex }) => {
 
   const myShareModal = useRef()
   const closeModal = () => {
@@ -44,7 +44,7 @@ useEffect(() => {
     <section className="litenote-special-modal" >
             <div 
             ref={myShareModal}
-            className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`, backgroundColor : {background}}}>
+            className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`, zIndex : zIndex, backgroundColor : {background}}}>
      <div className="icon">
     
      </div>

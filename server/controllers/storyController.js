@@ -383,7 +383,6 @@ const commentAStory = async (req, res) => {
         // Add the comment to the story using static method
         const date = new Date();
         const commentedStory = await story.addComment( comment, req.user._id, date);
-        
         // Respond with the updated story
         res.status(201).json(commentedStory);
     } catch (error) {
@@ -444,11 +443,11 @@ const getStoryComments = async (req, res) => {
   })
   .slice('comments', [parseInt(skip), parseInt(limit)])
   .lean();
-        // .skip(skip)
-        // .limit(limit)
-        // .lean(); 
-        // Use lean if you want plain JavaScript objects    
-        res.status(200).json({ comments : storyComments["comments"], count : commentCount})         
+  setTimeout(() => {
+    res.status(200).json({ comments : storyComments["comments"], count : commentCount})      
+  }, 2000);
+       
+    
     }
     catch(error){
         console.log(error)

@@ -1,15 +1,19 @@
 import "../../styles/components/Reader/comment.css"
 import CommentList from "./CommentList";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import EmojiPicker from 'emoji-picker-react';
 import { RiEmojiStickerLine } from "react-icons/ri";
 import { useThemeContext } from "../../hooks/useThemeContext";
 import LoadingSpinner from "../Loaders/LoadingSpinner"
 import { useCommentAStory } from "../../hooks/useCommentAStory";
+import SpecialModal from "../common/SpecialModal";
  import { useRef, useState, useEffect } from "react"
  import { MdKeyboardArrowDown } from "react-icons/md";
  import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
-const Comment = ({ id, openModal }) => {
-  const {commentAStory, isLoading, error : commentError, data, statusCode} = useCommentAStory()
+const Comment = ({ id, openModal, isOpen, setDeleteModal }) => {
+  const { user } = useAuthContext()
+  const [comments, setComments] = useState([])
+  const {commentAStory,  error : commentError, data} = useCommentAStory()
   const { colorMode }  = useThemeContext()
   const textAreaRef = useRef();
   const [isPickerVisible, setPickerVisible] = useState(false);
@@ -23,12 +27,21 @@ commentAStory(id, comment)
 useEffect(() => {
   if( Object.keys(data).length > 0){
     setComment("")
+    setComments([
+      {
+        comment : data.comments[0].comment,
+        commentBy :  {
+          _id : data.comments[0].commentBy,
+          username : user["username"],
+          picture : user["picture"]
+        },
+        date : data.comments[0].date,
+        _id : data.comments[0]._id
+      }
+      , ...comments])
     setLoading(false)
   }
     }, [data])
-    useEffect(() => {
-console.log(commentError)
-    }, [commentError])
   // Toggle emoji picker visibility
   const togglePicker = () => setPickerVisible(!isPickerVisible);
 
@@ -47,7 +60,6 @@ console.log(commentError)
   }, []);
 
   const onEmojiClick = (emojiData) => {
-    console.log("Selected emoji:", emojiData.emoji);
 setComment((message) => message + emojiData.emoji)
   };
 
@@ -57,7 +69,6 @@ textAreaRef.current.style.height = `${height}px`
 
   }
   const renderReplyButton = () => {
-    console.log("how")
        if( Object.keys(data).length == 0 && !loading){
         return(
           <button className="comment-submit-button"
@@ -79,7 +90,6 @@ textAreaRef.current.style.height = `${height}px`
         )
       }
          if(commentError){
-        console.log("there is an error")
         return(
           <button className="comment-submit-button"
           onClick={() => submitComment()}
@@ -89,7 +99,8 @@ textAreaRef.current.style.height = `${height}px`
     
   }
   return (
-   <section className="desktop-comment">
+    <>
+     <section className="desktop-comment">
     <div 
     className="comment-input-section" 
     ref={textAreaRef}
@@ -133,16 +144,10 @@ size={20}
 
     )}
     <hr></hr>
-    <div className="comments-title">
-    <span>
-    Comments <span className="comment-badge">30</span>
-    </span>
-<span>
-<MdArrowDownward /><MdArrowUpward/>Most Recents<MdKeyboardArrowDown />
-</span>
-    </div>
-    <CommentList storyId={id} openModal={openModal}/>
+    <CommentList storyId={id} openModal={openModal} isOpen={isOpen} comments={comments} setComments={setComments} setDeleteModal={setDeleteModal}/>
    </section>
+    </>
+  
   )
 }
 

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import StoryAuthor from "./StoryAuthor"
 const StoryBody = ({ content, title, picture, avatar, author, userId, isFollowing}) => {
   const [loading, setLoading] = useState(true)
-  console.log(picture)
   const { loaded, error } = useImageLoad(picture);
   useEffect(() => {
     if (error) {

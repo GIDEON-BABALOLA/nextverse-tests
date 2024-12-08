@@ -44,3 +44,6 @@
 20241207	23:22:10	d18cd5ac-5475-4334-876d-9ad83f497cf0	MongoServerError: First argument to $slice must be an array, but is of type: int
 20241207	23:32:06	dfd120e9-b44f-4cab-9330-50957d73a54c	ReferenceError: commentCount is not defined
 20241207	23:32:06	0a3f4e4d-7c11-42bc-b9d1-3d6e589743d7	ReferenceError: commentCount is not defined
+20241208	11:12:22	58a0481d-6c38-499c-b53c-ce175a640151	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Story"
+20241208	11:15:17	16641e09-aef9-4bd0-9cb6-d6369b257c37	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Story"
+20241208	11:15:17	5f94cfbb-9021-428e-902b-a90e6ae5117a	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Story"

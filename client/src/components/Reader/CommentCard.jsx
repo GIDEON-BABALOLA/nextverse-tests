@@ -1,18 +1,41 @@
 
 import CommentAvatar from "./CommentAvatar"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-const CommentCard = ({ comment, isLoading }) => {
+import useWindowSize from "../../hooks/useWindowSize";
+import { FaEllipsisH } from "react-icons/fa";
+import useImageLoad from "../../hooks/useImageLoaded";
+import Trash from "../../styles/components/common/Icons/Trash";
+import { useState, useEffect } from "react";
+const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
+  const { width } = useWindowSize();
+  console.log(comment)
+  const [avatarLoading, setAvatarLoading] = useState(true)
+  let avatarPicture = ""
+  if(isLoading === false){
+    //  storyPicture = story.picture[Math.round(Math.random())]
+    avatarPicture = comment.commentBy["picture"]
+  }
+  const { loaded, error } = useImageLoad(avatarPicture);
+  useEffect(() => {
+    if (error) {
+     setAvatarLoading(true)
+    }
+  
+    if (loaded === true) {
+    setAvatarLoading(false)
+    }
+  }, [loaded, error])
+  const openDeleteModal = () => {
+    setDeleteModal(true)
+  }
   return (
     <> 
     {
       isLoading ?
       <div className="comment-card-container">
         <section  className="comment-card-container-first-section">
-        <CommentAvatar
-image={""}
-alt="Author"
-className="comment-profile-image" 
-/>
+        <div
+       className="comment-loader comment-loader-avatar"></div>
         </section>
         <section className="comment-card-container-second-section">
             <div className="comment-card-container-second-section-title">
@@ -36,11 +59,12 @@ className="comment-profile-image"
        :
        <div className="comment-card-container">
         <section  className="comment-card-container-first-section">
-        <CommentAvatar
-image={comment.commentBy["picture"]}
-alt="Author"
-className="feed-profile-images-trending" 
-/>
+        {
+          avatarLoading ? 
+          <div
+       className="comment-loader comment-loader-avatar"></div> : 
+       <img  src={avatarPicture} alt="Author" className="feed-profile-images-trending" />
+        }
         </section>
         <section className="comment-card-container-second-section">
             <div className="comment-card-container-second-section-title">
@@ -53,6 +77,7 @@ className="feed-profile-images-trending"
           </div>
             <div className="comment-card-container-second-section-body">
             {comment["comment"]}</div>
+            { width < 768 ? <Trash size={15}/> : <FaEllipsisH size={10} style={{cursor : "pointer"}} color="#555555" onClick={() => { openDeleteModal()}}/> }
             </section>
     </div>
     }

@@ -9,9 +9,11 @@ import { useGetAStory } from "../../hooks/useGetAStory"
 import { useState, useEffect } from "react"
 import StorySuggestions from "./StorySuggestions"
 import ErrorMessage from "../common/ErrorMessage"
+import SpecialModal from "../common/SpecialModal"
 const StoryDisplay = ({ username, id, title} ) => {
   const { getAStory, isLoading, error, data, isFollowing } = useGetAStory();
   const [isDrawerOpen, setDrawerOpen] = useState(false)
+  const [deleteModal, setDeleteModal] = useState(false)
   const toggleDrawer = () => setDrawerOpen((prev) => !prev);
   useEffect(() => {
 getAStory(id)
@@ -21,9 +23,35 @@ getAStory(id)
   }
   const [openModal, setOpenModal] = useState(false);
   const {  closeContextMenu } = useModalContext()
+  const previewDeleteCommentHtml = () => {
+        
+    return (
+    <div
+    className="unfollow-modal"
+     style={{display : "flex", flexDirection : "column", justifyContent :"space-between", gap : "20px", fontFamily : "Poppins"}}>
+  <section style={{display : "flex", flexDirection : "column", justifyContent : "space-between", textAlign : "left"}}>
+  <div style={{fontWeight : "1000"}}>
+  </div>
+  <div style={{textAlign : "left"}}>
+  This comment will be permanently removed. Once deleted, it cannot be recovered. You can still view the rest of the story unless restricted by the story owner.
+  </div>
+    </section>
+  <section style={{display : "flex", flexDirection : "column", justifyContent : "space-between", textAlign : "center", gap : "10px"}}>
+  <button className="follow">
+            <span className="spinner-loader-container text">Delete</span>
+          </button>
+  <button className="unfollow-cancel-button" onClick={() => setDeleteModal(false)}>Cancel</button>
+  </section>
+    
+    </div>)
+  }
   return (
 <>
-    <MobileComment isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}/>
+    <MobileComment
+    openModal={openModal} 
+    setDeleteModal={setDeleteModal} 
+    id={id}
+     isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}/>
         <StorySidebar setOpenModal={setOpenModal} openModal={openModal} toggleDrawer={toggleDrawer}/>
  <section className="story-page-total-screen" onClick={closeContextMenu}>
 
@@ -68,11 +96,13 @@ className="story-display-main"
 
      /> 
       <CommentModal
-  openModal={openModal} setOpenModal={setOpenModal} height={570} width={600}
-content={<Comment id={data._id} openModal={openModal}/> 
+  openModal={openModal}
+   setOpenModal={setOpenModal} height={570} width={600}
+content={<Comment id={data._id} openModal={openModal}  isOpen={isDrawerOpen} setDeleteModal={setDeleteModal}/> 
 }
 
  />
+ <SpecialModal  openModal={deleteModal} setDeleteModal={setDeleteModal} content={previewDeleteCommentHtml()} zIndex={5000}/>
    </>
   }
   
@@ -116,3 +146,5 @@ fireClick = {resendRequest}
 }
 
 export default StoryDisplay
+
+

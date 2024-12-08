@@ -69,8 +69,13 @@
   right: 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Shadow-sm */
   outline: none;
-}
 
+    /* Prevent resizing when keyboard appears */
+    max-height: 70vh;
+}
+.drawer-description{
+  display: none;
+}
 /* Drawer Header */
 .drawer-header {
   padding: 1rem; /* 4 */
@@ -81,6 +86,7 @@
   flex: 1;
   overflow-y: auto;/* Enable scrolling */
   color: var(--drawer-header-color);
+  
 }
 
 /* Drawer Header Divider */
