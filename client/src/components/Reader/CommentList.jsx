@@ -5,7 +5,16 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { useGetStoryComments } from "../../hooks/useGetStoryComments";
 import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
 import SpecialModal from "../../components/common/SpecialModal"
-const CommentList = ({ storyId, openModal, isOpen, comments, setComments, setDeleteModal }) => {
+const CommentList = ({
+storyId,
+openModal,
+isOpen,
+comments,
+setComments,
+setDeleteModal,
+commentNumber,
+setCommentNumber
+}) => {
   const { getStoryComments, isLoading, error, data, statusCode, commentCount } = useGetStoryComments();
   const [loadingState, setLoadingState] = useState([{}, {}, {}, {}]);
   const [showMore, setShowMore] = useState(false)
@@ -25,6 +34,7 @@ const CommentList = ({ storyId, openModal, isOpen, comments, setComments, setDel
       if (skip >= commentCount && commentCount > 0) {
   setShowMore(true)
       }
+      setCommentNumber(commentCount)
     setComments((prev) => {
       // Ensure new comments are appended without duplicates
       const newComments = data.filter(
@@ -46,7 +56,7 @@ const showMoreComments = () => {
   <section>
   <div className="comments-title">
     <span>
-    Comments <span className="comment-badge">{commentCount}</span>
+    Comments <span className="comment-badge">{commentNumber}</span>
     </span>
 <span>
 <MdArrowDownward /><MdArrowUpward/>Most Recents<MdKeyboardArrowDown />

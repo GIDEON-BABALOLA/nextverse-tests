@@ -81,7 +81,7 @@ setImPossibleToFollow(true)
                 {
                   following  && !followError &&
                   <button className="story-follow-button"
-                ><span style={{color: "white"}}>Following...</span></button> 
+                ><span>Following...</span></button> 
 
                 }
                 {

@@ -19,6 +19,7 @@ const Comment = ({ id, openModal, isOpen, setDeleteModal }) => {
   const [isPickerVisible, setPickerVisible] = useState(false);
   const [comment, setComment] = useState("")
   const [loading, setLoading] = useState(false)
+  const [commentNumber, setCommentNumber] = useState(0)
   const pickerRef = useRef(null);
 const submitComment = () => {
   setLoading(true)
@@ -27,6 +28,7 @@ commentAStory(id, comment)
 useEffect(() => {
   if( Object.keys(data).length > 0){
     setComment("")
+    setCommentNumber(commentNumber + 1)
     setComments([
       {
         comment : data.comments[0].comment,
@@ -144,7 +146,10 @@ size={20}
 
     )}
     <hr></hr>
-    <CommentList storyId={id} openModal={openModal} isOpen={isOpen} comments={comments} setComments={setComments} setDeleteModal={setDeleteModal}/>
+    <CommentList 
+    commentNumber={commentNumber}
+    setCommentNumber={setCommentNumber}
+    storyId={id} openModal={openModal} isOpen={isOpen} comments={comments} setComments={setComments} setDeleteModal={setDeleteModal}/>
    </section>
     </>
   
