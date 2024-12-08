@@ -26,7 +26,7 @@ const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
     }
   }, [loaded, error])
   const openDeleteModal = () => {
-    setDeleteModal(true)
+    setDeleteModal({ comment : comment["_id"], modal : true})
   }
   return (
     <> 
@@ -78,7 +78,9 @@ const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
             <div className="comment-card-container-second-section-body">
             {comment["comment"]}</div>
             {
-              <>  <FaEllipsisH size={10} style={{cursor : "pointer"}} color="#555555" onClick={() => { openDeleteModal()}}/>
+              <>  <FaEllipsisH
+              className='delete-modal-client'
+               size={10} style={{cursor : "pointer"}} color="#555555" onClick={() => { openDeleteModal()}}/>
               </>
 
             

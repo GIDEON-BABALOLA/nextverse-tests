@@ -411,7 +411,10 @@ const unCommentAStory = async(req, res) => {
             throw new userError("This story does not exist", 400)
         }
         const unLikedStory = await storyToBeUnCommented.removeComment(commentId, req.user._id);
-        res.status(201).json(unLikedStory);
+        setTimeout(() => {
+            res.status(201).json(unLikedStory);            
+        }, 4000);
+
     }catch(error){
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unCommentAStoryError.txt", "storyError");

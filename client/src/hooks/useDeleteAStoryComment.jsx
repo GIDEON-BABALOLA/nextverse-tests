@@ -10,7 +10,7 @@ export const useDeleteAStoryComment = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.delete(`/story/uncomment-a-story/${id}/${commentId}`,
+const response = await axiosConfig.put(`/story/uncomment-a-story/${id}/${commentId}`,
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
     }

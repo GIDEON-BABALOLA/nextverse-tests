@@ -10,16 +10,23 @@ import SpecialModal from "../common/SpecialModal";
  import { useRef, useState, useEffect } from "react"
  import { MdKeyboardArrowDown } from "react-icons/md";
  import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
-const Comment = ({ id, openModal, isOpen, setDeleteModal }) => {
+const Comment = ({ id,
+   openModal,
+  isOpen,
+  setDeleteModal,
+ comments,
+ setComments,
+ commentNumber,
+ setCommentNumber
+
+}) => {
   const { user } = useAuthContext()
-  const [comments, setComments] = useState([])
   const {commentAStory,  error : commentError, data} = useCommentAStory()
   const { colorMode }  = useThemeContext()
   const textAreaRef = useRef();
   const [isPickerVisible, setPickerVisible] = useState(false);
   const [comment, setComment] = useState("")
   const [loading, setLoading] = useState(false)
-  const [commentNumber, setCommentNumber] = useState(0)
   const pickerRef = useRef(null);
 const submitComment = () => {
   setLoading(true)
@@ -151,6 +158,7 @@ size={20}
     setCommentNumber={setCommentNumber}
     storyId={id} openModal={openModal} isOpen={isOpen} comments={comments} setComments={setComments} setDeleteModal={setDeleteModal}/>
    </section>
+   
     </>
   
   )

@@ -1,32 +1,18 @@
 import "../../styles/components/Reader/story-comment.css"
-import SpecialModal from "../common/SpecialModal";
+import DeleteModal from "./DeleteModal";
 import Comment from "./Comment";
 import { useState } from "react";
 import { Drawer } from 'vaul';
-export default function MobileComment({ isOpen, onClose, openModal, id }) {
-  const previewDeleteCommentHtml = () => {
-        
-    return (
-    <div
-    className="unfollow-modal"
-     style={{display : "flex", flexDirection : "column", justifyContent :"space-between", gap : "20px", fontFamily : "Poppins"}}>
-  <section style={{display : "flex", flexDirection : "column", justifyContent : "space-between", textAlign : "left"}}>
-  <div style={{fontWeight : "1000"}}>
-  </div>
-  <div style={{textAlign : "left"}}>
-  This comment will be permanently removed. Once deleted, it cannot be recovered. You can still view the rest of the story unless restricted by the story owner.
-  </div>
-    </section>
-  <section style={{display : "flex", flexDirection : "column", justifyContent : "space-between", textAlign : "center", gap : "10px"}}>
-  <button className="follow">
-            <span className="spinner-loader-container text">Delete</span>
-          </button>
-  <button className="unfollow-cancel-button" onClick={() => setDeleteModal(false)}>Cancel</button>
-  </section>
-    
-    </div>)
-  }
-  const [deleteModal, setDeleteModal] = useState(false)
+export default function MobileComment({ isOpen, onClose, openModal, id,
+  comments,
+  setComments,
+  commentNumber,
+  setCommentNumber
+ }) {
+  const [deleteModal, setDeleteModal] = useState({
+    comment : "",
+    modal : false
+  })
   return (
     <Drawer.Root modal={true} open={isOpen} onOpenChange={onClose}>
 <Drawer.Overlay className="drawer-overlay" />
@@ -36,12 +22,29 @@ export default function MobileComment({ isOpen, onClose, openModal, id }) {
     <div className="drawer-spacing">
       <div aria-hidden className="drawer-header-divider" />
       <Drawer.Title className="drawer-title">Comments</Drawer.Title>
-    <Comment openModal={openModal} isOpen={isOpen} id={id} setDeleteModal={setDeleteModal} />
+    <Comment 
+openModal={openModal}
+isOpen={isOpen} 
+id={id}
+setDeleteModal={setDeleteModal} 
+comments={comments}
+commentNumber={commentNumber}
+setComments={setComments}
+setCommentNumber={setCommentNumber}
+
+    />
     </div>
   </div>
-  <SpecialModal  openModal={deleteModal} setDeleteModal={setDeleteModal} 
-content={previewDeleteCommentHtml()}
- zIndex={5000}/>
+  <DeleteModal 
+    comments={comments}
+ setComments={setComments}
+ commentNumber={commentNumber}
+ setCommentNumber={setCommentNumber}
+   deleteModal={deleteModal} setDeleteModal={setDeleteModal} 
+ zIndex={5000}
+ storyId={id}
+
+ />
 
 </Drawer.Content>
     </Drawer.Root>
