@@ -2,11 +2,13 @@
 import { useDeleteAStoryComment } from '../../hooks/useDeleteAStoryComment';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import useWindowSize from "../../hooks/useWindowSize";
+import useNavigateProfile from '../../hooks/useNavigateProfile';
 import { FaEllipsisH } from "react-icons/fa";
 import useImageLoad from "../../hooks/useImageLoaded";
 import Trash from "../../styles/components/common/Icons/Trash";
 import { useState, useEffect } from "react";
 const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
+  const navigateToProfile = useNavigateProfile();
   const { width } = useWindowSize();
   console.log(comment)
   const [avatarLoading, setAvatarLoading] = useState(true)
@@ -67,8 +69,12 @@ const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
         }
         </section>
         <section className="comment-card-container-second-section">
-            <div className="comment-card-container-second-section-title">
-            <span>
+            <div className="comment-card-container-second-section-title" style={{cursor : "pointer"}}>
+            <span
+                 onClick={() => {
+                navigateToProfile(comment.commentBy["username"]);
+              }}
+            >
             {comment.commentBy["username"]}
             </span>
             <span style={{color : "#777777"}}>
