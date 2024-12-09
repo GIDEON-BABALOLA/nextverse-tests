@@ -72,12 +72,12 @@ onClick={closeMe}
 </Link>
   ))
 }
-{user && <span className='sub-menu-link'
+{user && <span className='sub-menu-link special-modal-client'
 style={{cursor : "pointer"}}
  onClick={() => setOpenModal(true)}>
   <MdLogout className="imags" size={40}/>
-  <p>Sign Out</p>
-  <span><MdOpenInNew /></span>
+  <p className='special-modal-client'>Sign Out</p>
+  <span className='special-modal-client'><MdOpenInNew /></span>
 </span>
 }
 </div>

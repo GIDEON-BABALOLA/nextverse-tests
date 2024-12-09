@@ -337,8 +337,10 @@ if(!user){
 const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
 )
-    res.status(200).json(detailsOfUserToBeSent)
-//  const newUser = _.omit(user.toObject(), "refreshToken")
+setTimeout(() => {
+    res.status(200).json(detailsOfUserToBeSent)    
+}, 7000);
+    // res.status(200).json(detailsOfUserToBeSent)
     }catch(error){
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")

@@ -46,7 +46,7 @@ return;
     className="cookie-image"
     size={30}
 />
-        &nbsp;&nbsp;Cookies Constent
+        &nbsp;&nbsp;Cookies Consent
     
 </h3>
 </header>

@@ -30,7 +30,6 @@ z-index: 1;
 .sub-menu-wrap.active{
     transform: scale(1);
     position: absolute;
-    
 
     z-index: 100000;
 }

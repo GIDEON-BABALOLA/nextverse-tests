@@ -86,11 +86,11 @@ if(width < 768){
     }
        }
   const showLoggedInUserOptions = (e) => {
-    console.log(e.clientX)
     // updateMenuPosition(e.clientX, width < 768 ? e.clientY: 29)
-    updateMenuPosition(width < 768 ? e.clientX: 1090, width < e.clientY ? 45: 50)
-contextMenu.current.style.visibility = "visible"
-  contextMenu.current.classList.add("active")    
+    // updateMenuPosition(width < 768 ? e.clientX: 1090, width < e.clientY ? 45: 50)
+    contextMenu.current.style.visibility = "visible"
+  contextMenu.current.classList.add("active") 
+    updateMenuPosition(e.clientX, e.clientY)   
   }
   const dave = () => {
     closeNavSidebar()
