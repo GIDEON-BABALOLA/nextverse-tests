@@ -427,6 +427,7 @@ const getStoryComments = async (req, res) => {
     console.log(page, limit)
     const { id } = req.params
     try{
+
     const skip = (page - 1) * limit;
     const gotUsers = await User.find();
     if(!gotUsers){
