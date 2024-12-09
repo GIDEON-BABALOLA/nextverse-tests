@@ -31,3 +31,4 @@
 20241209	12:40:49	62a35ff7-af87-47d9-915b-79760efa65b7	userError: You did not create this comment
 20241209	12:47:02	a5df78f4-24f3-4e19-9f18-98f308534f2b	userError: You did not create this comment
 20241209	12:47:38	41b08c2a-06be-45cf-ae1e-0d47537d1e12	userError: You did not create this comment
+20241209	14:32:34	cf5fab32-1f56-4301-851f-fbfd5a62c086	TypeError: Cannot read properties of undefined (reading 'commentBy')

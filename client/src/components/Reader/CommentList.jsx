@@ -48,21 +48,34 @@ setCommentNumber
   }, [data, commentCount]);
   useEffect(() => {
     if(!isLoading){
-      if(data.length == 0 && !error && parameters["page"] == 1 && comments.length == 0){
+      if(data.length == 0 && !error && parameters["page"] == 1 && commentNumber == 0){
         console.log("there is empty data")
         setEmptyData(true)
       }else{
         setEmptyData(false)
       }
+      if(commentNumber == 0 ){
+        setEmptyData(true)
+      }
+      if(comments.length == 0  && commentNumber > 1){
+    //  setParameters((prev) => {
+    //       const { page, limit} = prev;
+    //       return {page :  parameters["page"] == 1  ? page + 1 : page - 1 , limit : limit}
+    //     })
+    setParameters((prev) => {
+      const { page, limit } = prev;
+
+      // Calculate the total pages based on the comment count
+      const totalPages = Math.ceil(commentNumber / limit);
+
+      // Ensure the page stays within valid bounds
+      const newPage = Math.min(page, totalPages);
+
+      return { page: newPage, limit };
+    });
+      }
     }
-        }, [data, isLoading, comments])
-        useEffect(() => {
-if(comments.length == 0){
-  setEmptyData(true)
-}else{
-  setEmptyData(false)
-}
-        }, [comments])
+        }, [data, isLoading, commentNumber, comments])
 const showMoreComments = () => {
   console.log("sushi")
   setParameters((prev) => {

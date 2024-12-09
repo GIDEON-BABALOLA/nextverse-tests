@@ -4,6 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import EmojiPicker from 'emoji-picker-react';
 import { RiEmojiStickerLine } from "react-icons/ri";
 import { useThemeContext } from "../../hooks/useThemeContext";
+import { useToastContext } from "../../hooks/useToastContext";
 import LoadingSpinner from "../Loaders/LoadingSpinner"
 import { useCommentAStory } from "../../hooks/useCommentAStory";
 import SpecialModal from "../common/SpecialModal";
@@ -21,6 +22,7 @@ const Comment = ({ id,
 
 }) => {
   const { user } = useAuthContext()
+  const { showToast } = useToastContext();
   const {commentAStory,  error : commentError, data} = useCommentAStory()
   const { colorMode }  = useThemeContext()
   const textAreaRef = useRef();
@@ -29,6 +31,10 @@ const Comment = ({ id,
   const [loading, setLoading] = useState(false)
   const pickerRef = useRef(null);
 const submitComment = () => {
+  if(comment.length == 0){
+    showToast("Error", "Enter A Comment", false)
+    return
+  }
   setLoading(true)
 commentAStory(id, comment)
 }
