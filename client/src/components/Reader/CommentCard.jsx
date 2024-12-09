@@ -9,8 +9,6 @@ import Trash from "../../styles/components/common/Icons/Trash";
 import { useState, useEffect } from "react";
 const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
   const navigateToProfile = useNavigateProfile();
-  const { width } = useWindowSize();
-  console.log(comment)
   const [avatarLoading, setAvatarLoading] = useState(true)
   let avatarPicture = ""
   if(isLoading === false){

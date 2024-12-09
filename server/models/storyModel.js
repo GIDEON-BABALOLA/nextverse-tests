@@ -1,3 +1,5 @@
+const path = require("path")
+const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const mongoose = require('mongoose'); // Erase if already required
 
 const commentSchema = new mongoose.Schema({
@@ -147,9 +149,11 @@ storySchema.methods.addComment = async function (comment, userId, date) {
 
 storySchema.methods.removeComment = async function (commentId, userId) {
     const index = this.comments.findIndex(
-        comment => comment._id.toString() === commentId.toString() &&
-                   comment.commentBy.toString() === userId.toString()
-    );
+        comment => comment._id.toString() === commentId.toString() 
+    )
+if(this.comments[index].commentBy.toString() !== userId.toString()){
+    throw new userError("You did not create this comment", 400)
+}
     if (index > -1) {
         this.comments.splice(index, 1);
         await this.save();

@@ -2,6 +2,7 @@ import "../../styles/components/common/delete-modal.css"
 import {  useRef } from "react"
 import { useEffect, useState } from "react"
 import LoadingSpinner from "../Loaders/LoadingSpinner"
+import { useToastContext } from "../../hooks/useToastContext"
 import { useDeleteAStoryComment } from "../../hooks/useDeleteAStoryComment"
 const DeleteModal = ({ deleteModal, setDeleteModal, title, content, width, height, dismiss, background, zIndex, storyId,
   comments,
@@ -10,6 +11,7 @@ const DeleteModal = ({ deleteModal, setDeleteModal, title, content, width, heigh
  setCommentNumber
 
  }) => {
+  const { showToast } = useToastContext()
 const { deleteAStoryComment, isLoading, error, data, statusCode } = useDeleteAStoryComment();
 const [deleting, setDeleting] = useState(false)
   const myShareModal = useRef()
@@ -24,7 +26,12 @@ const [deleting, setDeleting] = useState(false)
       setCommentNumber(commentNumber - 1)
       setDeleting(false)
     }
-      }, [data])
+    if(error){
+      console.log("wow an error")
+      showToast("Error", error.message, false)
+      setDeleteModal(!deleteModal)
+    }
+      }, [data, error])
   const deleteAComment = () => {
 setDeleting(true)
 deleteAStoryComment(storyId, deleteModal["comment"])

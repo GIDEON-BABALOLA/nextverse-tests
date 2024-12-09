@@ -6,3 +6,28 @@
 20241208	15:29:27	6817eb81-b8e2-481c-a716-85e4782559ec	userError: Pls enter a parameter recognized by the database
 20241208	15:31:26	d5b321f8-c9b6-4de0-bea9-d435a5fcff14	userError: Pls enter a parameter recognized by the database
 20241208	15:31:50	438ce1b4-6705-49cc-b49b-5d897aa4afb3	userError: Pls enter a parameter recognized by the database
+20241209	12:18:36	c38de93f-5f1d-486f-b290-bd3d26a6afe6	ReferenceError: userError is not defined
+20241209	12:20:04	571f7d9b-41bd-42d4-9b6b-08af861b2091	userError: You did not create this comment
+20241209	12:20:10	61f293d5-3fb1-416c-a77e-3dc56454fe91	userError: You did not create this comment
+20241209	12:20:17	a64d8e4d-03de-4f0e-bd33-2c99fcaab5e5	userError: You did not create this comment
+20241209	12:20:26	fc8f3532-c2a2-4968-9a05-fe493dd20ffc	ReferenceError: index is not defined
+20241209	12:22:13	96012a26-b13e-44ce-80b5-0658dfaba5be	ReferenceError: userError is not defined
+20241209	12:23:45	dd3228d1-84c7-40af-8a3e-67c3c1c827c8	userError: You did not create this comment
+20241209	12:26:51	b9cc5d0c-6e53-4e56-b0bd-4bf8e06c42b9	userError: You did not create this comment
+20241209	12:26:57	7e238648-3660-496b-b7ba-01c2827fba09	userError: You did not create this comment
+20241209	12:27:10	b2a32061-7a73-4d47-8be3-49efba995693	userError: You did not create this comment
+20241209	12:27:52	1e419a3e-5723-45e6-a433-1fa9bfdfa9ad	userError: You did not create this comment
+20241209	12:29:01	e3fc1c00-99f6-46b7-9db5-98e27ba2aec1	userError: You did not create this comment
+20241209	12:29:30	53f01ff5-2fb5-4550-b7bd-32706072438a	userError: You did not create this comment
+20241209	12:30:07	3f4d0a5f-8e25-40e6-8b79-f559827db5a0	userError: You did not create this comment
+20241209	12:30:23	452be03c-5b1d-412e-b7de-1f238d133a0d	userError: You did not create this comment
+20241209	12:33:55	c46a033f-4d99-4e46-973f-ce4f81c3792f	userError: You did not create this comment
+20241209	12:34:34	76b44753-7778-4c37-aa13-0a681384a877	TypeError: console.lo is not a function
+20241209	12:34:49	819af10d-c2ee-4bd1-925e-ae743d85f6b8	TypeError: console.lo is not a function
+20241209	12:35:41	c8b25e46-4cb2-44d6-95c4-7b10ad80d992	userError: You did not create this comment
+20241209	12:36:53	777254b8-d261-4872-83d9-c234526d5209	userError: You did not create this comment
+20241209	12:38:51	e2b71282-0c2d-4bc4-932d-1b65ef869c7f	userError: You did not create this comment
+20241209	12:40:40	750e25c9-1b2e-4668-ba65-a2e676f186f2	userError: You did not create this comment
+20241209	12:40:49	62a35ff7-af87-47d9-915b-79760efa65b7	userError: You did not create this comment
+20241209	12:47:02	a5df78f4-24f3-4e19-9f18-98f308534f2b	userError: You did not create this comment
+20241209	12:47:38	41b08c2a-06be-45cf-ae1e-0d47537d1e12	userError: You did not create this comment

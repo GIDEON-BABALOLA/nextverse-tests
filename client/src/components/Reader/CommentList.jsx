@@ -26,7 +26,6 @@ setCommentNumber
   useEffect(() => {
   if(openModal || isOpen){
     setEmptyData(false)
-    console.log("I have already started opening")
       getStoryComments(parameters["page"], parameters["limit"], storyId)
    }
   }, [parameters.page, parameters.limit, openModal, storyId, parameters, isOpen])

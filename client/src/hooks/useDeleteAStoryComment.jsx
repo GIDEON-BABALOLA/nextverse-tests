@@ -38,6 +38,7 @@ setError({message : "Your Request Has Timed Out", code : error.code})
                 setError({message : "Not Found", code : error.code})
             }
             else{
+                console.log(error.response.data.message)
             setData([])
             setIsLoading(false)
             setError({message : error.response.data.message, code : error.code})

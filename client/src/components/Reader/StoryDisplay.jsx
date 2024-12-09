@@ -7,6 +7,7 @@ import MobileComment from "./MobileComment"
 import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
 import { useState, useEffect } from "react"
+import Toast from "../common/Toast"
 import StorySuggestions from "./StorySuggestions"
 import ErrorMessage from "../common/ErrorMessage"
 import DeleteModal from "./DeleteModal"
@@ -30,6 +31,7 @@ getAStory(id)
   const {  closeContextMenu } = useModalContext()
   return (
 <>
+<Toast />
     <MobileComment
      comments={comments}
  setComments={setComments}

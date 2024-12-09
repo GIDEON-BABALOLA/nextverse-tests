@@ -38,14 +38,14 @@ useEffect(() => {
     setCommentNumber(commentNumber + 1)
     setComments([
       {
-        comment : data.comments[0].comment,
+        comment : data.comment,
         commentBy :  {
-          _id : data.comments[0].commentBy,
+          _id : data.commentBy,
           username : user["username"],
           picture : user["picture"]
         },
-        date : data.comments[0].date,
-        _id : data.comments[0]._id
+        date : data.date,
+        _id : data._id
       }
       , ...comments])
     setLoading(false)

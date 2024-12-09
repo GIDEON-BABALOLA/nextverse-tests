@@ -384,7 +384,7 @@ const commentAStory = async (req, res) => {
         const date = new Date();
         const commentedStory = await story.addComment( comment, req.user._id, date);
         // Respond with the updated story
-        res.status(201).json(commentedStory);
+        res.status(201).json(commentedStory.toObject().comments[0]);
     } catch (error) {
         console.log(error);
         logEvents(`${error.name}: ${error.message}`, "addCommentToStoryError.txt", "storyError");
@@ -400,6 +400,7 @@ const unCommentAStory = async(req, res) => {
     const { id, commentId } = req.params
     console.log(id, commentId, "gideon")
     try{
+        console.log(req.user._id)
         if(!id || !commentId){
             throw new userError("Pls Choose A Story And A Comment", 400)   
         }
@@ -410,15 +411,14 @@ const unCommentAStory = async(req, res) => {
         if(!storyToBeUnCommented){
             throw new userError("This story does not exist", 400)
         }
-        const unCommentedStory = await storyToBeUnCommented.removeComment(commentId, req.user._id);
-            res.status(201).json(unCommentedStory);            
+       await storyToBeUnCommented.removeComment(commentId, req.user._id);
+            res.status(201).json({message : "SuccessFully Deleted The Comment"});            
     }catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unCommentAStoryError.txt", "storyError");
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error: error.message });
+            return res.status(error.statusCode).json({ message: error.message });
         } else {
-            return res.status(500).json({ error: "Internal Server Error" });
+            return res.status(500).json({ message: "Internal Server Error" });
         }
     }
 }
