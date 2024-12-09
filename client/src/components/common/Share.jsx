@@ -13,6 +13,7 @@ const [text, setText] = useState(false)
     setTimeout(() => {
       shareModal.current.close()
     }, 500);
+    setText(!text)
     setShareUrl(null)
   }
   

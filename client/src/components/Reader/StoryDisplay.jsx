@@ -38,7 +38,12 @@ getAStory(id)
     openModal={openModal} 
     id={id}
      isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}/>
-        <StorySidebar setOpenModal={setOpenModal} openModal={openModal} toggleDrawer={toggleDrawer}/>
+        <StorySidebar 
+        setOpenModal={setOpenModal} 
+        openModal={openModal}
+        toggleDrawer={toggleDrawer}
+        storyTitle={data.title}
+        />
  <section className="story-page-total-screen" onClick={closeContextMenu}>
 
   {!error &&

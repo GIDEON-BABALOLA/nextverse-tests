@@ -20,7 +20,9 @@ useEffect(() => {
          shareModal,
      shareRef,
      fireClick,
-     setContextMenu
+     setContextMenu,
+     shareUrl,
+     setShareUrl,
     } = useModalContext()
     const suggestionData = [
         {
@@ -147,7 +149,7 @@ useEffect(() => {
             {id : 4, icon : <FaRegThumbsUp />
             , label : "Like Story"}
 ]} />
-  <Share  share={shareRef} shareModal={shareModal}/>
+  <Share  share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
 </div>
 
     </>

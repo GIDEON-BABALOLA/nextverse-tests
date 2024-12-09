@@ -5,6 +5,7 @@ import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useImageLoad from "../../hooks/useImageLoaded";
+import { getStoryUrl } from "../../helpers/getStoryUrl";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 
 const SuggestionCard = ({ fireClick, story, isLoading}) => {
@@ -64,7 +65,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                
               <h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
                 <FaEllipsisH  className="litenote-profile-read-more-share skeleton-options"
-                  onClick={fireClick}/>
+                 />
               
                 <a  className=" skeleton-button">&nbsp;</a>
              
@@ -97,7 +98,9 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                <span>{story.author}</span>
              
                </div>
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>
+               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} 
+                onClick={(e) => fireClick(e, getStoryUrl(story))}
+               />
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>

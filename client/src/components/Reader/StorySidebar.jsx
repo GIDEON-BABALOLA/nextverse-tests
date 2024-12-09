@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { FaHome, FaShareAlt  } from "react-icons/fa"
 import "../../styles/components/Reader/story-sidebar.css"
 import { useModalContext } from "../../hooks/useModalContext"
+import { getStoryUrl } from "../../helpers/getStoryUrl"
 import useWindowSize from "../../hooks/useWindowSize"
 import Share from "../common/Share"
 import { MdOutlineFavoriteBorder, MdOutlineShare} from "react-icons/md"
@@ -9,10 +10,10 @@ import { MdOutlineFavoriteBorder, MdOutlineShare} from "react-icons/md"
  import ModeToggler from "../common/ModeToggler"
  import { useAuthContext } from "../../hooks/useAuthContext"
  import { FaRegBookmark } from "react-icons/fa"
-const StorySidebar = ({ setOpenModal, openModal, toggleDrawer}) => {
+const StorySidebar = ({ setOpenModal, openModal, toggleDrawer, storyTitle}) => {
   const { user } = useAuthContext();
   const { width } = useWindowSize()
-  const { shareModal, shareRef } = useModalContext()
+  const { shareModal, shareRef, fireClick  } = useModalContext()
   const openShare = () => {
     shareModal.current.showModal()
     shareModal.current.classList.add("slide-dow")
@@ -44,7 +45,9 @@ toggleDrawer()
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/bookmarks"}>
+<Link className="phone-feed-sidebar-nav-link" 
+onClick={(e) => fireClick(e, getStoryUrl({title : storyTitle}))}
+>
 
     <FaShareAlt className="phone-feed-sidebar-icon" />
 
