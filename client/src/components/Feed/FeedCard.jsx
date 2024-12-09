@@ -6,6 +6,7 @@ import useNavigateProfile from "../../hooks/useNavigateProfile";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useWindowSize from "../../hooks/useWindowSize";
+import { getStoryUrl } from "../../helpers/getStoryUrl";
 import { MdVisibility, MdOutlineFavoriteBorder, MdOutlineBookmarkAdd  } from "react-icons/md";
 
 const FeedCard = ({ fireClick, story, isLoading, view}) => {
@@ -62,7 +63,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                
               <h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
                 <FaEllipsisH  className="litenote-profile-read-more-share skeleton-options"
-                  onClick={fireClick}/>
+                  />
               
                 <a  className=" skeleton-button">&nbsp;</a>
              
@@ -95,7 +96,9 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                <span onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
              
                </div>
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} onClick={fireClick}/>
+               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} 
+                 onClick={(e) => fireClick(e, getStoryUrl(story))}
+               />
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>
@@ -238,7 +241,7 @@ className="list-view-card-second-section"
     <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
     { avatarLoading ? <div className="feed-loaders feed-loaders-avatar"></div>
 :
-    <img src={storyPicture}></img>
+    <img src={story.avatar}></img>
     }
     <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
 <span><b>{story.author}</b></span>
@@ -271,7 +274,9 @@ Your profile is stopping you from getting that job
     }}>
      <span>8 days ago</span>
     <span>34 min read</span>
-    <span style={{cursor :"pointer"}}><FaEllipsisH  onClick={fireClick}/></span>
+    <span style={{cursor :"pointer"}}><FaEllipsisH  
+      onClick={(e) => fireClick(e, getStoryUrl(story))}
+    /></span>
     
      </span>
     <span style={{display : "flex",
@@ -328,7 +333,9 @@ src={storyPicture}
     
     <span>8 days ago</span>
     <span>34 min read</span>
-    <span style={{cursor :"pointer"}}><FaEllipsisH onClick={fireClick}/></span>
+    <span style={{cursor :"pointer"}}><FaEllipsisH 
+    onClick={(e) => fireClick(e, getStoryUrl(story))}
+    /></span>
     
      </span>
     <span style={{display : "flex",

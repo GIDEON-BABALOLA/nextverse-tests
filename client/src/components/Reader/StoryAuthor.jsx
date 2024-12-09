@@ -1,11 +1,12 @@
 import useImageLoad from "../../hooks/useImageLoaded"
 import "../../styles/components/Reader/story-author.css"
 import useNavigateProfile from "../../hooks/useNavigateProfile"
+import { MdOutlineVisibility, MdOutlineFavoriteBorder  } from 'react-icons/md';
 import { useState, useEffect } from "react"
 import { useFollowUser } from "../../hooks/useFollowUser"
 import { useGetAUser } from "../../hooks/useGetAUser"
 import { useAuthContext } from "../../hooks/useAuthContext"
-const StoryAuthor = ({ author, avatar, userId, isFollowing}) => {
+const StoryAuthor = ({ author, avatar, userId, isFollowing, views, likes}) => {
   const navigateToProfile = useNavigateProfile();
   const {followUser, error : followError, data} = useFollowUser();
   const { user } = useAuthContext();
@@ -51,8 +52,13 @@ setImPossibleToFollow(true)
     <div style={{display : "flex", flexDirection : "column"}}>
         <span onClick={() => { navigateToProfile(author)}}><b>{author}</b></span>
        { userLoading ?  <div className="story-loaders story-loaders-info"></div>  :<span>{userData["bio"]}</span> }
+       <div>
+     
+       </div>
     </div>
+   
     </div>
+    
 
 
 
@@ -100,6 +106,11 @@ setImPossibleToFollow(true)
 }
 </>
 }
+<div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", gap : "5px"}}>
+<span> <MdOutlineVisibility size={20}/>{views} </span>
+<span><MdOutlineFavoriteBorder size={20} />{likes}</span>
+   
+    </div>
 </div>
   )
 }

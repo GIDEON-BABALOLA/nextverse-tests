@@ -1,8 +1,5 @@
 
 import "../styles/components/Feed/feed.css"
-import {  MdFormatListBulleted, MdGridView,
-    MdOutlineBookmarks,
-} from "react-icons/md";
 import { useModalContext } from "../hooks/useModalContext";
 import FeedList from "../components/Feed/FeedList";
 import FeedRightSidebar from "../components/Feed/FeedRightSidebar";

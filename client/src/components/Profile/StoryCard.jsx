@@ -88,7 +88,8 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                <span  onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
              
                </div>
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} onClick={(e) => fireClick(e, getStoryUrl(story))}/>
+               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}
+                onClick={(e) => fireClick(e, getStoryUrl(story))}  />
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>

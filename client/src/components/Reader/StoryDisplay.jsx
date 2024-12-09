@@ -27,6 +27,9 @@ getAStory(id)
   const resendRequest = () => {
 getAStory(id)
   }
+  useEffect(() => {
+console.log(data)
+  }, [data])
   const [openModal, setOpenModal] = useState(false);
   const {  closeContextMenu } = useModalContext()
   return (
@@ -77,6 +80,8 @@ className="story-display-main"
       author={data.author}
       avatar={data.avatar}
       userId={data.userId}
+      views={data.totalViews}
+      likes={data.totalLikes}
       isFollowing={isFollowing}
       />
      
@@ -86,6 +91,8 @@ className="story-display-main"
     avatar={data.avatar}
     userId={data.userId}
     isFollowing={isFollowing}
+    views={data.totalViews}
+      likes={data.totalLikes}
 
      /> 
       <CommentModal

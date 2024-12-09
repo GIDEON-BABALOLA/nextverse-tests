@@ -8,7 +8,7 @@ import StoryAuthor from "./StoryAuthor"
 import { MdReadMore } from "react-icons/md"
 import { useEffect } from "react"
 import Share from "../common/Share"
-const StorySuggestions = ({ author, avatar, userId, isFollowing}) => {
+const StorySuggestions = ({ author, avatar, userId, isFollowing, views, likes}) => {
   const moreStories = useGetExploreStories();
 const suggestedStories = useGetExploreStories();
 useEffect(() => {
@@ -62,7 +62,11 @@ useEffect(() => {
    More From {author}
     </b></span>
     <span style={{display : "flex", flexDirection :"row", justifyContent : "flex-start", alignItems: "center",paddingTop : "30px"}}>
-    <StoryAuthor author={author} userId={userId} avatar={avatar} isFollowing={isFollowing}/>
+    <StoryAuthor author={author} userId={userId} avatar={avatar} isFollowing={isFollowing}
+views={views}
+likes={likes}
+
+    />
     </span>
    
     

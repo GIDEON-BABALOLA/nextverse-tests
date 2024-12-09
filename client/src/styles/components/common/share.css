@@ -10,6 +10,7 @@
     --gray-dark: #9BA2A4;
     --gray-light: #F3F3F4;
 }
+.dark-theme-variables{}
 
 .litenote-share-social-icons{
     display: flex;
@@ -63,6 +64,7 @@
     border-radius: 0.75rem;
     box-shadow: rgba(149, 157, 165, 0.2) 
         0px 8px 24px;
+        box-shadow: #0000001A 0px 2px 5px 0px;
     max-width: 36rem;
     margin: 0 auto;
     width: 100%;

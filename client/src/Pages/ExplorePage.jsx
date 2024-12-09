@@ -287,7 +287,7 @@ error?.code == "ERR_CANCELED"
 
 ?
 <ErrorMessage title={"Timeout Error"} 
-message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+message={"Sorry, Your Request Has Timed Out, Pls click on the resfresh button"}
 height={60}
 type={error.code}
 fireClick = {resendRequest}

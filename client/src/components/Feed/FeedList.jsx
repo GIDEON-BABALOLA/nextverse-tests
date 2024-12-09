@@ -20,7 +20,14 @@ const FeedList = ({ view, feedCategory}) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const { width } = useWindowSize();
   const [categoryChanged, setCategoryChanged] = useState(null);
-  const { contextMenu, setContextMenu, shareRef,  shareModal, fireClick } = useModalContext();
+  const { contextMenu,
+setContextMenu,
+shareRef,
+shareModal,
+fireClick,
+shareUrl,
+setShareUrl
+} = useModalContext();
   const  { populateFeed, isLoading, error, data, storyCount } = usePopulateFeed(); 
   const [loading, setLoading] = useState([])
   const lastItemRef = useRef();
@@ -192,7 +199,7 @@ height : "100vh"}}>
 </div> 
 
 }
-<Share  share={shareRef} shareModal={shareModal}/>
+<Share  share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
 <ContextMenu
 state={"feed"}
 contextMenu={contextMenu}
