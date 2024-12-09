@@ -57,7 +57,7 @@ setCommentNumber
       if(commentNumber == 0 ){
         setEmptyData(true)
       }
-      if(comments.length == 0  && commentNumber > 1){
+      if(comments.length == 0  && commentNumber > 0){
     //  setParameters((prev) => {
     //       const { page, limit} = prev;
     //       return {page :  parameters["page"] == 1  ? page + 1 : page - 1 , limit : limit}

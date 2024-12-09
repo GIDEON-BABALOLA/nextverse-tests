@@ -10,11 +10,13 @@ import { MdOutlineFavoriteBorder, MdOutlineShare} from "react-icons/md"
  import ModeToggler from "../common/ModeToggler"
  import { useAuthContext } from "../../hooks/useAuthContext"
  import { FaRegBookmark } from "react-icons/fa"
-const StorySidebar = ({ setOpenModal, openModal, toggleDrawer, storyTitle}) => {
+const StorySidebar = ({ setOpenModal, openModal, toggleDrawer, story}) => {
   const { user } = useAuthContext();
   const { width } = useWindowSize()
-  const { shareModal, shareRef, fireClick  } = useModalContext()
+  const { shareModal, shareRef,  setShareUrl, shareUrl  } = useModalContext()
   const openShare = () => {
+    console.log(setShareUrl)
+   setShareUrl(getStoryUrl(story))
     shareModal.current.showModal()
     shareModal.current.classList.add("slide-dow")
   }
@@ -46,7 +48,7 @@ toggleDrawer()
     </li>
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" 
-onClick={(e) => fireClick(e, getStoryUrl({title : storyTitle}))}
+onClick={() => openShare()}
 >
 
     <FaShareAlt className="phone-feed-sidebar-icon" />
@@ -119,7 +121,7 @@ onClick={(e) => fireClick(e, getStoryUrl({title : storyTitle}))}
     <ModeToggler style={{marginLeft : "0px"}}/>
 </div>
 }
-<Share  share={shareRef} shareModal={shareModal}/>
+<Share  share={shareRef} shareModal={shareModal} setShareUrl={setShareUrl} shareUrl={shareUrl}/>
 </>
 
   )

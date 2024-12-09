@@ -44,7 +44,7 @@ getAStory(id)
         setOpenModal={setOpenModal} 
         openModal={openModal}
         toggleDrawer={toggleDrawer}
-        storyTitle={data.title}
+        story={ {title : data.title, author : data.author, _id :data._id } }
         />
  <section className="story-page-total-screen" onClick={closeContextMenu}>
 
