@@ -22,8 +22,6 @@ app.use((req, res, next) => {
     next()
   })
 app.use((err, req, res, next) => {
-    console.log(`Error occurred at ${req.method} ${req.path}`);
-    console.log(`Error message: ${err.message}`);
     // Handle specific error: Not allowed by CORS
     if (err.message === "Not allowed by CORS") {
       res.status(403).json({"message" : "CORS Policy Violation, Leave Now"}); // Use 403 for forbidden requests

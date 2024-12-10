@@ -34,7 +34,6 @@ const mailOptions = {
 };
  await transporter.sendMail(mailOptions);
   }catch(error){
-    console.log(error)
 throw new emailError("Unable To Send You A Confirmation And Welcome Email, Try To Register Again", 400)
   }     
 }
@@ -46,7 +45,6 @@ const generateEmailContent = async (values, path) => {
       const htmlContent = compiledTemplate(values);
       return htmlContent;
   } catch (error) {
-    console.log(error)
     console.error('Error reading or compiling the template:', error);
     throw new emailError("Unable To Generate The Signup And Welcome Email For You", 400)
   }

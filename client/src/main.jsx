@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import React from 'react'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { ChatBotProvider } from './context/ChatBotContext.jsx'
@@ -12,7 +11,7 @@ import { ConsentContextProvider } from './context/ConsentContext.jsx'
 import { StickyNotesContextProvider } from './context/StickyNotesContext.jsx'
 import { ProfileContextProvider } from './context/ProfileContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
     <Router>
   <AuthContextProvider>
   <ProfileContextProvider>
@@ -35,6 +34,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </ProfileContextProvider>
   </AuthContextProvider>
   </Router>
-  </React.StrictMode>
+  </>
 
 )

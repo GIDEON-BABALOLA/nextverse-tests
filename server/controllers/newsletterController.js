@@ -6,7 +6,6 @@ const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const {  userError } = require("../utils/customError");
 const subScribeToNewsletter = async (req, res) => {
     const { email, options } = req.body;
-    console.log(options)
     const defaultOptions =  [
         'adventure',
         'romance',

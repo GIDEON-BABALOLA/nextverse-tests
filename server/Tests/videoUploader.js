@@ -34,7 +34,6 @@ const uploadDer = multer({
   })
   const uploadVideo = uploadDer.array("video", 20)
 const uploadVideoMiddleware = (req, res, next) => {
-    console.log("dave")
     uploadVideo(req, res, (error) => {
       if (error instanceof multer.MulterError) {
         if (err.code === 'LIMIT_FILE_SIZE') {

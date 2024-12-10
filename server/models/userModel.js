@@ -134,9 +134,7 @@ userSchema.statics.createstory = async function(adminId, storyId){
     }
 userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     const user = await this.findById(userId)
-    console.log(user.bookmarks)
   let alreadyBookmarked = user.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())
-  console.log(alreadyBookmarked)
   if(alreadyBookmarked){
     return;
   }else{

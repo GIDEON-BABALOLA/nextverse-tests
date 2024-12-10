@@ -13,7 +13,6 @@ schema
 .is().not().oneOf(['Passw0rd', 'Password123']); 
 const validatePassword = async (password) => {
 const isValid = schema.validate(password)
-console.log(isValid)
 if(!isValid){
     throw new validatorError("Password must contain minimum of 8 character, a lowercase and uppercase alphabet, no spaces and a minimum of 2 digits", 
         400

@@ -18,7 +18,6 @@ const cloudinaryUpload = async (filesToUpload, folderName) => {
           );
 return { url : result.secure_url}
     }catch(error){
-      console.log(error)
       throw new cloudinaryError("Unable To Upload Picture, Check Internet Connection", 400)
     }
 }
@@ -50,10 +49,8 @@ const cloudinaryDesignerDelete = async (folderName) => {
 //This deletes a single asset with the publicID
 const cloudinarySingleDelete = async (publicId, folderName) => {
   try{
-    console.log(publicId)
    const wow =  await cloudinary.uploader
   .destroy(publicId)
-  console.log(wow)
   }
   catch(error){
     throw new cloudinaryError("Unable To Delete Formal Picture, Check Internet Connection", 400)

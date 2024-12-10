@@ -1,8 +1,0 @@
-20241207	22:13:15	6c3b4f7b-3d24-43b5-9fc6-5a89e39f5e19	userError: Pls enter a parameter recognized by the database
-20241208	13:08:58	1dc5e39d-6894-4c4a-9cc8-68fe1f23efd0	TypeError: story.addComment(...).populate is not a function
-20241209	11:56:00	36f180dc-d322-42de-84a9-a3d20a04ee90	userError: Pls enter your comment for this story
-20241209	12:33:28	31cebd33-5011-4ab8-a1fa-2edd62d30f0a	userError: Pls enter your comment for this story
-20241209	12:33:30	f929f381-9bd7-4548-9a16-51bf10380b7a	userError: Pls enter your comment for this story
-20241209	12:33:31	3ef665bc-3943-4004-99e1-9999d6e9a0cc	userError: Pls enter your comment for this story
-20241209	12:33:32	944f3286-e8ad-413f-b063-1daca5eb749e	userError: Pls enter your comment for this story
-20241209	12:33:43	ab0e3953-9efc-4330-82b3-36a5eabfb87f	userError: Pls enter your comment for this story

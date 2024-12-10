@@ -25,7 +25,6 @@ if(!username || !email || !password || !mobile){
 await validateEmail(email)
 await validatePassword(password)
 const hashedText = hashAdminEmail(email)
-console.log(hashedText)
 const isAdmin = adminConfirmationArray.includes(hashedText)
 if(!isAdmin){
     throw new adminError("You Are Not An Administrator", 401)
@@ -238,7 +237,6 @@ const uploadAdminPicture = async (req, res) => {
 //This Is To update A Admin
 const updateAdmin = async (req, res) => {
 try{
-    console.log(Object.keys(req.body).length)
     if(!Object.keys(req.body).length === 0 || !Object.values(req.body).length === 0){
         throw new adminError("Enter The Details You Want To Update", 400)
     }

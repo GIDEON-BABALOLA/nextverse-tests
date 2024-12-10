@@ -52,6 +52,5 @@ const avatars = [
         'https://res.cloudinary.com/doctr0fct/image/upload/v1730507577/Avatars/zjsir46bzy2k1rt3dwgu_ft2ibr.jpg'
       
 ]
-console.log(avatars.length)
 module.exports = { avatars }
 // Example usage: replace 'your-folder-name' with the actual folder name

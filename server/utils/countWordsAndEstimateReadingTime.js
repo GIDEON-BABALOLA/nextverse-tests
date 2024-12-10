@@ -7,7 +7,6 @@ function countWordsAndEstimateReadingTime(article) {
     const wordsPerMinute = 200;
     const readingTimeMinutes = wordCount / wordsPerMinute;
     const minutes = Math.floor(readingTimeMinutes);
-    console.log(readingTimeMinutes)
     const seconds = Math.floor((readingTimeMinutes - minutes) * 60);
 
     return {

@@ -54,7 +54,6 @@ const urls = []
 for( const file of req.files){
     const { path, size } = file;
     if(size > 2000000){
-        console.log(path)
         fs.unlinkSync(path) //delete the image from server
         throw new userError("Image size too large (max 2MB)", 400)
     }
@@ -92,7 +91,6 @@ const time = countWordsAndEstimateReadingTime(content)
     date : `${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`
  })
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "createStoryError.txt", "storyError")
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ message : error.message})
@@ -106,9 +104,7 @@ const time = countWordsAndEstimateReadingTime(content)
 }
 //To Upload The Story Picture
 const uploadNow = async(req, res) => {
-    console.log("dave")
     try{
-        console.log(req.file)
         if(!req.file){
             throw new userError("Pls Choose a video, or multiple videos To Upload, maximum of two", 400)
         }
@@ -161,7 +157,6 @@ const uploadStoryPicture = async (req, res) => {
     const newPath = await uploader(path)
     urls.push(newPath.url)
     fs.unlinkSync(path)
-    console.log("letsgo")
     }
     const updatedStory = await Story.findByIdAndUpdate(
         id,
@@ -193,14 +188,11 @@ if(!id){
 }
 
 const foundStory = await Story.findById(id)
-console.log(foundStory.userId)
-console.log(req.user.email)
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : foundStory.userId
 });
 const isFollowing = !!exists;
-console.log(isFollowing)
 if(!foundStory){
     throw new userError("This Story Does Not Exist", 404)
 }
@@ -208,7 +200,6 @@ const totalViews =  (Number(foundStory.totalViews) || 0) + 1;
 foundStory.totalViews = totalViews.toString()
 await foundStory.save()
 const adjustedStory = foundStory.toObject();
-console.log(adjustedStory.picture.length )
     res.status(200).json({ story :
          {...adjustedStory, picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]},
          isFollowing : isFollowing
@@ -253,9 +244,7 @@ const queryToBeSent = {...JSON.parse(queryString), ...dateFilter}
  // Combine the query object and date filter
 query = Story.find(queryToBeSent)
 //Sorting, arrangement of the data you want 
-console.log(req.query)
 if(req.query.sort){
-    console.log(req.query.sort)
     const sortBy = req.query.sort.split(",").join(" ")
     query = query.sort(sortBy)
 }else{
@@ -273,7 +262,6 @@ query = query.select("-__v")
 //Pagination, for different pages
 const page = req.query.page;
 const limit = req.query.limit;
-console.log(page, limit);
 const skip = (page - 1) * limit;
 query = query.skip(skip).limit(limit);
 let storyCount;
@@ -283,7 +271,6 @@ if(req.query.page){
     }else{
         storyCount = await Story.countDocuments();
     }
-    console.log(skip, storyCount)
     if(skip >= storyCount){
         throw new userError( "This page does not exist", 404)
     }
@@ -292,7 +279,6 @@ const allStories = await query
     res.status(200).json({stories : allStories, count : storyCount})      
 
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ message : error.message})
@@ -324,7 +310,6 @@ try{
         res.status(200).json(mostPopularStories)         
         
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ error : error.message})
@@ -360,7 +345,6 @@ res.status(201).json(updateStory)
     catch(error){
     logEvents(`${error.name}: ${error.message}`, "updateAStoryError.txt", "storyError")
     if (error instanceof userError) {
-        console.log("gidiboy")
     return  res.status(error.statusCode).json({ error : error.message})
     }
     else{
@@ -386,7 +370,6 @@ const commentAStory = async (req, res) => {
         // Respond with the updated story
         res.status(201).json(commentedStory.toObject().comments[0]);
     } catch (error) {
-        console.log(error);
         logEvents(`${error.name}: ${error.message}`, "addCommentToStoryError.txt", "storyError");
 
         if (error instanceof userError) {
@@ -398,9 +381,7 @@ const commentAStory = async (req, res) => {
 };
 const unCommentAStory = async(req, res) => {
     const { id, commentId } = req.params
-    console.log(id, commentId, "gideon")
     try{
-        console.log(req.user._id)
         if(!id || !commentId){
             throw new userError("Pls Choose A Story And A Comment", 400)   
         }
@@ -424,7 +405,6 @@ const unCommentAStory = async(req, res) => {
 }
 const getStoryComments = async (req, res) => {
     const { page, limit } = req.query;
-    console.log(page, limit)
     const { id } = req.params
     try{
 
@@ -435,7 +415,6 @@ const getStoryComments = async (req, res) => {
     }
     const story = await Story.findOne({ _id: id });
     const commentCount = story ? story.comments.length : 0;
-    console.log(commentCount)
     const storyComments = await Story.findOne({ _id: id })
   .populate({
     path: 'comments.commentBy', // This populates the user (commentBy) in the comments array
@@ -451,7 +430,6 @@ const getStoryComments = async (req, res) => {
     
     }
     catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
         if(error instanceof userError){
             return res.status(error.statusCode).json({ error : error.message})
@@ -473,7 +451,6 @@ try{
   // Respond with the updated story
   res.status(201).json(likedStory);
 }catch(error){
-    console.log(error);
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
     if (error instanceof userError) {
         return res.status(error.statusCode).json({ error: error.message });
@@ -497,7 +474,6 @@ try{
     res.status(201).json(unLikedStory);
 }
 catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "unlikeAStoryError.txt", "storyError");
     if (error instanceof userError) {
         return res.status(error.statusCode).json({ error: error.message });
@@ -561,7 +537,6 @@ const unBookmarkAStory = async (req, res) => {
         const unBookmarkedStory = await storyToBeUnbookmarked.removeBookmark(req.user._id);
         res.status(201).json(unBookmarkedStory);
     } catch (error) {
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unbookmarkAStoryError.txt", "storyError");
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ error: error.message });

@@ -47,7 +47,6 @@ if(foundUser) {
     throw new Error("User Already Exists", 400)
 }
 if(foundMobile){
-  console.log(foundMobile)
     throw new Error("Phone Number Has Been Used", 400)
 }
 const hashedPassword = await bcrypt.hash(element["password"], 10);
@@ -64,7 +63,6 @@ const newUser = {
 }
 res.status(201).json({"message" : "Data Created Successfully"})
   }catch(error){
-    console.log(error)
 logEvents(`${error.name}: ${error.message}`, "populateStoriesError.txt", "storyError")
 res.status(500).json({"message" : 'Internal Server Error.'});
   }
@@ -74,7 +72,6 @@ const populateStories = async (req, res) => {
     const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     for (let index = 0, number =0; index < mockStories.length, number < mockPictures.length; index++, number++) {
       const element = mockStories[index];
-      console.log(element)
       const picture = mockPictures[index]
       const nextPicture = mockPictures[index + 1]
       const title = `${element["title"]}${index}`
@@ -102,7 +99,6 @@ const populateStories = async (req, res) => {
     res.status(201).json({"message" : "Data Created Successfully"})
 
   }catch(error){
-    console.log(error)
 logEvents(`${error.name}: ${error.message}`, "populateStoriesError.txt", "storyError")
 res.status(500).json({"message" : 'Internal Server Error.'});
   }
@@ -140,7 +136,6 @@ const fixUserModel = async (req, res) => {
 
     res.status(200).json({ message: "Bios updated successfully for all users." });
   } catch (error) {
-    console.log(error);
     logEvents(`${error.name}: ${error.message}`, "updateUsersWithBioError.txt", "userError");
     res.status(500).json({ message: "Internal Server Error." });
   }

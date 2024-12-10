@@ -41,10 +41,8 @@ const uploadMiddleware = (req, res, next) => {
       }
       return res.status(400).json({ error: err.message, success: false });
     } else if (err) {
-      console.log(err)
       return res.status(400).json({ error: err.message, success: false });
     }
-    console.log(req.file)
     // No errors, move to the next middleware or route handler
     next();
  });

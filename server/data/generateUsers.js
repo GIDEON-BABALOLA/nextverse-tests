@@ -12,4 +12,3 @@ const generateUsers = (count) => {
 };
 
 const newUsers = generateUsers(50);
-console.log(newUsers);

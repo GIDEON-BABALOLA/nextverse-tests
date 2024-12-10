@@ -1476,7 +1476,6 @@ const mockPictures = [
 
 //     // Extract and log the URLs
 //     const imageUrls = resources.resources.map(resource => resource.secure_url);
-//     console.log(imageUrls);
     
 //     return imageUrls;
 //   } catch (error) {
@@ -1484,5 +1483,4 @@ const mockPictures = [
 //   }
 // }
 // listImagesInFolder("Avatars");
-console.log(mockPictures.length)
   module.exports= { mockStories, mockPictures }

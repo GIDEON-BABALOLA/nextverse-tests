@@ -11,7 +11,6 @@ const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const { cloudinaryError, validatorError, emailError } = require("../utils/customError");
-const { count, Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -309,7 +308,6 @@ else{
     throw new userError("Invalid Credentials", 401)
 }
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "loginUserError.txt", "userError")
     if (error instanceof userError) {
        return  res.status(error.statusCode).json({ message : error.message})
@@ -340,7 +338,7 @@ const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
     res.status(200).json(detailsOfUserToBeSent)
 //  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
-        console.log(error)
+
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ error : error.message})
@@ -378,7 +376,6 @@ res.status(200).json(newUser);
 }
  const getUserProfile = async  (req, res) => {
     const username = req.query.username;
-    console.log(username)
     try{
         if(!username){
             throw new userError("Your Account Does Not Exist", 404)
@@ -398,7 +395,6 @@ const exists = await User.exists({
     "following.follows" : user._id
 });
 const isFollowing = !!exists;
-console.log(isFollowing)
 // picture : storyConvertedToObject.picture[Math.round(Math.random())]
 const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
@@ -407,7 +403,6 @@ const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
    
 //  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ message : error.message})
@@ -427,15 +422,12 @@ const logoutUser = async (req, res) => {
         const refreshToken = cookies.refreshToken;
         const user = await User.findOne({refreshToken})
         if(!user){
-            console.log("gold")
             res.clearCookie("refreshToken", {httpOnly: true, sameSite : "None" , secure  : true })
             return res.status(204).json({message : "Successfully Logged Out", "success" : true})
         }
         user.refreshToken = ""
         await user.save();      
-        console.log("caveman")
         res.clearCookie("refreshToken", {httpOnly: true,  sameSite : "None", secure : true })
-        console.log("caveboy")
         return res.status(204).json({message : "Successfully Logged Out now", "success" : true})
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "logoutUserError.txt", "userError")
@@ -484,7 +476,6 @@ const userRefreshToken = async (req, res) => {
 //This is to upload a user picture
 const uploadUserPicture = async (req, res) => {
     try{
-        console.log(req.user)
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
         }
@@ -654,19 +645,15 @@ const getAllUsers = async (req, res) => {
         .skip(skip)
         .limit(limit)
         .lean(); // Use lean if you want plain JavaScript objects    
-        console.log(newUsersToFollow.length, "sugggestion length")
-        console.log(newUsersToFollow)
     const usersToBeSent = newUsersToFollow
     .filter((user) => user.email !== req.user.email)
     .map((user) => {
         return _.pick(user, "email", "username", "picture", "bio")
     })
-    console.log(usersToBeSent)
 
         res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
     }
     catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
         if(error instanceof userError){
             return res.status(error.statusCode).json({ error : error.message})

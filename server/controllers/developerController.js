@@ -152,7 +152,6 @@ res.status(200).json(newDeveloper)
 
 const logoutDeveloper = async (req, res) => {
     const cookies = req.cookies
-    console.log(cookies)
     try{
         if(!cookies?.refreshToken){
             throw new developerError("You Are Not Logged In", 401)
@@ -277,7 +276,6 @@ title : title,
     const newDeveloper = _.omit(updatedDeveloper.toObject(), "refreshToken")
     res.status(201).json(newDeveloper)
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "UpdateDeveloperError.txt", "developerError")
     if (error instanceof developerError) {
         return res.status(error.statusCode).json({ message : error.message})
@@ -296,7 +294,6 @@ const deleteDeveloper = async (req, res) => {
             throw new developerError("Your Account Does Not Exist", 404)
         }
         const foundDeveloper = await Developer.findOne({_id: req.user._id})
-        console.log(foundDeveloper.email)
         if(foundDeveloper.picture.length > 0){
             await cloudinaryDeveloperDelete(foundDeveloper.email)
         }
@@ -307,7 +304,6 @@ const deleteDeveloper = async (req, res) => {
         const newDeveloper = _.omit(foundDeveloper.toObject(), "refreshToken")
         res.status(200).json(newDeveloper)
     }catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "deleteDeveloperError.txt", "developerError")
          if(error instanceof developerError){
             return res.status(error.statusCode).json({ message : error.message})
@@ -342,13 +338,11 @@ return _.omit(developer.toObject(), "password", "refreshToken", "bookmarks", "st
     res.status(200).json(developersToBeSent)  
   
     }catch(error){
-        console.log("error")
         logEvents(`${error.name}: ${error.message}`, "getAllDevelopersError.txt", "userError")
         if(error instanceof developerError){
            return res.status(error.statusCode).json({ message : error.message})
        }
        else  if (error instanceof cloudinaryError) {
-        console.log("shoot")
         return res.status(error.statusCode).json({ message : error.message})
     }
        else{

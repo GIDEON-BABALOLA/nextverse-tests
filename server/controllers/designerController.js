@@ -276,7 +276,6 @@ title : title,
     const newDesigner = _.omit(updatedDesigner.toObject(), "refreshToken")
     res.status(201).json(newDesigner)
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "UpdatedesignerError.txt", "designerError")
     if (error instanceof designerError) {
         return res.status(error.statusCode).json({ error : error.message})
@@ -295,7 +294,6 @@ const deleteDesigner = async (req, res) => {
             throw new designerError("Your Account Does Not Exist", 404)
         }
         const foundDesigner = await Designer.findOne({_id: req.user._id})
-        console.log(foundDesigner.email)
         if(foundDesigner.picture.length > 0){
             await cloudinaryDesignerDelete(foundDesigner.email)
         }
@@ -306,7 +304,6 @@ const deleteDesigner = async (req, res) => {
         const newDesigner = _.omit(foundDesigner.toObject(), "refreshToken")
         res.status(200).json(newDesigner)
     }catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "deletedesignerError.txt", "designerError")
          if(error instanceof designerError){
             return res.status(error.statusCode).json({ error : error.message})
@@ -337,7 +334,6 @@ if(req.query.page){
 const allDevelopers = await query
 res.status(200).json(allDevelopers)
     }catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getAllDesignersError.txt", "designerError")
         if(error instanceof designerError){
            return res.status(error.statusCode).json({ error : error.message})

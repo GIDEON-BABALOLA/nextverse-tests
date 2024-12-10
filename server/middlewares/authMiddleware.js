@@ -42,7 +42,6 @@ const authMiddleware = async (req, res, next)=>{
                     req.user = admin;
                     break;
                 default:
-                console.log("No role is found for this user")
                     break;
             }
             next()
@@ -51,7 +50,6 @@ const authMiddleware = async (req, res, next)=>{
         }
     }catch(error){
         logEvents(`${error.name}:${error.message}`, "authenticationErrorLog.txt", "authError")
-        console.log("Error in Authenticating users, the error is in authMiddleware")
         return res.status(401).json({"message": "Authentication token has expired", "success" : "false"})
     }
     //659efb572e740fbc683e648a
