@@ -1,8 +1,11 @@
 import StorySidebar from "./StorySidebar"
 import "../../styles/components/Reader/story-display.css"
 import CommentModal from "../common/CommentModal"
+import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
+import { MdReadMore } from "react-icons/md"
 import StoryBody from "./StoryBody"
 import { useModalContext } from "../../hooks/useModalContext"
+import StoryAuthor from "./StoryAuthor"
 import MobileComment from "./MobileComment"
 import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
@@ -10,8 +13,19 @@ import { useState, useEffect } from "react"
 import Toast from "../common/Toast"
 import StorySuggestions from "./StorySuggestions"
 import ErrorMessage from "../common/ErrorMessage"
+import ContextMenu from "../common/ContextMenu"
 import DeleteModal from "./DeleteModal"
+import Share from "../common/Share"
 const StoryDisplay = ({ username, id, title} ) => {
+  const {
+    contextMenu,
+     shareModal,
+ shareRef,
+ fireClick,
+ setContextMenu,
+ shareUrl,
+ setShareUrl,
+} = useModalContext()
   const { getAStory, isLoading, error, data, isFollowing } = useGetAStory();
   const [isDrawerOpen, setDrawerOpen] = useState(false)
   const [comments, setComments] = useState([])
@@ -34,6 +48,22 @@ console.log(data)
   const {  closeContextMenu } = useModalContext()
   return (
 <>
+<Share  share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
+<ContextMenu
+ state={"feed"}
+ contextMenu={contextMenu}
+ shareModal={shareModal}
+            setContextMenu={setContextMenu}
+            contextMenuData={[
+            {id : 1, icon : <FaShareAlt />
+            , label : "Share"},
+            {id : 2, icon : <FaBookmark />
+            , label : "Bookmark"},
+            {id : 3, icon : <MdReadMore/>
+            , label : "Close"},
+            {id : 4, icon : <FaRegThumbsUp />
+            , label : "Like Story"}
+]} />
 <Toast />
     <MobileComment
      comments={comments}
@@ -73,7 +103,17 @@ className="story-display-main"
    </>
    : <>
    <div className="story-display-main">
-      <StoryBody
+   <div className="read-story-body">
+   <StoryAuthor
+      author={data.author}
+      avatar={data.avatar}
+      userId={data.userId}
+      views={data.totalViews}
+      likes={data.totalLikes}
+      isFollowing={isFollowing}
+      />  
+      
+   <StoryBody
       content={data.content}
       title={data.title}
       picture={data.picture}
@@ -84,17 +124,41 @@ className="story-display-main"
       likes={data.totalLikes}
       isFollowing={isFollowing}
       />
-     
-    </div>
-    <StorySuggestions
-    author={data.author}
-    avatar={data.avatar}
-    userId={data.userId}
-    isFollowing={isFollowing}
-    views={data.totalViews}
+          
+    <span className="for-me-title"><b>
+   More From {data.author}
+    </b></span>
+    
+    <StoryAuthor
+      author={data.author}
+      avatar={data.avatar}
+      userId={data.userId}
+      views={data.totalViews}
       likes={data.totalLikes}
+      isFollowing={isFollowing}
+      />
+           <StorySuggestions
+    userId={data.userId}
+    shareModal={shareModal}
+    fireClick={fireClick}
+    type={"more"}
 
-     /> 
+     />
+  
+           <StorySuggestions
+    userId={data.userId}
+    shareModal={shareModal}
+    fireClick={fireClick}
+    title={"Suggested From Litenote"}
+    type={"litenote"}
+
+     />
+   </div>
+    
+    
+   
+    </div>
+   
       <CommentModal
   openModal={openModal}
    setOpenModal={setOpenModal} height={570} width={600}

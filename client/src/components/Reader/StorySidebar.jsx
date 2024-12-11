@@ -5,7 +5,7 @@ import { useModalContext } from "../../hooks/useModalContext"
 import { getStoryUrl } from "../../helpers/getStoryUrl"
 import useWindowSize from "../../hooks/useWindowSize"
 import Share from "../common/Share"
-import { MdOutlineFavoriteBorder, MdOutlineShare} from "react-icons/md"
+import { MdOutlineFavoriteBorder, MdOutlineShare, MdOutlineFavorite} from "react-icons/md"
  import { FaRegCommentAlt } from "react-icons/fa"
  import ModeToggler from "../common/ModeToggler"
  import { useAuthContext } from "../../hooks/useAuthContext"
@@ -60,6 +60,7 @@ onClick={() => openShare()}
     <li className="phone-feed-sidebar-item">
 <Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
 <MdOutlineFavoriteBorder className="phone-feed-sidebar-icon" />
+{/* <MdOutlineFavorite size={20} fill="#ff5e62"/> */}
 <span className="phone-feed-sidebar-nav-name">Like</span>
 </Link>
     </li>

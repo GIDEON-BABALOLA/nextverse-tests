@@ -24,11 +24,17 @@
     --searcher-placeholder : black;
     --searcher-color : black;
     --icon-color : #757575;
+    --visibility-icon : black;
+    --like-icon : #E0245E;
+    --action-icons-text : black;
     --feed-sidebar-box-shadow : #0000001A 0px 2px 5px 0px;
 }
 .dark-theme-variables{
     --icon-color : white;
+    --visibility-icon : white;
+    --like-icon : #E0245E;
     --searcher : #181A1E;
+    --action-icons-text : white;
     --searcher-border : #181A1E;
     --searcher-placeholder : #1A2D42;
     --feed-topic-background : #181A1E;

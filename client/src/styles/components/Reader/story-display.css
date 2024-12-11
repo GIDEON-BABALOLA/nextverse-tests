@@ -19,6 +19,21 @@ background-color: var(--story-display-page-background);
     padding-top: 2%;
     justify-content: center;
 }
+.author-display-main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0% 10%;
+    margin-left: 15%;
+    padding-top: 2%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: flex-start;
+    justify-content: center;
+    color: var(--story-display-content-color);
+}
 .story-page-total-screen{
    padding-top: 10px;
 }
@@ -49,8 +64,9 @@ background-color: var(--story-display-page-background);
     justify-content: center;
     font-size: 1.4rem;
     text-decoration: bold;
-    font-weight: 900;
+    font-weight: 1000;
     color: var(--suggestions-title);
+    margin-bottom: 20px;
 }
 .for-me-title{
     font-family: "Poppins";
@@ -60,7 +76,11 @@ background-color: var(--story-display-page-background);
     font-size: 1.4rem;
     text-decoration: bold;
     font-weight: 900;
+    margin-top: 10px;
     color: var(--suggestions-title);
+}
+.for-me-author{
+    padding-top: 20px;
 }
 .suggest-more-for-me{
     display: grid;
@@ -72,9 +92,8 @@ background-color: var(--story-display-page-background);
    
 }
 .suggestion-container{
-    margin-top: 30px;
+    margin-top: 0px;
     padding-bottom: 100px;
-    /* height: 1000px; */
 }
 .story-loaders{
     object-fit: cover;

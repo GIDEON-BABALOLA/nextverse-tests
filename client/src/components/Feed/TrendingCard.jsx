@@ -58,7 +58,7 @@ const TrendingCard = ({ trending, isLoading }) => {
 {  
   formatDistanceToNow(new Date(2024, getMonthNumber(`${trending.date.month.toLowerCase()}`),
    trending.date.day), { addSuffix: true })
-   .split(" ").slice(1).join(" ")
+
    }</span>
                {/* {trending.date} */}
                

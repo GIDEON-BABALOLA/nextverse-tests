@@ -9,7 +9,7 @@ export const ModalContext = createContext()
 export const ModalContextProvider = ({children}) => {
     const [shareModal, setShareModal] = useState();
     const [contextMenu, setContextMenu] = useState();
-    const [shareUrl, setShareUrl] = useState(null)
+    const [shareUrl, setShareUrl] = useState(undefined)
     const shareRef = useRef();
     const { width, height} = useWindowSize();
     const fireClick = (e, storyUrl) => {

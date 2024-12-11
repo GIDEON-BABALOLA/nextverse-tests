@@ -5,11 +5,19 @@ import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { getMonthNumber } from "../../helpers/getMonthNumber";
 import useWindowSize from "../../hooks/useWindowSize";
+import { formatNumber } from "../../helpers/formatNumber";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
-import { MdVisibility, MdOutlineFavoriteBorder, MdOutlineBookmarkAdd  } from "react-icons/md";
+import { MdVisibility,
+   MdOutlineFavoriteBorder,
+  MdOutlineVisibility,
+  MdOutlineFavorite
+} from "react-icons/md";
 
 const FeedCard = ({ fireClick, story, isLoading, view}) => {
+  console.log(story)
   const navigateToStory = useNavigateStory(); 
   const navigateToProfile = useNavigateProfile()
   const { width } = useWindowSize();
@@ -94,11 +102,26 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
               : <img className="story-card-avatar" src={story.avatar} />
                }
                <span onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
-             
                </div>
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} 
+
+               <div className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px", display : "flex", gap : "10px", alignItems :"center"}} >
+               <div style={{color : "White", display : "flex", flexDirection : "row", gap : "5px"}}>
+               <span> <MdOutlineVisibility 
+               color="var(--visibility-icon)"
+               size={20} />&nbsp;
+               <span style={{color : "var(--action-icons-text)"}}>{formatNumber(story.totalViews)}</span>
+               </span>
+<span><MdOutlineFavoriteBorder
+color="var(--like-icon)"
+ size={20}/>&nbsp;
+ <span  style={{color : "var(--action-icons-text)"}}> {formatNumber(story.totalLikes)}</span>
+</span>
+               </div>
+
+               <FaEllipsisH  
                  onClick={(e) => fireClick(e, getStoryUrl(story))}
                />
+               </div>
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>
@@ -154,15 +177,12 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
     gap : "20px"
     }}>
     <span><MdVisibility 
-        color=" #333333"
+        color=" white"
         size={20}/></span>
      <span>
      <MdOutlineFavoriteBorder size={20}
         color="#E0245E" /> 
      </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/></span>
         
        
         </span>
@@ -218,16 +238,12 @@ className="list-view-card-second-section"
     gap : "20px"
     }}>
     <span><MdVisibility 
-        color=" #333333"
+        color=" white"
         size={20}/></span>
      <span>
      <MdOutlineFavoriteBorder size={20}
         color="#E0245E" />
      </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/></span>
-        
        
         </span>
     </div>
@@ -254,9 +270,9 @@ className="list-view-card-second-section"
     <div className="list-view-card-story-section">
 { width < 768 ? <h6>
 <b>
-Your profile is stopping you from getting that job
+{story.title}
 </b>
-</h6> : <h3>Your Profile is stopping you from getting that job</h3>} 
+</h6> : <h3>{story.title}</h3>} 
 <span>
 {story.content.slice(0, width < 768 ? 70 : 200)  + "..." }
 </span>
@@ -272,8 +288,12 @@ Your profile is stopping you from getting that job
     gap  : "20px",
     color : "#777777"
     }}>
-     <span>8 days ago</span>
-    <span>34 min read</span>
+    <span>
+{  
+  formatDistanceToNow(new Date(story.date.year, getMonthNumber(`${story.date.month.toLowerCase()}`),
+   story.date.day), { addSuffix: true })
+   }</span>
+<span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
     <span style={{cursor :"pointer"}}><FaEllipsisH  
       onClick={(e) => fireClick(e, getStoryUrl(story))}
     /></span>
@@ -282,18 +302,24 @@ Your profile is stopping you from getting that job
     <span style={{display : "flex",
     alignItems : "center",
     justifyContent : "space-between",
-    gap : "20px"
+    gap : "10px"
     }}>
     <span><MdVisibility 
-        color=" #333333"
-        size={20}/> 30</span>
+        color="var(--visibility-icon)"
+        size={20}/>&nbsp;
+        <span  style={{color : "var(--action-icons-text)"}}>
+        {formatNumber(story.totalViews)}
+        </span>
+        </span>
      <span>
      <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" /> 80
+        color="var(--like-icon)" />&nbsp;
+        <span style={{color : "var(--action-icons-text)"}}>
+        {formatNumber(story.totalLikes)}
+        </span>
+      
      </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/> 40</span>
+      
         
        
         </span>
@@ -320,8 +346,7 @@ src={storyPicture}
 </div>
 { width < 768 &&
   <div style={{display :"flex", flexDirection : "row",
-    
-    justifyContent: "space-between",
+    gap : "70px",
     paddingTop : "5px"
     }}>
     <span style={{display : "flex",
@@ -331,8 +356,12 @@ src={storyPicture}
     color : "#777777"
     }}>
     
-    <span>8 days ago</span>
-    <span>34 min read</span>
+    <span>
+{  
+  formatDistanceToNow(new Date(2024, getMonthNumber(`${story.date.month.toLowerCase()}`),
+   story.date.day), { addSuffix: true })
+   }</span>
+   <span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
     <span style={{cursor :"pointer"}}><FaEllipsisH 
     onClick={(e) => fireClick(e, getStoryUrl(story))}
     /></span>
@@ -341,18 +370,25 @@ src={storyPicture}
     <span style={{display : "flex",
     alignItems : "center",
     justifyContent : "space-between",
-    gap : "20px"
+    gap : "10px"
     }}>
     <span><MdVisibility 
-        color=" #333333"
-        size={20}/> 30</span>
+        color="var(--visibility-icon)"
+        size={20}/>&nbsp;
+        <span  style={{color : "var(--action-icons-text)"}}>
+        {formatNumber(story.totalViews)}
+        </span>
+        
+
+        </span>
      <span>
      <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" /> 80
+        color="var(--like-icon)" />&nbsp;
+        <span  style={{color : "var(--action-icons-text)"}}>
+        {formatNumber(story.totalLikes)}
+        </span>
+        
      </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/> 40</span>
         
        
         </span>

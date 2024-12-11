@@ -15,11 +15,7 @@ const StoryBody = ({ content, title, picture, avatar, author, userId, isFollowin
     }
   }, [loaded, error])
   return (
-    <div className="read-story-body">
-    <StoryAuthor 
-    views={views}
-    likes={likes}
-    author={author} avatar={avatar} userId={userId} isFollowing={isFollowing}/>
+    <div className="">
     <h2 style={{ textDecoration : "bolder", fontWeight : 700, marginBottom : "50px"}}>
     {title}
     

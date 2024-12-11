@@ -1,11 +1,12 @@
 import useImageLoad from "../../hooks/useImageLoaded"
 import "../../styles/components/Reader/story-author.css"
 import useNavigateProfile from "../../hooks/useNavigateProfile"
-import { MdOutlineVisibility, MdOutlineFavoriteBorder  } from 'react-icons/md';
+import { MdOutlineVisibility, MdOutlineFavorite, MdOutlineFavoriteBorder  } from 'react-icons/md';
 import { useState, useEffect } from "react"
 import { useFollowUser } from "../../hooks/useFollowUser"
 import { useGetAUser } from "../../hooks/useGetAUser"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { formatNumber } from "../../helpers/formatNumber";
 const StoryAuthor = ({ author, avatar, userId, isFollowing, views, likes}) => {
   const navigateToProfile = useNavigateProfile();
   const {followUser, error : followError, data} = useFollowUser();
@@ -46,7 +47,8 @@ setImPossibleToFollow(true)
     }
       }, [data])
   return (
-    <div className="story-follow-suggestion">
+    <>
+        <div className="story-follow-suggestion">
     <div style={{display : "flex", flexDirection : "row", alignItems : "center", cursor : "pointer"}}>
    { loading ? <div className="story-display-avatar-loader"></div> : <img src={avatar} alt={author} />}
     <div style={{display : "flex", flexDirection : "column"}}>
@@ -106,12 +108,15 @@ setImPossibleToFollow(true)
 }
 </>
 }
-<div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", gap : "5px"}}>
-<span> <MdOutlineVisibility size={20}/>{views} </span>
-<span><MdOutlineFavoriteBorder size={20} />{likes}</span>
+
+</div>
+      <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", gap : "5px"}}>
+<span> <MdOutlineVisibility size={20}/>&nbsp;{formatNumber(views)}&nbsp;views</span>
+<span><MdOutlineFavorite size={20} fill="#ff5e62"/>&nbsp;{formatNumber(likes)}&nbsp;likes</span>
    
     </div>
-</div>
+    </>
+
   )
 }
 
