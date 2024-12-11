@@ -217,6 +217,7 @@ const adjustedStory = foundStory.toObject();
 }
 }
 const getAllStories = async (req, res) => {
+    console.log(req.query)
     try{
         //filtering
 const queryObj = {...req.query}
@@ -288,6 +289,31 @@ const allStories = await query
         }
 }
 }
+const getSuggestedStories = async (req, res) => {
+    const { page, limit } = req.query;
+    const queryObj = {...req.query}
+    try{
+        let query;
+        if(queryObj.type == "others"){
+            query   =   Story.find({userId :  { $ne: req.query.userId }, _id : { $ne: req.query.currentStoryId} })
+        }
+        else{
+            query   =   Story.find({userId :  req.query.userId, _id : { $ne: req.query.currentStoryId} })
+        }
+const skip = (page - 1) * limit;
+query = query.skip(skip).limit(limit);
+const suggestedStories = await query;
+res.status(200).json({suggestedStories : suggestedStories})  
+    }catch(error){
+        logEvents(`${error.name}: ${error.message}`, "getSuggestedStoriesError.txt", "storyError")
+        if (error instanceof userError) {
+        return  res.status(error.statusCode).json({ message : error.message})
+        }
+         else{
+        return res.status(500).json({message : "Internal Server Error"})
+            }
+    }
+    }
 const getPopularStories = async (req, res) => {
     const { category, number } = req.params;
     const defaultCategory = [
@@ -574,6 +600,7 @@ module.exports = {
     createStory,
     getAStory,
     getAllStories,
+    getSuggestedStories,
     updateAStory,
     deleteAStory,
     uploadStoryPicture,

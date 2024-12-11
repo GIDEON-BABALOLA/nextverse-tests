@@ -4,6 +4,7 @@ import SearchBar from "../components/Browse/SearchBar"
 import LoadingCard from "../components/Profile/LoadingCard"
 import Share from "../components/common/Share"
 import ContextMenu from "../components/common/ContextMenu"
+import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
 import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
 import NoContent from "../components/common/NoContent.jsx"
 import { useEffect, useState, useRef} from "react"
@@ -259,7 +260,7 @@ resendRequest()
              {id : 2, icon : <FaBookmark />
              , label : "Bookmark"},
        
-             {id : 4, icon : <FaRegThumbsUp />
+             {id : 4, icon : <MdOutlineFavorite />
              , label : "Like Story"},
              {id : 5, icon : <MdReadMore />
               , label : "Read More"}

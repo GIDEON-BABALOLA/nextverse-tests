@@ -37,7 +37,7 @@ const StoryDisplay = ({ username, id, title} ) => {
   const toggleDrawer = () => setDrawerOpen((prev) => !prev);
   useEffect(() => {
 getAStory(id)
-  }, [])
+  }, [id])
   const resendRequest = () => {
 getAStory(id)
   }
@@ -142,6 +142,7 @@ className="story-display-main"
     shareModal={shareModal}
     fireClick={fireClick}
     type={"more"}
+    storyId={id}
 
      />
   
@@ -151,6 +152,7 @@ className="story-display-main"
     fireClick={fireClick}
     title={"Suggested From Litenote"}
     type={"litenote"}
+    storyId={id}
 
      />
    </div>

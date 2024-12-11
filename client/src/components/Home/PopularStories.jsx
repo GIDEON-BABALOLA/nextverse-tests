@@ -1,7 +1,8 @@
 import "../../styles/components/Home/popularstories.css"
 import PopularStoriesCard from "../common/PopularStoriesCard"
 import { useModalContext } from "../../hooks/useModalContext"
-import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
+import { FaShareAlt, FaBookmark } from "react-icons/fa"
+import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
 import { MdReadMore,  } from "react-icons/md"
 import Tab from "../common/Tab"
 import ContextMenu from "../common/ContextMenu"
@@ -170,7 +171,7 @@ error={error}
                   , label : "Bookmark"},
                   {id : 3, icon : <MdReadMore/>
                   , label : "Close"},
-                  {id : 4, icon : <FaRegThumbsUp />
+                  {id : 4, icon : <MdOutlineFavorite />
                   , label : "Like Story"}
 ]} />
          {/* Featured stories will be dynamically added here  */}

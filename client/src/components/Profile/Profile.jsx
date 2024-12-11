@@ -8,9 +8,9 @@ import { FaEllipsisH, FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { useModalContext } from "../../hooks/useModalContext"
 import { useProfileContext } from "../../hooks/useProfileContext"
+import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
 import { useParams } from "react-router-dom"
 import ErrorMessage from "../common/ErrorMessage"
-import { FaRegThumbsUp } from "react-icons/fa";
 import NoContent from "../common/NoContent"
 import { MdReadMore } from "react-icons/md"
 import { useGetUserProfile } from "../../hooks/useGetUserProfile"
@@ -25,7 +25,7 @@ const Profile = () => {
 console.log(decodeURIComponent(username))
     setEmptyData(false)
     getUserProfile(decodeURIComponent(username));
-  }, [])
+  }, [username])
   const resendRequest = () => {
     getUserProfile(decodeURIComponent(username))
   }
@@ -111,7 +111,7 @@ borderRadius : "10px", padding : "30px"}}>
             , label : "Bookmark"},
             {id : 3, icon : <MdReadMore/>
             , label : "Close"},
-            {id : 4, icon : <FaRegThumbsUp />
+            {id : 4, icon : <MdOutlineFavorite />
             , label : "Like Story"}
 ]} />
 </div>

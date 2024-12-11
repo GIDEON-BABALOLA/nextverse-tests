@@ -2,6 +2,7 @@ import FeedCard from "./FeedCard"
 import FeedLoadingCard from "./FeedLoadingCard"
 import ContextMenu from "../common/ContextMenu"
 import ErrorMessage from "../common/ErrorMessage"
+import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
 import Share from "../common/Share"
 import { useRef, useEffect, useState } from "react"
@@ -211,7 +212,7 @@ shareModal={shareModal}
          {id : 2, icon : <FaBookmark />
          , label : "Bookmark"},
    
-         {id : 4, icon : <FaRegThumbsUp />
+         {id : 4, icon : <MdOutlineFavorite />
          , label : "Like Story"},
          {id : 5, icon : <MdReadMore />
           , label : "Read More"}
