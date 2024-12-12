@@ -11,7 +11,9 @@ export const useGetExploreStories = () => {
             page : page,
             limit : limit,
             category : category,
-            userId : userId
+            userId : userId,
+           fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title"
+            
         }
         if(category == "all"){
 delete parameters.category

@@ -1,24 +1,22 @@
 import { useState } from "react";
+// import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useGetAStory = () => {
+export const useLikeAStory = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
-    const [isFollowing, setIsFollowing] = useState(null)
-    const [isLiked, setIsLiked] = useState(null)
     const [data, setData] = useState([])
-    const getAStory = async (id) => {
+    const likeAStory = async (id) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/story/get-a-story/${id}`, {
-    signal : AbortSignal.timeout(axiosProperties["timeout"])
-}
+const response = await axiosConfig.put(`/story/like-a-story/${id}`,
+    {
+        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
+    }
 )
 if(response && response.data){
-    setData(response.data.story)
-    setIsFollowing(response.data.isFollowing)
-    setIsLiked(response.data.isLiked)
+    setData(response.data)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -27,16 +25,17 @@ if(response && response.data){
     
 }
         }
-        
         catch(error){
+            console.log(error.code)
 setIsLoading(false)
-setIsFollowing(null)
-setIsLiked(null)
             if(error.message == "canceled"){
-                setError({message : "Your Request Has Timed Out", code : error.code})
+setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
                 setError({message : "Our Service Is Currently Offline", code : error.code})
+            }
+            else if(error.message == "Request failed with status code 404"){
+                setError({message : "Not Found", code : error.code})
             }
             else{
             setData([])
@@ -46,5 +45,5 @@ setIsLiked(null)
         }
     }
     }
-    return {getAStory, isLoading, error, data, statusCode, isFollowing, isLiked} 
+    return {likeAStory, isLoading, error, data, statusCode} 
 }

@@ -1,0 +1,4 @@
+20241212	10:37:03	8ae60c87-90aa-4964-b49f-ab32b98f260e	TypeError: allStories.aggregate is not a function
+20241212	10:37:28	b5b08d7d-58ab-4ff5-9f30-5f0ddbae45d1	TypeError: allStories.aggregate is not a function
+20241212	10:41:18	b92ac61e-f769-47ef-bbc6-c49aa7d15825	TypeError: query.aggregate is not a function
+20241212	11:04:41	0e5fa916-4a41-4373-a4b0-29108eabb6b4	TypeError: allStories.lean is not a function

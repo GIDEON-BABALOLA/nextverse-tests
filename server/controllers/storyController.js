@@ -188,10 +188,18 @@ if(!id){
 }
 
 const foundStory = await Story.findById(id)
+.select("estimatedReadingTime date _id author avatar title content userId picture totalLikes totalViews")
+console.log(foundStory)
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : foundStory.userId
 });
+const liked = await Story.exists({
+    _id : id,
+    "likes.likedBy" : req.user._id
+
+})
+const isLiked = !!liked
 const isFollowing = !!exists;
 if(!foundStory){
     throw new userError("This Story Does Not Exist", 404)
@@ -202,7 +210,8 @@ await foundStory.save()
 const adjustedStory = foundStory.toObject();
     res.status(200).json({ story :
          {...adjustedStory, picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]},
-         isFollowing : isFollowing
+         isFollowing : isFollowing,
+         isLiked : isLiked
         
         })    
 
@@ -276,8 +285,13 @@ if(req.query.page){
         throw new userError( "This page does not exist", 404)
     }
 }
-const allStories = await query
-    res.status(200).json({stories : allStories, count : storyCount})      
+console.log(req.user._id.toString())
+const allStories = await query.lean();
+const enrichedFeed = allStories.map((story) => ({
+  ...story,
+  isLiked: story.likes.some((like) => like.likedBy == req.user._id.toString()),
+}));
+    res.status(200).json({stories : enrichedFeed, count : storyCount})      
 
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
@@ -449,9 +463,7 @@ const getStoryComments = async (req, res) => {
   })
   .slice('comments', [parseInt(skip), parseInt(limit)])
   .lean();
-  setTimeout(() => {
     res.status(200).json({ comments : storyComments["comments"], count : commentCount})      
-  }, 2000);
        
     
     }
@@ -464,6 +476,39 @@ const getStoryComments = async (req, res) => {
         }
     }
     }
+    const getStoryLikes = async (req, res) => {
+        const { page, limit } = req.query;
+        const { id } = req.params
+        try{
+    
+        const skip = (page - 1) * limit;
+        const gotUsers = await User.find();
+        if(!gotUsers){
+            throw new userError("No User Has Been Registered For Your Application", 204)
+        }
+        const story = await Story.findOne({ _id: id });
+        const likesCount = story ? story.likes.length : 0;
+        const storyLikes = await Story.findOne({ _id: id })
+      .populate({
+        path: 'likes.likedBy', // This populates the user (commentBy) in the comments array
+        select: 'username picture' 
+        // You can add other fields here as needed
+      })
+      .slice('likes', [parseInt(skip), parseInt(limit)])
+      .lean();
+        res.status(200).json({ likes : storyLikes["likes"], count : likesCount})      
+           
+        
+        }
+        catch(error){
+            logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
+            if(error instanceof userError){
+                return res.status(error.statusCode).json({ error : error.message})
+            }else{
+                return res.status(500).json({error : "Internal Server Error"})
+            }
+        }
+        }
 const likeAStory = async(req, res) => {
     const { id } = req.params
 try{
@@ -472,10 +517,10 @@ try{
             }
     const story = await Story.findById(id);
   // Add the like to the story using static method
- const likedStory = await story.addLike(req.user._id);
+ await story.addLike(req.user._id);
         
   // Respond with the updated story
-  res.status(201).json(likedStory);
+  res.status(201).json({"message" : "successfull"});
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
     if (error instanceof userError) {
@@ -496,8 +541,8 @@ try{
     if(!storyToBeUnLiked){
         throw new userError("This story does not exist", 400)
     }
-    const unLikedStory = await storyToBeUnLiked.removeLike(req.user._id);
-    res.status(201).json(unLikedStory);
+ await storyToBeUnLiked.removeLike(req.user._id);
+    res.status(201).json({message : "Successfull"});
 }
 catch(error){
     logEvents(`${error.name}: ${error.message}`, "unlikeAStoryError.txt", "storyError");
@@ -612,5 +657,6 @@ module.exports = {
     unCommentAStory,
     uploadNow,
     getPopularStories,
-    getStoryComments
+    getStoryComments,
+    getStoryLikes
 }

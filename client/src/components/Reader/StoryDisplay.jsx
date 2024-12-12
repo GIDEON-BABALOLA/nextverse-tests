@@ -1,12 +1,15 @@
 import StorySidebar from "./StorySidebar"
 import "../../styles/components/Reader/story-display.css"
 import CommentModal from "../common/CommentModal"
+import LikesModal from "./LikesModal"
+import Likes from "./Likes"
 import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
 import { MdReadMore } from "react-icons/md"
 import StoryBody from "./StoryBody"
 import { useModalContext } from "../../hooks/useModalContext"
 import StoryAuthor from "./StoryAuthor"
 import MobileComment from "./MobileComment"
+import MobileLikes from "./MobileLikes"
 import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
 import { useState, useEffect } from "react"
@@ -26,8 +29,9 @@ const StoryDisplay = ({ username, id, title} ) => {
  shareUrl,
  setShareUrl,
 } = useModalContext()
-  const { getAStory, isLoading, error, data, isFollowing } = useGetAStory();
+  const { getAStory, isLoading, error, data, isFollowing, isLiked } = useGetAStory();
   const [isDrawerOpen, setDrawerOpen] = useState(false)
+  const [likesDrawerOpen, setLikesDrawerOpen] = useState(false)
   const [comments, setComments] = useState([])
   const [commentNumber, setCommentNumber] = useState(0)
   const [deleteModal, setDeleteModal] = useState({
@@ -35,6 +39,7 @@ const StoryDisplay = ({ username, id, title} ) => {
     modal : false
   })
   const toggleDrawer = () => setDrawerOpen((prev) => !prev);
+  const toggleLikesDrawer = () => setLikesDrawerOpen((prev) => !prev);
   useEffect(() => {
 getAStory(id)
   }, [id])
@@ -45,6 +50,7 @@ getAStory(id)
 console.log(data)
   }, [data])
   const [openModal, setOpenModal] = useState(false);
+  const [likeModal, setLikeModal] = useState(false)
   const {  closeContextMenu } = useModalContext()
   return (
 <>
@@ -73,10 +79,20 @@ console.log(data)
     openModal={openModal} 
     id={id}
      isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}/>
+     <MobileLikes 
+      isOpen={likesDrawerOpen}
+      id={id}
+      likeModal={likeModal}
+      likesDrawerOpen={likesDrawerOpen}
+      onClose={() => setLikesDrawerOpen(false)}
+     />
         <StorySidebar 
         setOpenModal={setOpenModal} 
         openModal={openModal}
+        likeModal={likeModal}
+        setLikeModal={setLikeModal}
         toggleDrawer={toggleDrawer}
+        toggleLikesDrawer={toggleLikesDrawer}
         story={ {title : data.title, author : data.author, _id :data._id } }
         />
  <section className="story-page-total-screen" onClick={closeContextMenu}>
@@ -111,6 +127,8 @@ className="story-display-main"
       views={data.totalViews}
       likes={data.totalLikes}
       isFollowing={isFollowing}
+      isLiked={isLiked}
+      storyId={id}
       />  
       
    <StoryBody
@@ -136,6 +154,8 @@ className="story-display-main"
       views={data.totalViews}
       likes={data.totalLikes}
       isFollowing={isFollowing}
+      isLiked={isLiked}
+      storyId={id}
       />
            <StorySuggestions
     userId={data.userId}
@@ -160,7 +180,13 @@ className="story-display-main"
     
    
     </div>
-   
+   <LikesModal likeModal={likeModal} setLikeModal={setLikeModal}
+    content={<Likes
+      id={id}
+      likeModal={likeModal}
+      likesDrawerOpen={likesDrawerOpen}
+     />}
+   />
       <CommentModal
   openModal={openModal}
    setOpenModal={setOpenModal} height={570} width={600}

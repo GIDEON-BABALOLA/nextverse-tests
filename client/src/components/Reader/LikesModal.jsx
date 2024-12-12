@@ -1,11 +1,11 @@
-import "../../styles/components/common/comment-modal.css"
+import "../../styles/components/common/special-modal.css"
 import {  useRef } from "react"
 import { useEffect } from "react"
-const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, dismiss, background }) => {
+const Likes = ({ likeModal, setLikeModal, title, content, width, height, dismiss, background, zIndex }) => {
 
   const myShareModal = useRef()
   const closeModal = () => {
-   setOpenModal(false)
+   setLikeModal(false)
   }  
   const closeSpecialModal  = (e) => {
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
@@ -15,11 +15,11 @@ const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, 
     }
           if( e.clientX < parseInt(myShareModal.current.getBoundingClientRect().left) || e.clientX > parseInt(myShareModal.current.getBoundingClientRect().left) + myShareModal.current.getBoundingClientRect().width)
             {
-              setOpenModal(false)
+              setLikeModal(false)
             }else if(
               e.clientY < parseInt(myShareModal.current.getBoundingClientRect().top) || e.clientY > parseInt(myShareModal.current.getBoundingClientRect().top) + myShareModal.current.getBoundingClientRect().height
             ){
-              setOpenModal(false)
+              setLikeModal(false)
             }
         
     
@@ -29,7 +29,6 @@ useEffect(() => {
     if(myShareModal.current){
       closeSpecialModal(e)
     }
-``
   })
   return () =>{
     document.removeEventListener('click', (e) => {
@@ -41,10 +40,10 @@ useEffect(() => {
   }
   }, [])
   return (
-    <section className="litenote-comment-modal">
+    <section className="litenote-special-modal" >
             <div 
             ref={myShareModal}
-            className={`popup center ${openModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`, backgroundColor : {background}}}>
+            className={`popup center ${likeModal == true ? "active" : ""}`} style={{height : `${height}px`, width : `${width}px`, zIndex : zIndex, backgroundColor : {background}}}>
      <div className="icon">
     
      </div>
@@ -64,4 +63,4 @@ useEffect(() => {
   )
 }
 
-export default SpecialModal
+export default Likes

@@ -9,6 +9,8 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { getMonthNumber } from "../../helpers/getMonthNumber";
 import useWindowSize from "../../hooks/useWindowSize";
 import { formatNumber } from "../../helpers/formatNumber";
+import { useLikeAStory } from "../../hooks/useLikeAStory";
+import { useUnLikeAStory } from "../../hooks/useUnlikeAStory";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
 import { MdVisibility,
    MdOutlineFavoriteBorder,
@@ -17,12 +19,17 @@ import { MdVisibility,
 } from "react-icons/md";
 
 const FeedCard = ({ fireClick, story, isLoading, view}) => {
-  console.log(story)
+  const likeStory = useLikeAStory();
+  const unlikeStory = useUnLikeAStory();
   const navigateToStory = useNavigateStory(); 
   const navigateToProfile = useNavigateProfile()
   const { width } = useWindowSize();
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
+  const [liking, setLiking]  = useState(false)
+  const [unLiking, setUnLiking] = useState(false)
+  const [likesCount, setLikesCount] = useState(story.totalLikes)
+  const [likedBefore, setLikedBefore] = useState(story.isLiked)
   let storyPicture = ""
   if(isLoading === false){
     //  storyPicture = story.picture[Math.round(Math.random())]
@@ -52,6 +59,108 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
       }
     });
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
+  const likeTheStory = () => {
+    setLiking(true)
+    setLikedBefore(true)
+    likeStory.likeAStory(story._id)
+  }
+  const unlikeTheStory = () => {
+    setUnLiking(true)
+    setLikedBefore(false)
+    unlikeStory.unlikeAStory(story._id)
+  }
+  useEffect(() => {
+    if(Object.keys(likeStory.data).length  > 0){
+      setLikedBefore(false)
+      setLiking(false)
+      setLikesCount(likesCount + 1)
+    }
+      }, [likeStory.data])
+      useEffect(() => {
+        if(Object.keys(unlikeStory.data).length  > 0){
+          setLikedBefore(true)
+          setUnLiking(false)
+          setLikesCount(likesCount - 1)
+        }
+          }, [unlikeStory.data])
+  const renderLikeButton = () => {
+    if (Object.keys(likeStory.data).length == 0 && !liking && !likedBefore){
+      return (
+
+        <MdOutlineFavoriteBorder 
+        onClick={() => likeTheStory()}
+        size={25} color="var(--like-icon)"  />
+      )
+    }
+    if (liking && !likeStory.error && !likedBefore){
+      return (
+        <>
+            <MdOutlineFavorite 
+        
+        size={25} color="var(--like-icon)"/>
+        wow
+        </>
+      
+      )
+    }
+    if (!liking && Object.keys(likeStory.data).length > 0 && !likedBefore){
+      return (
+        
+<MdOutlineFavorite
+      onClick={() => unlikeTheStory()}
+       size={25} color="var(--like-icon)"/>
+
+      )
+    }
+    if (likeStory.error && !likedBefore){
+      return (
+        <MdOutlineFavoriteBorder
+        onClick={() => likeTheStory()}
+         size={25} color="var(--like-icon)"/>
+      )
+    }
+      
+  };
+  const renderUnLikeButton = ()  => {
+    if (Object.keys(unlikeStory.data).length == 0 && !unLiking && likedBefore){
+      return (
+
+<MdOutlineFavorite
+        onClick={() => unlikeTheStory()}
+         size={25} color="var(--like-icon)"/>
+
+      )
+    }
+    if (unLiking && !unlikeStory.error && likedBefore){
+      return (
+<MdOutlineFavoriteBorder 
+        size={25} color="var(--like-icon)"/>
+
+     
+  
+      )
+    }
+    if (!unLiking && Object.keys(unlikeStory.data).length > 0 && likedBefore){
+      return(
+        
+      <MdOutlineFavoriteBorder 
+         onClick={() => likeTheStory()}
+        size={25} color="var(--like-icon)"/>
+
+      
+      )
+     
+     
+        
+    }
+    if (unlikeStory.error && likedBefore){
+      return (
+        <MdOutlineFavorite
+        onClick={() => unlikeTheStory()}
+         size={25} color="var(--like-icon)"/>
+      )
+    }
+  }
   return (
  <> 
  {
@@ -108,13 +217,21 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                <div style={{color : "White", display : "flex", flexDirection : "row", gap : "5px"}}>
                <span> <MdOutlineVisibility 
                color="var(--visibility-icon)"
-               size={20} />&nbsp;
+               size={30} />&nbsp;
                <span style={{color : "var(--action-icons-text)"}}>{formatNumber(story.totalViews)}</span>
                </span>
-<span><MdOutlineFavoriteBorder
-color="var(--like-icon)"
- size={20}/>&nbsp;
- <span  style={{color : "var(--action-icons-text)"}}> {formatNumber(story.totalLikes)}</span>
+<span>&nbsp;
+ {
+  likedBefore ?  
+  <span style={{cursor : "pointer"}}>
+{renderUnLikeButton()}
+</span>
+  :
+  <span style={{cursor : "pointer"}}>
+{renderLikeButton()}
+</span>
+ }
+ <span  style={{color : "var(--action-icons-text)"}}> {formatNumber(likesCount)}</span>
 </span>
                </div>
 
@@ -315,7 +432,7 @@ className="list-view-card-second-section"
      <MdOutlineFavoriteBorder size={20}
         color="var(--like-icon)" />&nbsp;
         <span style={{color : "var(--action-icons-text)"}}>
-        {formatNumber(story.totalLikes)}
+        {formatNumber(likesCount)}
         </span>
       
      </span>
@@ -385,7 +502,7 @@ src={storyPicture}
      <MdOutlineFavoriteBorder size={20}
         color="var(--like-icon)" />&nbsp;
         <span  style={{color : "var(--action-icons-text)"}}>
-        {formatNumber(story.totalLikes)}
+        {formatNumber(likesCount)}
         </span>
         
      </span>

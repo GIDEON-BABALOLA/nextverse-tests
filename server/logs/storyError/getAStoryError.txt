@@ -1,0 +1,7 @@
+20241212	01:02:41	f103c48c-e6bf-44eb-8cd9-0253df513b7b	TypeError: Story.findById(...).pick is not a function
+20241212	01:02:50	827b8489-45de-437f-ba31-81cdba641927	TypeError: Story.findById(...).pick is not a function
+20241212	01:02:52	bf519034-45e3-44db-9152-cd62c70b879a	TypeError: Story.findById(...).pick is not a function
+20241212	01:02:53	84f26f33-3472-496a-a44e-ac817249f5af	TypeError: Story.findById(...).pick is not a function
+20241212	01:03:13	986d44dd-a779-4cbe-afc1-6d921c085933	TypeError: Story.findById(...).pick is not a function
+20241212	01:04:04	97c5d545-9452-4b3f-8359-9b2c2ff1e22c	TypeError: Story.findById(...).lean(...)._pick is not a function
+20241212	01:04:53	4aa42fdd-07af-43ed-a815-53eae0fa94f4	TypeError: Cannot read properties of undefined (reading 'length')

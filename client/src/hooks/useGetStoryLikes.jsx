@@ -1,30 +1,27 @@
 import { useState } from "react";
-import { axiosConfig } from "../api/axiosConfig";
-export const usePopulateFeed = () => {
+import { axiosConfig, axiosProperties } from "../api/axiosConfig";
+export const useGetStoryLikes = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
-    const [storyCount, setStoryCount] = useState(0)
+    const [commentCount, setCommentCount] = useState(0)
     const [data, setData] = useState([])
-    const populateFeed = async (page, limit, category) => {
+    const getStoryLikes = async (page, limit,storyId) => {
         const parameters = {
             page : page,
             limit : limit,
-            category : category,
-            fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes"
-        }
-        if(category == "all"){
-delete parameters.category
         }
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/story/get-all-stories", {
-    params : parameters
-})
+const response = await axiosConfig.get(`/story/get-story-likes/${storyId}`, {
+    params : parameters,
+    signal : AbortSignal.timeout(axiosProperties["timeout"])
+}
+)
 if(response && response.data){
-    setData(response.data.stories)
-    setStoryCount(response.data.count)
+    setData(response.data.comments)
+    setCommentCount(response.data.count)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -35,21 +32,21 @@ if(response && response.data){
         }
         
         catch(error){
-            setStoryCount(0)
+            setCommentCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
-setError("Your Request Has Timed Out")
+                setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
-                setError("Our Service Is Currently Offline")
+                setError({message : "Our Service Is Currently Offline", code : error.code})
             }
             else{
             setData([])
             setIsLoading(false)
-            setError(error.response.data.message)
+            setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)
         }
     }
     }
-    return {populateFeed, isLoading, error, data, statusCode, storyCount} 
+    return {getStoryLikes, isLoading, error, data, statusCode, commentCount} 
 }

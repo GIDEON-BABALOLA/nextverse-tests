@@ -10,7 +10,14 @@ import { MdOutlineFavoriteBorder, MdOutlineShare, MdOutlineFavorite} from "react
  import ModeToggler from "../common/ModeToggler"
  import { useAuthContext } from "../../hooks/useAuthContext"
  import { FaRegBookmark } from "react-icons/fa"
-const StorySidebar = ({ setOpenModal, openModal, toggleDrawer, story}) => {
+const StorySidebar = ({ 
+setOpenModal,
+openModal,
+likeModal,
+setLikeModal,
+toggleDrawer,
+toggleLikesDrawer,
+story}) => {
   const { user } = useAuthContext();
   const { width } = useWindowSize()
   const { shareModal, shareRef,  setShareUrl, shareUrl  } = useModalContext()
@@ -19,6 +26,13 @@ const StorySidebar = ({ setOpenModal, openModal, toggleDrawer, story}) => {
    setShareUrl(getStoryUrl(story))
     shareModal.current.showModal()
     shareModal.current.classList.add("slide-dow")
+  }
+  const openLikesModal = () => {
+    if(width < 768){
+      toggleLikesDrawer()
+        }else{
+          setLikeModal(!likeModal)
+        }
   }
 const openCommentLikeModal = () => {
   if(width < 768){
@@ -58,8 +72,8 @@ onClick={() => openShare()}
 </Link>
     </li>
     <li className="phone-feed-sidebar-item">
-<Link className="phone-feed-sidebar-nav-link" to={"/dashboard/stories"}>
-<MdOutlineFavoriteBorder className="phone-feed-sidebar-icon" />
+<Link className="phone-feed-sidebar-nav-link">
+<MdOutlineFavoriteBorder className="phone-feed-sidebar-icon" onClick={() => { openLikesModal()}}/>
 {/* <MdOutlineFavorite size={20} fill="#ff5e62"/> */}
 <span className="phone-feed-sidebar-nav-name">Like</span>
 </Link>
@@ -98,7 +112,7 @@ onClick={() => openShare()}
     </div>
     <div className="feed-sidebar-icon">
     <Link>
-    <MdOutlineFavoriteBorder size={20}  onClick={() => { openCommentLikeModal()}}/>
+    <MdOutlineFavoriteBorder size={20}  onClick={() => { openLikesModal()}}/>
     </Link>
   
     </div>

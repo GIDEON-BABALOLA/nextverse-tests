@@ -16,7 +16,8 @@ const {
     unCommentAStory,
     getPopularStories,
     getSuggestedStories,
-    getStoryComments
+    getStoryComments,
+    getStoryLikes
 } = require(path.join(__dirname, "..", "controllers", "storyController.js"))
 const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
@@ -35,5 +36,6 @@ router.get("/get-popular-stories/:category/:number", getPopularStories)
 router.get("/get-suggested-stories", authMiddleware, getSuggestedStories)
 router.get("/bookmark-a-story/:id", authMiddleware, bookmarkAStory)
 router.get("/get-story-comments/:id", authMiddleware, getStoryComments)
+router.get("/get-story-likes/:id", authMiddleware, getStoryLikes)
 router.delete("/delete-a-story/:id", authMiddleware, deleteAStory)
 module.exports = router
