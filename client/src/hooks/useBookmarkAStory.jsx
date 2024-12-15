@@ -1,27 +1,22 @@
 import { useState } from "react";
+// import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useGetStoryLikes = () => {
+export const useLikeAStory = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
-    const [likesCount, setLikesCount] = useState(0)
     const [data, setData] = useState([])
-    const getStoryLikes = async (page, limit,storyId) => {
-        const parameters = {
-            page : page,
-            limit : limit,
-        }
+    const likeAStory = async (id) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/story/get-story-likes/${storyId}`, {
-    params : parameters,
-    signal : AbortSignal.timeout(axiosProperties["timeout"])
-}
+const response = await axiosConfig.put(`/story/like-a-story/${id}`,
+    {
+        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
+    }
 )
 if(response && response.data){
-    setData(response.data.likes)
-    setLikesCount(response.data.count)
+    setData(response.data)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -30,15 +25,17 @@ if(response && response.data){
     
 }
         }
-        
         catch(error){
-            setLikesCount(0)
+            console.log(error.code)
 setIsLoading(false)
             if(error.message == "canceled"){
-                setError({message : "Your Request Has Timed Out", code : error.code})
+setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
                 setError({message : "Our Service Is Currently Offline", code : error.code})
+            }
+            else if(error.message == "Request failed with status code 404"){
+                setError({message : "Not Found", code : error.code})
             }
             else{
             setData([])
@@ -48,5 +45,5 @@ setIsLoading(false)
         }
     }
     }
-    return {getStoryLikes, isLoading, error, data, statusCode, likesCount} 
+    return {likeAStory, isLoading, error, data, statusCode} 
 }

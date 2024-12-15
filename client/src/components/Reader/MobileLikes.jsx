@@ -1,9 +1,10 @@
 import "../../styles/components/Reader/story-comment.css"
+import { MdClose } from "react-icons/md";
 import DeleteModal from "./DeleteModal";
 import Likes from "./Likes"
 import { useState } from "react";
 import { Drawer } from 'vaul';
-export default function MobileLikes({ isOpen, onClose
+export default function MobileLikes({ isOpen, onClose, likeModal, id
  }) {
   return (
     <Drawer.Root modal={true} open={isOpen} onOpenChange={onClose}>
@@ -13,8 +14,12 @@ export default function MobileLikes({ isOpen, onClose
   <div className="drawer-header" >
     <div className="drawer-spacing">
       <div aria-hidden className="drawer-header-divider" />
+      <span style={{display : "flex", flexDirection : "row", justifyContent : "space-between", alignItems : "center"}}>
       <Drawer.Title className="drawer-title">Likes</Drawer.Title>
- <Likes />
+      <span  onClick={() => { onClose()}}><MdClose size={30}/></span>
+      </span>
+
+ <Likes likesDrawerOpen={isOpen} likeModal={likeModal} id={id} />
     </div>
   </div>
 

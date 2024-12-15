@@ -5,26 +5,11 @@ import useWindowSize from "../../hooks/useWindowSize";
 import useNavigateProfile from '../../hooks/useNavigateProfile';
 import { FaEllipsisH } from "react-icons/fa";
 import useImageLoad from "../../hooks/useImageLoaded";
+import CommentAvatar from "./CommentAvatar"
 import Trash from "../../styles/components/common/Icons/Trash";
 import { useState, useEffect } from "react";
 const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
   const navigateToProfile = useNavigateProfile();
-  const [avatarLoading, setAvatarLoading] = useState(true)
-  let avatarPicture = ""
-  if(isLoading === false){
-    //  storyPicture = story.picture[Math.round(Math.random())]
-    avatarPicture = comment.commentBy["picture"]
-  }
-  const { loaded, error } = useImageLoad(avatarPicture);
-  useEffect(() => {
-    if (error) {
-     setAvatarLoading(true)
-    }
-  
-    if (loaded === true) {
-    setAvatarLoading(false)
-    }
-  }, [loaded, error])
   const openDeleteModal = () => {
     setDeleteModal({ comment : comment["_id"], modal : true})
   }
@@ -59,12 +44,12 @@ const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
        :
        <div className="comment-card-container">
         <section  className="comment-card-container-first-section">
-        {
-          avatarLoading ? 
-          <div
-       className="comment-loader comment-loader-avatar"></div> : 
-       <img  src={avatarPicture} alt="Author" className="feed-profile-images-trending" />
-        }
+        
+          <CommentAvatar 
+          image={comment.commentBy["picture"]}
+          className="feed-profile-images-trending"
+          alt="Author"
+          />
         </section>
         <section className="comment-card-container-second-section">
             <div className="comment-card-container-second-section-title" style={{cursor : "pointer"}}>

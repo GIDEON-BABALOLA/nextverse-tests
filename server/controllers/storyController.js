@@ -291,7 +291,8 @@ const enrichedFeed = allStories.map((story) => ({
   ...story,
   isLiked: story.likes.some((like) => like.likedBy == req.user._id.toString()),
 }));
-    res.status(200).json({stories : enrichedFeed, count : storyCount})      
+    res.status(200).json({stories : enrichedFeed, count : storyCount})       
+   
 
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
@@ -478,6 +479,7 @@ const getStoryComments = async (req, res) => {
     }
     const getStoryLikes = async (req, res) => {
         const { page, limit } = req.query;
+        console.log(page, limit)
         const { id } = req.params
         try{
     
@@ -491,12 +493,15 @@ const getStoryComments = async (req, res) => {
         const storyLikes = await Story.findOne({ _id: id })
       .populate({
         path: 'likes.likedBy', // This populates the user (commentBy) in the comments array
-        select: 'username picture' 
+        select: 'username picture bio' 
         // You can add other fields here as needed
       })
       .slice('likes', [parseInt(skip), parseInt(limit)])
       .lean();
-        res.status(200).json({ likes : storyLikes["likes"], count : likesCount})      
+    res.status(200).json({ likes : storyLikes["likes"], count : likesCount})     
+    
+
+         
            
         
         }

@@ -604,7 +604,7 @@ color: var(--searcher-color);
     align-items: center;
 }
 .phone-feed-sidebar-nav-name{
-    font-size: .625rem;
+    font-size: .900rem;
     color: var(--icon-color);
 }
 .phone-feed-sidebar-icon{

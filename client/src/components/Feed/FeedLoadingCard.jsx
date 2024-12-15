@@ -6,8 +6,6 @@ import { FaTimes } from "react-icons/fa";
 import useImageLoad from "../../hooks/useImageLoaded";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useWindowSize from "../../hooks/useWindowSize";
-import { MdVisibility, MdOutlineFavoriteBorder, MdOutlineBookmarkAdd  } from "react-icons/md";
-
 const FeedLoadingCard = forwardRef(({ fireClick, story, isLoading, view}, ref) => {
   const { width } = useWindowSize();
   const [pictureLoading, setPictureLoading] = useState(true);
@@ -146,16 +144,6 @@ const FeedLoadingCard = forwardRef(({ fireClick, story, isLoading, view}, ref) =
     justifyContent : "space-between",
     gap : "20px"
     }}>
-    <span><MdVisibility 
-        color=" #333333"
-        size={20}/></span>
-     <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" /> 
-     </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/></span>
         
        
         </span>
@@ -210,16 +198,7 @@ className="list-view-card-second-section"
     justifyContent : "space-between",
     gap : "20px"
     }}>
-    <span><MdVisibility 
-        color=" #333333"
-        size={20}/></span>
-     <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" />
-     </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/></span>
+   
         
        
         </span>
@@ -275,17 +254,7 @@ Your profile is stopping you from getting that job
     justifyContent : "space-between",
     gap : "20px"
     }}>
-    <span><MdVisibility 
-        color=" #333333"
-        size={20}/> 30</span>
-     <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" /> 80
-     </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/> 40</span>
-        
+   
        
         </span>
     </div>}
@@ -332,18 +301,7 @@ src={storyPicture}
     justifyContent : "space-between",
     gap : "20px"
     }}>
-    <span><MdVisibility 
-        color=" #333333"
-        size={20}/> 30</span>
-     <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="#E0245E" /> 80
-     </span>
-        <span><MdOutlineBookmarkAdd 
-        color="#4A90E2"
-        size={20}/> 40</span>
-        
-       
+  
         </span>
     </div>
 }

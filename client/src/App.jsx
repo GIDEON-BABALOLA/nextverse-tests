@@ -29,6 +29,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 import { useThemeContext } from './hooks/useThemeContext';
 import DevelopersPage from "./Pages/DevelopersPage"
 function App() {
+  console.log("dave")
   const location = useParams()
   const { colorMode } = useThemeContext()
   useEffect(() => {

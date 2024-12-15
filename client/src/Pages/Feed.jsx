@@ -6,7 +6,6 @@ import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
 import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
 import FeedBottomNav from "../components/Feed/FeedBottomNav";
 import ChatBot from "../components/ChatBot/ChatBot";
-import { MdOutlineCreate } from "react-icons/md";
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
 import useWindowSize from "../hooks/useWindowSize";
 import { Link } from "react-router-dom"

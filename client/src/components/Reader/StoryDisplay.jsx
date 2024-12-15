@@ -181,10 +181,13 @@ className="story-display-main"
    
     </div>
    <LikesModal likeModal={likeModal} setLikeModal={setLikeModal}
+    height={400} width={400}
     content={<Likes
       id={id}
       likeModal={likeModal}
+      setLikeModal={setLikeModal}
       likesDrawerOpen={likesDrawerOpen}
+     
      />}
    />
       <CommentModal

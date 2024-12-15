@@ -12,7 +12,7 @@ export const useGetExploreStories = () => {
             limit : limit,
             category : category,
             userId : userId,
-           fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title"
+           fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes"
             
         }
         if(category == "all"){

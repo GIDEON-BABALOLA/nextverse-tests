@@ -75,7 +75,7 @@ onClick={() => openShare()}
 <Link className="phone-feed-sidebar-nav-link">
 <MdOutlineFavoriteBorder className="phone-feed-sidebar-icon" onClick={() => { openLikesModal()}}/>
 {/* <MdOutlineFavorite size={20} fill="#ff5e62"/> */}
-<span className="phone-feed-sidebar-nav-name">Like</span>
+<span className="phone-feed-sidebar-nav-name">Likes</span>
 </Link>
     </li>
     

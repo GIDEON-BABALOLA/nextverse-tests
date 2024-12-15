@@ -2,3 +2,11 @@
 20241212	10:37:28	b5b08d7d-58ab-4ff5-9f30-5f0ddbae45d1	TypeError: allStories.aggregate is not a function
 20241212	10:41:18	b92ac61e-f769-47ef-bbc6-c49aa7d15825	TypeError: query.aggregate is not a function
 20241212	11:04:41	0e5fa916-4a41-4373-a4b0-29108eabb6b4	TypeError: allStories.lean is not a function
+20241213	15:45:20	b82ff9db-746d-4002-bf91-f6a93a18afdd	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:23	b4b123d3-615b-4611-82d7-97dbb2098088	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:24	eb3a69bb-7329-4d28-bf4b-829fb4887adf	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:28	ac4a2276-7313-42d0-b566-1d0c0bc8061c	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:30	d4ac3de8-6dbd-4b53-8259-5763aecf0bca	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:35	f35cbd3b-030e-4ae8-ab63-2222321845bd	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:39	bb8c585c-783d-4729-b925-34f7d1f3c446	TypeError: Cannot read properties of undefined (reading 'some')
+20241213	15:45:49	e93946d6-8b20-4abd-8622-ab2f5f636cc4	TypeError: Cannot read properties of undefined (reading 'some')

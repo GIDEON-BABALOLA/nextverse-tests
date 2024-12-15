@@ -1,7 +1,5 @@
 import {  useEffect, useState } from "react";
-import ContextMenu from "../common/ContextMenu";
-import { FaShareAlt } from "react-icons/fa";
-import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
+import { FaEllipsisH } from "react-icons/fa";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
@@ -89,7 +87,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
 
         <MdOutlineFavoriteBorder 
         onClick={() => likeTheStory()}
-        size={25} color="var(--like-icon)"  />
+        size={20} color="var(--like-icon)"  />
       )
     }
     if (liking && !likeStory.error && !likedBefore){
@@ -97,7 +95,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
         <>
             <MdOutlineFavorite 
         
-        size={25} color="var(--like-icon)"/>
+        size={20} color="var(--like-icon)"/>
         wow
         </>
       
@@ -108,7 +106,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
         
 <MdOutlineFavorite
       onClick={() => unlikeTheStory()}
-       size={25} color="var(--like-icon)"/>
+       size={20} color="var(--like-icon)"/>
 
       )
     }
@@ -116,7 +114,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
       return (
         <MdOutlineFavoriteBorder
         onClick={() => likeTheStory()}
-         size={25} color="var(--like-icon)"/>
+         size={20} color="var(--like-icon)"/>
       )
     }
       
@@ -127,14 +125,14 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
 
 <MdOutlineFavorite
         onClick={() => unlikeTheStory()}
-         size={25} color="var(--like-icon)"/>
+         size={20} color="var(--like-icon)"/>
 
       )
     }
     if (unLiking && !unlikeStory.error && likedBefore){
       return (
 <MdOutlineFavoriteBorder 
-        size={25} color="var(--like-icon)"/>
+        size={20} color="var(--like-icon)"/>
 
      
   
@@ -145,7 +143,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
         
       <MdOutlineFavoriteBorder 
          onClick={() => likeTheStory()}
-        size={25} color="var(--like-icon)"/>
+        size={20} color="var(--like-icon)"/>
 
       
       )
@@ -157,7 +155,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
       return (
         <MdOutlineFavorite
         onClick={() => unlikeTheStory()}
-         size={25} color="var(--like-icon)"/>
+         size={20} color="var(--like-icon)"/>
       )
     }
   }
@@ -217,7 +215,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                <div style={{color : "White", display : "flex", flexDirection : "row", gap : "5px"}}>
                <span> <MdOutlineVisibility 
                color="var(--visibility-icon)"
-               size={30} />&nbsp;
+               size={20} />&nbsp;
                <span style={{color : "var(--action-icons-text)"}}>{formatNumber(story.totalViews)}</span>
                </span>
 <span>&nbsp;
@@ -368,8 +366,10 @@ className="list-view-card-second-section"
 </div>
          : 
          <div>
-          <div className="feed-list-view-card">
-<section className="list-view-card-first-section">
+          <div className="feed-list-view-card"
+          
+          >
+<section className="list-view-card-first-section" >
     <div className="list-view-card-profile-section">
     <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
     { avatarLoading ? <div className="feed-loaders feed-loaders-avatar"></div>
@@ -390,7 +390,7 @@ className="list-view-card-second-section"
 {story.title}
 </b>
 </h6> : <h3>{story.title}</h3>} 
-<span>
+<span onClick={() => { navigateToStory(story)}} style={{cursor : "pointer"}} >
 {story.content.slice(0, width < 768 ? 70 : 200)  + "..." }
 </span>
     </div>
@@ -426,11 +426,20 @@ className="list-view-card-second-section"
         size={20}/>&nbsp;
         <span  style={{color : "var(--action-icons-text)"}}>
         {formatNumber(story.totalViews)}
+        
         </span>
         </span>
      <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="var(--like-icon)" />&nbsp;
+        
+        {likedBefore ?  
+  <span style={{cursor : "pointer"}}>
+{renderUnLikeButton()}
+</span>
+  :
+  <span style={{cursor : "pointer"}}>
+{renderLikeButton()}
+</span>
+ }&nbsp;
         <span style={{color : "var(--action-icons-text)"}}>
         {formatNumber(likesCount)}
         </span>
@@ -452,6 +461,8 @@ className="list-view-card-second-section"
 </div> 
 :
   <img
+  onClick={() => { navigateToStory(story)}}  
+  style={{cursor : "pointer"}}
 src={storyPicture}
 >
 
@@ -499,8 +510,16 @@ src={storyPicture}
 
         </span>
      <span>
-     <MdOutlineFavoriteBorder size={20}
-        color="var(--like-icon)" />&nbsp;
+          {likedBefore ?  
+  <span style={{cursor : "pointer"}}>
+{renderUnLikeButton()}
+</span>
+  :
+  <span style={{cursor : "pointer"}}>
+{renderLikeButton()}
+</span>
+ }
+        &nbsp;
         <span  style={{color : "var(--action-icons-text)"}}>
         {formatNumber(likesCount)}
         </span>

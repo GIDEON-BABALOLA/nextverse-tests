@@ -92,7 +92,7 @@ if(Object.keys(likeStory.data).length  > 0){
 
             <MdOutlineFavoriteBorder 
             onClick={() => likeTheStory()}
-            size={25} color="var(--actions-button-color)"/>
+            size={20} color="var(--actions-button-color)"/>
           )
         }
         if (liking && !likeStory.error && !likedBefore){
@@ -100,7 +100,7 @@ if(Object.keys(likeStory.data).length  > 0){
             <>
                 <MdOutlineFavorite 
             
-            size={25} color="#ff5e62"/>
+            size={20} color="var(--like-icon)"/>
             wow
             </>
           
@@ -111,7 +111,7 @@ if(Object.keys(likeStory.data).length  > 0){
             
   <MdOutlineFavorite
           onClick={() => unlikeTheStory()}
-           size={25} color="#ff5e62"/>
+           size={20} color="var(--like-icon)"/>
   
           )
         }
@@ -119,7 +119,7 @@ if(Object.keys(likeStory.data).length  > 0){
           return (
             <MdOutlineFavoriteBorder
             onClick={() => likeTheStory()}
-             size={25} color="var(--actions-button-color)"/>
+             size={20} color="var(--actions-button-color)"/>
           )
         }
           
@@ -130,14 +130,14 @@ if(Object.keys(likeStory.data).length  > 0){
 
 <MdOutlineFavorite
             onClick={() => unlikeTheStory()}
-             size={25} color="#ff5e62"/>
+             size={20} color="var(--like-icon)"/>
   
           )
         }
         if (unLiking && !unlikeStory.error && likedBefore){
           return (
 <MdOutlineFavoriteBorder 
-            size={25} color="var(--actions-button-color)"/>
+            size={20} color="var(--actions-button-color)"/>
 
          
       
@@ -148,7 +148,7 @@ if(Object.keys(likeStory.data).length  > 0){
             
           <MdOutlineFavoriteBorder 
              onClick={() => likeTheStory()}
-            size={25} color="var(--actions-button-color)"/>
+            size={20} color="var(--actions-button-color)"/>
 
           
           )
@@ -160,7 +160,7 @@ if(Object.keys(likeStory.data).length  > 0){
           return (
             <MdOutlineFavorite
             onClick={() => unlikeTheStory()}
-             size={25} color="#ff5e62"/>
+             size={20} color="var(--like-icon)"/>
           )
         }
       }
@@ -229,7 +229,7 @@ if(Object.keys(likeStory.data).length  > 0){
 
 </div>
       <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", gap : "5px"}}>
-<span> <MdOutlineVisibility size={25}/>&nbsp;{formatNumber(views)}&nbsp;views</span>
+<span> <MdOutlineVisibility size={20}/>&nbsp;{formatNumber(views)}&nbsp;views</span>
 <span>
 { likedBefore ? 
 <span style={{cursor : "pointer"}}>
