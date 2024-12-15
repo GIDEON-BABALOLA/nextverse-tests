@@ -592,7 +592,8 @@ switch (req.user.role) {
         await Admin.bookmarkStory(req.user._id, storyToBeBookmarked._id)
 }
 const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
-res.status(201).json(bookmarkedStory)
+    res.status(201).json(bookmarkedStory)    
+
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
         if (error instanceof userError) {
@@ -623,6 +624,7 @@ const unBookmarkAStory = async (req, res) => {
         const unBookmarkedStory = await storyToBeUnbookmarked.removeBookmark(req.user._id);
         res.status(201).json(unBookmarkedStory);
     } catch (error) {
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unbookmarkAStoryError.txt", "storyError");
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ error: error.message });

@@ -30,6 +30,10 @@ story}) => {
   const [bookmarkedBefore, setBookmarkedBefore] = useState(isBookmarked)
   const bookmarkStory = useBookmarkAStory();
   const unbookmarkStory = useUnBookmarkAStory();
+  useEffect(() => {
+  setBookmarkedBefore(isBookmarked)
+  }, [isBookmarked])
+  
   const openShare = () => {
     console.log(setShareUrl)
    setShareUrl(getStoryUrl(story))
@@ -57,9 +61,9 @@ setBookmarkedBefore(false)
 bookmarkStory.bookmarkAStory(story._id)
 }
 const unBookmarkAStory = () => {
-  setBookmarkedBefore(false)
   setUnBookmarking(true)
-unbookmarkStory.unBookmarkAStory(story._id)
+  setBookmarkedBefore(false)
+unbookmarkStory.unbookmarkAStory(story._id)
 }
   useEffect(() => {
 if(Object.keys(bookmarkStory.data).length  > 0){

@@ -49,5 +49,5 @@ setIsBookmarked(null)
         }
     }
     }
-    return {getAStory, isLoading, error, data, statusCode, isFollowing, isLiked} 
+    return {getAStory, isLoading, error, data, statusCode, isFollowing, isLiked, isBookmarked} 
 }
