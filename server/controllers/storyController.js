@@ -199,6 +199,11 @@ const liked = await Story.exists({
     "likes.likedBy" : req.user._id
 
 })
+const bookmarked = await Story.exists({
+    _id : id,
+    "bookmarks.bookmarkBy" : req.user._id
+})
+const isBookmarked = !!bookmarked;
 const isLiked = !!liked
 const isFollowing = !!exists;
 if(!foundStory){
@@ -211,8 +216,8 @@ const adjustedStory = foundStory.toObject();
     res.status(200).json({ story :
          {...adjustedStory, picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]},
          isFollowing : isFollowing,
-         isLiked : isLiked
-        
+         isLiked : isLiked,
+         isBookmarked : isBookmarked
         })    
 
 }catch(error){
@@ -525,7 +530,10 @@ try{
  await story.addLike(req.user._id);
         
   // Respond with the updated story
-  res.status(201).json({"message" : "successfull"});
+
+    res.status(201).json({"message" : "successfull"});    
+
+
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
     if (error instanceof userError) {
@@ -547,7 +555,9 @@ try{
         throw new userError("This story does not exist", 400)
     }
  await storyToBeUnLiked.removeLike(req.user._id);
-    res.status(201).json({message : "Successfull"});
+    res.status(201).json({message : "Successfull"});    
+
+
 }
 catch(error){
     logEvents(`${error.name}: ${error.message}`, "unlikeAStoryError.txt", "storyError");

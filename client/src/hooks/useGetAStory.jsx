@@ -6,6 +6,7 @@ export const useGetAStory = () => {
     const [statusCode, setStatusCode] = useState(null)
     const [isFollowing, setIsFollowing] = useState(null)
     const [isLiked, setIsLiked] = useState(null)
+    const [isBookmarked, setIsBookmarked] = useState(null)
     const [data, setData] = useState([])
     const getAStory = async (id) => {
         setIsLoading(true) //starting the request
@@ -19,6 +20,7 @@ if(response && response.data){
     setData(response.data.story)
     setIsFollowing(response.data.isFollowing)
     setIsLiked(response.data.isLiked)
+    setIsBookmarked(response.data.isBookmarked)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -32,6 +34,7 @@ if(response && response.data){
 setIsLoading(false)
 setIsFollowing(null)
 setIsLiked(null)
+setIsBookmarked(null)
             if(error.message == "canceled"){
                 setError({message : "Your Request Has Timed Out", code : error.code})
             }

@@ -5,11 +5,14 @@ import { useModalContext } from "../../hooks/useModalContext"
 import { getStoryUrl } from "../../helpers/getStoryUrl"
 import useWindowSize from "../../hooks/useWindowSize"
 import Share from "../common/Share"
+import { useBookmarkAStory } from "../../hooks/useBookmarkAStory"
+import { useUnBookmarkAStory } from "../../hooks/useUnBookmarkAStory"
 import { MdOutlineFavoriteBorder, MdOutlineShare, MdOutlineFavorite} from "react-icons/md"
  import { FaRegCommentAlt } from "react-icons/fa"
  import ModeToggler from "../common/ModeToggler"
  import { useAuthContext } from "../../hooks/useAuthContext"
- import { FaRegBookmark } from "react-icons/fa"
+ import { FaRegBookmark, FaBookmark } from "react-icons/fa"
+ import { useState, useEffect } from "react"
 const StorySidebar = ({ 
 setOpenModal,
 openModal,
@@ -17,10 +20,16 @@ likeModal,
 setLikeModal,
 toggleDrawer,
 toggleLikesDrawer,
+isBookmarked,
 story}) => {
   const { user } = useAuthContext();
   const { width } = useWindowSize()
   const { shareModal, shareRef,  setShareUrl, shareUrl  } = useModalContext()
+  const [bookmarking, setBookmarking] = useState(false);
+  const [unBookmarking, setUnBookmarking] = useState(false);
+  const [bookmarkedBefore, setBookmarkedBefore] = useState(isBookmarked)
+  const bookmarkStory = useBookmarkAStory();
+  const unbookmarkStory = useUnBookmarkAStory();
   const openShare = () => {
     console.log(setShareUrl)
    setShareUrl(getStoryUrl(story))
@@ -41,6 +50,100 @@ toggleDrawer()
     setOpenModal(!openModal)
   }
 
+}
+const bookmarkAStory = () => {
+setBookmarking(true)
+setBookmarkedBefore(false)
+bookmarkStory.bookmarkAStory(story._id)
+}
+const unBookmarkAStory = () => {
+  setBookmarkedBefore(false)
+  setUnBookmarking(true)
+unbookmarkStory.unBookmarkAStory(story._id)
+}
+  useEffect(() => {
+if(Object.keys(bookmarkStory.data).length  > 0){
+  setBookmarkedBefore(false)
+  setBookmarking(false)
+}
+  }, [bookmarkStory.data])
+  useEffect(() => {
+    if(Object.keys(unbookmarkStory.data).length  > 0){
+      setBookmarkedBefore(true)
+      setUnBookmarking(false)
+    }
+      }, [unbookmarkStory.data])
+const renderBookmarkButton = () => {
+  if (Object.keys(bookmarkStory.data).length == 0 && !bookmarking && !bookmarkedBefore){
+    return (
+
+      <FaRegBookmark
+      onClick={() => bookmarkAStory()}
+      size={20}  color="#757575"/>
+    )
+  }
+  if (bookmarking && !bookmarkStory.error && !bookmarkedBefore){
+    return (
+      <FaBookmark
+      size={20}  color="#757575"/>
+    
+    )
+  }
+  if (!bookmarking && Object.keys(bookmarkStory.data).length > 0 && !bookmarkedBefore){
+    return (
+      <FaBookmark
+      onClick={() => unBookmarkAStory()}
+      size={20}  color="#757575"/>
+
+    )
+  }
+  if (bookmarkStory.error && !bookmarkedBefore){
+    return (
+      <FaRegBookmark
+      onClick={() => bookmarkAStory()}
+      size={20}  color="#757575"/>
+    )
+  }
+    
+};
+const renderUnBookmarkButton = ()  => {
+  if (Object.keys(unbookmarkStory.data).length == 0 && !unBookmarking && bookmarkedBefore){
+    return (
+       <FaBookmark
+       onClick={() => unBookmarkAStory()}
+       size={20}  color="#757575"/>
+
+    )
+  }
+  if (unBookmarking && !unbookmarkStory.error && bookmarkedBefore){
+    return (
+      <FaRegBookmark
+      size={20}  color="#757575"/>
+
+   
+
+    )
+  }
+  if (!unBookmarking && Object.keys(unbookmarkStory.data).length > 0 && bookmarkedBefore){
+    return(
+
+      <FaRegBookmark
+      onClick={() => bookmarkAStory()}
+      size={20}  color="#757575"/>
+
+    
+    )
+   
+   
+      
+  }
+  if (unbookmarkStory.error && bookmarkedBefore){
+    return (
+      <FaBookmark
+      onClick={() => unBookmarkAStory()}
+      size={20}  color="#757575"/>
+    )
+  }
 }
   return (
     <>
@@ -105,9 +208,15 @@ onClick={() => openShare()}
     </Link>
     </div>
     <div className="feed-sidebar-icon">
-    <Link to={"/dashboard/bookmarks"}>
-    <FaRegBookmark size={20}  />
-    </Link>
+    <span >
+    {
+      bookmarkedBefore ? 
+      <span>{renderUnBookmarkButton()}</span>
+      :
+      <span>{renderBookmarkButton()}</span>
+
+    }
+    </span>
   
     </div>
     <div className="feed-sidebar-icon">

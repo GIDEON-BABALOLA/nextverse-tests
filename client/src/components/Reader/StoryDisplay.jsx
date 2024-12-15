@@ -29,7 +29,7 @@ const StoryDisplay = ({ username, id, title} ) => {
  shareUrl,
  setShareUrl,
 } = useModalContext()
-  const { getAStory, isLoading, error, data, isFollowing, isLiked } = useGetAStory();
+  const { getAStory, isLoading, error, data, isFollowing, isLiked, isBookmarked } = useGetAStory();
   const [isDrawerOpen, setDrawerOpen] = useState(false)
   const [likesDrawerOpen, setLikesDrawerOpen] = useState(false)
   const [comments, setComments] = useState([])
@@ -93,6 +93,7 @@ console.log(data)
         setLikeModal={setLikeModal}
         toggleDrawer={toggleDrawer}
         toggleLikesDrawer={toggleLikesDrawer}
+        isBookmarked={isBookmarked}
         story={ {title : data.title, author : data.author, _id :data._id } }
         />
  <section className="story-page-total-screen" onClick={closeContextMenu}>

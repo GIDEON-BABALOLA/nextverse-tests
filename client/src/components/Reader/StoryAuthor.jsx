@@ -59,7 +59,7 @@ setImPossibleToFollow(true)
   }
   const likeTheStory = () => {
     setLiking(true)
-    setLikedBefore(true)
+    setLikedBefore(false)
     likeStory.likeAStory(storyId)
   }
   const unlikeTheStory = () => {
@@ -97,18 +97,16 @@ if(Object.keys(likeStory.data).length  > 0){
         }
         if (liking && !likeStory.error && !likedBefore){
           return (
-            <>
+          
                 <MdOutlineFavorite 
             
             size={20} color="var(--like-icon)"/>
-            wow
-            </>
+       
           
           )
         }
         if (!liking && Object.keys(likeStory.data).length > 0 && !likedBefore){
           return (
-            
   <MdOutlineFavorite
           onClick={() => unlikeTheStory()}
            size={20} color="var(--like-icon)"/>
@@ -128,16 +126,22 @@ if(Object.keys(likeStory.data).length  > 0){
         if (Object.keys(unlikeStory.data).length == 0 && !unLiking && likedBefore){
           return (
 
+
 <MdOutlineFavorite
             onClick={() => unlikeTheStory()}
              size={20} color="var(--like-icon)"/>
+
+
   
           )
         }
         if (unLiking && !unlikeStory.error && likedBefore){
           return (
+            
 <MdOutlineFavoriteBorder 
             size={20} color="var(--actions-button-color)"/>
+
+
 
          
       
@@ -149,6 +153,7 @@ if(Object.keys(likeStory.data).length  > 0){
           <MdOutlineFavoriteBorder 
              onClick={() => likeTheStory()}
             size={20} color="var(--actions-button-color)"/>
+       
 
           
           )

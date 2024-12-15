@@ -59,7 +59,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
   const likeTheStory = () => {
     setLiking(true)
-    setLikedBefore(true)
+    setLikedBefore(false)
     likeStory.likeAStory(story._id)
   }
   const unlikeTheStory = () => {
@@ -92,12 +92,11 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
     }
     if (liking && !likeStory.error && !likedBefore){
       return (
-        <>
+        
             <MdOutlineFavorite 
         
         size={20} color="var(--like-icon)"/>
-        wow
-        </>
+  
       
       )
     }

@@ -1,12 +1,12 @@
 import { useState } from "react";
 // import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useBookmarkAStory = () => {
+export const useUnBookmarkAStory = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
-    const bookmarkAStory = async (id) => {
+    const unbookmarkAStory = async (id) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
@@ -45,5 +45,5 @@ setError({message : "Your Request Has Timed Out", code : error.code})
         }
     }
     }
-    return {bookmarkAStory, isLoading, error, data, statusCode} 
+    return {unbookmarkAStory, isLoading, error, data, statusCode} 
 }
