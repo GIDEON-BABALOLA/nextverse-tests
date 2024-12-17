@@ -4,6 +4,7 @@ import CommentCard from "./CommentCard"
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useGetStoryComments } from "../../hooks/useGetStoryComments";
 import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
+import { formatNumber } from "../../helpers/formatNumber";
 import ErrorMessage from "../common/ErrorMessage";
 const CommentList = ({
 storyId,
@@ -91,7 +92,7 @@ const resendRequest = () => {
  {!error && <section>
   <div className="comments-title">
     <span>
-    Comments <span className="comment-badge">{commentNumber}</span>
+    Comments <span className="comment-badge">{formatNumber(commentNumber)}</span>
     </span>
 <span>
 <MdArrowDownward /><MdArrowUpward/>Most Recents<MdKeyboardArrowDown />

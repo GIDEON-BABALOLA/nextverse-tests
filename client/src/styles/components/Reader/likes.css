@@ -98,17 +98,15 @@ align-content: flex-start;
 text-align: justify;
    }
    @media (max-width: 767px) {
-   .likes-title{
+   /* .likes-title{
     display: none;
     
-   }
+   } */
    .like-follow-button{
     padding: 10px 30px;
    }
    .like-card{
     padding: 10px 0px;
    }
-   .likes-close-icon{
-    display: none;
-  }
+
 }

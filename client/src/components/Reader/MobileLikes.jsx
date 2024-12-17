@@ -15,8 +15,8 @@ export default function MobileLikes({ isOpen, onClose, likeModal, id
     <div className="drawer-spacing">
       <div aria-hidden className="drawer-header-divider" />
       <span style={{display : "flex", flexDirection : "row", justifyContent : "space-between", alignItems : "center"}}>
-      <Drawer.Title className="drawer-title">Likes</Drawer.Title>
-      <span  onClick={() => { onClose()}}><MdClose size={30}/></span>
+      {/* <Drawer.Title className="drawer-title"></Drawer.Title> */}
+
       </span>
 
  <Likes likesDrawerOpen={isOpen} likeModal={likeModal} id={id} />

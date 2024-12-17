@@ -1,6 +1,8 @@
 import { useGetStoryLikes } from "../../hooks/useGetStoryLikes"
 import "../../styles/components/Reader/likes.css"
+import ErrorMessage from "../common/ErrorMessage";
 import { MdClose } from "react-icons/md"
+import { formatNumber } from "../../helpers/formatNumber";
 import { lazy, useEffect, useRef,  useState } from "react"
 import LikeCard from "./LikeCard"
 const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal }) => {
@@ -56,11 +58,18 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal }) => {
       }
     };
   }, [lastItemRef, isLoading, data]);
-  
+  const resendRequest = () => {
+    getStoryLikes(page, limit, id)
+  }
   return (
    <section>
     <span style={{display : "flex", flexDirection : "row", alignItems : "center", justifyContent : "space-between"}}>
-    <div style={{fontSize : "2rem"}} className="likes-title">Likes</div>
+      <span style={{display : "flex", flexDirection : "row", alignItems : "center", justifyContent : "space-between", gap : "6px"}}>
+      <span style={{fontSize : "2rem"}} className="likes-title">Likes</span>
+      <span className="comment-badge">{formatNumber(likesCount)}</span>
+      </span>
+
+    
     <span onClick={() => { setLikeModal(!likeModal)}}
       style={{cursor : "pointer"}}
       className="likes-close-icon"
@@ -71,6 +80,7 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal }) => {
     </span>
 
     <hr />
+    {!error &&
     <div className="likes-section" ref={likesSectionRef}>
 {
         likes.map((like, index) => (
@@ -92,6 +102,36 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal }) => {
 
 </div>
     </div>
+} 
+{error && <>
+
+{ error?.code == "ERR_NETWORK" ? 
+  <ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={50}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={50}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content, Pls click on the refresh button"}
+height={50}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</>
+}
    </section>
   )
 }
