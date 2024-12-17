@@ -537,9 +537,9 @@ try{
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
     if (error instanceof userError) {
-        return res.status(error.statusCode).json({ error: error.message });
+        return res.status(error.statusCode).json({ message: error.message });
     } else {
-        return res.status(500).json({ error: "Internal Server Error" });
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 }
@@ -562,9 +562,9 @@ try{
 catch(error){
     logEvents(`${error.name}: ${error.message}`, "unlikeAStoryError.txt", "storyError");
     if (error instanceof userError) {
-        return res.status(error.statusCode).json({ error: error.message });
+        return res.status(error.statusCode).json({ message: error.message });
     } else {
-        return res.status(500).json({ error: "Internal Server Error" });
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 }
@@ -577,6 +577,7 @@ catch(error){
 const bookmarkAStory = async (req, res) => {
     const { id } = req.params;
     try{
+       
         if(!validateMongoDbId(id)){
             throw new userError("Pls enter a parameter recognized by the database", 400)
                 }
@@ -597,10 +598,10 @@ const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
         if (error instanceof userError) {
-            return  res.status(error.statusCode).json({ error : error.message})
+            return  res.status(error.statusCode).json({ message : error.message})
             }
              else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
  }
     }
 }
@@ -627,9 +628,9 @@ const unBookmarkAStory = async (req, res) => {
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unbookmarkAStoryError.txt", "storyError");
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error: error.message });
+            return res.status(error.statusCode).json({ mesage: error.message });
         } else {
-            return res.status(500).json({ error: "Internal Server Error" });
+            return res.status(500).json({ message: "Internal Server Error" });
         }
     }
 };

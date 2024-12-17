@@ -171,6 +171,19 @@ storySchema.methods.addBookmark = async function (userId) {
     return this;
 };
 
+storySchema.methods.removeBookmark = async function (userId) {
+    const initialLength = this.likes.length;
+    this.bookmarks = this.bookmarks.filter(
+    bookmarks => bookmarks.bookmarkBy.toString() !== userId.toString()
+    );
+    // If the length has changed, it means a Like was removed
+    if (this.bookmarks.length !== initialLength) {
+        this.totalBookmarks = this.bookmarks.length;
+        await this.save();
+    }
+    return this;
+};
+
 
 
 storySchema.methods.addLike = async function (userId) {

@@ -60,11 +60,13 @@ setImPossibleToFollow(true)
   const likeTheStory = () => {
     setLiking(true)
     setLikedBefore(false)
+    setTotalLikes(totalLikes + 1)
     likeStory.likeAStory(storyId)
   }
   const unlikeTheStory = () => {
     setUnLiking(true)
-    setLikedBefore(false)
+    setLikedBefore(true)
+    setTotalLikes(totalLikes - 1)
     unlikeStory.unlikeAStory(storyId)
   }
   useEffect(() => {
@@ -76,16 +78,21 @@ setImPossibleToFollow(true)
 if(Object.keys(likeStory.data).length  > 0){
   setLikedBefore(false)
   setLiking(false)
-  setTotalLikes(totalLikes + 1)
 }
-  }, [likeStory.data])
+if( likeStory.error !== null){
+setTotalLikes(totalLikes - 1)
+}
+  }, [likeStory.data, likeStory.error])
   useEffect(() => {
     if(Object.keys(unlikeStory.data).length  > 0){
       setLikedBefore(true)
       setUnLiking(false)
-      setTotalLikes(totalLikes - 1)
     }
-      }, [unlikeStory.data])
+    if( unlikeStory.error !== null){
+      console.log(unlikeStory.error)
+      setTotalLikes(totalLikes + 1)
+    }
+      }, [unlikeStory.data, unlikeStory.error])
       const renderLikeButton = () => {
         if (Object.keys(likeStory.data).length == 0 && !liking && !likedBefore){
           return (

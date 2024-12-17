@@ -60,27 +60,34 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const likeTheStory = () => {
     setLiking(true)
     setLikedBefore(false)
+    setLikesCount(likesCount + 1)
     likeStory.likeAStory(story._id)
   }
   const unlikeTheStory = () => {
     setUnLiking(true)
     setLikedBefore(false)
+    setLikesCount(likesCount - 1)
     unlikeStory.unlikeAStory(story._id)
   }
   useEffect(() => {
     if(Object.keys(likeStory.data).length  > 0){
       setLikedBefore(false)
       setLiking(false)
-      setLikesCount(likesCount + 1)
     }
-      }, [likeStory.data])
+    if( likeStory.error !== null){
+      setLikesCount(likesCount - 1)
+      }
+      }, [likeStory.data, likeStory.error])
       useEffect(() => {
         if(Object.keys(unlikeStory.data).length  > 0){
           setLikedBefore(true)
           setUnLiking(false)
-          setLikesCount(likesCount - 1)
+      
         }
-          }, [unlikeStory.data])
+        if( unlikeStory.error !== null){
+          setLikesCount(likesCount + 1)
+          }
+          }, [unlikeStory.data, unlikeStory.error])
   const renderLikeButton = () => {
     if (Object.keys(likeStory.data).length == 0 && !liking && !likedBefore){
       return (

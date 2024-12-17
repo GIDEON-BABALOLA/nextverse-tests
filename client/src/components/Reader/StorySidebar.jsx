@@ -62,7 +62,7 @@ bookmarkStory.bookmarkAStory(story._id)
 }
 const unBookmarkAStory = () => {
   setUnBookmarking(true)
-  setBookmarkedBefore(false)
+  setBookmarkedBefore(true)
 unbookmarkStory.unbookmarkAStory(story._id)
 }
   useEffect(() => {
@@ -77,6 +77,9 @@ if(Object.keys(bookmarkStory.data).length  > 0){
       setUnBookmarking(false)
     }
       }, [unbookmarkStory.data])
+      useEffect(() => {
+console.log(unbookmarkStory.error)
+      }, [unbookmarkStory.error])
 const renderBookmarkButton = () => {
   if (Object.keys(bookmarkStory.data).length == 0 && !bookmarking && !bookmarkedBefore){
     return (
