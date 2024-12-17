@@ -88,7 +88,9 @@
   color: var(--drawer-header-color);
   
 }
-
+.drawer-header::-webkit-scrollbar{
+  width: 0px;
+}
 /* Drawer Header Divider */
 .drawer-header-divider {
   width: 3rem; /* 12 */
