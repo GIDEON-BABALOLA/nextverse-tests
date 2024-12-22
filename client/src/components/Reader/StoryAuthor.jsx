@@ -13,8 +13,8 @@ const StoryAuthor = ({ author,
   avatar,
   userId,
   isFollowing,
-  views,
-  likes,
+  viewsNumber,
+  likesNumber,
   storyId,
   isLiked
 }) => {
@@ -28,7 +28,7 @@ const StoryAuthor = ({ author,
   const [following, setFollowing] = useState(false)
   const [liking, setLiking]  = useState(false)
   const [unLiking, setUnLiking] = useState(false)
-  const [totalLikes, setTotalLikes] = useState(likes)
+  const [totalLikes, setTotalLikes] = useState(likesNumber)
   const [likedBefore, setLikedBefore] = useState(isLiked)
   const [imPossibleToFollow, setImPossibleToFollow] = useState(false)
   const { loaded, error } = useImageLoad(avatar);
@@ -241,7 +241,7 @@ setTotalLikes(totalLikes - 1)
 
 </div>
       <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", gap : "5px"}}>
-<span> <MdOutlineVisibility size={20}/>&nbsp;{formatNumber(views)}&nbsp;views</span>
+<span> <MdOutlineVisibility size={20}/>&nbsp;{formatNumber(viewsNumber)}&nbsp;views</span>
 <span>
 { likedBefore ? 
 <span style={{cursor : "pointer"}}>

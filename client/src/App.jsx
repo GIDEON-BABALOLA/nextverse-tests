@@ -13,7 +13,7 @@ import { useState, useRef, useEffect } from "react"
 import AnalyticsPage from "./Pages/Dashboard/AnalyticsPage"
 import UsersPage from "./Pages/Dashboard/UsersPage"
 import SettingsPage from "./Pages/Dashboard/SettingsPage"
-import StoriesPage from './Pages/Dashboard/StoriesPage';
+import PublishPage from './Pages/Dashboard/PublishPage';
 import ReportsPage from './Pages/Dashboard/ReportsPage';
 import DashboardLayout from './components/Dashboard/common/DashboardLayout';
 import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
@@ -140,7 +140,7 @@ if(location["*"]  !== ""){
           <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
           <Route path="settings" element={<SettingsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="publish" element={<StoriesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          <Route path="publish" element={<PublishPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="profile" element={<DashboardProfilePage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
           <Route path="messages" element={<MessagesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>

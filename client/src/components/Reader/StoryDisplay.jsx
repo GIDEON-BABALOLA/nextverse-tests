@@ -33,7 +33,9 @@ const StoryDisplay = ({ username, id, title} ) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false)
   const [likesDrawerOpen, setLikesDrawerOpen] = useState(false)
   const [comments, setComments] = useState([])
+  const [likes, setLikes] = useState([])
   const [commentNumber, setCommentNumber] = useState(0)
+  const [likesNumber, setLikesNumber] = useState(0)
   const [deleteModal, setDeleteModal] = useState({
     comment : "",
     modal : false
@@ -85,6 +87,10 @@ console.log(data)
       likeModal={likeModal}
       likesDrawerOpen={likesDrawerOpen}
       onClose={() => setLikesDrawerOpen(false)}
+      likes={likes}
+      likesNumber={likesNumber}
+      setLikes={setLikes}
+      setLikesNumber={setLikesNumber}
      />
         <StorySidebar 
         setOpenModal={setOpenModal} 
@@ -125,10 +131,14 @@ className="story-display-main"
       author={data.author}
       avatar={data.avatar}
       userId={data.userId}
-      views={data.totalViews}
-      likes={data.totalLikes}
+      viewsNumber={data.totalViews}
+      likesNumber={data.totalLikes}
+      likes={likes}
+      setLikesNumber={setLikesNumber}
+      setLikes={setLikes}
       isFollowing={isFollowing}
       isLiked={isLiked}
+     
       storyId={id}
       />  
       
@@ -152,11 +162,14 @@ className="story-display-main"
       author={data.author}
       avatar={data.avatar}
       userId={data.userId}
-      views={data.totalViews}
-      likes={data.totalLikes}
+      viewsNumber={data.totalViews}
+      likesNumber={data.totalLikes}
       isFollowing={isFollowing}
       isLiked={isLiked}
       storyId={id}
+      likes={likes}
+      setLikesNumber={setLikesNumber}
+      setLikes={setLikes}
       />
            <StorySuggestions
     userId={data.userId}
@@ -188,6 +201,10 @@ className="story-display-main"
       likeModal={likeModal}
       setLikeModal={setLikeModal}
       likesDrawerOpen={likesDrawerOpen}
+      likes={likes}
+      likesNumber={likesNumber}
+      setLikes={setLikes}
+      setLikesNumber={setLikesNumber}
      
      />}
    />

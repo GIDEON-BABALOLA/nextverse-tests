@@ -5,3 +5,7 @@
 20241212	01:03:13	986d44dd-a779-4cbe-afc1-6d921c085933	TypeError: Story.findById(...).pick is not a function
 20241212	01:04:04	97c5d545-9452-4b3f-8359-9b2c2ff1e22c	TypeError: Story.findById(...).lean(...)._pick is not a function
 20241212	01:04:53	4aa42fdd-07af-43ed-a815-53eae0fa94f4	TypeError: Cannot read properties of undefined (reading 'length')
+20241222	21:39:10	75f5fbda-009d-4388-b3d5-846d4c5b245b	userError: Pls enter a parameter recognized by the database
+20241222	21:39:13	136492d4-e040-4757-8179-ccfd5b5db94b	userError: Pls enter a parameter recognized by the database
+20241222	21:39:15	3d69ab6c-52af-428e-909b-38d1fb6236d7	userError: Pls enter a parameter recognized by the database
+20241222	21:39:15	7e9ef91a-8579-427d-8fc2-9a7b2f951dd8	userError: Pls enter a parameter recognized by the database

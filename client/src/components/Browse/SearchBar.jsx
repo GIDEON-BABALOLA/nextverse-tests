@@ -100,7 +100,8 @@ onChange={startSearch}
    size={50} onClick={clearInput}/> }
 
 <button className="litenote-browse-trigger-search-button" onClick={searchStory}>
-<MdSearch color="white" style={{fontWeight : 500}} size={20}/>
+{/* <MdSearch color="white" style={{fontWeight : 500}} size={20}/> */}
+<LoadingSpinner />
 </button>
    
    

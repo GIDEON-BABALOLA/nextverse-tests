@@ -1,34 +1,27 @@
 import { useState } from "react";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useGetSearchResults = () => {
+export const useGetUserBookmarks = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
-    const [storyCount, setStoryCount] = useState(0)
+    const [bookmarkCount, setBookmarkCount] = useState(0)
     const [data, setData] = useState([])
-    const getSearchResults = async (title) => {
+    const getUserBookmarks = async (page, limit) => {
         const parameters = {
             page : page,
             limit : limit,
-            category : category,
-            userId : userId,
-           fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes"
-            
-        }
-        if(category == "all"){
-delete parameters.category
         }
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/story/get-all-stories", {
+const response = await axiosConfig.get("/user/get-user-bookmarks", {
     params : parameters,
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }
 )
 if(response && response.data){
-    setData(response.data.stories)
-    setStoryCount(response.data.count)
+    setData(response.data.bookmarks)
+    setBookmarkCount(response.data.count)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -39,7 +32,7 @@ if(response && response.data){
         }
         
         catch(error){
-            setStoryCount(0)
+            setBookmarkCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
                 setError({message : "Your Request Has Timed Out", code : error.code})
@@ -55,5 +48,5 @@ setIsLoading(false)
         }
     }
     }
-    return {getSearchResults, isLoading, error, data, statusCode, storyCount} 
+    return {getUserBookmarks, isLoading, error, data, statusCode, bookmarkCount} 
 }

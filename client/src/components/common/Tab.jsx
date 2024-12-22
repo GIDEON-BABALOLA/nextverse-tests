@@ -8,6 +8,7 @@ const Tab = ({ setTab, tabs, labelWidth, ...props}) => {
     const { width } = useWindowSize()
     const tabRef = useRef()
     const clickMe = (e) => {
+      console.log(e.target)
         const tab = e.target.innerText.toLowerCase()
         const optionMapping = {}
         const distanceMap = {}
@@ -33,7 +34,7 @@ setSlideDistance(distanceMap[tab])
     <div className="bookmark-tabs"
 ref={tabRef}
 >
-  {   Object.entries(tabs).map(([key, value], index) => (
+  {   Object.entries(tabs).map(([key], index) => (
     <label htmlFor={`tab${index}`}
     className="tab-label"
     key={key}

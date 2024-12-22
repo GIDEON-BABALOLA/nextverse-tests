@@ -4,7 +4,14 @@ import DeleteModal from "./DeleteModal";
 import Likes from "./Likes"
 import { useState } from "react";
 import { Drawer } from 'vaul';
-export default function MobileLikes({ isOpen, onClose, likeModal, id
+export default function MobileLikes({ isOpen,
+   onClose,
+  likeModal,
+  id, 
+  likes,
+  likesNumber,
+  setLikes,
+  setLikesNumber
  }) {
   return (
     <Drawer.Root modal={true} open={isOpen} onOpenChange={onClose}>
@@ -19,7 +26,15 @@ export default function MobileLikes({ isOpen, onClose, likeModal, id
 
       </span>
 
- <Likes likesDrawerOpen={isOpen} likeModal={likeModal} id={id} />
+ <Likes likesDrawerOpen={isOpen}
+  likeModal={likeModal}
+  id={id}
+  onClose={onClose}
+  likes={likes}
+  likesNumber={likesNumber}
+  setLikes={setLikes}
+  setLikesNumber={setLikesNumber}
+  />
     </div>
   </div>
 

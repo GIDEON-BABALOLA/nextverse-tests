@@ -2,13 +2,26 @@ import "../../../styles/components/Dashboard/bookmark-card.css"
 import { FaEllipsisH } from "react-icons/fa";
 import { FaRegBookmark, FaBookOpen, FaTimes, FaShareAlt } from "react-icons/fa";
 import { MdClose, MdShare, MdDelete, MdReadMore, MdBookmark } from "react-icons/md";
+import {useGetUserBookmarks} from "../../../hooks/useGetUserBookmarks"
 import StoryCard from "../../Profile/StoryCard";
 import  { useModalContext } from "../../../hooks/useModalContext"
 import ContextMenu from "../../common/ContextMenu";
+import { useState } from "react";
 import Share from "../../common/Share"
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 const BookmarkList = () => {
     // Sample data for stories
+  const { getUserBookmarks, isLoading, error, data, statusCode, bookmarkCount } = useGetUserBookmarks();
+  const [page, setPage]  = useState(1)
+  const [limit, setLimit] = useState(1)
+ useEffect(() => {
+      const skip = (page * limit);
+      if (skip >= bookmarkCount && bookmarkCount > 0) {
+  return;
+      }
+        getUserBookmarks(page, limit)
+     
+  }, [page, limit])
     const {
       contextMenu,
        shareModal,
@@ -163,6 +176,28 @@ const BookmarkList = () => {
       }
     }
   ]
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isLoading) {
+         console.log("I am intersecting")
+              setPage((prevPage) => prevPage + 1);
+            observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
+          }
+        },
+        { threshold: 0.1, } // Adjust threshold as needed
+      );
+    
+      if (lastItemRef.current && !isLoading) {
+        observer.observe(lastItemRef.current);
+      }
+    
+      return () => {
+        if (lastItemRef.current) {
+          observer.unobserve(lastItemRef.current);
+        }
+      };
+    }, [lastItemRef, isLoading, data]);
   return (
     <>
   <div className="litenote-dashboard-stories-preview-grid"

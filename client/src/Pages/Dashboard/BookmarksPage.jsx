@@ -5,8 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import BookmarkList from "../../components/Dashboard/common/BookmarkList.jsx";
 import Tab from "../../components/common/Tab.jsx";
 import "../../styles/components/Dashboard/bookmark-page.css"
-
-
 const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const [loadPage, setLoadPage] = useState(true)
   const [tabs, setTab] = useState({
@@ -30,14 +28,13 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
      : <>
     <main>
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
-   <div className="litenote-bookmark-title">
+   <div className="litenote-bookmark-title"  style={{marginBottom : "0px"}}>
    <h4>
   Filter Your Bookmarks
   </h4>
-    <Tab tabs={tabs} setTab={setTab}/>
+  <Tab tabs={tabs} setTab={setTab} labelWidth={200}/>
    </div>
- 
-    <div className="litenote-browse-bookmark-grid" style={{marginTop : "20px"}}>
+    <div className="litenote-browse-bookmark-grid" style={{marginTop : "0px"}}>
     <BookmarkList />
       </div>
     </main>

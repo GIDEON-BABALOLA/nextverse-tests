@@ -662,6 +662,37 @@ const getAllUsers = async (req, res) => {
         }
     }
     }
+    const getUserBookmarks = async (req, res) => {
+        const { page, limit } = req.query;
+        try{
+    
+        const skip = (page - 1) * limit;
+        const user = await User.findOne({ _id: req.user._id });
+        if(!user){
+            throw new userError("You are not a user of litenote", 400)
+        }
+        const bookmarksCount = user ? user.bookmarks.length : 0;
+        const userBookmarks = await User.findOne({ _id: req.user._id })
+      .populate({
+        path: 'bookmarks.bookmarkId',
+        select: 'title author avatar estimatedReadingTime category' 
+        // You can add other fields here as needed
+      })
+      .slice('bookmarks', [parseInt(skip), parseInt(limit)])
+      .lean();
+        res.status(200).json({ bookmarks : userBookmarks, count : bookmarksCount})      
+           
+        
+        }
+        catch(error){
+            logEvents(`${error.name}: ${error.message}`, "getUserBookmarksError.txt", "userError")
+            if(error instanceof userError){
+                return res.status(error.statusCode).json({ message : error.message})
+            }else{
+                return res.status(500).json({message : "Internal Server Error"})
+            }
+        }
+        }
 module.exports = {
     signupUser,
     loginUser,
@@ -678,5 +709,6 @@ module.exports = {
     getUserProfile,
     resendUserVerification,
     getAllUsers,
-    getAUser
+    getAUser,
+    getUserBookmarks
 }
