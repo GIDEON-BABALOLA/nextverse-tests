@@ -5,6 +5,7 @@ import FeedList from "../components/Feed/FeedList";
 import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
 import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
 import FeedBottomNav from "../components/Feed/FeedBottomNav";
+
 import ChatBot from "../components/ChatBot/ChatBot";
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
 import useWindowSize from "../hooks/useWindowSize";
@@ -65,8 +66,6 @@ const FeedPage = () => {
         <div className="feed-header">
             <div className="feed-logo">Lite Note</div>
            { width < 768 &&<>
-            {/* <FaSearch style={{position : "absolute", top : "20%", left : "5%", cursor :"pointer"}} />
-            <input type="text" placeholder="Search Anything" className="feed-search-bar" /> */}
             <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
   <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
     <FaSearch className="search-magphone" />
@@ -78,6 +77,7 @@ const FeedPage = () => {
         paddingLeft: '35px', // Add padding to the left to accommodate the search icon
         paddingRight: '35px', // Add padding to the right to accommodate the times icon
         width: '100%',
+   
       }}
     />
     <FaTimes className="searchXphone" />

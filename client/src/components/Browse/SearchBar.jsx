@@ -6,12 +6,17 @@ import { useState, useEffect, useRef } from "react"
 import { FaMicrophone } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import SoundWave from "../../components/common/SoundWave"
+import LoadingSpinner from "../Loaders/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
 import toast from "react-hot-toast"
 const SearchBar = () => {
   const { width } = useWindowSize()
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
+  const navigate = useNavigate();
+  const resultBox = useRef()
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResult, setSearchResult] = useState([])
   const startListening = () => SpeechRecognition.startListening({ continuous: true })
   useEffect(() => {
 if(transcript == ""){
@@ -29,15 +34,15 @@ toast.error("No Internet")
     "where to learn web design",
     "How to create a website"
   ]
-  const resultBox = useRef()
-  const [searchQuery, setSearchQuery] = useState("")
-  const [searchResult, setSearchResult] = useState([])
   const searchStory = () => {
-    SpeechRecognition.stopListening()
-    const filteredResults = availableKeywords.filter((keyword) =>
-      keyword.toLowerCase().includes(transcript.toLowerCase())
-    );
-    setSearchResult(filteredResults);
+    if(searchQuery.length !== 0){
+      navigate(`/results?search_query=${searchQuery}`);
+    }
+    // SpeechRecognition.stopListening()
+    // const filteredResults = availableKeywords.filter((keyword) =>
+    //   keyword.toLowerCase().includes(transcript.toLowerCase())
+    // );
+    // setSearchResult(filteredResults);
   }
   const startSearch = (e) => {
     setSearchQuery(e.target.value)

@@ -25,6 +25,7 @@ import StoryPage from './Pages/StoryPage';
 import NoteReaderPage from './Pages/NoteReaderPage';
 import LoadingPage from './Pages/LoadingPage';
 import FollowPage from './Pages/FollowPage';
+import SearchResults from './Pages/SearchResults';
 import { useAuthContext } from './hooks/useAuthContext';
 import { useThemeContext } from './hooks/useThemeContext';
 import DevelopersPage from "./Pages/DevelopersPage"
@@ -80,6 +81,17 @@ if(location["*"]  !== ""){
         <LoadingPage />
           ) : user ? (
             <ExplorePage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+/>
+<Route path="results" 
+    element={
+          appLoading ? (
+        <LoadingPage />
+          ) : user ? (
+            <SearchResults />
           ) : (
             <Navigate to="/login" />
           )
