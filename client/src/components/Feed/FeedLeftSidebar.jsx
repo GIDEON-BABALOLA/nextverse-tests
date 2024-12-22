@@ -24,7 +24,7 @@ const FeedLeftSidebar = ({ view, changeView }) => {
          image={user["picture"]}
          className="feed-man"
          alt="Author"
-         onClick={() => { navigatePage("/")}} 
+         onClick={() => { navigatePage(`/profile/${user["username"]}`)}} 
           />
 
          </div>
