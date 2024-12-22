@@ -567,6 +567,7 @@ color: var(--searcher-color);
     }
 }
 .phone-feed-sidebar-nav-link{
+    cursor: pointer;
     text-decoration: none !important;
     color : hsl(174, 8%, 35%) !important
 }
@@ -606,6 +607,9 @@ color: var(--searcher-color);
 .phone-feed-sidebar-nav-name{
     font-size: .900rem;
     color: var(--icon-color);
+}
+.toolman{
+    font-size: 4rem;
 }
 .phone-feed-sidebar-icon{
     font-size: 1.5rem;

@@ -1,3 +1,7 @@
 20241217	18:30:26	3997eb65-f65b-4bca-8e02-65cb0e97c942	ReferenceError: how is not defined
 20241217	18:30:28	df6c0fe3-da21-4ee3-afbb-b27960564f34	ReferenceError: how is not defined
 20241217	18:30:29	a9aff2d8-5b10-431a-9dec-62056b78fc95	ReferenceError: how is not defined
+20241221	21:45:50	8f39113b-1968-4323-9669-e339f9539e8c	ReferenceError: thrower is not defined
+20241221	21:45:52	3a34eccc-d32c-4e0a-a3e1-809d02ad122b	ReferenceError: thrower is not defined
+20241221	21:45:53	6afa6916-552a-4075-97c8-2f4d0c72c514	ReferenceError: thrower is not defined
+20241221	21:45:54	91abaa5f-5493-4015-bc9e-038121595515	ReferenceError: thrower is not defined

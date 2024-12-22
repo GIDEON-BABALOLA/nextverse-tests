@@ -297,7 +297,7 @@ if(foundUser && match){
     const id = foundUser?._id.toString()
     const refreshToken = generateRefreshToken(id, foundUser.role)
     await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
-    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 3, sameSite : "None",  secure : true })
+    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 7, sameSite : "None",  secure : true })
     //Three Day Refresh Token
     const detailsOfUserToBeSent = _.omit(foundUser.toObject(), "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress",
