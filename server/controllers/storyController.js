@@ -469,10 +469,7 @@ const getStoryComments = async (req, res) => {
   })
   .slice('comments', [parseInt(skip), parseInt(limit)])
   .lean();
-  setTimeout(() => {
     res.status(200).json({ comments : storyComments["comments"], count : commentCount})      
-           
-  }, 3000);
 
     
     }

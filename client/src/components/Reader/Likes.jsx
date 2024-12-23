@@ -24,13 +24,9 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal, onClose, likes, s
      }
   }, [page, limit, likeModal, likesDrawerOpen, id, likesCount])
   useEffect(() => {
-    if(!isLoading){
-    if(data.length == 0 && !error && page == 1) {
-setEmptyData(true)
-    }
-  }
+
     if(data.length > 0){
-    
+    console.log("chow")
       
       setLikes((prev) => {
         const newLikes = data.filter(
@@ -43,7 +39,19 @@ setEmptyData(true)
     }
 
   
-  }, [data,  likesCount, limit, page, error, isLoading])
+  }, [data,  likesCount, limit, page, error, isLoading, likesNumber])
+  useEffect(() => {
+    if(!isLoading){
+      if(data.length == 0 && !error && page == 1 && likesNumber == 0){
+        setEmptyData(true)
+      }else{
+        setEmptyData(false)
+      }
+      if(likesNumber == 0 ){
+        setEmptyData(true)
+      }
+  }
+  }, [likesNumber, isLoading, data, error, page])
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

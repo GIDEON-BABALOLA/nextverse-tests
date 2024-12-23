@@ -16,7 +16,10 @@ const StoryAuthor = ({ author,
   viewsNumber,
   likesNumber,
   storyId,
-  isLiked
+  isLiked,
+  likes,
+  setLikesNumber,
+  setLikes
 }) => {
   const navigateToProfile = useNavigateProfile();
   const {followUser, error : followError, data} = useFollowUser();
@@ -76,6 +79,26 @@ setImPossibleToFollow(true)
       }, [data])
   useEffect(() => {
 if(Object.keys(likeStory.data).length  > 0){
+  setLikes((prevLikes) => {
+    const newLike = {
+      likedBy: {
+        _id: user["_id"],
+        username: user["username"],
+        picture: user["picture"],
+        bio: user["bio"],
+      },
+    };
+  
+    // Check if the newLike already exists in the array
+    const isAlreadyLiked = prevLikes.some(
+      (like) => like.likedBy._id === newLike.likedBy._id
+    );
+  
+    // If it doesn't exist, add it; otherwise, return the previous likes
+    return isAlreadyLiked ? prevLikes : [newLike, ...prevLikes];
+  });
+  
+  setLikesNumber(likesNumber  + 1)
   setLikedBefore(false)
   setLiking(false)
 }
@@ -85,6 +108,12 @@ setTotalLikes(totalLikes - 1)
   }, [likeStory.data, likeStory.error])
   useEffect(() => {
     if(Object.keys(unlikeStory.data).length  > 0){
+      console.log(likes, user["_id"])
+      const newLikes = likes.filter((like) => like.likedBy._id.toString() !== user["_id"].toString())
+      console.log(newLikes)
+      console.log("why now")
+      setLikes(newLikes)
+      setLikesNumber(likesNumber  -  1)
       setLikedBefore(true)
       setUnLiking(false)
     }
