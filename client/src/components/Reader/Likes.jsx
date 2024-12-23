@@ -39,7 +39,7 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal, onClose, likes, s
     }
 
   
-  }, [data,  likesCount, limit, page, error, isLoading, likesNumber])
+  }, [data,  likesCount, limit, page, error, isLoading])
   useEffect(() => {
     if(!isLoading){
       if(data.length == 0 && !error && page == 1 && likesNumber == 0){

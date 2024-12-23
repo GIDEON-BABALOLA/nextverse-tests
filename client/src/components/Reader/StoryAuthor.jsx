@@ -64,12 +64,14 @@ setImPossibleToFollow(true)
     setLiking(true)
     setLikedBefore(false)
     setTotalLikes(totalLikes + 1)
+    setLikesNumber(totalLikes + 1)
     likeStory.likeAStory(storyId)
   }
   const unlikeTheStory = () => {
     setUnLiking(true)
     setLikedBefore(true)
     setTotalLikes(totalLikes - 1)
+    setLikesNumber(totalLikes - 1)
     unlikeStory.unlikeAStory(storyId)
   }
   useEffect(() => {
@@ -79,30 +81,11 @@ setImPossibleToFollow(true)
       }, [data])
   useEffect(() => {
 if(Object.keys(likeStory.data).length  > 0){
-  setLikes((prevLikes) => {
-    const newLike = {
-      likedBy: {
-        _id: user["_id"],
-        username: user["username"],
-        picture: user["picture"],
-        bio: user["bio"],
-      },
-    };
-  
-    // Check if the newLike already exists in the array
-    const isAlreadyLiked = prevLikes.some(
-      (like) => like.likedBy._id === newLike.likedBy._id
-    );
-  
-    // If it doesn't exist, add it; otherwise, return the previous likes
-    return isAlreadyLiked ? prevLikes : [newLike, ...prevLikes];
-  });
-  
-  setLikesNumber(likesNumber  + 1)
   setLikedBefore(false)
   setLiking(false)
 }
 if( likeStory.error !== null){
+setLikesNumber(totalLikes - 1)
 setTotalLikes(totalLikes - 1)
 }
   }, [likeStory.data, likeStory.error])
@@ -113,12 +96,12 @@ setTotalLikes(totalLikes - 1)
       console.log(newLikes)
       console.log("why now")
       setLikes(newLikes)
-      setLikesNumber(likesNumber  -  1)
+
       setLikedBefore(true)
       setUnLiking(false)
     }
     if( unlikeStory.error !== null){
-      console.log(unlikeStory.error)
+      setLikesNumber(totalLikes + 1)
       setTotalLikes(totalLikes + 1)
     }
       }, [unlikeStory.data, unlikeStory.error])

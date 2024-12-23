@@ -521,6 +521,7 @@ const getStoryComments = async (req, res) => {
 const likeAStory = async(req, res) => {
     const { id } = req.params
 try{
+    console.log(show)
     if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
             }
@@ -529,8 +530,8 @@ try{
  await story.addLike(req.user._id);
         
   // Respond with the updated story
+    res.status(201).json({"message" : "successfull"});        
 
-    res.status(201).json({"message" : "successfull"});    
 
 
 }catch(error){
