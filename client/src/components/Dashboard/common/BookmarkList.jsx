@@ -4,16 +4,35 @@ import { FaRegBookmark, FaBookOpen, FaTimes, FaShareAlt } from "react-icons/fa";
 import { MdClose, MdShare, MdDelete, MdReadMore, MdBookmark } from "react-icons/md";
 import {useGetUserBookmarks} from "../../../hooks/useGetUserBookmarks"
 import StoryCard from "../../Profile/StoryCard";
+import LoadingCard from "../../Profile/LoadingCard";
 import  { useModalContext } from "../../../hooks/useModalContext"
 import ContextMenu from "../../common/ContextMenu";
+import useWindowSize from "../../../hooks/useWindowSize";
 import { useState } from "react";
 import Share from "../../common/Share"
 import { useRef, useEffect } from "react"
 const BookmarkList = () => {
-    // Sample data for stories
+  const lastItemRef = useRef();
   const { getUserBookmarks, isLoading, error, data, statusCode, bookmarkCount } = useGetUserBookmarks();
   const [page, setPage]  = useState(1)
-  const [limit, setLimit] = useState(1)
+  const [limit, setLimit] = useState(20)
+  const [bookmarkData, setBookmarkData] = useState([])
+  const [loadingState, setLoadingState] = useState([{}, {}, {}])
+  const { width } = useWindowSize();
+  useEffect(() => {
+    if(width < 768){
+      setLimit(2)
+      setLoadingState([{}, {}])
+    }
+    else if(width < 767){
+      setLimit(1)
+      setLoadingState([{}])
+    }
+    else{
+      setLimit(3)
+      setLoadingState([{}, {}, {}])
+    }
+    }, [width])
  useEffect(() => {
       const skip = (page * limit);
       if (skip >= bookmarkCount && bookmarkCount > 0) {
@@ -22,6 +41,22 @@ const BookmarkList = () => {
         getUserBookmarks(page, limit)
      
   }, [page, limit])
+  useEffect(() => {
+
+    if(data.length > 0){
+      console.log(data)
+      setBookmarkData((prev) => {
+        const newLikes = data.filter(
+          (newLike) => !prev.some((prevLike) => prevLike.bookmarkId._id === newLike.bookmarkId._id)
+        );
+        return [...prev, ...newLikes];
+      });
+      // setLikesNumber(likesCount)
+      
+    }
+
+  
+  }, [data, error, isLoading])
     const {
       contextMenu,
        shareModal,
@@ -30,152 +65,6 @@ const BookmarkList = () => {
    setContextMenu,
    closeContextMenu
   } = useModalContext()
-  const myStories = [
-    {
-      title: "Mastering the Art of Photography",
-      category: "Photography",
-      picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2024",
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "A Guide to Sustainable Living",
-      category: "Lifestyle",
-      picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
-      link: "#", 
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2025"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    },
-
-    {
-      title: "Top 10 Hiking Trails in the US",
-      category: "Adventure",
-      picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-      link: "#",
-      avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-      date : "March 17, 2020"
-      ,
-      estimatedReadingTime : {
-        minutes : 4,
-        seconds : 30
-      }
-    }
-  ]
     useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -203,9 +92,14 @@ const BookmarkList = () => {
   <div className="litenote-dashboard-stories-preview-grid"
 onClick={closeContextMenu}
     >
-    {myStories.map((story, index) => (
-      <StoryCard key={index} story={story} fireClick={fireClick}/>
+    {bookmarkData.map((story, index) => (
+      <StoryCard key={index} story={story.bookmarkId} fireClick={fireClick}/>
     ))}
+      { isLoading && loadingState.map((story, index) => (
+      <LoadingCard key={index} story={story} fireClick={fireClick} isLoading={true}/>
+    ))}
+
+    <div ref={lastItemRef}></div>
     <ContextMenu
        state={"feed"}
        contextMenu={contextMenu}

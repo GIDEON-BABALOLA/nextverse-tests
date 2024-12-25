@@ -672,6 +672,7 @@ const getAllUsers = async (req, res) => {
             throw new userError("You are not a user of litenote", 400)
         }
         const bookmarksCount = user ? user.bookmarks.length : 0;
+        console.log(user.bookmarks.length)
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
@@ -680,7 +681,8 @@ const getAllUsers = async (req, res) => {
       })
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])
       .lean();
-        res.status(200).json({ bookmarks : userBookmarks, count : bookmarksCount})      
+      console.log(userBookmarks["bookmarks"])
+        res.status(200).json({ bookmarks : userBookmarks["bookmarks"], count : bookmarksCount})      
            
         
         }

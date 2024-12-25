@@ -521,7 +521,7 @@ const getStoryComments = async (req, res) => {
 const likeAStory = async(req, res) => {
     const { id } = req.params
 try{
-    console.log(show)
+    
     if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
             }

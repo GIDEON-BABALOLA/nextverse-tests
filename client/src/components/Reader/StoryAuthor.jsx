@@ -65,6 +65,20 @@ setImPossibleToFollow(true)
     setLikedBefore(false)
     setTotalLikes(totalLikes + 1)
     setLikesNumber(totalLikes + 1)
+    setLikes((prev) => {
+      const newLike = [
+        {
+        likedBy : {
+          _id : user["_id"],
+          username : user["username"],
+          picture : user["picture"],
+          bio : user["bio"]
+        },
+        _id : null
+      }
+    ]
+      return [...newLike, ...prev]
+    })
     likeStory.likeAStory(storyId)
   }
   const unlikeTheStory = () => {
@@ -72,6 +86,8 @@ setImPossibleToFollow(true)
     setLikedBefore(true)
     setTotalLikes(totalLikes - 1)
     setLikesNumber(totalLikes - 1)
+    const newLikes = likes.filter((like) => like.likedBy._id.toString() !== user["_id"].toString())
+    setLikes(newLikes)
     unlikeStory.unlikeAStory(storyId)
   }
   useEffect(() => {
@@ -87,24 +103,34 @@ if(Object.keys(likeStory.data).length  > 0){
 if( likeStory.error !== null){
 setLikesNumber(totalLikes - 1)
 setTotalLikes(totalLikes - 1)
+const newLikes = likes.filter((like) => like.likedBy._id.toString() !== user["_id"].toString())
+setLikes(newLikes)
 }
   }, [likeStory.data, likeStory.error])
   useEffect(() => {
     if(Object.keys(unlikeStory.data).length  > 0){
       console.log(likes, user["_id"])
-      const newLikes = likes.filter((like) => like.likedBy._id.toString() !== user["_id"].toString())
-      console.log(newLikes)
-      console.log("why now")
-      setLikes(newLikes)
-
       setLikedBefore(true)
       setUnLiking(false)
     }
     if( unlikeStory.error !== null){
       setLikesNumber(totalLikes + 1)
       setTotalLikes(totalLikes + 1)
+      setLikes((prev) => {
+        const newLike = [
+          {
+          likedBy : {
+            _id : user["_id"],
+            username : user["username"],
+            picture : user["picture"],
+            bio : user["bio"]
+          }
+        }
+      ]
+        return [...newLike, ...prev]
+      })
     }
-      }, [unlikeStory.data, unlikeStory.error])
+      }, [unlikeStory.data, unlikeStory.error, likes, totalLikes, user])
       const renderLikeButton = () => {
         if (Object.keys(likeStory.data).length == 0 && !liking && !likedBefore){
           return (

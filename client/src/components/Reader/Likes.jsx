@@ -14,9 +14,21 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal, onClose, likes, s
   const lastItemRef = useRef();
   const likesSectionRef = useRef();
   useEffect(() => {
-    if(likeModal || likesDrawerOpen){
-      console.log("street")
+    if(likeModal){
+      console.log("twice first")
       const skip = (page * limit);
+      console.log(page, limit)
+      if (skip >= likesCount && likesCount > 0) {
+  return;
+      }
+        getStoryLikes(page, limit, id)
+     }
+     if(likesDrawerOpen){
+      console.log(likesDrawerOpen)
+      console.log("twice second")
+      const skip = (page * limit);
+      console.log(page, limit)
+      console.log(skip, likesCount)
       if (skip >= likesCount && likesCount > 0) {
   return;
       }
@@ -26,11 +38,10 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal, onClose, likes, s
   useEffect(() => {
 
     if(data.length > 0){
-    console.log("chow")
-      
+      setEmptyData(false)
       setLikes((prev) => {
         const newLikes = data.filter(
-          (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
+          (newLike) => !prev.some((prevLike) => prevLike.likedBy._id === newLike.likedBy._id)
         );
         return [...prev, ...newLikes];
       });
@@ -39,7 +50,7 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal, onClose, likes, s
     }
 
   
-  }, [data,  likesCount, limit, page, error, isLoading])
+  }, [data,  likesCount, error, isLoading])
   useEffect(() => {
     if(!isLoading){
       if(data.length == 0 && !error && page == 1 && likesNumber == 0){
@@ -48,12 +59,13 @@ const Likes = ({ id, likeModal, likesDrawerOpen, setLikeModal, onClose, likes, s
         setEmptyData(false)
       }
       if(likesNumber == 0 ){
-        setEmptyData(true)
+        // setEmptyData(true)
       }
   }
   }, [likesNumber, isLoading, data, error, page])
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer = new 
+    IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isLoading && data.length !== 0 ) {
        console.log("I am intersecting")

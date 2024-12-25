@@ -3,7 +3,7 @@ import { useRef, useState} from "react"
 import  useWindowSize  from "../../hooks/useWindowSize"
 import "../../styles/components/common/tab.css"
 import Dropdown from "./Dropdown"
-const Tab = ({ setTab, tabs, labelWidth, ...props}) => {
+const Tab = ({ setTab, tabs, scale,  labelWidth, ...props}) => {
     const [slideDistance, setSlideDistance] = useState(0)
     const { width } = useWindowSize()
     const tabRef = useRef()
@@ -28,7 +28,7 @@ setSlideDistance(distanceMap[tab])
   return (
     <>
     { width < 1200 ? 
-    <Dropdown tabs={tabs} setTab={setTab} />
+    <Dropdown tabs={tabs} setTab={setTab} scale={scale}/>
     :
     <div className="bookmark-tabs-wrapper" {...props}>
     <div className="bookmark-tabs"

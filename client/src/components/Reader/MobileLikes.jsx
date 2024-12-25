@@ -22,7 +22,7 @@ export default function MobileLikes({ isOpen,
     <div className="drawer-spacing">
       <div aria-hidden className="drawer-header-divider" />
       <span style={{display : "flex", flexDirection : "row", justifyContent : "space-between", alignItems : "center"}}>
-      {/* <Drawer.Title className="drawer-title"></Drawer.Title> */}
+      <Drawer.Title className="drawer-title"></Drawer.Title>
 
       </span>
 

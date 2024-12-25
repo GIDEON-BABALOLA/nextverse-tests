@@ -12,3 +12,11 @@
 20241217	18:16:01	ffb41df8-84d2-4adc-8d9e-2e919277371c	ReferenceError: sushi is not defined
 20241217	18:16:02	4e28225d-7ccb-4bb5-80b4-635b6befc4a0	ReferenceError: sushi is not defined
 20241217	18:16:03	eb80f9e6-e01e-494b-b2c2-e265a27d960e	ReferenceError: sushi is not defined
+20241223	22:13:06	c4def6b4-d6d2-4f6b-b455-2cc282343cab	ReferenceError: showman is not defined
+20241223	22:13:07	b8fd7eec-88e0-4b87-b48f-5381b77e7a7c	ReferenceError: showman is not defined
+20241223	22:13:08	1cd59c70-465e-45d6-998f-016eeed12d51	ReferenceError: showman is not defined
+20241223	22:13:08	48a59a42-23a1-445a-88da-2e87fe28abc4	ReferenceError: showman is not defined
+20241223	22:13:36	37268d18-bd85-4f2f-ae2b-73c13e27dd5f	ReferenceError: showman is not defined
+20241223	22:13:38	6419c010-a924-4e73-8b49-9be35cd44964	ReferenceError: showman is not defined
+20241223	22:13:40	a037f662-c6c2-47cb-8de3-d41d4a8edf99	ReferenceError: showman is not defined
+20241223	22:13:41	f85fecb2-47a0-469a-82b4-f0338ce23950	ReferenceError: showman is not defined
