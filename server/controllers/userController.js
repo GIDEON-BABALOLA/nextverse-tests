@@ -11,6 +11,7 @@ const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const { cloudinaryError, validatorError, emailError } = require("../utils/customError");
+const { Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -664,8 +665,8 @@ const getAllUsers = async (req, res) => {
     }
     const getUserBookmarks = async (req, res) => {
         const { page, limit } = req.query;
+        console.log(page, limit)
         try{
-    
         const skip = (page - 1) * limit;
         const user = await User.findOne({ _id: req.user._id });
         if(!user){
@@ -681,8 +682,10 @@ const getAllUsers = async (req, res) => {
       })
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])
       .lean();
-      console.log(userBookmarks["bookmarks"])
-        res.status(200).json({ bookmarks : userBookmarks["bookmarks"], count : bookmarksCount})      
+   
+        res.status(200).json({ bookmarks : userBookmarks["bookmarks"], count : bookmarksCount})   
+
+           
            
         
         }

@@ -3,21 +3,30 @@ import { FaEllipsisH } from "react-icons/fa";
 import { FaRegBookmark, FaBookOpen, FaTimes, FaShareAlt } from "react-icons/fa";
 import { MdClose, MdShare, MdDelete, MdReadMore, MdBookmark } from "react-icons/md";
 import {useGetUserBookmarks} from "../../../hooks/useGetUserBookmarks"
+import { FaBoxOpen } from "react-icons/fa";
 import StoryCard from "../../Profile/StoryCard";
 import LoadingCard from "../../Profile/LoadingCard";
 import  { useModalContext } from "../../../hooks/useModalContext"
 import ContextMenu from "../../common/ContextMenu";
+import { isVisibleInViewport } from "../../../helpers/isVisibleInViewPort";
+import NoContent from "../../common/NoContent";
+import ErrorMessage from "../../common/ErrorMessage";
+import { FaSearch } from "react-icons/fa";
 import useWindowSize from "../../../hooks/useWindowSize";
+import { MdOutlineRefresh } from "react-icons/md";
 import { useState } from "react";
 import Share from "../../common/Share"
 import { useRef, useEffect } from "react"
 const BookmarkList = () => {
   const lastItemRef = useRef();
-  const { getUserBookmarks, isLoading, error, data, statusCode, bookmarkCount } = useGetUserBookmarks();
+  const loadingRef = useRef();
+  const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
   const [page, setPage]  = useState(1)
-  const [limit, setLimit] = useState(20)
+  const [limit, setLimit] = useState(3)
   const [bookmarkData, setBookmarkData] = useState([])
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
+  const [emptyData, setEmptyData] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0);
   const { width } = useWindowSize();
   useEffect(() => {
     if(width < 768){
@@ -44,6 +53,7 @@ const BookmarkList = () => {
   useEffect(() => {
 
     if(data.length > 0){
+      setEmptyData(false)
       console.log(data)
       setBookmarkData((prev) => {
         const newLikes = data.filter(
@@ -87,19 +97,83 @@ const BookmarkList = () => {
         }
       };
     }, [lastItemRef, isLoading, data]);
+    useEffect(() => {
+      if(!isLoading){
+        console.log("out")
+        if(data.length == 0 && !error){
+          setEmptyData(true)
+        }
+      }
+          }, [data, isLoading, error])
+    useEffect(() => {
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        // If the user is trying to scroll down, prevent the scroll
+        if(isLoading){
+          if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current, 0.1)) {
+            window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
+          } else {
+            // Update the last scroll position if scrolling up
+            setLastScrollY(currentScrollY);
+          }
+        }
+    
+      };
+    
+      // Add the scroll event listener
+      window.addEventListener("scroll", handleScroll);
+    
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, [lastScrollY, isLoading]);
+    const resendRequest = () => {
+      setEmptyData(false)
+      getUserBookmarks(page, limit)
+    }
   return (
     <>
+    
+  { !error && 
+  
   <div className="litenote-dashboard-stories-preview-grid"
 onClick={closeContextMenu}
     >
-    {bookmarkData.map((story, index) => (
+      {
+        emptyData ?
+        <div 
+        className="litenote-bookmark-title"  
+   
+        >
+
+<h4>
+You havent bookmarked any stories yet! Start exploring and bookmark your favorite stories to find them here later.
+</h4>
+
+
+        <div><button className="offline-button"
+ onClick={() => fireClick()}
+ ><FaSearch size={20}/>Explore Stories</button></div>
+        
+          </div>
+       
+        :
+      <>
+      {bookmarkData.map((story, index) => (
       <StoryCard key={index} story={story.bookmarkId} fireClick={fireClick}/>
     ))}
       { isLoading && loadingState.map((story, index) => (
-      <LoadingCard key={index} story={story} fireClick={fireClick} isLoading={true}/>
+      <LoadingCard
+      ref={loadingRef}
+      key={index} story={story} fireClick={fireClick} isLoading={true}/>
     ))}
+      </>
+}
 
-    <div ref={lastItemRef}></div>
+
+    <div ref={lastItemRef} style={{margin : "90px 0px"}}>
+      </div>
     <ContextMenu
        state={"feed"}
        contextMenu={contextMenu}
@@ -116,6 +190,37 @@ onClick={closeContextMenu}
                   , label : "Close"}
 ]} />
     </div>
+}
+    {error && <>
+
+
+{ error?.code == "ERR_NETWORK" ? 
+  <ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content,Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</>
+}
     </>
   )
 }

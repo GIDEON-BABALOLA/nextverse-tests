@@ -28,12 +28,13 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
      : <>
     <main>
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
-   <div className="litenote-bookmark-title"  style={{marginBottom : "0px"}}>
-   <h4>
+   <div className="litenote-bookmark-title"  >
+   <h3>
   Filter Your Bookmarks
-  </h4>
+  </h3>
   <Tab tabs={tabs} setTab={setTab} labelWidth={200} scale={false}/>
    </div>
+   
     <div className="litenote-browse-bookmark-grid" style={{marginTop : "0px"}}>
     <BookmarkList />
       </div>
