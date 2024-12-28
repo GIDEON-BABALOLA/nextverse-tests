@@ -21,6 +21,8 @@ const PopularStories = () => {
   const {
     contextMenu,
      shareModal,
+     shareUrl,
+     setShareUrl,
  shareRef,
  fireClick,
  setContextMenu,
@@ -88,11 +90,11 @@ const resendRequest = () => {
   return (
    <>
        <section className="popular-stories-featured-stories" onClick={closeContextMenu} ref={popularStoriesRef}>
-    <Share  share={shareRef} shareModal={shareModal}/>
+    <Share  share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
       <h2>Popular Stories</h2>
     <Tab tabs={tabs} setTab={setTab}  
     labelWidth={200}
-    
+    scale={true}
          style={{display : "flex", justifyContent : "center", marginBottom : "20px"}}
 
           

@@ -5,6 +5,7 @@ import { FaMedal } from "react-icons/fa";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
+import { getStoryUrl } from "../../helpers/getStoryUrl";
 const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
   const { popularStories } = usePopularStoriesContext()
   const navigateToStory = useNavigateStory();
@@ -83,7 +84,9 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
                <span onClick={() => {navigateToProfile(story.author)}}>{story.author}</span>
                </div>
 
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}onClick={fireClick}/>
+               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}
+                  onClick={(e) => fireClick(e, getStoryUrl(story))}  
+               />
                <h4 className="litenote-profile-story-title">{story.title}</h4>
            
              {/* <h4 className="litenote-profile-story-title">{story.title}</h4> */}

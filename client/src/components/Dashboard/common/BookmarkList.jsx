@@ -17,10 +17,9 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { useState } from "react";
 import Share from "../../common/Share"
 import { useRef, useEffect } from "react"
-const BookmarkList = () => {
+const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount }) => {
   const lastItemRef = useRef();
   const loadingRef = useRef();
-  const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
   const [page, setPage]  = useState(1)
   const [limit, setLimit] = useState(3)
   const [bookmarkData, setBookmarkData] = useState([])
@@ -29,11 +28,8 @@ const BookmarkList = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const { width } = useWindowSize();
   useEffect(() => {
-    if(width < 768){
-      setLimit(2)
-      setLoadingState([{}, {}])
-    }
-    else if(width < 767){
+
+     if(width < 767){
       setLimit(1)
       setLoadingState([{}])
     }
@@ -42,19 +38,19 @@ const BookmarkList = () => {
       setLoadingState([{}, {}, {}])
     }
     }, [width])
+   /* React Hook useEffect has a missing dependency: 'getUserBookmarks'. Either include it or remove the dependency array. If 'getUserBookmarks' changes too often, find the parent component that defines it and wrap that definition in useCallback */
  useEffect(() => {
-      const skip = (page * limit);
+  const skip = (page - 1) * limit;
       if (skip >= bookmarkCount && bookmarkCount > 0) {
   return;
       }
         getUserBookmarks(page, limit)
      
-  }, [page, limit])
+  }, [page, limit, bookmarkCount])
   useEffect(() => {
 
     if(data.length > 0){
       setEmptyData(false)
-      console.log(data)
       setBookmarkData((prev) => {
         const newLikes = data.filter(
           (newLike) => !prev.some((prevLike) => prevLike.bookmarkId._id === newLike.bookmarkId._id)
@@ -71,15 +67,15 @@ const BookmarkList = () => {
       contextMenu,
        shareModal,
    shareRef,
+   shareUrl,
+   setShareUrl,
    fireClick,
-   setContextMenu,
-   closeContextMenu
+   setContextMenu
   } = useModalContext()
     useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting && !isLoading) {
-         console.log("I am intersecting")
               setPage((prevPage) => prevPage + 1);
             observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
           }
@@ -99,7 +95,6 @@ const BookmarkList = () => {
     }, [lastItemRef, isLoading, data]);
     useEffect(() => {
       if(!isLoading){
-        console.log("out")
         if(data.length == 0 && !error){
           setEmptyData(true)
         }
@@ -132,13 +127,31 @@ const BookmarkList = () => {
       setEmptyData(false)
       getUserBookmarks(page, limit)
     }
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+          console.log("how")
+          if(contextMenu.current){
+          contextMenu.current.style.visibility = "hidden";
+          }
+        });
+      
+  
+      return () => {
+          window.removeEventListener('scroll', () => {
+            if(contextMenu.current){
+            contextMenu.current.style.visibility = "hidden";
+            }
+            
+          });
+        }
+      
+    }, [contextMenu]);
   return (
     <>
     
   { !error && 
   
   <div className="litenote-dashboard-stories-preview-grid"
-onClick={closeContextMenu}
     >
       {
         emptyData ?
@@ -182,7 +195,7 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
                   contextMenuData={[
                   {id : 1, icon : <FaShareAlt />
                   , label : "Share"},
-                  {id : 2, icon : <MdBookmark />
+                  {id : 2, icon : <FaRegBookmark />
                   , label : "UnBookmark"},
                   {id : 3, icon : <MdReadMore/>
                   , label : "Read More"},
@@ -221,6 +234,9 @@ fireClick = {resendRequest}
 }
 </>
 }
+<Share 
+share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}
+/>
     </>
   )
 }

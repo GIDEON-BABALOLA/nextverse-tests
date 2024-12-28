@@ -13,7 +13,6 @@ export const ModalContextProvider = ({children}) => {
     const shareRef = useRef();
     const { width, height} = useWindowSize();
     const fireClick = (e, storyUrl) => {
-      console.log(storyUrl)
       setShareUrl(storyUrl)
         updateMenuPosition(e.clientX, e.clientY);
         contextMenu.current.style.visibility = "visible";
