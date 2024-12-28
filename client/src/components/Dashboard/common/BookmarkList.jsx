@@ -94,6 +94,7 @@ const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount
       };
     }, [lastItemRef, isLoading, data]);
     useEffect(() => {
+
       if(!isLoading){
         if(data.length == 0 && !error){
           setEmptyData(true)
@@ -127,31 +128,12 @@ const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount
       setEmptyData(false)
       getUserBookmarks(page, limit)
     }
-    useEffect(() => {
-        window.addEventListener('scroll', () => {
-          console.log("how")
-          if(contextMenu.current){
-          contextMenu.current.style.visibility = "hidden";
-          }
-        });
-      
-  
-      return () => {
-          window.removeEventListener('scroll', () => {
-            if(contextMenu.current){
-            contextMenu.current.style.visibility = "hidden";
-            }
-            
-          });
-        }
-      
-    }, [contextMenu]);
   return (
     <>
     
   { !error && 
   
-  <div className="litenote-dashboard-stories-preview-grid"
+  <div className="litenote-dashboard-stories-preview-grid bookmark-no-scroll"
     >
       {
         emptyData ?

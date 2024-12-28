@@ -34,23 +34,43 @@ export const ModalContextProvider = ({children}) => {
         }
     }
     useEffect(() => {
+      const currentUrl = window.location.href;
+      console.log(currentUrl.split("/").includes("dashboard"))
       if (contextMenu) {
-        window.addEventListener('scroll', () => {
-          if(contextMenu.current){
-          contextMenu.current.style.visibility = "hidden";
-          }
+        if(currentUrl.split("/").includes("dashboard")){
+          document.addEventListener('mousewheel', (event) => {
+            if(contextMenu.current){
+              contextMenu.current.style.visibility = "hidden";
+              }
         });
+        }else{
+          window.addEventListener('scroll', () => {
+            if(contextMenu.current){
+            contextMenu.current.style.visibility = "hidden";
+            }
+          });
+        }
+     
       }
   
       return () => {
         if (contextMenu) {
+          if(currentUrl.split("/").includes("dashboard")){
+            document.removeEventListener('mousewheel', (event) => {
+              if(contextMenu.current){
+                contextMenu.current.style.visibility = "hidden";
+                }
+          });
+          }else{
           window.removeEventListener('scroll', () => {
             if(contextMenu.current){
             contextMenu.current.style.visibility = "hidden";
             }
             
           });
+        
         }
+      }
       };
     }, [contextMenu]);
       useEffect(() => {
