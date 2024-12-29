@@ -4,7 +4,7 @@ import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
-const StoryCard = ({ fireClick, story, isLoading}) => {
+const StoryCard = ({ fireClick, story, isLoading, setCurrentStoryDetails}) => {
   const navigateToStory = useNavigateStory();
   const navigateToProfile = useNavigateProfile()
   const [pictureLoading, setPictureLoading] = useState(true);
@@ -38,6 +38,10 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
       }
     });
   }, [imageStatus, story.picture, story.avatar]); 
+  const showMyModal = (e) => {
+    setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
+    fireClick(e, getStoryUrl(story), story._id)
+  }
   return (
  <> {
 
@@ -91,7 +95,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                <FaEllipsisH 
                size={15}
                className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}
-                onClick={(e) => fireClick(e, getStoryUrl(story))}  />
+                onClick={(e) => showMyModal(e) }  />
               
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>

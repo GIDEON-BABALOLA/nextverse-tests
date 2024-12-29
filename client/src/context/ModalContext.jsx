@@ -10,10 +10,13 @@ export const ModalContextProvider = ({children}) => {
     const [shareModal, setShareModal] = useState();
     const [contextMenu, setContextMenu] = useState();
     const [shareUrl, setShareUrl] = useState(undefined)
+    const [currentStoryId, setCurrentStoryId] = useState("")
     const shareRef = useRef();
     const { width, height} = useWindowSize();
-    const fireClick = (e, storyUrl) => {
+    const fireClick = (e, storyUrl, id) => {
+      console.log(id)
       setShareUrl(storyUrl)
+      setCurrentStoryId(id)
         updateMenuPosition(e.clientX, e.clientY);
         contextMenu.current.style.visibility = "visible";
       };
@@ -38,7 +41,7 @@ export const ModalContextProvider = ({children}) => {
       console.log(currentUrl.split("/").includes("dashboard"))
       if (contextMenu) {
         if(currentUrl.split("/").includes("dashboard")){
-          document.addEventListener('mousewheel', (event) => {
+          window.addEventListener('wheel', (event) => {
             if(contextMenu.current){
               contextMenu.current.style.visibility = "hidden";
               }
@@ -56,7 +59,7 @@ export const ModalContextProvider = ({children}) => {
       return () => {
         if (contextMenu) {
           if(currentUrl.split("/").includes("dashboard")){
-            document.removeEventListener('mousewheel', (event) => {
+            window.removeEventListener('wheel', (event) => {
               if(contextMenu.current){
                 contextMenu.current.style.visibility = "hidden";
                 }
@@ -84,6 +87,7 @@ export const ModalContextProvider = ({children}) => {
         shareModal,
         shareRef,
         shareUrl,
+        currentStoryId,
         setShareUrl,
         fireClick,
         setContextMenu,

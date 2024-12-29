@@ -51,7 +51,9 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
                
               <h4 className="litenote-profile-story-title skeleton-title">&nbsp;</h4>
                 <FaEllipsisH  className="litenote-profile-read-more-share skeleton-options"
-                  onClick={fireClick}/>
+                  onClick={fireClick}
+             
+                  />
               
                 <a  className=" skeleton-button">&nbsp;</a>
              
@@ -84,7 +86,9 @@ const PopularStoriesCard = ({ fireClick, story, isLoading}) => {
                <span onClick={() => {navigateToProfile(story.author)}}>{story.author}</span>
                </div>
 
-               <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}
+               <FaEllipsisH
+                    size={15}
+               className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}}
                   onClick={(e) => fireClick(e, getStoryUrl(story))}  
                />
                <h4 className="litenote-profile-story-title">{story.title}</h4>

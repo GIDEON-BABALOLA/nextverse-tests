@@ -5,7 +5,7 @@ import LoadingCard from "../components/Profile/LoadingCard"
 import Share from "../components/common/Share"
 import ContextMenu from "../components/common/ContextMenu"
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
-import {  FaRegThumbsUp, FaShareAlt, FaBookmark } from "react-icons/fa";
+import {  FaRegThumbsUp, FaShareAlt, FaBookmark, FaRegBookmark } from "react-icons/fa";
 import NoContent from "../components/common/NoContent.jsx"
 import { useEffect, useState, useRef} from "react"
 import useWindowSize from "../hooks/useWindowSize"
@@ -39,6 +39,13 @@ const ExplorePage = () => {
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
   const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
+  const [currentStoryDetails, setCurrentStoryDetails] = useState({
+    isLiked : "",
+    isBookmarked : ""
+  })
+  useEffect(() => {
+console.log(currentStoryDetails)
+  }, [currentStoryDetails])
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categoryChanged, setCategoryChanged] = useState(null)
   const { getExploreStories, isLoading, error, data,  storyCount } = useGetExploreStories()
@@ -50,7 +57,8 @@ const ExplorePage = () => {
  setContextMenu,
  shareUrl,
  setShareUrl,
- closeContextMenu
+ closeContextMenu,
+ currentStoryId
 } = useModalContext()
 useEffect(() => {
   setEmptyData(false)
@@ -233,6 +241,7 @@ resendRequest()
     stories.map((story, index) => (
       <StoryCard
       isLoading={story.loading}
+      setCurrentStoryDetails={setCurrentStoryDetails}
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
     ))
     }
@@ -253,14 +262,16 @@ resendRequest()
   state={"feed"}
   contextMenu={contextMenu}
   shareModal={shareModal}
+  currentStoryDetails={currentStoryDetails}
+  currentStoryId={currentStoryId}
              setContextMenu={setContextMenu}
              contextMenuData={[
              {id : 1, icon : <FaShareAlt />
              , label : "Share"},
-             {id : 2, icon : <FaBookmark />
+             {id : 2, icon : <FaRegBookmark />
              , label : "Bookmark"},
        
-             {id : 4, icon : <MdOutlineFavorite />
+             {id : 4, icon : <MdOutlineFavoriteBorder />
              , label : "Like Story"},
              {id : 5, icon : <MdReadMore />
               , label : "Read More"}

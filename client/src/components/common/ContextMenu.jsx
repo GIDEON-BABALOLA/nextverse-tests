@@ -1,7 +1,24 @@
 import "../../styles/components/common/context.css"
 import { useRef, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu, state}) => {
+import { useBookmarkAStory } from "../../hooks/useBookmarkAStory"
+import { useUnBookmarkAStory } from "../../hooks/useUnBookmarkAStory"
+import { useLikeAStory } from "../../hooks/useLikeAStory";
+import { useUnLikeAStory } from "../../hooks/useUnlikeAStory";
+import { useState } from "react"
+const ContextMenu = ({ contextMenuData,
+    setContextMenu,
+    shareModal,
+    contextMenu,
+    state,
+    currentStoryDetails
+}) => {
+    const [likedBefore, setLikedBefore] = useState(currentStoryDetails["isLiked"]);
+    const [bookmarkedBefore, setBookmarkedBefore] = useState(currentStoryDetails["isBookmarked"]);
+    const bookmarkAStory = useBookmarkAStory();
+    const unbookmarkAStory  = useUnBookmarkAStory();
+    const likeAStory = useLikeAStory();
+    const unlikeAStory = useUnLikeAStory();
     const navigate = useNavigate()
     const context = useRef()
     // const triangle = useRef()
@@ -42,6 +59,7 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu,
                 break;
         }
     }
+    const 
   return (
     <>    
 

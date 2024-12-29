@@ -294,12 +294,14 @@ console.log(req.user._id.toString())
 const allStories = await query.lean();
 const enrichedFeed = allStories.map((story) => ({
   ...story,
-  isLiked: story.likes.some((like) => like.likedBy == req.user._id.toString()),
+  isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
+  isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
 }));
     res.status(200).json({stories : enrichedFeed, count : storyCount})       
    
 
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ message : error.message})
