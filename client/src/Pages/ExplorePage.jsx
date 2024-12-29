@@ -267,14 +267,14 @@ resendRequest()
              setContextMenu={setContextMenu}
              contextMenuData={[
              {id : 1, icon : <FaShareAlt />
-             , label : "Share"},
+             , label : "Share", type : "default"},
              {id : 2, icon : <FaRegBookmark />
-             , label : "Bookmark"},
+             , label : "Bookmark", type : "custom"},
        
              {id : 4, icon : <MdOutlineFavoriteBorder />
-             , label : "Like Story"},
+             , label : "Like", type : "custom"},
              {id : 5, icon : <MdReadMore />
-              , label : "Read More"}
+              , label : "Read More", type : "default"}
 ]} />
  </div>
  <div ref={lastItemRef}>

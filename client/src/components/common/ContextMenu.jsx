@@ -28,8 +28,6 @@ const ContextMenu = ({ contextMenuData,
     const unlikeStory = useUnLikeAStory();
     const navigate = useNavigate()
     const context = useRef()
-    // const triangle = useRef()
-    // const rectangle = useRef()
     useEffect(() => {
         setContextMenu(context)
     }, [setContextMenu])
@@ -44,14 +42,14 @@ const unlikeTheStory = () => {
     unlikeStory.unlikeAStory(currentStoryId)
 }
 const bookmarkAStory = () => {
-    setBookmarking(true)
-    setBookmarkedBefore(false)
+setBookmarking(true)
+setBookmarkedBefore(false)
 bookmarkStory.bookmarkAStory(currentStoryId)
 }
 const unBookmarkAStory = () => {
-    setUnBookmarking(true)
-    setBookmarkedBefore(true)
-  unBookmarkStory.unbookmarkAStory(currentStoryId)
+setUnBookmarking(true)
+setBookmarkedBefore(true)
+unBookmarkStory.unbookmarkAStory(currentStoryId)
 }
 useEffect(() => {
 if(Object.keys(likeStory.data).length  > 0){
@@ -109,90 +107,103 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
                 break;
         }
     }
-    const renderBookmarkButton  = () => {
+    const renderBookmarkButton  = (label, id) => {
         if (Object.keys(bookmarkStory.data).length == 0 && !bookmarking && !bookmarkedBefore){
             return (
-              <>
-              <FaRegBookmark className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"  onClick={() => bookmarkAStory()}
-              size={20}  color="#757575"  />
-              <span className="phone-feed-sidebar-nav-name">Bookmark</span>
-              </>
+                       <li className="litenote-context-link" key={id} onClick={openShare}
+          data-name={label} 
+         >
+              <FaRegBookmark
+               size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+               onClick={() => bookmarkAStory()}
+               />
+             <span className="litenote-context-label">Bookmark</span>
+         </li> 
             )
           }
           if (bookmarking && !bookmarkStory.error && !bookmarkedBefore){
             return (
-              <>
-              <FaBookmark
-              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"/>
-              <span className="phone-feed-sidebar-nav-name">Bookmarking</span>
-              </>
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <FaBookmark
+                     size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+                     />
+                   <span className="litenote-context-label">Bookmarking</span>
+               </li> 
             
             )
           }
           if (!bookmarking && Object.keys(bookmarkStory.data).length > 0 && !bookmarkedBefore){
             return (
-  
-              <>
-              <FaBookmark
-              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
-              onClick={() => unBookmarkAStory()}
-              />
-              <span className="phone-feed-sidebar-nav-name">Bookmarked</span>
-              </>
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <FaBookmark
+                     size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+                     onClick={() => unBookmarkAStory()}
+                     />
+                   <span className="litenote-context-label">Bookmarked</span>
+               </li> 
         
             )
           }
           if (bookmarkStory.error && !bookmarkedBefore){
             return (
-              <>
-              
-              <FaRegBookmark
-              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
-              onClick={() => bookmarkAStory()}
-              />
-              <span className="phone-feed-sidebar-nav-name">Bookmark</span>
-              </>
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <FaRegBookmark
+                     size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+                     onClick={() => bookmarkAStory()}
+                     />
+                   <span className="litenote-context-label">Bookmark</span>
+               </li>    
             )
           }
     }
-    const renderUnBookmarkButton = () => {
+    const renderUnBookmarkButton = (label, id) => {
         if (Object.keys(unBookmarkStory.data).length == 0 && !unBookmarking && bookmarkedBefore){
             return (
-      
-               <>
-               <FaBookmark
+                 <li className="litenote-context-link" key={id} onClick={openShare}
+          data-name={label} 
+         >
+              <FaBookmark
                size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
                onClick={() => unBookmarkAStory()}
                />
-               <span className="phone-feed-sidebar-nav-name">UnBookmark</span>
-               </>
-        
+             <span className="litenote-context-label">UnBookmark</span>
+         </li> 
             )
           }
           if (unBookmarking && !unBookmarkStory.error && bookmarkedBefore){
             return (
-      
-              <>
-              <FaRegBookmark
-              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
-              />
-              <span className="phone-feed-sidebar-nav-name">UnBookmarking</span>
-              </>
-        
-           
-        
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <FaRegBookmark
+                     size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+                     />
+                   <span className="litenote-context-label">UnBookmarking</span>
+               </li> 
             )
           }
           if (!unBookmarking && Object.keys(unBookmarkStory.data).length > 0 && bookmarkedBefore){
             return(
     
-              <>
-              <FaRegBookmark
-              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
-              onClick={() => bookmarkAStory()}
-              />
-              <span className="phone-feed-sidebar-nav-name">Bookmark</span>
-              </>
+              
+    <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <FaRegBookmark
+                     size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+                     onClick={() => bookmarkAStory()}
+                     />
+                   <span className="litenote-context-label">Bookmark</span>
+               </li> 
+
+    
+              
         
             
             )
@@ -201,83 +212,113 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
               
           }
           if (unBookmarkStory.error && bookmarkedBefore){
-            return (
-              <>
-              <FaBookmark
-              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
-              onClick={() => unBookmarkAStory()}
-              />
-              <span className="phone-feed-sidebar-nav-name">UnBookmark</span>
-              </>
+            return (        
+    <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <FaBookmark
+                     size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+                     onClick={() => unBookmarkAStory()}
+                     />
+                   <span className="litenote-context-label">UnBookmark</span>
+               </li> 
             )
           }
     }
-    const renderLikeButton = () => {
+    const renderLikeButton = (label, id) => {
         if (Object.keys(likeStory.data).length == 0 && !liking && !likedBefore){
           return (
-
-            <MdOutlineFavoriteBorder 
-            onClick={() => likeTheStory()}
-            size={20} color="var(--actions-button-color)"/>
+            <li className="litenote-context-link" key={id} onClick={openShare}
+            data-name={label} 
+           >
+                <MdOutlineFavoriteBorder
+                 size={20}  color="var(--like-icon)" 
+                 onClick={() => likeTheStory()}
+                 />
+               <span className="litenote-context-label">Like</span>
+           </li> 
           )
         }
         if (liking && !likeStory.error && !likedBefore){
           return (
-          
-                <MdOutlineFavorite 
-            
-            size={20} color="var(--like-icon)"/>
+            <li className="litenote-context-link" key={id} onClick={openShare}
+            data-name={label} 
+           >
+                <MdOutlineFavorite
+                 size={20}  color="var(--like-icon)"
+                 />
+               <span className="litenote-context-label">Liking</span>
+           </li> 
        
           
           )
         }
         if (!liking && Object.keys(likeStory.data).length > 0 && !likedBefore){
           return (
-  <MdOutlineFavorite
-          onClick={() => unlikeTheStory()}
-           size={20} color="var(--like-icon)"/>
+            <li className="litenote-context-link" key={id} onClick={openShare}
+            data-name={label} 
+           >
+                <MdOutlineFavorite
+                 size={20}  color="var(--like-icon)"
+                 onClick={() => unlikeTheStory()}
+                 />
+               <span className="litenote-context-label">Liked</span>
+           </li> 
   
           )
         }
         if (likeStory.error && !likedBefore){
           return (
-            <MdOutlineFavoriteBorder
-            onClick={() => likeTheStory()}
-             size={20} color="var(--actions-button-color)"/>
+            <li className="litenote-context-link" key={id} onClick={openShare}
+            data-name={label} 
+           >
+                <MdOutlineFavoriteBorder
+                 size={20}   color="var(--actions-button-color)"
+                 onClick={() => likeTheStory()}
+                 />
+               <span className="litenote-context-label">Like</span>
+           </li> 
+
           )
         }
     }
-    const renderUnLikeButton = () => {
+    const renderUnLikeButton = (label, id) => {
         if (Object.keys(unlikeStory.data).length == 0 && !unLiking && likedBefore){
             return (
-  
-  
-  <MdOutlineFavorite
-              onClick={() => unlikeTheStory()}
-               size={20} color="var(--like-icon)"/>
-  
-  
-    
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <MdOutlineFavorite
+                     size={20}  color="var(--like-icon)" 
+                     onClick={() => unlikeTheStory()}
+                     />
+                   <span className="litenote-context-label">unLike</span>
+               </li> 
             )
           }
           if (unLiking && !unlikeStory.error && likedBefore){
             return (
-              
-  <MdOutlineFavoriteBorder 
-              size={20} color="var(--actions-button-color)"/>
-  
-  
-  
-           
-        
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <MdOutlineFavoriteBorder
+                     size={20}  color="var(--actions-button-color)" 
+                     />
+                   <span className="litenote-context-label">unLiking</span>
+               </li> 
             )
           }
           if (!unLiking && Object.keys(unlikeStory.data).length > 0 && likedBefore){
             return(
-              
-            <MdOutlineFavoriteBorder 
-               onClick={() => likeTheStory()}
-              size={20} color="var(--actions-button-color)"/>
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <MdOutlineFavoriteBorder
+                     size={20}  color="var(--actions-button-color)" 
+                     onClick={() => likeTheStory()}
+                     />
+                   <span className="litenote-context-label">unLiked</span>
+               </li> 
          
   
             
@@ -288,9 +329,15 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
           }
           if (unlikeStory.error && likedBefore){
             return (
-              <MdOutlineFavorite
-              onClick={() => unlikeTheStory()}
-               size={20} color="var(--like-icon)"/>
+                <li className="litenote-context-link" key={id} onClick={openShare}
+                data-name={label} 
+               >
+                    <MdOutlineFavorite
+                     size={20} color="var(--like-icon)"
+                     onClick={() => unlikeTheStory()}
+                     />
+                   <span className="litenote-context-label">unLike</span>
+               </li> 
             )
           }
     }
@@ -316,13 +363,33 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
         }
         {
             contextMenuData.map(((item, id) => (
+               
+        <> { item.type  == "custom" ? <>
+        {
+            item.label == "Bookmark" &&  <li className="litenote-context-link" key={id} onClick={openShare}
+            data-name={item.label} 
+           >
+               {item.icon}<span className="litenote-context-label">{item.label}</span>
+           </li>
+           
+}
+{
+          item.label == "Like" &&  <li className="litenote-context-link" key={id} onClick={openShare}
+          data-name={item.label} 
+         >
+             {item.icon}<span className="litenote-context-label">{item.label}</span>
+         </li> 
+}
+        </>
+            :
                 <li className="litenote-context-link" key={id} onClick={openShare}
                  data-name={item.label} 
-                //  onMouseOver={showColor}
-                // onMouseLeave={closeColor}
                 >
                     {item.icon}<span className="litenote-context-label">{item.label}</span>
                 </li>
+}
+               </>
+        
             
             )))
         }
