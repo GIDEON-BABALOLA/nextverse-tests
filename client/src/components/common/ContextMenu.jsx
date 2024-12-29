@@ -15,8 +15,9 @@ const ContextMenu = ({ contextMenuData,
 }) => {
     const [likedBefore, setLikedBefore] = useState(currentStoryDetails["isLiked"]);
     const [bookmarkedBefore, setBookmarkedBefore] = useState(currentStoryDetails["isBookmarked"]);
+    const [bookmarking, setBookmarking] = useState(false)
     const bookmarkAStory = useBookmarkAStory();
-    const unbookmarkAStory  = useUnBookmarkAStory();
+    const unBookmarkAStory  = useUnBookmarkAStory();
     const likeAStory = useLikeAStory();
     const unlikeAStory = useUnLikeAStory();
     const navigate = useNavigate()
@@ -59,7 +60,61 @@ const ContextMenu = ({ contextMenuData,
                 break;
         }
     }
-    const 
+    const renderBookmarkButton  = () => {
+        if (Object.keys(bookmarkAStory.data).length == 0 && !bookmarking && !bookmarkedBefore){
+            return (
+              <>
+              <FaRegBookmark className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"  onClick={() => bookmarkAStory()}
+              size={20}  color="#757575"  />
+              <span className="phone-feed-sidebar-nav-name">Bookmark</span>
+              </>
+            )
+          }
+          if (bookmarking && !bookmarkAStory.error && !bookmarkedBefore){
+            return (
+              <>
+              <FaBookmark
+              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"/>
+              <span className="phone-feed-sidebar-nav-name">Bookmarking</span>
+              </>
+            
+            )
+          }
+          if (!bookmarking && Object.keys(bookmarkAStory.data).length > 0 && !bookmarkedBefore){
+            return (
+  
+              <>
+              <FaBookmark
+              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+              onClick={() => unBookmarkAStory()}
+              />
+              <span className="phone-feed-sidebar-nav-name">Bookmarked</span>
+              </>
+        
+            )
+          }
+          if (bookmarkAStory.error && !bookmarkedBefore){
+            return (
+              <>
+              
+              <FaRegBookmark
+              size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
+              onClick={() => bookmarkAStory()}
+              />
+              <span className="phone-feed-sidebar-nav-name">Bookmark</span>
+              </>
+            )
+          }
+    }
+    const renderUnBookmarkButton = () => {
+
+    }
+    const renderLikeButton = () => {
+
+    }
+    const renderUnLikeButton = () => {
+
+    }
   return (
     <>    
 
