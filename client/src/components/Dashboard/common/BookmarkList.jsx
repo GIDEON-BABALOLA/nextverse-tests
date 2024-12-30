@@ -26,6 +26,10 @@ const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [currentStoryDetails, setCurrentStoryDetails] = useState({
+    isLiked : "",
+    isBookmarked : ""
+  })
   const { width } = useWindowSize();
   useEffect(() => {
 
@@ -156,7 +160,9 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
         :
       <>
       {bookmarkData.map((story, index) => (
-      <StoryCard key={index} story={story.bookmarkId} fireClick={fireClick}/>
+      <StoryCard key={index} story={story.bookmarkId} fireClick={fireClick}
+      setCurrentStoryDetails={setCurrentStoryDetails}
+      />
     ))}
       { isLoading && loadingState.map((story, index) => (
       <LoadingCard

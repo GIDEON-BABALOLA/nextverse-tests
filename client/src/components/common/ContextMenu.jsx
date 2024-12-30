@@ -232,7 +232,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
             data-name={label} 
            >
                 <MdOutlineFavoriteBorder
-                 size={20}  color="var(--like-icon)" 
+                 size={20}  color="var(--actions-button-color)"
                  onClick={() => likeTheStory()}
                  />
                <span className="litenote-context-label">Like</span>
@@ -364,23 +364,20 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
         {
             contextMenuData.map(((item, id) => (
                
-        <> { item.type  == "custom" ? <>
-        {
-            item.label == "Bookmark" &&  <li className="litenote-context-link" key={id} onClick={openShare}
-            data-name={item.label} 
-           >
-               {item.icon}<span className="litenote-context-label">{item.label}</span>
-           </li>
-           
-}
-{
-          item.label == "Like" &&  <li className="litenote-context-link" key={id} onClick={openShare}
-          data-name={item.label} 
-         >
-             {item.icon}<span className="litenote-context-label">{item.label}</span>
-         </li> 
-}
-        </>
+        <> {
+           item.type  == "custom" ? 
+           <>
+           {item.label === "Bookmark" && (
+             bookmarkedBefore
+               ? renderUnBookmarkButton(item.label, id)
+               : renderBookmarkButton(item.label, id)
+           )}
+           {item.label === "Like" && (
+             likedBefore
+               ? renderUnLikeButton(item.label, id)
+               : renderLikeButton(item.label, id)
+           )}
+         </>
             :
                 <li className="litenote-context-link" key={id} onClick={openShare}
                  data-name={item.label} 
