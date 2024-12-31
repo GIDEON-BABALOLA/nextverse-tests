@@ -14,10 +14,11 @@ const ContextMenu = ({ contextMenuData,
     contextMenu,
     state,
     currentStoryDetails,
+    setCurrentStoryDetails,
     currentStoryId
 }) => {
-    const [likedBefore, setLikedBefore] = useState(currentStoryDetails["isLiked"]);
-    const [bookmarkedBefore, setBookmarkedBefore] = useState(currentStoryDetails["isBookmarked"]);
+    const [likedBefore, setLikedBefore] = useState("");
+    const [bookmarkedBefore, setBookmarkedBefore] = useState("");
     const [bookmarking, setBookmarking] = useState(false)
     const [unBookmarking, setUnBookmarking] = useState(false)
     const [liking, setLiking] = useState(false)
@@ -26,11 +27,17 @@ const ContextMenu = ({ contextMenuData,
     const unBookmarkStory  = useUnBookmarkAStory();
     const likeStory = useLikeAStory();
     const unlikeStory = useUnLikeAStory();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const context = useRef()
     useEffect(() => {
         setContextMenu(context)
     }, [setContextMenu])
+      useEffect(() => {
+        console.log(currentStoryDetails["isLiked"], currentStoryDetails["isBookmarked"])
+    setCurrentStoryDetails(currentStoryDetails)
+    setLikedBefore(currentStoryDetails["isLiked"])
+    setBookmarkedBefore(currentStoryDetails["isBookmarked"])
+      }, [currentStoryDetails])
 const likeTheStory = () => {
     setLiking(true)
     setLikedBefore(false)

@@ -17,6 +17,10 @@ const PopularStories = () => {
   const { setPopularStories, popularStories } = usePopularStoriesContext()
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
+  const [currentStoryDetails, setCurrentStoryDetails] = useState({
+    isLiked : "",
+    isBookmarked : ""
+  })
   const popularStoriesRef = useRef()
   const {
     contextMenu,
@@ -114,6 +118,7 @@ resendRequest()
       { !error && 
       data.map((story, index) => (
 <PopularStoriesCard
+setCurrentStoryDetails={setCurrentStoryDetails}
 isLoading={isLoading}
 error={error}
  key={index} story={story} fireClick={fireClick}/>
@@ -165,16 +170,18 @@ error={error}
        state={"feed"}
        contextMenu={contextMenu}
        shareModal={shareModal}
+       currentStoryDetails={currentStoryDetails}
+       setCurrentStoryDetails={setCurrentStoryDetails}
                   setContextMenu={setContextMenu}
                   contextMenuData={[
                   {id : 1, icon : <FaShareAlt />
-                  , label : "Share"},
+                  , label : "Share", type : "default"},
                   {id : 2, icon : <FaBookmark />
-                  , label : "Bookmark"},
+                  , label : "Bookmark", type : "custom"},
                   {id : 3, icon : <MdReadMore/>
-                  , label : "Close"},
+                  , label : "Close", type : "default"},
                   {id : 4, icon : <MdOutlineFavorite />
-                  , label : "Like Story"}
+                  , label : "Like", type :"custom"}
 ]} />
          {/* Featured stories will be dynamically added here  */}
       </div>

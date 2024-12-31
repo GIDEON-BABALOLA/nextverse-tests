@@ -43,9 +43,6 @@ const ExplorePage = () => {
     isLiked : "",
     isBookmarked : ""
   })
-  useEffect(() => {
-console.log(currentStoryDetails)
-  }, [currentStoryDetails])
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categoryChanged, setCategoryChanged] = useState(null)
   const { getExploreStories, isLoading, error, data,  storyCount } = useGetExploreStories()
@@ -263,6 +260,7 @@ resendRequest()
   contextMenu={contextMenu}
   shareModal={shareModal}
   currentStoryDetails={currentStoryDetails}
+  setCurrentStoryDetails={setCurrentStoryDetails}
   currentStoryId={currentStoryId}
              setContextMenu={setContextMenu}
              contextMenuData={[

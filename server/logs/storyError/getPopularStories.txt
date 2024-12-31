@@ -1,0 +1,7 @@
+20241230	12:21:41	c2d02e7c-b698-4966-9deb-9bc558f72a75	TypeError: story.toObject is not a function
+20241230	12:23:47	9d14e2fe-d6d0-44fb-8e8e-44959d0531e2	TypeError: story.toObject is not a function
+20241230	12:24:13	5af79de9-00bb-4999-be87-0bc33d4b5bd8	TypeError: Cannot read properties of undefined (reading '_id')
+20241230	12:25:03	21a2250f-5e1a-45b9-8a13-1b04b7116158	TypeError: Cannot read properties of undefined (reading '_id')
+20241230	12:25:25	aff0c834-72ee-4e9e-8cc7-641b95fe1ddf	TypeError: Cannot read properties of undefined (reading '_id')
+20241230	12:31:00	e1150143-34fd-4ac9-8726-95d1a8dfd80a	TypeError: Cannot read properties of undefined (reading '_id')
+20241230	12:31:02	b3f9a4da-5632-4815-9dcc-8f3e19c154bc	TypeError: Cannot read properties of undefined (reading '_id')

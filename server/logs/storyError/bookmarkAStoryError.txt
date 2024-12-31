@@ -5,3 +5,7 @@
 20241221	21:45:52	3a34eccc-d32c-4e0a-a3e1-809d02ad122b	ReferenceError: thrower is not defined
 20241221	21:45:53	6afa6916-552a-4075-97c8-2f4d0c72c514	ReferenceError: thrower is not defined
 20241221	21:45:54	91abaa5f-5493-4015-bc9e-038121595515	ReferenceError: thrower is not defined
+20241230	12:08:21	a11a9a90-9a3a-4501-a311-b6b1dfccea3f	userError: Pls enter a parameter recognized by the database
+20241230	12:08:23	10f10844-b495-4daa-9e52-ed4ac1b68482	userError: Pls enter a parameter recognized by the database
+20241230	12:08:23	755f221b-3277-49e4-a05d-9cc6439f48c5	userError: Pls enter a parameter recognized by the database
+20241230	12:10:30	08143e62-4eb3-4be7-942d-97cf28a4a1b9	userError: Pls enter a parameter recognized by the database

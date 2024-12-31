@@ -39,6 +39,7 @@ const StoryCard = ({ fireClick, story, isLoading, setCurrentStoryDetails}) => {
     });
   }, [imageStatus, story.picture, story.avatar]); 
   const showMyModal = (e) => {
+    console.log(story.isLiked, story.isBookmarked)
     setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
     fireClick(e, getStoryUrl(story), story._id)
   }
