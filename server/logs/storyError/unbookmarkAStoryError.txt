@@ -20,3 +20,13 @@
 20241221	21:46:17	cb6ca156-137c-4afe-9d4f-24424f65d6a4	ReferenceError: thrower is not defined
 20241221	21:46:18	01c528b6-631a-4604-a2cc-456b91750d80	ReferenceError: thrower is not defined
 20241221	21:46:19	402dfba5-7991-41a6-a750-893b85620b44	ReferenceError: thrower is not defined
+20250101	23:19:08	643d8c03-c3cd-4d26-887f-8ad9385c5b76	userError: Pls enter a parameter recognized by the database
+20250101	23:19:09	617cd2e8-885f-4003-863c-726dd873c616	userError: Pls enter a parameter recognized by the database
+20250101	23:19:10	92764576-29b7-4459-bc39-48e77904464a	userError: Pls enter a parameter recognized by the database
+20250101	23:19:11	d90f25a9-0535-41eb-8fbf-76f3f01de928	userError: Pls enter a parameter recognized by the database
+20250101	23:19:13	198a1702-ea9e-44ac-9492-3436f1765c27	userError: Pls enter a parameter recognized by the database
+20250101	23:19:14	94ad4dee-c7d7-4a80-b767-426d0a90c8f8	userError: Pls enter a parameter recognized by the database
+20250101	23:19:42	d5aa8ddc-fab4-4039-a050-d451827ba879	userError: Pls enter a parameter recognized by the database
+20250101	23:19:45	954f2ba5-e9ac-48f3-96b2-0bd337d04432	userError: Pls enter a parameter recognized by the database
+20250101	23:19:46	3b41345a-b042-4e17-a666-023587d9cce4	userError: Pls enter a parameter recognized by the database
+20250101	23:20:08	2f8f0575-ec42-49eb-8319-ed2068a47cd1	userError: Pls enter a parameter recognized by the database

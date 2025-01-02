@@ -19,6 +19,10 @@ const FeedList = ({ view, feedCategory}) => {
   const [emptyData, setEmptyData] = useState(false)
   const [feedStories, setFeedStories] = useState([])
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [currentStoryDetails, setCurrentStoryDetails] = useState({
+    isLiked : "",
+    isBookmarked : ""
+  })
   const { width } = useWindowSize();
   const [categoryChanged, setCategoryChanged] = useState(null);
   const { contextMenu,
@@ -27,7 +31,8 @@ shareRef,
 shareModal,
 fireClick,
 shareUrl,
-setShareUrl
+setShareUrl,
+currentStoryId
 } = useModalContext();
   const  { populateFeed, isLoading, error, data, storyCount } = usePopulateFeed(); 
   const [loading, setLoading] = useState([])
@@ -161,6 +166,7 @@ fireClick={() => resendRequest()}
 <FeedCard story={content}
 isLoading={false}
 fireClick={fireClick}
+setCurrentStoryDetails={setCurrentStoryDetails}
 key={index} view={`${view.grid ? "grid" : "list"}`}/>
 ))
 
@@ -204,18 +210,21 @@ height : "100vh"}}>
 <ContextMenu
 state={"feed"}
 contextMenu={contextMenu}
+currentStoryDetails={currentStoryDetails}
+setCurrentStoryDetails={setCurrentStoryDetails}
+currentStoryId={currentStoryId}
 shareModal={shareModal}
          setContextMenu={setContextMenu}
          contextMenuData={[
          {id : 1, icon : <FaShareAlt />
-         , label : "Share"},
+         , label : "Share", type : "default"},
          {id : 2, icon : <FaBookmark />
-         , label : "Bookmark"},
+         , label : "Bookmark", type : "custom"},
    
          {id : 4, icon : <MdOutlineFavorite />
-         , label : "Like Story"},
+         , label : "Like", type : "custom"},
          {id : 5, icon : <MdReadMore />
-          , label : "Read More"}
+          , label : "Read More", type : "default"}
 ]} />
     </div>
     

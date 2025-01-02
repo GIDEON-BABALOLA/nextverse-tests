@@ -39,10 +39,6 @@ const ExplorePage = () => {
   const [category, setCategory] = useState(Object.keys(tabs).find(key => tabs[key] === true))
   const [loading, setLoading] = useState([])
   const [stories, setStories] = useState([])
-  const [currentStoryDetails, setCurrentStoryDetails] = useState({
-    isLiked : "",
-    isBookmarked : ""
-  })
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categoryChanged, setCategoryChanged] = useState(null)
   const { getExploreStories, isLoading, error, data,  storyCount } = useGetExploreStories()
@@ -238,7 +234,6 @@ resendRequest()
     stories.map((story, index) => (
       <StoryCard
       isLoading={story.loading}
-      setCurrentStoryDetails={setCurrentStoryDetails}
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
     ))
     }
@@ -259,9 +254,6 @@ resendRequest()
   state={"feed"}
   contextMenu={contextMenu}
   shareModal={shareModal}
-  currentStoryDetails={currentStoryDetails}
-  setCurrentStoryDetails={setCurrentStoryDetails}
-  currentStoryId={currentStoryId}
              setContextMenu={setContextMenu}
              contextMenuData={[
              {id : 1, icon : <FaShareAlt />

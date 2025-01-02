@@ -4,11 +4,14 @@ import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import useNavigateStory from "../../hooks/useNavigateStory";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
-const StoryCard = ({ fireClick, story, isLoading, setCurrentStoryDetails}) => {
+import { useModalContext } from "../../hooks/useModalContext";
+const StoryCard = ({ fireClick, story, isLoading}) => {
   const navigateToStory = useNavigateStory();
   const navigateToProfile = useNavigateProfile()
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
+  const [permanetId, setPermanentId] = useState("")
+  const { setCurrentStoryDetails,currentStoryId } = useModalContext()
   let storyPicture = ""
   if(isLoading === false){
     //  storyPicture = story.picture[Math.round(Math.random())]
@@ -40,7 +43,12 @@ const StoryCard = ({ fireClick, story, isLoading, setCurrentStoryDetails}) => {
   }, [imageStatus, story.picture, story.avatar]); 
   const showMyModal = (e) => {
     console.log(story.isLiked, story.isBookmarked)
-    setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
+    if(permanetId == currentStoryId){
+ console.log("ho")
+    }else{
+      setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
+    }
+    setPermanentId(currentStoryId)
     fireClick(e, getStoryUrl(story), story._id)
   }
   return (

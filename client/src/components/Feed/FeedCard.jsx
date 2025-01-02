@@ -16,7 +16,7 @@ import { MdVisibility,
   MdOutlineFavorite
 } from "react-icons/md";
 
-const FeedCard = ({ fireClick, story, isLoading, view}) => {
+const FeedCard = ({ fireClick, story, isLoading, view, setCurrentStoryDetails}) => {
   const likeStory = useLikeAStory();
   const unlikeStory = useUnLikeAStory();
   const navigateToStory = useNavigateStory(); 
@@ -165,6 +165,12 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
       )
     }
   }
+  const showMyModal = (e) => {
+    console.log(story.isLiked, story.isBookmarked)
+    console.log(story._id)
+    setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
+    fireClick(e, getStoryUrl(story), story._id)
+  }
   return (
  <> 
  {
@@ -240,7 +246,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                </div>
 
                <FaEllipsisH  
-                 onClick={(e) => fireClick(e, getStoryUrl(story))}
+                 onClick={(e) => showMyModal(e)}
                />
                </div>
               
@@ -418,7 +424,7 @@ className="list-view-card-second-section"
    }</span>
 <span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
     <span style={{cursor :"pointer"}}><FaEllipsisH  
-      onClick={(e) => fireClick(e, getStoryUrl(story))}
+      onClick={(e) =>showMyModal(e)}
     /></span>
     
      </span>
@@ -497,7 +503,7 @@ src={storyPicture}
    }</span>
    <span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
     <span style={{cursor :"pointer"}}><FaEllipsisH 
-    onClick={(e) => fireClick(e, getStoryUrl(story))}
+    onClick={(e) => showMyModal(e)}
     /></span>
     
      </span>

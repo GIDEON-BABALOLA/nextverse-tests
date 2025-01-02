@@ -7,17 +7,18 @@ import { useLikeAStory } from "../../hooks/useLikeAStory";
 import { useUnLikeAStory } from "../../hooks/useUnlikeAStory";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa"
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
-import { useModalContext } from "../../hooks/useModalContext"
 import { useState } from "react"
 const ContextMenu = ({ contextMenuData,
     setContextMenu,
     shareModal,
     contextMenu,
-    state
+    state,
+    currentStoryDetails,
+    setCurrentStoryDetails,
+    currentStoryId
 }) => {
-    const { currentStoryDetails, setCurrentStoryDetails, currentStoryId} = useModalContext()
     const [likedBefore, setLikedBefore] = useState("");
-    const [bookmarkedBefore, setBookmarkedBefore] = useState("")
+    const [bookmarkedBefore, setBookmarkedBefore] = useState("");
     const [bookmarking, setBookmarking] = useState(false)
     const [unBookmarking, setUnBookmarking] = useState(false)
     const [liking, setLiking] = useState(false)
@@ -32,25 +33,30 @@ const ContextMenu = ({ contextMenuData,
         setContextMenu(context)
     }, [setContextMenu])
       useEffect(() => {
-        console.log(currentStoryDetails)
-        setLikedBefore(currentStoryDetails["isLiked"])
-        setBookmarkedBefore(currentStoryDetails["isBookmarked"])
-      }, [currentStoryId, currentStoryDetails])
+        console.log(`Liked ${currentStoryDetails["isLiked"]}`, `Bookmarked ${currentStoryDetails["isBookmarked"]}`)
+    setLikedBefore(currentStoryDetails["isLiked"])
+    setBookmarkedBefore(currentStoryDetails["isBookmarked"])
+      }, [currentStoryDetails])
 const likeTheStory = () => {
     setLiking(true)
     setLikedBefore(false)
+    setCurrentStoryDetails((prev) => {
+      return {...prev, isLiked : true}
+    })
     likeStory.likeAStory(currentStoryId)
 }
 const unlikeTheStory = () => {
     setUnLiking(true)
     setLikedBefore(true)
+    setCurrentStoryDetails((prev) => {
+      return {...prev, isLiked : false}
+    })
     unlikeStory.unlikeAStory(currentStoryId)
 }
 const bookmarkAStory = () => {
   console.log("role")
 setBookmarking(true)
 setBookmarkedBefore(false)
-
 bookmarkStory.bookmarkAStory(currentStoryId)
 }
 const unBookmarkAStory = () => {
@@ -62,12 +68,18 @@ useEffect(() => {
 if(Object.keys(likeStory.data).length  > 0){
     setLikedBefore(false)
     setLiking(false)
+    setCurrentStoryDetails((prev) => {
+      return {...prev, isLiked : true}
+    })
 }
       }, [likeStory.data, likeStory.error])
 useEffect(() => {
 if(Object.keys(unlikeStory.data).length  > 0){
     setLikedBefore(true)
     setUnLiking(false)
+    setCurrentStoryDetails((prev) => {
+      return {...prev, isLiked : false}
+    })
 }
           }, [unlikeStory.data, unlikeStory.error])
 useEffect(() => {
@@ -377,11 +389,16 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
            {item.label === "Bookmark" && (
              bookmarkedBefore
                ?
-               
-                renderUnBookmarkButton(item.label, id)
+               <>
+                {renderUnBookmarkButton(item.label, id)}
+                Bookmarked before
+               </>
               
                :
-             renderBookmarkButton(item.label, id)
+               <>
+                {renderBookmarkButton(item.label, id)}
+                Not yet bookmarked
+               </>
               
            )}
            {item.label === "Like" && (

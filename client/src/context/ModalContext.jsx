@@ -7,10 +7,14 @@ useEffect,
 import useWindowSize from "../hooks/useWindowSize";
 export const ModalContext = createContext()
 export const ModalContextProvider = ({children}) => {
-    const [shareModal, setShareModal] = useState();
-    const [contextMenu, setContextMenu] = useState();
-    const [shareUrl, setShareUrl] = useState(undefined)
+    const [shareModal, setShareModal] = useState("");
+    const [contextMenu, setContextMenu] = useState("");
+    const [shareUrl, setShareUrl] = useState("")
     const [currentStoryId, setCurrentStoryId] = useState("")
+     const [currentStoryDetails, setCurrentStoryDetails] = useState({
+       isLiked : "",
+       isBookmarked : ""
+     })
     const shareRef = useRef();
     const { width, height} = useWindowSize();
     const fireClick = (e, storyUrl, id) => {
@@ -91,7 +95,9 @@ export const ModalContextProvider = ({children}) => {
         setShareUrl,
         fireClick,
         setContextMenu,
-        closeContextMenu
+        closeContextMenu,
+        currentStoryDetails,
+        setCurrentStoryDetails
         }}
         >
         {children}

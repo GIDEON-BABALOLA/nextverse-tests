@@ -20,3 +20,5 @@
 20241223	22:13:38	6419c010-a924-4e73-8b49-9be35cd44964	ReferenceError: showman is not defined
 20241223	22:13:40	a037f662-c6c2-47cb-8de3-d41d4a8edf99	ReferenceError: showman is not defined
 20241223	22:13:41	f85fecb2-47a0-469a-82b4-f0338ce23950	ReferenceError: showman is not defined
+20250101	23:19:15	162a7a7e-6f72-4d29-a85f-548ad5441349	userError: Pls enter a parameter recognized by the database
+20250101	23:19:16	ad23f36d-006b-4174-bb04-d7f1f16d990e	userError: Pls enter a parameter recognized by the database
