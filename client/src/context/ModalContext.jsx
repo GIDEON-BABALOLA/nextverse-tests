@@ -18,7 +18,6 @@ export const ModalContextProvider = ({children}) => {
     const shareRef = useRef();
     const { width, height} = useWindowSize();
     const fireClick = (e, storyUrl, id) => {
-      console.log(id)
       setShareUrl(storyUrl)
       setCurrentStoryId(id)
         updateMenuPosition(e.clientX, e.clientY);
@@ -42,7 +41,6 @@ export const ModalContextProvider = ({children}) => {
     }
     useEffect(() => {
       const currentUrl = window.location.href;
-      console.log(currentUrl.split("/").includes("dashboard"))
       if (contextMenu) {
         if(currentUrl.split("/").includes("dashboard")){
           window.addEventListener('wheel', (event) => {

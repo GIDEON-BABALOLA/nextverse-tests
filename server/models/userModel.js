@@ -139,7 +139,11 @@ userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     return;
   }else{
     await this.findByIdAndUpdate(userId, {
-        $push: { bookmarks: { bookmarkId: bookmarkId } },
+        $push: { bookmarks: {
+            
+           $each :  [{bookmarkId: bookmarkId}],
+           $position : 0,
+         } },
       }, { new : true})
     }
   }

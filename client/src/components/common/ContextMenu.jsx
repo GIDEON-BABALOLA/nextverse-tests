@@ -20,6 +20,8 @@ const ContextMenu = ({ contextMenuData,
     const [bookmarkedBefore, setBookmarkedBefore] = useState("")
     const [bookmarking, setBookmarking] = useState(false)
     const [unBookmarking, setUnBookmarking] = useState(false)
+    const [bookmarkStoryData, setBookmarkStoryData] = useState([])
+    const [unbookmarkStoryData, setUnBookmarkStoryData] = useState([])
     const [liking, setLiking] = useState(false)
     const [unLiking, setUnLiking] = useState(false)
     const bookmarkStory = useBookmarkAStory();
@@ -32,10 +34,10 @@ const ContextMenu = ({ contextMenuData,
         setContextMenu(context)
     }, [setContextMenu])
       useEffect(() => {
-        console.log(currentStoryDetails)
         setLikedBefore(currentStoryDetails["isLiked"])
+        console.log(` Likes ${currentStoryDetails["isLiked"]} Bookmarked ${currentStoryDetails["isLiked"]}`)
         setBookmarkedBefore(currentStoryDetails["isBookmarked"])
-      }, [currentStoryId, currentStoryDetails])
+      }, [currentStoryId])
 const likeTheStory = () => {
     setLiking(true)
     setLikedBefore(false)
@@ -47,7 +49,6 @@ const unlikeTheStory = () => {
     unlikeStory.unlikeAStory(currentStoryId)
 }
 const bookmarkAStory = () => {
-  console.log("role")
 setBookmarking(true)
 setBookmarkedBefore(false)
 
@@ -206,7 +207,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
                      size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
                      onClick={() => bookmarkAStory()}
                      />
-                   <span className="litenote-context-label">Bookmark</span>
+                   <span className="litenote-context-label">Bookmark here</span>
                </li> 
 
     

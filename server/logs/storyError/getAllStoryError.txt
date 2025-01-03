@@ -17,3 +17,4 @@
 20241229	01:22:46	da7661f8-bbcf-4e8a-ac0c-72e8270742f7	TypeError: Cannot read properties of undefined (reading 'some')
 20241229	01:32:20	177e3c8c-4697-4e75-86ab-8647ebe5cd06	TypeError: Cannot read properties of undefined (reading 'some')
 20241229	01:32:49	64773e3a-7a96-4691-bafe-2ee7ad42606a	TypeError: Cannot read properties of undefined (reading 'some')
+20250102	16:37:53	e206e85d-eda6-4159-9f5e-c9b281c83af4	userError: This page does not exist

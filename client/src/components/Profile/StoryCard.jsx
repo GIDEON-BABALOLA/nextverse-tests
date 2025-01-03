@@ -42,12 +42,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
     });
   }, [imageStatus, story.picture, story.avatar]); 
   const showMyModal = (e) => {
-    console.log(story.isLiked, story.isBookmarked)
-    if(permanetId == currentStoryId){
- console.log("ho")
-    }else{
-      setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
-    }
+    setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
     setPermanentId(currentStoryId)
     fireClick(e, getStoryUrl(story), story._id)
   }
