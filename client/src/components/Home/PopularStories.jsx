@@ -1,8 +1,8 @@
 import "../../styles/components/Home/popularstories.css"
 import PopularStoriesCard from "../common/PopularStoriesCard"
 import { useModalContext } from "../../hooks/useModalContext"
-import { FaShareAlt, FaBookmark } from "react-icons/fa"
-import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
+import { FaShareAlt, FaBookmark, FaTimes } from "react-icons/fa"
+import { MdOutlineFavorite, MdOutlineFavoriteBorder, MdClose } from "react-icons/md"
 import { MdReadMore,  } from "react-icons/md"
 import Tab from "../common/Tab"
 import ContextMenu from "../common/ContextMenu"
@@ -11,8 +11,10 @@ import { useState, useRef, useEffect } from "react"
 import { useGetPopularStories } from "../../hooks/useGetPopularStories"
 import { usePopularStoriesContext } from "../../hooks/usePopularStoriesContext"
 import ErrorMessage from "../common/ErrorMessage"
+import { useAuthContext } from "../../hooks/useAuthContext"
 import NoContent from "../common/NoContent"
 const PopularStories = () => {
+  const { user } = useAuthContext();
   const { getPopularStories, isLoading, error, data, statusCode } = useGetPopularStories()
   const { setPopularStories, popularStories } = usePopularStoriesContext()
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
@@ -39,7 +41,7 @@ const resendRequest = () => {
   if(selectedCategory == "nonfiction"){
     selectedCategory = "non-fiction"
             }
-  getPopularStories(selectedCategory, 3)
+  getPopularStories(selectedCategory, 3, user?._id || "")
 }
   const [tabs, setTab] = useState({
     technology : true,
@@ -59,7 +61,7 @@ const resendRequest = () => {
   selectedCategory = "non-fiction"
           }
           setEmptyData(false)
-          getPopularStories(selectedCategory, 3)
+          getPopularStories(selectedCategory, 3, user?._id || "")
           observer.unobserve(entry.target);
         }
       },
@@ -75,7 +77,7 @@ const resendRequest = () => {
       }
     };
   
-  }, [tabs])
+  }, [tabs, user])
   useEffect(() => {
     setEmptyData(false)
     if(data.length > 1){
@@ -85,7 +87,6 @@ const resendRequest = () => {
   }, [data, statusCode, setPopularStories])
   useEffect(() => {
     if(!isLoading){
-      console.log("out")
       if(data.length == 0 && !error){
         setEmptyData(true)
       }
@@ -169,6 +170,7 @@ error={error}
       <ContextMenu
        state={"feed"}
        contextMenu={contextMenu}
+       stories={popularStories}
        shareModal={shareModal}
        currentStoryDetails={currentStoryDetails}
        setCurrentStoryDetails={setCurrentStoryDetails}
@@ -178,10 +180,10 @@ error={error}
                   , label : "Share", type : "default"},
                   {id : 2, icon : <FaBookmark />
                   , label : "Bookmark", type : "custom"},
-                  {id : 3, icon : <MdReadMore/>
-                  , label : "Close", type : "default"},
-                  {id : 4, icon : <MdOutlineFavorite />
-                  , label : "Like", type :"custom"}
+                  {id : 3, icon : <MdOutlineFavorite />
+                  , label : "Like", type :"custom"},
+                  {id : 4, icon : <FaTimes/>
+                    , label : "Close", type : "default"},
 ]} />
          {/* Featured stories will be dynamically added here  */}
       </div>

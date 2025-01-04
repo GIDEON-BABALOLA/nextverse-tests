@@ -6,7 +6,7 @@ const rankStories = (stories, number) => {
         totalBookmarks:   5
     }
     const storiesToBeRanked = stories.map((story) => {
-        const storyConvertedToObject = story.toObject()
+        const storyConvertedToObject = story
         const popularityScore = (weights.totalViews * storyConvertedToObject.totalViews) +
         (weights.totalComments * storyConvertedToObject.totalComments) +
         (weights.totalLikes * storyConvertedToObject.totalLikes) +

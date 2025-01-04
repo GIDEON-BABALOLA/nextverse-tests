@@ -8,22 +8,32 @@ import { useUnLikeAStory } from "../../hooks/useUnlikeAStory";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa"
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
 import { useModalContext } from "../../hooks/useModalContext"
+import { useToastContext } from "../../hooks/useToastContext"
+import { useAuthContext } from "../../hooks/useAuthContext"
+import useNavigateStory from "../../hooks/useNavigateStory"
 import { useState } from "react"
 const ContextMenu = ({ contextMenuData,
     setContextMenu,
     shareModal,
     contextMenu,
+    stories,
     state
 }) => {
-    const { currentStoryDetails, setCurrentStoryDetails, currentStoryId} = useModalContext()
+    const {   currentStoryId } = useModalContext()
+    const navigateToStory = useNavigateStory();
+    const { user } = useAuthContext();
+    const { showToast } = useToastContext();
     const [likedBefore, setLikedBefore] = useState("");
+    const [editStories, setEditStories] = useState([])
     const [bookmarkedBefore, setBookmarkedBefore] = useState("")
     const [bookmarking, setBookmarking] = useState(false)
     const [unBookmarking, setUnBookmarking] = useState(false)
-    const [bookmarkStoryData, setBookmarkStoryData] = useState([])
-    const [unbookmarkStoryData, setUnBookmarkStoryData] = useState([])
     const [liking, setLiking] = useState(false)
     const [unLiking, setUnLiking] = useState(false)
+    const [bookmarkData, setBookmarkData] = useState([])
+    const [unbookmarkData, setUnbookmarkData] = useState([])
+    const [likeData, setLikeData] = useState([])
+    const [unlikeData, setUnlikeData] = useState([])
     const bookmarkStory = useBookmarkAStory();
     const unBookmarkStory  = useUnBookmarkAStory();
     const likeStory = useLikeAStory();
@@ -34,55 +44,109 @@ const ContextMenu = ({ contextMenuData,
         setContextMenu(context)
     }, [setContextMenu])
       useEffect(() => {
-        setLikedBefore(currentStoryDetails["isLiked"])
-        console.log(` Likes ${currentStoryDetails["isLiked"]} Bookmarked ${currentStoryDetails["isLiked"]}`)
-        setBookmarkedBefore(currentStoryDetails["isBookmarked"])
+        const isLiked = editStories.find(story => story._id == currentStoryId)?.isLiked;
+        const isBookmarked = editStories.find(story => story._id == currentStoryId)?.isBookmarked;
+        setLikedBefore(isLiked)
+        setBookmarkedBefore(isBookmarked)
+        setBookmarkData([])
+        setUnbookmarkData([])
+        setLikeData([])
+        setUnlikeData([])
       }, [currentStoryId])
+      useEffect(() => {
+        const filteredStories = stories.map(({ _id, isLiked, isBookmarked}) => ({ _id, isLiked, isBookmarked}));
+setEditStories(filteredStories)
+      }, [stories])
 const likeTheStory = () => {
+  if(user == null){
+    showToast("Error", "Unable To Like, Try Logging In", false)
+    return
+  }
     setLiking(true)
     setLikedBefore(false)
     likeStory.likeAStory(currentStoryId)
 }
 const unlikeTheStory = () => {
+  if(user == null){
+    showToast("Error", "Unable To Undo Like, Try Logging In", false)
+    return
+  }
     setUnLiking(true)
     setLikedBefore(true)
     unlikeStory.unlikeAStory(currentStoryId)
 }
 const bookmarkAStory = () => {
+if(user == null){
+  showToast("Error", "Unable To Bookmark, Try Logging In", false)
+  return
+}
 setBookmarking(true)
 setBookmarkedBefore(false)
 
 bookmarkStory.bookmarkAStory(currentStoryId)
 }
 const unBookmarkAStory = () => {
+  if(user == null){
+    showToast("Error", "Unable To Undo Bookmark, Try Logging In", false)
+    return
+  }
 setUnBookmarking(true)
 setBookmarkedBefore(true)
 unBookmarkStory.unbookmarkAStory(currentStoryId)
 }
 useEffect(() => {
 if(Object.keys(likeStory.data).length  > 0){
+    setLikeData(Object.keys(likeStory.data))
     setLikedBefore(false)
     setLiking(false)
+    setEditStories(prevStories =>
+      prevStories.map(story =>
+        story._id === currentStoryId ? { ...story, isLiked : true } : story
+      )
+    );
 }
       }, [likeStory.data, likeStory.error])
 useEffect(() => {
 if(Object.keys(unlikeStory.data).length  > 0){
+  setUnlikeData(Object.keys(unlikeStory.data))
     setLikedBefore(true)
     setUnLiking(false)
+    setEditStories(prevStories =>
+      prevStories.map(story =>
+        story._id === currentStoryId ? { ...story, isLiked : false } : story
+      )
+    );
 }
           }, [unlikeStory.data, unlikeStory.error])
 useEffect(() => {
  if(Object.keys(bookmarkStory.data).length  > 0){
+  setBookmarkData(Object.keys(bookmarkStory))
               setBookmarkedBefore(false)
               setBookmarking(false)
+              setEditStories(prevStories =>
+                prevStories.map(story =>
+                  story._id === currentStoryId ? { ...story, isBookmarked : true } : story
+                )
+              );
     }
  }, [bookmarkStory.data])
 useEffect(() => {
 if(Object.keys(unBookmarkStory.data).length  > 0){
+  setUnbookmarkData(Object.keys(unBookmarkStory))
                   setBookmarkedBefore(true)
                   setUnBookmarking(false)
+                  setEditStories(prevStories =>
+                    prevStories.map(story =>
+                      story._id === currentStoryId ? { ...story, isBookmarked : false } : story
+                    )
+                  );
                 }
 }, [unBookmarkStory.data])
+const openAStory = () => {
+  const author = stories.find(story => story._id == currentStoryId)?.author;
+  const title = stories.find(story => story._id == currentStoryId)?.title;
+  navigateToStory({_id : currentStoryId, author : author, title : title})
+}
     const openShare = (e) => {
 
         switch (e.target.innerText) {
@@ -100,6 +164,9 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
                     navigate("/")
                     
                 break;
+                case "Read More" :
+               openAStory()
+               break;
                 case "Settings":
                     navigate("/dashboard/settings")
                     
@@ -116,7 +183,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
         }
     }
     const renderBookmarkButton  = (label, id) => {
-        if (Object.keys(bookmarkStory.data).length == 0 && !bookmarking && !bookmarkedBefore){
+        if (bookmarkData.length == 0 && !bookmarking && !bookmarkedBefore){
             return (
                        <li className="litenote-context-link" key={id} onClick={openShare}
           data-name={label} 
@@ -142,7 +209,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
             
             )
           }
-          if (!bookmarking && Object.keys(bookmarkStory.data).length > 0 && !bookmarkedBefore){
+          if (!bookmarking && bookmarkData.length > 0 && !bookmarkedBefore){
             return (
                 <li className="litenote-context-link" key={id} onClick={openShare}
                 data-name={label} 
@@ -171,7 +238,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
           }
     }
     const renderUnBookmarkButton = (label, id) => {
-        if (Object.keys(unBookmarkStory.data).length == 0 && !unBookmarking && bookmarkedBefore){
+        if (unbookmarkData.length == 0 && !unBookmarking && bookmarkedBefore){
             return (
                  <li className="litenote-context-link" key={id} onClick={openShare}
           data-name={label} 
@@ -196,7 +263,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
                </li> 
             )
           }
-          if (!unBookmarking && Object.keys(unBookmarkStory.data).length > 0 && bookmarkedBefore){
+          if (!unBookmarking && unbookmarkData.length > 0 && bookmarkedBefore){
             return(
     
               
@@ -207,7 +274,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
                      size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
                      onClick={() => bookmarkAStory()}
                      />
-                   <span className="litenote-context-label">Bookmark here</span>
+                   <span className="litenote-context-label">Bookmark</span>
                </li> 
 
     
@@ -234,7 +301,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
           }
     }
     const renderLikeButton = (label, id) => {
-        if (Object.keys(likeStory.data).length == 0 && !liking && !likedBefore){
+        if (likeData.length == 0 && !liking && !likedBefore){
           return (
             <li className="litenote-context-link" key={id} onClick={openShare}
             data-name={label} 
@@ -261,7 +328,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
           
           )
         }
-        if (!liking && Object.keys(likeStory.data).length > 0 && !likedBefore){
+        if (!liking && likeData.length > 0 && !likedBefore){
           return (
             <li className="litenote-context-link" key={id} onClick={openShare}
             data-name={label} 
@@ -291,7 +358,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
         }
     }
     const renderUnLikeButton = (label, id) => {
-        if (Object.keys(unlikeStory.data).length == 0 && !unLiking && likedBefore){
+        if (unlikeData.length == 0 && !unLiking && likedBefore){
             return (
                 <li className="litenote-context-link" key={id} onClick={openShare}
                 data-name={label} 
@@ -316,7 +383,7 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
                </li> 
             )
           }
-          if (!unLiking && Object.keys(unlikeStory.data).length > 0 && likedBefore){
+          if (!unLiking && unlikeData.length > 0 && likedBefore){
             return(
                 <li className="litenote-context-link" key={id} onClick={openShare}
                 data-name={label} 

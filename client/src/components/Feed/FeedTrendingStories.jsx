@@ -13,7 +13,7 @@ const FeedTrendingStories = () => {
     const [emptyData, setEmptyData] = useState(false)
     useEffect(() => {
         setEmptyData(false)
-        getPopularStories("all", 4)
+        getPopularStories("all", 4, "")
     }, [])
     useEffect(() => {
 if(data.length > 0){
@@ -36,7 +36,7 @@ const showLess = () => {
 }
 const resendRequest = () => {
 setEmptyData(false)
-  getPopularStories("all", 4)
+  getPopularStories("all", 4, "")
 }
   return (
     <>

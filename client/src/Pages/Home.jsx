@@ -7,7 +7,6 @@ import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import NewsletterSignup from "../components/common/NewsletterSignup.jsx"
 import Testimonial from "../components/Home/Testimonial.jsx"
 import { useRef } from "react"
-import ConnectivityToast from "../components/common/connectivityToast.jsx"
 import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
 import { useThemeContext } from "../hooks/useThemeContext.jsx"
 import { useEffect } from "react"
@@ -30,9 +29,6 @@ case "dark-mode":
   return (
     <>
     <main ref={page}>
-    <ConnectivityToast />
-    
-  
     <NewsletterSignup page={page}/>
     
     <Intro />

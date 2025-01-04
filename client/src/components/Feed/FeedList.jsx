@@ -3,7 +3,7 @@ import FeedLoadingCard from "./FeedLoadingCard"
 import ContextMenu from "../common/ContextMenu"
 import ErrorMessage from "../common/ErrorMessage"
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
-import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
+import { FaShareAlt, FaBookmark, FaTimes } from "react-icons/fa"
 import Share from "../common/Share"
 import { useRef, useEffect, useState } from "react"
 import { MdReadMore } from "react-icons/md"
@@ -19,10 +19,6 @@ const FeedList = ({ view, feedCategory}) => {
   const [emptyData, setEmptyData] = useState(false)
   const [feedStories, setFeedStories] = useState([])
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [currentStoryDetails, setCurrentStoryDetails] = useState({
-    isLiked : "",
-    isBookmarked : ""
-  })
   const { width } = useWindowSize();
   const [categoryChanged, setCategoryChanged] = useState(null);
   const { contextMenu,
@@ -166,7 +162,6 @@ fireClick={() => resendRequest()}
 <FeedCard story={content}
 isLoading={false}
 fireClick={fireClick}
-setCurrentStoryDetails={setCurrentStoryDetails}
 key={index} view={`${view.grid ? "grid" : "list"}`}/>
 ))
 
@@ -210,8 +205,7 @@ height : "100vh"}}>
 <ContextMenu
 state={"feed"}
 contextMenu={contextMenu}
-currentStoryDetails={currentStoryDetails}
-setCurrentStoryDetails={setCurrentStoryDetails}
+stories={feedStories}
 currentStoryId={currentStoryId}
 shareModal={shareModal}
          setContextMenu={setContextMenu}
@@ -220,11 +214,10 @@ shareModal={shareModal}
          , label : "Share", type : "default"},
          {id : 2, icon : <FaBookmark />
          , label : "Bookmark", type : "custom"},
-   
-         {id : 4, icon : <MdOutlineFavorite />
-         , label : "Like", type : "custom"},
          {id : 5, icon : <MdReadMore />
-          , label : "Read More", type : "default"}
+          , label : "Read More", type : "default"},
+          {id : 5, icon : <FaTimes />
+            , label : "Close", type : "default"}
 ]} />
     </div>
     

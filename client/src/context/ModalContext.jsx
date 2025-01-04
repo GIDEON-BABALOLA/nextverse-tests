@@ -11,10 +11,6 @@ export const ModalContextProvider = ({children}) => {
     const [contextMenu, setContextMenu] = useState("");
     const [shareUrl, setShareUrl] = useState("")
     const [currentStoryId, setCurrentStoryId] = useState("")
-     const [currentStoryDetails, setCurrentStoryDetails] = useState({
-       isLiked : "",
-       isBookmarked : ""
-     })
     const shareRef = useRef();
     const { width, height} = useWindowSize();
     const fireClick = (e, storyUrl, id) => {
@@ -93,9 +89,7 @@ export const ModalContextProvider = ({children}) => {
         setShareUrl,
         fireClick,
         setContextMenu,
-        closeContextMenu,
-        currentStoryDetails,
-        setCurrentStoryDetails
+        closeContextMenu   
         }}
         >
         {children}

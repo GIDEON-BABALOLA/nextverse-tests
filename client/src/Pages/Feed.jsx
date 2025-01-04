@@ -5,7 +5,7 @@ import FeedList from "../components/Feed/FeedList";
 import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
 import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
 import FeedBottomNav from "../components/Feed/FeedBottomNav";
-
+import ConnectivityToast from "../components/common/connectivityToast";
 import ChatBot from "../components/ChatBot/ChatBot";
 import { FaHome,FaSearch, FaTimes } from "react-icons/fa";
 import useWindowSize from "../hooks/useWindowSize";
@@ -58,6 +58,7 @@ const FeedPage = () => {
   const { width } = useWindowSize()
   return (
     <>
+    <ConnectivityToast />
        <section className="total-feed" onClick={closeContextMenu}>
 <FeedBottomNav view={view} changeView={changeView}/>
  

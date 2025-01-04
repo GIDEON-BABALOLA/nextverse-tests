@@ -253,6 +253,7 @@ resendRequest()
 <ContextMenu
   state={"feed"}
   contextMenu={contextMenu}
+  stories={stories}
   shareModal={shareModal}
              setContextMenu={setContextMenu}
              contextMenuData={[
@@ -260,7 +261,6 @@ resendRequest()
              , label : "Share", type : "default"},
              {id : 2, icon : <FaRegBookmark />
              , label : "Bookmark", type : "custom"},
-       
              {id : 4, icon : <MdOutlineFavoriteBorder />
              , label : "Like", type : "custom"},
              {id : 5, icon : <MdReadMore />

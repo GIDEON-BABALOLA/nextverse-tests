@@ -8,6 +8,7 @@ const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const _ = require('lodash');
 const slugify = require("slugify")
 const { cloudinaryError, userError } = require("../utils/customError");
+const { Console } = require("console");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { countWordsAndEstimateReadingTime } = require(path.join(__dirname, "..", "utils", "countWordsAndEstimateReadingTime.js"))
@@ -338,6 +339,8 @@ res.status(200).json({suggestedStories : suggestedStories})
     }
 const getPopularStories = async (req, res) => {
     const { category, number } = req.params;
+    const { userId } = req.query
+    console.log(req.query)
     const defaultCategory = [
         "fiction", "all", "non-fiction", "romance", "adventure", "memoir", "technology"    
        ]
@@ -348,16 +351,22 @@ try{
     }
     let foundStories;
     if(category == "all"){
-        foundStories = await Story.find();
+        foundStories = await Story.find().lean();
     }
     else{
-        foundStories = await Story.find({ category : category})
+        foundStories = await Story.find({ category : category}).lean()
     }
+    const enrichedPopularStories = foundStories.map((story) => ({
+        ...story,
+        isLiked: story.likes.some((like) => like.likedBy.toString() == userId.toString()),
+        isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == userId.toString())
+      }));
 
-    const mostPopularStories = rankStories(foundStories, number)
+    const mostPopularStories = rankStories(enrichedPopularStories, number)
         res.status(200).json(mostPopularStories)         
         
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ error : error.message})
@@ -577,6 +586,7 @@ catch(error){
 
 //To Bookmark A Story
 const bookmarkAStory = async (req, res) => {
+    console.log(req.user)
     const { id } = req.params;
     try{
     
@@ -598,6 +608,7 @@ const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
     res.status(201).json(bookmarkedStory)    
 
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
         if (error instanceof userError) {
             return  res.status(error.statusCode).json({ message : error.message})

@@ -16,7 +16,7 @@ import { MdVisibility,
   MdOutlineFavorite
 } from "react-icons/md";
 
-const FeedCard = ({ fireClick, story, isLoading, view, setCurrentStoryDetails}) => {
+const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const likeStory = useLikeAStory();
   const unlikeStory = useUnLikeAStory();
   const navigateToStory = useNavigateStory(); 
@@ -166,9 +166,6 @@ const FeedCard = ({ fireClick, story, isLoading, view, setCurrentStoryDetails}) 
     }
   }
   const showMyModal = (e) => {
-    console.log(story.isLiked, story.isBookmarked)
-    console.log(story._id)
-    setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
     fireClick(e, getStoryUrl(story), story._id)
   }
   return (

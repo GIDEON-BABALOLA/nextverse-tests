@@ -10,8 +10,6 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
   const navigateToProfile = useNavigateProfile()
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
-  const [permanetId, setPermanentId] = useState("")
-  const { setCurrentStoryDetails,currentStoryId } = useModalContext()
   let storyPicture = ""
   if(isLoading === false){
     //  storyPicture = story.picture[Math.round(Math.random())]
@@ -42,8 +40,6 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
     });
   }, [imageStatus, story.picture, story.avatar]); 
   const showMyModal = (e) => {
-    setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
-    setPermanentId(currentStoryId)
     fireClick(e, getStoryUrl(story), story._id)
   }
   return (

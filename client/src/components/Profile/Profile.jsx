@@ -102,17 +102,18 @@ borderRadius : "10px", padding : "30px"}}>
  <ContextMenu
  state={"feed"}
  contextMenu={contextMenu}
+ stories={stories}
  shareModal={shareModal}
             setContextMenu={setContextMenu}
             contextMenuData={[
             {id : 1, icon : <FaShareAlt />
-            , label : "Share"},
+            , label : "Share", type : "default"},
             {id : 2, icon : <FaBookmark />
-            , label : "Bookmark"},
-            {id : 3, icon : <MdReadMore/>
-            , label : "Close"},
-            {id : 4, icon : <MdOutlineFavorite />
-            , label : "Like Story"}
+            , label : "Bookmark", type : "custom"},
+            {id : 3, icon : <MdOutlineFavorite />
+              , label : "Like", type : "custom"},
+            {id : 4, icon : <MdReadMore/>
+            , label : "Read More"}
 ]} />
 </div>
 }

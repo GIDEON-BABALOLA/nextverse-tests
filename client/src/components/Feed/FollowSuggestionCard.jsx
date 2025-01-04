@@ -4,7 +4,6 @@ import useNavigateProfile from "../../hooks/useNavigateProfile"
 import { useState, useEffect } from "react"
 const FollowSuggestionCard = ({ isLoading, user }) => {
   const navigateToProfile  = useNavigateProfile();
-  console.log(user)
   const {followUser, data, error : followError } = useFollowUser()
   const [following, setFollowing] = useState(false)
   const followAUser = () => {
@@ -42,8 +41,6 @@ if(followError){
   useEffect(() => {
     if(Object.keys(data).length > 0){
       setFollowing(false)
-      console.log("wnwjjw")
-      console.log("data")
     }
       }, [data])
   return (

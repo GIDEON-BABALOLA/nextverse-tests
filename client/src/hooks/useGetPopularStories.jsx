@@ -6,14 +6,16 @@ export const useGetPopularStories = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
-    const getPopularStories = async (category, number) => {
+    const getPopularStories = async (category, number, userId) => {
+        console.log(userId)
         setIsLoading(true) //starting the request
         try{
             setError(null)
 const response = await axiosConfig.get(`/story/get-popular-stories/${category}/${parseInt(number)}`, 
-    {
-        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
-    }
+{
+    params : { userId : userId},
+    signal : AbortSignal.timeout(axiosProperties["timeout"])
+}
 )
 if(response && response.data){
     setData(response.data)

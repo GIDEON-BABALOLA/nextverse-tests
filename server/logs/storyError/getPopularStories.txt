@@ -5,3 +5,21 @@
 20241230	12:25:25	aff0c834-72ee-4e9e-8cc7-641b95fe1ddf	TypeError: Cannot read properties of undefined (reading '_id')
 20241230	12:31:00	e1150143-34fd-4ac9-8726-95d1a8dfd80a	TypeError: Cannot read properties of undefined (reading '_id')
 20241230	12:31:02	b3f9a4da-5632-4815-9dcc-8f3e19c154bc	TypeError: Cannot read properties of undefined (reading '_id')
+20250103	11:41:09	c7020d2a-fb68-4f0a-9911-7010c85a8ef0	TypeError: Cannot read properties of undefined (reading '_id')
+20250103	11:42:42	f5af7383-226d-4184-8c66-432fc4d64cc8	TypeError: Cannot read properties of undefined (reading '_id')
+20250103	11:43:22	e1838bef-1c03-4a21-a6e8-e86fc2dd48af	TypeError: story.toObject is not a function
+20250103	11:43:23	489e43b4-60bd-48d5-a318-d9b520aeddfb	TypeError: story.toObject is not a function
+20250103	11:43:47	9aa0884a-b725-4819-9a18-9cdce4a03869	TypeError: story.toObject is not a function
+20250103	11:44:34	d089ca77-a832-41a9-bc3c-3d7736e2a225	TypeError: story.toObject is not a function
+20250103	11:45:03	e12dd471-f53b-4436-829e-3f01136bed96	TypeError: story.toObject is not a function
+20250103	11:48:56	e74ed513-c72f-4207-ab2d-b7118d02f455	TypeError: story.toObject is not a function
+20250104	12:35:21	95afac36-1c55-4da7-b2a4-1ee304d15546	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:36:04	8272a36c-fb58-43af-9e19-c49771381e52	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:36:31	1556cd03-f0bc-4c5b-9d99-5eb77e35e4b0	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:37:21	122f7aaf-4dc7-4d05-9fde-a6b5fe74350f	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:37:25	a034b05a-4564-4503-9775-2e49e6e5800d	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:37:26	1ad851e3-6902-4647-8255-32685d091fd2	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:38:20	a123efe7-5f34-4323-9894-a0efedda9dc2	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:38:34	88840388-3e68-49fc-8c30-98a0b2c0a189	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:38:42	963d9c07-c4f4-4a74-98b0-69f77bd4a94e	TypeError: Cannot read properties of undefined (reading 'toString')
+20250104	12:39:53	a748609d-482a-4485-8314-5f2162522e9b	TypeError: Cannot read properties of undefined (reading 'toString')
