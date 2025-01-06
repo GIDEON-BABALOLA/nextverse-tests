@@ -13,7 +13,7 @@ const useInternetMode = () => {
           try {
             const response = await axios.head("https://jsonplaceholder.typicode.com/todos/1",
               {
-                signal : AbortSignal.timeout(3000)
+                signal : AbortSignal.timeout(2000)
             }
             );
             if (response.status >= 200 && response.status < 300) {
