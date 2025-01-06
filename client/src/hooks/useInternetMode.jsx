@@ -7,20 +7,26 @@ const useInternetMode = () => {
     })
 
     useEffect(() => {
-    const checkInternetAccess = async  () => {
-      let internetAccess;
-      try{
-const response = await axios.head("https://jsonplaceholder.typicode.com/todos/1")
-if (response.status >= 200 && response.status < 300) {
-internetAccess = true
-}
-      }catch(error){
-internetAccess = false
-      }
-      return internetAccess
-    }
+      const checkInternetAccess = async (maxRetries = 2) => {
+        let attempt = 1;
+        while (attempt <= maxRetries) {
+          try {
+            const response = await axios.head("https://jsonplaceholder.typicode.com/todos/1",
+              {
+                signal : AbortSignal.timeout(3000)
+            }
+            );
+            if (response.status >= 200 && response.status < 300) {
+              return true;
+            }
+          } catch (error) {
+            attempt++;
+          }
+        }
+        return false;
+      };
   const handleOnline = async () => {
-    const isOnline = await checkInternetAccess(1)
+    const isOnline = await checkInternetAccess()
     if(isOnline){
       setInternetMode({
         online : true,
@@ -29,17 +35,16 @@ internetAccess = false
     }
   }
   const handleOffline = async () => {
-    const isOffline = await checkInternetAccess(1)
+    const isOffline = await checkInternetAccess()
     if(!isOffline){
       setInternetMode({
         online : false,
         offline : true
     })
     }
- 
   }
-  window.addEventListener("online", handleOnline)
-  window.addEventListener("offline", handleOffline)
+    window.addEventListener("online", handleOnline)
+    window.addEventListener("offline", handleOffline)
 
   return () => {
     window.removeEventListener("online", handleOnline);
@@ -49,3 +54,4 @@ internetAccess = false
     return internetMode
 }
 export default useInternetMode
+

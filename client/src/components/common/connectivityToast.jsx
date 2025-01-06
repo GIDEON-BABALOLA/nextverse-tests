@@ -28,7 +28,6 @@ toastWrapper.current.classList.add("hide")
     subTitle.current.innerText  = " Hurray! Internet is connected"
   }
   useEffect(()=>{
-    console.log(online, offline)
     switch (true) {
       case online:
         toastWrapper.current.classList.remove("visibility")
