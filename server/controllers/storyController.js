@@ -314,6 +314,7 @@ const enrichedFeed = allStories.map((story) => ({
 }
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
+    console.log(req.query.currentStoryId)
     console.log(req.query.fields)
     const queryObj = {...req.query}
     try{

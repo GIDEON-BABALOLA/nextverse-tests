@@ -55,6 +55,8 @@ setContextMenu
   const toggleDrawer = () => setDrawerOpen((prev) => !prev);
   const toggleLikesDrawer = () => setLikesDrawerOpen((prev) => !prev);
   useEffect(() => {
+    setMoreStories([])
+    setSuggestedStories([])
 getAStory(id)
   }, [id])
   const resendRequest = () => {
@@ -191,7 +193,7 @@ className="story-display-main"
     userId={data.userId}
     shareModal={shareModal}
     fireClick={fireClick}
-    storyId={data.storyId}
+    storyId={data._id}
     title={data.title}
     moreStories={moreStories}
     setMoreStories={setMoreStories}
@@ -201,7 +203,7 @@ className="story-display-main"
     userId={data.userId}
     shareModal={shareModal}
     fireClick={fireClick}
-    storyId={data.storyId}
+    storyId={data._id}
     title={data.title}
     suggestedStories={suggestedStories}
     setSuggestedStories={setSuggestedStories}
