@@ -8,9 +8,7 @@ import { FaRegSadTear } from "react-icons/fa";
 import { useModalContext } from "../../hooks/useModalContext";
 import { FaShareAlt, FaRegBookmark } from "react-icons/fa";
 import { MdOutlineFavoriteBorder, MdReadMore } from "react-icons/md";
-const StorySuggestions = ({   userId, shareModal, fireClick, title, storyId}) => {
-const { contextMenu, setContextMenu} = useModalContext();
-const [suggestedStories, setSuggestedStories] = useState([])
+const StorySuggestions = ({   userId, shareModal, fireClick, title, storyId, suggestedStories, setSuggestedStories}) => {
 const [loadingState] = useState([{},{}])
 const [emptyData, setEmptyData] = useState(false)
 const stories = useGetSuggestedStories();
@@ -72,23 +70,7 @@ if(stories.data.length > 0){
     ))
       }
 
-    </div>
-    <ContextMenu
-  state={"feed"}
-  contextMenu={contextMenu}
-  stories={suggestedStories}
-  shareModal={shareModal}
-             setContextMenu={setContextMenu}
-             contextMenuData={[
-             {id : 1, icon : <FaShareAlt />
-             , label : "Share", type : "default"},
-             {id : 2, icon : <FaRegBookmark />
-             , label : "Bookmark", type : "custom"},
-             {id : 4, icon : <MdOutlineFavoriteBorder />
-             , label : "Like", type : "custom"},
-             {id : 5, icon : <MdReadMore />
-              , label : "Read More", type : "default"}
-]} />       
+    </div>      
        </>
 
     }

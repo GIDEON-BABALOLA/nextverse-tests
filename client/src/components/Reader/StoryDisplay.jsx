@@ -3,8 +3,8 @@ import "../../styles/components/Reader/story-display.css"
 import CommentModal from "../common/CommentModal"
 import LikesModal from "./LikesModal"
 import Likes from "./Likes"
-import { FaShareAlt, FaBookmark, FaRegThumbsUp } from "react-icons/fa"
-import { MdReadMore } from "react-icons/md"
+import { FaShareAlt, FaRegBookmark } from "react-icons/fa"
+import { MdReadMore, MdOutlineFavoriteBorder } from "react-icons/md"
 import StoryBody from "./StoryBody"
 import { useModalContext } from "../../hooks/useModalContext"
 import StoryAuthor from "./StoryAuthor"
@@ -12,6 +12,7 @@ import MobileComment from "./MobileComment"
 import MobileLikes from "./MobileLikes"
 import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
+import ContextMenu from "../common/ContextMenu"
 import { useState, useEffect } from "react"
 import Toast from "../common/Toast"
 import MoreStories from "./MoreStories"
@@ -26,6 +27,8 @@ const StoryDisplay = ({ username, id, title} ) => {
  fireClick,
  shareUrl,
  setShareUrl,
+ contextMenu,
+setContextMenu
 } = useModalContext()
   const { getAStory, isLoading, error, data, isFollowing, isLiked, isBookmarked } = useGetAStory();
   const [isDrawerOpen, setDrawerOpen] = useState(false)
@@ -34,6 +37,9 @@ const StoryDisplay = ({ username, id, title} ) => {
   const [likes, setLikes] = useState([])
   const [commentNumber, setCommentNumber] = useState(0)
   const [likesNumber, setLikesNumber] = useState(0)
+  const [generalStories, setGeneralStories] = useState([])
+  const [moreStories, setMoreStories] = useState([])
+  const [suggestedStories, setSuggestedStories] = useState([])
   const [deleteModal, setDeleteModal] = useState({
     comment : "",
     modal : false
@@ -156,20 +162,42 @@ className="story-display-main"
       />
        <MoreStories
     userId={data.userId}
+    setGeneralStories={setGeneralStories}
     shareModal={shareModal}
     fireClick={fireClick}
     storyId={data.storyId}
     title={data.title}
+    moreStories={moreStories}
+    setMoreStories={setMoreStories}
 
      />
          <SuggestedStories
     userId={data.userId}
+    setGeneralStories={setGeneralStories}
     shareModal={shareModal}
     fireClick={fireClick}
     storyId={data.storyId}
     title={data.title}
+    suggestedStories={suggestedStories}
+    setSuggestedStories={setSuggestedStories}
 
      />
+         <ContextMenu
+  state={"feed"}
+  contextMenu={contextMenu}
+  stories={[...moreStories, ...suggestedStories]}
+  shareModal={shareModal}
+             setContextMenu={setContextMenu}
+             contextMenuData={[
+             {id : 1, icon : <FaShareAlt />
+             , label : "Share", type : "default"},
+             {id : 2, icon : <FaRegBookmark />
+             , label : "Bookmark", type : "custom"},
+             {id : 4, icon : <MdOutlineFavoriteBorder />
+             , label : "Like", type : "custom"},
+             {id : 5, icon : <MdReadMore />
+              , label : "Read More", type : "default"}
+]} /> 
    </div>
     
     
