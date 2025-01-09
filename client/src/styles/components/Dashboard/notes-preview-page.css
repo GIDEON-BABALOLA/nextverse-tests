@@ -172,43 +172,45 @@ font-weight: 500;
     color: #6d6d6d;
     font-size: 14px;
 }
- .settings svg{
+ .settings-menu svg{
     color: #6d6d6d;
     font-size: 14px;
     cursor: pointer;
     padding-right: 8px;
 }
- .settings  .menu{
+ .settings-menu  .menu{
     position: absolute;
-    bottom: 0;
+    bottom: 10;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
     border-radius: 4px;
-    padding: 5px 0;
+    padding: 10px 0;
+    padding-bottom: 0px;
     background: var(--note-background);
-    right: -5px;
+    right: -80px;
     transform: scale(0);
-    transform-origin: bottom right;
+    transform-origin: top top;
     transition: transform 0.2s ease;
 }
- .settings:hover .menu{
+ .settings-menu:hover .menu{
     transform: scale(1);
 }
- .settings {
+ .settings-menu {
     position: relative;
 }
- .settings  .menu li{
+ .settings-menu  .menu li{
     display: flex;
-      
     align-items: center;
-    justify-content: flex-start;
+    
     height: 25px;
     border-radius: 0;
     cursor: pointer;
-    font-size: 16px;
+    padding: 25px 10px;
+    width: 200px;
+    font-size: 13px;
     font-family: "Poppins";
     background: var(--note-settings-background);
 }
- .settings  .menu li:hover{
+ .settings-menu  .menu li:hover{
     background: var(--note-setings-hover);
 }
 

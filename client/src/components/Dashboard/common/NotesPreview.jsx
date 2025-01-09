@@ -9,17 +9,11 @@ import SearchCircle from "./SearchCircle"
 import { useState } from "react"
 import { FaEllipsisV } from "react-icons/fa"
 import Dots from "../../../styles/components/common/Icons/Dots"
-
 const NotesPreview = () => {
     const [openModal, setOpenModal] = useState(false)
     const [modalTitle, setModalTitle] =  useState("")
     const [modalContent, setModalContent] =  useState("")
     const navigate = useNavigate()
-    const triggerNoteDelete = () => {
-        setModalTitle("Delete Note")
-        setModalContent("Are you sure you want to delete this note")
-        setOpenModal(true)
-    }
     const searchForNotes = () => {
         setModalTitle("Search Notes")
         setModalContent(<div className="user-sticky-search-wrapper">
@@ -116,6 +110,9 @@ return <>
     time={content.time}
     date={content.date}
     author={content.author}
+    setModalTitle={setModalTitle}
+    setModalContent={setModalContent}
+    setOpenModal={setOpenModal}
     />
 ))}
 </div>
