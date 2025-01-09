@@ -1,25 +1,26 @@
 
 import SuggestionCard from "./SuggestionCard"
+import ContextMenu from "../common/ContextMenu"
 import { useGetSuggestedStories } from "../../hooks/useGetSuggestedStories"
 import ErrorMessage from "../common/ErrorMessage"
 import { useEffect, useState } from "react"
 import { FaRegSadTear } from "react-icons/fa";
-import { MdExplore } from "react-icons/md";
-const StorySuggestions = ({   userId, shareModal, fireClick, type, title, storyId}) => {
+import { useModalContext } from "../../hooks/useModalContext";
+import { FaShareAlt, FaRegBookmark } from "react-icons/fa";
+import { MdOutlineFavoriteBorder, MdReadMore } from "react-icons/md";
+const StorySuggestions = ({   userId, shareModal, fireClick, title, storyId}) => {
+const { contextMenu, setContextMenu} = useModalContext();
+const [suggestedStories, setSuggestedStories] = useState([])
 const [loadingState] = useState([{},{}])
 const [emptyData, setEmptyData] = useState(false)
 const stories = useGetSuggestedStories();
 useEffect(() => {
   setEmptyData(false)
-  if(type == "more"){
-    stories.getSuggestedStories(1, 2, "all", userId, storyId, "more");
-  }else{
 stories.getSuggestedStories(1, 2, "all", userId, storyId, "others")
-  }
-
-  }, [type, userId, storyId]);
+  }, [userId, storyId]);
   useEffect(() => {
 if(stories.data.length > 0){
+  setSuggestedStories(stories.data)
   setEmptyData(false)
 }
   }, [stories.data])
@@ -31,11 +32,7 @@ if(stories.data.length > 0){
     }
         }, [stories.data, stories.isLoading, stories.error])
   const resendRequest = () => {
-    if(type == "more"){
-      stories.getSuggestedStories(1, 2, "all", userId, storyId, "more");
-    }else{
   stories.getSuggestedStories(1, 2, "all", userId, storyId, "others")
-    }
   }
   return (
     <>
@@ -62,14 +59,13 @@ if(stories.data.length > 0){
       emptyData ? 
        <div style={{display : "flex", flexDirection : "column", justifyContent  : "center", alignItems : "center", gap : "30px"}}>
        <FaRegSadTear size={50}/>
-       { type == "more" ? <h4>It looks like this is the only story by this author for now. Check back later for more</h4>
-     : <h4>It seems we dont have any more stories to recommend right now. Check back later for fresh content!</h4>
-       }
+      <h4>It seems we dont have any more stories to recommend right now. Check back later for fresh content!</h4>  
        </div>
        :
-       <div
+       <>
+      <div
     className="suggest-more-for-me">
-      {stories.data.map((story, index) => (
+      {suggestedStories.map((story, index) => (
       <SuggestionCard
       isLoading={false}
        shareModal={shareModal} story={story} fireClick={fireClick} key={index}/>
@@ -77,7 +73,24 @@ if(stories.data.length > 0){
       }
 
     </div>
-      
+    <ContextMenu
+  state={"feed"}
+  contextMenu={contextMenu}
+  stories={suggestedStories}
+  shareModal={shareModal}
+             setContextMenu={setContextMenu}
+             contextMenuData={[
+             {id : 1, icon : <FaShareAlt />
+             , label : "Share", type : "default"},
+             {id : 2, icon : <FaRegBookmark />
+             , label : "Bookmark", type : "custom"},
+             {id : 4, icon : <MdOutlineFavoriteBorder />
+             , label : "Like", type : "custom"},
+             {id : 5, icon : <MdReadMore />
+              , label : "Read More", type : "default"}
+]} />       
+       </>
+
     }
     </div>
     </div>

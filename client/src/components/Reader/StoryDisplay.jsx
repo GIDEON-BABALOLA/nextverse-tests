@@ -14,18 +14,16 @@ import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
 import { useState, useEffect } from "react"
 import Toast from "../common/Toast"
-import StorySuggestions from "./StorySuggestions"
+import MoreStories from "./MoreStories"
+import SuggestedStories from "./SuggestedStories"
 import ErrorMessage from "../common/ErrorMessage"
-import ContextMenu from "../common/ContextMenu"
 import DeleteModal from "./DeleteModal"
 import Share from "../common/Share"
 const StoryDisplay = ({ username, id, title} ) => {
   const {
-    contextMenu,
      shareModal,
  shareRef,
  fireClick,
- setContextMenu,
  shareUrl,
  setShareUrl,
 } = useModalContext()
@@ -57,21 +55,6 @@ console.log(data)
   return (
 <>
 <Share  share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
-<ContextMenu
- state={"feed"}
- contextMenu={contextMenu}
- shareModal={shareModal}
-            setContextMenu={setContextMenu}
-            contextMenuData={[
-            {id : 1, icon : <FaShareAlt />
-            , label : "Share"},
-            {id : 2, icon : <FaBookmark />
-            , label : "Bookmark"},
-            {id : 3, icon : <MdReadMore/>
-            , label : "Close"},
-            {id : 4, icon : <FaRegThumbsUp />
-            , label : "Like Story"}
-]} />
 <Toast />
     <MobileComment
      comments={comments}
@@ -171,22 +154,20 @@ className="story-display-main"
       setLikesNumber={setLikesNumber}
       setLikes={setLikes}
       />
-           <StorySuggestions
+       <MoreStories
     userId={data.userId}
     shareModal={shareModal}
     fireClick={fireClick}
-    type={"more"}
-    storyId={id}
+    storyId={data.storyId}
+    title={data.title}
 
      />
-  
-           <StorySuggestions
+         <SuggestedStories
     userId={data.userId}
     shareModal={shareModal}
     fireClick={fireClick}
-    title={"Suggested From Litenote"}
-    type={"litenote"}
-    storyId={id}
+    storyId={data.storyId}
+    title={data.title}
 
      />
    </div>

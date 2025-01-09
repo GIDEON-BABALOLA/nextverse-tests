@@ -314,6 +314,7 @@ const enrichedFeed = allStories.map((story) => ({
 }
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
+    console.log(req.query.fields)
     const queryObj = {...req.query}
     try{
         let query;
@@ -323,10 +324,20 @@ const getSuggestedStories = async (req, res) => {
         else{
             query   =   Story.find({userId :  req.query.userId, _id : { $ne: req.query.currentStoryId} })
         }
+        if(req.query.fields){
+            const fields = req.query.fields.split(",").join(" ")
+            query = query.select(fields)
+        
+        }
 const skip = (page - 1) * limit;
 query = query.skip(skip).limit(limit);
-const suggestedStories = await query;
-res.status(200).json({suggestedStories : suggestedStories})  
+const suggestedStories = await query.lean();
+const enrichedStorySuggestions = suggestedStories.map((story) => ({
+    ...story,
+    isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
+    isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
+  }));
+res.status(200).json({suggestedStories : enrichedStorySuggestions})  
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getSuggestedStoriesError.txt", "storyError")
         if (error instanceof userError) {
@@ -586,7 +597,6 @@ catch(error){
 
 //To Bookmark A Story
 const bookmarkAStory = async (req, res) => {
-    console.log(req.user)
     const { id } = req.params;
     try{
     

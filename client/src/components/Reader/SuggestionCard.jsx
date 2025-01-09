@@ -41,7 +41,10 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
       }
     });
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
-
+  const showMyModal = (e) => {
+    console.log("why")
+    fireClick(e, getStoryUrl(story), story._id)
+  }
   const showFullStory = () => {
     const encodedTitle = story.title.toLowerCase() 
     .replace(/[^a-z0-9]+/g, "-") 
@@ -99,7 +102,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
              
                </div>
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} 
-                onClick={(e) => fireClick(e, getStoryUrl(story))}
+                onClick={(e) => showMyModal(e)}
                />
               
                

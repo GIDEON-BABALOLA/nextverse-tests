@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios"
 const useInternetMode = () => {
     const [internetMode, setInternetMode] = useState({
-        online : /*navigator.onLine*/ undefined,
-        offline : /*!navigator.onLine*/ undefined
+        online : undefined,
+        offline : undefined
     })
 
     useEffect(() => {
-      const checkInternetAccess = async (maxRetries = 2) => {
+      const checkInternetAccess = async (maxRetries = 1) => {
         let attempt = 1;
         while (attempt <= maxRetries) {
           try {
