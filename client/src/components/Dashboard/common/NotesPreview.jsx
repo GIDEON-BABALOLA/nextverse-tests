@@ -4,8 +4,11 @@ import { MdDelete, MdSend } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 import "../../../styles/components/Dashboard/notes-preview-page.css"
 import SpecialModal from "../../common/SpecialModal"
+import NoteCard from "./NoteCard"
 import SearchCircle from "./SearchCircle"
 import { useState } from "react"
+import { FaEllipsisV } from "react-icons/fa"
+import Dots from "../../../styles/components/common/Icons/Dots"
 
 const NotesPreview = () => {
     const [openModal, setOpenModal] = useState(false)
@@ -30,39 +33,60 @@ setOpenModal(true)
     }
     const dummyNotes = [
         {
-            title : "This is a Title",
+            title : "Automata Computability",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
         {
-            title : "This is a Title",
+            title : "Logical Reasoning",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
         {
-            title : "This is a Title",
+            title : "Machine Learning",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
         {
-            title : "This is a Title",
+            title : "Chemistry Note",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3, 2022",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
         {
-            title : "This is a Title",
+            title : "Financial Studies",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
         {
-            title : "This is a Title",
+            title : "Dynamic Programming",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
         {
-            title : "This is a Title",
+            title : "Obect Oriented Programming",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022"
+            date : "April 3",
+            size : 125,
+            time : "11:58am",
+            author : "Gideon Babalola"
         },
     ]
 
@@ -86,26 +110,13 @@ return <>
 <div className="icon"><FaPlus /></div>
 <p>Add new note</p>
 </li>
-{dummyNotes.map((content, index) => (
-    <li className = "note" key={index}>
-<div className="details">
-<p>{content.title}</p>
-<span>{content.content}</span>
-
-</div>
-<div className="bottom-content">
-<span>April 3, 2022</span>
-<div className = "settings">
-<FaEllipsis size={20}/>
-<ul className = "menu">
-<li style={{whiteSpace : "nowrap"}}><FaReadme size={20} /> Read More</li>
-<li><FaEdit size={20} />Edit</li>
-<li><MdSend size={20} />Transfer</li>
-<li onClick={triggerNoteDelete}><MdDelete size={20}/>Delete</li>
-</ul>
-</div>
-</div>
-</li>
+{dummyNotes.map((content,index) => (
+    <NoteCard key={index}
+     title={content.title}
+    time={content.time}
+    date={content.date}
+    author={content.author}
+    />
 ))}
 </div>
     </section>

@@ -10,6 +10,47 @@
     --note-settings-color : #ffff;
     --note-setings-hover  : #00000066;;
 }
+.note-preview-card{
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	box-shadow: #0000001A 0px 2px 5px 0px;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+    gap: 20px;
+	list-style: outside none none;
+	padding: 40px 30px 30px;
+	user-select: none;
+    border-radius: 18px;
+}
+.note-preview-card-image-section{
+    align-items: center;
+	background-color:#E6EEF9;
+	border-radius: 9999px;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+    padding: 30px;
+	scroll-behavior: smooth;
+}
+
+.note-preview-card-title{
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.note-preview-card-second-title{
+    font-size: 1.2rem;
+}
+.note-preview-card-third-title{
+    font-size: 1rem;
+    color: #A3B2C7
+}
+
+
 .user-notes-search-wrapper{
     height: 60px;
     width: 400px;
@@ -131,13 +172,13 @@ font-weight: 500;
     color: #6d6d6d;
     font-size: 14px;
 }
-.litenote-dashboard-notes-preview .note .bottom-content .settings svg{
+ .settings svg{
     color: #6d6d6d;
     font-size: 14px;
     cursor: pointer;
     padding-right: 8px;
 }
-.litenote-dashboard-notes-preview .settings  .menu{
+ .settings  .menu{
     position: absolute;
     bottom: 0;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
@@ -146,16 +187,16 @@ font-weight: 500;
     background: var(--note-background);
     right: -5px;
     transform: scale(0);
-       transform-origin: bottom right;
+    transform-origin: bottom right;
     transition: transform 0.2s ease;
 }
-.litenote-dashboard-notes-preview .settings:hover .menu{
+ .settings:hover .menu{
     transform: scale(1);
 }
-.litenote-dashboard-notes-preview .settings {
+ .settings {
     position: relative;
 }
-.litenote-dashboard-notes-preview .settings  .menu li{
+ .settings  .menu li{
     display: flex;
       
     align-items: center;
@@ -167,7 +208,7 @@ font-weight: 500;
     font-family: "Poppins";
     background: var(--note-settings-background);
 }
-.litenote-dashboard-notes-preview .settings  .menu li:hover{
+ .settings  .menu li:hover{
     background: var(--note-setings-hover);
 }
 

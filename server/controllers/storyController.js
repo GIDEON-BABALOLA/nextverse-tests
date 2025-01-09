@@ -631,7 +631,7 @@ const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
 const unBookmarkAStory = async (req, res) => {
     const { id } = req.params;
     try {
-    
+
         if(!validateMongoDbId(id)){
             throw new userError("Pls enter a parameter recognized by the database", 400)
                 }

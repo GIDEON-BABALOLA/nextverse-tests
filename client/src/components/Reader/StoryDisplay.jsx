@@ -13,14 +13,18 @@ import MobileLikes from "./MobileLikes"
 import Comment from "./Comment"
 import { useGetAStory } from "../../hooks/useGetAStory"
 import ContextMenu from "../common/ContextMenu"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Toast from "../common/Toast"
 import MoreStories from "./MoreStories"
 import SuggestedStories from "./SuggestedStories"
 import ErrorMessage from "../common/ErrorMessage"
 import DeleteModal from "./DeleteModal"
 import Share from "../common/Share"
+import { useLikeAStory } from "../../hooks/useLikeAStory"
+import { useUnLikeAStory } from "../../hooks/useUnlikeAStory"
 const StoryDisplay = ({ username, id, title} ) => {
+    const likeStory = useLikeAStory();
+    const unlikeStory = useUnLikeAStory();
   const {
      shareModal,
  shareRef,
@@ -37,13 +41,17 @@ setContextMenu
   const [likes, setLikes] = useState([])
   const [commentNumber, setCommentNumber] = useState(0)
   const [likesNumber, setLikesNumber] = useState(0)
-  const [generalStories, setGeneralStories] = useState([])
   const [moreStories, setMoreStories] = useState([])
   const [suggestedStories, setSuggestedStories] = useState([])
+  const [totalLikes, setTotalLikes] = useState(0)
+  const [liking, setLiking]  = useState(false)
+  const [unLiking, setUnLiking] = useState(false)
+  const [likedBefore, setLikedBefore] = useState("")
   const [deleteModal, setDeleteModal] = useState({
     comment : "",
     modal : false
   })
+  const memoizedStories = useMemo(() => [...moreStories, ...suggestedStories], [moreStories, suggestedStories]);
   const toggleDrawer = () => setDrawerOpen((prev) => !prev);
   const toggleLikesDrawer = () => setLikesDrawerOpen((prev) => !prev);
   useEffect(() => {
@@ -53,8 +61,9 @@ getAStory(id)
 getAStory(id)
   }
   useEffect(() => {
-console.log(data)
-  }, [data])
+    setLikedBefore(isLiked)
+    setTotalLikes(data.totalLikes)
+  }, [data, isLiked])
   const [openModal, setOpenModal] = useState(false);
   const [likeModal, setLikeModal] = useState(false)
   const {  closeContextMenu } = useModalContext()
@@ -121,14 +130,21 @@ className="story-display-main"
       avatar={data.avatar}
       userId={data.userId}
       viewsNumber={data.totalViews}
-      likesNumber={data.totalLikes}
       likes={likes}
       setLikesNumber={setLikesNumber}
       setLikes={setLikes}
       isFollowing={isFollowing}
-      isLiked={isLiked}
-     
       storyId={id}
+      totalLikes={totalLikes}
+      setTotalLikes={setTotalLikes}
+      liking={liking}
+      setLiking={setLiking}
+      unLiking={unLiking}
+      setUnLiking={setUnLiking}
+      likedBefore={likedBefore}
+      setLikedBefore={setLikedBefore}
+      likeStory={likeStory}
+      unlikeStory={unlikeStory}
       />  
       
    <StoryBody
@@ -142,27 +158,37 @@ className="story-display-main"
       likes={data.totalLikes}
       isFollowing={isFollowing}
       />
-          
-    <span className="for-me-title"><b>
+      <>
+      <span className="for-me-title"><b>
    More From {data.author}
     </b></span>
     
     <StoryAuthor
-      author={data.author}
-      avatar={data.avatar}
-      userId={data.userId}
-      viewsNumber={data.totalViews}
-      likesNumber={data.totalLikes}
-      isFollowing={isFollowing}
-      isLiked={isLiked}
-      storyId={id}
-      likes={likes}
-      setLikesNumber={setLikesNumber}
-      setLikes={setLikes}
-      />
-       <MoreStories
+         author={data.author}
+         avatar={data.avatar}
+         userId={data.userId}
+         viewsNumber={data.totalViews}
+         likes={likes}
+         setLikesNumber={setLikesNumber}
+         setLikes={setLikes}
+         isFollowing={isFollowing}
+         storyId={id}
+         totalLikes={totalLikes}
+         setTotalLikes={setTotalLikes}
+         liking={liking}
+         setLiking={setLiking}
+         unLiking={unLiking}
+         setUnLiking={setUnLiking}
+         likedBefore={likedBefore}
+         setLikedBefore={setLikedBefore}
+         likeStory={likeStory}
+         unlikeStory={unlikeStory}
+      
+      />  
+      </>
+      <div style={{marginTop : "30px"}}>
+      <MoreStories
     userId={data.userId}
-    setGeneralStories={setGeneralStories}
     shareModal={shareModal}
     fireClick={fireClick}
     storyId={data.storyId}
@@ -173,7 +199,6 @@ className="story-display-main"
      />
          <SuggestedStories
     userId={data.userId}
-    setGeneralStories={setGeneralStories}
     shareModal={shareModal}
     fireClick={fireClick}
     storyId={data.storyId}
@@ -182,10 +207,12 @@ className="story-display-main"
     setSuggestedStories={setSuggestedStories}
 
      />
+      </div>
+  
          <ContextMenu
   state={"feed"}
   contextMenu={contextMenu}
-  stories={[...moreStories, ...suggestedStories]}
+  stories={memoizedStories}
   shareModal={shareModal}
              setContextMenu={setContextMenu}
              contextMenuData={[

@@ -167,7 +167,7 @@ const renderUnBookmarkButton = ()  => {
        size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
        onClick={() => unBookmarkAStory()}
        />
-       <span className="phone-feed-sidebar-nav-name">UnBookmark</span>
+       <span className="phone-feed-sidebar-nav-name">Bookmarked</span>
        </>
 
     )
@@ -183,7 +183,7 @@ const renderUnBookmarkButton = ()  => {
       <FaRegBookmark
       size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
       />
-      <span className="phone-feed-sidebar-nav-name">UnBookmarking</span>
+      <span className="phone-feed-sidebar-nav-name">Bookmark</span>
       </>
 
    
@@ -226,7 +226,7 @@ width > 767 ?
       size={20}  color="#757575" className="phone-feed-sidebar-icon phone-feed-sidebar-nav-link"
       onClick={() => unBookmarkAStory()}
       />
-      <span className="phone-feed-sidebar-nav-name">UnBookmark</span>
+      <span className="phone-feed-sidebar-nav-name">Bookmarked</span>
       </>
     )
   }

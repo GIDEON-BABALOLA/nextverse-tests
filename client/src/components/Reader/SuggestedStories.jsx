@@ -1,13 +1,9 @@
 
 import SuggestionCard from "./SuggestionCard"
-import ContextMenu from "../common/ContextMenu"
 import { useGetSuggestedStories } from "../../hooks/useGetSuggestedStories"
 import ErrorMessage from "../common/ErrorMessage"
 import { useEffect, useState } from "react"
 import { FaRegSadTear } from "react-icons/fa";
-import { useModalContext } from "../../hooks/useModalContext";
-import { FaShareAlt, FaRegBookmark } from "react-icons/fa";
-import { MdOutlineFavoriteBorder, MdReadMore } from "react-icons/md";
 const StorySuggestions = ({   userId, shareModal, fireClick, title, storyId, suggestedStories, setSuggestedStories}) => {
 const [loadingState] = useState([{},{}])
 const [emptyData, setEmptyData] = useState(false)
@@ -37,7 +33,7 @@ if(stories.data.length > 0){
 <div  className="suggestion-container">
     
 <h3 className="suggestion-title">
-    {title}
+    Suggested From Litenote
     </h3>
     <div className="litenote-suggestion-stories" style={{flexDirection : "row"}}>
     {  

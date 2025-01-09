@@ -14,25 +14,27 @@ const StoryAuthor = ({ author,
   userId,
   isFollowing,
   viewsNumber,
-  likesNumber,
   storyId,
-  isLiked,
   likes,
   setLikesNumber,
-  setLikes
+  totalLikes,
+  setTotalLikes,
+  setLikes,
+  liking,
+  setLiking,
+  unLiking,
+  setUnLiking,
+  likedBefore,
+  setLikedBefore,
+  likeStory,
+  unlikeStory
 }) => {
   const navigateToProfile = useNavigateProfile();
   const {followUser, error : followError, data} = useFollowUser();
-  const likeStory = useLikeAStory();
-  const unlikeStory = useUnLikeAStory();
   const { user } = useAuthContext();
   const {getAUser, isLoading : userLoading, data : userData} = useGetAUser();
   const [loading, setLoading] = useState(true)
   const [following, setFollowing] = useState(false)
-  const [liking, setLiking]  = useState(false)
-  const [unLiking, setUnLiking] = useState(false)
-  const [totalLikes, setTotalLikes] = useState(likesNumber)
-  const [likedBefore, setLikedBefore] = useState(isLiked)
   const [imPossibleToFollow, setImPossibleToFollow] = useState(false)
   const { loaded, error } = useImageLoad(avatar);
   useEffect(() => {
@@ -61,6 +63,7 @@ setImPossibleToFollow(true)
     followUser(userData["email"])
   }
   const likeTheStory = () => {
+    console.log("clicked like")
     setLiking(true)
     setLikedBefore(false)
     setTotalLikes(totalLikes + 1)
@@ -82,6 +85,7 @@ setImPossibleToFollow(true)
     likeStory.likeAStory(storyId)
   }
   const unlikeTheStory = () => {
+    console.log("clicked unlike")
     setUnLiking(true)
     setLikedBefore(true)
     setTotalLikes(totalLikes - 1)
@@ -240,7 +244,8 @@ setLikes(newLikes)
 <>
 {
   isFollowing ? 
-  <button className="story-follow-button"
+  <button 
+  className="story-follow-button"
                 > <b>Following</b></button> 
 
   :

@@ -42,7 +42,6 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
     });
   }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
   const showMyModal = (e) => {
-    console.log("why")
     fireClick(e, getStoryUrl(story), story._id)
   }
   const showFullStory = () => {

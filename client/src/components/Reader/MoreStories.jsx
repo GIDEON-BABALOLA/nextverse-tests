@@ -18,6 +18,7 @@ useEffect(() => {
   }, [userId, storyId]);
   useEffect(() => {
 if(stories.data.length > 0){
+  console.log("sush")
   setMoreStories(stories.data)
   setEmptyData(false)
 }
@@ -35,10 +36,6 @@ if(stories.data.length > 0){
   return (
     <>
 <div  className="suggestion-container">
-    
-<h3 className="suggestion-title">
-    {title}
-    </h3>
     <div className="litenote-suggestion-stories" style={{flexDirection : "row"}}>
     {  
       
