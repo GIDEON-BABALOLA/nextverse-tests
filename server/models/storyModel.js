@@ -38,7 +38,10 @@ const bookmarkSchema = new mongoose.Schema({
         ref : "User",
         required : true
     }
-})
+},
+    {
+        timestamps: { createdAt: true, updatedAt: false } // Enable createdAt, disable updatedAt
+    })
 const storySchema = new mongoose.Schema({
     author:{
         type:String,
@@ -172,9 +175,7 @@ storySchema.methods.addBookmark = async function (userId) {
 };
 
 storySchema.methods.removeBookmark = async function (userId) {
-    console.log(userId)
     const initialLength = this.bookmarks.length;
-    console.log(initialLength)
     this.bookmarks = this.bookmarks.filter(
     bookmarks => bookmarks.bookmarkBy.toString() !== userId.toString()
     );

@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 const bookmarkSchema = new mongoose.Schema({
     bookmarkId : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "Story",
+        ref : "User",
         required : true
     }
 },
@@ -140,6 +140,7 @@ userSchema.statics.createstory = async function(adminId, storyId){
     }
 userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     const user = await this.findById(userId)
+    console.log(user.bookmarks)
   let alreadyBookmarked = user.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())
   if(alreadyBookmarked){
     return;
@@ -155,6 +156,8 @@ userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
   }
   userSchema.statics.unbookmarkStory = async function(userId, bookmarkId){
     const admin = await this.findById(userId);
+    console.log(admin.bookmarks)
+    console.log(bookmarkId.toString())
     let alreadyBookmarked = admin.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString());
     if(!alreadyBookmarked){
         return;

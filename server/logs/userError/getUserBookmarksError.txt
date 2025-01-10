@@ -61,3 +61,11 @@
 20250110	11:15:18	3313b771-e182-4f06-b1d2-29b8e33c5194	ReferenceError: id is not defined
 20250110	11:19:58	c579f2a7-fbed-4e5f-bf39-f0eb0dede143	TypeError: Cannot read properties of undefined (reading 'some')
 20250110	11:20:24	5fac96db-b002-4e3d-9484-681df22546d0	TypeError: Cannot read properties of undefined (reading 'some')
+20250110	21:58:15	ec7eab1d-78f1-4c39-bdbc-e2f9777ac0a3	MongoServerError: Invalid $slice syntax. The given syntax { $slice: [ 0, 3 ] } did not match the find() syntax because :: Location31250: Path collision at bookmarks :: The given syntax did not match the expression $slice syntax. :: caused by :: Path collision at bookmarks
+20250110	21:58:18	e8f93485-d2dc-49ac-b5ae-335ec3ff3a71	MongoServerError: Invalid $slice syntax. The given syntax { $slice: [ 0, 3 ] } did not match the find() syntax because :: Location31250: Path collision at bookmarks :: The given syntax did not match the expression $slice syntax. :: caused by :: Path collision at bookmarks
+20250110	21:58:37	0f1e280c-b7a0-4387-814b-c8442afb4531	MongoServerError: Invalid $slice syntax. The given syntax { $slice: [ 0, 3 ] } did not match the find() syntax because :: Location31250: Path collision at bookmarks :: The given syntax did not match the expression $slice syntax. :: caused by :: Path collision at bookmarks
+20250110	22:51:41	917d2ee2-7db1-46cf-8525-2d9b130c5042	TypeError: Cannot read properties of null (reading 'likes')
+20250110	22:51:43	a2eba31e-e624-4e1b-826f-fbb0a89f94d6	TypeError: Cannot read properties of null (reading 'likes')
+20250110	22:52:12	81951277-a9ca-45f2-ad16-b0d2edae7f74	TypeError: Cannot read properties of null (reading 'likes')
+20250110	22:52:48	52c13b9b-9481-4018-8cd2-39ab3c4ce414	TypeError: Cannot read properties of null (reading 'likes')
+20250110	22:53:11	b35b0d0f-c475-4911-a084-9294e73e0871	TypeError: Cannot read properties of null (reading 'likes')
