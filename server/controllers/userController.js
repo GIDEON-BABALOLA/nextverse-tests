@@ -677,7 +677,7 @@ const getAllUsers = async (req, res) => {
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
-        select: 'title author avatar estimatedReadingTime category' 
+        select: 'title author avatar estimatedReadingTime category picture' 
         // You can add other fields here as needed
       })
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])

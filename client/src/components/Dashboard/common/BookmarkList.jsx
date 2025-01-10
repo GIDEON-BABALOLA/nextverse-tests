@@ -54,12 +54,16 @@ const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount
   useEffect(() => {
 
     if(data.length > 0){
+      console.log(data)
       setEmptyData(false)
       setBookmarkData((prev) => {
-        const newLikes = data.filter(
+        const newBookmarks = data.filter(
           (newLike) => !prev.some((prevLike) => prevLike.bookmarkId._id === newLike.bookmarkId._id)
         );
-        return [...prev, ...newLikes];
+        console.log(prev)
+        const prevData = prev.map((item) => item.bookmarkId);
+        const newData = newBookmarks.map((item) => item.bookmarkId); 
+        return [...prevData, ...newData];
       });
       // setLikesNumber(likesCount)
       
@@ -160,8 +164,9 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
         :
       <>
       {bookmarkData.map((story, index) => (
-      <StoryCard key={index} story={story.bookmarkId} fireClick={fireClick}
+      <StoryCard key={index} story={story} fireClick={fireClick}
       setCurrentStoryDetails={setCurrentStoryDetails}
+      isLoading={false}
       />
     ))}
       { isLoading && loadingState.map((story, index) => (
@@ -175,7 +180,7 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
 
     <div ref={lastItemRef} style={{margin : "90px 0px"}}>
       </div>
-    <ContextMenu
+    {/* <ContextMenu
        state={"feed"}
        contextMenu={contextMenu}
        shareModal={shareModal}
@@ -189,7 +194,7 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
                   , label : "Read More"},
                   {id : 4, icon : <FaTimes />
                   , label : "Close"}
-]} />
+]} /> */}
     </div>
 }
     {error && <>
