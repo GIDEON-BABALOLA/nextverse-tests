@@ -6,6 +6,7 @@ const crypto = require("crypto")
 const mongoose = require("mongoose")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
+const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
@@ -677,17 +678,19 @@ const getAllUsers = async (req, res) => {
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
-        select: 'title author avatar estimatedReadingTime category picture' 
+        select: 'title author avatar estimatedReadingTime category picture likes bookmarks' 
         // You can add other fields here as needed
       })
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])
       .lean();
-   
-        res.status(200).json({ bookmarks : userBookmarks["bookmarks"], count : bookmarksCount})   
-
-           
-           
-        
+   const bookmarksToBeSent = userBookmarks["bookmarks"].map((item) => item.bookmarkId)
+   console.log(bookmarksToBeSent)
+   const enrichedBookmarks = bookmarksToBeSent.map((story) => ({
+    ...story,
+    isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
+    isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
+  }));
+        res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})   
         }
         catch(error){
             logEvents(`${error.name}: ${error.message}`, "getUserBookmarksError.txt", "userError")

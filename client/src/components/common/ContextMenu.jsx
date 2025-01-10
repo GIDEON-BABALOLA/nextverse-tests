@@ -54,8 +54,8 @@ const ContextMenu = ({ contextMenuData,
         setUnlikeData([])
       }, [currentStoryId])
       useEffect(() => {
-        console.log(stories)
         const filteredStories = stories.map(({ _id, isLiked, isBookmarked}) => ({ _id, isLiked, isBookmarked}));
+        console.log(filteredStories)
 setEditStories(filteredStories)
       }, [stories])
 const likeTheStory = () => {

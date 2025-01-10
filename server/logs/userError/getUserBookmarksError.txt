@@ -56,3 +56,8 @@
 20241225	19:47:59	f5320c15-d5b9-4aad-9c67-4118dead7993	ReferenceError: log is not defined
 20241225	19:47:59	05138453-864a-45fc-be5c-74d349649cd0	ReferenceError: log is not defined
 20241225	19:48:00	ba8d6acb-9375-49b5-a79b-da03e0146fa6	ReferenceError: log is not defined
+20250110	11:14:28	d147c2f1-add8-4b80-a80f-b3847e301939	ReferenceError: id is not defined
+20250110	11:14:59	83b8e792-e46d-4730-b20f-9e8c25dea0aa	ReferenceError: id is not defined
+20250110	11:15:18	3313b771-e182-4f06-b1d2-29b8e33c5194	ReferenceError: id is not defined
+20250110	11:19:58	c579f2a7-fbed-4e5f-bf39-f0eb0dede143	TypeError: Cannot read properties of undefined (reading 'some')
+20250110	11:20:24	5fac96db-b002-4e3d-9484-681df22546d0	TypeError: Cannot read properties of undefined (reading 'some')

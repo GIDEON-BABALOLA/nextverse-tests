@@ -1,7 +1,7 @@
 import "../../../styles/components/Dashboard/bookmark-card.css"
 import { FaEllipsisH } from "react-icons/fa";
 import { FaRegBookmark, FaBookOpen, FaTimes, FaShareAlt } from "react-icons/fa";
-import { MdClose, MdShare, MdDelete, MdReadMore, MdBookmark } from "react-icons/md";
+import { MdClose, MdShare, MdDelete, MdReadMore, MdBookmark, MdOutlineFavoriteBorder } from "react-icons/md";
 import {useGetUserBookmarks} from "../../../hooks/useGetUserBookmarks"
 import { FaBoxOpen } from "react-icons/fa";
 import StoryCard from "../../Profile/StoryCard";
@@ -52,21 +52,14 @@ const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount
      
   }, [page, limit, bookmarkCount])
   useEffect(() => {
-
     if(data.length > 0){
-      console.log(data)
       setEmptyData(false)
       setBookmarkData((prev) => {
         const newBookmarks = data.filter(
-          (newLike) => !prev.some((prevLike) => prevLike.bookmarkId._id === newLike.bookmarkId._id)
+          (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
         );
-        console.log(prev)
-        const prevData = prev.map((item) => item.bookmarkId);
-        const newData = newBookmarks.map((item) => item.bookmarkId); 
-        return [...prevData, ...newData];
+        return [...prev, ...newBookmarks];
       });
-      // setLikesNumber(likesCount)
-      
     }
 
   
@@ -174,6 +167,22 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
       ref={loadingRef}
       key={index} story={story} fireClick={fireClick} isLoading={true}/>
     ))}
+    <ContextMenu
+  state={"feed"}
+  contextMenu={contextMenu}
+  stories={bookmarkData}
+  shareModal={shareModal}
+             setContextMenu={setContextMenu}
+             contextMenuData={[
+             {id : 1, icon : <FaShareAlt />
+             , label : "Share", type : "default"},
+             {id : 2, icon : <FaRegBookmark />
+             , label : "Bookmark", type : "custom"},
+             {id : 4, icon : <MdOutlineFavoriteBorder />
+             , label : "Like", type : "custom"},
+             {id : 5, icon : <MdReadMore />
+              , label : "Read More", type : "default"}
+]} />
       </>
 }
 
