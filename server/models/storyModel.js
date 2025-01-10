@@ -172,7 +172,9 @@ storySchema.methods.addBookmark = async function (userId) {
 };
 
 storySchema.methods.removeBookmark = async function (userId) {
-    const initialLength = this.likes.length;
+    console.log(userId)
+    const initialLength = this.bookmarks.length;
+    console.log(initialLength)
     this.bookmarks = this.bookmarks.filter(
     bookmarks => bookmarks.bookmarkBy.toString() !== userId.toString()
     );

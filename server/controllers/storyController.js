@@ -190,7 +190,6 @@ if(!id){
 
 const foundStory = await Story.findById(id)
 .select("estimatedReadingTime date _id author avatar title content userId picture totalLikes totalViews")
-console.log(foundStory)
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : foundStory.userId
@@ -232,7 +231,6 @@ const adjustedStory = foundStory.toObject();
 }
 }
 const getAllStories = async (req, res) => {
-    console.log(req.query)
     try{
         //filtering
 const queryObj = {...req.query}
@@ -291,7 +289,6 @@ if(req.query.page){
         throw new userError( "This page does not exist", 404)
     }
 }
-console.log(req.user._id.toString())
 const allStories = await query.lean();
 const enrichedFeed = allStories.map((story) => ({
   ...story,
@@ -302,7 +299,6 @@ const enrichedFeed = allStories.map((story) => ({
    
 
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ message : error.message})
@@ -314,8 +310,6 @@ const enrichedFeed = allStories.map((story) => ({
 }
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
-    console.log(req.query.currentStoryId)
-    console.log(req.query.fields)
     const queryObj = {...req.query}
     try{
         let query;
@@ -352,7 +346,6 @@ res.status(200).json({suggestedStories : enrichedStorySuggestions})
 const getPopularStories = async (req, res) => {
     const { category, number } = req.params;
     const { userId } = req.query
-    console.log(req.query)
     const defaultCategory = [
         "fiction", "all", "non-fiction", "romance", "adventure", "memoir", "technology"    
        ]
@@ -378,7 +371,6 @@ try{
         res.status(200).json(mostPopularStories)         
         
 }catch(error){
-    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getPopularStories.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ error : error.message})
@@ -507,7 +499,6 @@ const getStoryComments = async (req, res) => {
     }
     const getStoryLikes = async (req, res) => {
         const { page, limit } = req.query;
-        console.log(page, limit)
         const { id } = req.params
         try{
         const skip = (page - 1) * limit;
@@ -619,7 +610,6 @@ const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
     res.status(201).json(bookmarkedStory)    
 
     }catch(error){
-        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
         if (error instanceof userError) {
             return  res.status(error.statusCode).json({ message : error.message})

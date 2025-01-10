@@ -13,6 +13,10 @@
 .litenote-bookmark-title{
     margin-top: 10px;
 }
+.litenote-bookmark-empty-data{
+position: absolute;
+
+}
 .bookmark-status-badge{
     align-items: center;
 	background-color: #185EE0;

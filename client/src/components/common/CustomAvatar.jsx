@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react"
 import useImageLoad from "../../hooks/useImageLoaded"
-const FeedAvatar = ({ image, ...props}) => {
+const CustomAvatar = ({ image, ...props}) => {
+  console.log(image)
   const [loading, setLoading] = useState(true)
   const { loaded, error } = useImageLoad(image);
   useEffect(() => {
@@ -16,7 +17,7 @@ const FeedAvatar = ({ image, ...props}) => {
   return (
     <>{ loading ? 
       <div
-       className="feed-loaders feed-loader-avatar" ></div>
+      {...props} className="feed-loaders feed-loader-avatar"></div>
     :
     <img src={image} {...props}></img>
     }
@@ -24,4 +25,4 @@ const FeedAvatar = ({ image, ...props}) => {
   )
 }
 
-export default FeedAvatar
+export default CustomAvatar

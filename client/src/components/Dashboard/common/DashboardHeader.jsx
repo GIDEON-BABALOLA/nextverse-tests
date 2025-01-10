@@ -9,8 +9,12 @@ import NavbarContextMenu from "../../common/NavbarContextMenu"
 import { FaAngleRight } from "react-icons/fa"
 import useInternetMode from "../../../hooks/useInternetMode"
 import { useThemeContext } from "../../../hooks/useThemeContext"
+import { useAuthContext } from "../../../hooks/useAuthContext"
+import CustomAvatar from "../../common/CustomAvatar"
+import FeedAvatar from "../../Feed/FeedAvatar"
 const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
   const { colorMode, dispatch } = useThemeContext()
+  const { user } = useAuthContext();
   const {width, height} = useWindowSize()
   const { online } = useInternetMode()
   const themeRef = useRef();
@@ -94,11 +98,15 @@ contextMenu.current.classList.add("active")
                 </div>
                 <small className="text-muted" style={{color : "#7d8da1"}}>Admin</small>
             </div>
-            <div> <img  
-            style={{cursor: "pointer"}}
-             className="litenote-dashboard-profile-again-photo" src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} alt=""
-            onClick={showLoggedUserOptions}
-             /></div>
+            <div>
+             <CustomAvatar
+         image={user["picture"]}
+         className="sideman-man "
+         alt="Dashboard Profile Picture"
+         style={{cursor : "pointer"}}
+         onClick={showLoggedUserOptions}
+          />
+             </div>
        
     </div>
 

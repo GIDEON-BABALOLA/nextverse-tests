@@ -16,6 +16,7 @@ import useWindowSize from "../../../hooks/useWindowSize";
 import { MdOutlineRefresh } from "react-icons/md";
 import { useState } from "react";
 import Share from "../../common/Share"
+import useNavigatePage from "../../../hooks/useNavigatePage";
 import { useRef, useEffect } from "react"
 const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount, bookmarkData, setBookmarkData, setBookmarkNumber,
 bookmarkNumber
@@ -28,8 +29,8 @@ bookmarkNumber
 
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
-  const [lastScrollY, setLastScrollY] = useState(0);
   const { width } = useWindowSize();
+  const  navigateToPage = useNavigatePage()
   useEffect(() => {
 
      if(width < 767){
@@ -104,29 +105,7 @@ bookmarkNumber
         }
       }
           }, [data, isLoading, error, bookmarkNumber])
-    useEffect(() => {
-      const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        // If the user is trying to scroll down, prevent the scroll
-        if(isLoading){
-          if (currentScrollY > lastScrollY && isVisibleInViewport(loadingRef.current, 0.1)) {
-            window.scrollTo(0, lastScrollY); // Reset the scroll position to the last known position
-          } else {
-            // Update the last scroll position if scrolling up
-            setLastScrollY(currentScrollY);
-          }
-        }
-    
-      };
-    
-      // Add the scroll event listener
-      window.addEventListener("scroll", handleScroll);
-    
-      // Clean up the event listener on component unmount
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, [lastScrollY, isLoading]);
+
     const resendRequest = () => {
       setEmptyData(false)
       getUserBookmarks(page, limit)
@@ -141,18 +120,23 @@ bookmarkNumber
       {
         emptyData ?
         <div 
-        className="litenote-bookmark-title"  
+        className="litenote-bookmark-empty-data"  
    
         >
-
-<h4>
-You havent bookmarked any stories yet! Start exploring and bookmark your favorite stories to find them here later.
-</h4>
-
-
+<div 
+    style={{display :"flex", flexDirection : "column", 
+        alignItems : "center", justifyContent : "center", padding : "40px 0px"}}
+        className="no-content-section"
+        >
+        <FaBoxOpen size={200}/>
+        <h3
+        style={{padding : "0px 70px", textAlign : "center"}}
+        >You havent bookmarked any stories, Start exploring and bookmark your favorite stories to find them here later.</h3>
         <div><button className="offline-button"
- onClick={() => fireClick()}
- ><FaSearch size={20}/>Explore Stories</button></div>
+onClick={() => navigateToPage("/explore")}
+ ><FaSearch size={20}/>Explore Stories</button></div> 
+        </div>
+
         
           </div>
        

@@ -120,3 +120,19 @@ height: 4rem;
     right: 125px;
     
   }
+  .sidebar-loaders{
+    object-fit: cover;
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+  }
+  .sidebar-loaders-logo{
+    width: 50px;
+    height: 20px;
+  }
+  .sideman-man{
+    width: 30px;
+   
+    border-radius: 50%; 
+}

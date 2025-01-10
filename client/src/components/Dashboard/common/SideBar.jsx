@@ -11,7 +11,20 @@ import { useThemeContext } from '../../../hooks/useThemeContext';
 import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
 import useWindowSize from '../../../hooks/useWindowSize';
+import useImageLoad from '../../../hooks/useImageLoaded';
+import { useState } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
+   const [loading, setLoading] = useState(true)
+   const { loaded, error } = useImageLoad("https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png");
+   useEffect(() => {
+      if (error) {
+       setLoading(true)
+      }
+    
+      if (loaded === true) {
+      setLoading(false)
+      }
+    }, [loaded, error])
    const { colorMode } = useThemeContext()
    const { width } = useWindowSize() 
    const role = "admin"
@@ -80,9 +93,14 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                   
                     }}>
                         <div className="logo">
-                         <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png"} 
+                      {  
+                      loading ? 
+                      <div className='sidebar-loaders sidebar-loaders-logo'></div>
+                      : 
+                      <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png"} 
                          style={{width : "20%"}}
                          />
+}
                          <h2 className="litenote-dashboard-h-two">Lite Note </h2>
                         </div>
              <div className="close" id="close-btn" onClick={closeSidebar}>

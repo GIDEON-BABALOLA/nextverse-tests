@@ -666,7 +666,6 @@ const getAllUsers = async (req, res) => {
     }
     const getUserBookmarks = async (req, res) => {
         const { page, limit } = req.query;
-        console.log(page, limit)
         try{
         const skip = (page - 1) * limit;
         const user = await User.findOne({ _id: req.user._id });
@@ -674,7 +673,6 @@ const getAllUsers = async (req, res) => {
             throw new userError("You are not a user of litenote", 400)
         }
         const bookmarksCount = user ? user.bookmarks.length : 0;
-        console.log(user.bookmarks.length)
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
@@ -684,13 +682,13 @@ const getAllUsers = async (req, res) => {
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])
       .lean();
    const bookmarksToBeSent = userBookmarks["bookmarks"].map((item) => item.bookmarkId)
-   console.log(bookmarksToBeSent)
    const enrichedBookmarks = bookmarksToBeSent.map((story) => ({
     ...story,
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
-        res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})   
+    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})       
+
         }
         catch(error){
             logEvents(`${error.name}: ${error.message}`, "getUserBookmarksError.txt", "userError")
