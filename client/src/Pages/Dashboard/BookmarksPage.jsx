@@ -11,6 +11,7 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
     const { closeContextMenu } = useModalContext();
     const [bookmarkData, setBookmarkData] = useState([])
+    const [originalBookmarkData, setOriginalBookmarkData] = useState([])
     const [bookmarkNumber, setBookmarkNumber] = useState(bookmarkCount)
   const [tabs, setTab] = useState({
     all : true,
@@ -18,6 +19,26 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     "date added" : false,
     "read time" : false
   })
+  const filterBookmarkAccordingToCategory = () => {
+    console.log("setman")
+    if(tabs["category"]){
+      console.log("setstate")
+      const resetAccordingToCategory = [...bookmarkData].sort((a, b) => String(a.category).localeCompare(String(b.category)))
+      setBookmarkData(resetAccordingToCategory)
+    }
+  }
+  useEffect(() => {
+    // Trigger the sorting effect when category tab is toggled
+    if (tabs["category"]) {
+      filterBookmarkAccordingToCategory(); // Call filterBookmark directly to sort when category is true
+    }
+  }, [tabs["category"]]); // Only trigger when the category tab state changes
+  useEffect(() => {
+    // Trigger the sorting effect when category tab is toggled
+    if (tabs["all"]) {
+setBookmarkData(originalBookmarkData)
+    }
+  }, [tabs["all"]]); // Only trigger when the category tab state changes
   useEffect(() => {
 setBookmarkNumber(bookmarkCount)
   }, [bookmarkCount])
@@ -45,6 +66,7 @@ setBookmarkNumber(bookmarkCount)
     <BookmarkList
     bookmarkData={bookmarkData}
     setBookmarkData={setBookmarkData}
+    setOriginalBookmarkData={setOriginalBookmarkData}
     setBookmarkNumber={setBookmarkNumber}
     bookmarkNumber={bookmarkNumber}
     data={data} bookmarkCount={bookmarkCount} error={error} isLoading={isLoading} getUserBookmarks={getUserBookmarks}/>

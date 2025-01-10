@@ -18,8 +18,16 @@ import { useState } from "react";
 import Share from "../../common/Share"
 import useNavigatePage from "../../../hooks/useNavigatePage";
 import { useRef, useEffect } from "react"
-const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount, bookmarkData, setBookmarkData, setBookmarkNumber,
-bookmarkNumber
+const BookmarkList = ({  getUserBookmarks,
+   isLoading,
+   error,
+   data,
+  bookmarkCount,
+  bookmarkData,
+  setBookmarkData,
+  setBookmarkNumber,
+bookmarkNumber,
+setOriginalBookmarkData
 
  }) => {
   const lastItemRef = useRef();
@@ -51,15 +59,17 @@ bookmarkNumber
         getUserBookmarks(page, limit)
      
   }, [page, limit, bookmarkCount])
+  const updateBookmarks = (prev) => {
+    const newBookmarks = data.filter(
+      (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
+    );
+    return [...prev, ...newBookmarks];
+  }
   useEffect(() => {
     if(data.length > 0){
       setEmptyData(false)
-      setBookmarkData((prev) => {
-        const newBookmarks = data.filter(
-          (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
-        );
-        return [...prev, ...newBookmarks];
-      });
+ setBookmarkData(updateBookmarks)
+ setOriginalBookmarkData(updateBookmarks)
     }
 
   
