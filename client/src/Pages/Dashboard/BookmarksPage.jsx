@@ -20,25 +20,31 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     "read time" : false
   })
   const filterBookmarkAccordingToCategory = () => {
-    console.log("setman")
-    if(tabs["category"]){
-      console.log("setstate")
-      const resetAccordingToCategory = [...bookmarkData].sort((a, b) => String(a.category).localeCompare(String(b.category)))
-      setBookmarkData(resetAccordingToCategory)
-    }
+      const newData = [...originalBookmarkData].sort((a, b) => String(a.category).localeCompare(String(b.category)))
+      setBookmarkData(newData)
+  }
+  const filterBookmarkAccordingToReadTime = () => {
+const newData = [...originalBookmarkData]
+.sort((a, b) => 
+( a.estimatedReadingTime.minutes + ( a.estimatedReadingTime.seconds / 60)) -
+( b.estimatedReadingTime.minutes + ( b.estimatedReadingTime.seconds / 60)))
+setBookmarkData(newData)
   }
   useEffect(() => {
-    // Trigger the sorting effect when category tab is toggled
     if (tabs["category"]) {
-      filterBookmarkAccordingToCategory(); // Call filterBookmark directly to sort when category is true
+      filterBookmarkAccordingToCategory();
     }
-  }, [tabs["category"]]); // Only trigger when the category tab state changes
+  }, [tabs["category"]]);
   useEffect(() => {
-    // Trigger the sorting effect when category tab is toggled
+    if (tabs["read time"]) {
+filterBookmarkAccordingToReadTime();
+    }
+  }, [tabs["read time"]]);
+  useEffect(() => {
     if (tabs["all"]) {
 setBookmarkData(originalBookmarkData)
     }
-  }, [tabs["all"]]); // Only trigger when the category tab state changes
+  }, [tabs["all"]]);
   useEffect(() => {
 setBookmarkNumber(bookmarkCount)
   }, [bookmarkCount])
