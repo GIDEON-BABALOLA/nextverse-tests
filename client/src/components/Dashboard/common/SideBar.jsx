@@ -10,8 +10,10 @@ import { CgFeed} from "react-icons/cg"
 import { useThemeContext } from '../../../hooks/useThemeContext';
 import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
+import useWindowSize from '../../../hooks/useWindowSize';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    const { colorMode } = useThemeContext()
+   const { width } = useWindowSize() 
    const role = "admin"
    useEffect(() => {
       if(colorMode == ""){
@@ -70,11 +72,17 @@ clickSidebarMenu()
    }, [currentUrl] )
   return (
 <>
-<aside className="litenote-sidebar-aside" ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+<aside className="litenote-sidebar-aside"
 
-                    <div className="top">
+ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+
+                    <div className="top" style={{ display : "flex", flexDirection : "row", alignItems : "center", position : width > 767 && "fixed",
+                  
+                    }}>
                         <div className="logo">
-                         <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png"} />
+                         <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png"} 
+                         style={{width : "20%"}}
+                         />
                          <h2 className="litenote-dashboard-h-two">Lite Note </h2>
                         </div>
              <div className="close" id="close-btn" onClick={closeSidebar}>
@@ -83,7 +91,9 @@ clickSidebarMenu()
              </div>
                     </div>
 
-                    <div className={`sidebar ${role === "user" ? "this-is-a-user" : "this-is-not-a-user"}`}>
+                    <div className={`sidebar ${role === "user" ? "this-is-a-user" : "this-is-not-a-user"}`}
+
+                    >
                 <Link to="/" className={`sidebar-links ${currentUrl === "home" && "active"}`} >
                     <FaHome size={24} />
                            <h3 className="litenote-dashboard-h-three">Home</h3>

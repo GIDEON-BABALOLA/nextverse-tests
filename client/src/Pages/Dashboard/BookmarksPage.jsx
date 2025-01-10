@@ -10,37 +10,46 @@ import "../../styles/components/Dashboard/bookmark-page.css"
 const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
     const { closeContextMenu } = useModalContext();
+    const [bookmarkData, setBookmarkData] = useState([])
+    const [bookmarkNumber, setBookmarkNumber] = useState(bookmarkCount)
   const [tabs, setTab] = useState({
     all : true,
     category : false,
     "date added" : false,
     "read time" : false
   })
+  useEffect(() => {
+setBookmarkNumber(bookmarkCount)
+  }, [bookmarkCount])
       const [contextMenu, setContextMenu] = useState()
   return (
 
       <>
     <main  onClick={closeContextMenu} >
+    <div className="litenote-dashboard-right" style={{left : "150px", position : "relative", cursor : "pointer"}}>
+    <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
+    
+    </div>
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
-   <div className="litenote-bookmark-title"  >
-   <h3 style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "5px", marginBottom : "10px"}}>
+   <div className="litenote-bookmark-title" >
+   <h3 style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "5px"}}>
     <span>Filter Your Bookmarks
     </span>
   <span className="bookmark-status-badge"
-     >{bookmarkCount}</span>
+     >{bookmarkNumber}</span>
   </h3>
   <Tab tabs={tabs} setTab={setTab} labelWidth={200} scale={false}/>
    </div>
    
-    <div className="litenote-browse-bookmark-grid" style={{marginTop : "0px"}}>
-    <BookmarkList data={data} bookmarkCount={bookmarkCount} error={error} isLoading={isLoading} getUserBookmarks={getUserBookmarks}/>
+    <div className="litenote-browse-bookmark-grid">
+    <BookmarkList
+    bookmarkData={bookmarkData}
+    setBookmarkData={setBookmarkData}
+    setBookmarkNumber={setBookmarkNumber}
+    bookmarkNumber={bookmarkNumber}
+    data={data} bookmarkCount={bookmarkCount} error={error} isLoading={isLoading} getUserBookmarks={getUserBookmarks}/>
       </div>
     </main>
-
-    <div className="litenote-dashboard-right" style={{left : "-70px", position : "relative"}}>
-    <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
-    
-    </div>
     </>
     
     

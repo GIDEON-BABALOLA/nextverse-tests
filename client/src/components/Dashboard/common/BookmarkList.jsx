@@ -17,19 +17,18 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { useState } from "react";
 import Share from "../../common/Share"
 import { useRef, useEffect } from "react"
-const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount }) => {
+const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount, bookmarkData, setBookmarkData, setBookmarkNumber,
+bookmarkNumber
+
+ }) => {
   const lastItemRef = useRef();
   const loadingRef = useRef();
   const [page, setPage]  = useState(1)
   const [limit, setLimit] = useState(3)
-  const [bookmarkData, setBookmarkData] = useState([])
+
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [currentStoryDetails, setCurrentStoryDetails] = useState({
-    isLiked : "",
-    isBookmarked : ""
-  })
   const { width } = useWindowSize();
   useEffect(() => {
 
@@ -100,8 +99,11 @@ const BookmarkList = ({  getUserBookmarks, isLoading, error, data, bookmarkCount
         if(data.length == 0 && !error){
           setEmptyData(true)
         }
+        if(bookmarkNumber == 0){
+          setEmptyData(true)
+        }
       }
-          }, [data, isLoading, error])
+          }, [data, isLoading, error, bookmarkNumber])
     useEffect(() => {
       const handleScroll = () => {
         const currentScrollY = window.scrollY;
@@ -158,7 +160,6 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
       <>
       {bookmarkData.map((story, index) => (
       <StoryCard key={index} story={story} fireClick={fireClick}
-      setCurrentStoryDetails={setCurrentStoryDetails}
       isLoading={false}
       />
     ))}
@@ -171,6 +172,8 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
   state={"feed"}
   contextMenu={contextMenu}
   stories={bookmarkData}
+  setStories={setBookmarkData}
+  setStoriesNumber={setBookmarkNumber}
   shareModal={shareModal}
              setContextMenu={setContextMenu}
              contextMenuData={[
@@ -187,23 +190,8 @@ You havent bookmarked any stories yet! Start exploring and bookmark your favorit
 }
 
 
-    <div ref={lastItemRef} style={{margin : "90px 0px"}}>
+    <div ref={lastItemRef} style={{margin : "40px 0px"}}>
       </div>
-    {/* <ContextMenu
-       state={"feed"}
-       contextMenu={contextMenu}
-       shareModal={shareModal}
-                  setContextMenu={setContextMenu}
-                  contextMenuData={[
-                  {id : 1, icon : <FaShareAlt />
-                  , label : "Share"},
-                  {id : 2, icon : <FaRegBookmark />
-                  , label : "UnBookmark"},
-                  {id : 3, icon : <MdReadMore/>
-                  , label : "Read More"},
-                  {id : 4, icon : <FaTimes />
-                  , label : "Close"}
-]} /> */}
     </div>
 }
     {error && <>

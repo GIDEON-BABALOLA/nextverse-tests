@@ -12,14 +12,17 @@ import { useToastContext } from "../../hooks/useToastContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import useNavigateStory from "../../hooks/useNavigateStory"
 import { useState } from "react"
+import { useParams } from "react-router-dom"
 const ContextMenu = ({ contextMenuData,
     setContextMenu,
     shareModal,
     contextMenu,
     stories,
+    setStoriesNumber,
+    setStories,
     state
 }) => {
-    const {   currentStoryId } = useModalContext()
+    const {  currentStoryId } = useModalContext()
     const navigateToStory = useNavigateStory();
     const { user } = useAuthContext();
     const { showToast } = useToastContext();
@@ -37,6 +40,7 @@ const ContextMenu = ({ contextMenuData,
     const bookmarkStory = useBookmarkAStory();
     const unBookmarkStory  = useUnBookmarkAStory();
     const likeStory = useLikeAStory();
+    const currentPage = useParams();
     const unlikeStory = useUnLikeAStory();
     const navigate = useNavigate();
     const context = useRef()
@@ -133,6 +137,12 @@ useEffect(() => {
  }, [bookmarkStory.data])
 useEffect(() => {
 if(Object.keys(unBookmarkStory.data).length  > 0){
+  if(currentPage["*"].split("/").includes("bookmarks")){
+    const newStories = stories.filter((story) => story._id !== currentStoryId)
+    setStories(newStories)
+    setStoriesNumber(newStories.length)
+    contextMenu.current.style.visibility = "hidden";
+  }
   setUnbookmarkData(Object.keys(unBookmarkStory))
                   setBookmarkedBefore(true)
                   setUnBookmarking(false)
