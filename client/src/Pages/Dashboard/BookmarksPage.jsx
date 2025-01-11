@@ -2,7 +2,7 @@ import DashboardToast from "../../components/common/DashboardToast.jsx"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader.jsx';
 import RotationLoader from "../../components/Loaders/RotationLoader.jsx"
 import { useModalContext } from "../../hooks/useModalContext.jsx";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import BookmarkList from "../../components/Dashboard/common/BookmarkList.jsx";
 import { useGetUserBookmarks } from "../../hooks/useGetUserBookmarks.jsx";
 import Tab from "../../components/common/Tab.jsx";
@@ -19,32 +19,43 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     "date added" : false,
     "read time" : false
   })
-  const filterBookmarkAccordingToCategory = () => {
+  const filterBookmarkAccordingToCategory = useCallback(() => {
+    console.log("I am here")
       const newData = [...originalBookmarkData].sort((a, b) => String(a.category).localeCompare(String(b.category)))
       setBookmarkData(newData)
-  }
-  const filterBookmarkAccordingToReadTime = () => {
+  },
+  [originalBookmarkData]
+)
+  const filterBookmarkAccordingToReadTime = useCallback(() => {
 const newData = [...originalBookmarkData]
 .sort((a, b) => 
 ( a.estimatedReadingTime.minutes + ( a.estimatedReadingTime.seconds / 60)) -
 ( b.estimatedReadingTime.minutes + ( b.estimatedReadingTime.seconds / 60)))
 setBookmarkData(newData)
-  }
+  },
+  [originalBookmarkData]
+)
+  const filterBookmarkAccordingToDateAdded = useCallback(() => {
+    //This sorts the data from newest to oldest, biggest to smallest
+    const newData = [...originalBookmarkData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    //This sorts the data from oldest to newest, smallest to biggest
+    // const newData = [...originalBookmarkData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    setBookmarkData(newData)
+  },
+[originalBookmarkData])
   useEffect(() => {
     if (tabs["category"]) {
+      console.log("Here I am")
       filterBookmarkAccordingToCategory();
+    } else if (tabs["read time"]) {
+      filterBookmarkAccordingToReadTime();
+    } else if (tabs["date added"]) {
+      filterBookmarkAccordingToDateAdded();
+    } else if (tabs["all"]) {
+      setBookmarkData(originalBookmarkData);
     }
-  }, [tabs["category"]]);
-  useEffect(() => {
-    if (tabs["read time"]) {
-filterBookmarkAccordingToReadTime();
-    }
-  }, [tabs["read time"]]);
-  useEffect(() => {
-    if (tabs["all"]) {
-setBookmarkData(originalBookmarkData)
-    }
-  }, [tabs["all"]]);
+  }, [tabs, filterBookmarkAccordingToCategory, filterBookmarkAccordingToDateAdded, filterBookmarkAccordingToReadTime, originalBookmarkData]);
+  
   useEffect(() => {
 setBookmarkNumber(bookmarkCount)
   }, [bookmarkCount])
