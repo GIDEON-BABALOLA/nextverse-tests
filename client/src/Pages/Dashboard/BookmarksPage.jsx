@@ -63,7 +63,7 @@ setBookmarkNumber(bookmarkCount)
   return (
 
       <>
-    <main  onClick={closeContextMenu} >
+    <main  onClick={closeContextMenu}>
     <div className="litenote-dashboard-right" style={{left : "150px", position : "relative", cursor : "pointer"}}>
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     

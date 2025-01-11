@@ -126,6 +126,7 @@ setOriginalBookmarkData
   { !error && 
   
   <div className="litenote-dashboard-stories-preview-grid bookmark-no-scroll"
+  style={{paddingBottom : "70px", paddingTop : "0px"}}
     >
       {
         emptyData ?
