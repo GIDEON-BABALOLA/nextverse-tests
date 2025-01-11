@@ -681,7 +681,8 @@ const getAllUsers = async (req, res) => {
       })
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])
       .lean();
-   const bookmarksToBeSent = userBookmarks["bookmarks"].map((item) => item.bookmarkId)
+   const bookmarksToBeSent = userBookmarks["bookmarks"].map((item) => ({...item.bookmarkId,  createdAt: item.createdAt}))
+   console.log(bookmarksToBeSent)
    const enrichedBookmarks = bookmarksToBeSent.map((story) => ({
     ...story,
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
