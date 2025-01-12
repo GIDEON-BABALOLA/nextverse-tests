@@ -46,19 +46,27 @@ setOriginalBookmarkData
       setLoadingState([{}])
     }
     else{
-      setLimit(3)
+      setLimit(3)     
       setLoadingState([{}, {}, {}])
     }
     }, [width])
    /* React Hook useEffect has a missing dependency: 'getUserBookmarks'. Either include it or remove the dependency array. If 'getUserBookmarks' changes too often, find the parent component that defines it and wrap that definition in useCallback */
  useEffect(() => {
   const skip = (page - 1) * limit;
-      if (skip >= bookmarkCount && bookmarkCount > 0) {
-  return;
-      }
+  console.log(page)
+    if (skip >= bookmarkCount && bookmarkCount > 0) {
+           setPage((prev) => {
+              const totalPages = Math.ceil(bookmarkCount / limit);
+        console.log(prev, totalPages)
+              // Ensure the page stays within valid bounds
+              const newPage = Math.min(prev, totalPages);
+              return newPage
+            });
+      return;
+    }
         getUserBookmarks(page, limit)
      
-  }, [page, limit, bookmarkCount])
+  }, [page, limit, bookmarkCount, bookmarkData.length])
   const updateBookmarks = (prev) => {
     const newBookmarks = data.filter(
       (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
@@ -74,6 +82,7 @@ setOriginalBookmarkData
 
   
   }, [data, error, isLoading])
+
     const {
       contextMenu,
        shareModal,
@@ -105,16 +114,29 @@ setOriginalBookmarkData
       };
     }, [lastItemRef, isLoading, data]);
     useEffect(() => {
-
       if(!isLoading){
-        if(data.length == 0 && !error){
+        if(data.length == 0 && !error && page == 1 && bookmarkCount == 0){
+          console.log("there is empty data")
+          setEmptyData(true)
+        }else{
+          setEmptyData(false)
+        }
+        if(bookmarkCount == 0 ){
           setEmptyData(true)
         }
-        if(bookmarkNumber == 0){
-          setEmptyData(true)
-        }
+        const skip = (page - 1) * limit;
+  //       if(skip > bookmarkCount  && bookmarkCount > 0 && bookmarkData.length !== bookmarkCount){
+  //         console.log("wow")
+  //     setPage((prev) => {
+  //       const totalPages = Math.ceil(bookmarkCount / limit);
+  // console.log(prev, totalPages)
+  //       // Ensure the page stays within valid bounds
+  //       const newPage = Math.min(prev, totalPages);
+  //       return newPage
+  //     });
+  //       }
       }
-          }, [data, isLoading, error, bookmarkNumber])
+          }, [data, isLoading, bookmarkData, bookmarkCount, limit, page])
 
     const resendRequest = () => {
       setEmptyData(false)

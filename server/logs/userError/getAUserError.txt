@@ -20,3 +20,15 @@
 20241210	09:38:40	53d75fe2-c210-43d5-a5cc-e1d04b41a7bd	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
 20241212	01:05:34	8e760802-1a70-4c05-b99a-95666b1dd5b2	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
 20241212	01:05:34	819750f6-3282-40c4-8df7-fee9bfa55e6c	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+20250111	19:19:32	27505c5e-2ffa-47d1-bb60-4ef2afd1f4bb	userError: This user does not exist
+20250111	19:19:32	709cb103-9c54-4384-9c87-f3a8f75faf01	userError: This user does not exist
+20250111	19:30:25	71e849c6-ac33-4a39-8fbd-5a2bd975bf10	userError: This user does not exist
+20250111	19:30:25	16ece4b6-5354-4db9-adb0-2cf32750ced0	userError: This user does not exist
+20250111	20:45:43	90b7ad71-d54a-491a-9ddc-88f39346de89	userError: This user does not exist
+20250111	20:45:43	3ed21d1b-e0e7-49fe-a7c4-50b80bbfa162	userError: This user does not exist
+20250111	20:45:53	0be996ee-1241-414e-b714-040ad8c665d3	userError: This user does not exist
+20250111	20:45:54	6b76da40-094e-40ef-a246-64bbadd43abd	userError: This user does not exist
+20250112	00:32:36	794e528a-5de7-4aa5-942f-aa7140f08629	userError: This user does not exist
+20250112	00:32:36	10b14347-4a3a-4e47-b3da-f405e75ae57a	userError: This user does not exist
+20250112	00:33:09	63c02b3e-7b72-428f-bc67-0bcbf3708c27	userError: This user does not exist
+20250112	00:33:09	99727c9d-6823-40b2-bc75-50e764d38b39	userError: This user does not exist

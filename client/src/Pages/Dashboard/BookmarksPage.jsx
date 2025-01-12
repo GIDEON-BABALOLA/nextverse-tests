@@ -9,6 +9,7 @@ import Tab from "../../components/common/Tab.jsx";
 import "../../styles/components/Dashboard/bookmark-page.css"
 const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
+    const {  currentStoryId } = useModalContext()
     const { closeContextMenu } = useModalContext();
     const [bookmarkData, setBookmarkData] = useState([])
     const [originalBookmarkData, setOriginalBookmarkData] = useState([])
@@ -59,6 +60,12 @@ setBookmarkData(newData)
   useEffect(() => {
 setBookmarkNumber(bookmarkCount)
   }, [bookmarkCount])
+  useEffect(() => {
+if(bookmarkData.length < originalBookmarkData.length){
+  const newData = [...originalBookmarkData].filter((story) => story._id !== currentStoryId)
+  setOriginalBookmarkData(newData)
+}
+  }, [bookmarkData, originalBookmarkData, currentStoryId])
       const [contextMenu, setContextMenu] = useState()
   return (
 

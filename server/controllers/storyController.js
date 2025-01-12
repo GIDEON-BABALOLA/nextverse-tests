@@ -234,6 +234,7 @@ const getAllStories = async (req, res) => {
     try{
         //filtering
 const queryObj = {...req.query}
+console.log(req.query.page, req.query.limit)
 const excludeFields = ["page", "sort", "limit", "fields"]
 excludeFields.forEach((el) => delete queryObj[el])
    // Handle date filtering specifically
@@ -285,9 +286,9 @@ if(req.query.page){
     }else{
         storyCount = await Story.countDocuments();
     }
-    if(skip >= storyCount){
-        throw new userError( "This page does not exist", 404)
-    }
+    // if(skip >= storyCount){
+    //     throw new userError( "This page does not exist", 404)
+    // }
 }
 const allStories = await query.lean();
 const enrichedFeed = allStories.map((story) => ({
@@ -299,6 +300,7 @@ const enrichedFeed = allStories.map((story) => ({
    
 
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
     if (error instanceof userError) {
     return  res.status(error.statusCode).json({ message : error.message})
