@@ -53,20 +53,20 @@ setOriginalBookmarkData
    /* React Hook useEffect has a missing dependency: 'getUserBookmarks'. Either include it or remove the dependency array. If 'getUserBookmarks' changes too often, find the parent component that defines it and wrap that definition in useCallback */
  useEffect(() => {
   const skip = (page - 1) * limit;
-  console.log(page)
+  console.log(page, limit, skip, bookmarkCount)
     if (skip >= bookmarkCount && bookmarkCount > 0) {
-           setPage((prev) => {
-              const totalPages = Math.ceil(bookmarkCount / limit);
-        console.log(prev, totalPages)
-              // Ensure the page stays within valid bounds
-              const newPage = Math.min(prev, totalPages);
-              return newPage
-            });
+        //    setPage((prev) => {
+        //       const totalPages = Math.ceil(bookmarkCount / limit);
+        // console.log(prev, totalPages)
+        //       // Ensure the page stays within valid bounds
+        //       const newPage = Math.min(prev, totalPages);
+        //       return newPage
+        //     });
       return;
     }
         getUserBookmarks(page, limit)
      
-  }, [page, limit, bookmarkCount, bookmarkData.length])
+  }, [page, limit, bookmarkCount])
   const updateBookmarks = (prev) => {
     const newBookmarks = data.filter(
       (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
@@ -96,6 +96,7 @@ setOriginalBookmarkData
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting && !isLoading) {
+            console.log("I am intersecting")
               setPage((prevPage) => prevPage + 1);
             observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
           }
@@ -116,7 +117,6 @@ setOriginalBookmarkData
     useEffect(() => {
       if(!isLoading){
         if(data.length == 0 && !error && page == 1 && bookmarkCount == 0){
-          console.log("there is empty data")
           setEmptyData(true)
         }else{
           setEmptyData(false)

@@ -687,7 +687,7 @@ const getAllUsers = async (req, res) => {
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
-  console.log(skip, bookmarksCount, page)
+  console.log(page, limit, skip, bookmarksCount)
     res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})       
 
         }
