@@ -20,6 +20,7 @@ import useNavigatePage from "../../../hooks/useNavigatePage";
 import { useRef, useEffect } from "react"
 const BookmarkList = ({  getUserBookmarks,
    isLoading,
+   specialId,
    error,
    data,
   bookmarkCount,
@@ -34,9 +35,9 @@ setOriginalBookmarkData
   const loadingRef = useRef();
   const [page, setPage]  = useState(1)
   const [limit, setLimit] = useState(3)
-
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
+  const [loadMore, setLoadMore] = useState(true)
   const { width } = useWindowSize();
   const  navigateToPage = useNavigatePage()
   useEffect(() => {
@@ -53,20 +54,19 @@ setOriginalBookmarkData
    /* React Hook useEffect has a missing dependency: 'getUserBookmarks'. Either include it or remove the dependency array. If 'getUserBookmarks' changes too often, find the parent component that defines it and wrap that definition in useCallback */
  useEffect(() => {
   const skip = (page - 1) * limit;
-  console.log(page, limit, skip, bookmarkCount)
     if (skip >= bookmarkCount && bookmarkCount > 0) {
-        //    setPage((prev) => {
-        //       const totalPages = Math.ceil(bookmarkCount / limit);
-        // console.log(prev, totalPages)
-        //       // Ensure the page stays within valid bounds
-        //       const newPage = Math.min(prev, totalPages);
-        //       return newPage
-        //     });
+        setPage(1)
       return;
     }
         getUserBookmarks(page, limit)
      
   }, [page, limit, bookmarkCount])
+  useEffect(() => {
+    if(bookmarkData.slice("-1")[0]?._id !== specialId){
+      setLoadMore(false)
+    }
+  }, [bookmarkData, specialId])
+  
   const updateBookmarks = (prev) => {
     const newBookmarks = data.filter(
       (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
@@ -104,8 +104,9 @@ setOriginalBookmarkData
         { threshold: 0.1, } // Adjust threshold as needed
       );
     
-      if (lastItemRef.current && !isLoading) {
+      if (lastItemRef.current && !isLoading ) {
         observer.observe(lastItemRef.current);
+        
       }
     
       return () => {
@@ -136,7 +137,7 @@ setOriginalBookmarkData
   //     });
   //       }
       }
-          }, [data, isLoading, bookmarkData, bookmarkCount, limit, page])
+          }, [data, isLoading, bookmarkCount, limit, page])
 
     const resendRequest = () => {
       setEmptyData(false)
@@ -182,6 +183,7 @@ onClick={() => navigateToPage("/explore")}
     ))}
       { isLoading && loadingState.map((story, index) => (
       <LoadingCard
+      style={{display : !loadMore && "none"}}
       ref={loadingRef}
       key={index} story={story} fireClick={fireClick} isLoading={true}/>
     ))}

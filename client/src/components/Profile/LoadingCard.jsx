@@ -42,7 +42,7 @@ const LoadingCard = forwardRef(({ fireClick, story, isLoading, ...props}, ref) =
  <> {
 
   isLoading ? 
-  <div className="litenote-profile-story-card" ref={ref}>
+  <div className="litenote-profile-story-card" ref={ref} {...props}>
             <div className="litenote-profile-story-card-inner">
               <div className="litenote-profile-story-image">
                 <div  className="skeleton-image caller" />
@@ -62,7 +62,7 @@ const LoadingCard = forwardRef(({ fireClick, story, isLoading, ...props}, ref) =
             </div>
           </div>  
    :
-          <div className="litenote-profile-story-card" ref={ref}>
+          <div className="litenote-profile-story-card" ref={ref} {...props}>
             <div className="litenote-profile-story-card-inner">
             { pictureLoading ?
                 <div className="litenote-profile-story-image">

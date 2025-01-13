@@ -8,7 +8,7 @@ import { useGetUserBookmarks } from "../../hooks/useGetUserBookmarks.jsx";
 import Tab from "../../components/common/Tab.jsx";
 import "../../styles/components/Dashboard/bookmark-page.css"
 const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
-    const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
+    const { getUserBookmarks, isLoading, error, data, bookmarkCount, specialId } = useGetUserBookmarks();
     const {  currentStoryId } = useModalContext()
     const { closeContextMenu } = useModalContext();
     const [bookmarkData, setBookmarkData] = useState([])
@@ -93,6 +93,7 @@ if(bookmarkData.length < originalBookmarkData.length){
     setOriginalBookmarkData={setOriginalBookmarkData}
     setBookmarkNumber={setBookmarkNumber}
     bookmarkNumber={bookmarkNumber}
+    specialId={specialId}
     data={data} bookmarkCount={bookmarkCount} error={error} isLoading={isLoading} getUserBookmarks={getUserBookmarks}/>
       </div>
     </main>

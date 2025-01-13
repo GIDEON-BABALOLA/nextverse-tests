@@ -668,11 +668,15 @@ const getAllUsers = async (req, res) => {
         const { page, limit } = req.query;
         try{
         const skip = (page - 1) * limit;
-        const user = await User.findOne({ _id: req.user._id });
+        const user = await User.findOne({ _id: req.user._id }).lean();
         if(!user){
             throw new userError("You are not a user of litenote", 400)
         }
         const bookmarksCount = user ? user.bookmarks.length : 0;
+    //       if(skip >= bookmarksCount){
+    //     throw new userError( "This page does not exist", 404)
+    // }
+    const specialBookmark = user["bookmarks"].slice("-1")[0]
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
@@ -688,10 +692,11 @@ const getAllUsers = async (req, res) => {
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
   console.log(page, limit, skip, bookmarksCount)
-    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})       
+    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount, specialId : specialBookmark?.bookmarkId.toString()})       
 
         }
         catch(error){
+            console.log(error)
             logEvents(`${error.name}: ${error.message}`, "getUserBookmarksError.txt", "userError")
             if(error instanceof userError){
                 return res.status(error.statusCode).json({ message : error.message})

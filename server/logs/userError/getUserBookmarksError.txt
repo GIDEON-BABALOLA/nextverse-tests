@@ -69,3 +69,14 @@
 20250110	22:52:12	81951277-a9ca-45f2-ad16-b0d2edae7f74	TypeError: Cannot read properties of null (reading 'likes')
 20250110	22:52:48	52c13b9b-9481-4018-8cd2-39ab3c4ce414	TypeError: Cannot read properties of null (reading 'likes')
 20250110	22:53:11	b35b0d0f-c475-4911-a084-9294e73e0871	TypeError: Cannot read properties of null (reading 'likes')
+20250113	20:40:32	b7d4ca8e-9927-4677-9f5a-6f4bc2174c4a	ReferenceError: storyCount is not defined
+20250113	20:40:33	a5c14f04-d266-46d8-8de7-cf05a9c4c318	ReferenceError: storyCount is not defined
+20250113	20:40:36	1e97d956-a7fd-48c3-a48a-c628fabdb762	ReferenceError: storyCount is not defined
+20250113	20:40:37	d1dd7d81-d07a-4a55-9557-12dfbd3e9b4f	ReferenceError: storyCount is not defined
+20250113	20:42:05	4fba59ce-9073-4cf8-8842-7ea46b81e0ca	ReferenceError: storyCount is not defined
+20250113	20:42:10	4db46d69-4294-47a8-aab8-8e810fadbfc4	ReferenceError: storyCount is not defined
+20250113	20:43:23	914175d7-6cb6-4b0e-9cef-880a6279b784	userError: This page does not exist
+20250113	20:43:24	6274fde9-3261-4b21-99a5-05ff632e4811	userError: This page does not exist
+20250113	21:40:03	4fdbd52f-e8e7-40dc-99b9-8bcea92a23fb	TypeError: Cannot read properties of undefined (reading 'toString')
+20250113	21:40:19	64519544-5714-46f4-b151-9a2642e7bbc7	TypeError: Cannot read properties of undefined (reading 'toString')
+20250113	21:44:19	d772045d-e32e-4e1a-a4f5-e31cd6c7ebd4	TypeError: Cannot read properties of undefined (reading 'bookmarkId')
