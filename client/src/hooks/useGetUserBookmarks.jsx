@@ -5,7 +5,6 @@ export const useGetUserBookmarks = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
     const [bookmarkCount, setBookmarkCount] = useState(0)
-    const [specialId, setSpecialId] = useState("")
     const [data, setData] = useState([])
     const getUserBookmarks = async (page, limit) => {
         const parameters = {
@@ -23,7 +22,6 @@ const response = await axiosConfig.get("/user/get-user-bookmarks", {
 if(response && response.data){
     setData(response.data.bookmarks)
     setBookmarkCount(response.data.count)
-    setSpecialId(response.data.specialId)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -44,12 +42,11 @@ setIsLoading(false)
             }
             else{
             setData([])
-            setSpecialId("")
             setIsLoading(false)
             setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)
         }
     }
     }
-    return {getUserBookmarks, specialId, isLoading, error, data, statusCode, bookmarkCount} 
+    return {getUserBookmarks, isLoading, error, data, statusCode, bookmarkCount} 
 }

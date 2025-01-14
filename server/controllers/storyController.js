@@ -642,6 +642,7 @@ const unBookmarkAStory = async (req, res) => {
         const unBookmarkedStory = await storyToBeUnbookmarked.removeBookmark(req.user._id);
         res.status(201).json(unBookmarkedStory);
     } catch (error) {
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unbookmarkAStoryError.txt", "storyError");
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ mesage: error.message });

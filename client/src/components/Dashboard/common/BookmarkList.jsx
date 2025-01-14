@@ -24,6 +24,7 @@ const BookmarkList = ({  getUserBookmarks,
    error,
    data,
   bookmarkCount,
+  specialNumber,
   bookmarkData,
   setBookmarkData,
   setBookmarkNumber,
@@ -58,15 +59,11 @@ setOriginalBookmarkData
         setPage(1)
       return;
     }
+    if(loadMore){
         getUserBookmarks(page, limit)
-     
-  }, [page, limit, bookmarkCount])
-  useEffect(() => {
-    if(bookmarkData.slice("-1")[0]?._id !== specialId){
-      setLoadMore(false)
     }
-  }, [bookmarkData, specialId])
-  
+     
+  }, [page, limit, bookmarkCount, loadMore])
   const updateBookmarks = (prev) => {
     const newBookmarks = data.filter(
       (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
@@ -75,6 +72,7 @@ setOriginalBookmarkData
   }
   useEffect(() => {
     if(data.length > 0){
+      console.log("joker", bookmarkCount, bookmarkData.length)
       setEmptyData(false)
  setBookmarkData(updateBookmarks)
  setOriginalBookmarkData(updateBookmarks)
@@ -105,8 +103,12 @@ setOriginalBookmarkData
       );
     
       if (lastItemRef.current && !isLoading ) {
+        console.log(bookmarkData.length)
+if(bookmarkData.length !== bookmarkCount ){
         observer.observe(lastItemRef.current);
-        
+}else{
+  setLoadMore(false)
+}
       }
     
       return () => {
@@ -114,7 +116,7 @@ setOriginalBookmarkData
           observer.unobserve(lastItemRef.current);
         }
       };
-    }, [lastItemRef, isLoading, data]);
+    }, [lastItemRef, isLoading, bookmarkData, bookmarkCount, page, limit]);
     useEffect(() => {
       if(!isLoading){
         if(data.length == 0 && !error && page == 1 && bookmarkCount == 0){
@@ -183,10 +185,11 @@ onClick={() => navigateToPage("/explore")}
     ))}
       { isLoading && loadingState.map((story, index) => (
       <LoadingCard
-      style={{display : !loadMore && "none"}}
       ref={loadingRef}
       key={index} story={story} fireClick={fireClick} isLoading={true}/>
     ))}
+     <div ref={lastItemRef} style={{margin : "40px 0px"}}>
+     </div>
     <ContextMenu
   state={"feed"}
   contextMenu={contextMenu}
@@ -209,8 +212,7 @@ onClick={() => navigateToPage("/explore")}
 }
 
 
-    <div ref={lastItemRef} style={{margin : "40px 0px"}}>
-      </div>
+   
     </div>
 }
     {error && <>

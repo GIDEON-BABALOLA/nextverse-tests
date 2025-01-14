@@ -676,7 +676,6 @@ const getAllUsers = async (req, res) => {
     //       if(skip >= bookmarksCount){
     //     throw new userError( "This page does not exist", 404)
     // }
-    const specialBookmark = user["bookmarks"].slice("-1")[0]
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
@@ -692,7 +691,7 @@ const getAllUsers = async (req, res) => {
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
   console.log(page, limit, skip, bookmarksCount)
-    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount, specialId : specialBookmark?.bookmarkId.toString()})       
+    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})       
 
         }
         catch(error){

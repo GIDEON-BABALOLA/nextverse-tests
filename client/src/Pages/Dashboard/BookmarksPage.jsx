@@ -14,6 +14,7 @@ const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     const [bookmarkData, setBookmarkData] = useState([])
     const [originalBookmarkData, setOriginalBookmarkData] = useState([])
     const [bookmarkNumber, setBookmarkNumber] = useState(bookmarkCount)
+    const [specialNumber, setSpecialNumer] = useState(0)
   const [tabs, setTab] = useState({
     all : true,
     category : false,
@@ -61,6 +62,9 @@ setBookmarkData(newData)
 setBookmarkNumber(bookmarkCount)
   }, [bookmarkCount])
   useEffect(() => {
+    setSpecialNumer(bookmarkData.length)
+      }, [bookmarkData])
+  useEffect(() => {
 if(bookmarkData.length < originalBookmarkData.length){
   const newData = [...originalBookmarkData].filter((story) => story._id !== currentStoryId)
   setOriginalBookmarkData(newData)
@@ -90,6 +94,7 @@ if(bookmarkData.length < originalBookmarkData.length){
     <BookmarkList
     bookmarkData={bookmarkData}
     setBookmarkData={setBookmarkData}
+    specialNumber={specialNumber}
     setOriginalBookmarkData={setOriginalBookmarkData}
     setBookmarkNumber={setBookmarkNumber}
     bookmarkNumber={bookmarkNumber}

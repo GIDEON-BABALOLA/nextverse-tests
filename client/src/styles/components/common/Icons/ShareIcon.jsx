@@ -1,9 +1,6 @@
 const ShareIcon = ({ size }) => {
   return (
-    <svg
-    width={size}
-    height={size}
-    xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
+    <svg xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
     <circle opacity="0.1" cx="15" cy="15" r="15" fill="#F9AB72"/>
     <g clipPath="url(#clip0_195_3932)">
     <mask id="path-2-inside-1_195_3932" fill="white">
