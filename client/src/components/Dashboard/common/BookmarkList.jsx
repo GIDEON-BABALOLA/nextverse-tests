@@ -38,7 +38,6 @@ setOriginalBookmarkData
   const [limit, setLimit] = useState(3)
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
-  const [loadMore, setLoadMore] = useState(true)
   const { width } = useWindowSize();
   const  navigateToPage = useNavigatePage()
   useEffect(() => {
@@ -56,14 +55,22 @@ setOriginalBookmarkData
  useEffect(() => {
   const skip = (page - 1) * limit;
     if (skip >= bookmarkCount && bookmarkCount > 0) {
-        setPage(1)
+        setPage((prev) => {
+    
+          // Calculate the total pages based on the comment count
+          const totalPages = Math.ceil(bookmarkNumber / limit);
+    
+          // Ensure the page stays within valid bounds
+          const newPage = Math.min(prev, totalPages);
+    
+          return newPage
+        });
       return;
     }
-    if(loadMore){
         getUserBookmarks(page, limit)
-    }
+    
      
-  }, [page, limit, bookmarkCount, loadMore])
+  }, [page, limit, bookmarkCount])
   const updateBookmarks = (prev) => {
     const newBookmarks = data.filter(
       (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
@@ -71,12 +78,16 @@ setOriginalBookmarkData
     return [...prev, ...newBookmarks];
   }
   useEffect(() => {
-    if(data.length > 0){
-      console.log("joker", bookmarkCount, bookmarkData.length)
-      setEmptyData(false)
- setBookmarkData(updateBookmarks)
- setOriginalBookmarkData(updateBookmarks)
-    }
+      if(data.length > 0){
+        console.log(bookmarkCount, bookmarkData.length)
+        if(bookmarkCount !== bookmarkData.length){
+        setEmptyData(false)
+   setBookmarkData(updateBookmarks)
+   setOriginalBookmarkData(updateBookmarks)
+        }
+      }
+    
+
 
   
   }, [data, error, isLoading])
@@ -101,22 +112,20 @@ setOriginalBookmarkData
         },
         { threshold: 0.1, } // Adjust threshold as needed
       );
-    
       if (lastItemRef.current && !isLoading ) {
-        console.log(bookmarkData.length)
-if(bookmarkData.length !== bookmarkCount ){
-        observer.observe(lastItemRef.current);
-}else{
-  setLoadMore(false)
-}
-      }
+        if(bookmarkData.length !== bookmarkCount){
+    observer.observe(lastItemRef.current);
+
+        }
+      }                                                                                                                                   
     
       return () => {
         if (lastItemRef.current) {
           observer.unobserve(lastItemRef.current);
         }
       };
-    }, [lastItemRef, isLoading, bookmarkData, bookmarkCount, page, limit]);
+    }, [lastItemRef, isLoading, bookmarkData, bookmarkCount]);
+    
     useEffect(() => {
       if(!isLoading){
         if(data.length == 0 && !error && page == 1 && bookmarkCount == 0){
