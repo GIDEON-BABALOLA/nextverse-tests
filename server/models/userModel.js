@@ -133,10 +133,15 @@ userSchema.statics.unfollowuser = async function(adminId, followId){
       await this.findByIdAndUpdate(following._id, new update(following), { new: true });
   return updatedFollower
 }
-userSchema.statics.createstory = async function(adminId, storyId){
-     await this.findByIdAndUpdate(adminId, {
+userSchema.statics.createStory = async function(userId, storyId){
+     await this.findByIdAndUpdate(userId, {
         $push: { stories: { storyId: storyId} },
       }, { new : true})
+    }
+userSchema.statics.deleteStory = async function(userId, storyId){
+            await this.findByIdAndUpdate(userId, {
+                $pull: { stories: { storyId: storyId } },
+            }, { new: true });
     }
 userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     const user = await this.findById(userId)

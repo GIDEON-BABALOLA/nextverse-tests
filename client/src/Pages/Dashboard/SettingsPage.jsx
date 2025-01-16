@@ -42,14 +42,13 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
       const [contextMenu, setContextMenu] = useState()
   return (
     <>
-    {loadPage ? 
-    <>
-    <RotationLoader />
-    </>
-     : <>
      
     <main style={{marginRight : "-20px"}} className="dashboard-settings-main-page">
-    <DeleteConsent openModal={openModal} setOpenModal={setOpenModal}/>
+    <DeleteConsent openModal={openModal} setOpenModal={setOpenModal}
+                    title={"Are you sure you want to delete?"}
+                    message={"This action will permanently delete your Account. This cannot be undone"}
+                    buttonText ={"Delete Account"}
+    />
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
 <div className="dashboard-settings-main-page">
 <div className="dashboard-settings-page-title">
@@ -212,8 +211,7 @@ onClick={ () => {setOpenModal(true)}}
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     </div>
     </>
-    }
-    </>
+
   )
 }
 

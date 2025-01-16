@@ -113,3 +113,9 @@
 .litenote-delete-modal .popup.active .dismiss-btn {
     transition: all 300ms ease-in-out 400ms;
 }
+
+@media screen and (max-width:768px) {
+    .litenote-delete-modal .popup {
+width: 350px;
+    }
+}

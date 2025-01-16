@@ -105,11 +105,16 @@ adminSchema.statics.unfollowuser = async function(adminId, followId){
       await this.findByIdAndUpdate(following._id, new update(following), { new: true });
   return updatedFollower
 }
-adminSchema.statics.createstory = async function(adminId, storyId){
+adminSchema.statics.createStory = async function(adminId, storyId){
      await this.findByIdAndUpdate(adminId, {
         $push: { stories: { storyId: storyId } },
       }, { new : true})
     }
+adminSchema.statics.deleteStory = async function(adminId, storyId){
+        await this.findByIdAndUpdate(adminId, {
+            $pull: { stories: { storyId: storyId } },
+        }, { new: true });
+}
 adminSchema.statics.bookmarkStory = async function(adminId, bookmarkId){
         const admin = await this.findById(adminId)
       let alreadyBookmarked = admin.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())

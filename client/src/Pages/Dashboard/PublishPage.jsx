@@ -57,9 +57,10 @@ counts={counts}
 
    
 {tabs.write && <TextEditor />}
-{tabs.notes && <NotesPreview />}
-{tabs.stories && <StoriesPreview />}
+{tabs.notes && <NotesPreview setCounts={setCounts}/>}
+{tabs.stories && <StoriesPreview  setCounts={setCounts}/>}
 {tabs["sticky notes"] && <StickyNotes 
+  setCounts={setCounts}
   stickyNotesCount={stickyNotesCount}
   setStickyNotesCount={setStickyNotesCount}
 />}

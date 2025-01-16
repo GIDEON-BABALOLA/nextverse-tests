@@ -82,10 +82,10 @@ const time = countWordsAndEstimateReadingTime(content)
     const story = await Story.create(newStory)
     switch (req.user.role) {
         case "user":
-            await User.createstory(req.user._id, story._id);
+            await User.createStory(req.user._id, story._id);
             break;
         case "admin":
-            await Admin.createstory(req.user._id, story._id);
+            await Admin.createStory(req.user._id, story._id);
     }
     const {estimatedReadingTime, date, ...rest} = newStory
     res.status(201).json({...rest, estimatedReadingTime :`${time.minutes} minutes ${time.seconds} seconds read`,
@@ -655,6 +655,7 @@ const unBookmarkAStory = async (req, res) => {
 //To Delete A Story
 const deleteAStory = async(req, res) => {
     const { id } = req.params;
+    console.log(req.user.role)
     validateMongoDbId(id)
     try{
         if(!id){
@@ -664,7 +665,14 @@ const deletedStory = await Story.findOneAndDelete(id);
 if(!deletedStory){
     throw new userError("This Story Does Not Exist", 404)
 }
-res.status(200).json(deletedStory)
+switch (req.user.role) {
+    case "user":
+        await User.deleteStory(req.user._id, id);
+        break;
+    case "admin":
+        await Admin.deleteStory(req.user._id, id);
+}
+res.status(200).json({"message" : "Deletion Of Story Was Successfull"})
     }
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "deleteAStoryError.txt", "storyError")

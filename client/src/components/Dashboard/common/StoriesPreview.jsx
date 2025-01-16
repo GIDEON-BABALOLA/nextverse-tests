@@ -7,14 +7,17 @@ import Share from "../../common/Share"
 import { FaShareAlt, FaTimes } from "react-icons/fa"
 import { useEffect, useRef, useState } from "react"
 import ErrorMessage from "../../common/ErrorMessage"
-import { useAuthContext } from "../../../hooks/useAuthContext"
-import { useGetUserProfile } from "../../../hooks/useGetUserProfile"
 import LoadingCard from "../../Profile/LoadingCard"
 import { useGetUserStories } from "../../../hooks/useGetUserStories"
 import useWindowSize from "../../../hooks/useWindowSize"
+import DeleteConsent from "../../common/DeleteConsent"
+import { FaTrash, FaRegTrashAlt, FaTrashAlt } from "react-icons/fa";
+import { useDeleteAStory } from "../../../hooks/useDeleteAStory"
 import NoContent from "../../common/NoContent"
-const StoriesPreview = () => {
+const StoriesPreview = ({ setCounts }) => {
   const { getUserStories, isLoading, error, data, storyCount } = useGetUserStories();
+  const deleteStory = useDeleteAStory();
+  const [openModal, setOpenModal] = useState(true)
   const { width } = useWindowSize();
   const [myStories, setMyStories] = useState([])
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
@@ -30,8 +33,16 @@ const StoriesPreview = () => {
  shareRef,
  fireClick,
  setContextMenu,
- closeContextMenu
+ shareUrl,
+ setShareUrl,
+ closeContextMenu,
+ currentStoryId
 } = useModalContext()
+useEffect(() => {
+  setCounts((prev) => {
+    return {...prev, stories :storyCount}
+  })
+    }, [storyCount, setCounts])
 useEffect(() => {
   getUserStories(page, limit)
 }, [page, limit])
@@ -103,6 +114,9 @@ useEffect(() => {
     }
   }
       }, [data, isLoading, storyCount, myStories, preventLoadMore, limit, page, error])
+      const deleteAStory = () => {
+deleteStory.deleteAStory(currentStoryId)
+      }
 const resendRequest = () => {
   setEmptyData(false)
   getUserStories(page, limit)
@@ -111,6 +125,12 @@ const resendRequest = () => {
     <section className="litenote-dashboard-notes-preview" onClick={closeContextMenu}
   
     >
+                <DeleteConsent openModal={openModal} setOpenModal={setOpenModal}
+                title={"Are you sure you want to delete?"}
+                message={"This action will permanently delete your Story. This cannot be undone"}
+                buttonText ={"Delete Story"}
+                deleteFunction={deleteAStory}
+                />
     <div className="litenote-dashboard-stories-preview-grid"
     >
               { !error && <>
@@ -121,7 +141,6 @@ const resendRequest = () => {
                 :
               
               <>
-        
           {myStories.map((story, index) => (
       <StoryCard key={index} story={story} fireClick={fireClick}
       isLoading={false}
@@ -134,7 +153,9 @@ const resendRequest = () => {
     ))}
       <div ref={lastItemRef} style={{margin : "40px 0px"}}>
       </div>
-          <Share  share={shareRef} shareModal={shareModal}/>
+      <Share 
+share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}
+/>
       <ContextMenu
       stories={myStories}
        state={"feed"}
@@ -144,7 +165,7 @@ const resendRequest = () => {
                   contextMenuData={[
                   {id : 1, icon : <FaShareAlt />
                   , label : "Share"},
-                  {id : 2, icon : <MdDelete />
+                  {id : 2, icon : <FaTrash onClick={() => setOpenModal(true)}/>
                   , label : "Delete"},
                   {id : 3, icon : <MdReadMore/>
                   , label : "Read More"},

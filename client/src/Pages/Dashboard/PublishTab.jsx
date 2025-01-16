@@ -52,7 +52,7 @@ ref={tabRef}
            }</span>
                              <span className="publish-tabs-number"
      style={{ fontSize : "1rem" }}
-     >4</span>
+     >{counts[Object.keys(tabs).find(key => tabs[key] === true)]} </span>
 
         </div>
   
