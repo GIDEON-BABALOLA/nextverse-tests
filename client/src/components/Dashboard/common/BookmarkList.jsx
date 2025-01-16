@@ -100,7 +100,9 @@ if(bookmarkData.length === bookmarkCount && bookmarkCount > 0){
         }
       };
     }, [lastItemRef, isLoading, bookmarkData, bookmarkCount, preventLoadMore]);
-    
+    useEffect(() => {
+console.log(error)
+    }, [error])
     useEffect(() => {
       if(!isLoading){
         if(preventLoadMore && bookmarkData.length == 0){

@@ -42,6 +42,7 @@ setIsLoading(false)
             }
             else{
             setData([])
+            console.log(error)
             setIsLoading(false)
             setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)

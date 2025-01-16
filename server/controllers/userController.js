@@ -687,8 +687,8 @@ const getAllUsers = async (req, res) => {
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
-  console.log(page, limit, skip, bookmarksCount)
-    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})       
+    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})           
+
 
         }
         catch(error){
@@ -703,6 +703,7 @@ const getAllUsers = async (req, res) => {
         }
         const getUserStories = async (req, res) => {
             const { page, limit } = req.query;
+            console.log(page, limit)
             try{
             const skip = (page - 1) * limit;
             const user = await User.findOne({ _id: req.user._id }).lean();
@@ -716,15 +717,16 @@ const getAllUsers = async (req, res) => {
             select: 'title author avatar estimatedReadingTime category picture likes bookmarks' 
             // You can add other fields here as needed
           })
-          .slice('bookmarks', [parseInt(skip), parseInt(limit)])
+          .slice('stories', [parseInt(skip), parseInt(limit)])
           .lean();
        const storiesToBeSent = userStories["stories"].map((item) => ({...item.storyId}))
-       console.log(storiesToBeSent)
        const enrichedStories = storiesToBeSent.map((story) => ({
         ...story,
         isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
       }));
-        res.status(200).json({ stories : enrichedStories, count : storiesCount})       
+        res.status(200).json({ stories : enrichedStories, count : storiesCount})          
+
+     
             }
             catch(error){
                 console.log(error)
