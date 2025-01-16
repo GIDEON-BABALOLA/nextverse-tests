@@ -154,8 +154,8 @@ userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     }
   }
   userSchema.statics.unbookmarkStory = async function(userId, bookmarkId){
-    const admin = await this.findById(userId);
-    let alreadyBookmarked = admin.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString());
+    const user = await this.findById(userId);
+    let alreadyBookmarked = user.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString());
     if(!alreadyBookmarked){
         return;
     } else {

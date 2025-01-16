@@ -139,7 +139,9 @@ if(Object.keys(unBookmarkStory.data).length  > 0){
   if(currentPage["*"].split("/").includes("bookmarks")){
     const newStories = stories.filter((story) => story._id !== currentStoryId)
     setStories(newStories)
-    setStoriesNumber(newStories.length)
+    setStoriesNumber((prev) => {
+      return prev - 1; 
+    })
     contextMenu.current.style.visibility = "hidden";
   }
   setUnbookmarkData(Object.keys(unBookmarkStory))

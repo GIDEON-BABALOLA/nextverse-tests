@@ -673,9 +673,6 @@ const getAllUsers = async (req, res) => {
             throw new userError("You are not a user of litenote", 400)
         }
         const bookmarksCount = user ? user.bookmarks.length : 0;
-    //       if(skip >= bookmarksCount){
-    //     throw new userError( "This page does not exist", 404)
-    // }
         const userBookmarks = await User.findOne({ _id: req.user._id })
       .populate({
         path: 'bookmarks.bookmarkId',
@@ -704,6 +701,41 @@ const getAllUsers = async (req, res) => {
             }
         }
         }
+        const getUserStories = async (req, res) => {
+            const { page, limit } = req.query;
+            try{
+            const skip = (page - 1) * limit;
+            const user = await User.findOne({ _id: req.user._id }).lean();
+            if(!user){
+                throw new userError("You are not a user of litenote", 400)
+            }
+            const storiesCount = user ? user.stories.length : 0;
+            const userStories = await User.findOne({ _id: req.user._id })
+          .populate({
+            path: 'stories.storyId',
+            select: 'title author avatar estimatedReadingTime category picture likes bookmarks' 
+            // You can add other fields here as needed
+          })
+          .slice('bookmarks', [parseInt(skip), parseInt(limit)])
+          .lean();
+       const storiesToBeSent = userStories["stories"].map((item) => ({...item.storyId}))
+       console.log(storiesToBeSent)
+       const enrichedStories = storiesToBeSent.map((story) => ({
+        ...story,
+        isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
+      }));
+        res.status(200).json({ stories : enrichedStories, count : storiesCount})       
+            }
+            catch(error){
+                console.log(error)
+                logEvents(`${error.name}: ${error.message}`, "getUserBookmarksError.txt", "userError")
+                if(error instanceof userError){
+                    return res.status(error.statusCode).json({ message : error.message})
+                }else{
+                    return res.status(500).json({message : "Internal Server Error"})
+                }
+            }
+            }
 module.exports = {
     signupUser,
     loginUser,
@@ -721,5 +753,6 @@ module.exports = {
     resendUserVerification,
     getAllUsers,
     getAUser,
-    getUserBookmarks
+    getUserBookmarks,
+    getUserStories
 }

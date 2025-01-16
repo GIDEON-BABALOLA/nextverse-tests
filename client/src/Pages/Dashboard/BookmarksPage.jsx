@@ -8,13 +8,12 @@ import { useGetUserBookmarks } from "../../hooks/useGetUserBookmarks.jsx";
 import Tab from "../../components/common/Tab.jsx";
 import "../../styles/components/Dashboard/bookmark-page.css"
 const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
-    const { getUserBookmarks, isLoading, error, data, bookmarkCount, specialId } = useGetUserBookmarks();
+    const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
     const {  currentStoryId } = useModalContext()
     const { closeContextMenu } = useModalContext();
     const [bookmarkData, setBookmarkData] = useState([])
     const [originalBookmarkData, setOriginalBookmarkData] = useState([])
     const [bookmarkNumber, setBookmarkNumber] = useState(bookmarkCount)
-    const [specialNumber, setSpecialNumer] = useState(0)
   const [tabs, setTab] = useState({
     all : true,
     category : false,
@@ -62,9 +61,6 @@ setBookmarkData(newData)
 setBookmarkNumber(bookmarkCount)
   }, [bookmarkCount])
   useEffect(() => {
-    setSpecialNumer(bookmarkData.length)
-      }, [bookmarkData])
-  useEffect(() => {
 if(bookmarkData.length < originalBookmarkData.length){
   const newData = [...originalBookmarkData].filter((story) => story._id !== currentStoryId)
   setOriginalBookmarkData(newData)
@@ -94,11 +90,8 @@ if(bookmarkData.length < originalBookmarkData.length){
     <BookmarkList
     bookmarkData={bookmarkData}
     setBookmarkData={setBookmarkData}
-    specialNumber={specialNumber}
     setOriginalBookmarkData={setOriginalBookmarkData}
     setBookmarkNumber={setBookmarkNumber}
-    bookmarkNumber={bookmarkNumber}
-    specialId={specialId}
     data={data} bookmarkCount={bookmarkCount} error={error} isLoading={isLoading} getUserBookmarks={getUserBookmarks}/>
       </div>
     </main>

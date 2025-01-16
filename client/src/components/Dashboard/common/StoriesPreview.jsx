@@ -5,8 +5,22 @@ import ContextMenu from "../../common/ContextMenu"
 import { MdDelete, MdReadMore } from "react-icons/md"
 import Share from "../../common/Share"
 import { FaShareAlt, FaTimes } from "react-icons/fa"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useAuthContext } from "../../../hooks/useAuthContext"
+import { useGetUserProfile } from "../../../hooks/useGetUserProfile"
+import LoadingCard from "../../Profile/LoadingCard"
+import { useGetUserStories } from "../../../hooks/useGetUserStories"
 const StoriesPreview = () => {
+  const { getUserStories, isLoading, error, data, storyCount } = useGetUserStories();
+  const [myStories, setMyStories] = useState([])
+  const [loadingState, setLoadingState] = useState([{}, {}, {}])
+  const [preventLoadMore, setPreventLoadMore] = useState(false)
+  const [emptyData, setEmptyData] = useState(false)
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(3)
+  const { user } = useAuthContext();
+  const lastItemRef = useRef();
+  const loadingRef = useRef();
   const storyRef = useRef([])
   const {
     contextMenu,
@@ -16,186 +30,47 @@ const StoriesPreview = () => {
  setContextMenu,
  closeContextMenu
 } = useModalContext()
+useEffect(() => {
+  getUserStories(page, limit)
+}, [page, limit])
+const updateMyStories = (prev) => {
+  const newBookmarks = data.filter(
+    (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
+  );
+  return [...prev, ...newBookmarks];
+}
+useEffect(() => {
+  if(data.length == 0 && storyCount > 0){
+    setPage(1)
+  }
+    if(data.length > 0){
+      setEmptyData(false)
+ setMyStories(updateMyStories)
+      }
+}, [data, storyCount])
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting && !isLoading) {
+          setPage((prevPage) => prevPage + 1);
+        observer.unobserve(entry.target); 
+      }
+    },
+    { threshold: 0.1, }
+  );
+  if (lastItemRef.current && !isLoading ) {
+if(!preventLoadMore){
+observer.observe(lastItemRef.current);
+}
   
+  }                                                                                                                                   
 
-    
-    const myStories = [
-        {
-          title: "Mastering the Art of Photography",
-          category: "Photography",
-          picture: "https://c4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2024",
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "A Guide to Sustainable Living",
-          category: "Lifestyle",
-          picture: "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
-          link: "#", 
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2025"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-    
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        },
-
-        {
-          title: "Top 10 Hiking Trails in the US",
-          category: "Adventure",
-          picture: "https://c4.wallpaperflare.com/wallpaper/114/1008/41/one-piece-monkey-d-luffy-hd-wallpaper-preview.jpg",
-          link: "#",
-          avatar : "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg",
-          date : "March 17, 2020"
-          ,
-          estimatedReadingTime : {
-            minutes : 4,
-            seconds : 30
-          }
-        }
-      ]
-      useEffect(() => {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              // storyRef.current.classList.add("active")
-              // observer.unobserve(entry.target);
-            }else{
-              contextMenu.current.style.visibility = "hidden";
-            }
-          },
-          { threshold: 1, rootMargin : ""} // 10% of the element needs to be visible
-        );
-        if (storyRef.current) {
-          storyRef.current.map((story) => {
-            if(story){
-            observer.observe(story)
-            }
-          })
-        }
-      
-        return () => {
-          if (storyRef.current) {
-            storyRef.current.map((story) => {
-              if(story){
-              observer.unobserve(story)
-              }
-            })
-          
-          }
-        };
-      }, [contextMenu]);
+  return () => {
+    if (lastItemRef.current) {
+      observer.unobserve(lastItemRef.current);
+    }
+  };
+}, [lastItemRef, isLoading, myStories, storyCount, preventLoadMore]);
     
   return (
     <section className="litenote-dashboard-notes-preview" onClick={closeContextMenu}
@@ -203,18 +78,19 @@ const StoriesPreview = () => {
     >
     <div className="litenote-dashboard-stories-preview-grid"
     >
-          {myStories.map((story, index) => (
-            <div key={index}  
-          //  ref={el => storyRef.current.push(el)}
-           ref={(el) => (storyRef.current[index] = el)}
-           >
-<StoryCard  story={story} fireClick={fireClick} />
-</div>
-      ))
-      }
+      {myStories.map((story, index) => (
+      <StoryCard key={index} story={story} fireClick={fireClick}
+      isLoading={false}
+      />
+    ))}
+      { isLoading && loadingState.map((story, index) => (
+      <LoadingCard
+      key={index} story={story} fireClick={fireClick} isLoading={true}/>
+    ))}
       </div>
       <Share  share={shareRef} shareModal={shareModal}/>
       <ContextMenu
+      stories={myStories}
        state={"feed"}
        contextMenu={contextMenu}
        shareModal={shareModal}

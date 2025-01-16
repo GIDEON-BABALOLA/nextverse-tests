@@ -1,14 +1,15 @@
 
 import { useRef, useState} from "react"
 import  useWindowSize  from "../../hooks/useWindowSize"
+import Dropdown from "../../components/common/Dropdown"
 import "../../styles/components/common/tab.css"
-import Dropdown from "./Dropdown"
-const Tab = ({ setTab, tabs, scale,  labelWidth, ...props}) => {
+const PublishTab = ({ setTab, tabs, scale,  labelWidth, counts, ...props}) => {
     const [slideDistance, setSlideDistance] = useState(0)
     const { width } = useWindowSize()
     const tabRef = useRef()
     const clickMe = (e) => {
         const tab = e.target.innerText.toLowerCase()
+        console.log(tab)
         const optionMapping = {}
         const distanceMap = {}
         Object.entries(tabs).map(([key, value], index) => {
@@ -29,13 +30,13 @@ setSlideDistance(distanceMap[tab])
     { width < 1200 ? 
     <Dropdown tabs={tabs} setTab={setTab} scale={scale}/>
     :
-    <div className="bookmark-tabs-wrapper" {...props}>
-    <div className="bookmark-tabs"
+    <div className="container stories-tabs-wrapper" {...props}>
+    <div className="publish-tabs"
 ref={tabRef}
 >
   {   Object.entries(tabs).map(([key], index) => (
     <label htmlFor={`tab${index}`}
-    className="tab-label"
+    className="tab"
     key={key}
         style={{color : 
         
@@ -44,15 +45,22 @@ ref={tabRef}
   ))}      
         <div className="glider" style={{   transform: `translateX(${slideDistance}px)`,
          width : `${labelWidth}px`
-        }}><span>{
+        }}>
+<span>{
           Object.keys(tabs).find(key => tabs[key] === true)[0].toUpperCase()
            +Object.keys(tabs).find(key => tabs[key] === true).slice(1)
-           }</span></div>
-    </div>
+           }</span>
+                             <span className="publish-tabs-number"
+     style={{ fontSize : "1rem" }}
+     >4</span>
+
+        </div>
+  
+</div>
 </div>
     }
 </>
   )
 }
 
-export default Tab
+export default PublishTab

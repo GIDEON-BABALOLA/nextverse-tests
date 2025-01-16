@@ -1,34 +1,26 @@
 import "../../../styles/components/Dashboard/bookmark-card.css"
-import { FaEllipsisH } from "react-icons/fa";
-import { FaRegBookmark, FaBookOpen, FaTimes, FaShareAlt } from "react-icons/fa";
-import { MdClose, MdShare, MdDelete, MdReadMore, MdBookmark, MdOutlineFavoriteBorder } from "react-icons/md";
-import {useGetUserBookmarks} from "../../../hooks/useGetUserBookmarks"
+import { FaRegBookmark, FaShareAlt } from "react-icons/fa";
+import {  MdReadMore,  MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
 import StoryCard from "../../Profile/StoryCard";
 import LoadingCard from "../../Profile/LoadingCard";
 import  { useModalContext } from "../../../hooks/useModalContext"
 import ContextMenu from "../../common/ContextMenu";
-import { isVisibleInViewport } from "../../../helpers/isVisibleInViewPort";
-import NoContent from "../../common/NoContent";
 import ErrorMessage from "../../common/ErrorMessage";
 import { FaSearch } from "react-icons/fa";
 import useWindowSize from "../../../hooks/useWindowSize";
-import { MdOutlineRefresh } from "react-icons/md";
 import { useState } from "react";
 import Share from "../../common/Share"
 import useNavigatePage from "../../../hooks/useNavigatePage";
 import { useRef, useEffect } from "react"
 const BookmarkList = ({  getUserBookmarks,
    isLoading,
-   specialId,
    error,
    data,
   bookmarkCount,
-  specialNumber,
   bookmarkData,
   setBookmarkData,
   setBookmarkNumber,
-bookmarkNumber,
 setOriginalBookmarkData
 
  }) => {
@@ -37,11 +29,11 @@ setOriginalBookmarkData
   const [page, setPage]  = useState(1)
   const [limit, setLimit] = useState(3)
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
+  const [preventLoadMore, setPreventLoadMore] = useState(false)
   const [emptyData, setEmptyData] = useState(false)
   const { width } = useWindowSize();
   const  navigateToPage = useNavigatePage()
   useEffect(() => {
-
      if(width < 767){
       setLimit(1)
       setLoadingState([{}])
@@ -51,26 +43,14 @@ setOriginalBookmarkData
       setLoadingState([{}, {}, {}])
     }
     }, [width])
-   /* React Hook useEffect has a missing dependency: 'getUserBookmarks'. Either include it or remove the dependency array. If 'getUserBookmarks' changes too often, find the parent component that defines it and wrap that definition in useCallback */
  useEffect(() => {
-  const skip = (page - 1) * limit;
-    if (skip >= bookmarkCount && bookmarkCount > 0) {
-        setPage((prev) => {
-    
-          // Calculate the total pages based on the comment count
-          const totalPages = Math.ceil(bookmarkNumber / limit);
-    
-          // Ensure the page stays within valid bounds
-          const newPage = Math.min(prev, totalPages);
-    
-          return newPage
-        });
-      return;
-    }
         getUserBookmarks(page, limit)
-    
-     
   }, [page, limit, bookmarkCount])
+  useEffect(() => {
+if(bookmarkData.length === bookmarkCount && bookmarkCount > 0){
+  setPreventLoadMore(true)
+}
+  }, [bookmarkData, bookmarkCount])
   const updateBookmarks = (prev) => {
     const newBookmarks = data.filter(
       (newLike) => !prev.some((prevLike) => prevLike._id === newLike._id)
@@ -78,19 +58,15 @@ setOriginalBookmarkData
     return [...prev, ...newBookmarks];
   }
   useEffect(() => {
+    if(data.length == 0 && bookmarkCount > 0){
+      setPage(1)
+    }
       if(data.length > 0){
-        console.log(bookmarkCount, bookmarkData.length)
-        if(bookmarkCount !== bookmarkData.length){
         setEmptyData(false)
    setBookmarkData(updateBookmarks)
    setOriginalBookmarkData(updateBookmarks)
         }
-      }
-    
-
-
-  
-  }, [data, error, isLoading])
+  }, [data])
 
     const {
       contextMenu,
@@ -105,18 +81,17 @@ setOriginalBookmarkData
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting && !isLoading) {
-            console.log("I am intersecting")
               setPage((prevPage) => prevPage + 1);
-            observer.unobserve(entry.target); // Pause observer to prevent duplicate triggers
+            observer.unobserve(entry.target); 
           }
         },
-        { threshold: 0.1, } // Adjust threshold as needed
+        { threshold: 0.1, }
       );
       if (lastItemRef.current && !isLoading ) {
-        if(bookmarkData.length !== bookmarkCount){
+    if(!preventLoadMore){
     observer.observe(lastItemRef.current);
-
-        }
+    }
+      
       }                                                                                                                                   
     
       return () => {
@@ -124,31 +99,21 @@ setOriginalBookmarkData
           observer.unobserve(lastItemRef.current);
         }
       };
-    }, [lastItemRef, isLoading, bookmarkData, bookmarkCount]);
+    }, [lastItemRef, isLoading, bookmarkData, bookmarkCount, preventLoadMore]);
     
     useEffect(() => {
       if(!isLoading){
+        if(preventLoadMore && bookmarkData.length == 0){
+          setEmptyData(true)
+        }
         if(data.length == 0 && !error && page == 1 && bookmarkCount == 0){
           setEmptyData(true)
-        }else{
-          setEmptyData(false)
         }
         if(bookmarkCount == 0 ){
           setEmptyData(true)
         }
-        const skip = (page - 1) * limit;
-  //       if(skip > bookmarkCount  && bookmarkCount > 0 && bookmarkData.length !== bookmarkCount){
-  //         console.log("wow")
-  //     setPage((prev) => {
-  //       const totalPages = Math.ceil(bookmarkCount / limit);
-  // console.log(prev, totalPages)
-  //       // Ensure the page stays within valid bounds
-  //       const newPage = Math.min(prev, totalPages);
-  //       return newPage
-  //     });
-  //       }
       }
-          }, [data, isLoading, bookmarkCount, limit, page])
+          }, [data, isLoading, bookmarkCount, bookmarkData, preventLoadMore, limit, page, error])
 
     const resendRequest = () => {
       setEmptyData(false)
