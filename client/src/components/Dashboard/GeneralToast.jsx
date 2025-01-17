@@ -2,6 +2,7 @@ import "../../styles/components/Dashboard/dashboard-toast.css"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 const GeneralToast = ({generalToast, setGeneralToast, message, buttonText, generalFunction}) => {
+  console.log(generalFunction)
   const [trigger, setTrigger] = useState(false)
   const closeGeneralToast = () => {
    setGeneralToast(false)

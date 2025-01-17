@@ -8,9 +8,9 @@ import { createRef } from "react";
 import StickyNotesControls from "./StickyNotesControls";
 import useIndexedDB from "../../../hooks/useIndexedDB";
 import  { addStickyNote, getStickyNote, getAllStickyNotes, updateStickyNote, deleteStickyNote} from "../../../helpers/handleStickyNotes"
+import GeneralToast from "../GeneralToast";
 const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
   const db = useIndexedDB("stickyNotes")
-  console.log(db)
   const [openModal, setOpenModal]  = useState(false)
   const [modalTitle, setModalTitle] =  useState("")
   const [pageNumber, setPageNumber] = useState(1)
@@ -19,16 +19,13 @@ const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
   const stickyNotesRefs = useRef([])
   const [modalContent, setModalContent] =  useState("")
   const [stickyNotes, setStickyNotes] = useState([])
-  const [displayStickyNotes, setDisplayStickyNotes] = useState([])
-   useEffect(() => {
-const stickyNotesToBeDisplayed = stickyNotes.slice(0 + (pageNumber -1) * limit,
-limit + (pageNumber -1) * limit
-);
-setDisplayStickyNotes(stickyNotesToBeDisplayed)
-   }, [pageNumber, limit, stickyNotes])
-   useEffect(() => {
-console.log(displayStickyNotes)
-   }, [displayStickyNotes])
+  const [generalToast, setGeneralToast] = useState(false)
+  const [storage, setStorage] = useState([])
+  const [toastInformation, setToastInformation] = useState({
+    buttonText : "",
+    message : "",
+    generalFunction : ""
+  })
   const searchForStickyNotes = () => {
     setModalTitle("Search Your Sticky Notes")
     setModalContent(<div className="user-sticky-search-wrapper">
@@ -40,7 +37,37 @@ console.log(displayStickyNotes)
       </div>)
 setOpenModal(true)
   }
-  
+  useEffect(() => {
+    if(db){
+     getAllStickyNotes(db, "stickyNotes", (savedNotes) => {
+      if(savedNotes.length == 0){
+        setStickyNotesCount(1)
+          const welcomeNote = {
+              id: 1,
+              body:"📌Welcome To Sticky Notes",
+              colors: JSON.stringify({
+                   id: "color-purple",
+                  colorHeader: "#FED0FD",
+                  colorBody: "#FEE5FD",
+                  colorText: "#18181A",
+              }),
+          }
+          const position = determineNewPosition()
+          const initialNote =  {...welcomeNote, position}
+          addStickyNote(db, initialNote, "stickyNotes")
+          setStickyNotes([initialNote])
+          setStorage([initialNote])    
+      } else{
+        const stickyNotesToBeDisplayed = savedNotes.slice(0 + (pageNumber -1) * limit,
+  limit + (pageNumber -1) * limit
+  );
+        setStickyNotesCount(savedNotes.length)
+        setStickyNotes(stickyNotesToBeDisplayed)
+        setStorage(savedNotes)
+      }
+    })
+    }
+  }, [setStickyNotesCount, db, pageNumber, limit])
 const determineNewPosition = () => {
 const maxX = window.innerWidth - 240;
 const maxY = window.innerHeight - 240
@@ -81,7 +108,7 @@ document.removeEventListener("touchend", handleMouseUp)
   //check for overlapping
   if(checkForOverlap(id)){
    stickyNoteRef.style.left = `${startPos.x}px`
-    stickyNoteRef.style.top = `${startPos.y}px`
+    stickyNoteRef.style.top = `${startPos.y}pxf`
   }
   else if(window.innerWidth - (finalRect.width + finalRect.left) > window.innerWidth - finalRect.width
 || window.innerWidth - finalRect.width < finalRect.left
@@ -103,7 +130,7 @@ document.addEventListener("touchend", handleMouseUp)
 const checkForOverlap = (id) => {
   const currentNoteRef = stickyNotesRefs.current[id].current
   const currentRect = currentNoteRef.getBoundingClientRect()
-  return stickyNotes.some((note) => {
+  return [...stickyNotes].some((note) => {
     if(note.id == id) return false;
     const otherNoteRef =  stickyNotesRefs.current[note.id].current
     const otherRect = otherNoteRef?.getBoundingClientRect();
@@ -117,8 +144,23 @@ const checkForOverlap = (id) => {
   })
 } 
 const createStickyNote = (color) => {
-  const oldStickyNotes = [...stickyNotes]
-  const newID =  oldStickyNotes.length ? oldStickyNotes[oldStickyNotes.length - 1].id + 1 : 1;
+  const oldStickyNotes = [...storage]
+  console.log(oldStickyNotes)
+  if(stickyNotes.length == limit){
+    console.log("how")
+    setGeneralToast(true)
+    setToastInformation({
+      buttonText : "Next Page",
+      message : "You can only create 9 sticky notes per page",
+      generalFunction : () => {
+        generalFunction();
+      }
+    })
+    return;
+  }
+  console.log(oldStickyNotes)
+  const newID =  oldStickyNotes.length ? oldStickyNotes.slice("-1")[0].id + 1 : 1;
+  console.log(newID)
   const position = determineNewPosition()
   const newStickyNote = {
   id : newID,
@@ -128,75 +170,90 @@ const createStickyNote = (color) => {
   
 
   }
-  if( stickyNotesCount < 100){
-  const newStickyNotes = [...oldStickyNotes, newStickyNote]
-setStickyNotes(newStickyNotes)
+const newStickyNotes = [...stickyNotes, newStickyNote]
 addStickyNote(db, newStickyNote, "stickyNotes")
+setStickyNotes(newStickyNotes)
+setStorage([...oldStickyNotes, newStickyNote])
 setStickyNotesCount(newStickyNotes.length)
   }
-
-}
 const updateNotePosition = (id, newPosition) =>{ 
-  console.log("sushi")
-const updatedNotes = stickyNotes.map((note) => note.id === id 
+const updatedNotes = [...stickyNotes].map((note) => note.id === id 
 ?
 {...note, position : newPosition}
 : note)
-const updatedNote =stickyNotes.find((note) => note.id === id)
-console.log({...updatedNote, position : newPosition})
+const updatedNote = [...stickyNotes].find((note) => note.id === id)
 setStickyNotes(updatedNotes)
 updateStickyNote(db, id, {...updatedNote, position : newPosition}, "stickyNotes")
 }
 const saveStickyNote = (id, body) => {
-  const updatedNotes = stickyNotes.map((note) => note.id === id 
+  const updatedNotes = [...stickyNotes].map((note) => note.id === id 
 ?
 {...note, body : body}
 : note)
-const updatedNote =stickyNotes.find((note) => note.id === id)
+const updatedNote = [...stickyNotes].find((note) => note.id === id)
 updateStickyNote(db, id, {...updatedNote, body : body}, "stickyNotes")
 setStickyNotes(updatedNotes)
 
 }
 const deleteMyStickyNote = (id) => {
-  const updatedNotes = stickyNotes.filter((note) => note.id !== id)
-  console.log(updatedNotes)
+  const updatedNotes = [...stickyNotes].filter((note) => note.id !== id)
   deleteStickyNote(db, id, "stickyNotes")
   setStickyNotesCount(updatedNotes.length)
   setStickyNotes(updatedNotes)
-  
 }
-useEffect(() => {
-  if(db){
-   getAllStickyNotes(db, "stickyNotes", (savedNotes) => {
-    console.log(savedNotes.length)
-    if(savedNotes.length == 0){
-      console.log("eleganza")
-      setStickyNotesCount(1)
-        const welcomeNote = {
-            id: 1,
-            body:"📌Welcome To Sticky Notes",
-            colors: JSON.stringify({
-                 id: "color-purple",
-                colorHeader: "#FED0FD",
-                colorBody: "#FEE5FD",
-                colorText: "#18181A",
-            }),
-        }
-        const position = determineNewPosition()
-        const initialNote =  {...welcomeNote, position}
-        addStickyNote(db, initialNote, "stickyNotes")
-        setStickyNotes([initialNote])    
-    } else{
-      const stickyNotesToBeDisplayed = savedNotes.slice(0 + (pageNumber -1) * limit,
-limit + (pageNumber -1) * limit
-);
-      setStickyNotesCount(savedNotes.length)
-      setStickyNotes(stickyNotesToBeDisplayed)
-    }
-  })
+const generalFunction = () => {
+  if( pageNumber < 10){
+    setPageNumber((prev) => {
+      return prev + 1
+    })
+   }
+}
+const nextPage = () => {
+  if(stickyNotes.length !== limit){
+    
+    setGeneralToast(true)
+    setToastInformation({
+      buttonText : "Ok",
+      message : "You Have To Create Six Sticky Notes To Move To The Next Page",
+      generalFunction : 
+      () => {
+      setGeneralToast(false)
+      }
+    })
+    return;
   }
-}, [setStickyNotesCount, db, pageNumber, limit])
+  if( pageNumber < 10){
+   setPageNumber((prev) => {
+     return prev + 1
+   })
+  }else{
+    setGeneralToast(true)
+    setToastInformation({
+      buttonText : "Prev Page",
+      message : "You Only Have Ten Pages For Sticky Notes",
+      generalFunction : 
+      () => {
+    prevPage();
+      }
+    })
+  }
+   }
+   const prevPage = () => {
+    console.log("chow")
+     if(pageNumber == 1){
+       return;
+     }
+     setPageNumber((prev) => {
+      return prev - 1
+    })
+    }
   return (
+    <>
+    <GeneralToast generalToast={generalToast} setGeneralToast={setGeneralToast}
+        buttonText={toastInformation.buttonText}
+        generalFunction={toastInformation.generalFunction}
+        message={toastInformation.message}
+    />
     <section className="litenote-dashboard-sticky-notes-preview" 
      ref={stickyNoteContainerRef}
      style={{position : "relative"}}
@@ -205,8 +262,9 @@ limit + (pageNumber -1) * limit
       <SearchCircle clickMe={searchForStickyNotes}/> 
         <StickyNotesControls  createStickyNote={createStickyNote}
 pageNumber={pageNumber}
-setPageNumber={setPageNumber}
 stickyNotesCount={stickyNotesCount}
+nextPage={nextPage}
+prevPage={prevPage}
         />
         <div style={{marginTop : "50px"}} 
         
@@ -238,6 +296,7 @@ stickyNotesCount={stickyNotesCount}
         </div>
 
     </section>
+    </>
   )
 }
 
