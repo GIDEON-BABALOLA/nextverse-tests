@@ -3,8 +3,7 @@ import { useRef, useState} from "react"
 import  useWindowSize  from "../../hooks/useWindowSize"
 import Dropdown from "../../components/common/Dropdown"
 import "../../styles/components/common/tab.css"
-const PublishTab = ({ setTab, tabs, scale,  labelWidth, counts, ...props}) => {
-    const [slideDistance, setSlideDistance] = useState(0)
+const PublishTab = ({ setTab, tabs, scale,  labelWidth, counts, slideDistance, setSlideDistance, ...props}) => {
     const { width } = useWindowSize()
     const tabRef = useRef()
     const clickMe = (e) => {
@@ -28,7 +27,7 @@ setSlideDistance(distanceMap[tab])
   return (
     <>
     { width < 1200 ? 
-    <Dropdown tabs={tabs} setTab={setTab} scale={scale}/>
+    <Dropdown tabs={tabs} setTab={setTab} scale={scale} counts={counts}/>
     :
     <div className="container stories-tabs-wrapper" {...props}>
     <div className="publish-tabs"

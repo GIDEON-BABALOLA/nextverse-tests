@@ -5,5 +5,5 @@ export const axiosConfig = axios.create({
     withCredentials : true
 });
 export const axiosProperties = {
-    timeout : 30000 // aborts request after 10 seconds
+    timeout : 10000 // aborts request after 10 seconds
 }

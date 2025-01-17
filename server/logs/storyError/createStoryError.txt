@@ -3,3 +3,6 @@
 20250116	11:18:21	6fb7ae9e-8e33-46cd-8ba5-2cc09dca6832	userError: Image size too large (max 2MB)
 20250116	11:19:43	fa365d06-064e-4c10-8dfb-c2f4ebbe0d8b	userError: Image size too large (max 2MB)
 20250116	11:20:30	0095e44d-ce7d-435d-838b-89818a68539f	userError: Image size too large (max 2MB)
+20250116	11:43:43	dc974a4f-d7c1-4557-83de-ad933add68ed	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20250116	11:47:26	8145f469-8156-4999-9fb5-1f0acbd4f7b1	userError: Pls Kindly Choose Another Title, This title Has already Been Taken
+20250116	11:47:32	0a1f1ecd-a861-4c56-99d5-c0312b845acb	userError: Image size too large (max 2MB)

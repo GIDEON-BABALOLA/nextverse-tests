@@ -1,7 +1,7 @@
 import  { useState, useRef} from 'react'
 import { FaAngleDown } from 'react-icons/fa'
 
-const Dropdown = ({ tabs, setTab, scale}) => {
+const Dropdown = ({ tabs, setTab, scale, counts}) => {
     const selectMenu = useRef() 
     const list = useRef()
     const selectButton = useRef()
@@ -57,9 +57,19 @@ style={{marginBottom : "20px"}}
      className="litenote-stories-option"  onClick={chooseOption}>
 
 <span className="litenote-stories-option-text">{key[0].toUpperCase() + key.slice(1)}</span>
-{scale && <span className="dropdown-stories-select-notification"
+{scale &&  
+
+<>
+{counts ? 
+  <span className="publish-tabs-number"
+     style={{ fontSize : "1rem" }}
+     >{counts[Object.keys(tabs).find(key => tabs[key] === true)]} </span>
+:
+<span className="dropdown-stories-select-notification"
      style={{backgroundColor : "var(--primary-cocolor)", color : "#ffff", fontSize : "1rem" }}
      >3</span>
+}
+</>
 }
     </li>
 ))}                             

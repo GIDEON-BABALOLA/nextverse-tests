@@ -10,14 +10,16 @@ import ErrorMessage from "../../common/ErrorMessage"
 import LoadingCard from "../../Profile/LoadingCard"
 import { useGetUserStories } from "../../../hooks/useGetUserStories"
 import useWindowSize from "../../../hooks/useWindowSize"
+import { FaBoxOpen, FaSearch } from "react-icons/fa"
 import DeleteConsent from "../../common/DeleteConsent"
 import { FaTrash, FaRegTrashAlt, FaTrashAlt } from "react-icons/fa";
 import { useDeleteAStory } from "../../../hooks/useDeleteAStory"
-import NoContent from "../../common/NoContent"
-const StoriesPreview = ({ setCounts }) => {
+import { useToastContext } from "../../../hooks/useToastContext"
+import Toast from "../../common/Toast"
+const StoriesPreview = ({ setCounts, setTab, setSlideDistance }) => {
   const { getUserStories, isLoading, error, data, storyCount } = useGetUserStories();
   const deleteStory = useDeleteAStory();
-  const [openModal, setOpenModal] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
   const { width } = useWindowSize();
   const [myStories, setMyStories] = useState([])
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
@@ -27,6 +29,7 @@ const StoriesPreview = ({ setCounts }) => {
   const [limit, setLimit] = useState(3)
   const lastItemRef = useRef();
   const loadingRef = useRef();
+  const { showToast } = useToastContext()
   const {
     contextMenu,
      shareModal,
@@ -39,10 +42,23 @@ const StoriesPreview = ({ setCounts }) => {
  currentStoryId
 } = useModalContext()
 useEffect(() => {
+  if(deleteStory.error){
+showToast("Error", deleteStory.error, false)
+  }
+}, [deleteStory.error, showToast])
+useEffect(() => {
   setCounts((prev) => {
     return {...prev, stories :storyCount}
   })
     }, [storyCount, setCounts])
+    useEffect(() => {
+      console.log(deleteStory.error)
+if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
+  setOpenModal(false)
+  const newStories = [...myStories].filter((story) => story._id !== currentStoryId)
+  setMyStories(newStories)
+}
+    }, [deleteStory.data, deleteStory.error])
 useEffect(() => {
   getUserStories(page, limit)
 }, [page, limit])
@@ -102,6 +118,9 @@ observer.observe(lastItemRef.current);
   };
 }, [lastItemRef, isLoading, myStories, storyCount, preventLoadMore]);
 useEffect(() => {
+console.log(emptyData)
+}, [emptyData])
+useEffect(() => {
   if(!isLoading){
     if(preventLoadMore && myStories.length == 0){
       setEmptyData(true)
@@ -121,15 +140,27 @@ const resendRequest = () => {
   setEmptyData(false)
   getUserStories(page, limit)
 }
+const startWriting = () => {
+setSlideDistance(0)
+setTab({
+  write : true,
+  notes : false,
+  stories : false,
+  "sticky notes" : false
+})
+}
   return (
     <section className="litenote-dashboard-notes-preview" onClick={closeContextMenu}
   
     >
+      <Toast />
                 <DeleteConsent openModal={openModal} setOpenModal={setOpenModal}
                 title={"Are you sure you want to delete?"}
                 message={"This action will permanently delete your Story. This cannot be undone"}
                 buttonText ={"Delete Story"}
                 deleteFunction={deleteAStory}
+                error={deleteStory.error}
+                isLoading={deleteStory.isLoading}
                 />
     <div className="litenote-dashboard-stories-preview-grid"
     >
@@ -137,7 +168,19 @@ const resendRequest = () => {
 
               {
                 emptyData ? 
-                <NoContent />
+  <div 
+      style={{display :"flex", flexDirection : "column", 
+          alignItems : "center", justifyContent : "center", padding : "40px 0px"}}
+          className="no-content-section"
+          >
+          <FaBoxOpen size={200}/>
+          <h3
+          style={{padding : "0px 70px", textAlign : "center"}}
+          >You havent Written any story, Click the button below to start writing</h3>
+          <div><button className="offline-button"
+          onClick={() => startWriting()}
+   ><FaSearch size={20}/>Start Writing</button></div> 
+          </div>
                 :
               
               <>

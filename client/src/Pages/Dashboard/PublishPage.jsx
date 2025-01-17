@@ -12,13 +12,14 @@ import StickyNotes from "../../components/Dashboard/common/StickyNotes";
 import PublishTab from "./PublishTab";
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
-  const [stickyNotesCount, setStickyNotesCount ] = useState(JSON.parse(localStorage.getItem("stickyNotes"))?.length || 0 )
+  const [stickyNotesCount, setStickyNotesCount ] = useState(0)
   const selectMenu = useRef() 
   const list = useRef()
   const selectButton = useRef()
   const [loadPage, setLoadPage] = useState(true)
   const [active, setActive] = useState(false)
   const [slideDistance, setSlideDistance] = useState(0)
+  
   const [tabs, setTab] = useState({
     write : true,
     notes : false,
@@ -31,6 +32,15 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     stories : 0,
     "sticky notes" : 0
   })
+  useEffect(() => {
+setCounts((prev) => {
+  return {...prev, "sticky notes" : stickyNotesCount}
+})
+  }, [stickyNotesCount])
+  useEffect(() => {
+setStickyNotesCount(JSON.parse(localStorage.getItem("stickyNotes"))?.length)
+  }, [])
+  
       const [contextMenu, setContextMenu] = useState()
   return (
     <>
@@ -51,6 +61,8 @@ setTab={setTab}
 labelWidth={200}
 scale={true}
 counts={counts}
+slideDistance={slideDistance}
+setSlideDistance={setSlideDistance}
 />
  </div>
 
@@ -58,7 +70,10 @@ counts={counts}
    
 {tabs.write && <TextEditor />}
 {tabs.notes && <NotesPreview setCounts={setCounts}/>}
-{tabs.stories && <StoriesPreview  setCounts={setCounts}/>}
+{tabs.stories && <StoriesPreview  setCounts={setCounts}
+setTab={setTab}
+setSlideDistance={setSlideDistance}
+/>}
 {tabs["sticky notes"] && <StickyNotes 
   setCounts={setCounts}
   stickyNotesCount={stickyNotesCount}

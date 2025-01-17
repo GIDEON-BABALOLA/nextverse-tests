@@ -3,7 +3,7 @@ import { useState } from "react";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
 export const useDeleteAStory = () => {
     const [error, setError] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
     const deleteAStory = async (id) => {
@@ -19,9 +19,7 @@ if(response && response.data){
     setData(response.data)
     setStatusCode(response.status)
     setError(null)
-    setTimeout(() => {
         setIsLoading(false)
-    }, 100)
     
 }
         }

@@ -672,7 +672,8 @@ switch (req.user.role) {
     case "admin":
         await Admin.deleteStory(req.user._id, id);
 }
-res.status(200).json({"message" : "Deletion Of Story Was Successfull"})
+    res.status(200).json({"message" : "Deletion Of Story Was Successfull"})
+
     }
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "deleteAStoryError.txt", "storyError")

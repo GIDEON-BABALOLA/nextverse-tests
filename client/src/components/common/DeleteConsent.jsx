@@ -1,6 +1,7 @@
 
 import "../../styles/components/common/delete-consent.css"
 import Trash from "../../styles/components/common/Icons/Trash"
+import LoadingSpinner from "../Loaders/LoadingSpinner"
 import { useEffect,useRef } from "react"
 const DeleteConsent = ({ openModal,
   setOpenModal,
@@ -9,8 +10,11 @@ const DeleteConsent = ({ openModal,
   width,
   height,
   buttonText,
-  deleteFunction
+  deleteFunction,
+  error,
+  isLoading
 }) => {
+  console.log(isLoading)
   const myDeleteModal = useRef()
   const closeModal = () => {
     setOpenModal(false)
@@ -21,11 +25,11 @@ const DeleteConsent = ({ openModal,
     ){
       return;
     }
-          if( e.clientX < parseInt(myDeleteModal.current.getBoundingClientRect().left) || e.clientX > parseInt(myDeleteModal.current.getBoundingClientRect().left) + myDeleteModal.current.getBoundingClientRect().width)
+          if( e.clientX < parseInt(myDeleteModal.current?.getBoundingClientRect().left) || e.clientX > parseInt(myDeleteModal.current?.getBoundingClientRect().left) + myDeleteModal.current?.getBoundingClientRect().width)
             {
               setOpenModal(false)
             }else if(
-              e.clientY < parseInt(myDeleteModal.current.getBoundingClientRect().top) || e.clientY > parseInt(myDeleteModal.current.getBoundingClientRect().top) + myDeleteModal.current.getBoundingClientRect().height
+              e.clientY < parseInt(myDeleteModal.current?.getBoundingClientRect().top) || e.clientY > parseInt(myDeleteModal.current?.getBoundingClientRect().top) + myDeleteModal.current?.getBoundingClientRect().height
             ){
               setOpenModal(false)
             }
@@ -77,7 +81,12 @@ gap : "10px", fontFamily : "Urbanist"}}>
   }} onClick={closeModal}>Cancel, I cant</span>
   <button style={{fontFamily : "Urbanist", fontWeight : "800"}}
   onClick={() => { deleteFunction()}}
-  >{buttonText}</button>
+  >
+  { isLoading ? <span style={{ padding : "0px 20px"}}>
+  <LoadingSpinner width={15} />
+  </span> : `${buttonText}`
+ }
+    </button>
 </div>
 </section>
 </div>

@@ -2,8 +2,10 @@
 import { FaRegTrashAlt} from "react-icons/fa"
 import Spinner from "../../Loaders/Spinner"
 import { forwardRef, useRef, useEffect, useState } from "react"
-const StickyNotesCard = forwardRef(({ content, initialPosition,
+const StickyNotesCard = forwardRef(({ content, id, initialPosition,
     saveStickyNote,
+    setStickyNotes,
+    setStickyNotesCount,
     ...props }, ref) => {
     const colors = JSON.parse(content.colors)
     const textAreaRef = useRef(null)
@@ -22,6 +24,13 @@ autoGrow(textAreaRef)
         saveStickyNote(id, body)
         setIsLoading(false)
     }
+    const deleteStickyNote = () => {
+        const savedNotes = JSON.parse(localStorage.getItem("stickyNotes"))
+        const updatedNotes = savedNotes.filter((note) => note.id !== id)
+        setStickyNotesCount(updatedNotes)
+        setStickyNotes(updatedNotes)
+        localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
+    }
   return (
     <div
     ref={ref}
@@ -38,10 +47,11 @@ autoGrow(textAreaRef)
         className="card-header"
         style={{
             backgroundColor: colors.colorHeader,
+            cursor : "pointer"
         }}
     >
         <FaRegTrashAlt  
-        // onClick={deleteStickyNote()}
+        onClick={() => { deleteStickyNote()}}
 
         />
 

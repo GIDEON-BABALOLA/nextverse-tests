@@ -1,10 +1,12 @@
 :root{
 --filter-by-category-color : black;
 --general-tabs-color : black;
+--publish-tabs-background : #FFFFFF;
 }
 .dark-theme-variables{
     --filter-by-category-color : white;
     --general-tabs-color : white;
+	--publish-tabs-background : #00000066;
 
 }
 .litenote-stories-sBtn-text{
@@ -32,7 +34,6 @@ padding: 5px 10px;
 	user-select: none;
 }
 .publish-tabs{
-    background-color: #FFFFFF;
       border-radius: 99px;
       /* box-shadow: #0000001A 0px 0px 15px 0px; */
       box-sizing: border-box;
@@ -41,7 +42,7 @@ padding: 5px 10px;
       position: relative;
       user-select: none;
       /* box-shadow: var(--box-bookmark-slider--shadow); */
-      background-color:#00000066;
+      background-color:var(--publish-tabs-background);
       	/* background-color: #FFFFFF;
 	border-radius: 99px;
 	box-sizing: border-box;

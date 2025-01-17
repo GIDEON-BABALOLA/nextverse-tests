@@ -163,6 +163,7 @@ a{
         left: 50%;
         transform: translate(-50%);
         margin: 2rem 0 0 0.8rem;
+        background-color: #fff6db;
     }
     main .litenote-dashboard-recent-stories table{
         width: 83vw;  
