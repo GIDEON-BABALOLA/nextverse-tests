@@ -199,9 +199,11 @@ updateStickyNote(db, id, {...updatedNote, body : body}, "stickyNotes")
 }
 const deleteMyStickyNote = (id) => {
   const updatedNotes = [...stickyNotes].filter((note) => note.id !== id)
-  deleteStickyNote(db, id, "stickyNotes")
+  const updatedStorageNotes = [...storage].filter((note) => note.id !== id)
   setStickyNotesCount(updatedNotes.length)
   setStickyNotes(updatedNotes)
+  setStorage(updatedStorageNotes)
+  deleteStickyNote(db, id, "stickyNotes")
 }
 const generalFunction = () => {
   if( pageNumber < 10){
