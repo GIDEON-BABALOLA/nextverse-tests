@@ -6,11 +6,7 @@ import SpecialModal from "../../common/SpecialModal"
 import { useEffect, useRef } from "react";
 import { createRef } from "react";
 import StickyNotesControls from "./StickyNotesControls";
-import useIndexedDB from "../../../hooks/useIndexedDB";
-import  { addStickyNote, getStickyNote, getAllStickyNotes, updateStickyNote, deleteStickyNote} from "../../../helpers/handleStickyNotes"
 const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
-  const db = useIndexedDB("stickyNotes")
-  console.log(db)
   const [openModal, setOpenModal]  = useState(false)
   const [modalTitle, setModalTitle] =  useState("")
   const [pageNumber, setPageNumber] = useState(1)
@@ -29,6 +25,9 @@ setDisplayStickyNotes(stickyNotesToBeDisplayed)
    useEffect(() => {
 console.log(displayStickyNotes)
    }, [displayStickyNotes])
+   const getPaginatedStickyNotes = () => {
+    return stickyNotes.slice((pageNumber - 1) * limit, pageNumber * limit);
+  };
   const searchForStickyNotes = () => {
     setModalTitle("Search Your Sticky Notes")
     setModalContent(<div className="user-sticky-search-wrapper">
@@ -116,6 +115,15 @@ const checkForOverlap = (id) => {
     return overlap
   })
 } 
+const updateNotePosition = (id, newPosition) =>{ 
+  console.log("sushi")
+const updatedNotes = stickyNotes.map((note) => note.id === id 
+?
+{...note, position : newPosition}
+: note)
+setStickyNotes(updatedNotes)
+localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
+}
 const createStickyNote = (color) => {
   const oldStickyNotes = [...stickyNotes]
   const newID =  oldStickyNotes.length ? oldStickyNotes[oldStickyNotes.length - 1].id + 1 : 1;
@@ -131,71 +139,42 @@ const createStickyNote = (color) => {
   if( stickyNotesCount < 100){
   const newStickyNotes = [...oldStickyNotes, newStickyNote]
 setStickyNotes(newStickyNotes)
-addStickyNote(db, newStickyNote, "stickyNotes")
+localStorage.setItem("stickyNotes", JSON.stringify(newStickyNotes))
 setStickyNotesCount(newStickyNotes.length)
   }
 
-}
-const updateNotePosition = (id, newPosition) =>{ 
-  console.log("sushi")
-const updatedNotes = stickyNotes.map((note) => note.id === id 
-?
-{...note, position : newPosition}
-: note)
-const updatedNote =stickyNotes.find((note) => note.id === id)
-console.log({...updatedNote, position : newPosition})
-setStickyNotes(updatedNotes)
-updateStickyNote(db, id, {...updatedNote, position : newPosition}, "stickyNotes")
 }
 const saveStickyNote = (id, body) => {
   const updatedNotes = stickyNotes.map((note) => note.id === id 
 ?
 {...note, body : body}
 : note)
-const updatedNote =stickyNotes.find((note) => note.id === id)
-updateStickyNote(db, id, {...updatedNote, body : body}, "stickyNotes")
 setStickyNotes(updatedNotes)
+localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
 
 }
-const deleteMyStickyNote = (id) => {
-  const updatedNotes = stickyNotes.filter((note) => note.id !== id)
-  console.log(updatedNotes)
-  deleteStickyNote(db, id, "stickyNotes")
-  setStickyNotesCount(updatedNotes.length)
-  setStickyNotes(updatedNotes)
-  
-}
 useEffect(() => {
-  if(db){
-   getAllStickyNotes(db, "stickyNotes", (savedNotes) => {
-    console.log(savedNotes.length)
-    if(savedNotes.length == 0){
-      console.log("eleganza")
-      setStickyNotesCount(1)
-        const welcomeNote = {
-            id: 1,
-            body:"📌Welcome To Sticky Notes",
-            colors: JSON.stringify({
-                 id: "color-purple",
-                colorHeader: "#FED0FD",
-                colorBody: "#FEE5FD",
-                colorText: "#18181A",
-            }),
-        }
-        const position = determineNewPosition()
-        const initialNote =  {...welcomeNote, position}
-        addStickyNote(db, initialNote, "stickyNotes")
-        setStickyNotes([initialNote])    
-    } else{
-      const stickyNotesToBeDisplayed = savedNotes.slice(0 + (pageNumber -1) * limit,
-limit + (pageNumber -1) * limit
-);
-      setStickyNotesCount(savedNotes.length)
-      setStickyNotes(stickyNotesToBeDisplayed)
-    }
-  })
+  const savedNotes = JSON.parse(localStorage.getItem("stickyNotes")) || []
+  if(savedNotes.length == 0){
+    setStickyNotesCount(1)
+      const welcomeNote = {
+          id: 1,
+          body:"📌Welcome To Sticky Notes",
+          colors: JSON.stringify({
+               id: "color-purple",
+              colorHeader: "#FED0FD",
+              colorBody: "#FEE5FD",
+              colorText: "#18181A",
+          }),
+      }
+      const position = determineNewPosition()
+      const initialNote =  {...welcomeNote, position}
+      setStickyNotes([initialNote])    
+  } else{
+    setStickyNotesCount(savedNotes.length)
+    setStickyNotes(savedNotes)
   }
-}, [setStickyNotesCount, db, pageNumber, limit])
+}, [setStickyNotesCount])
   return (
     <section className="litenote-dashboard-sticky-notes-preview" 
      ref={stickyNoteContainerRef}
@@ -228,7 +207,6 @@ stickyNotesCount={stickyNotesCount}
           content={content}
           saveStickyNote={saveStickyNote}
           setStickyNotes={setStickyNotes}
-          deleteMyStickyNote={deleteMyStickyNote}
           setStickyNotesCount={setStickyNotesCount}
            initialPosition={content.position}
             onTouchStart={(e) => handleDragStart(content, e)}

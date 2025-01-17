@@ -6,6 +6,7 @@ const StickyNotesCard = forwardRef(({ content, id, initialPosition,
     saveStickyNote,
     setStickyNotes,
     setStickyNotesCount,
+    deleteMyStickyNote,
     ...props }, ref) => {
     const colors = JSON.parse(content.colors)
     const textAreaRef = useRef(null)
@@ -23,13 +24,6 @@ autoGrow(textAreaRef)
         setIsLoading(true)
         saveStickyNote(id, body)
         setIsLoading(false)
-    }
-    const deleteStickyNote = () => {
-        const savedNotes = JSON.parse(localStorage.getItem("stickyNotes"))
-        const updatedNotes = savedNotes.filter((note) => note.id !== id)
-        setStickyNotesCount(updatedNotes)
-        setStickyNotes(updatedNotes)
-        localStorage.setItem("stickyNotes", JSON.stringify(updatedNotes))
     }
   return (
     <div
@@ -51,7 +45,7 @@ autoGrow(textAreaRef)
         }}
     >
         <FaRegTrashAlt  
-        onClick={() => { deleteStickyNote()}}
+        onClick={() => { deleteMyStickyNote(id)}}
 
         />
 
