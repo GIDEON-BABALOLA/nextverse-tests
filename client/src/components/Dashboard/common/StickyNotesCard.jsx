@@ -4,8 +4,6 @@ import Spinner from "../../Loaders/Spinner"
 import { forwardRef, useRef, useEffect, useState } from "react"
 const StickyNotesCard = forwardRef(({ content, id, initialPosition,
     saveStickyNote,
-    setStickyNotes,
-    setStickyNotesCount,
     deleteMyStickyNote,
     ...props }, ref) => {
     const colors = JSON.parse(content.colors)

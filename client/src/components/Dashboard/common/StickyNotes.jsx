@@ -61,6 +61,8 @@ setOpenModal(true)
         const stickyNotesToBeDisplayed = savedNotes.slice(0 + (pageNumber -1) * limit,
   limit + (pageNumber -1) * limit
   );
+  console.log("If I sound you")
+  console.log(stickyNotesToBeDisplayed)
         setStickyNotesCount(savedNotes.length)
         setStickyNotes(stickyNotesToBeDisplayed)
         setStorage(savedNotes)
@@ -191,8 +193,8 @@ const saveStickyNote = (id, body) => {
 {...note, body : body}
 : note)
 const updatedNote = [...stickyNotes].find((note) => note.id === id)
-updateStickyNote(db, id, {...updatedNote, body : body}, "stickyNotes")
 setStickyNotes(updatedNotes)
+updateStickyNote(db, id, {...updatedNote, body : body}, "stickyNotes")
 
 }
 const deleteMyStickyNote = (id) => {
@@ -275,7 +277,7 @@ prevPage={prevPage}
 
           stickyNotes.map((content, index) => (
           <StickyNotesCard 
-          key={index}
+          key={content.id}
           id={content.id}
           ref={
             stickyNotesRefs.current[content.id] ?
@@ -285,9 +287,7 @@ prevPage={prevPage}
             }
           content={content}
           saveStickyNote={saveStickyNote}
-          setStickyNotes={setStickyNotes}
           deleteMyStickyNote={deleteMyStickyNote}
-          setStickyNotesCount={setStickyNotesCount}
            initialPosition={content.position}
             onTouchStart={(e) => handleDragStart(content, e)}
             onMouseDown={(e) => handleDragStart(content, e)} />
