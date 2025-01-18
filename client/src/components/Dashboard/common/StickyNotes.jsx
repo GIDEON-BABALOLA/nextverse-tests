@@ -7,17 +7,16 @@ import { useEffect, useRef } from "react";
 import { createRef } from "react";
 import StickyNotesControls from "./StickyNotesControls";
 import useIndexedDB from "../../../hooks/useIndexedDB";
+import useWindowSize from "../../../hooks/useWindowSize";
 import  { addStickyNote, getStickyNote, getAllStickyNotes, updateStickyNote, deleteStickyNote} from "../../../helpers/handleStickyNotes"
 import GeneralToast from "../GeneralToast";
 const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
   const db = useIndexedDB("stickyNotes")
-  const [openModal, setOpenModal]  = useState(false)
-  const [modalTitle, setModalTitle] =  useState("")
+  const { width } = useWindowSize();
   const [pageNumber, setPageNumber] = useState(1)
   const [limit, setLimit] = useState(6)
   const stickyNoteContainerRef = useRef()
   const stickyNotesRefs = useRef([])
-  const [modalContent, setModalContent] =  useState("")
   const [stickyNotes, setStickyNotes] = useState([])
   const [generalToast, setGeneralToast] = useState(false)
   const [storage, setStorage] = useState([])
@@ -26,17 +25,14 @@ const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
     message : "",
     generalFunction : ""
   })
-  const searchForStickyNotes = () => {
-    setModalTitle("Search Your Sticky Notes")
-    setModalContent(<div className="user-sticky-search-wrapper">
-
-      <div className="field">
-         <input type="text" placeholder="Search Sticky Notes"/>
-         <label htmlFor="click" className="btn-2" onClick={() => {setOpenModal(false)}}>Search</label>
-      </div>
-      </div>)
-setOpenModal(true)
-  }
+  useEffect(() => {
+    if(width < 767){
+     setLimit(4)
+   }
+   else{
+     setLimit(6)     
+   }
+   }, [width])
   useEffect(() => {
     if(db){
      getAllStickyNotes(db, "stickyNotes", (savedNotes) => {
@@ -61,8 +57,7 @@ setOpenModal(true)
         const stickyNotesToBeDisplayed = savedNotes.slice(0 + (pageNumber -1) * limit,
   limit + (pageNumber -1) * limit
   );
-  console.log("If I sound you")
-  console.log(stickyNotesToBeDisplayed)
+
         setStickyNotesCount(savedNotes.length)
         setStickyNotes(stickyNotesToBeDisplayed)
         setStorage(savedNotes)
@@ -147,22 +142,18 @@ const checkForOverlap = (id) => {
 } 
 const createStickyNote = (color) => {
   const oldStickyNotes = [...storage]
-  console.log(oldStickyNotes)
   if(stickyNotes.length == limit){
-    console.log("how")
     setGeneralToast(true)
     setToastInformation({
       buttonText : "Next Page",
-      message : "You can only create 9 sticky notes per page",
+      message : `You can only create ${limit} sticky notes per page`,
       generalFunction : () => {
-        generalFunction();
+     pageNumber == 10 ? nextPage() :   generalFunction();
       }
     })
     return;
   }
-  console.log(oldStickyNotes)
   const newID =  oldStickyNotes.length ? oldStickyNotes.slice("-1")[0].id + 1 : 1;
-  console.log(newID)
   const position = determineNewPosition()
   const newStickyNote = {
   id : newID,
@@ -176,7 +167,9 @@ const newStickyNotes = [...stickyNotes, newStickyNote]
 addStickyNote(db, newStickyNote, "stickyNotes")
 setStickyNotes(newStickyNotes)
 setStorage([...oldStickyNotes, newStickyNote])
-setStickyNotesCount(newStickyNotes.length)
+setStickyNotesCount((prev) => {
+  return prev + 1
+})
   }
 const updateNotePosition = (id, newPosition) =>{ 
 const updatedNotes = [...stickyNotes].map((note) => note.id === id 
@@ -200,7 +193,9 @@ updateStickyNote(db, id, {...updatedNote, body : body}, "stickyNotes")
 const deleteMyStickyNote = (id) => {
   const updatedNotes = [...stickyNotes].filter((note) => note.id !== id)
   const updatedStorageNotes = [...storage].filter((note) => note.id !== id)
-  setStickyNotesCount(updatedNotes.length)
+  setStickyNotesCount((prev) => {
+    return prev - 1
+  })
   setStickyNotes(updatedNotes)
   setStorage(updatedStorageNotes)
   deleteStickyNote(db, id, "stickyNotes")
@@ -213,8 +208,22 @@ const generalFunction = () => {
    }
 }
 const nextPage = () => {
+  if(stickyNotes.length == limit && pageNumber == 10){
+    setTimeout(() => {
+      setGeneralToast(true)
+      setToastInformation({
+        buttonText : "Prev Page",
+        message : "You Only Have Ten Pages For Sticky Notes",
+        generalFunction : 
+        () => {
+      prevPage();
+        }
+      })      
+    }, 100);
+
+    return;
+  }
   if(stickyNotes.length !== limit){
-    
     setGeneralToast(true)
     setToastInformation({
       buttonText : "Ok",
@@ -243,7 +252,6 @@ const nextPage = () => {
   }
    }
    const prevPage = () => {
-    console.log("chow")
      if(pageNumber == 1){
        return;
      }
@@ -251,6 +259,7 @@ const nextPage = () => {
       return prev - 1
     })
     }
+    
   return (
     <>
     <GeneralToast generalToast={generalToast} setGeneralToast={setGeneralToast}
@@ -262,8 +271,7 @@ const nextPage = () => {
      ref={stickyNoteContainerRef}
      style={{position : "relative"}}
     >
-    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title={modalTitle} content={modalContent} width={450} />
-      <SearchCircle clickMe={searchForStickyNotes}/> 
+      {/* <SearchCircle clickMe={searchForStickyNotes}/>  */}
         <StickyNotesControls  createStickyNote={createStickyNote}
 pageNumber={pageNumber}
 stickyNotesCount={stickyNotesCount}

@@ -3,7 +3,7 @@ export const addStickyNote = (db, note, collection) => {
     const store = transaction.objectStore(collection); // Get the object store
   
     const newNote = {  ...note, timestamp: new Date() }; // Data to store
-  
+  console.log(newNote)
     const request = store.add(newNote); // Add the data
     request.onsuccess = () => console.log("Note added successfully!");
     request.onerror = (event) => console.error("Error adding note:", event.target.error);
@@ -51,7 +51,7 @@ export const updateStickyNote = (db, id, updatedNoteData, collection) => {
       });
   
       const updateRequest = store.put(updateNote);
-      updateRequest.onsuccess = () => console.log("Note updated successfully!");
+      updateRequest.onsuccess = () => {}
     };
   }
   export const deleteStickyNote = (db, id, collection) => {
