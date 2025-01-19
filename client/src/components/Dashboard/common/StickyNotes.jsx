@@ -50,17 +50,30 @@ const StickyNotes = ({ stickyNotesCount, setStickyNotesCount}) => {
           }
           const position = determineNewPosition()
           const initialNote =  {...welcomeNote, position}
-          addStickyNote(db, initialNote, "stickyNotes")
+          addStickyNote(db, initialNote, "stickyNotes", pageNumber)
           setStickyNotes([initialNote])
           setStorage([initialNote])    
       } else{
+        const perPage = [...savedNotes].filter((sn) => sn.page === pageNumber)
         const stickyNotesToBeDisplayed = savedNotes.slice(0 + (pageNumber -1) * limit,
   limit + (pageNumber -1) * limit
   );
 
         setStickyNotesCount(savedNotes.length)
-        setStickyNotes(stickyNotesToBeDisplayed)
+        // setStickyNotes(stickyNotesToBeDisplayed)
+        setStickyNotes(perPage)
         setStorage(savedNotes)
+        // console.log(savedNotes)
+        // const newData = [...savedNotes].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+        // console.log(newData)
+  // const stickyNotesToBeDisplayed = newData.slice(0 + (pageNumber -1) * limit,
+  // limit + (pageNumber -1) * limit
+  // );
+  // console.log(stickyNotesToBeDisplayed)
+
+  //       setStickyNotesCount(newData.length)
+  //       setStickyNotes(stickyNotesToBeDisplayed)
+  //       setStorage(newData)
       }
     })
     }
@@ -163,10 +176,10 @@ const createStickyNote = (color) => {
   
 
   }
-const newStickyNotes = [...stickyNotes, newStickyNote]
-addStickyNote(db, newStickyNote, "stickyNotes")
+const newStickyNotes = [ ...stickyNotes, newStickyNote]
+addStickyNote(db, newStickyNote, "stickyNotes", pageNumber)
 setStickyNotes(newStickyNotes)
-setStorage([...oldStickyNotes, newStickyNote])
+setStorage([ ...oldStickyNotes, newStickyNote])
 setStickyNotesCount((prev) => {
   return prev + 1
 })

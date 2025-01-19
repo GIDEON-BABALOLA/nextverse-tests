@@ -4,18 +4,21 @@ import { NoteCardMenu } from "./NoteCardMenu"
 import { useEffect, useCallback } from "react"
 
 import { useState } from "react"
-const NoteCard = ({ title, time, date, author, setModalTitle, setModalContent, setOpenModal}) => {
+const NoteCard = ({ id, title, time, date, author, setModalTitle, setModalContent, setOpenModal, noteContextMenu, setNoteContextMenu}) => {
    // Dependency ensures the effect updates when callback changes
-      const [settings, setSettings] = useState(false)
       const triggerNoteDelete = () => {
         setModalTitle("Delete Note")
         setModalContent("Are you sure you want to delete this note")
         setOpenModal(true)
     }
   const showNoteSettings = () => {
+    console.log(id)
     console.log("chai")
-setSettings(!settings)
+    if(!noteContextMenu){
+setNoteContextMenu(!noteContextMenu)
+    }
   }
+  
   return (
     <>
     <div className="note-preview-card">
@@ -26,8 +29,8 @@ setSettings(!settings)
 
         <div style={{display : "flex", flexDirection  :"column", gap : "20px", alignItems : "center"}}>
                     <Dots size={50} onClick={() => showNoteSettings()}/>
-      <NoteCardMenu title={title} settings={settings} triggerNoteDelete={triggerNoteDelete}
-      setSettings={setSettings}
+      <NoteCardMenu title={title} settings={noteContextMenu} triggerNoteDelete={triggerNoteDelete}
+      setSettings={setNoteContextMenu}
       />
           
 <span style={{fontSize: "1.3rem"}}>125 KB</span>

@@ -13,6 +13,7 @@ const NotesPreview = () => {
     const [openModal, setOpenModal] = useState(false)
     const [modalTitle, setModalTitle] =  useState("")
     const [modalContent, setModalContent] =  useState("")
+    const [noteContextMenu, setNoteContextMenu] = useState(false)
     const navigate = useNavigate()
     const searchForNotes = () => {
         setModalTitle("Search Notes")
@@ -27,6 +28,7 @@ setOpenModal(true)
     }
     const dummyNotes = [
         {
+            id : 1, 
             title : "Automata Computability",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3",
@@ -35,6 +37,7 @@ setOpenModal(true)
             author : "Gideon Babalola"
         },
         {
+            id : 2,
             title : "Logical Reasoning",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3",
@@ -43,6 +46,7 @@ setOpenModal(true)
             author : "Gideon Babalola"
         },
         {
+            id : 3,
             title : "Machine Learning",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3",
@@ -51,6 +55,7 @@ setOpenModal(true)
             author : "Gideon Babalola"
         },
         {
+            id : 4,
             title : "Chemistry Note",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3, 2022",
@@ -59,6 +64,7 @@ setOpenModal(true)
             author : "Gideon Babalola"
         },
         {
+            id : 5,
             title : "Financial Studies",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3",
@@ -67,6 +73,7 @@ setOpenModal(true)
             author : "Gideon Babalola"
         },
         {
+            id : 6,
             title : "Dynamic Programming",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3",
@@ -75,6 +82,7 @@ setOpenModal(true)
             author : "Gideon Babalola"
         },
         {
+            id : 7,
             title : "Obect Oriented Programming",
             content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
             date : "April 3",
@@ -109,6 +117,9 @@ return <>
      title={content.title}
     time={content.time}
     date={content.date}
+    id={content.id}
+    noteContextMenu={noteContextMenu}
+    setNoteContextMenu={setNoteContextMenu}
     author={content.author}
     setModalTitle={setModalTitle}
     setModalContent={setModalContent}

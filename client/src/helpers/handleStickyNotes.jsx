@@ -1,8 +1,8 @@
-export const addStickyNote = (db, note, collection) => {
+export const addStickyNote = (db, note, collection, page) => {
     const transaction = db.transaction(collection, "readwrite"); // Open a transaction
     const store = transaction.objectStore(collection); // Get the object store
   
-    const newNote = {  ...note, timestamp: new Date() }; // Data to store
+    const newNote = {  ...note, timestamp: new Date(), page : page }; // Data to store
   console.log(newNote)
     const request = store.add(newNote); // Add the data
     request.onsuccess = () => console.log("Note added successfully!");
