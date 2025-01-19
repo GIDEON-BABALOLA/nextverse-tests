@@ -128,7 +128,7 @@ const Footer = () => {
 
       </div>
     </div>
-    <p style={{marginTop : "60px"}}>&copy; 2024 Next Verse. All rights reserved.</p>
+    <p style={{marginTop : "60px"}}>&copy; {new Date().getFullYear()} Next Verse. All rights reserved.</p>
   </footer>
   </>
   )
