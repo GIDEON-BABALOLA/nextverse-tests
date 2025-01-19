@@ -180,10 +180,9 @@ error={error}
                   , label : "Share", type : "default"},
                   {id : 2, icon : <FaBookmark />
                   , label : "Bookmark", type : "custom"},
-                  {id : 3, icon : <MdOutlineFavorite />
-                  , label : "Like", type :"custom"},
-                  {id : 4, icon : <FaTimes/>
-                    , label : "Close", type : "default"},
+                  {id : 3, icon : <MdReadMore />
+                    , label : "Read More", type : "default"},
+           
 ]} />
          {/* Featured stories will be dynamically added here  */}
       </div>

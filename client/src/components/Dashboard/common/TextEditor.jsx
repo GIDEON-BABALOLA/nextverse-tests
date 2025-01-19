@@ -342,7 +342,7 @@ initializer()
    <b>Highlight Color</b>
    </span>
  </div>
- <span style={{cursor : "pointer"}} 
+ <span style={{cursor : "pointer", fontSize : "1.3rem"}} 
  onClick={attachmentFunction}
  className="attach-picture-icon special-modal-client"
  >  <MdAttachFile size={20}/>Attach Picture</span>
@@ -352,13 +352,14 @@ initializer()
     {/* I am going to replace this input with auto resize text input when I find it online */}
     <div 
     ref={textAreaRef}
-    style={{height : "59px"}}
+    style={{height : "59px", border : "1px solid transparent"}}
     id="editable"
     placeholder="Type Something here..."
     className="textArea" 
     onInput={scrollTextArea}
     onBlur={scrollTextArea}
     spellCheck="true"
+     data-placeholder="Let Your Pen Speak..."
     contentEditable="true" ></div>
   <div className="text-editor-bottom">
     <button className="computerprogrammer">

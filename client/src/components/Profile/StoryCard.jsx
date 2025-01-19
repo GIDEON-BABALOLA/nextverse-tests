@@ -100,7 +100,9 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                
                 <h4 className="litenote-profile-story-title">{story.title}</h4>
                 <div className="story-card-bottom-info">
-               <span className="litenote-profile-story-category">{story.category.charAt(0).toUpperCase() + story.category.slice(1)}</span><span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
+               <span className="litenote-profile-story-category"
+               style={{color : "#777777"}}
+               >{story.category.charAt(0).toUpperCase() + story.category.slice(1)}</span><span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
                </div>
               </div>
             </div>

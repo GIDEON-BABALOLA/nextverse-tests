@@ -9,8 +9,10 @@ import Testimonial from "../components/Home/Testimonial.jsx"
 import { useRef } from "react"
 import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
 import { useThemeContext } from "../hooks/useThemeContext.jsx"
+import { useModalContext } from "../hooks/useModalContext.jsx"
 import { useEffect } from "react"
 const Home = () => {
+  const { closeContextMenu } = useModalContext()
   const { colorMode } = useThemeContext()
 const page = useRef()
 useEffect(() => {
@@ -28,7 +30,7 @@ case "dark-mode":
 }, [colorMode])
   return (
     <>
-    <main ref={page}>
+    <main ref={page} onClick={closeContextMenu}>
     <NewsletterSignup page={page}/>
     
     <Intro />

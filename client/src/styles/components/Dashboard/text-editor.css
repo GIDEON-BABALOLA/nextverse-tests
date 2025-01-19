@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Playwrite+IN&family=Playwrite+VN&display=swap');
+
 :root{
 --text-editor-background : #ffff;
 --text-editor-buttton : #0000;
@@ -263,6 +265,16 @@ input[type="color"]::-webkit-color-swatch {
     /* justify-content: space-between; */
     align-items: center;
 }
+#editable[data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: gray;
+    pointer-events: none; /* Prevent placeholder from being editable */
+    position: absolute;
+    font-family: "Fira Code", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  }
 
 @media screen and (max-width:1200px) {
     .litenote-text-editor-container{
