@@ -8,7 +8,7 @@ const LanguageSelect = () => {
   const [searchResults, setSearchResults] = useState([])
   const languagePicked = useRef()
   const selectOptions = useRef()
-const languageData = [ {
+const languageData = [{
   name : "English(US)",
   flag  : "https://res.cloudinary.com/doctr0fct/image/upload/v1733240294/Assets/Flags/us_g7f8fy.png"
 },
