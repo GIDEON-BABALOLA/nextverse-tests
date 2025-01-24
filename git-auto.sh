@@ -1,6 +1,7 @@
 #!/bin/bash
 # A script to automate git add, commit, push, and Vercel deployment with no prompts
 
+scp -r ./client/dist/* gideonbabalola@litenote.app:/var/www/litenote.app/html
 # Asking for the coded commit message
 echo "Enter commit message:"
 read commitMessage
