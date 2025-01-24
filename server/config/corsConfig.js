@@ -1,5 +1,5 @@
 const allowedOrigins = ["http://localhost:3000", "http://localhost:5173", "https://litenote.vercel.app",
-  "https://nextverse-beta.vercel.app"
+  "https://nextverse-beta.vercel.app", "https://litenote.app"
 ]
 const corsOptions = {
   origin: function (origin, callback) {
