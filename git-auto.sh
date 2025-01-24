@@ -1,6 +1,6 @@
 #!/bin/bash
 # A script to automate git add, commit, push, and Vercel deployment with no prompts
-
+# "Updating the client with the latest changes..."
 scp -r ./client/dist/* gideonbabalola@litenote.app:/var/www/litenote.app/html
 # Asking for the coded commit message
 echo "Enter commit message:"
@@ -28,3 +28,16 @@ echo "Push completed."
 echo "Deploying to Vercel in production mode..."
 vercel --prod
 echo "Deployment to production completed."
+
+#  Deploying to the server with the latest changes
+ssh gideonbabalola@litenote.app
+<< EOF
+  cd /home/gideonbabalola/litenote//server 
+  echo "Pulling latest changes from GitHub..."
+  git pull
+  echo "Installing updated dependencies (if any)..."
+  npm install
+  echo "Restarting Node.js application..."
+  pm2 restart all  
+  echo "Server updated successfully!"
+EOF
