@@ -11,9 +11,12 @@ import useInternetMode from "../../../hooks/useInternetMode"
 import { useThemeContext } from "../../../hooks/useThemeContext"
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import CustomAvatar from "../../common/CustomAvatar"
+import SpecialModal from "../../common/SpecialModal"
+import LogoutConsent from "../../common/LogoutConsent"
 import FeedAvatar from "../../Feed/FeedAvatar"
 const DashboardHeader = ({sidebarRef, contextMenu, setContextMenu}) => {
   const { colorMode, dispatch } = useThemeContext()
+  const [openModal, setOpenModal] = useState(false)
   const { user } = useAuthContext();
   const {width, height} = useWindowSize()
   const { online } = useInternetMode()
@@ -76,6 +79,10 @@ contextMenu.current.classList.add("active")
   
     const userName = "Gideon"
   return (
+    <>
+    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
+
+setOpenModal={setOpenModal} />} height={350} width={400}/>
     <div className="litenote-dashboard-top">
     <button id="menu-btn" onClick={showSidebar}>
       <span>
@@ -111,6 +118,7 @@ contextMenu.current.classList.add("active")
     </div>
 
     <NavbarContextMenu contextMenu={contextMenu} setContextMenu={setContextMenu}
+    setOpenModal={setOpenModal}
 contextMenuData={[
   {
   id : 1,
@@ -144,6 +152,8 @@ contextMenuData={[
 ]}
 />
     </div>
+    </>
+  
   )
 }
 

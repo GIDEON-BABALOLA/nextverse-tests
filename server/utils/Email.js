@@ -6,7 +6,7 @@ const path  = require("path")
 const fs = require("fs").promises
 const { emailError } = require("./customError")
 const TOKEN = process.env.LITENOTE_MAILTRAP_EMAIL_TOKEN;
-const SENDER_EMAIL = "no-reply@litenote.app";
+const SENDER_EMAIL = "confirmation@litenote.app";
 const litenotelogo = path.join(__dirname, "..", "public", "images", "litenote.png") 
 const sendEmail = async (data)=>{
   const sender = {

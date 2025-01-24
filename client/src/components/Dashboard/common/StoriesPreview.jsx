@@ -55,10 +55,13 @@ useEffect(() => {
       console.log(deleteStory.error)
 if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
   setOpenModal(false)
+  setCounts((prev) => {
+    return {...prev, stories : prev.stories - 1}
+  })
   const newStories = [...myStories].filter((story) => story._id !== currentStoryId)
   setMyStories(newStories)
 }
-    }, [deleteStory.data, deleteStory.error])
+    }, [deleteStory.data, deleteStory.error, currentStoryId])
 useEffect(() => {
   getUserStories(page, limit)
 }, [page, limit])

@@ -110,7 +110,13 @@ onClick={rememberMe}
   
  
         <div className="litenote-login-register-link">
-        <Link to="/register" >Dont have an account? Register</Link>
+        <Link to="/register" >
+        <span style={{fontSize : "1.4rem"}}>
+
+       
+        Dont have an account? Register
+        </span>
+        </Link>
         </div>
        <Recaptcha
        ref={recaptchaRef}

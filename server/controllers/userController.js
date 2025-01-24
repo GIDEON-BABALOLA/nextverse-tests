@@ -729,6 +729,7 @@ const getAllUsers = async (req, res) => {
      
             }
             catch(error){
+                console.log(error)
                 logEvents(`${error.name}: ${error.message}`, "getUserStoriesError.txt", "userError")
                 if(error instanceof userError){
                     return res.status(error.statusCode).json({ message : error.message})

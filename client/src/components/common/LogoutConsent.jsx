@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useToastContext } from "../../hooks/useToastContext";
 import LoadingSpinner from "../Loaders/LoadingSpinner";
+import "../../styles/components/common/logout-consent.css"
 import { useAuthContext } from "../../hooks/useAuthContext";
 const LogoutConsent = ({ setOpenModal }) => {
   const router = useNavigate()
@@ -31,9 +32,9 @@ showToast("Error", error, false)
 <>
 <div style={{overflowY : "hidden", overflowX : "hidden"}}>
 <MdLogout
-size={80} 
-style={{color: "#FF5E62", backgroundColor : "#E5E5E5",borderRadius : "50%", padding : "5%",
-background : "rgba(239, 179, 180, 0.3)",
+size={80}
+className="logout-icon" 
+style={{ borderRadius : "50%", padding : "5%",
 
 }}
   />
@@ -53,7 +54,7 @@ Are you sure you want to log out?
 <div>
 <div className="preview-user-action-buttons">
                   
-                 {   <span style={{border : "none", color:  "white",  backgroundColor : "#FF5F62", cursor : "pointer",  paddingTop : "4%", paddingBottom : "4%"}}
+                 {   <span style={{border : "none", color:  "white",  backgroundColor : "var(--logout-icon)", cursor : "pointer",  paddingTop : "4%", paddingBottom : "4%"}}
                     onClick={() =>{handleLogOut()}}
                     >
                     {isLoading ? 

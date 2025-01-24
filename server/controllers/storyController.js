@@ -654,7 +654,9 @@ const unBookmarkAStory = async (req, res) => {
 
 //To Delete A Story
 const deleteAStory = async(req, res) => {
+    console.log("chow now")
     const { id } = req.params;
+    console.log(id)
     console.log(req.user.role)
     validateMongoDbId(id)
     try{
@@ -662,6 +664,7 @@ const deleteAStory = async(req, res) => {
             throw userError("Pls Enter The Id Of The Story You Want To Delete", 400)
         }
 const deletedStory = await Story.findOneAndDelete(id);
+console.log(deletedStory)
 if(!deletedStory){
     throw new userError("This Story Does Not Exist", 404)
 }

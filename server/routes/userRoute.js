@@ -27,8 +27,8 @@ const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "mid
 router.post("/register-user", verifyReCAPTCHA,  signupUser);
 router.post("/verify-user-registration", verifyUserRegistration)
 router.post("/resend-user-verification", resendUserVerification)
-// router.post("/login-user", verifyReCAPTCHA,  bruteForceLimiter, loginUser)
-router.post("/login-user",  bruteForceLimiter, loginUser)
+router.post("/login-user", verifyReCAPTCHA,  bruteForceLimiter, loginUser)
+// router.post("/login-user",  bruteForceLimiter, loginUser)
 router.post("/upload-user-picture", authMiddleware,  uploadProfileImageMiddleware,  uploadUserPicture)
 router.post("/follow-user", authMiddleware, followUser)
 router.post("/unfollow-user", authMiddleware, unfollowUser)

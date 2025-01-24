@@ -9,3 +9,9 @@
 20250116	16:23:28	cb964b3e-8777-4bf5-acb3-f6c01ea56f11	ReferenceError: sushi is not defined
 20250116	16:24:18	bbf01e44-8f76-4ae5-bf3f-702d4eb270bc	ReferenceError: sushi is not defined
 20250116	16:24:20	a7e440bd-14ac-45b6-9788-4a32b3c29a59	ReferenceError: sushi is not defined
+20250124	19:50:06	93ecffac-756f-4b07-b969-2d972ca025b2	TypeError: Cannot read properties of undefined (reading 'some')
+20250124	19:50:08	126d28d6-dce2-4c66-beff-bb8f16a56bec	TypeError: Cannot read properties of undefined (reading 'some')
+20250124	19:50:49	41e0e9ba-2d3f-43ad-b93c-b10c08f7d1b4	TypeError: Cannot read properties of undefined (reading 'some')
+20250124	19:51:16	74afcdb7-5e15-4c9a-b42a-8cd29beed52d	TypeError: Cannot read properties of undefined (reading 'some')
+20250124	20:36:57	fda0c811-6dc6-44ef-aeca-6fcf438a080d	TypeError: Cannot read properties of undefined (reading 'some')
+20250124	20:36:59	3a68d2cd-596d-4f60-a4a1-f9da09dc4924	TypeError: Cannot read properties of undefined (reading 'some')
