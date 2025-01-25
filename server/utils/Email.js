@@ -7,7 +7,7 @@ const fs = require("fs").promises
 const { emailError } = require("./customError")
 const TOKEN = process.env.LITENOTE_MAILTRAP_EMAIL_TOKEN;
 const SENDER_EMAIL = "confirmation@litenote.app";
-const litenotelogo = path.join(__dirname, "..", "public", "images", "litenote.png") 
+const litenotelogo = path.join(__dirname, "..", "public", "litenote.png") 
 const sendEmail = async (data)=>{
   const sender = {
     address: SENDER_EMAIL,
@@ -16,7 +16,7 @@ const sendEmail = async (data)=>{
   let transporter =  nodemailer.createTransport(MailtrapTransport({
     token: TOKEN,
   }))
-  try{
+  try{e
     // Configure the mailoptions object
 const mailOptions = {
   from: sender,
