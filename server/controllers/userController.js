@@ -88,7 +88,7 @@ const hashedPassword = await bcrypt.hash(password, 10);
     token : token,
     email : email,
     minute : minute,
-    frontendUrl : process.env.LITENOTE_FRONTEND_URL
+    frontendUrl : process.env.LITENOTE_FRONTEND_URL,
 };
  const emailContent = await generateEmailContent(
 values,
