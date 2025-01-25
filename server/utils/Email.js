@@ -16,7 +16,7 @@ const sendEmail = async (data)=>{
   let transporter =  nodemailer.createTransport(MailtrapTransport({
     token: TOKEN,
   }))
-  try{e
+  try{
     // Configure the mailoptions object
 const mailOptions = {
   from: sender,
