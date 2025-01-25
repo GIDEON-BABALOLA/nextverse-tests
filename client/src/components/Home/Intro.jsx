@@ -7,7 +7,7 @@ const Intro = () => {
       <div className="intro-hero-content">
         <h1 style={{fontFamily :  " 'Poppins', sans-serif"}}>Share Your Stories</h1>
         <p>Connect with others through the power of storytelling.</p>
-        <Link to={"/feed"} className="intro-btn" style={{fontSize : "1.4rem"}}>Start Writing</Link>
+        <Link to={"/dashboard/publish"} className="intro-btn" style={{fontSize : "1.4rem"}}>Start Writing</Link>
      
      
       </div>

@@ -71,7 +71,7 @@ if(location["*"]  !== ""){
           ) : user ? (
             <ProfilePage />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace/>
           )
         }
 />
@@ -82,7 +82,7 @@ if(location["*"]  !== ""){
           ) : user ? (
             <ExplorePage />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace/>
           )
         }
 />
@@ -93,7 +93,7 @@ if(location["*"]  !== ""){
           ) : user ? (
             <SearchResults />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace/>
           )
         }
 />
@@ -105,7 +105,7 @@ if(location["*"]  !== ""){
           ) : user ? (
             <FeedPage />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace/>
           )
         }
 />
@@ -116,7 +116,7 @@ if(location["*"]  !== ""){
           ) : user ? (
             <StoryPage />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace/>
           )
         }
 />
@@ -127,7 +127,7 @@ if(location["*"]  !== ""){
           ) : user ? (
             <FollowPage />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace/>
           )
         }
 />
