@@ -1,0 +1,3 @@
+20250124	21:36:28	9f446418-5eb4-4631-8360-a820e59ac0ac	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20250124	21:36:46	a309dcbd-abc6-46da-bc9d-70c761ba9c9f	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20250124	21:37:11	6b268cdf-1e2e-44fd-afac-75210e7bba81	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again

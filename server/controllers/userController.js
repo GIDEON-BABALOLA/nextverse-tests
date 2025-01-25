@@ -115,6 +115,7 @@ await newUser.createVerificationToken(otp, verificationToken, time);
 await newUser.save()
 res.status(201).json({ message : "Success, Check Your Email To Verify Your Account"})
 }catch(error){
+    console.log(error)
 logEvents(`${error.name}: ${error.message}`, "registerUserError.txt", "userError")
     if (error instanceof userError) {
        return  res.status(error.statusCode).json({ message : error.message})

@@ -134,8 +134,12 @@ userSchema.statics.unfollowuser = async function(adminId, followId){
   return updatedFollower
 }
 userSchema.statics.createStory = async function(userId, storyId){
-     await this.findByIdAndUpdate(userId, {
-        $push: { stories: { storyId: storyId} },
+      await this.findByIdAndUpdate(userId, {
+        $push: { stories: {
+            
+           $each :  [{storyId: storyId}],
+           $position : 0, // Adds the new story at the beginning of the array
+         } },
       }, { new : true})
     }
 userSchema.statics.deleteStory = async function(userId, storyId){

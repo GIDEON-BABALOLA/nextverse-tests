@@ -34,6 +34,7 @@ const mailOptions = {
 };
  await transporter.sendMail(mailOptions);
   }catch(error){
+    console.log(error)
 throw new emailError("Unable To Send You A Confirmation And Welcome Email, Try To Register Again", 400)
   }     
 }
