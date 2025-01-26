@@ -6,6 +6,8 @@ import { FaAngleRight } from "react-icons/fa"
 import Toast from "../common/Toast"
 import NavbarContextMenu from "./NavbarContextMenu"
 import { useToastContext } from "../../hooks/useToastContext"
+import { HiOutlineLogin } from "react-icons/hi";
+import { HiOutlineLogout } from "react-icons/hi";
 import Hamburger from 'hamburger-react'
 import { MdGridView, MdLogout, MdLightMode, MdDarkMode,
   MdPersonAdd,
@@ -250,7 +252,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                             <Link to="/login" className={`nav-sidebar-link ${currentUrl === "login" && "active"}`} 
                         
                         onClick={dave}>
-                        <MdOpenInNew size={24} />
+                        <HiOutlineLogout size={24} />
   
                            <h3 className="litenote-dashboard-h-three special-modal-client">Sign Out</h3>
                         </Link>
@@ -341,7 +343,7 @@ contextMenuData={[
 },
 {
   id : 5,
-  icon : <MdLogin className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
+  icon : <HiOutlineLogin className="imags" size={40} onClick={() => {setOpenModal(true)}}/>,
   label : "Sign In",
   arrow :   <MdOpenInNew />,
   link : "/login",
