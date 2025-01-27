@@ -3,7 +3,7 @@ const rankStories = (stories, number) => {
         totalViews: 1,      
         totalComments: 2,        
         totalLikes: 4,           
-        totalBookmarks:   5
+        totalBookmarks: 5
     }
     const storiesToBeRanked = stories.map((story) => {
         const storyConvertedToObject = story
