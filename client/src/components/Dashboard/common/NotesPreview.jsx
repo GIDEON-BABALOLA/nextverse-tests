@@ -3,100 +3,45 @@ import { FaEllipsis } from "react-icons/fa6"
 import { MdDelete, MdSend } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 import "../../../styles/components/Dashboard/notes-preview-page.css"
+import NoteEditor from "./NoteEditor"
 import SpecialModal from "../../common/SpecialModal"
 import NoteCard from "./NoteCard"
 import SearchCircle from "./SearchCircle"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { FaEllipsisV } from "react-icons/fa"
 import Dots from "../../../styles/components/common/Icons/Dots"
+import Rename from "../../../styles/components/common/Icons/Rename"
+import Download from "../../../styles/components/common/Icons/Download"
+import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
+import Delete from "../../../styles/components/common/Icons/Delete"
+import { useModalContext } from "../../../hooks/useModalContext"
+import ContextMenu from "../../common/ContextMenu"
 const NotesPreview = () => {
+    const {
+        contextMenu,
+         shareModal,
+     fireClick,
+     setContextMenu,
+     closeContextMenu
+    } = useModalContext()
     const [openModal, setOpenModal] = useState(false)
-    const [modalTitle, setModalTitle] =  useState("")
     const [modalContent, setModalContent] =  useState("")
+    const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
+    const [currentTitle, setCurrentTitle] = useState("")
     const navigate = useNavigate()
-    const searchForNotes = () => {
-        setModalTitle("Search Notes")
-        setModalContent(<div className="user-sticky-search-wrapper">
-
-            <div className="field">
-               <input type="text" placeholder="Search Sticky Notes"/>
-               <label htmlFor="click" className="btn-2">Search</label>
-            </div>
-            </div>)
-setOpenModal(true)
-    }
-    const dummyNotes = [
-        {
-            id : 1, 
-            title : "Automata Computability",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-        {
-            id : 2,
-            title : "Logical Reasoning",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-        {
-            id : 3,
-            title : "Machine Learning",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-        {
-            id : 4,
-            title : "Chemistry Note",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3, 2022",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-        {
-            id : 5,
-            title : "Financial Studies",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-        {
-            id : 6,
-            title : "Dynamic Programming",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-        {
-            id : 7,
-            title : "Obect Oriented Programming",
-            content : "Download the perfect boulders pictures. Find over 100+ of the best free boulders images. Free for commercial use ✓ No attribution required ✓ Copyright ...",
-            date : "April 3",
-            size : 125,
-            time : "11:58am",
-            author : "Gideon Babalola"
-        },
-    ]
 
 return <>
-    <section className="litenote-dashboard-notes-preview" >
+    <section className="litenote-dashboard-notes-preview" 
+    onClick={(e) => { closeContextMenu(e)}}
+    >
 
-    <SearchCircle clickMe={searchForNotes}/>
-    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title={modalTitle} content={modalContent} width={450}/>
+    <SearchCircle/>
+    <SpecialModal openModal={openModal} setOpenModal={setOpenModal}
+    width={700}
+    height={500}
+    content={<NoteEditor />}
+    />
     <div className="user-notes-search-wrapper">
 
 <div className="field">
@@ -107,12 +52,12 @@ return <>
 <div className="wrapper">
 
 <li className="add-box" onClick={() => {
-    navigate("/note/gideonbabalola69@gmail.com/283938") //This is just a test
+  setOpenModal(true)
 }}>
 <div className="icon"><FaPlus /></div>
 <p>Add new note</p>
 </li>
-{dummyNotes.map((content,index) => (
+{notes.map((content,index) => (
     <NoteCard key={index}
      title={content.title}
     time={content.time}
@@ -121,13 +66,29 @@ return <>
     noteContextMenu={noteContextMenu}
     setNoteContextMenu={setNoteContextMenu}
     author={content.author}
-    setModalTitle={setModalTitle}
     setModalContent={setModalContent}
     setOpenModal={setOpenModal}
+    setCurrentTitle={setCurrentTitle}
+    fireClick={fireClick}
     />
 ))}
 </div>
     </section>
+    <ContextMenu
+  state={"feed"}
+  stories={notes}
+  contextMenu={contextMenu}
+  title={currentTitle}
+  shareModal={shareModal}
+             setContextMenu={setContextMenu}
+             contextMenuData={[
+             {id : 1, icon : <Rename />
+             , label : "Update", type : "default"},
+             {id : 2, icon : <Download />
+             , label : "Download", type : "default"},
+             {id : 3, icon : <Delete />
+              , label : "Delete", type : "default"}
+]} />
 </>
 }
 export default NotesPreview

@@ -3,15 +3,17 @@
     --note-settings-background :  #fff;
     --note-settings-color : black;
     --note-setings-hover : #f5f5f5;
+    --note-card-background : #FFFFFF;
 }
 .dark-theme-variables{
     --note-background : #00000066;
     --note-settings-background :  #202528;
     --note-settings-color : #ffff;
-    --note-setings-hover  : #00000066;;
+    --note-setings-hover  : #00000066;
+    --note-card-background : #0E1012;
 }
 .note-preview-card{
-	background-color: #FFFFFF;
+	background-color: var(--note-card-background);
 	border-radius: 5px;
 	box-shadow: #0000001A 0px 2px 5px 0px;
 	box-sizing: border-box;
@@ -180,13 +182,11 @@ font-weight: 500;
 }
  .settings-menu  .menu{
     position: absolute;
-    bottom: 10;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
     border-radius: 4px;
     padding: 10px 0;
     padding-bottom: 0px;
     background: var(--note-background);
-    right: -80px;
     transform: scale(0);
     transform-origin: top top;
     transition: transform 0.2s ease;

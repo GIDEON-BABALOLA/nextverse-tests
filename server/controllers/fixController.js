@@ -125,15 +125,22 @@ const fixUserModel = async (req, res) => {
     // Fetch all users from the database
     const allUsers = await User.find();
 
+    // for (let user of allUsers) {
+    //   // Skip users who already have a bio
+    //   if (user.bio) continue;
+
+    //   // Update the user with a bio
+    //   const updatedBio = generateRandomBio();
+    //   await User.findByIdAndUpdate(user._id, { bio: updatedBio }, { new: true });
+    // }
     for (let user of allUsers) {
       // Skip users who already have a bio
-      if (user.bio) continue;
+      if (user.notes) continue;
 
       // Update the user with a bio
       const updatedBio = generateRandomBio();
       await User.findByIdAndUpdate(user._id, { bio: updatedBio }, { new: true });
     }
-
     res.status(200).json({ message: "Bios updated successfully for all users." });
   } catch (error) {
     logEvents(`${error.name}: ${error.message}`, "updateUsersWithBioError.txt", "userError");

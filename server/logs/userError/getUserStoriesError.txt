@@ -27,3 +27,4 @@
 20250128	01:29:43	b70ece3b-fa53-45c1-8576-2bf27dd5ef99	TypeError: Cannot read properties of undefined (reading 'some')
 20250128	01:30:35	4a6eb11f-fa43-4739-b325-bdebe8b262fc	TypeError: Cannot read properties of undefined (reading 'some')
 20250128	01:31:18	d838c9ac-33c0-442d-b58b-65edb372016f	TypeError: Cannot read properties of undefined (reading 'some')
+20250128	10:38:41	07b1d745-66c4-415a-9d84-579d2a331233	TypeError: Cannot read properties of undefined (reading 'some')

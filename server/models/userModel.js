@@ -99,6 +99,11 @@ const userSchema = new mongoose.Schema({
     storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
         }
         ],
+    notes : [
+        {
+            noteId : {type: mongoose.Schema.Types.ObjectId, ref : "Note"}
+        }
+    ],
         bookmarks : [bookmarkSchema]
 }, {
     timestamps : true
@@ -147,6 +152,7 @@ userSchema.statics.deleteStory = async function(userId, storyId){
                 $pull: { stories: { storyId: storyId } },
             }, { new: true });
     }
+
 userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     const user = await this.findById(userId)
   let alreadyBookmarked = user.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())

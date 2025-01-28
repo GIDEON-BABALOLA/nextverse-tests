@@ -26,6 +26,7 @@ export const ModalContextProvider = ({children}) => {
         contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`;
       };
     const closeContextMenu  = (e) => {
+      console.log(e)
         if( e?.clientX < parseInt(contextMenu.current?.style.left) || e?.clientX > parseInt(contextMenu.current?.style.left) + contextMenu.current?.offsetWidth )
         {
           contextMenu.current.style.visibility = "hidden";
@@ -44,6 +45,11 @@ export const ModalContextProvider = ({children}) => {
               contextMenu.current.style.visibility = "hidden";
               }
         });
+        window.addEventListener('touchmove', (event) => {
+          if(contextMenu.current){
+            contextMenu.current.style.visibility = "hidden";
+            }
+      });
         }else{
           window.addEventListener('scroll', () => {
             if(contextMenu.current){
@@ -62,6 +68,11 @@ export const ModalContextProvider = ({children}) => {
                 contextMenu.current.style.visibility = "hidden";
                 }
           });
+          window.removeEventListener('touchmove', (event) => {
+            if(contextMenu.current){
+              contextMenu.current.style.visibility = "hidden";
+              }
+        });
           }else{
           window.removeEventListener('scroll', () => {
             if(contextMenu.current){

@@ -67,6 +67,11 @@ const adminSchema = new mongoose.Schema({
     storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
         }
         ],
+    notes : [
+        {
+        noteId : {type: mongoose.Schema.Types.ObjectId, ref : "Note"}
+        }
+            ],
     bookmarks : [
         {
     bookmarkId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
@@ -115,6 +120,19 @@ adminSchema.statics.deleteStory = async function(adminId, storyId){
             $pull: { stories: { storyId: storyId } },
         }, { new: true });
 }
+adminSchema.statics.createNote = async function(adminId, noteId){
+    await this.findByIdAndUpdate(adminId, {
+      $push: { notes: {
+         $each :  [{noteId: noteId}],
+         $position : 0, // Adds the new note at the beginning of the array
+       } },
+    }, { new : true})
+  }
+adminSchema.statics.deleteNote = async function(adminId, noteId){
+          await this.findByIdAndUpdate(adminId, {
+              $pull: { notes: { noteId: noteId } },
+          }, { new: true });
+  }
 adminSchema.statics.bookmarkStory = async function(adminId, bookmarkId){
         const admin = await this.findById(adminId)
       let alreadyBookmarked = admin.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())

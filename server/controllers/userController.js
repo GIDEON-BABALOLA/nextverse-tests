@@ -720,7 +720,6 @@ const getAllUsers = async (req, res) => {
           })
           .slice('stories', [parseInt(skip), parseInt(limit)])
           .lean();
-          console.log(userStories)
        const storiesToBeSent = userStories["stories"].map((item) => ({...item.storyId}))
        const enrichedStories = storiesToBeSent.map((story) => ({
         ...story,

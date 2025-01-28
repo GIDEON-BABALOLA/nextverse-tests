@@ -20,7 +20,8 @@ const ContextMenu = ({ contextMenuData,
     stories,
     setStoriesNumber,
     setStories,
-    state
+    state,
+    title
 }) => {
     const {  currentStoryId } = useModalContext()
     const navigateToStory = useNavigateStory();
@@ -440,6 +441,21 @@ const openAStory = () => {
 
          </>
         }
+        {title && 
+        
+        <>
+        <li className="litenote-context-link"
+        style={{textAlign : "center",
+          fontSize : "1.1rem",
+          
+          whiteSpace : "wrap" }}
+        >{title}
+       </li>
+          <hr />
+        </>
+     
+        }
+      
         {
             contextMenuData.map(((item, id) => (
                
