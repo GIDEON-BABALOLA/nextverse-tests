@@ -10,6 +10,7 @@ import StoriesPreview from "../../components/Dashboard/common/StoriesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 import StickyNotes from "../../components/Dashboard/common/StickyNotes";
 import PublishTab from "./PublishTab";
+
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const {width } =  useWindowSize()
   const [stickyNotesCount, setStickyNotesCount ] = useState(0)
@@ -54,7 +55,12 @@ setStickyNotesCount(JSON.parse(localStorage.getItem("stickyNotes"))?.length)
   <div
   className="show-me-hello"
   >  <h3> Hello Gideon Babalola <span className="hand-stories"> &#128075;</span></h3></div>
- <div className="stories-page-title">
+ <div className="stories-page-title" style={{position: "relative",
+right :width > 1000 && ( tabs.stories && 100 ||
+tabs.write && 40 ||
+tabs.notes && 100
+)
+}}>
  <PublishTab 
  tabs={tabs}
 setTab={setTab}

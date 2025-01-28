@@ -47,12 +47,12 @@ showToast("Error", deleteStory.error, false)
   }
 }, [deleteStory.error, showToast])
 useEffect(() => {
+  console.log("me")
   setCounts((prev) => {
     return {...prev, stories :storyCount}
   })
     }, [storyCount, setCounts])
     useEffect(() => {
-      console.log(deleteStory.error)
 if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
   setOpenModal(false)
   setCounts((prev) => {
@@ -61,7 +61,7 @@ if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
   const newStories = [...myStories].filter((story) => story._id !== currentStoryId)
   setMyStories(newStories)
 }
-    }, [deleteStory.data, deleteStory.error, currentStoryId])
+    }, [deleteStory.data, deleteStory.error])
 useEffect(() => {
   getUserStories(page, limit)
 }, [page, limit])
@@ -154,7 +154,6 @@ setTab({
 }
   return (
     <section className="litenote-dashboard-notes-preview" onClick={closeContextMenu}
-  
     >
       <Toast />
                 <DeleteConsent openModal={openModal} setOpenModal={setOpenModal}

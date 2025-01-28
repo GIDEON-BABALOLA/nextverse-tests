@@ -76,8 +76,6 @@ contextMenu.current.classList.add("active")
        sidebarRef.current.classList.remove("litenote-sidebar-aside-close")
  sidebarRef.current.style.display='block';
   }
-  
-    const userName = "Gideon"
   return (
     <>
     <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
@@ -101,9 +99,9 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
          <div className="litenote-dashboard-profile">
             <div className="info  profile-text">
           {/* it is meant to be p here */}
-                <div>Hey, <b>{userName}</b>
+                <div style={{fontSize : "1.2rem"}}>Hey, <b>{user["username"]}</b>
                 </div>
-                <small className="text-muted" style={{color : "#7d8da1"}}>Admin</small>
+                <small className=" small-avatar-text">{user["role"]}</small>
             </div>
             <div>
              <CustomAvatar

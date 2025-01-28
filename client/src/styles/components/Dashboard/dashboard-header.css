@@ -1,10 +1,18 @@
-
+:root{
+--small-avatar-text : #7d8da1;
+}
+.dark-theme-variables{
+  --small-avatar-text : white;
+}
 .litenote-dashboard-profile-again-photo{
    
   border-radius:50%;
  width: 2.5rem;
  height: 2.5rem;
   
+}
+.small-avatar-text{
+  color: var(--small-avatar-text);
 }
 .litenote-dashboard-right{
   margin-top: 1.4rem;

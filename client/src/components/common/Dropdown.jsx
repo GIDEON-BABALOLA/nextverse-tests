@@ -61,9 +61,19 @@ style={{marginBottom : "20px"}}
 
 <>
 {counts ? 
+<>
+{ key == Object.keys(tabs).find(key => tabs[key] === true) ?
   <span className="publish-tabs-number"
-     style={{ fontSize : "1rem" }}
-     >{counts[Object.keys(tabs).find(key => tabs[key] === true)]} </span>
+  style={{ fontSize : "1rem" }}
+  >{counts[Object.keys(tabs).find(key => tabs[key] === true)]} </span>
+  : 
+  <span className="publish-tabs-number"
+  style={{ fontSize : "1rem" }}
+  >0</span>
+
+}
+</>
+  
 :
 <span className="dropdown-stories-select-notification"
      style={{backgroundColor : "var(--primary-cocolor)", color : "#ffff", fontSize : "1rem" }}
