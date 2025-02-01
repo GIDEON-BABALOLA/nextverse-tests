@@ -273,6 +273,7 @@ input[type="color"]::-webkit-color-swatch {
     font-family: "Fira Code", serif;
   font-optical-sizing: auto;
   font-style: normal;
+  font-size: 3px;
 
   }
 

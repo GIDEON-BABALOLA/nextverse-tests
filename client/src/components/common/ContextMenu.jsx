@@ -46,7 +46,7 @@ const ContextMenu = ({ contextMenuData,
     const navigate = useNavigate();
     const context = useRef()
     useEffect(() => {
-        setContextMenu(context)
+        // setContextMenu(context)
     }, [setContextMenu])
       useEffect(() => {
         const isLiked = editStories.find(story => story._id == currentStoryId)?.isLiked;

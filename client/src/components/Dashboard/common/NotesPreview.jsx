@@ -15,6 +15,7 @@ import Download from "../../../styles/components/common/Icons/Download"
 import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
 import Delete from "../../../styles/components/common/Icons/Delete"
 import { useModalContext } from "../../../hooks/useModalContext"
+import useWindowSize from "../../../hooks/useWindowSize"
 import ContextMenu from "../../common/ContextMenu"
 const NotesPreview = () => {
     const {
@@ -25,11 +26,10 @@ const NotesPreview = () => {
      closeContextMenu
     } = useModalContext()
     const [openModal, setOpenModal] = useState(false)
-    const [modalContent, setModalContent] =  useState("")
     const [notes, setNotes] = useState([])
+    const { width } = useWindowSize();
     const [noteContextMenu, setNoteContextMenu] = useState(false)
     const [currentTitle, setCurrentTitle] = useState("")
-    const navigate = useNavigate()
 
 return <>
     <section className="litenote-dashboard-notes-preview" 
@@ -38,10 +38,11 @@ return <>
 
     <SearchCircle/>
     <SpecialModal openModal={openModal} setOpenModal={setOpenModal}
-    width={700}
+    width={width < 768 ? width : 700}
     height={500}
-    content={<NoteEditor />}
+    content={<NoteEditor setControlModal={setOpenModal} />}
     />
+    
     <div className="user-notes-search-wrapper">
 
 <div className="field">
@@ -66,10 +67,9 @@ return <>
     noteContextMenu={noteContextMenu}
     setNoteContextMenu={setNoteContextMenu}
     author={content.author}
-    setModalContent={setModalContent}
     setOpenModal={setOpenModal}
     setCurrentTitle={setCurrentTitle}
-    fireClick={fireClick}
+    fireClick={!openModal && fireClick}
     />
 ))}
 </div>

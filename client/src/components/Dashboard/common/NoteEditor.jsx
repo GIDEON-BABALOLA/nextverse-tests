@@ -1,15 +1,34 @@
 import NoteModal from "../../Notes/NoteModal"
 import NoteSettings from "../../Notes/NoteSettings"
 import { useModalContext } from "../../../hooks/useModalContext"
+import NoteTooltip from "../../Notes/NoteTooltip"
+import useWindowSize from "../../../hooks/useWindowSize"
+import { useThemeContext } from "../../../hooks/useThemeContext"
+import { MdSettings, MdClose } from "react-icons/md"
 import { useRef } from "react"
-import { useState } from "react"
-const NoteEditor = () => {
+import { useState, useEffect } from "react"
+const NoteEditor = ({ setControlModal}) => {
   const { contextMenu, fireClick } =useModalContext();
+  const { width } = useWindowSize();
+  const { colorMode} = useThemeContext()
     const [openModal, setOpenModal] = useState(false)
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [savedSelection, setSavedSelection] = useState(null)
+    useEffect(() => {
+      console.log(colorMode)
+if(colorMode == "dark-mode"){
+  setNoteSettings((prev) => {
+    return {...prev, textColor : "white"}
+  })
+}
+else{
+  setNoteSettings((prev) => {
+    return {...prev, textColor : "black"}
+  })
+}
+    }, [colorMode])
     const noteContent  = useRef()
-      let content = "Gideon Babalola Is A Very Good Software Engineer, Gideon Babalola Is A Very Good Software Engineer, Gideon Babalola Is A Very Good Software Engineer, Gideon Babalola Is A Very Good Software Engineer, Gideon Babalola Is A Very Good Software Engineer"
+      let content = "The Art and Science of Dredging: Unlocking the Depths of WaterwaysIntroductionDredging is an essential activity in the world of water management, navigation, and environmental conservation. At its core, dredging is the process of removing sediments and debris from the bottom of bodies of water such as rivers, lakes, harbors, and seafloors. This technique, though often invisible to the public eye, plays a crucial role in maintaining the health and functionality of our aquatic systems and facilitating the safe and efficient movement of ships and goods. The practice of dredging has evolved over centuries, and today it encompasses a wide array of techniques, technologies, and applications.In this article, we will explore the multifaceted world of dredging, delving into its history, processes, technologies, environmental impacts, and future developmentsThe Art and Science of Dredging: Unlocking the Depths of WaterwaysIntroductionDredging is an essential activity in the world of water management, navigation, and environmental conservation. At its core, dredging is the process of removing sediments and debris from the bottom of bodies of water such as rivers, lakes, harbors, and seafloors. This technique, though often invisible to the public eye, plays a crucial role in maintaining the health and functionality of our aquatic systems and facilitating the safe and efficient movement of ships and goods. The practice of dredging has evolved over centuries, and today it encompasses a wide array of techniques, technologies, and applications.In this article, we will explore the multifaceted world of dredging, delving into its history, processes, technologies, environmental impacts, and future developments."
     const [colorType, setColorType] = useState("")
     const [tabSettings, setTabSettings] = useState({
       FontFamily :true,
@@ -26,7 +45,7 @@ const NoteEditor = () => {
       wordsPerPage : 12000,
       page : 1,
       textColor : "black",
-      editable : false,
+      editable : true,
       highlightColor : "black"
     })
       const noteModal = useRef()
@@ -52,13 +71,18 @@ const NoteEditor = () => {
             selection.addRange(savedSelection);
           }
         };
+        const speakHighlightedText = () => {
+          restoreSelection()
+               const utterance = new SpeechSynthesisUtterance(savedSelection.toString())
+               window.speechSynthesis.speak(utterance)
+           }
         const saveSelection = (e) => {
           if(noteSettings["editable"] == false){
             return;
           }
           const selection = window.getSelection();
           if(selection.toString()){
-            fireClick(e)
+            fireClick(e, "", "")
           }
           if (selection.rangeCount > 0) {
             setSavedSelection(selection.getRangeAt(0))
@@ -106,25 +130,56 @@ const NoteEditor = () => {
                 }
                 setAttachmentLine(e.target.offsetLeft - 20)
                 }
+                const submitNote = () => {
+
+                }
+                const handlePlaceholder = () => {
+                  const editor = noteContent.current;
+                  if (editor.innerText.trim().length === 0) {
+                    console.log("Editor is empty");
+                    editor.setAttribute("data-placeholder", "Write your notes here...");
+                    editor.classList.add("empty"); // Add "empty" class
+                  } else {
+                    console.log("Editor has content");
+                    editor.removeAttribute("data-placeholder");
+                    editor.classList.remove("empty"); // Remove "empty" class
+                  }
+                };
+                
+                
   return (
    <>
    <section onClick={closeNoteModal}>
-   <div style={{border : "none", outline : "none",
-         fontFamily : noteSettings["fontFamily"],
-         fontSize : noteSettings["fontSize"] + "rem",
-         color : noteSettings["textColor"], 
-            userSelect: noteSettings["editable"] ? "text" : "none",
-        }}
-        onMouseUp={saveSelection}
-        spellCheck="false"
-        suppressContentEditableWarning={true}
-        contentEditable={noteSettings["editable"]}
-        ref={noteContent}
-        >
-         {/* {content}  */}
-        </div>
-           <NoteModal openModal={openModal} setOpenModal={setOpenModal}
-        width={450}
+      <div>
+            <div style={{display : "flex", flexDirection : "row", justifyContent : "flex-end", alignItems : "center", gap : "10px"}}>
+                <button onClick={() => { submitNote()}} className="note-editor-save-button">
+                    Save
+                </button>
+                <MdSettings 
+                style={{cursor : "pointer"}}
+                size={20} onClick={() => {
+                  setOpenModal(!openModal)
+                }}/>
+                 <MdClose
+                style={{cursor : "pointer"}}
+                size={20} onClick={() => {
+                  setControlModal(false)
+                }}/>
+    
+            </div>
+      </div>
+      <div>
+      <NoteTooltip
+           noteSettings={noteSettings}
+           openModal={openModal}
+           setOpenModal={setOpenModal}
+           savedSelection={savedSelection}
+           formatHighlightedText={formatHighlightedText}
+           slideLine={slideLine}
+           speakHighlightedText={speakHighlightedText}
+         />
+      <NoteModal openModal={openModal} setOpenModal={setOpenModal}
+        width={width< 768 ? width  :450}
         height={300}
         ref={noteModal}
           content={<NoteSettings
@@ -144,6 +199,28 @@ const NoteEditor = () => {
            />
           }
         />
+      <div style={{border : "none", outline : "none",
+         fontFamily : noteSettings["fontFamily"],
+         fontSize : noteSettings["fontSize"] + "rem",
+         color : noteSettings["textColor"], 
+          lineHeight : noteSettings["lineHeight"] + "rem",
+         textAlign : "justify",
+        //  cursor : "pointer",
+            userSelect: noteSettings["editable"] ? "text" : "none",
+        }}
+        onMouseUp={saveSelection}
+        onKeyUp={handlePlaceholder}
+        spellCheck="false"
+        className="note-editor empty"
+        data-placeholder="Write your notes here..."
+        suppressContentEditableWarning={true}
+        contentEditable={noteSettings["editable"]}
+        ref={noteContent}
+        >
+         {/* {content}  */}
+        </div>
+        
+      </div>
            </section>
    </>
   )

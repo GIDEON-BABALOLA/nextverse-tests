@@ -101,7 +101,8 @@ const data = {
   text: 'Litenote Needs To Confirm Your Email Address'
 }; 
 await sendEmail(data)
-
+console.log(data)
+console.log(email)
 const newUser = await User.create({ 
     username, 
     email, 
@@ -551,7 +552,7 @@ mobile : req.body.mobile,
 const deleteUser = async (req, res) => {
     try{
         if(req.user == null){
-            throw new userError("Your Account Does Not Exist", 404)
+            throw new userError("Your Account Does Not Exist", 404)s
         }
         const user = await User.findOneAndDelete({_id: req.user._id})
         if(user.picture.length > 0){

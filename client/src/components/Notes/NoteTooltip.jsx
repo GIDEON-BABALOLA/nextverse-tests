@@ -15,6 +15,7 @@ const NoteTooltip = ({
   const { contextMenu, setContextMenu, } = useModalContext()
   const tooltipRef = useRef()
   useEffect(() => {
+    console.log("su")
       setContextMenu(tooltipRef)
   }, [setContextMenu])
   return (

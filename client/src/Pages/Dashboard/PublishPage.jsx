@@ -9,9 +9,11 @@ import NotesPreview from "../../components/Dashboard/common/NotesPreview";
 import StoriesPreview from "../../components/Dashboard/common/StoriesPreview";
 import useWindowSize from "../../hooks/useWindowSize";
 import StickyNotes from "../../components/Dashboard/common/StickyNotes";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import PublishTab from "./PublishTab";
 
 const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+  const { user } = useAuthContext()
   const {width } =  useWindowSize()
   const [stickyNotesCount, setStickyNotesCount ] = useState(0)
   const selectMenu = useRef() 
@@ -54,7 +56,7 @@ setStickyNotesCount(JSON.parse(localStorage.getItem("stickyNotes"))?.length)
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
   <div
   className="show-me-hello"
-  >  <h3> Hello Gideon Babalola <span className="hand-stories"> &#128075;</span></h3></div>
+  >  <h3> Hello {user["username"]} <span className="hand-stories"> &#128075;</span></h3></div>
  <div className="stories-page-title" style={{position: "relative",
 right :width > 1000 && ( tabs.stories && 100 ||
 tabs.write && 40 ||

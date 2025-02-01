@@ -21,7 +21,7 @@ const NoteCard = ({ id,
     }
 const showNoteSettings = (e) => {
   setCurrentTitle(noteCardRef.current.querySelector(".note-preview-card-title").innerText)
-  fireClick(e, "")
+  fireClick(e, "", "")
 }
 
   
