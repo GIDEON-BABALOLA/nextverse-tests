@@ -92,7 +92,6 @@ const NotesPreview = () => {
           console.log(settingsModal)
           setColorType("Highlight Color")
           restoreSelection()
-          setSettingsModal(true)
           return;
         }
         restoreSelection();
@@ -139,6 +138,7 @@ return <>
       <NoteTooltip
            noteSettings={noteSettings}
            setSettingsModal={setSettingsModal}
+           settingsModal={settingsModal}
            savedSelection={savedSelection}
            formatHighlightedText={formatHighlightedText}
            slideLine={slideLine}

@@ -6,7 +6,7 @@ import { MdSettings, MdClose } from "react-icons/md"
 import { useRef } from "react"
 import { useState, useEffect } from "react"
 const NoteEditor = ({
-   noteEditorModal,
+  noteEditorModal,
   setNoteEditorModal,
   noteSettings,
   setNoteSettings,
@@ -147,8 +147,8 @@ else{
            tabSettings={tabSettings}
            setTabSettings={setTabSettings}
            setNoteSettings={setNoteSettings}
-          noteSettings={noteSettings}
-          savedSelection={savedSelection}
+           noteSettings={noteSettings}
+           savedSelection={savedSelection}
            formatHighlightedText={formatHighlightedText}
            attachmentLine={attachmentLine}
            setAttachmentLine={setAttachmentLine}
