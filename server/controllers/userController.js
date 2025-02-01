@@ -552,7 +552,7 @@ mobile : req.body.mobile,
 const deleteUser = async (req, res) => {
     try{
         if(req.user == null){
-            throw new userError("Your Account Does Not Exist", 404)s
+            throw new userError("Your Account Does Not Exist", 404)
         }
         const user = await User.findOneAndDelete({_id: req.user._id})
         if(user.picture.length > 0){
