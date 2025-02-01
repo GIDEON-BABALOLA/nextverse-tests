@@ -4,20 +4,19 @@ import Eyedropper from "../../styles/components/common/Icons/Eyedropper"
 
 import { useEffect, useRef } from "react"
 const NoteTooltip = ({
-  noteSettings,
-  openModal,
-  setOpenModal,
+  setSettingsModal,
   formatHighlightedText,
-  savedSelection,
   slideLine,
-  speakHighlightedText
+  speakHighlightedText,
+  noteEditorModal
 }) => {
-  const { contextMenu, setContextMenu, } = useModalContext()
+  const { contextMenu, setContextMenu } = useModalContext()
   const tooltipRef = useRef()
   useEffect(() => {
-    console.log("su")
+if(noteEditorModal){
       setContextMenu(tooltipRef)
-  }, [setContextMenu])
+}
+  }, [noteEditorModal, setContextMenu])
   return (
     <>
     <div className="note-tooltip-css" 
@@ -33,7 +32,7 @@ const NoteTooltip = ({
     <Eyedropper
     size={20}
       id="Color Option List" onClick={(e) => {formatHighlightedText("highlightcolor"); 
-      setOpenModal(true)
+      setSettingsModal(true)
       slideLine(e)}}/>  
         </span>
     <span>

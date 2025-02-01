@@ -1,19 +1,70 @@
-import NoteModal from "../../Notes/NoteModal"
 import NoteSettings from "../../Notes/NoteSettings"
 import { useModalContext } from "../../../hooks/useModalContext"
-import NoteTooltip from "../../Notes/NoteTooltip"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { useThemeContext } from "../../../hooks/useThemeContext"
 import { MdSettings, MdClose } from "react-icons/md"
 import { useRef } from "react"
 import { useState, useEffect } from "react"
-const NoteEditor = ({ setControlModal}) => {
-  const { contextMenu, fireClick } =useModalContext();
+const NoteEditor = ({
+   noteEditorModal,
+  setNoteEditorModal,
+  noteSettings,
+  setNoteSettings,
+  tabSettings,
+  setTabSettings,
+  savedSelection,
+  setSavedSelection,
+  formatHighlightedText,
+  slideLine,
+  attachmentLine,
+  setAttachmentLine,
+  colorType,
+  setColorType,
+  settingsModal,
+  setSettingsModal
+  
+}) => {
+  const closeNoteEditorModal  = (e) => {
+    console.log( Object.values(e.target.classList))
+    if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
+
+      || Object.values(e.target.classList).includes("special-modal-client")
+      || Object.values(e.target.classList).includes("add-box")
+    ){
+      Object.values(e.target.classList).includes("special-modal-client")
+      return;
+    }
+          if( e.clientX < parseInt(myNoteEditorModal.current.getBoundingClientRect().left) || e.clientX > parseInt(myNoteEditorModal.current.getBoundingClientRect().left) + myNoteEditorModal.current.getBoundingClientRect().width)
+            {
+              setNoteEditorModal(false)
+            }else if(
+              e.clientY < parseInt(myNoteEditorModal.current.getBoundingClientRect().top) || e.clientY > parseInt(myNoteEditorModal.current.getBoundingClientRect().top) + myNoteEditorModal.current.getBoundingClientRect().height
+            ){
+              setNoteEditorModal(false)
+            }
+        
+    
+    }
+useEffect(() => {
+  document.addEventListener("click", (e) => {
+    if(myNoteEditorModal.current){
+      closeNoteEditorModal(e)
+    }
+``
+  })
+  return () =>{
+    document.removeEventListener('click', (e) => {
+      if(myNoteEditorModal.current){
+        closeNoteEditorModal(e)
+      }
+    }
+  )
+  }
+  }, [])
+  const {  fireClick } =useModalContext();
+  const myNoteEditorModal = useRef();
   const { width } = useWindowSize();
   const { colorMode} = useThemeContext()
-    const [openModal, setOpenModal] = useState(false)
-    const [attachmentLine, setAttachmentLine] = useState(0)
-    const [savedSelection, setSavedSelection] = useState(null)
     useEffect(() => {
       console.log(colorMode)
 if(colorMode == "dark-mode"){
@@ -28,54 +79,6 @@ else{
 }
     }, [colorMode])
     const noteContent  = useRef()
-      let content = "The Art and Science of Dredging: Unlocking the Depths of WaterwaysIntroductionDredging is an essential activity in the world of water management, navigation, and environmental conservation. At its core, dredging is the process of removing sediments and debris from the bottom of bodies of water such as rivers, lakes, harbors, and seafloors. This technique, though often invisible to the public eye, plays a crucial role in maintaining the health and functionality of our aquatic systems and facilitating the safe and efficient movement of ships and goods. The practice of dredging has evolved over centuries, and today it encompasses a wide array of techniques, technologies, and applications.In this article, we will explore the multifaceted world of dredging, delving into its history, processes, technologies, environmental impacts, and future developmentsThe Art and Science of Dredging: Unlocking the Depths of WaterwaysIntroductionDredging is an essential activity in the world of water management, navigation, and environmental conservation. At its core, dredging is the process of removing sediments and debris from the bottom of bodies of water such as rivers, lakes, harbors, and seafloors. This technique, though often invisible to the public eye, plays a crucial role in maintaining the health and functionality of our aquatic systems and facilitating the safe and efficient movement of ships and goods. The practice of dredging has evolved over centuries, and today it encompasses a wide array of techniques, technologies, and applications.In this article, we will explore the multifaceted world of dredging, delving into its history, processes, technologies, environmental impacts, and future developments."
-    const [colorType, setColorType] = useState("")
-    const [tabSettings, setTabSettings] = useState({
-      FontFamily :true,
-      ColorOption : false,
-      ColorOptionList : false,
-      LineSizing : false,
-      FontSize : false,
-      FontFamilyOptions : false
-    })
-    const [noteSettings, setNoteSettings] = useState({
-      lineHeight : 2.5,
-      fontFamily : "Poppins",
-      fontSize : 1.1,
-      wordsPerPage : 12000,
-      page : 1,
-      textColor : "black",
-      editable : true,
-      highlightColor : "black"
-    })
-      const noteModal = useRef()
-      const closeNoteModal  = (e) => {
-        if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"){
-          return;
-        }
-              if( e.clientX < parseInt(noteModal.current.getBoundingClientRect().left) || e.clientX > parseInt(noteModal.current.getBoundingClientRect().left) + noteModal.current.getBoundingClientRect().width)
-                {
-                  setOpenModal(false)
-                }else if(
-                  e.clientY < parseInt(noteModal.current.getBoundingClientRect().top) || e.clientY > parseInt(noteModal.current.getBoundingClientRect().top) + noteModal.current.getBoundingClientRect().height
-                ){
-                  setOpenModal(false)
-                }
-            
-        
-        }
-        const restoreSelection = () => {
-          const selection = window.getSelection();
-          selection.removeAllRanges();
-          if (savedSelection) {
-            selection.addRange(savedSelection);
-          }
-        };
-        const speakHighlightedText = () => {
-          restoreSelection()
-               const utterance = new SpeechSynthesisUtterance(savedSelection.toString())
-               window.speechSynthesis.speak(utterance)
-           }
         const saveSelection = (e) => {
           if(noteSettings["editable"] == false){
             return;
@@ -88,48 +91,7 @@ else{
             setSavedSelection(selection.getRangeAt(0))
           }
         };
-        const formatHighlightedText = (command, value = null) => {
-          if(command == "highlightcolor"){
-            setColorType("Highlight Color")
-            restoreSelection()
-            setOpenModal(!openModal)
-            return;
-          }
-          restoreSelection();
-          document.execCommand(command, false, value);
-          contextMenu.current.style.visibility = "hidden";
-          if(command !== "backColor"){
-            setSavedSelection(null)   
-          }
-       
-          const selection = window.getSelection();
-          selection.removeAllRanges();
-        };
-        const slideLine =(e) => {
-          let tab;
-                 tab = e.target.id.split(" ").join("")
-                if(tab == ""){
-                  tab = e.currentTarget.id.split(" ").join("")
-                }
-                const optionMapping = {}
-                Object.entries(tabSettings).map(([key, value]) => {
-                    optionMapping[key] = value
-                })
-                
-        const selectedOption = optionMapping[tab];
-      
-                setTabSettings(prevState => ({
-              ...Object.keys(prevState)
-                    .filter(key => key !== selectedOption) // Reset all others
-                    .reduce((acc, key) => ({ ...acc, [key]: false }), {}),
-                    [tab]: true
-                 }))
-                 if(tab == "ColorOptionList"){
-                  setAttachmentLine(113)
-                  return;
-                }
-                setAttachmentLine(e.target.offsetLeft - 20)
-                }
+  
                 const submitNote = () => {
 
                 }
@@ -149,7 +111,19 @@ else{
                 
   return (
    <>
-   <section onClick={closeNoteModal}>
+       <section className="litenote-special-modal" >
+            <div 
+            ref={myNoteEditorModal}
+            className={`popup center ${noteEditorModal == true ? "active" : ""}`} style={{height : `${500}px`, width : `${width < 768 ? width : 700}px`}}>
+     <div className="icon">
+    
+     </div>
+     <div className="description">
+
+
+
+
+     <section>
       <div>
             <div style={{display : "flex", flexDirection : "row", justifyContent : "flex-end", alignItems : "center", gap : "10px"}}>
                 <button onClick={() => { submitNote()}} className="note-editor-save-button">
@@ -158,47 +132,33 @@ else{
                 <MdSettings 
                 style={{cursor : "pointer"}}
                 size={20} onClick={() => {
-                  setOpenModal(!openModal)
+                  setSettingsModal(!settingsModal)
                 }}/>
                  <MdClose
                 style={{cursor : "pointer"}}
                 size={20} onClick={() => {
-                  setControlModal(false)
+                setNoteEditorModal(false)
                 }}/>
     
             </div>
       </div>
       <div>
-      <NoteTooltip
-           noteSettings={noteSettings}
-           openModal={openModal}
-           setOpenModal={setOpenModal}
-           savedSelection={savedSelection}
+         <NoteSettings
+           tabSettings={tabSettings}
+           setTabSettings={setTabSettings}
+           setNoteSettings={setNoteSettings}
+          noteSettings={noteSettings}
+          savedSelection={savedSelection}
            formatHighlightedText={formatHighlightedText}
+           attachmentLine={attachmentLine}
+           setAttachmentLine={setAttachmentLine}
            slideLine={slideLine}
-           speakHighlightedText={speakHighlightedText}
+           colorType={colorType}
+           setColorType={setColorType}
+           settingsModal={settingsModal}
+           setSettingsModal={setSettingsModal}
          />
-      <NoteModal openModal={openModal} setOpenModal={setOpenModal}
-        width={width< 768 ? width  :450}
-        height={300}
-        ref={noteModal}
-          content={<NoteSettings
-          tabSettings={tabSettings}
-          setTabSettings={setTabSettings}
-          setNoteSettings={setNoteSettings}
-           noteSettings={noteSettings}
-           savedSelection={savedSelection}
-          formatHighlightedText={formatHighlightedText}
-          attachmentLine={attachmentLine}
-          setAttachmentLine={setAttachmentLine}
-          slideLine={slideLine}
-          colorType={colorType}
-          setColorType={setColorType}
-          openModal={openModal}
-          
-           />
-          }
-        />
+
       <div style={{border : "none", outline : "none",
          fontFamily : noteSettings["fontFamily"],
          fontSize : noteSettings["fontSize"] + "rem",
@@ -222,6 +182,9 @@ else{
         
       </div>
            </section>
+     </div>
+    </div>
+    </section>
    </>
   )
 }

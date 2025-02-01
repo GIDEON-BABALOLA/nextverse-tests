@@ -101,8 +101,6 @@ const data = {
   text: 'Litenote Needs To Confirm Your Email Address'
 }; 
 await sendEmail(data)
-console.log(data)
-console.log(email)
 const newUser = await User.create({ 
     username, 
     email, 

@@ -132,7 +132,7 @@
         position: absolute;
         padding: 15px 15px;
         gap: 25px;
-        z-index: 2;
+        z-index: 100;
         justify-content: space-between;
         position: fixed;
         border-radius: 10px;
