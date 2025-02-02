@@ -2,9 +2,13 @@ import NoteSettings from "../../Notes/NoteSettings"
 import { useModalContext } from "../../../hooks/useModalContext"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { useThemeContext } from "../../../hooks/useThemeContext"
+import sanitizeHtml from "sanitize-html";
 import { MdSettings, MdClose } from "react-icons/md"
 import { useRef } from "react"
 import { useState, useEffect } from "react"
+import { useCreateANote } from "../../../hooks/useCreateANote";
+import { useToastContext } from "../../../hooks/useToastContext";
+import LoadingSpinner from "../../Loaders/LoadingSpinner";
 const NoteEditor = ({
   noteEditorModal,
   setNoteEditorModal,
@@ -24,6 +28,10 @@ const NoteEditor = ({
   setSettingsModal
   
 }) => {
+  const [noteContent, setNoteContent] = useState("")
+  const  { showToast } = useToastContext();
+  const { createANote, isLoading, data , error}  = useCreateANote()
+  const [noteTitle, setNoteTitle] = useState("")
   const closeNoteEditorModal  = (e) => {
     console.log( Object.values(e.target.classList))
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
@@ -78,7 +86,7 @@ else{
   })
 }
     }, [colorMode])
-    const noteContent  = useRef()
+    const noteRef  = useRef()
         const saveSelection = (e) => {
           if(noteSettings["editable"] == false){
             return;
@@ -93,10 +101,25 @@ else{
         };
   
                 const submitNote = () => {
-
+const cleanHtml = sanitizeHtml(noteContent, {
+                    allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
+                    allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
+  });
+  if(noteTitle.length == 0 || !cleanHtml ){
+    showToast("Error", "Please Enter The Content Of Your Note", false)
+    return;
+  }
+createANote(noteTitle, cleanHtml)
                 }
+  const handleInput = () => {
+    console.log(noteRef.current.innerHTML)
+    if (noteRef.current) {
+      setNoteContent(noteRef.current.innerHTML); // Use innerHTML if you want rich text
+      setNoteTitle(noteRef.current.innerText.split("\n")[0] || "New Note")
+    }
+  }
                 const handlePlaceholder = () => {
-                  const editor = noteContent.current;
+                  const editor = noteRef.current;
                   if (editor.innerText.trim().length === 0) {
                     console.log("Editor is empty");
                     editor.setAttribute("data-placeholder", "Write your notes here...");
@@ -108,7 +131,19 @@ else{
                   }
                 };
                 
-                
+                useEffect(() => {
+                  if(error){
+                    console.log(error)
+              showToast("Error", error.message, false)
+                  }
+                }, [error, showToast])
+                useEffect(() => {
+                  if(data.length !== 0){
+                    console.log(data)
+                    console.log("sush")
+                    showToast("Success", "Created A New Note Successfully", true)
+                  }
+                }, [data, showToast])
   return (
    <>
        <section className="litenote-special-modal" >
@@ -127,7 +162,14 @@ else{
       <div>
             <div style={{display : "flex", flexDirection : "row", justifyContent : "flex-end", alignItems : "center", gap : "10px"}}>
                 <button onClick={() => { submitNote()}} className="note-editor-save-button">
-                    Save
+                  {
+                    isLoading ? 
+                    <LoadingSpinner />
+                    :
+                    "Save"
+                  }
+
+ 
                 </button>
                 <MdSettings 
                 style={{cursor : "pointer"}}
@@ -143,21 +185,6 @@ else{
             </div>
       </div>
       <div>
-         <NoteSettings
-           tabSettings={tabSettings}
-           setTabSettings={setTabSettings}
-           setNoteSettings={setNoteSettings}
-           noteSettings={noteSettings}
-           savedSelection={savedSelection}
-           formatHighlightedText={formatHighlightedText}
-           attachmentLine={attachmentLine}
-           setAttachmentLine={setAttachmentLine}
-           slideLine={slideLine}
-           colorType={colorType}
-           setColorType={setColorType}
-           settingsModal={settingsModal}
-           setSettingsModal={setSettingsModal}
-         />
 
       <div style={{border : "none", outline : "none",
          fontFamily : noteSettings["fontFamily"],
@@ -171,13 +198,13 @@ else{
         onMouseUp={saveSelection}
         onKeyUp={handlePlaceholder}
         spellCheck="false"
+        onInput={handleInput}
         className="note-editor empty"
         data-placeholder="Write your notes here..."
         suppressContentEditableWarning={true}
         contentEditable={noteSettings["editable"]}
-        ref={noteContent}
+        ref={noteRef}
         >
-         {/* {content}  */}
         </div>
         
       </div>

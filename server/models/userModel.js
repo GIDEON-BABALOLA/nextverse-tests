@@ -99,11 +99,6 @@ const userSchema = new mongoose.Schema({
     storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
         }
         ],
-    notes : [
-        {
-            noteId : {type: mongoose.Schema.Types.ObjectId, ref : "Note"}
-        }
-    ],
         bookmarks : [bookmarkSchema]
 }, {
     timestamps : true

@@ -1,29 +1,29 @@
 const path = require("path");
+const sanitizeHtml = require('sanitize-html');
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
-const Note = require(path.join(__dirname, "models", "noteModel"))
-const User = require(path.join(__dirname, "models", "userModel"))
-const Admin = require(path.join(__dirname, "models", "adminModel"))
+const Note = require(path.join(__dirname, "..", "models", "noteModel"))
+const User = require(path.join(__dirname, "..", "models", "userModel"))
+const Admin = require(path.join(__dirname, "..", "models", "adminModel"))
 const {  userError } = require("../utils/customError");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const createNote = async (req, res) => {
-    const { author, title, content } = req.body;
+    const { title, content } = req.body;
 try{
-    if(!author || !title || !content){
+    if(  !title || !content){
         throw new userError("Please Fill In All The Fields", 400)
     }
+    const sanitizedContent = sanitizeHtml(content, {
+        allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
+        allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
+      });
+    
     const newNote = {
-        author, 
+        author : req.user.username,
         title, 
-        content
+        userId : req.user._id,
+        content : sanitizedContent
     }
     const note = await Note.create(newNote)
-      switch (req.user.role) {
-            case "user":
-                await User.createNote(req.user._id, note._id);
-                break;
-            case "admin":
-                await Admin.createNote(req.user._id, note._id);
-        }
     res.status(200).json({ message: "Creation of Note Was Successful", note: note });
 }
 catch(error){
@@ -33,7 +33,7 @@ catch(error){
         return  res.status(error.statusCode).json({ message : error.message})
     }
      else{
-        return res.status(500).json({error : "Internal Server Error"})
+        return res.status(500).json({message : "Internal Server Error"})
         }
 }
 }
@@ -116,12 +116,26 @@ res.status(200).json({ message: "Deletion of Note Was Successful", note: deleted
             }
     }
 }
-const downloadNote = async (req, res) => {
-
+const getMyNotes = async (req, res) => {
+    try{
+const myNotes = await Note.find({userId : req.user._id}).lean();
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes });
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getMyNotesError.txt", "noteError")
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ message : error.message})
+        }
+         else{
+            return res.status(500).json({error : "Internal Server Error"})
+            }  
+    }
 }
 module.exports ={
     createNote,
     readNote,
     updateNote, 
-    deleteNote
+    deleteNote,
+    getMyNotes
 }

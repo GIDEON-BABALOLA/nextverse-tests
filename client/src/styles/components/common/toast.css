@@ -1,15 +1,25 @@
+
 /* changes 2-pack*/
+:root{
+--toast-color : black;
+--toast-border-color : #ff5e62;
+}
+.dark-theme-variables{
+    --toast-color : black;
+    --toast-border-color : #7380EC;
+}
 .litenote-toast{
     position: fixed;
     top : 25px;
     right: 30px;
+    color: var(--toast-color);
     border-radius: 12px;
     background: #fff;
     padding: 20px 35px 20px 25px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.25);
     overflow: hidden;
-    border-left: 5px solid #ff5e62;
+    border-left: 5px solid var(--toast-border-color);
     z-index: 4;
     transform: translateX(calc(200% + 30px));
    transition: all 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.35);
@@ -24,7 +34,7 @@ transform: translateX(0%);
 .toast-check{
     height: 35px;
     width: 35px;
-    background-color: #ff5e62;
+    background-color: var(--toast-border-color);
     color: #fff;
     /* font-size: 20px; */
     border-radius: 50%;
@@ -79,7 +89,7 @@ margin: 0 20px;
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: #ff5e62;
+    background-color: var(--toast-border-color);
     height: 100%;
     width: 100%;
 }

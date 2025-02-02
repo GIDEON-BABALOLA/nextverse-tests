@@ -7,17 +7,20 @@ import NoteEditor from "./NoteEditor"
 import SpecialModal from "../../common/SpecialModal"
 import NoteCard from "./NoteCard"
 import SearchCircle from "./SearchCircle"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { FaEllipsisV } from "react-icons/fa"
 import Dots from "../../../styles/components/common/Icons/Dots"
+import NoteSettings from "../../Notes/NoteSettings"
 import Rename from "../../../styles/components/common/Icons/Rename"
 import NoteTooltip from "../../Notes/NoteTooltip"
 import Download from "../../../styles/components/common/Icons/Download"
 import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
 import Delete from "../../../styles/components/common/Icons/Delete"
 import { useModalContext } from "../../../hooks/useModalContext"
+import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
 import useWindowSize from "../../../hooks/useWindowSize"
 import ContextMenu from "../../common/ContextMenu"
+import Toast from "../../../components/common/Toast"
 const NotesPreview = () => {
     const {
         contextMenu,
@@ -26,38 +29,17 @@ const NotesPreview = () => {
      setContextMenu,
      closeContextMenu
     } = useModalContext()
+    const { data, getMyNotes }= useGetMyNotes();
     const [openModal, setOpenModal] = useState(false)
     const [noteEditorModal,setNoteEditorModal] = useState(false)
-    const [notes, setNotes] = useState([
-        {
-        title : "Devops Engineering",
-        time : "",
-        date : "",
-        author : ""
-    },
-    {
-        title : "Devops Engineering",
-        time : "",
-        date : "",
-        author : ""
-    },
-    {
-        title : "Devops Engineering",
-        time : "",
-        date : "",
-        author : ""
-    },
-    {
-        title : "Devops Engineering",
-        time : "",
-        date : "",
-        author : ""
-    },
-])
+    const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
     const [currentTitle, setCurrentTitle] = useState("")
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
+    useEffect(() => {
+setNotes(data)
+    }, [data])
     const [noteSettings, setNoteSettings] = useState({
         lineHeight : 2.5,
         fontFamily : "Poppins",
@@ -89,9 +71,9 @@ const NotesPreview = () => {
       const formatHighlightedText = (command, value = null) => {
         if(command == "highlightcolor"){
           console.log("why")
-          console.log(settingsModal)
           setColorType("Highlight Color")
           restoreSelection()
+          contextMenu.current.style.visibility = "hidden";
           return;
         }
         restoreSelection();
@@ -105,6 +87,7 @@ const NotesPreview = () => {
         selection.removeAllRanges();
       };
       const slideLine =(e) => {
+        console.log(e)
         let tab;
                tab = e.target.id.split(" ").join("")
               if(tab == ""){
@@ -134,7 +117,11 @@ const NotesPreview = () => {
                      const utterance = new SpeechSynthesisUtterance(savedSelection.toString())
                      window.speechSynthesis.speak(utterance)
                  }
+        useEffect(() => {
+getMyNotes()
+        }, [])
 return <>
+<Toast />
       <NoteTooltip
            noteSettings={noteSettings}
            setSettingsModal={setSettingsModal}
@@ -168,6 +155,21 @@ return <>
     attachmentLine={attachmentLine}
     setAttachmentLine={setAttachmentLine}
     />
+     <NoteSettings
+           tabSettings={tabSettings}
+           setTabSettings={setTabSettings}
+           setNoteSettings={setNoteSettings}
+           noteSettings={noteSettings}
+           savedSelection={savedSelection}
+           formatHighlightedText={formatHighlightedText}
+           attachmentLine={attachmentLine}
+           setAttachmentLine={setAttachmentLine}
+           slideLine={slideLine}
+           colorType={colorType}
+           setColorType={setColorType}
+           settingsModal={settingsModal}
+           setSettingsModal={setSettingsModal}
+         />
 <div className="wrapper"
 >
 <li className="add-box" 

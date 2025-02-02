@@ -38,59 +38,7 @@ const ColorOption = ({ slideLine, setColorType}) => {
 </div>
  
 </div>
-{/* <section style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
-<div style={{ display : "flex", alignSelf : "left",}}>
-  Text Color
-</div>
 
-    <div
-    className="settings-color-section"
-    style={{marginTop : "2%"}}
-    >
-                  {colors.map((color, index) => (
-          <>
-          <div
-          key={index}
-        className="sticky-notes-color"
-        style={{ backgroundColor: color.colorHeader,
-        border : "3px solid #e5e5e5"
-         }}
-        onClick={ () => {}}
-    ></div>
-    <FaCheck color="white" size={20} style={{position : "absolute"}}/>
-</>
-
-        ))}
-        </div>
-</section> */}
-
-
-{/* 
-<section>
-<div style={{ display : "flex", alignSelf : "left",}}>
-  Highlight Color
-</div>
-
-    <div
-    className="settings-color-section"
-    style={{marginTop : "2%"}}
-    >
-                  {colors.map((color, index) => (
-          <>
-          <div
-          key={index}
-        className="sticky-notes-color"
-        style={{ backgroundColor: color.colorHeader,
-        border : "3px solid #e5e5e5"
-         }}
-        onClick={ () => {}}
-    ></div>
-    <FaCheck color="white" size={20} style={{position : "absolute"}}/>
-</>
-
-        ))}
-        </div>
-</section> */}
        
     </section>
   )

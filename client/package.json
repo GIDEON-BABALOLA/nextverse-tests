@@ -40,6 +40,7 @@
     "react-scroll": "^1.9.0",
     "react-simple-typewriter": "^5.0.1",
     "react-speech-recognition": "^3.10.0",
+    "sanitize-html": "^2.14.0",
     "typewriter-effect": "^2.21.0",
     "vaul": "^1.0.0"
   },
