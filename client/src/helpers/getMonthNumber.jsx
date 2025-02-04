@@ -1,4 +1,5 @@
 export const getMonthNumber = (monthname) => {
+  console.log(monthname)
     const months = {
         january: 0,
         february: 1,

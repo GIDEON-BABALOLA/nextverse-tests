@@ -1,5 +1,8 @@
 import Dots from "../../../styles/components/common/Icons/Dots"
 import TextIcon from "../../../styles/components/common/Icons/TextIcon"
+import { getMonthName } from "../../../helpers/getMonthName";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { limitWord } from "../../../helpers/limitWords"
 import { useRef } from "react"
 const NoteCard = ({ id,
    title,
@@ -42,8 +45,9 @@ const showNoteSettings = (e) => {
         </div>
     </div>
     <div style={{display : "flex", flexDirection : "column",justifyContent : "space-between", gap : "5px"}}>
-        <span className="note-preview-card-title">{title}</span>
-        <span className="note-preview-card-second-title">{time}, {date}</span>
+        <span className="note-preview-card-title">{limitWord(title, 6)}</span>
+        <span className="note-preview-card-second-title">{time},
+       { parseInt(date.split("-")[1])} { getMonthName(parseInt(date.split("-")[2]))[0].toUpperCase() + getMonthName(parseInt(date.split("-")[2])).slice(1)}</span>
         <span className="note-preview-card-third-title" >By: {author}</span>
     </div>
 </div>

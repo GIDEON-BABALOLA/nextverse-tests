@@ -9,3 +9,6 @@
 20250202	02:07:50	baffb151-3e8d-46af-aa28-c82f0fb6724a	TypeError: User.createNote is not a function
 20250202	02:08:18	a5891352-6eae-4ac9-a050-870d671cfd27	TypeError: User.createNote is not a function
 20250202	02:08:53	311c7037-94e1-4740-bb0f-9e4f20f2ec6c	TypeError: User.createNote is not a function
+20250204	00:51:58	90ee294d-b1fc-4e9d-a994-79a1d4438618	ReferenceError: crash is not defined
+20250204	00:52:04	ebd5cb6c-a168-467f-98e3-eb38c8640829	ReferenceError: crash is not defined
+20250204	00:52:08	9facffb7-0481-4ed7-8397-8f11cd26bb29	ReferenceError: crash is not defined

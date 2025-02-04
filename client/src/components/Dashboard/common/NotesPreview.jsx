@@ -38,6 +38,10 @@ const NotesPreview = () => {
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
     useEffect(() => {
+      console.log(data)
+      const date = new Date(data[0]?.updatedAt)?.toISOString()
+      console.log(date)
+      // console.log(date.split("-"))
 setNotes(data)
     }, [data])
     const [noteSettings, setNoteSettings] = useState({
@@ -184,7 +188,7 @@ onClick={() => {
     <NoteCard key={index}
      title={content.title}
     time={content.time}
-    date={content.date}
+    date={new Date(content.updatedAt).toISOString().split("T")[0]}
     id={content.id}
     noteContextMenu={noteContextMenu}
     setNoteContextMenu={setNoteContextMenu}

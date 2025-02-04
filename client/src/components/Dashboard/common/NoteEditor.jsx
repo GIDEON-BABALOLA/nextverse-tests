@@ -133,15 +133,14 @@ createANote(noteTitle, cleanHtml)
                 
                 useEffect(() => {
                   if(error){
-                    console.log(error)
               showToast("Error", error.message, false)
+              setNoteEditorModal(true)
                   }
                 }, [error, showToast])
                 useEffect(() => {
                   if(data.length !== 0){
-                    console.log(data)
-                    console.log("sush")
                     showToast("Success", "Created A New Note Successfully", true)
+                    setNoteEditorModal(false)
                   }
                 }, [data, showToast])
   return (
