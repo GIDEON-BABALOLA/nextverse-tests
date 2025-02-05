@@ -18,7 +18,6 @@ import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
 import Delete from "../../../styles/components/common/Icons/Delete"
 import { useModalContext } from "../../../hooks/useModalContext"
 import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
-import useWindowSize from "../../../hooks/useWindowSize"
 import ContextMenu from "../../common/ContextMenu"
 import Toast from "../../../components/common/Toast"
 const NotesPreview = () => {
