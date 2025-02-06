@@ -50,7 +50,7 @@ return res.status(200).json({message : "Username is available"})
 
 const signupUser = async (req, res) => {
 try{
-const { username, email, password, mobile} = req.body;
+const { username, email, password, mobile} = req.body
 let profilePicture
 if(!username || !email || !password || !mobile){
     throw new userError("Please Fill In All The Fields", 400)
