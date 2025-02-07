@@ -326,7 +326,7 @@ else{
 const getCurrentUser = async  (req, res) => {
     try{
         if(req.user == null){
-            throw new userError("Your Account Does Not Exist", 404)
+            throw new userError("Your Account Does Not Exist", 404);
         }
 const { id } = req.user
 validateMongoDbId(id)
