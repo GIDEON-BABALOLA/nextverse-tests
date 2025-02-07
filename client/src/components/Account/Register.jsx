@@ -7,10 +7,24 @@ import { useEffect, useState, useRef } from "react"
 import { axiosConfig } from "../../api/axiosConfig"
 import { FaCheck, FaTimes } from "react-icons/fa"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-
+import { useThemeContext } from "../../hooks/useThemeContext"
 import Button from "./Button"
 import Recaptcha from "../common/Recaptcha"
 const Register = () => {
+    const { colorMode } = useThemeContext();
+    useEffect(() => {
+      if(colorMode == ""){
+        document.body.classList.remove("dark-theme-variables")
+      }
+    switch (colorMode) {
+    case "dark-mode":
+      document.body.classList.remove("dark-theme-variables")
+      break;
+      case "light-mode":
+          document.body.classList.remove("dark-theme-variables")
+      break;
+    }
+    }, [colorMode])
   const recaptchaRef = useRef(null);
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
