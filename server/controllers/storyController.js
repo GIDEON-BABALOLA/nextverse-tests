@@ -417,7 +417,7 @@ res.status(201).json(updateStory)
 
 }
 const commentAStory = async (req, res) => {
-    const { id } = req.params;  // The story ID
+    const { id } = req.params  // The story ID
     const { comment } = req.body;  // The comment text
     try {
         if(!validateMongoDbId(id)){
