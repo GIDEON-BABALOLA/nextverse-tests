@@ -3,3 +3,29 @@
 20241213	15:24:21	b65cf4bf-393c-40bb-8066-6284cc273ac2	userError: Invalid Credentials
 20241213	15:25:28	d7424262-5efe-4974-8397-7ff214fd347d	userError: Invalid Credentials
 20241213	15:25:52	f530f82c-8a45-403c-938c-766eef57ae24	userError: Invalid Credentials
+20250126	16:30:59	7c51f2e0-c8f5-460a-b8f3-bbe9574b24d9	userError: Your Account Has Not Yet Been Verified
+20250126	16:37:25	820029db-cb23-46b9-804c-64c1120605a7	userError: Your Account Has Not Yet Been Verified
+20250126	16:37:31	e02b3968-b715-49bd-95b8-0e392266e9fc	userError: Your Account Has Not Yet Been Verified
+20250126	16:37:52	cdb0e2b9-50ed-4958-be62-1f91f20669fa	userError: Invalid Credentials
+20250126	16:37:58	642d0259-7bfe-4498-9173-55d4c8b9ff04	userError: Invalid Credentials
+20250126	16:38:12	445b8006-f7ef-4981-a923-f7bc57651570	userError: Invalid Credentials
+20250126	16:39:16	9ab269ed-56bb-42e7-961e-58930ee9f732	userError: Your Account Does Not Exist
+20250126	16:39:27	0dd70026-ac32-4c53-8d27-36203d202dd6	userError: Your Account Has Not Yet Been Verified
+20250126	16:43:22	53207e54-6046-4144-9aae-90582a1c0058	userError: Invalid Credentials
+20250126	16:43:45	dddbf6b2-6bdc-4398-9955-beace6f3a3dc	userError: Invalid Credentials
+20250126	16:43:55	d0541091-b79c-448f-a9ad-f7ad3734a9c5	userError: Invalid Credentials
+20250126	23:14:42	dc7e6ab0-4710-41e3-840c-294cc2ee02d8	userError: Your Account Does Not Exist
+20250126	23:16:21	350f9034-6729-4511-b752-748e95c3d00b	userError: Your Account Does Not Exist
+20250129	06:21:06	0b77bb02-4250-47df-a64e-0ddb1d51734e	userError: Your Account Has Not Yet Been Verified
+20250129	06:45:29	282144f0-be7d-48b4-b908-b0f96147dfa2	userError: Your Account Has Not Yet Been Verified
+20250129	07:45:49	9539b7b8-2ae9-4ec1-8e09-c26632a4d0e6	userError: Your Account Has Not Yet Been Verified
+20250129	11:29:09	f33fdd82-ea4e-4931-a87e-8a73408ab3f0	userError: Your Account Has Not Yet Been Verified
+20250129	12:56:00	5cdc2600-0d02-484c-a146-801e0f0a6dbb	userError: Your Account Does Not Exist
+20250129	12:56:26	b592e22d-d107-4321-88b8-5a5e0f465921	userError: Your Account Does Not Exist
+20250131	17:24:43	c4a07952-d4fb-4a3d-b7e7-18d6d3527dee	userError: Your Account Has Not Yet Been Verified
+20250131	17:32:14	dd14affb-ea3b-4a10-9ed8-49648850e99c	userError: Your Account Has Not Yet Been Verified
+20250207	23:33:17	bc59f6e8-fefb-4e95-b00a-1aae05041708	userError: Invalid Credentials
+20250207	23:36:29	913c38fb-76cd-4abd-8a13-302eb2f25506	userError: Invalid Credentials
+20250207	23:38:55	c98a369c-752e-4433-b42d-0496351a6283	userError: Invalid Credentials
+20250208	14:42:18	10b702f8-5dfb-4c93-a857-b0b1f9d4b701	userError: Invalid Credentials
+20250208	14:43:02	986f388b-9d3d-4dff-9a87-8dbd81295ad0	userError: Invalid Credentials
