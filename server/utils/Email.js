@@ -24,13 +24,6 @@ const mailOptions = {
   subject: data.subject,
   text: data.text,
   html : data.html,
-  attachments : [
-    {
-      filename : "litenotelogo.png",
-      path : litenotelogo,
-      cid :  "litenotelogo@litenote"
-    }
-  ]
 };
  await transporter.sendMail(mailOptions);
   }catch(error){
