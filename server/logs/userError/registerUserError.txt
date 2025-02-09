@@ -1,6 +1,7 @@
 20250124	21:36:28	9f446418-5eb4-4631-8360-a820e59ac0ac	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20250124	21:36:46	a309dcbd-abc6-46da-bc9d-70c761ba9c9f	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20250124	21:37:11	6b268cdf-1e2e-44fd-afac-75210e7bba81	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+<<<<<<< HEAD
 20250125	21:04:07	dfdbf680-d2be-4af1-ae35-006e1cf9a52a	userError: User Already Exists
 20250129	06:19:44	c1ed3513-453f-466e-b250-166613631c40	userError: User Already Exists
 20250129	07:13:30	cc4f6228-2120-4a88-8aaa-1d095ec32c36	userError: Phone Number Has Been Used
@@ -23,3 +24,6 @@
 20250207	23:33:34	0624360d-a108-49fd-87af-6a1ce4feefd7	userError: User Already Exists
 20250208	08:54:45	7e5c2c61-d0e2-4d1b-8eaa-238758bea861	MongoServerError: E11000 duplicate key error collection: litenoteDB.users index: username_1 dup key: { username: "gidiboy" }
 20250208	08:54:58	73af94b1-a6a1-4800-a422-9e39c12e846b	MongoServerError: E11000 duplicate key error collection: litenoteDB.users index: username_1 dup key: { username: "gidiboy" }
+=======
+20250208	15:58:08	3c73c564-4ac1-4874-beeb-1e892c96614a	userError: User Already Exists
+>>>>>>> 70d7fcbf9e07cbbcf669810d9d7bc1c046b91e3c

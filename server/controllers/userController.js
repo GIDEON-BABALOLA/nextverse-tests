@@ -49,7 +49,6 @@ return res.status(200).json({message : "Username is available"})
 
 
 const signupUser = async (req, res) => {
-    console.log("welcome")
 try{
 const { username, email, password, mobile} = req.body
 let profilePicture
@@ -60,6 +59,9 @@ await validateEmail(email)
 await validatePassword(password)
 const foundUser = await User.findOne({email : email})
 const foundMobile = await User.findOne({mobile : mobile})
+if(foundUser && foundUser.status == false){
+    res.status(200).json({ message : "Success, Check Your Email To Verify Your Account"})
+}
 if(foundUser) {
     throw new userError("User Already Exists", 400)
 }

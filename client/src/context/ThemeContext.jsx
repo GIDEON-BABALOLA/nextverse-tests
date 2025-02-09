@@ -24,6 +24,23 @@ switch(action.type){
 }
 
 export const ThemeContextProvider = ({ children }) => {
+    function getPath(path) {
+        return path === "/" ? "/" : path.slice(1);
+    }
+    const location = useLocation();
+    useEffect(() => {
+        switch (getPath(location.pathname)) {
+            case "register":
+                document.body.classList.remove('dark-theme-variables');
+                break;
+                case "login":
+                    document.body.classList.remove('dark-theme-variables');
+                break;
+                case "verify":
+                    document.body.classList.remove('dark-theme-variables');
+                break;
+        }
+    }, [location.pathname])
         const  [ state, dispatch] = useReducer(themeReducer, {
         colorMode : getCookie("color-mode")
     })
