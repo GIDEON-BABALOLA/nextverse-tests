@@ -49,6 +49,7 @@ return res.status(200).json({message : "Username is available"})
 
 
 const signupUser = async (req, res) => {
+    console.log("Signing up user")
 try{
 const { username, email, password, mobile} = req.body
 let profilePicture
