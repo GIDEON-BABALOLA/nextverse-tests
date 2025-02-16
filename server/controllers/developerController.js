@@ -14,7 +14,6 @@ const { developerConfirmationArray, hashDeveloperEmail }= require(path.join(__di
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 
 const signupDeveloper = async (req, res) => {
-    console.log("welcome")
     const { username, email, password, mobile, instagram, linkedin, twitter, title} = req.body;
 try{
     //
