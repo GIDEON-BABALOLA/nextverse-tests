@@ -1,7 +1,8 @@
 export const limitWord =(text, limit) => {
-    console.log(text.split(" "))
+    console.log(limit)
     const truncatedText =  text.split(" ").slice(0, limit).join(" ");
-    if(text.split(" ").length < limit){
+    console.log(truncatedText)
+    if(text.split(" ").length <= limit){
         return truncatedText
     }
     return truncatedText.concat("...")

@@ -25,6 +25,7 @@ const NoteEditor = ({
   colorType,
   setColorType,
   settingsModal,
+  setNotes,
   setSettingsModal
   
 }) => {
@@ -69,6 +70,13 @@ useEffect(() => {
   )
   }
   }, [])
+  useEffect(() => {
+if(!noteEditorModal){
+  noteRef.current.innerHTML = "";
+  noteRef.current.innerText = "";
+  handlePlaceholder()
+}
+  }, [noteEditorModal])
   const {  fireClick } =useModalContext();
   const myNoteEditorModal = useRef();
   const { width } = useWindowSize();
@@ -120,6 +128,7 @@ createANote(noteTitle, cleanHtml)
   }
                 const handlePlaceholder = () => {
                   const editor = noteRef.current;
+                   console.log(editor.innerText)
                   if (editor.innerText.trim().length === 0) {
                     console.log("Editor is empty");
                     editor.setAttribute("data-placeholder", "Write your notes here...");
@@ -135,10 +144,15 @@ createANote(noteTitle, cleanHtml)
                   if(error){
               showToast("Error", error.message, false)
               setNoteEditorModal(true)
+             
                   }
                 }, [error, showToast])
                 useEffect(() => {
                   if(data.length !== 0){
+                    setNotes((notes) => {
+                      return [data, ...notes]
+                    })
+                  
                     showToast("Success", "Created A New Note Successfully", true)
                     setNoteEditorModal(false)
                   }

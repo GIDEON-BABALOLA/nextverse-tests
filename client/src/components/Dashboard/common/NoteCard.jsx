@@ -23,7 +23,9 @@ const NoteCard = ({ id,
         setOpenModal(true)
     }
 const showNoteSettings = (e) => {
-  setCurrentTitle(noteCardRef.current.querySelector(".note-preview-card-title").innerText)
+  console.log(title)
+  const shortTitle =  limitWord(title, 10)
+  setCurrentTitle(shortTitle)
   fireClick(e, "", "")
 }
 
@@ -47,7 +49,7 @@ const showNoteSettings = (e) => {
     <div style={{display : "flex", flexDirection : "column",justifyContent : "space-between", gap : "5px"}}>
         <span className="note-preview-card-title">{limitWord(title, 6)}</span>
         <span className="note-preview-card-second-title">{time},
-       { parseInt(date.split("-")[1])} { getMonthName(parseInt(date.split("-")[2]))[0].toUpperCase() + getMonthName(parseInt(date.split("-")[2])).slice(1)}</span>
+       { parseInt(date.split("-")[1])} { getMonthName(parseInt(date.split("-")[1]))[0].toUpperCase() + getMonthName(parseInt(date.split("-")[1])).slice(1)}</span>
         <span className="note-preview-card-third-title" >By: {author}</span>
     </div>
 </div>

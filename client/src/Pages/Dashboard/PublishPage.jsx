@@ -16,6 +16,7 @@ const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
   const { user } = useAuthContext()
   const {width } =  useWindowSize()
   const [stickyNotesCount, setStickyNotesCount ] = useState(0)
+  const [notesCount, setNotesCount] = useState(0)
   const selectMenu = useRef() 
   const list = useRef()
   const selectButton = useRef()
@@ -40,6 +41,11 @@ setCounts((prev) => {
   return {...prev, "sticky notes" : stickyNotesCount}
 })
   }, [stickyNotesCount])
+  useEffect(() => {
+    setCounts((prev) => {
+      return {...prev, notes : notesCount}
+    })
+      }, [notesCount])
   useEffect(() => {
 setStickyNotesCount(JSON.parse(localStorage.getItem("stickyNotes"))?.length)
   }, [])
@@ -77,7 +83,9 @@ setSlideDistance={setSlideDistance}
 
    
 {tabs.write && <TextEditor />}
-{tabs.notes && <NotesPreview setCounts={setCounts}/>}
+{tabs.notes && <NotesPreview setCounts={setCounts}
+setNotesCount={setNotesCount}
+/>}
 {tabs.stories && <StoriesPreview  setCounts={setCounts}
 setTab={setTab}
 setSlideDistance={setSlideDistance}

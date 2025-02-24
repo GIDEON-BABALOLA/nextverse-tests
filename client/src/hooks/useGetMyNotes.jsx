@@ -5,6 +5,7 @@ export const useGetMyNotes = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
+    const [noteCount, setNoteCount] = useState(0)
     const [data, setData] = useState([])
     const getMyNotes = async () => {
         setIsLoading(true) //starting the request
@@ -16,7 +17,9 @@ const response = await axiosConfig.get(`/note/get-my-notes`,
     }
 )
 if(response && response.data){
+    console.log(response.data.noteCount)
     setData(response.data.notes)
+    setNoteCount(response.data.noteCount)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -26,7 +29,7 @@ if(response && response.data){
 }
         }
         catch(error){
-            console.log(error.code)
+            setNoteCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
 setError({message : "Your Request Has Timed Out", code : error.code})
@@ -45,5 +48,5 @@ setError({message : "Your Request Has Timed Out", code : error.code})
         }
     }
     }
-    return {getMyNotes, isLoading, error, data, statusCode} 
+    return {getMyNotes, noteCount, isLoading, error, data, statusCode} 
 }

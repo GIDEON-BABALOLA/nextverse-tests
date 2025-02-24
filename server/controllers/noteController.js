@@ -17,7 +17,10 @@ try{
         allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
         allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
       });
-    
+      const noteCount = await Note.countDocuments();
+      if(noteCount == 10){
+        throw new userError("You Can Only Create Ten Notes", 400)
+      }
     const newNote = {
         author : req.user.username,
         title, 
@@ -119,8 +122,9 @@ res.status(200).json({ message: "Deletion of Note Was Successful", note: deleted
 }
 const getMyNotes = async (req, res) => {
     try{
+   const noteCount = await Note.countDocuments();
 const myNotes = await Note.find({userId : req.user._id}).lean();
-res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes });
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes, noteCount : noteCount });
     }
     catch(error){
         console.log(error)

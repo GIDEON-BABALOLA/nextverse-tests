@@ -20,7 +20,7 @@ import { useModalContext } from "../../../hooks/useModalContext"
 import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
 import ContextMenu from "../../common/ContextMenu"
 import Toast from "../../../components/common/Toast"
-const NotesPreview = () => {
+const NotesPreview = ({ setCounts, setNotesCount }) => {
     const {
         contextMenu,
          shareModal,
@@ -28,7 +28,7 @@ const NotesPreview = () => {
      setContextMenu,
      closeContextMenu
     } = useModalContext()
-    const { data, getMyNotes }= useGetMyNotes();
+    const { data, getMyNotes, noteCount }= useGetMyNotes();
     const [openModal, setOpenModal] = useState(false)
     const [noteEditorModal,setNoteEditorModal] = useState(false)
     const [notes, setNotes] = useState([])
@@ -36,12 +36,12 @@ const NotesPreview = () => {
     const [currentTitle, setCurrentTitle] = useState("")
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
+    useEffect(() => {     
+setNotesCount(noteCount)
+        }, [noteCount])
     useEffect(() => {
-      console.log(data)
-      const date = new Date(data[0]?.updatedAt)?.toISOString()
-      console.log(date)
-      // console.log(date.split("-"))
-setNotes(data)
+      const newData = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+setNotes(newData)
     }, [data])
     const [noteSettings, setNoteSettings] = useState({
         lineHeight : 2.5,
@@ -142,6 +142,7 @@ return <>
 
     <SearchCircle/>
     <NoteEditor
+    setNotes={setNotes}
     settingsModal={settingsModal}
     setSettingsModal={setSettingsModal}
     noteEditorModal={noteEditorModal}
@@ -186,7 +187,7 @@ onClick={() => {
 {notes.map((content,index) => (
     <NoteCard key={index}
      title={content.title}
-    time={content.time}
+    time={content.updatedAt}
     date={new Date(content.updatedAt).toISOString().split("T")[0]}
     id={content.id}
     noteContextMenu={noteContextMenu}

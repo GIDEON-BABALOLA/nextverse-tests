@@ -13,5 +13,7 @@ export const getMonthName = (monthnumber) => {
         10: "november",
         11: "december"
         };
+        console.log(monthnumber)
+        console.log(months[monthnumber])
         return months[monthnumber]
   }
