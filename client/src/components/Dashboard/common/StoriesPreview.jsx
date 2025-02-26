@@ -205,12 +205,13 @@ share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setSha
       stories={myStories}
        state={"feed"}
        contextMenu={contextMenu}
+       setDeleteModal={setOpenModal}
        shareModal={shareModal}
                   setContextMenu={setContextMenu}
                   contextMenuData={[
                   {id : 1, icon : <FaShareAlt />
                   , label : "Share"},
-                  {id : 2, icon : <FaTrash onClick={() => setOpenModal(true)}/>
+                  {id : 2, icon : <FaTrash/>
                   , label : "Delete"},
                   {id : 3, icon : <MdReadMore/>
                   , label : "Read More"},

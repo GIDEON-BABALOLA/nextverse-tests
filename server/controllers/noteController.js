@@ -92,6 +92,7 @@ res.status(201).json({ message: "Updating of Note Was Successful", note: updated
 }
 const deleteNote = async (req, res) => {
     const { id } = req.params;
+    console.log(id)
     try{
         if(!validateMongoDbId(id)){
             throw new userError("Pls enter a parameter recognized by the database", 400)

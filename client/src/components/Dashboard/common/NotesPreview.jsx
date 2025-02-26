@@ -16,20 +16,27 @@ import NoteTooltip from "../../Notes/NoteTooltip"
 import Download from "../../../styles/components/common/Icons/Download"
 import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
 import Delete from "../../../styles/components/common/Icons/Delete"
+import { useDeleteANote } from "../../../hooks/useDeleteANote"
 import { useModalContext } from "../../../hooks/useModalContext"
 import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
+import { useToastContext } from "../../../hooks/useToastContext"
 import ContextMenu from "../../common/ContextMenu"
 import Toast from "../../../components/common/Toast"
+import DeleteConsent from "../../common/DeleteConsent"
 const NotesPreview = ({ setCounts, setNotesCount }) => {
     const {
         contextMenu,
          shareModal,
      fireClick,
      setContextMenu,
+     currentStoryId,
      closeContextMenu
     } = useModalContext()
+    const { showToast } = useToastContext()
     const { data, getMyNotes, noteCount }= useGetMyNotes();
+    const deleteNote = useDeleteANote()
     const [openModal, setOpenModal] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false)
     const [noteEditorModal,setNoteEditorModal] = useState(false)
     const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
@@ -120,11 +127,40 @@ setNotes(newData)
                      const utterance = new SpeechSynthesisUtterance(savedSelection.toString())
                      window.speechSynthesis.speak(utterance)
                  }
+                 const deleteANote = () => {
+                  console.log("kop")
+                  console.log(currentStoryId)
+                  // deleteNote.deleteANote(currentStoryId)
+                        }
+                        useEffect(() => {
+                          // if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
+                          //   setOpenModal(false)
+                          //   setCounts((prev) => {
+                          //     return {...prev, stories : prev.stories - 1}
+                          //   })
+                          //   const newStories = [...myStories].filter((story) => story._id !== currentStoryId)
+                          //   setMyStories(newStories)
+                          // }
+                          if(deleteNote.error){
+                            showToast("Error", deleteNote.error.message, false)
+                          }
+                              }, [deleteNote.data, deleteNote.error])
         useEffect(() => {
 getMyNotes()
         }, [])
+        useEffect(() => {
+console.log(deleteModal)
+        }, [deleteModal])
 return <>
 <Toast />
+<DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
+                title={"Are you sure you want to delete?"}
+                message={"This action will permanently delete your note. This cannot be undone"}
+                buttonText ={"Delete Note"}
+                deleteFunction={deleteANote}
+                error={deleteNote.error}
+                isLoading={deleteNote.isLoading}
+                />
       <NoteTooltip
            noteSettings={noteSettings}
            setSettingsModal={setSettingsModal}
@@ -187,7 +223,7 @@ onClick={() => {
 {notes.map((content,index) => (
     <NoteCard key={index}
      title={content.title}
-    time={content.updatedAt}
+    time={content.updatedAt.toLocaleString()}
     date={new Date(content.updatedAt).toISOString().split("T")[0]}
     id={content.id}
     noteContextMenu={noteContextMenu}
@@ -208,13 +244,16 @@ onClick={() => {
   contextMenu={contextMenu}
   title={currentTitle}
   shareModal={shareModal}
+  setDeleteModal={setDeleteModal}
              setContextMenu={setContextMenu}
              contextMenuData={[
              {id : 1, icon : <Rename />
              , label : "Update", type : "default"},
              {id : 2, icon : <Download />
              , label : "Download", type : "default"},
-             {id : 3, icon : <Delete />
+             {id : 3, icon : <Delete 
+              className="special-modal-client"
+              onClick={() => setDeleteModal(true)}/>
               , label : "Delete", type : "default"}
 ]} />
 }

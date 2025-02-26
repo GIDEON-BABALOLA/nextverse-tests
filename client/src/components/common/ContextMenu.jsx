@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom"
 const ContextMenu = ({ contextMenuData,
     setContextMenu,
     shareModal,
+    setDeleteModal,
     contextMenu,
     stories,
     setStoriesNumber,
@@ -161,7 +162,7 @@ const openAStory = () => {
   navigateToStory({_id : currentStoryId, author : author, title : title})
 }
     const openShare = (e) => {
-
+console.log(e.target.innerText)
         switch (e.target.innerText) {
             case "Share":
                      shareModal.current.showModal()
@@ -170,8 +171,8 @@ const openAStory = () => {
             case "Close Options" : 
             contextMenu.current.style.visibility = "hidden"
             break;
-                case "Bookmark":
-                
+                case "Delete":
+                setDeleteModal(true)
                 break;
                 case "Home":
                     navigate("/")
@@ -479,10 +480,11 @@ const openAStory = () => {
            )}
          </>
             :
-                <li className="litenote-context-link" key={id} onClick={openShare}
+                <li className={`litenote-context-link ${item.label == "Delete" && `special-modal-client`}`} key={id} onClick={openShare}
                  data-name={item.label} 
+                 
                 >
-                    {item.icon}<span className="litenote-context-label">{item.label}</span>
+                    {item.icon}<span className={`litenote-context-label ${item.label == "Delete" && `special-modal-client`}`}>{item.label}</span>
                 </li>
 }
                </>
