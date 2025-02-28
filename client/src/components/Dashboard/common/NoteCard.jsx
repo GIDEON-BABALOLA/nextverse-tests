@@ -13,7 +13,8 @@ const NoteCard = ({ id,
   setModalContent,
   setOpenModal,
   setCurrentTitle,
-  fireClick
+  fireClick,
+  size
 }) => {
   const noteCardRef = useRef();
    // Dependency ensures the effect updates when callback changes
@@ -23,13 +24,13 @@ const NoteCard = ({ id,
         setOpenModal(true)
     }
 const showNoteSettings = (e) => {
-
+console.log(id)
 console.log(new Date(time).toLocaleString().split(",")[1].split(':').slice(0, 2).join(':'))
 console.log(new Date(time).toLocaleString().split(",")[1].trim().split(':').slice(0, 2).join(':') + " " + new Date(time).toLocaleString().split(" ")[2].toLocaleLowerCase())
 
   const shortTitle =  limitWord(title, 10)
   setCurrentTitle(shortTitle)
-  fireClick(e, "", "")
+  fireClick(e, "", id)
 }
 
   
@@ -46,7 +47,7 @@ console.log(new Date(time).toLocaleString().split(",")[1].trim().split(':').slic
                     showNoteSettings(e)
                     }}/>
           
-<span style={{fontSize: "1.3rem"}}>125 KB</span>
+<span style={{fontSize: "1.3rem"}}>{size}</span>
         </div>
     </div>
     <div style={{display : "flex", flexDirection : "column",justifyContent : "space-between", gap : "5px"}}>

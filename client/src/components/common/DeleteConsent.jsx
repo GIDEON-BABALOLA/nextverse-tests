@@ -81,7 +81,7 @@ gap : "10px", fontFamily : "Urbanist"}}>
   cursor : "pointer", fontSize : "1.2rem",
   }} onClick={closeModal}>Cancel, I cant</span>
   <button style={{fontFamily : "Urbanist", fontWeight : "800"}}
-  onClick={() => { deleteFunction()}}
+  onClick={(e) => { deleteFunction(e)}}
   >
   { isLoading ? <span style={{ padding : "0px 20px"}}>
   <LoadingSpinner width={15} />

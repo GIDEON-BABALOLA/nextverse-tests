@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import "../../../styles/components/Dashboard/notes-preview-page.css"
 import NoteEditor from "./NoteEditor"
 import SpecialModal from "../../common/SpecialModal"
+import NoteShare from "./NoteShare"
 import NoteCard from "./NoteCard"
 import SearchCircle from "./SearchCircle"
 import { useState, useRef, useEffect } from "react"
@@ -37,6 +38,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const deleteNote = useDeleteANote()
     const [openModal, setOpenModal] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
+    const [noteShareModal, setNoteShareModal] = useState(false)
     const [noteEditorModal,setNoteEditorModal] = useState(false)
     const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
@@ -47,6 +49,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
 setNotesCount(noteCount)
         }, [noteCount])
     useEffect(() => {
+      console.log(data)
       const newData = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
 setNotes(newData)
     }, [data])
@@ -96,6 +99,10 @@ setNotes(newData)
         const selection = window.getSelection();
         selection.removeAllRanges();
       };
+      useEffect(() => {
+   console.log(currentStoryId)
+      }, [currentStoryId])
+      
       const slideLine =(e) => {
         console.log(e)
         let tab;
@@ -128,20 +135,23 @@ setNotes(newData)
                      window.speechSynthesis.speak(utterance)
                  }
                  const deleteANote = () => {
-                  console.log("kop")
+               console.log(contextMenu.current)
+                  contextMenu.current.style.visibility = "hidden";
                   console.log(currentStoryId)
-                  // deleteNote.deleteANote(currentStoryId)
+                  deleteNote.deleteANote(currentStoryId)
                         }
                         useEffect(() => {
-                          // if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
-                          //   setOpenModal(false)
-                          //   setCounts((prev) => {
-                          //     return {...prev, stories : prev.stories - 1}
-                          //   })
-                          //   const newStories = [...myStories].filter((story) => story._id !== currentStoryId)
-                          //   setMyStories(newStories)
-                          // }
+                      if(Object.keys(deleteNote.data).length > 0){
+                        const newNotesAfterDeletion = [...notes].filter((note) => note._id !== currentStoryId)
+                        setNotes(newNotesAfterDeletion)
+                        setNotesCount((prev) => {
+                          return prev - 1
+                        })
+                        setDeleteModal(false)
+                        showToast("Success", deleteNote.data.message, true)
+                      }
                           if(deleteNote.error){
+                            setDeleteModal(false)
                             showToast("Error", deleteNote.error.message, false)
                           }
                               }, [deleteNote.data, deleteNote.error])
@@ -153,6 +163,9 @@ console.log(deleteModal)
         }, [deleteModal])
 return <>
 <Toast />
+<SpecialModal height={400} width={400} content={<NoteShare />} openModal={noteShareModal}
+setOpenModal={setNoteShareModal}
+/>
 <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
                 title={"Are you sure you want to delete?"}
                 message={"This action will permanently delete your note. This cannot be undone"}
@@ -194,6 +207,7 @@ return <>
     setColorType={setColorType}
     attachmentLine={attachmentLine}
     setAttachmentLine={setAttachmentLine}
+    setNotesCount={setNotesCount}
     />
      <NoteSettings
            tabSettings={tabSettings}
@@ -225,13 +239,14 @@ onClick={() => {
      title={content.title}
     time={content.updatedAt.toLocaleString()}
     date={new Date(content.updatedAt).toISOString().split("T")[0]}
-    id={content.id}
+    id={content._id}
     noteContextMenu={noteContextMenu}
     setNoteContextMenu={setNoteContextMenu}
     author={content.author}
     setOpenModal={setOpenModal}
     setCurrentTitle={setCurrentTitle}
     fireClick={!openModal && fireClick}
+    size={content.size}
     />
 ))}
 </div>
@@ -249,8 +264,8 @@ onClick={() => {
              contextMenuData={[
              {id : 1, icon : <Rename />
              , label : "Update", type : "default"},
-             {id : 2, icon : <Download />
-             , label : "Download", type : "default"},
+             {id : 2, icon : <ShareIcon />
+             , label : "Share", type : "default"},
              {id : 3, icon : <Delete 
               className="special-modal-client"
               onClick={() => setDeleteModal(true)}/>

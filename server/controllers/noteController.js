@@ -1,9 +1,11 @@
 const path = require("path");
 const sanitizeHtml = require('sanitize-html');
+const { calculateObjectSize } = require("bson"); 
+const { formatSize } = require("../utils/size")
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const Note = require(path.join(__dirname, "..", "models", "noteModel"))
-const User = require(path.join(__dirname, "..", "models", "userModel"))
 const Admin = require(path.join(__dirname, "..", "models", "adminModel"))
+const User = require(path.join(__dirname, "..", "models", "userModel"))
 const {  userError } = require("../utils/customError");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const createNote = async (req, res) => {
@@ -28,6 +30,13 @@ try{
         content : sanitizedContent
     }
     const note = await Note.create(newNote)
+        switch (req.user.role) {
+            case "user":
+                await User.addNote(req.user.email, note._id);
+                break;
+            case "admin":
+                await Admin.addNote(req.user.email, note._id);
+        }
     res.status(200).json({ message: "Creation of Note Was Successful", note: note });
 }
 catch(error){
@@ -40,6 +49,39 @@ catch(error){
         return res.status(500).json({message : "Internal Server Error"})
         }
 }
+}
+const shareNote = async (req, res) => {
+    const { id } = req.params;
+    const { email } = req.body;
+    try{
+        if(!validateMongoDbId(id)){
+        throw new userError("Pls enter a parameter recognized by the database", 400)
+            }
+        const foundNote = await Note.findById(id)
+        if(!foundNote){
+            throw new userError("This Note Does Not Exist", 404)
+        }
+        switch (req.user.role) {
+            case "user":
+                await User.addNote(email, foundNote._id);
+                break;
+            case "admin":
+                await Admin.addNote(email, foundNote._id);
+        }
+        res.status(201).json({message : "Sharing of note was successfull", note : foundNote})
+    }
+   
+    
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "shareNoteError.txt", "noteError")
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ message : error.message})
+        }
+         else{
+            return res.status(500).json({message : "Internal Server Error"})
+            }
+    }
 }
 const readNote = async (req, res) => {
     const { id } = req.params;
@@ -103,10 +145,10 @@ if(!deletedNote){
 }
 switch (req.user.role) {
     case "user":
-        await User.deleteNote(req.user._id, id);
+        await User.removeNote(req.user._id, id);
         break;
     case "admin":
-        await Admin.deleteNote(req.user._id, id);
+        await Admin.removeNote(req.user._id, id);
 }
 res.status(200).json({ message: "Deletion of Note Was Successful", note: deletedNote });
     }
@@ -124,8 +166,19 @@ res.status(200).json({ message: "Deletion of Note Was Successful", note: deleted
 const getMyNotes = async (req, res) => {
     try{
    const noteCount = await Note.countDocuments();
-const myNotes = await Note.find({userId : req.user._id}).lean();
-res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes, noteCount : noteCount });
+    const userNotes = await User.findOne({ _id: req.user._id })
+      .populate({
+        path: 'notes.noteId',
+       select: 'author title userId size updatedAt createdAt' 
+        // You can add other fields here as needed
+      })
+      .lean();
+      const noteMan = userNotes["notes"].map((item) => ({...item.noteId}))
+const noteToBeSent = noteMan.map((note) => {
+    return {...note, size :  formatSize(calculateObjectSize(note))}
+})
+console.log(noteToBeSent)
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: noteToBeSent, noteCount : noteCount });
     }
     catch(error){
         console.log(error)
@@ -143,5 +196,6 @@ module.exports ={
     readNote,
     updateNote, 
     deleteNote,
-    getMyNotes
+    getMyNotes,
+    shareNote
 }

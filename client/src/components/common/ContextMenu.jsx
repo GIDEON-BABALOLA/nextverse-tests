@@ -162,6 +162,7 @@ const openAStory = () => {
   navigateToStory({_id : currentStoryId, author : author, title : title})
 }
     const openShare = (e) => {
+      console.log(e.target.className)
 console.log(e.target.innerText)
         switch (e.target.innerText) {
             case "Share":

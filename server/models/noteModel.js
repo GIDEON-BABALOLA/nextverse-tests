@@ -16,10 +16,11 @@ const noteSchema = new mongoose.Schema({
     userId : {
         type : String,
         required : true
-    }, 
+    }
 }, {
     timestamps : true,
     autoIndex: false
 });
+
 //Export the model
 module.exports = mongoose.model('Note', noteSchema);

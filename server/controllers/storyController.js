@@ -663,7 +663,6 @@ const deleteAStory = async(req, res) => {
             throw userError("Pls Enter The Id Of The Story You Want To Delete", 400)
         }
 const deletedStory = await Story.findOneAndDelete({_id : id});
-console.log(deletedStory)
 if(!deletedStory){
     throw new userError("This Story Does Not Exist", 404)
 }
@@ -680,10 +679,10 @@ switch (req.user.role) {
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "deleteAStoryError.txt", "storyError")
         if (error instanceof userError) {
-            return  res.status(error.statusCode).json({ error : error.message})
+            return  res.status(error.statusCode).json({ message : error.message})
             }
              else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
                 }
     }
 }

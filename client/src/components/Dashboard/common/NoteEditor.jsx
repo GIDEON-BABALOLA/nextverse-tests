@@ -19,6 +19,7 @@ const NoteEditor = ({
   savedSelection,
   setSavedSelection,
   formatHighlightedText,
+  setNotesCount,
   slideLine,
   attachmentLine,
   setAttachmentLine,
@@ -152,7 +153,9 @@ createANote(noteTitle, cleanHtml)
                     setNotes((notes) => {
                       return [data, ...notes]
                     })
-                  
+                    setNotesCount((prev) => {
+                      return prev + 1
+                    })
                     showToast("Success", "Created A New Note Successfully", true)
                     setNoteEditorModal(false)
                   }

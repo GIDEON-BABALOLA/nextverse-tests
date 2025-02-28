@@ -43,7 +43,9 @@ const StoriesPreview = ({ setCounts, setTab, setSlideDistance }) => {
 } = useModalContext()
 useEffect(() => {
   if(deleteStory.error){
-showToast("Error", deleteStory.error, false)
+    setOpenModal(false)
+    console.log(deleteStory.error)
+showToast("Error", deleteStory.error.message, false)
   }
 }, [deleteStory.error, showToast])
 useEffect(() => {
@@ -55,6 +57,7 @@ useEffect(() => {
     useEffect(() => {
 if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
   setOpenModal(false)
+  showToast("Success", deleteStory.data.message, true)
   setCounts((prev) => {
     return {...prev, stories : prev.stories - 1}
   })

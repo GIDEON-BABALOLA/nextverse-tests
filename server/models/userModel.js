@@ -94,6 +94,11 @@ const userSchema = new mongoose.Schema({
         type : Number,
         default : 0
     },
+    notes : [
+        {
+            noteId : {type : mongoose.Schema.Types.ObjectId, ref : "Note"}
+        }
+    ],
     stories : [
         {
     storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
@@ -109,11 +114,11 @@ class update{
         this.totalfollowing = params.following.length
     }
 }
-userSchema.statics.followuser = async function(adminId, followId){
+userSchema.statics.followuser = async function(userId, followId){
   const follower  =    await this.findByIdAndUpdate(followId, {
-        $push: { followers: { followedby: adminId } },
+        $push: { followers: { followedby: userId } },
       }, { new : true})
-    const following  =  await this.findByIdAndUpdate(adminId, {
+    const following  =  await this.findByIdAndUpdate(userId, {
         $push: { following: { follows: followId } },
 
       }, {new : true});
@@ -122,11 +127,11 @@ userSchema.statics.followuser = async function(adminId, followId){
 return updatedFollower
     
 }
-userSchema.statics.unfollowuser = async function(adminId, followId){
+userSchema.statics.unfollowuser = async function(userId, followId){
    const follower = await this.findByIdAndUpdate(followId, {
-        $pull: { followers: { followedby: adminId } },
+        $pull: { followers: { followedby: userId } },
       }, {new : true});
-    const following =  await this.findByIdAndUpdate(adminId, {
+    const following =  await this.findByIdAndUpdate(userId, {
         $pull: { following: { follows: followId } },
       }, { new : true});
       const updatedFollower = await this.findByIdAndUpdate(follower._id, new update(follower), { new: true });
@@ -147,7 +152,31 @@ userSchema.statics.deleteStory = async function(userId, storyId){
                 $pull: { stories: { storyId: storyId } },
             }, { new: true });
     }
-
+    userSchema.statics.addNote = async function(email, noteId) {
+        await this.findOneAndUpdate(
+            { email: email },
+            { 
+                $push: { 
+                    notes: { 
+                        $each: [{ noteId: noteId }],
+                        $position: 0 
+                    } 
+                }
+            }, 
+            { new: true }
+        );
+    };
+    
+    userSchema.statics.removeNote = async function(email, noteId) {
+        await this.findOneAndUpdate(
+            { email: email }, 
+            { 
+                $pull: { notes: { noteId: noteId } }
+            }, 
+            { new: true }
+        );
+    };
+    
 userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     const user = await this.findById(userId)
   let alreadyBookmarked = user.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())

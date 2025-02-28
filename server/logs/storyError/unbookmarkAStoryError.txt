@@ -73,3 +73,4 @@
 20250110	22:47:25	238e404b-a992-4f39-8c2f-b83ac3c6d209	TypeError: Cannot read properties of undefined (reading 'toString')
 20250110	22:47:25	552b3fe2-675b-4b0d-a233-7ebe0d49667c	TypeError: Cannot read properties of undefined (reading 'toString')
 20250202	02:34:01	bbd9e307-e8f0-48fb-bd65-3957fbb9c256	VersionError: No matching document found for id "675017b01326a9b55d95ff13" version 7 modifiedPaths "bookmarks, totalBookmarks"
+20250227	20:43:50	8c75ecc2-4ac0-49fc-b97c-6a7b1cb7a5dc	VersionError: No matching document found for id "67503fa14f70d83758b8c38f" version 4 modifiedPaths "bookmarks, totalBookmarks"
