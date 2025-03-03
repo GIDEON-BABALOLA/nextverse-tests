@@ -93,12 +93,7 @@ const userSchema = new mongoose.Schema({
     totalfollowers : {
         type : Number,
         default : 0
-    },
-    notes : [
-        {
-            noteId : {type : mongoose.Schema.Types.ObjectId, ref : "Note"}
-        }
-    ],
+    }
     stories : [
         {
     storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
@@ -152,30 +147,6 @@ userSchema.statics.deleteStory = async function(userId, storyId){
                 $pull: { stories: { storyId: storyId } },
             }, { new: true });
     }
-    userSchema.statics.addNote = async function(email, noteId) {
-        await this.findOneAndUpdate(
-            { email: email },
-            { 
-                $push: { 
-                    notes: { 
-                        $each: [{ noteId: noteId }],
-                        $position: 0 
-                    } 
-                }
-            }, 
-            { new: true }
-        );
-    };
-    
-    userSchema.statics.removeNote = async function(email, noteId) {
-        await this.findOneAndUpdate(
-            { email: email }, 
-            { 
-                $pull: { notes: { noteId: noteId } }
-            }, 
-            { new: true }
-        );
-    };
     
 userSchema.statics.bookmarkStory = async function(userId, bookmarkId){
     const user = await this.findById(userId)
