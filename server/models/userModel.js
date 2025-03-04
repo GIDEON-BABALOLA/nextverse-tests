@@ -93,7 +93,7 @@ const userSchema = new mongoose.Schema({
     totalfollowers : {
         type : Number,
         default : 0
-    }
+    },
     stories : [
         {
     storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}

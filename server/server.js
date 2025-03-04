@@ -48,6 +48,7 @@ app.use("/api/story", storyRouter);
 app.use("/api/note", noteRouter); 
 app.use("/api/newsletter", newsletterRouter); 
 app.use("/api/fix", fixRouter); 
+console.log(process.env.LITENOTE_MAILTRAP_EMAIL_TOKEN)
 mongoose.connect(process.env.LITENOTE_MONGODB_URL)
 .then(() => {
       app.listen(PORT, () => {

@@ -38,7 +38,7 @@ noteSchema.statics.addNote = async function(userId, noteId){
        } },
     }, { new : true})
   }
-unoteSchema.statics.removeNote = async function(userId, noteId){
+noteSchema.statics.removeNote = async function(userId, noteId){
           await this.findByIdAndUpdate(noteId, {
               $pull: { stories: { storyId: storyId } },
           }, { new: true });

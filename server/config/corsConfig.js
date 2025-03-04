@@ -2,7 +2,8 @@ const allowedOrigins = [
 "http://localhost:3000",
 "http://localhost:5173",
 "https://litenote.app",
-"https://www.litenote.app"
+"https://www.litenote.app",
+"https://litenote.vercel.app"
 ]
 const corsOptions = {
   origin: function (origin, callback) {
