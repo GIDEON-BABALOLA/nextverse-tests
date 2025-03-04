@@ -1,7 +1,7 @@
 console.log("This is where I check if new codes are working")
 console.log("Test file, Here")
 console.log("Interswitch pls reply me")
-console.log("lets go, come on man")
+console.log("lets go, come on man, I am getting a Job today")
 
 const formatSize = (bytes) => {
     if (bytes < 1024) return `${bytes} B`;
