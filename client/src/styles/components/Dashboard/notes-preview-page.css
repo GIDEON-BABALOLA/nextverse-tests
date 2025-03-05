@@ -39,7 +39,53 @@
     padding: 30px;
 	scroll-behavior: smooth;
 }
+.note-share-card-image-section{
+    align-items: center;
+	background-color:#E6EEF9;
+	border-radius: 9999px;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+    padding: 15px;
+	scroll-behavior: smooth;
+}
+.note-share-modal-card {
+    margin-bottom: .25rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: .75rem !important;
+    border-radius: .75rem !important;
+    border-width: 1px !important;
+    border-color: rgba(163, 178, 199, .4) !important;
+    background-color: rgba(242, 244, 248, .5) !important;
+    padding: .75rem !important;
+    margin-top: 8px;
+}
+.note-share-modal-card-input{
+    display: flex;
+    width: 100%;
+    outline: none;
+    padding:10px 10px;
+    border-radius: 9999px !important;
+    border:0.5px solid rgba(163, 178, 199, .4);
+}
+.note-share-modal-card-button-cancel{
+border: none;
+outline: none;
+padding: 15px 60px;
+border-radius: 9999px !important;
+}
 
+.note-share-modal-card-button-share{
+    border: none;
+    outline: none;
+    padding: 15px 60px;
+    background-color: #FF5E62;
+    border-radius: 9999px !important;
+    color: white;
+}
 .note-preview-card-title{
     font-size: 1.3rem;
     font-weight: 700;

@@ -46,15 +46,20 @@ catch(error){
 }
 const shareNote = async (req, res) => {
     const { id } = req.params;
+    const { email } = req.body;
     try{
         if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
+            }
+            const userToBeSharedTo   =  await User.findOne({email : email})
+            if(!userToBeSharedTo){
+                throw new userError("You Cannot Share A Note To Yourself", 400)
             }
         const foundNote = await Note.findById(id)
         if(!foundNote){
             throw new userError("This Note Does Not Exist", 404)
         }
-        const createOwnership = await Note.addNote(req.user._id, foundNote._id)
+        const createOwnership = await Note.addNote(userToBeSharedTo._id, foundNote._id)
         res.status(201).json({message : "Sharing of note was successfull", note : foundNote})
     }
    
@@ -150,9 +155,18 @@ const getMyNotes = async (req, res) => {
         $elemMatch: { userId: req.user._id }
     }
 })
-.select("author title userId size updatedAt createdAt")
+.select("author title userId size updatedAt createdAt owners")
 .lean();
-res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes, noteCount : myNotes.length });
+// const myNotesInDetails = myNotes.map(note => ({
+//     ...note, // Spread existing properties
+//     sharedWith: note.owners.filter(owner => owner.userId.toString() !== note.userId.toString()).length // Add new attribute
+//   }));
+const myNotesInDetails = myNotes.map(note => ({
+    ...note,
+    sharedWith: note.owners.reduce((count, owner) => 
+        owner.userId.toString() !== note.userId.toString() ? count + 1 : count, 0)
+}));
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotesInDetails, noteCount : myNotes.length });
     }
     catch(error){
         console.log(error)

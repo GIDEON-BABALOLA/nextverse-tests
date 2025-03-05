@@ -46,7 +46,8 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const [currentNoteDetails, setCurrentNoteDetails] = useState({
       title : "",
       time : "",
-      date : ""
+      date : "",
+      sharedWith : 0
     })
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
@@ -168,9 +169,13 @@ console.log(deleteModal)
         }, [deleteModal])
 return <>
 <Toast />
-<SpecialModal height={400} width={400} content={<NoteShare 
+<SpecialModal height={400} width={400} 
+borderRadius={"30px"}
+content={<NoteShare 
 currentNoteDetails={currentNoteDetails}
-/>} openModal={noteShareModal}
+setNoteShareModal={setNoteShareModal}
+/>} 
+openModal={noteShareModal}
 setOpenModal={setNoteShareModal}
 />
 <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
@@ -244,6 +249,7 @@ onClick={() => {
 {notes.map((content,index) => (
     <NoteCard key={index}
      title={content.title}
+    sharedWith={content.sharedWith}
     time={content.updatedAt.toLocaleString()}
     date={new Date(content.updatedAt).toISOString().split("T")[0]}
     id={content._id}
