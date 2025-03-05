@@ -51,13 +51,21 @@ const shareNote = async (req, res) => {
         if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
             }
-            const userToBeSharedTo   =  await User.findOne({email : email})
+            const userToBeSharedTo  =  await User.findOne({email : email})
             if(!userToBeSharedTo){
-                throw new userError("You Cannot Share A Note To Yourself", 400)
+                throw new userError("This user does not exist", 400)
             }
         const foundNote = await Note.findById(id)
         if(!foundNote){
             throw new userError("This Note Does Not Exist", 404)
+        }
+        const exists = await Note.exists({
+            _id: id,
+            "owners.userId" : userToBeSharedTo._id
+        });
+        console.log(exists)
+        if(exists){
+            throw new userError("User already has this note.", 400)
         }
         const createOwnership = await Note.addNote(userToBeSharedTo._id, foundNote._id)
         res.status(201).json({message : "Sharing of note was successfull", note : foundNote})
@@ -131,10 +139,14 @@ const deleteNote = async (req, res) => {
         if(!validateMongoDbId(id)){
             throw new userError("Pls enter a parameter recognized by the database", 400)
                 }
-                const deletedNote = await Note.findOneAndDelete({_id : id});
-if(!deletedNote){
-    throw new userError("This Note Does Not Exist", 404)
-}
+                const deletedNote = await Note.findOneAndDelete({ 
+                    _id: id, 
+                    userId: req.user._id // Ensures only the creator can delete
+                });
+                
+                if (!deletedNote) {
+                    throw new userError("You did not create this note or it does not exist.", 400);
+                }
 res.status(200).json({ message: "Deletion of Note Was Successful", note: deletedNote });
     }
     catch(error){
@@ -144,7 +156,7 @@ res.status(200).json({ message: "Deletion of Note Was Successful", note: deleted
             return  res.status(error.statusCode).json({ message : error.message})
         }
          else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }

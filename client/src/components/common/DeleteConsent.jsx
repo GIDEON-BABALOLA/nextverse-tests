@@ -70,7 +70,7 @@ fontFamily : "Urbanist", color : "black"}}>
   {title}
 </div>
   <div style={{fontSize : "1.2rem", alignSelf : "flex-start", 
-  fontFamily : "Urbanist", color : "#777777"}}>
+  fontFamily : "Urbanist", color : "#777777", textAlign : "justify"}}>
     
     {message}
   </div>

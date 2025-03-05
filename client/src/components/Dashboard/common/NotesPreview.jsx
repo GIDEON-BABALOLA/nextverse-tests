@@ -165,8 +165,10 @@ setNotes(newData)
 getMyNotes()
         }, [])
         useEffect(() => {
-console.log(deleteModal)
-        }, [deleteModal])
+if(noteShareModal){
+  contextMenu.current.style.visibility = "hidden";
+}
+        }, [noteShareModal])
 return <>
 <Toast />
 <SpecialModal height={400} width={400} 
@@ -180,7 +182,7 @@ setOpenModal={setNoteShareModal}
 />
 <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
                 title={"Are you sure you want to delete?"}
-                message={"This action will permanently delete your note. This cannot be undone"}
+                message={"This action will permanently delete your note. This cannot be undone, Also users you've shared this note to will not longer have access to the note"}
                 buttonText ={"Delete Note"}
                 deleteFunction={deleteANote}
                 error={deleteNote.error}
@@ -253,6 +255,7 @@ onClick={() => {
     time={content.updatedAt.toLocaleString()}
     date={new Date(content.updatedAt).toISOString().split("T")[0]}
     id={content._id}
+    userId={content.userId}
     noteContextMenu={noteContextMenu}
     setNoteContextMenu={setNoteContextMenu}
     author={content.author}

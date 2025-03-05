@@ -2,6 +2,7 @@ import Dots from "../../../styles/components/common/Icons/Dots"
 import TextIcon from "../../../styles/components/common/Icons/TextIcon"
 import { getMonthName } from "../../../helpers/getMonthName";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { useAuthContext } from "../../../hooks/useAuthContext";
 import { limitWord } from "../../../helpers/limitWords"
 import { useRef } from "react"
 const NoteCard = ({ id,
@@ -9,6 +10,7 @@ const NoteCard = ({ id,
   time,
   date,
   author,
+  userId,
   setModalTitle,
   setModalContent,
   setOpenModal,
@@ -18,6 +20,8 @@ const NoteCard = ({ id,
   fireClick,
   size
 }) => {
+  const  { user } = useAuthContext();
+  console.log(user)
   const noteCardRef = useRef();
    // Dependency ensures the effect updates when callback changes
       const triggerNoteDelete = () => {
@@ -63,7 +67,18 @@ console.log(new Date(time).toLocaleString().split(",")[1].split(':').slice(0, 2)
           {new Date(time).toLocaleString().split(",")[1].trim().split(':').slice(0, 2).join(':')  + new Date(time).toLocaleString().split(" ")[2].toLocaleLowerCase()}
           ,{" "}
        { parseInt(date.split("-")[1])} { getMonthName(parseInt(date.split("-")[1]))[0].toUpperCase() + getMonthName(parseInt(date.split("-")[1])).slice(1)}</span>
-        <span className="note-preview-card-third-title" >By: {author}</span>
+       <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
+       <span className="note-preview-card-third-title" >By: {author}</span>
+     {
+     user._id !== userId &&  
+       <span style={{backgroundColor : "#E6EEF9", padding : "5px 5px", boxShadow : "#0000001A 0px 2px 5px 0px",
+        fontWeight : "600", color : "#A3B2C7"
+      }}>
+        Shared
+     </span>
+     }
+       </div>
+       
     </div>
 </div>
 </>

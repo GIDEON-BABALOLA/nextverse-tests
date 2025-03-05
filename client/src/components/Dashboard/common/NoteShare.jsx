@@ -9,7 +9,7 @@ const NoteShare = ({currentNoteDetails, setNoteShareModal}) => {
   const { showToast } = useToastContext()
   const [email, setEmail] = useState("")
   const { shareANote, isLoading, error, data, statusCode }   = useShareANote();
-  const { currentStoryId } = useModalContext();
+  const { currentStoryId, contextMenu } = useModalContext();
   const shareTheNote = () => {
     if(!email){
       showToast("Error", "Pls enter an email", false)
@@ -22,6 +22,7 @@ if(Object.keys(data).length > 0){
 showToast("Success", "Your note has been shared successfully", true)
 setNoteShareModal(false)
 setEmail("")
+
 }
   }, [data, showToast])
   useEffect(() => {
@@ -55,14 +56,18 @@ showToast("Error", error.message, false)
     <div style={{display : "flex"}}>
       <input
       onChange={(e) => { setEmail(e.target.value) }}
-      placeholder="Enter email address" className="note-share-modal-card-input"></input>
+      placeholder="Enter email address" className="note-share-modal-card-input" value={email}></input>
     </div>
     <div style={{display : "flex", flexDirection : "row", marginTop : "5px", justifyContent : "space-between", width : "100%"}}>
       <span style={{color : "#333F4E", fontWeight : "700"}}>Shared with</span>
       <span style={{ fontWeight : "700", color : "#A3B2C7"}}>{currentNoteDetails.sharedWith} Users</span>
     </div>
     <div style={{display : "flex", width : "100%", justifyContent : "space-between"}}>
-<button className="note-share-modal-card-button-cancel">
+<button className="note-share-modal-card-button-cancel"
+onClick={() => {
+   setNoteShareModal(false)
+}}
+>
   Cancel
 </button>
 <button className="note-share-modal-card-button-share" onClick={() => shareTheNote()}>

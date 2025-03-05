@@ -20,3 +20,8 @@
 20250305	20:19:54	bcec7e23-7c86-4e43-bf8c-2e8fc3f674e9	ReferenceError: mecat is not defined
 20250305	20:19:55	e3ae442c-b779-42c3-84fd-ce299dcf7a10	ReferenceError: mecat is not defined
 20250305	20:19:55	7691dd16-1cd1-415e-a9d9-3d95e91def0b	ReferenceError: mecat is not defined
+20250306	00:15:04	e9766675-8887-4365-8a7f-e3a81bcdf6d3	userError: This user does not exist
+20250306	00:22:49	01428055-7ca3-42e8-8542-129adae7ff50	userError: User already has this note.
+20250306	00:23:05	61a43781-04d3-4d53-9a0a-756a9003484d	userError: User already has this note.
+20250306	00:27:19	9889bdea-0928-4130-a4c8-5f6d914afd00	userError: User already has this note.
+20250306	00:34:11	7659c171-4b65-403d-b814-4b1d203f0504	userError: User already has this note.
