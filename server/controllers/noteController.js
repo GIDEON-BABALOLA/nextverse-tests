@@ -19,7 +19,7 @@ try{
         allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
         allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
       });
-      const noteCount = await Note.countDocuments();
+      const noteCount = await Note.countDocuments({ userId : req.user._id});
       if(noteCount == 10){
         throw new userError("You Can Only Create Ten Notes", 400)
       }
@@ -30,13 +30,7 @@ try{
         content : sanitizedContent
     }
     const note = await Note.create(newNote)
-        switch (req.user.role) {
-            case "user":
-                await User.addNote(req.user.email, note._id);
-                break;
-            case "admin":
-                await Admin.addNote(req.user.email, note._id);
-        }
+    const createOwnership = await Note.addNote(req.user._id, note._id)
     res.status(200).json({ message: "Creation of Note Was Successful", note: note });
 }
 catch(error){
@@ -52,7 +46,6 @@ catch(error){
 }
 const shareNote = async (req, res) => {
     const { id } = req.params;
-    const { email } = req.body;
     try{
         if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
@@ -61,13 +54,7 @@ const shareNote = async (req, res) => {
         if(!foundNote){
             throw new userError("This Note Does Not Exist", 404)
         }
-        switch (req.user.role) {
-            case "user":
-                await User.addNote(email, foundNote._id);
-                break;
-            case "admin":
-                await Admin.addNote(email, foundNote._id);
-        }
+        const createOwnership = await Note.addNote(req.user._id, foundNote._id)
         res.status(201).json({message : "Sharing of note was successfull", note : foundNote})
     }
    
@@ -143,13 +130,6 @@ const deleteNote = async (req, res) => {
 if(!deletedNote){
     throw new userError("This Note Does Not Exist", 404)
 }
-switch (req.user.role) {
-    case "user":
-        await User.removeNote(req.user._id, id);
-        break;
-    case "admin":
-        await Admin.removeNote(req.user._id, id);
-}
 res.status(200).json({ message: "Deletion of Note Was Successful", note: deletedNote });
     }
     catch(error){
@@ -165,20 +145,14 @@ res.status(200).json({ message: "Deletion of Note Was Successful", note: deleted
 }
 const getMyNotes = async (req, res) => {
     try{
-   const noteCount = await Note.countDocuments();
-    const userNotes = await User.findOne({ _id: req.user._id })
-      .populate({
-        path: 'notes.noteId',
-       select: 'author title userId size updatedAt createdAt' 
-        // You can add other fields here as needed
-      })
-      .lean();
-      const noteMan = userNotes["notes"].map((item) => ({...item.noteId}))
-const noteToBeSent = noteMan.map((note) => {
-    return {...note, size :  formatSize(calculateObjectSize(note))}
+   const myNotes = await Note.find({
+    owners: {
+        $elemMatch: { userId: req.user._id }
+    }
 })
-console.log(noteToBeSent)
-res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: noteToBeSent, noteCount : noteCount });
+.select("author title userId size updatedAt createdAt")
+.lean();
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes, noteCount : myNotes.length });
     }
     catch(error){
         console.log(error)

@@ -17,6 +17,7 @@ const ContextMenu = ({ contextMenuData,
     setContextMenu,
     shareModal,
     setDeleteModal,
+    setCustomShareModal,
     contextMenu,
     stories,
     setStoriesNumber,
@@ -162,12 +163,16 @@ const openAStory = () => {
   navigateToStory({_id : currentStoryId, author : author, title : title})
 }
     const openShare = (e) => {
-      console.log(e.target.className)
-console.log(e.target.innerText)
+      console.log(shareModal.current)
         switch (e.target.innerText) {
             case "Share":
-                     shareModal.current.showModal()
-                     shareModal.current.classList.add("slide-dow")
+              if(shareModal.current == null  || shareModal.current == undefined ){
+                setCustomShareModal(true)
+              }else{
+                shareModal.current.showModal()
+                shareModal.current.classList.add("slide-dow")
+              }
+                  
                 break;
             case "Close Options" : 
             contextMenu.current.style.visibility = "hidden"
@@ -481,11 +486,11 @@ console.log(e.target.innerText)
            )}
          </>
             :
-                <li className={`litenote-context-link ${item.label == "Delete" && `special-modal-client`}`} key={id} onClick={openShare}
+                <li className={`litenote-context-link ${item.label == "Delete" && `special-modal-client`} ${item.label == "Share" && `special-modal-client`} `} key={id} onClick={openShare}
                  data-name={item.label} 
                  
                 >
-                    {item.icon}<span className={`litenote-context-label ${item.label == "Delete" && `special-modal-client`}`}>{item.label}</span>
+                    {item.icon}<span className={`litenote-context-label ${item.label == "Delete" && `special-modal-client`} ${item.label == "Share" && `special-modal-client`} `}>{item.label}</span>
                 </li>
 }
                </>

@@ -13,6 +13,7 @@ const NoteCard = ({ id,
   setModalContent,
   setOpenModal,
   setCurrentTitle,
+  setCurrentNoteDetails,
   fireClick,
   size
 }) => {
@@ -26,10 +27,14 @@ const NoteCard = ({ id,
 const showNoteSettings = (e) => {
 console.log(id)
 console.log(new Date(time).toLocaleString().split(",")[1].split(':').slice(0, 2).join(':'))
-console.log(new Date(time).toLocaleString().split(",")[1].trim().split(':').slice(0, 2).join(':') + " " + new Date(time).toLocaleString().split(" ")[2].toLocaleLowerCase())
-
   const shortTitle =  limitWord(title, 10)
   setCurrentTitle(shortTitle)
+  setCurrentNoteDetails({
+    title : title,
+    time : new Date(time).toLocaleString().split(",")[1].trim().split(':').slice(0, 2).join(':')  + new Date(time).toLocaleString().split(" ")[2].toLocaleLowerCase(),
+    date :  parseInt(date.split("-")[1]) + getMonthName(parseInt(date.split("-")[1]))[0].toUpperCase() + getMonthName(parseInt(date.split("-")[1])).slice(1)
+
+  })
   fireClick(e, "", id)
 }
 

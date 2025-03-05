@@ -8,6 +8,7 @@ const SpecialModal = ({ openModal, setOpenModal, title, content, width, height, 
    setOpenModal(false)
   }  
   const closeSpecialModal  = (e) => {
+    console.log(e.target.classList)
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
       || Object.values(e.target.classList).includes("special-modal-client")
     ){

@@ -43,6 +43,11 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
     const [currentTitle, setCurrentTitle] = useState("")
+    const [currentNoteDetails, setCurrentNoteDetails] = useState({
+      title : "",
+      time : "",
+      date : ""
+    })
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
     useEffect(() => {     
@@ -163,7 +168,9 @@ console.log(deleteModal)
         }, [deleteModal])
 return <>
 <Toast />
-<SpecialModal height={400} width={400} content={<NoteShare />} openModal={noteShareModal}
+<SpecialModal height={400} width={400} content={<NoteShare 
+currentNoteDetails={currentNoteDetails}
+/>} openModal={noteShareModal}
 setOpenModal={setNoteShareModal}
 />
 <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
@@ -245,6 +252,7 @@ onClick={() => {
     author={content.author}
     setOpenModal={setOpenModal}
     setCurrentTitle={setCurrentTitle}
+    setCurrentNoteDetails={setCurrentNoteDetails}
     fireClick={!openModal && fireClick}
     size={content.size}
     />
@@ -260,6 +268,7 @@ onClick={() => {
   title={currentTitle}
   shareModal={shareModal}
   setDeleteModal={setDeleteModal}
+  setCustomShareModal={setNoteShareModal}
              setContextMenu={setContextMenu}
              contextMenuData={[
              {id : 1, icon : <Rename />

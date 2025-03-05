@@ -28,18 +28,18 @@ const noteSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model('Note', noteSchema);
 noteSchema.statics.addNote = async function(userId, noteId){
     await this.findByIdAndUpdate(noteId, {
       $push: { owners: {
           
-         $each :  [{storyId: storyId}],
-         $position : 0, // Adds the new story at the beginning of the array
+         $each :  [{userId: userId}],
+         $position : 0, // Adds the new note at the beginning of the array
        } },
     }, { new : true})
   }
 noteSchema.statics.removeNote = async function(userId, noteId){
           await this.findByIdAndUpdate(noteId, {
-              $pull: { stories: { storyId: storyId } },
+              $pull: { owners: { userId: userId } },
           }, { new: true });
   }
+  module.exports = mongoose.model('Note', noteSchema);
