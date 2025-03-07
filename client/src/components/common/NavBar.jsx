@@ -331,7 +331,8 @@ contextMenuData={[
   label : "Edit Profile",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
   link : "/dashboard/profile",
-  access : "us
+  access : "user",
+},{
   id : 3,
   icon : <MdSettings className="imags settings-rotate" size={40}/>,
   label : "Settings & Privacy",
