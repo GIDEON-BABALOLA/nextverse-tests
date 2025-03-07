@@ -218,7 +218,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
         </Link>
                       
                         
-                        <Link to="/dashboard/analytics" className={`nav-sidebar-link ${currentUrl === "users" && "active"}` } 
+                        <Link to={ user.role == "admin" ?"/dashboard/analytics" : "/dashboard/publish"} className={`nav-sidebar-link ${currentUrl === "users" && "active"}` } 
                            onClick={dave}
                         >
                         
@@ -322,7 +322,7 @@ contextMenuData={[
   icon : <MdGridView className="imags" size={40}/>,
   label : "Dashboard",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
-  link : "/dashboard/analytics",
+  link :   user.role == "admin" ? "/dashboard/analytics" : "/dashboard/publish",
   access : "user"
 },
 {
@@ -331,9 +331,7 @@ contextMenuData={[
   label : "Edit Profile",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
   link : "/dashboard/profile",
-  access : "user"
-},
-{
+  access : "us
   id : 3,
   icon : <MdSettings className="imags settings-rotate" size={40}/>,
   label : "Settings & Privacy",
