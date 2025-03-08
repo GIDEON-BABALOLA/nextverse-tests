@@ -38,7 +38,8 @@ console.log(new Date(time).toLocaleString().split(",")[1].split(':').slice(0, 2)
     title : title,
     time : new Date(time).toLocaleString().split(",")[1].trim().split(':').slice(0, 2).join(':')  + new Date(time).toLocaleString().split(" ")[2].toLocaleLowerCase(),
     date :  parseInt(date.split("-")[1]) +  "  " + getMonthName(parseInt(date.split("-")[1]))[0].toUpperCase() + getMonthName(parseInt(date.split("-")[1])).slice(1),
-    sharedWith : sharedWith
+    sharedWith : sharedWith,
+    shared : user._id !== userId
 
   })
   fireClick(e, "", id)

@@ -322,7 +322,7 @@ contextMenuData={[
   icon : <MdGridView className="imags" size={40}/>,
   label : "Dashboard",
   arrow :  online ? ">" : <FaAngleRight size={20} />,
-  link :   user.role == "admin" ? "/dashboard/analytics" : "/dashboard/publish",
+  link :   !user ? "/dashboard/publish" :  user.role == "admin" ? "/dashboard/analytics" : "/dashboard/publish",
   access : "user"
 },
 {

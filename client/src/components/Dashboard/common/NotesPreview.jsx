@@ -20,6 +20,7 @@ import Delete from "../../../styles/components/common/Icons/Delete"
 import { useDeleteANote } from "../../../hooks/useDeleteANote"
 import { useModalContext } from "../../../hooks/useModalContext"
 import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
+import { MdRemoveCircleOutline } from "react-icons/md"
 import { useToastContext } from "../../../hooks/useToastContext"
 import ContextMenu from "../../common/ContextMenu"
 import Toast from "../../../components/common/Toast"
@@ -42,12 +43,17 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const [noteEditorModal,setNoteEditorModal] = useState(false)
     const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
+    const [deleteConsentText,  setDeleteConsentText] = useState({
+      message : "",
+      buttonText : ""
+    })
     const [currentTitle, setCurrentTitle] = useState("")
     const [currentNoteDetails, setCurrentNoteDetails] = useState({
       title : "",
       time : "",
       date : "",
-      sharedWith : 0
+      sharedWith : 0,
+      shared : false
     })
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
@@ -165,6 +171,27 @@ setNotes(newData)
 getMyNotes()
         }, [])
         useEffect(() => {
+          if(deleteModal){
+            switch (currentNoteDetails.shared) {
+              case true:
+                setDeleteConsentText({
+                  message : "This action will remove this shared note from your dashboard. You will no longer have access to it, but the original owner and other recipients will still be able to view it.",
+                  buttonText : "Remove Note"
+                })
+                break;
+              case false : 
+              setDeleteConsentText({
+                message : "This action will permanently delete your note. This cannot be undone, Also users you've shared this note to will not longer have access to the note",
+                buttonText : "Delete Note"
+              })
+                break;
+            
+              default:
+                break;
+            }
+          }
+        }, [deleteModal, currentNoteDetails.shared])
+        useEffect(() => {
 if(noteShareModal){
   contextMenu.current.style.visibility = "hidden";
 }
@@ -182,8 +209,8 @@ setOpenModal={setNoteShareModal}
 />
 <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
                 title={"Are you sure you want to delete?"}
-                message={"This action will permanently delete your note. This cannot be undone, Also users you've shared this note to will not longer have access to the note"}
-                buttonText ={"Delete Note"}
+                message={deleteConsentText.message}
+                buttonText ={deleteConsentText.buttonText}
                 deleteFunction={deleteANote}
                 error={deleteNote.error}
                 isLoading={deleteNote.isLoading}
@@ -284,10 +311,12 @@ onClick={() => {
              , label : "Update", type : "default"},
              {id : 2, icon : <ShareIcon />
              , label : "Share", type : "default"},
-             {id : 3, icon : <Delete 
+             {id : 3,
+              icon : <Delete 
               className="special-modal-client"
               onClick={() => setDeleteModal(true)}/>
-              , label : "Delete", type : "default"}
+              ,label : currentNoteDetails.shared ? "Remove" : "Delete", type : "default"
+            }
 ]} />
 }
 </>
