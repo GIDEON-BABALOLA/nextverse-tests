@@ -5,7 +5,7 @@ import { useModalContext } from "../../../hooks/useModalContext"
 import { useToastContext } from "../../../hooks/useToastContext"
 import { useEffect, useState } from  "react"
 import { useShareANote } from "../../../hooks/useShareANote"
-const NoteShare = ({currentNoteDetails, setNoteShareModal}) => {
+const NoteShare = ({currentNoteDetails, setNoteShareModal, notes, setNotes, noteShareModal}) => {
   const { showToast } = useToastContext()
   const [email, setEmail] = useState("")
   const { shareANote, isLoading, error, data, statusCode }   = useShareANote();
@@ -20,6 +20,10 @@ shareANote(currentStoryId, email)
   useEffect(() => {
 if(Object.keys(data).length > 0){
 showToast("Success", "Your note has been shared successfully", true)
+const notesAfterSharing = [...notes].map((note) => {
+  return note._id == currentStoryId ? {...note, sharedWith : note.sharedWith + 1} : note
+});
+setNotes(notesAfterSharing)
 setNoteShareModal(false)
 setEmail("")
 
@@ -28,10 +32,13 @@ setEmail("")
   useEffect(() => {
     if(error){
 showToast("Error", error.message, false)
-// setNoteEditorModal(true)
-
     }
   }, [error, showToast])
+  useEffect(() => {
+if(!noteShareModal){
+  setEmail("")
+}
+  }, [noteShareModal])
   return (
     <>
         <div style={{color : "#333F4E", fontWeight : "700"}}>Share</div>
@@ -75,7 +82,7 @@ onClick={() => {
                     isLoading ? 
                     <LoadingSpinner />
                     :
-                    "Save"
+                    "Share"
                   }
 </button>
     </div>

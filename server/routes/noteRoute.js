@@ -7,6 +7,7 @@ readNote,
 updateNote, 
 getMyNotes,
 deleteNote,
+removeNote,
 shareNote
 } = require(path.join(__dirname, "..", "controllers", "noteController.js"))
 const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
@@ -15,5 +16,6 @@ router.get("/read-note/:id", authMiddleware, readNote);
 router.put("/update-note/:id", authMiddleware, updateNote)
 router.get("/get-my-notes", authMiddleware, getMyNotes)
 router.put("/share-note/:id", authMiddleware, shareNote)
+router.delete("/remove-note/:id", authMiddleware, removeNote)
 router.delete("/delete-note/:id", authMiddleware, deleteNote)
 module.exports = router

@@ -30,7 +30,7 @@ try{
         content : sanitizedContent
     }
     const note = await Note.create(newNote)
-    const createOwnership = await Note.addNote(req.user._id, note._id)
+    await Note.addNote(req.user._id, note._id, "creator")
     res.status(200).json({ message: "Creation of Note Was Successful", note: note });
 }
 catch(error){
@@ -56,6 +56,7 @@ const shareNote = async (req, res) => {
                 throw new userError("This user does not exist", 400)
             }
         const foundNote = await Note.findById(id)
+        console.log(foundNote)
         if(!foundNote){
             throw new userError("This Note Does Not Exist", 404)
         }
@@ -63,11 +64,14 @@ const shareNote = async (req, res) => {
             _id: id,
             "owners.userId" : userToBeSharedTo._id
         });
-        console.log(exists)
+        if(foundNote.userId.toString() == userToBeSharedTo._id && foundNote.userId.toString() == req.user._id.toString()){
+            console.log("how")
+            throw new userError("You Already Have This Note", 400)
+        }
         if(exists){
             throw new userError("User already has this note.", 400)
         }
-        const createOwnership = await Note.addNote(userToBeSharedTo._id, foundNote._id)
+        await Note.addNote(userToBeSharedTo._id, foundNote._id, "owner")
         res.status(201).json({message : "Sharing of note was successfull", note : foundNote})
     }
    
@@ -132,6 +136,33 @@ res.status(201).json({ message: "Updating of Note Was Successful", note: updated
             }
     }
 }
+const removeNote = async (req, res) => {
+    const { id } = req.params;
+    try{
+        if(!validateMongoDbId(id)){
+            throw new userError("Pls enter a parameter recognized by the database", 400)
+                }
+    const noteToBeRemoved =  await Note.findById(id)
+    if(noteToBeRemoved.userId == req.user._id){
+        throw new userError("You cannot remove a note that you created", 400)
+    }
+    if(!noteToBeRemoved){
+        throw new userError("This note does not exist", 404)
+    }
+    await Note.removeNote(req.user._id,  id, "owner")
+        res.status(200).json({message : "Note Successfully Removed", note : noteToBeRemoved})     
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "removeNoteError.txt", "noteError")
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ message : error.message})
+        }
+         else{
+            return res.status(500).json({message : "Internal Server Error"})
+            }
+    }
+}
 const deleteNote = async (req, res) => {
     const { id } = req.params;
     console.log(id)
@@ -167,18 +198,9 @@ const getMyNotes = async (req, res) => {
         $elemMatch: { userId: req.user._id }
     }
 })
-.select("author title userId size updatedAt createdAt owners")
+.select("author title userId size updatedAt createdAt owners, sharedWith")
 .lean();
-// const myNotesInDetails = myNotes.map(note => ({
-//     ...note, // Spread existing properties
-//     sharedWith: note.owners.filter(owner => owner.userId.toString() !== note.userId.toString()).length // Add new attribute
-//   }));
-const myNotesInDetails = myNotes.map(note => ({
-    ...note,
-    sharedWith: note.owners.reduce((count, owner) => 
-        owner.userId.toString() !== note.userId.toString() ? count + 1 : count, 0)
-}));
-res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotesInDetails, noteCount : myNotes.length });
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes, noteCount : myNotes.length });
     }
     catch(error){
         console.log(error)
@@ -196,6 +218,7 @@ module.exports ={
     readNote,
     updateNote, 
     deleteNote,
+    removeNote,
     getMyNotes,
     shareNote
 }

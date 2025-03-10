@@ -18,6 +18,7 @@ import Download from "../../../styles/components/common/Icons/Download"
 import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
 import Delete from "../../../styles/components/common/Icons/Delete"
 import { useDeleteANote } from "../../../hooks/useDeleteANote"
+import { useRemoveANote } from "../../../hooks/useRemoveANote"
 import { useModalContext } from "../../../hooks/useModalContext"
 import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
 import { MdRemoveCircleOutline } from "react-icons/md"
@@ -37,6 +38,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const { showToast } = useToastContext()
     const { data, getMyNotes, noteCount }= useGetMyNotes();
     const deleteNote = useDeleteANote()
+    const removeNote = useRemoveANote()
     const [openModal, setOpenModal] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
     const [noteShareModal, setNoteShareModal] = useState(false)
@@ -44,6 +46,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
     const [deleteConsentText,  setDeleteConsentText] = useState({
+      title : "",
       message : "",
       buttonText : ""
     })
@@ -147,10 +150,15 @@ setNotes(newData)
                      window.speechSynthesis.speak(utterance)
                  }
                  const deleteANote = () => {
-               console.log(contextMenu.current)
+             
                   contextMenu.current.style.visibility = "hidden";
-                  console.log(currentStoryId)
-                  deleteNote.deleteANote(currentStoryId)
+          if(currentNoteDetails.shared){
+            removeNote.removeANote(currentStoryId)
+          }
+          else{
+            deleteNote.deleteANote(currentStoryId)
+          }
+               
                         }
                         useEffect(() => {
                       if(Object.keys(deleteNote.data).length > 0){
@@ -163,10 +171,25 @@ setNotes(newData)
                         showToast("Success", deleteNote.data.message, true)
                       }
                           if(deleteNote.error){
-                            setDeleteModal(false)
+                            setDeleteModal(true)
                             showToast("Error", deleteNote.error.message, false)
                           }
                               }, [deleteNote.data, deleteNote.error])
+                              useEffect(() => {
+                                if(Object.keys(removeNote.data).length > 0){
+                                  const newNotesAfterRemoval = [...notes].filter((note) => note._id !== currentStoryId)
+                                  setNotes(newNotesAfterRemoval)
+                                  setNotesCount((prev) => {
+                                    return prev - 1
+                                  })
+                                  setDeleteModal(false)
+                                  showToast("Success", removeNote.data.message, true)
+                                }
+                                    if(removeNote.error){
+                                      setDeleteModal(true)
+                                      showToast("Error", removeNote.error.message, false)
+                                    }
+                                        }, [removeNote.data, removeNote.error])
         useEffect(() => {
 getMyNotes()
         }, [])
@@ -175,12 +198,14 @@ getMyNotes()
             switch (currentNoteDetails.shared) {
               case true:
                 setDeleteConsentText({
+                  title : "Are you sure you want to Remove Note?",
                   message : "This action will remove this shared note from your dashboard. You will no longer have access to it, but the original owner and other recipients will still be able to view it.",
                   buttonText : "Remove Note"
                 })
                 break;
               case false : 
               setDeleteConsentText({
+                title : "Are you sure you want to delete?",
                 message : "This action will permanently delete your note. This cannot be undone, Also users you've shared this note to will not longer have access to the note",
                 buttonText : "Delete Note"
               })
@@ -203,17 +228,20 @@ borderRadius={"30px"}
 content={<NoteShare 
 currentNoteDetails={currentNoteDetails}
 setNoteShareModal={setNoteShareModal}
+noteShareModal={noteShareModal}
+notes={notes}
+setNotes={setNotes}
 />} 
 openModal={noteShareModal}
 setOpenModal={setNoteShareModal}
 />
 <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
-                title={"Are you sure you want to delete?"}
+                title={deleteConsentText.title}
                 message={deleteConsentText.message}
                 buttonText ={deleteConsentText.buttonText}
                 deleteFunction={deleteANote}
                 error={deleteNote.error}
-                isLoading={deleteNote.isLoading}
+                isLoading={currentNoteDetails.shared ? removeNote.isLoading : deleteNote.isLoading}
                 />
       <NoteTooltip
            noteSettings={noteSettings}

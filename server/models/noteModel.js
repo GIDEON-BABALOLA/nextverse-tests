@@ -22,24 +22,33 @@ const noteSchema = new mongoose.Schema({
                 userId : {type : mongoose.Schema.Types.ObjectId, ref : "User"}
             }
         ],
+    sharedWith : {
+            type : Number,
+            default : 0
+        },
+        
 }, {
     timestamps : true,
     autoIndex: false
 });
 
 //Export the model
-noteSchema.statics.addNote = async function(userId, noteId){
+noteSchema.statics.addNote = async function(userId, noteId, type){
+    console.log(type)
     await this.findByIdAndUpdate(noteId, {
-      $push: { owners: {
-          
-         $each :  [{userId: userId}],
-         $position : 0, // Adds the new note at the beginning of the array
-       } },
-    }, { new : true})
+        $push: {
+            owners: {
+                $each: [{ userId: userId }],
+                $position: 0, // Adds the new owner at the beginning of the array
+            },
+        },
+        $inc: { sharedWith:  type == "creator" ? 0  : 1 }, // Increment shareWith by 1
+    }, { new: true });
   }
-noteSchema.statics.removeNote = async function(userId, noteId){
+noteSchema.statics.removeNote = async function(userId, noteId, type){
           await this.findByIdAndUpdate(noteId, {
               $pull: { owners: { userId: userId } },
+              $inc : { sharedWith : type == "creator" ?  0 : -1 }
           }, { new: true });
   }
   module.exports = mongoose.model('Note', noteSchema);
