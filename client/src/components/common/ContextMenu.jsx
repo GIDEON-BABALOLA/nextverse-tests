@@ -18,6 +18,7 @@ const ContextMenu = ({ contextMenuData,
     shareModal,
     setDeleteModal,
     setCustomShareModal,
+    setCustomUpdateModal,
     contextMenu,
     stories,
     setStoriesNumber,
@@ -181,6 +182,9 @@ const openAStory = () => {
               case "Remove":
                 setDeleteModal(true)
                 break;
+            case "Update" :
+              setCustomUpdateModal(true)
+              break;
                 case "Home":
                     navigate("/")
                     
@@ -487,11 +491,24 @@ const openAStory = () => {
            )}
          </>
             :
-                <li className={`litenote-context-link ${item.label == "Delete"  && `special-modal-client`} ${item.label == "Share" && `special-modal-client`} ${item.label == "Remove" && `special-modal-client`}`} key={id} onClick={openShare}
+                <li className={`litenote-context-link
+                  ${item.label == "Delete"  && `special-modal-client`}
+                  ${item.label == "Share" && `special-modal-client`}
+                  ${item.label == "Remove" && `special-modal-client`}
+                  ${item.label == "Update" && `special-modal-client`}
+                  
+                  `} key={id} onClick={openShare}
                  data-name={item.label} 
                  
                 >
-                    {item.icon}<span className={`litenote-context-label ${item.label == "Delete"  && `special-modal-client`} ${item.label == "Share" && `special-modal-client`} ${item.label == "Remove" && `special-modal-client`}`}>{item.label}</span>
+                    {item.icon}<span className={`litenote-context-label
+                    ${item.label == "Delete"  && `special-modal-client`}
+                     ${item.label == "Share" && `special-modal-client`}
+                    ${item.label == "Remove" && `special-modal-client`}
+                    ${item.label == "Update" && `special-modal-client`}
+                    `}
+                    
+                    >{item.label}</span>
                 </li>
 }
                </>

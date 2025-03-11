@@ -27,7 +27,7 @@ try{
         author : req.user.username,
         title, 
         userId : req.user._id,
-        content : sanitizedContent
+        content : content
     }
     const note = await Note.create(newNote)
     await Note.addNote(req.user._id, note._id, "creator")
@@ -213,6 +213,33 @@ res.status(200).json({ message: "Retrieval of All My Notes Was Successful", note
             }  
     }
 }
+const getANote = async (req, res) => {
+    const { id } = req.params;
+    try{
+    if(!validateMongoDbId(id)){
+throw new userError("Pls enter a parameter recognized by the database", 400)
+    }
+if(!id){
+    throw new userError("Pls Enter The Id Of The Story You Want To View", 400)
+}
+
+const foundNote = await Note.findById(id)
+.select("_id author title content")
+if(!foundNote){
+    throw new userError("This note does not exist")
+}
+res.status(200).json({message : "Successfully retrieved Your Note", note : foundNote})
+    }catch(error){
+        console.log(error);
+        logEvents(`${error.name}: ${error.message}`, "getANoteError.txt", "noteError")
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ message : error.message})
+        }
+         else{
+            return res.status(500).json({error : "Internal Server Error"})
+            }  
+    }
+}
 module.exports ={
     createNote,
     readNote,
@@ -220,5 +247,6 @@ module.exports ={
     deleteNote,
     removeNote,
     getMyNotes,
+    getANote,
     shareNote
 }

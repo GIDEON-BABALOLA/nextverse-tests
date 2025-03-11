@@ -8,6 +8,7 @@ import { useRef } from "react"
 import { useState, useEffect } from "react"
 import { useCreateANote } from "../../../hooks/useCreateANote";
 import { useToastContext } from "../../../hooks/useToastContext";
+import { useGetANote } from "../../../hooks/useGetANote";
 import LoadingSpinner from "../../Loaders/LoadingSpinner";
 const NoteEditor = ({
   noteEditorModal,
@@ -30,10 +31,26 @@ const NoteEditor = ({
   setSettingsModal
   
 }) => {
+  const {  fireClick, currentStoryId } =useModalContext();
+  const getANote = useGetANote();
   const [noteContent, setNoteContent] = useState("")
   const  { showToast } = useToastContext();
   const { createANote, isLoading, data , error}  = useCreateANote()
   const [noteTitle, setNoteTitle] = useState("")
+  useEffect(() => {
+console.log(noteEditorModal, currentStoryId)
+if(noteEditorModal && currentStoryId.length !== 0){
+  getANote.getANote(currentStoryId)
+noteRef.current.removeAttribute("data-placeholder");
+noteRef.current.classList.remove("empty"); 
+}
+  }, [noteEditorModal, currentStoryId])
+  useEffect(() => {
+    console.log(Object.keys(getANote.data).length )
+   if(Object.keys(getANote.data).length > 0){
+noteRef.current.innerHTML = getANote.data.content;
+   }
+  }, [getANote.data])
   const closeNoteEditorModal  = (e) => {
     console.log( Object.values(e.target.classList))
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
@@ -78,7 +95,6 @@ if(!noteEditorModal){
   handlePlaceholder()
 }
   }, [noteEditorModal])
-  const {  fireClick } =useModalContext();
   const myNoteEditorModal = useRef();
   const { width } = useWindowSize();
   const { colorMode} = useThemeContext()
@@ -110,10 +126,13 @@ else{
         };
   
                 const submitNote = () => {
-const cleanHtml = sanitizeHtml(noteContent, {
-                    allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
-                    allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
-  });
+// const cleanHtml = sanitizeHtml(noteContent, {
+//                     allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
+//                     allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
+//   });
+  const cleanHtml = noteContent
+  console.log(noteRef.current.innerText)
+  console.log(noteContent)
   if(noteTitle.length == 0 || !cleanHtml ){
     showToast("Error", "Please Enter The Content Of Your Note", false)
     return;
@@ -131,13 +150,14 @@ createANote(noteTitle, cleanHtml)
                   const editor = noteRef.current;
                    console.log(editor.innerText)
                   if (editor.innerText.trim().length === 0) {
-                    console.log("Editor is empty");
+                    console.log("Editor is empty")
                     editor.setAttribute("data-placeholder", "Write your notes here...");
                     editor.classList.add("empty"); // Add "empty" class
                   } else {
-                    console.log("Editor has content");
+                    console.log("Editor has content")
                     editor.removeAttribute("data-placeholder");
-                    editor.classList.remove("empty"); // Remove "empty" class
+                    editor.classList.remove("empty"); 
+                    // Remove "empty" class
                   }
                 };
                 
@@ -221,6 +241,7 @@ createANote(noteTitle, cleanHtml)
         contentEditable={noteSettings["editable"]}
         ref={noteRef}
         >
+          
         </div>
         
       </div>

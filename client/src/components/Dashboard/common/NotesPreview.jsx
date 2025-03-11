@@ -45,6 +45,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
     const [noteEditorModal,setNoteEditorModal] = useState(false)
     const [notes, setNotes] = useState([])
     const [noteContextMenu, setNoteContextMenu] = useState(false)
+    const [noteContent, setNoteContent] = useState("Golang software enginner")
     const [deleteConsentText,  setDeleteConsentText] = useState({
       title : "",
       message : "",
@@ -277,6 +278,7 @@ setOpenModal={setNoteShareModal}
     attachmentLine={attachmentLine}
     setAttachmentLine={setAttachmentLine}
     setNotesCount={setNotesCount}
+    noteContent={noteContent}
     />
      <NoteSettings
            tabSettings={tabSettings}
@@ -333,8 +335,19 @@ onClick={() => {
   shareModal={shareModal}
   setDeleteModal={setDeleteModal}
   setCustomShareModal={setNoteShareModal}
+  setCustomUpdateModal={setNoteEditorModal}
              setContextMenu={setContextMenu}
-             contextMenuData={[
+             contextMenuData= {currentNoteDetails.shared ? [
+                {id : 1, icon : <ShareIcon />
+                , label : "Share", type : "default"},
+                {id : 2,
+                 icon : <Delete 
+                 className="special-modal-client"
+                 onClick={() => setDeleteModal(true)}/>
+                 ,label : currentNoteDetails.shared ? "Remove" : "Delete", type : "default"
+               }
+
+             ] :  [
              {id : 1, icon : <Rename />
              , label : "Update", type : "default"},
              {id : 2, icon : <ShareIcon />
@@ -345,7 +358,8 @@ onClick={() => {
               onClick={() => setDeleteModal(true)}/>
               ,label : currentNoteDetails.shared ? "Remove" : "Delete", type : "default"
             }
-]} />
+]
+} />
 }
 </>
 }
