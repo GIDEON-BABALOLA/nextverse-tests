@@ -28,7 +28,8 @@ const NoteEditor = ({
   setColorType,
   settingsModal,
   setNotes,
-  setSettingsModal
+  setSettingsModal,
+  currentNoteDetails
   
 }) => {
   const {  fireClick, currentStoryId } =useModalContext();
@@ -47,10 +48,10 @@ noteRef.current.classList.remove("empty");
   }, [noteEditorModal, currentStoryId])
   useEffect(() => {
     console.log(Object.keys(getANote.data).length )
-   if(Object.keys(getANote.data).length > 0){
+   if(Object.keys(getANote.data).length > 0 && currentNoteDetails.title.length !== 0){
 noteRef.current.innerHTML = getANote.data.content;
    }
-  }, [getANote.data])
+  }, [getANote.data, currentNoteDetails])
   const closeNoteEditorModal  = (e) => {
     console.log( Object.values(e.target.classList))
     if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
@@ -124,20 +125,22 @@ else{
             setSavedSelection(selection.getRangeAt(0))
           }
         };
-  
-                const submitNote = () => {
+  // const removeTitleFromContent = (string) => {
+  //   return string.replace(/^[^<]*<div>/, "<div>");
+  // }
+const submitNote = () => {
+                  if(noteSettings["editable"]){
 // const cleanHtml = sanitizeHtml(noteContent, {
 //                     allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
 //                     allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
 //   });
   const cleanHtml = noteContent
-  console.log(noteRef.current.innerText)
-  console.log(noteContent)
   if(noteTitle.length == 0 || !cleanHtml ){
     showToast("Error", "Please Enter The Content Of Your Note", false)
     return;
   }
 createANote(noteTitle, cleanHtml)
+                  }
                 }
   const handleInput = () => {
     console.log(noteRef.current.innerHTML)
@@ -197,6 +200,7 @@ createANote(noteTitle, cleanHtml)
      <section>
       <div>
             <div style={{display : "flex", flexDirection : "row", justifyContent : "flex-end", alignItems : "center", gap : "10px"}}>
+            { noteSettings["editable"] &&
                 <button onClick={() => { submitNote()}} className="note-editor-save-button">
                   {
                     isLoading ? 
@@ -207,11 +211,14 @@ createANote(noteTitle, cleanHtml)
 
  
                 </button>
+}
+                { noteSettings["editable"] &&
                 <MdSettings 
                 style={{cursor : "pointer"}}
                 size={20} onClick={() => {
                   setSettingsModal(!settingsModal)
                 }}/>
+              }
                  <MdClose
                 style={{cursor : "pointer"}}
                 size={20} onClick={() => {

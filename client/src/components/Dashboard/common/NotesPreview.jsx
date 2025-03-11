@@ -12,9 +12,9 @@ import { useState, useRef, useEffect } from "react"
 import { FaEllipsisV } from "react-icons/fa"
 import Dots from "../../../styles/components/common/Icons/Dots"
 import NoteSettings from "../../Notes/NoteSettings"
-import Rename from "../../../styles/components/common/Icons/Rename"
+import Update from "../../../styles/components/common/Icons/Update"
 import NoteTooltip from "../../Notes/NoteTooltip"
-import Download from "../../../styles/components/common/Icons/Download"
+import Details from "../../../styles/components/common/Icons/Details"
 import ShareIcon from "../../../styles/components/common/Icons/ShareIcon"
 import Delete from "../../../styles/components/common/Icons/Delete"
 import { useDeleteANote } from "../../../hooks/useDeleteANote"
@@ -33,6 +33,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
      fireClick,
      setContextMenu,
      currentStoryId,
+     setCurrentStoryId,
      closeContextMenu
     } = useModalContext()
     const { showToast } = useToastContext()
@@ -52,13 +53,14 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
       buttonText : ""
     })
     const [currentTitle, setCurrentTitle] = useState("")
-    const [currentNoteDetails, setCurrentNoteDetails] = useState({
+    const initialNoteDetails = {
       title : "",
       time : "",
       date : "",
       sharedWith : 0,
       shared : false
-    })
+    }
+    const [currentNoteDetails, setCurrentNoteDetails] = useState(initialNoteDetails)
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
     useEffect(() => {     
@@ -98,6 +100,7 @@ setNotes(newData)
         }
       };
       const formatHighlightedText = (command, value = null) => {
+        if(noteSettings["editable"]){
         if(command == "highlightcolor"){
           console.log("why")
           setColorType("Highlight Color")
@@ -114,6 +117,7 @@ setNotes(newData)
      
         const selection = window.getSelection();
         selection.removeAllRanges();
+      }
       };
       useEffect(() => {
    console.log(currentStoryId)
@@ -218,10 +222,36 @@ getMyNotes()
           }
         }, [deleteModal, currentNoteDetails.shared])
         useEffect(() => {
+          if(!noteEditorModal){
+            setCurrentStoryId("")
+          }
+          if(!noteShareModal){
+            setCurrentStoryId("")
+          }
 if(noteShareModal){
   contextMenu.current.style.visibility = "hidden";
 }
-        }, [noteShareModal])
+        }, [noteShareModal, noteEditorModal])
+        useEffect(() => {
+if(noteEditorModal && currentNoteDetails.shared){
+
+  setNoteSettings((prev) => {
+    return {...prev, editable  : false}
+  })
+}
+else{
+ setNoteSettings({
+  lineHeight : 2.5,
+  fontFamily : "Poppins",
+  fontSize : 1.1,
+  wordsPerPage : 12000,
+  page : 1,
+  textColor : "black",
+  editable : true,
+  highlightColor : "black"
+ })
+}
+        }, [noteEditorModal, currentNoteDetails.shared])
 return <>
 <Toast />
 <SpecialModal height={400} width={400} 
@@ -263,6 +293,7 @@ setOpenModal={setNoteShareModal}
     <NoteEditor
     setNotes={setNotes}
     settingsModal={settingsModal}
+    currentNoteDetails={currentNoteDetails}
     setSettingsModal={setSettingsModal}
     noteEditorModal={noteEditorModal}
     setNoteEditorModal={setNoteEditorModal}
@@ -284,6 +315,7 @@ setOpenModal={setNoteShareModal}
            tabSettings={tabSettings}
            setTabSettings={setTabSettings}
            setNoteSettings={setNoteSettings}
+          
            noteSettings={noteSettings}
            savedSelection={savedSelection}
            formatHighlightedText={formatHighlightedText}
@@ -299,6 +331,7 @@ setOpenModal={setNoteShareModal}
 >
 <li className="add-box" 
 onClick={() => {
+ setCurrentNoteDetails(initialNoteDetails)
     setNoteEditorModal(true)
   }}
 >
@@ -338,9 +371,11 @@ onClick={() => {
   setCustomUpdateModal={setNoteEditorModal}
              setContextMenu={setContextMenu}
              contextMenuData= {currentNoteDetails.shared ? [
-                {id : 1, icon : <ShareIcon />
+              {id : 1, icon : <Details />
+                , label : "View", type : "default"},
+                {id : 2, icon : <ShareIcon />
                 , label : "Share", type : "default"},
-                {id : 2,
+                {id : 3,
                  icon : <Delete 
                  className="special-modal-client"
                  onClick={() => setDeleteModal(true)}/>
@@ -348,7 +383,7 @@ onClick={() => {
                }
 
              ] :  [
-             {id : 1, icon : <Rename />
+             {id : 1, icon : <Update />
              , label : "Update", type : "default"},
              {id : 2, icon : <ShareIcon />
              , label : "Share", type : "default"},

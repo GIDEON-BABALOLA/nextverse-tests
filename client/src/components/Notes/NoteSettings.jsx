@@ -19,6 +19,7 @@ const NoteSettings = ({
   slideLine,
   colorType,
   setColorType,
+  showEditable,
   props
 }) => {
   useEffect(() => {

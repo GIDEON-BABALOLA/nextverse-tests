@@ -34,6 +34,7 @@ export const ModalContextProvider = ({children}) => {
         contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`;
       };
     const closeContextMenu  = (e) => {
+
         if( e?.clientX < parseInt(contextMenu.current?.style.left) || e?.clientX > parseInt(contextMenu.current?.style.left) + contextMenu.current?.offsetWidth )
         {
           console.log("Sushi dynasty")
@@ -118,7 +119,8 @@ export const ModalContextProvider = ({children}) => {
         setShareUrl,
         fireClick,
         setContextMenu,
-        closeContextMenu   
+        closeContextMenu,
+        setCurrentStoryId
         }}
         >
         {children}

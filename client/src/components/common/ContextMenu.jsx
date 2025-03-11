@@ -185,6 +185,9 @@ const openAStory = () => {
             case "Update" :
               setCustomUpdateModal(true)
               break;
+              case "View" :
+                setCustomUpdateModal(true)
+                break;
                 case "Home":
                     navigate("/")
                     
@@ -496,6 +499,7 @@ const openAStory = () => {
                   ${item.label == "Share" && `special-modal-client`}
                   ${item.label == "Remove" && `special-modal-client`}
                   ${item.label == "Update" && `special-modal-client`}
+                   ${item.label == "View" && `special-modal-client`}
                   
                   `} key={id} onClick={openShare}
                  data-name={item.label} 
@@ -506,6 +510,7 @@ const openAStory = () => {
                      ${item.label == "Share" && `special-modal-client`}
                     ${item.label == "Remove" && `special-modal-client`}
                     ${item.label == "Update" && `special-modal-client`}
+                     ${item.label == "View" && `special-modal-client`}
                     `}
                     
                     >{item.label}</span>

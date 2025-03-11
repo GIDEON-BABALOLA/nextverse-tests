@@ -1,4 +1,4 @@
-const Rename = ({ size }) => {
+const Update = ({ size }) => {
   return (
 <svg xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
 <circle opacity="0.1" cx="15" cy="15" r="15" fill="#3DD9B3"></circle>
@@ -9,4 +9,4 @@ const Rename = ({ size }) => {
   )
 }
 
-export default Rename
+export default Update
