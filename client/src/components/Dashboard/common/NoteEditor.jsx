@@ -28,6 +28,7 @@ const NoteEditor = ({
   colorType,
   setColorType,
   settingsModal,
+  notes,
   setNotes,
   setSettingsModal,
   currentNoteDetails
@@ -131,7 +132,14 @@ else{
   // const removeTitleFromContent = (string) => {
   //   return string.replace(/^[^<]*<div>/, "<div>");
   // }
+  useEffect(() => {
+if(!noteEditorModal){
+  setNoteTitle("");
+  setNoteContent("")
+}
+  }, [noteEditorModal])
 const submitNote = () => {
+console.log(noteTitle)
                   if(noteSettings["editable"]){
 // const cleanHtml = sanitizeHtml(noteContent, {
 //                     allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
@@ -143,13 +151,25 @@ const submitNote = () => {
     return;
   }
   if(currentNoteDetails.title.length == 0){ 
+    console.log(currentNoteDetails)
 createANote(noteTitle, cleanHtml)
   }else{
-    console.log(currentStoryId)
 updateANote.updateANote(noteTitle, cleanHtml, currentStoryId)
   }
                   }
                 }
+                useEffect(() => {
+
+                 
+                 if(Object.keys(updateANote.data).length > 0 ){
+                  const notesAfterUpdating = [...notes].map((note) => {
+                    return note._id == currentStoryId ? updateANote.data.note : note
+                  });
+                  setNotes(notesAfterUpdating)
+                  showToast("Success", updateANote.data.message, true)
+                  setNoteEditorModal(false)
+                 }
+                }, [updateANote.data])
   const handleInput = () => {
     console.log(noteRef.current.innerHTML)
     if (noteRef.current) {
@@ -179,6 +199,13 @@ updateANote.updateANote(noteTitle, cleanHtml, currentStoryId)
              
                   }
                 }, [error, showToast])
+                useEffect(() => {
+                  if(updateANote.error){
+              showToast("Error", updateANote.error.message, false)
+              setNoteEditorModal(true)
+             
+                  }
+                }, [updateANote.error, showToast])
                 useEffect(() => {
                   if(data.length !== 0){
                     setNotes((notes) => {
@@ -211,10 +238,16 @@ updateANote.updateANote(noteTitle, cleanHtml, currentStoryId)
             { noteSettings["editable"] &&
                 <button onClick={() => { submitNote()}} className="note-editor-save-button">
                   {
+                  currentNoteDetails.title.length == 0 ?
                     isLoading ? 
                     <LoadingSpinner />
                     :
                     "Save"
+                    : 
+                    updateANote.isLoading ? 
+                    <LoadingSpinner />
+                    :
+                    "Update"
                   }
 
  

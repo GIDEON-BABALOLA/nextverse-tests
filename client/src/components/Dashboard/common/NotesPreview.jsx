@@ -33,7 +33,6 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
      fireClick,
      setContextMenu,
      currentStoryId,
-     setCurrentStoryId,
      closeContextMenu
     } = useModalContext()
     const { showToast } = useToastContext()
@@ -222,12 +221,6 @@ getMyNotes()
           }
         }, [deleteModal, currentNoteDetails.shared])
         useEffect(() => {
-          if(!noteEditorModal){
-            setCurrentStoryId("")
-          }
-          if(!noteShareModal){
-            setCurrentStoryId("")
-          }
 if(noteShareModal){
   contextMenu.current.style.visibility = "hidden";
 }
@@ -291,6 +284,7 @@ setOpenModal={setNoteShareModal}
 
     <SearchCircle/>
     <NoteEditor
+    notes={notes}
     setNotes={setNotes}
     settingsModal={settingsModal}
     currentNoteDetails={currentNoteDetails}

@@ -113,6 +113,8 @@ const readNote = async (req, res) => {
 
 const updateNote = async (req, res) => {
     const { id } = req.params;
+    console.log(req.body)
+    
     try{
         if(!validateMongoDbId(id)){
             throw new userError("Pls enter a parameter recognized by the database", 400)
@@ -131,7 +133,7 @@ res.status(201).json({ message: "Updating of Note Was Successful", note: updated
             return  res.status(error.statusCode).json({ message : error.message})
         }
          else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -208,7 +210,7 @@ res.status(200).json({ message: "Retrieval of All My Notes Was Successful", note
             return  res.status(error.statusCode).json({ message : error.message})
         }
          else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }  
     }
 }
@@ -225,7 +227,7 @@ if(!id){
 const foundNote = await Note.findById(id)
 .select("_id author title content")
 if(!foundNote){
-    throw new userError("This note does not exist")
+    throw new userError("This note does not exist", 400)
 }
 res.status(200).json({message : "Successfully retrieved Your Note", note : foundNote})
     }catch(error){
@@ -235,7 +237,7 @@ res.status(200).json({message : "Successfully retrieved Your Note", note : found
             return  res.status(error.statusCode).json({ message : error.message})
         }
          else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }  
     }
 }

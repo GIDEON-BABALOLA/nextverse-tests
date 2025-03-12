@@ -5,12 +5,12 @@ export const useUpdateANote = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
-    const [data, setData] = useState([])
+    const [data, setData] = useState({})
     const updateANote = async (title, content, id) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.put(`/note/update-note${id}`,
+const response = await axiosConfig.put(`/note/update-note/${id}`,
     {
         title : title,
         content : content
