@@ -11,7 +11,6 @@ const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateM
 const createNote = async (req, res) => {
     const { title, content } = req.body;
 try{
-    // console.log(crash)
     if(  !title || !content){
         throw new userError("Please Fill In All The Fields", 400)
     }

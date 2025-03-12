@@ -9,6 +9,7 @@ import { useState, useEffect } from "react"
 import { useCreateANote } from "../../../hooks/useCreateANote";
 import { useToastContext } from "../../../hooks/useToastContext";
 import { useGetANote } from "../../../hooks/useGetANote";
+import { useUpdateANote } from "../../../hooks/useUpdateANote";
 import LoadingSpinner from "../../Loaders/LoadingSpinner";
 const NoteEditor = ({
   noteEditorModal,
@@ -34,22 +35,24 @@ const NoteEditor = ({
 }) => {
   const {  fireClick, currentStoryId } =useModalContext();
   const getANote = useGetANote();
+  const updateANote = useUpdateANote();
   const [noteContent, setNoteContent] = useState("")
   const  { showToast } = useToastContext();
   const { createANote, isLoading, data , error}  = useCreateANote()
   const [noteTitle, setNoteTitle] = useState("")
   useEffect(() => {
-console.log(noteEditorModal, currentStoryId)
-if(noteEditorModal && currentStoryId.length !== 0){
+if(noteEditorModal && currentNoteDetails.title.length !== 0){
   getANote.getANote(currentStoryId)
 noteRef.current.removeAttribute("data-placeholder");
 noteRef.current.classList.remove("empty"); 
 }
-  }, [noteEditorModal, currentStoryId])
+  }, [noteEditorModal, currentNoteDetails])
   useEffect(() => {
     console.log(Object.keys(getANote.data).length )
    if(Object.keys(getANote.data).length > 0 && currentNoteDetails.title.length !== 0){
 noteRef.current.innerHTML = getANote.data.content;
+setNoteContent(getANote.data.content)
+setNoteTitle(getANote.data.title)
    }
   }, [getANote.data, currentNoteDetails])
   const closeNoteEditorModal  = (e) => {
@@ -139,7 +142,12 @@ const submitNote = () => {
     showToast("Error", "Please Enter The Content Of Your Note", false)
     return;
   }
+  if(currentNoteDetails.title.length == 0){ 
 createANote(noteTitle, cleanHtml)
+  }else{
+    console.log(currentStoryId)
+updateANote.updateANote(noteTitle, cleanHtml, currentStoryId)
+  }
                   }
                 }
   const handleInput = () => {
