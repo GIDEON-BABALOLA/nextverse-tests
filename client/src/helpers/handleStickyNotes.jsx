@@ -27,7 +27,6 @@ export const  getStickyNote = (db, id) => {
       const transaction = db.transaction(collection, "readonly");
       const store = transaction.objectStore(collection);
       const request = store.getAll(); // Fetch all notes
-  
       request.onsuccess = () => {
         callback(request.result); // Pass the result to the callback
       };

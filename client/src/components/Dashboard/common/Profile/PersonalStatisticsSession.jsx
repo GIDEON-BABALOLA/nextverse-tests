@@ -11,7 +11,10 @@ import { MdOutlineThumbUpAlt,
     MdOutlinePersonPin,
     MdOutlineCreate
    } from "react-icons/md";
+   import { useAuthContext } from "../../../../hooks/useAuthContext";
 const PersonalStatisticsSession = () => {
+  const { user } = useAuthContext();
+  console.log(user)
   return (
   <>
     <div className="dashboard-profile-page-personal-information"
@@ -37,7 +40,7 @@ cursor : "pointer"
 <h6>
 Followers <MdGroup />
 </h6></span>
-<span>15,000</span>
+<span>{user.totalfollowers}</span>
 </div>
 <div className="personal-small-details">
 <span>
@@ -46,7 +49,7 @@ Followers <MdGroup />
   </h6>
 </span>
 <span>
-  500 <MdEmojiPeople />
+  {user.totalfollowing} <MdEmojiPeople />
 </span>
 </div>
 <div className="personal-small-details">
@@ -113,7 +116,7 @@ Sticky Notes  <MdOutlineStickyNote2 />
   </h6>
 </span>
 <span>
-  500
+  {user.totalBookmarks}
 </span>
 </div>
 </section>

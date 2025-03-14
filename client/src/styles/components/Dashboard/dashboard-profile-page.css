@@ -49,21 +49,33 @@
     padding: 20px 20px;
     padding-top: 5px;
 }
-.editme-profile-page-photo-section .our-buttons, .save-changes{
+.our-buttons, .save-changes{
     padding: 10px 10px;
     border-radius: 5px;
     cursor: pointer;
 
 }
-.editme-profile-page-photo-section .our-buttons.upload, .save-changes{
-    background-color: #4338CA;
+ .our-buttons.upload, .save-changes{
     color: var(--profile-button-color);
     background-color: var(--profile-upload-button-background);
     box-shadow: #0000001A 0px 2px 5px 0px;
     border: 1.5px solid var(--profile-upload-button-border);
 
 }
-.editme-profile-page-photo-section .our-buttons.delete{
+.choose-new-picture-button{
+    color: var(--profile-button-color);
+    background-color: var(--profile-upload-button-background);
+    box-shadow: #0000001A 0px 2px 5px 0px;
+    border: 1.5px solid var(--profile-upload-button-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding:0px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.our-buttons.delete{
     padding: 10px 15px;
     background-color: var(--profile-delete-button-background);
     color: white;

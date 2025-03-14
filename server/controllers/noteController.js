@@ -201,7 +201,10 @@ const getMyNotes = async (req, res) => {
 })
 .select("author title userId size updatedAt createdAt owners, sharedWith")
 .lean();
-res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotes, noteCount : myNotes.length });
+const myNotesAfterFormattingSize = myNotes.map((note) => {
+    return {...note, size : formatSize(calculateObjectSize(note))}
+})
+res.status(200).json({ message: "Retrieval of All My Notes Was Successful", notes: myNotesAfterFormattingSize, noteCount : myNotes.length });
     }
     catch(error){
         console.log(error)

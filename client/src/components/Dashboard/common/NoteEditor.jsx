@@ -34,7 +34,7 @@ const NoteEditor = ({
   currentNoteDetails
   
 }) => {
-  const {  fireClick, currentStoryId } =useModalContext();
+  const {  fireClick, currentStoryId, shareUrl } = useModalContext();
   const getANote = useGetANote();
   const updateANote = useUpdateANote();
   const [noteContent, setNoteContent] = useState("")
@@ -123,23 +123,23 @@ else{
           }
           const selection = window.getSelection();
           if(selection.toString()){
-            fireClick(e, "", "")
+            fireClick(e, shareUrl, currentStoryId)
           }
           if (selection.rangeCount > 0) {
             setSavedSelection(selection.getRangeAt(0))
           }
         };
-  // const removeTitleFromContent = (string) => {
-  //   return string.replace(/^[^<]*<div>/, "<div>");
-  // }
   useEffect(() => {
 if(!noteEditorModal){
   setNoteTitle("");
   setNoteContent("")
 }
   }, [noteEditorModal])
+  useEffect(() => {
+console.log(currentStoryId)
+  }, [currentStoryId])
 const submitNote = () => {
-console.log(noteTitle)
+console.log(currentStoryId)
                   if(noteSettings["editable"]){
 // const cleanHtml = sanitizeHtml(noteContent, {
 //                     allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
@@ -154,6 +154,7 @@ console.log(noteTitle)
     console.log(currentNoteDetails)
 createANote(noteTitle, cleanHtml)
   }else{
+    console.log(currentNoteDetails, currentStoryId)
 updateANote.updateANote(noteTitle, cleanHtml, currentStoryId)
   }
                   }

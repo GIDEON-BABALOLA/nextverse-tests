@@ -23,6 +23,7 @@ import { useModalContext } from "../../../hooks/useModalContext"
 import { useGetMyNotes } from "../../../hooks/useGetMyNotes"
 import { MdRemoveCircleOutline } from "react-icons/md"
 import { useToastContext } from "../../../hooks/useToastContext"
+import { useThemeContext } from "../../../hooks/useThemeContext"
 import ContextMenu from "../../common/ContextMenu"
 import Toast from "../../../components/common/Toast"
 import DeleteConsent from "../../common/DeleteConsent"
@@ -35,6 +36,7 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
      currentStoryId,
      closeContextMenu
     } = useModalContext()
+    const { colorMode } = useThemeContext();
     const { showToast } = useToastContext()
     const { data, getMyNotes, noteCount }= useGetMyNotes();
     const deleteNote = useDeleteANote()
@@ -59,6 +61,16 @@ const NotesPreview = ({ setCounts, setNotesCount }) => {
       sharedWith : 0,
       shared : false
     }
+  const initialNoteSettings = {
+    lineHeight : 2.5,
+    fontFamily : "Poppins",
+    fontSize : 1.1,
+    wordsPerPage : 12000,
+    page : 1,
+    textColor : colorMode == "dark-mode"  ? "white" : "black",
+    editable : true,
+    highlightColor : "black"
+  }
     const [currentNoteDetails, setCurrentNoteDetails] = useState(initialNoteDetails)
     const [attachmentLine, setAttachmentLine] = useState(0)
     const [colorType, setColorType] = useState("")
@@ -70,16 +82,7 @@ setNotesCount(noteCount)
       const newData = [...data].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
 setNotes(newData)
     }, [data])
-    const [noteSettings, setNoteSettings] = useState({
-        lineHeight : 2.5,
-        fontFamily : "Poppins",
-        fontSize : 1.1,
-        wordsPerPage : 12000,
-        page : 1,
-        textColor : "black",
-        editable : true,
-        highlightColor : "black"
-      })
+    const [noteSettings, setNoteSettings] = useState(initialNoteSettings)
       const [tabSettings, setTabSettings] = useState({
         FontFamily :true,
         ColorOption : false,
@@ -233,16 +236,7 @@ if(noteEditorModal && currentNoteDetails.shared){
   })
 }
 else{
- setNoteSettings({
-  lineHeight : 2.5,
-  fontFamily : "Poppins",
-  fontSize : 1.1,
-  wordsPerPage : 12000,
-  page : 1,
-  textColor : "black",
-  editable : true,
-  highlightColor : "black"
- })
+ setNoteSettings({...initialNoteSettings, editable : true})
 }
         }, [noteEditorModal, currentNoteDetails.shared])
 return <>
@@ -334,7 +328,7 @@ onClick={() => {
 </li>
 {notes.map((content,index) => (
     <NoteCard key={index}
-     title={content.title}
+    title={content.title}
     sharedWith={content.sharedWith}
     time={content.updatedAt.toLocaleString()}
     date={new Date(content.updatedAt).toISOString().split("T")[0]}
@@ -344,9 +338,9 @@ onClick={() => {
     setNoteContextMenu={setNoteContextMenu}
     author={content.author}
     setOpenModal={setOpenModal}
+    openModal={openModal}
     setCurrentTitle={setCurrentTitle}
     setCurrentNoteDetails={setCurrentNoteDetails}
-    fireClick={!openModal && fireClick}
     size={content.size}
     />
 ))}

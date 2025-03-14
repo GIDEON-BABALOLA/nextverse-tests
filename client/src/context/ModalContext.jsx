@@ -22,14 +22,13 @@ export const ModalContextProvider = ({children}) => {
         contextMenu.current.style.visibility = "visible";
       };
     const updateMenuPosition = (x, y) => {
-      console.log(contextMenu.current.classList)
         const maxTopValue = height - contextMenu.current.offsetHeight;
         const maxLeftValue = width - contextMenu.current.offsetWidth;
         contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
         contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`;
       };
     const closeContextMenu  = (e) => {
-
+        console.log(currentStoryId)
         if( e?.clientX < parseInt(contextMenu.current?.style.left) || e?.clientX > parseInt(contextMenu.current?.style.left) + contextMenu.current?.offsetWidth )
         {
           console.log("Sushi dynasty")

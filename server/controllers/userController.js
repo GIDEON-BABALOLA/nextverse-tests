@@ -521,6 +521,7 @@ const uploadUserPicture = async (req, res) => {
 }
 //This Is To update A User
 const updateUser = async (req, res) => {
+    console.log(req.body)
 try{
     if(req.user == null){
         throw new userError("Your Account Does Not Exist", 404)
@@ -534,6 +535,8 @@ const id = _id.toString();
     const updatedUser =  await User.findByIdAndUpdate(id, {
 username:req.body.username,
 mobile : req.body.mobile,
+password : req.body.password,
+bio : req.body.bio
     },
     {
         new : true

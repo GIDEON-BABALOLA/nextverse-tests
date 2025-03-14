@@ -106,7 +106,8 @@ const userSchema = new mongoose.Schema({
 class update{
     constructor(params){
         this.totalfollowers = params.followers.length,
-        this.totalfollowing = params.following.length
+        this.totalfollowing = params.following.length,
+        this.isVerified = params.isVerified
     }
 }
 userSchema.statics.followuser = async function(userId, followId){
@@ -115,7 +116,6 @@ userSchema.statics.followuser = async function(userId, followId){
       }, { new : true})
     const following  =  await this.findByIdAndUpdate(userId, {
         $push: { following: { follows: followId } },
-
       }, {new : true});
     const updatedFollower = await this.findByIdAndUpdate(follower._id, new update(follower), { new: true });
     await this.findByIdAndUpdate(following._id, new update(following), { new: true });

@@ -4,6 +4,7 @@ import { getMonthName } from "../../../helpers/getMonthName";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { limitWord } from "../../../helpers/limitWords"
+import { useModalContext } from "../../../hooks/useModalContext";
 import { useRef } from "react"
 const NoteCard = ({ id,
    title,
@@ -14,13 +15,14 @@ const NoteCard = ({ id,
   setModalTitle,
   setModalContent,
   setOpenModal,
+  openModal,
   setCurrentTitle,
   setCurrentNoteDetails,
   sharedWith,
-  fireClick,
   size
 }) => {
   const  { user } = useAuthContext();
+  const { fireClick } = useModalContext();
   console.log(user)
   const noteCardRef = useRef();
    // Dependency ensures the effect updates when callback changes
@@ -42,7 +44,9 @@ console.log(new Date(time).toLocaleString().split(",")[1].split(':').slice(0, 2)
     shared : user._id !== userId
 
   })
+  if(!openModal){
   fireClick(e, "", id)
+  }
 }
 
   
@@ -59,7 +63,7 @@ console.log(new Date(time).toLocaleString().split(",")[1].split(':').slice(0, 2)
                     showNoteSettings(e)
                     }}/>
           
-<span style={{fontSize: "1.3rem"}}>{size}</span>
+<span style={{fontSize: "1.3rem", fontFamily : "Poppins", fontWeight : "500"}}>{size}</span>
         </div>
     </div>
     <div style={{display : "flex", flexDirection : "column",justifyContent : "space-between", gap : "5px"}}>

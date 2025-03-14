@@ -3,8 +3,10 @@
 import useWindowSize from "../../../../hooks/useWindowSize"
 import { FaPhoneAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 import { MdOutlineCreate } from "react-icons/md"
+import { useAuthContext } from "../../../../hooks/useAuthContext"
 import { useState } from "react"
 const PersonalInformationSection = ({ profile, startEditing }) => {
+  const { user } = useAuthContext();
     const { width } = useWindowSize()
     const [passwordVisibility, setPasswordVisibility] = useState({
         currentPassword : false,
@@ -109,7 +111,7 @@ Password
   }}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
 Current Number
-<input type="text" value={"08149787227"}></input>
+<input type="text" value={user.mobile}></input>
 <FaPhoneAlt style={{position : "relative", left  :"275px", bottom : "30px"}} />
 <span style={{position : "fixed", left : "245px", bottom : "335px"}}>
 
@@ -189,7 +191,7 @@ onClick={()=> toggleVisibility("newPassword")}
   }}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
 Current Bio Information
-<input  value={"I am a great writer"}
+<input  value={user.bio}
   type="text"
   style={{fontSize: "1.2rem"}}
   ></input>

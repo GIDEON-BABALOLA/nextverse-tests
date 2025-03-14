@@ -124,3 +124,4 @@
 20250116	09:20:12	e7d7ca42-b3d0-4245-8a40-44f4ad69be0a	MongoServerError: First argument to $slice must be an array, but is of type: int
 20250116	09:20:47	45fbd194-8717-4188-aa84-5f1e06f6d18d	MongoServerError: First argument to $slice must be an array, but is of type: int
 20250116	16:00:48	91fa622c-851f-499c-8b6b-946afdb8a6b5	TypeError: Cannot read properties of undefined (reading 'some')
+20250312	13:17:28	cf0dd4af-b0df-4e7b-833e-f655ddedc94b	TypeError: Cannot read properties of undefined (reading 'some')

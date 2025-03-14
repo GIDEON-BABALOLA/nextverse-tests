@@ -4,9 +4,14 @@ import useWindowSize from "../../../../hooks/useWindowSize"
 import { MdOutlineCreate } from "react-icons/md"
 import { useEffect, useState } from "react"
 import useImageLoad from "../../../../hooks/useImageLoaded"
-const ProfilePictureSection = ({ profile, startEditing }) => {
+import { useAuthContext } from "../../../../hooks/useAuthContext"
+const ProfilePictureSection = ({ profile, startEditing, dashboardProfile }) => {
+    const { user } = useAuthContext();
+    useEffect(() => {
+      
+    })
     const [avatarLoading, setAvatarLoading] = useState(true)
-    let profileImage = "https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"
+    let profileImage = dashboardProfile.picture
     const { width } = useWindowSize() 
     const { loaded, error} = useImageLoad(profileImage) //This is hard coded
 useEffect(() => {
@@ -17,6 +22,15 @@ if(error){
 setAvatarLoading(true)
 }
 }, [error, loaded])
+const saveChanges = () => {
+  startEditing("names")
+}
+const uploadNewPicture = () => {
+
+}
+const choosePicture = () => {
+
+}
 
   return (
     <>
@@ -39,9 +53,9 @@ className="dashboard-profile-page-loading-avatar"
    }
 
   <span>
-  {width < 768 ? <h4><b>Gideon Babalola</b></h4> : <h3><b>Gideon Babalola</b></h3>}
-  <h6 style={{color: "#9CA3AF"}}>gideonbabalola69@gmail.com</h6>
-  <h6 style={{color : "#9CA3AF"}}>Technical Writer</h6>
+  {width < 768 ? <h4><b>{dashboardProfile.username}</b></h4> : <h3><b>{dashboardProfile.username}</b></h3>}
+  <h6 style={{color: "#9CA3AF"}}>{dashboardProfile.email}</h6>
+  <h6 style={{color : "#9CA3AF"}}>{dashboardProfile.bio}</h6>
   </span>
 </div>
 <div
@@ -89,7 +103,7 @@ padding : "5px 15px",
 borderRadius : "5px",
 cursor : "pointer"
 }}>
-    <span className="our-buttons upload">
+    <span className="our-buttons upload" onClick={() => {uploadNewPicture()}}>
       Upload New Picture
     </span>
     <span className="our-buttons delete">
@@ -104,14 +118,14 @@ cursor : "pointer"
 First name
 <input type="text"></input>
   </div>
-  <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
-  Last name
-  <input type="text"></input>
-  </div>
+  <span className="choose-new-picture-button" onClick={() => choosePicture()}>
+      Choose New Picture
+    </span>
+
 
   </div>
   <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
-  <span className="save-changes" onClick={() => { startEditing("names")}}>
+  <span className="save-changes" onClick={() => saveChanges()}>
     Save Changes
     </span>
   </div>
