@@ -19,7 +19,7 @@ shareANote(currentStoryId, email)
   }
   useEffect(() => {
 if(Object.keys(data).length > 0){
-showToast("Success", "Your note has been shared successfully", true)
+showToast("Success", "Your note has now been shared successfully", true)
 const notesAfterSharing = [...notes].map((note) => {
   return note._id == currentStoryId ? {...note, sharedWith : note.sharedWith + 1} : note
 });
