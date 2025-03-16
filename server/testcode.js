@@ -8,7 +8,7 @@ import { useShareANote } from "../../../hooks/useShareANote"
 const NoteShare = ({currentNoteDetails, setNoteShareModal, notes, setNotes}) => {
   const { showToast } = useToastContext()
   const [email, setEmail] = useState("")
-  const { shareANote, isLoading, error, data, statusCode }   = useShareANote();
+  const { shareANote, isLoading, error, data }   = useShareANote();
   const { currentStoryId, contextMenu } = useModalContext();
   const shareTheNote = () => {
     if(!email){
