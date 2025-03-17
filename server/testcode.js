@@ -12,7 +12,7 @@ const NoteShare = ({currentNoteDetails, setNoteShareModal, notes, setNotes}) => 
   const { currentStoryId, contextMenu } = useModalContext();
   const shareTheNote = () => {
     if(!email){
-      showToast("Error", "Pls enter an email", false)
+      showToast("Error", "Pls enter an email now", false)
       return;
     }
 shareANote(currentStoryId, email)
