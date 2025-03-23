@@ -333,17 +333,13 @@ const getCurrentUser = async  (req, res) => {
         }
 const { id } = req.user
 validateMongoDbId(id)
-const user = await User.findById(id)
+const user = await User.findById(id).select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress -password -followers -following -bookmarks")
 if(!user){
     throw new userError("You Are Not Logged In", 401)
 }
-const detailsOfUserToBeSent = _.omit(user.toObject(), "refreshToken",
-"verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
-)
-    res.status(200).json(detailsOfUserToBeSent)
-//  const newUser = _.omit(user.toObject(), "refreshToken")
+    res.status(200).json(user)
     }catch(error){
-
+console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ error : error.message})

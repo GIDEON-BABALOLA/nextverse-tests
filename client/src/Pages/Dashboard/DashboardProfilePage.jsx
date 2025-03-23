@@ -4,6 +4,7 @@ import RotationLoader from "../../components/Loaders/RotationLoader"
 import ProfilePictureSection from "../../components/Dashboard/common/Profile/ProfilePictureSection";
 import PersonalInformationSection from "../../components/Dashboard/common/Profile/PersonalInformationSection";
 import PersonalStatisticsSession from "../../components/Dashboard/common/Profile/PersonalStatisticsSession";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetAUser } from "../../hooks/useGetAUser";
 import useWindowSize from "../../hooks/useWindowSize";
   import { FaPhoneAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
@@ -11,6 +12,7 @@ import "../../styles/components/Dashboard/dashboard-profile-page.css"
 import { useState, useEffect } from "react";
 import { FaSmileBeam } from "react-icons/fa";
 const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+  const { user } = useAuthContext()
   const [dashboardProfile, setDashboardProfile] = useState({
     username : "",
     email : "",
@@ -33,6 +35,20 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     personal : true,
     statistics : true
   })
+  useEffect(() => {
+    console.log(user)
+setDashboardProfile((prev) => {
+  return {...prev,
+ picture : user.picture,
+ username : user.username,
+ email : user.email,
+ bio : user.bio,
+ mobile : user.mobile,
+ totalFollowers: user.totalfollowers,
+ totalFollowing : user.totalfollowing
+}
+})
+  }, [user])
   const startEditing = (params) => {
 switch (params) {
   case "names":

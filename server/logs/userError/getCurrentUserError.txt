@@ -4,3 +4,13 @@
 20250110	22:56:33	0a3590dc-2080-44e5-93af-4d02ea41c98e	userError: Your Account Does Not Exist
 20250128	10:47:08	ce53aa32-b79d-41c3-a249-05cd01b501e6	userError: Your Account Does Not Exist
 20250128	10:47:21	1dc9a19e-bd50-41a1-a2a9-11d3ffe4d653	userError: Your Account Does Not Exist
+20250323	04:51:37	575b98b1-97eb-4b55-808c-dc89659ae35f	Error: Invalid select: select only takes 1 argument
+20250323	04:51:50	c520332e-331f-4966-92cd-f1ee5bb4ebcc	Error: Invalid select: select only takes 1 argument
+20250323	04:51:54	49f77230-688a-4d60-910c-f2600b4cccdc	Error: Invalid select: select only takes 1 argument
+20250323	04:52:36	905deabe-8389-48b2-8747-b83dae37c9fc	Error: Invalid select: select only takes 1 argument
+20250323	04:52:45	50be350d-97e3-4056-9fe0-49d5804ce9c5	Error: Invalid select: select only takes 1 argument
+20250323	04:53:23	91de9076-3ece-4520-8374-e426c606a181	Error: Invalid select: select only takes 1 argument
+20250323	04:53:43	88821037-2012-48e2-bf37-227b30437038	Error: Invalid select: select only takes 1 argument
+20250323	04:55:46	86a75dfe-2dc0-4b8e-8b5b-4c02b52f3ea9	Error: Invalid select: select only takes 1 argument
+20250323	04:58:56	26879e81-372c-4cc2-be99-6953ae71b351	ReferenceError: used is not defined
+20250323	04:59:40	058e6ded-bf94-440d-a6d3-59430eada228	ReferenceError: used is not defined

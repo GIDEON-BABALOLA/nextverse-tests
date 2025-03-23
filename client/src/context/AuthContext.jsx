@@ -24,6 +24,7 @@ useEffect(() => {
       try {
         const response = await axiosConfig.get("/user/get-current-user"); // Your API route
         const userData = response.data;
+        console.log(userData)
         dispatch({ type: "LOGIN", payload: userData }); // Dispatch login action with user data
       } catch (error) {
         dispatch({ type: "LOGOUT" }); // Dispatch logout action if no user

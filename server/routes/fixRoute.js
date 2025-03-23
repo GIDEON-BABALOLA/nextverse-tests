@@ -4,7 +4,7 @@ const router = express.Router()
 const { fixDeveloperModel, populateStories, populateUsers, fixUserModel } = require(path.join(__dirname, "..", "controllers", "fixController"))
 const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 router.get("/fix-developer-model", authMiddleware, fixDeveloperModel)
-router.get("/fix-user-model", authMiddleware,  fixUserModel)
+router.get("/fix-user-model",   fixUserModel)
 router.get("/fix-populate-stories", authMiddleware, populateStories)
 router.get("/fix-populate-users", authMiddleware, populateUsers)
 module.exports = router

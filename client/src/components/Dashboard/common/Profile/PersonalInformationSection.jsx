@@ -3,10 +3,9 @@
 import useWindowSize from "../../../../hooks/useWindowSize"
 import { FaPhoneAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 import { MdOutlineCreate } from "react-icons/md"
-import { useAuthContext } from "../../../../hooks/useAuthContext"
+import { bioSuggestions } from "../../../../helpers/bioSuggestions"
 import { useState } from "react"
-const PersonalInformationSection = ({ profile, startEditing }) => {
-  const { user } = useAuthContext();
+const PersonalInformationSection = ({ profile, startEditing, dashboardProfile }) => {
     const { width } = useWindowSize()
     const [passwordVisibility, setPasswordVisibility] = useState({
         currentPassword : false,
@@ -56,8 +55,7 @@ cursor  :"pointer"
 <h6>
 Username
 </h6></span>
-<span>
-Gideon Babalola</span>
+<span>{dashboardProfile.username}</span>
 </div>
 <div className="personal-small-details">
 <span>
@@ -66,7 +64,7 @@ Gideon Babalola</span>
   </h6>
 </span>
 <span>
-  gideonbabalola69@gmail.com
+  {dashboardProfile.email}
 </span>
 </div>
 <div className="personal-small-details">
@@ -75,7 +73,7 @@ Gideon Babalola</span>
 Bio
 </h6>
 </span>
-<span>Software Engineer</span>
+<span>{dashboardProfile.bio}</span>
 
 </div>
 </section>
@@ -94,7 +92,7 @@ Password
   </h6>
 </span>
 <span>
-  +2348149787227
+  {dashboardProfile.mobile}
 </span>
 </div>
 </section>
@@ -111,7 +109,7 @@ Password
   }}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
 Current Number
-<input type="text" value={user.mobile}></input>
+<input type="text" value={dashboardProfile.mobile}></input>
 <FaPhoneAlt style={{position : "relative", left  :"275px", bottom : "30px"}} />
 <span style={{position : "fixed", left : "245px", bottom : "335px"}}>
 
@@ -191,7 +189,7 @@ onClick={()=> toggleVisibility("newPassword")}
   }}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
 Current Bio Information
-<input  value={user.bio}
+<input  value={dashboardProfile.bio}
   type="text"
   style={{fontSize: "1.2rem"}}
   ></input>
@@ -203,7 +201,7 @@ Current Bio Information
   </div>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
  New Bio Information
-  <input  value={"Technical Writer"}
+  <input  value={bioSuggestions()}
   type="text"
   style={{fontSize: "1.2rem"}}
   ></input>

@@ -52,24 +52,10 @@ Followers <MdGroup />
   {user.totalfollowing} <MdEmojiPeople />
 </span>
 </div>
-<div className="personal-small-details">
-<span>
-<h6>
-Likes <MdOutlineThumbUpAlt color="white"/>
-</h6>
-</span>
-<span>50 </span>
 
-</div>
 </section>
 <section style={{display : "flex", flexDirection : "column", gap : "20px"}}>
-<div className="personal-small-details">
-<span>
-<h6>
-Comments <MdOutlineInsertComment />
-</h6></span>
-<span>600 </span>
-</div>
+
 <div className="personal-small-details">
 <span>
 <h6>
@@ -109,16 +95,7 @@ Sticky Notes  <MdOutlineStickyNote2 />
   12 <MdAutoStories />
 </span>
 </div>
-<div className="personal-small-details">
-<span>
-<h6>
-  Bookmarks  <MdBookmarks />
-  </h6>
-</span>
-<span>
-  {user.totalBookmarks}
-</span>
-</div>
+
 </section>
 </section>
 </div>
