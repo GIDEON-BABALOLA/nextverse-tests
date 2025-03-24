@@ -52,46 +52,46 @@ cursor  :"pointer"
 <section style={{display : "flex", flexDirection : "column", gap : "20px"}}>
 <div className="personal-small-details">
 <span>
-<h6>
+<span className="stats-numbers">
 Username
-</h6></span>
-<span>{dashboardProfile.username}</span>
+</span></span>
+<span className="stats-small-numbers" >{dashboardProfile.username}</span>
 </div>
 <div className="personal-small-details">
 <span>
-<h6>
+<span className="stats-numbers">
   Email address
-  </h6>
+  </span>
 </span>
-<span>
+<span className="stats-small-numbers" >
   {dashboardProfile.email}
 </span>
 </div>
 <div className="personal-small-details">
 <span>
-<h6>
+<span className="stats-numbers">
 Bio
-</h6>
 </span>
-<span>{dashboardProfile.bio}</span>
+</span>
+<span className="stats-small-numbers">{dashboardProfile.bio}</span>
 
 </div>
 </section>
 <section style={{display : "flex", flexDirection : "column", gap : "20px"}}>
 <div className="personal-small-details">
 <span>
-<h6>
+<span className="stats-numbers">
 Password
-</h6></span>
+</span></span>
 <span itemType="password">••••••••••••</span>
 </div>
 <div className="personal-small-details">
 <span>
-<h6>
+<span className="stats-numbers">
   Phone Number
-  </h6>
+  </span>
 </span>
-<span>
+<span className="stats-small-numbers">
   {dashboardProfile.mobile}
 </span>
 </div>

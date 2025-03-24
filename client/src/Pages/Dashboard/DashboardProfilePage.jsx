@@ -4,6 +4,8 @@ import RotationLoader from "../../components/Loaders/RotationLoader"
 import ProfilePictureSection from "../../components/Dashboard/common/Profile/ProfilePictureSection";
 import PersonalInformationSection from "../../components/Dashboard/common/Profile/PersonalInformationSection";
 import PersonalStatisticsSession from "../../components/Dashboard/common/Profile/PersonalStatisticsSession";
+import { getAllStickyNotes } from "../../helpers/handleStickyNotes";
+import useIndexedDB from "../../hooks/useIndexedDB";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetAUser } from "../../hooks/useGetAUser";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -12,6 +14,7 @@ import "../../styles/components/Dashboard/dashboard-profile-page.css"
 import { useState, useEffect } from "react";
 import { FaSmileBeam } from "react-icons/fa";
 const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+   const db = useIndexedDB("stickyNotes")
   const { user } = useAuthContext()
   const [dashboardProfile, setDashboardProfile] = useState({
     username : "",
@@ -36,7 +39,22 @@ const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
     statistics : true
   })
   useEffect(() => {
-    console.log(user)
+    if(db){
+getAllStickyNotes(db, "stickyNotes", (savedNotes) => {
+  if(savedNotes.length == 0){
+setDashboardProfile((prev) => {
+  return {...prev, totalStickyNotes : 0}
+})
+  }
+  else{
+    setDashboardProfile((prev) => {
+      return {...prev, totalStickyNotes : savedNotes.length}
+      })
+  
+}})
+    
+    
+    }
 setDashboardProfile((prev) => {
   return {...prev,
  picture : user.picture,
@@ -45,10 +63,11 @@ setDashboardProfile((prev) => {
  bio : user.bio,
  mobile : user.mobile,
  totalFollowers: user.totalfollowers,
- totalFollowing : user.totalfollowing
+ totalFollowing : user.totalfollowing,
+ isVerified : user.verification
 }
 })
-  }, [user])
+  }, [user, db])
   const startEditing = (params) => {
 switch (params) {
   case "names":
@@ -90,7 +109,6 @@ setDashboardProfile={setDashboardProfile}
 />
 <PersonalStatisticsSession
 dashboardProfile={dashboardProfile}
-setDashboardProfile={setDashboardProfile}
 />
 
 

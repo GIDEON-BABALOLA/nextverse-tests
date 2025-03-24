@@ -6,6 +6,7 @@ const Story = require(path.join(__dirname, "..", "models", "storyModel.js"));
 const User = require(path.join(__dirname, "..", "models", "userModel.js"));
 const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"));
 const Developer = require(path.join(__dirname, "..", "models", "adminModel.js"));
+const { userAttributes, adminAttributes, developerAttributes, designerAttributes} = require(path.join(__dirname, "..", "data", "modelAttributes.js"))
 const Designer = require(path.join(__dirname, "..", "models", "adminModel.js"));
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const {  mockStories, mockPictures } = require(path.join(__dirname, "..", "data", "mockStories.js"))
@@ -83,59 +84,110 @@ res.status(500).json({"message" : 'Internal Server Error.'});
 }
 const fixDesignerModel = async (req, res) => {
   try {
-    const allDesigners = await Designer.find();
-    for (let designer of allDesigners) {
-      if (designer.verification) continue;
-      await Designer.findByIdAndUpdate(designer._id, { verification: false }, { new: true });
+    for(const key in req.body){
+      if (req.body.hasOwnProperty(key)) {
+        const isValidCategory = designerAttributes.includes(key)
+        if(!isValidCategory){
+           throw new designerError(`This attribute ${key} is not valid`, 400)
+            }
+        const value = req.body[key];
+        const allDesigners = await Designer.find();
+        for (let designer of allDesigners) {
+          if (designer[key]) continue;
+          await Designer.findByIdAndUpdate(designer._id, { [key]: value }, { new: true });
+        }
     }
-    res.status(200).json({ message: "Verificaion Status updated successfully for all users." });
+    }
+    res.status(200).json({ message: "Data Updated successfully for all designers."});
   } catch (error) {
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "fixDesignerModelError.txt", "designerError");
-    res.status(500).json({ message: "Internal Server Error." });
+    if(error instanceof designerError){
+      return res.status(error.statusCode).json({ message : error.message})
+  }else{
+    return res.status(500).json({ message: "Internal Server Error." });
+  }
   }
 };
 const fixDeveloperModel = async (req, res) => {
   try {
-    const allDevelopers = await Developer.find();
-    for (let developer of allDevelopers) {
-      if (developer.verification) continue;
-      await Developer.findByIdAndUpdate(developer._id, { verification: false }, { new: true });
+    for(const key in req.body){
+      if (req.body.hasOwnProperty(key)) {
+        const isValidCategory = developerAttributes.includes(key)
+        if(!isValidCategory){
+           throw new developerError(`This attribute ${key} is not valid`, 400)
+            }
+        const value = req.body[key];
+        const allDevelopers = await Developer.find();
+        for (let developer of allDevelopers) {
+          if (developer[key]) continue;
+          await Developer.findByIdAndUpdate(developer._id, { [key]: value }, { new: true });
+        }
     }
-    res.status(200).json({ message: "Verificaion Status updated successfully for all users." });
+    }
+    res.status(200).json({ message: "Data Updated successfully for all developers."});
   } catch (error) {
     console.log(error)
-    logEvents(`${error.name}: ${error.message}`, "fixUserModelError.txt", "developerError");
-    res.status(500).json({ message: "Internal Server Error." });
+    logEvents(`${error.name}: ${error.message}`, "fixDeveloperModelError.txt", "developerError");
+    if(error instanceof developerError){
+      return res.status(error.statusCode).json({ message : error.message})
+  }else{
+   return res.status(500).json({ message: "Internal Server Error." });
+  }
   }
 };
 const fixAdminModel = async (req, res) => {
   try {
-    const allAdmins = await Admin.find();
-    for (let admin of allAdmins) {
-      if (admin.verification) continue;
-      await User.findByIdAndUpdate(admin._id, { verification: false }, { new: true });
+    for(const key in req.body){
+      if (req.body.hasOwnProperty(key)) {
+        const isValidCategory = adminAttributes.includes(key)
+        if(!isValidCategory){
+           throw new adminError(`This attribute ${key} is not valid`, 400)
+            }
+        const value = req.body[key];
+        const allAdmins = await Admin.find();
+        for (let admin of allAdmins) {
+          if (admin[key]) continue;
+          await Admin.findByIdAndUpdate(admin._id, { [key]: value }, { new: true });
+        }
     }
-    res.status(200).json({ message: "Verificaion Status updated successfully for all users." });
+    }
+    res.status(200).json({ message: "Data Updated successfully for all admins."});
   } catch (error) {
     console.log(error)
-    logEvents(`${error.name}: ${error.message}`, "fixUserModelError.txt", "adminError");
-    res.status(500).json({ message: "Internal Server Error." });
+    logEvents(`${error.name}: ${error.message}`, "fixAdminModelError.txt", "adminError");
+    if(error instanceof adminError){
+      return res.status(error.statusCode).json({ message : error.message})
+  }else{
+    return res.status(500).json({ message: "Internal Server Error." });
+  }
   }
 };
 const fixUserModel = async (req, res) => {
-  console.log(Object.keys(req.body), Object.values(req.body))
   try {
-    const allUsers = await User.find();
-    for (let user of allUsers) {
-      if (user.verification) continue;
-      await User.findByIdAndUpdate(user._id, { verification: false }, { new: true });
+    for(const key in req.body){
+      if (req.body.hasOwnProperty(key)) {
+        const isValidCategory = userAttributes.includes(key)
+        if(!isValidCategory){
+           throw new userError(`This attribute ${key} is not valid`, 400)
+            }
+        const value = req.body[key];
+        const allUsers = await User.find();
+        for (let user of allUsers) {
+          if (user[key] == value) continue;
+          await User.findByIdAndUpdate(user._id, { [key]: value }, { new: true });
+        }
     }
-    res.status(200).json({ message: "Verificaion Status updated successfully for all users." });
+    }
+    res.status(200).json({ message: "Data Updated successfully for all users."});
   } catch (error) {
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "fixUserModelError.txt", "userError");
-    res.status(500).json({ message: "Internal Server Error." });
+    if(error instanceof userError){
+      return res.status(error.statusCode).json({ message : error.message})
+  }else{
+    return res.status(500).json({ message: "Internal Server Error." });
+  }
   }
 };
 

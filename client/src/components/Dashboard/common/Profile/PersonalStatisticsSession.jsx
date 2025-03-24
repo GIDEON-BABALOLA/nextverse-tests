@@ -1,8 +1,6 @@
 
-import { MdOutlineThumbUpAlt,
-    MdOutlineInsertComment,
+import {
     MdAutoStories,
-    MdBookmarks,
     MdNotes,
     MdOutlineStickyNote2,
     MdEmojiPeople,
@@ -11,10 +9,7 @@ import { MdOutlineThumbUpAlt,
     MdOutlinePersonPin,
     MdOutlineCreate
    } from "react-icons/md";
-   import { useAuthContext } from "../../../../hooks/useAuthContext";
-const PersonalStatisticsSession = () => {
-  const { user } = useAuthContext();
-  console.log(user)
+const PersonalStatisticsSession = ({ dashboardProfile }) => {
   return (
   <>
     <div className="dashboard-profile-page-personal-information"
@@ -34,69 +29,47 @@ cursor : "pointer"
   </div>
 </section>
 <section className="dashboard-profile-page-personal-statistics-information">
-<section style={{display : "flex", flexDirection : "column", gap : "20px"}}>
+<section style={{display : "flex", flexDirection : "column", gap : "40px"}}>
 <div className="personal-small-details">
 <span>
-<h6>
+<h4>
 Followers <MdGroup />
-</h6></span>
-<span>{user.totalfollowers}</span>
+</h4></span>
+<span className="stats-numbers">{dashboardProfile.totalFollowers}</span>
 </div>
 <div className="personal-small-details">
 <span>
-<h6>
+<h4>
   Following <MdOutlinePersonPin /> 
-  </h6>
+  </h4>
 </span>
-<span>
-  {user.totalfollowing} <MdEmojiPeople />
+<span className="stats-numbers">
+  {dashboardProfile.totalFollowing} <MdEmojiPeople />
 </span>
 </div>
 
 </section>
-<section style={{display : "flex", flexDirection : "column", gap : "20px"}}>
+<section style={{display : "flex", flexDirection : "column", gap : "40px"}}>
 
 <div className="personal-small-details">
 <span>
-<h6>
+<h4>
 Verification Status <MdVerifiedUser />
-  </h6>
+  </h4>
 </span>
-<span>
-  Not Verified
+<span className="stats-numbers">
+  {dashboardProfile.isVerified ? "Verified" : "Not Verified"}
 </span>
 </div>
 <div className="personal-small-details">
 <span>
-<h6>
-  Notes <MdNotes />
-  </h6>
-</span>
-<span>
-  50 
-</span>
-</div>
-</section>
-<section style={{display : "flex", flexDirection : "column", gap : "20px"}}>
-<div className="personal-small-details">
-<span>
-<h6>
+<h4>
 Sticky Notes  <MdOutlineStickyNote2 />
-</h6></span>
-<span>600</span>
+</h4></span>
+<span className="stats-numbers">{dashboardProfile.totalStickyNotes}</span>
 </div>
-<div className="personal-small-details">
-<span>
-<h6>
-  Stories
-  </h6>
-</span>
-<span>
-  12 <MdAutoStories />
-</span>
-</div>
-
 </section>
+
 </section>
 </div>
   </>

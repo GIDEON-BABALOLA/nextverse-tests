@@ -134,6 +134,7 @@
 }
 .dashboard-profile-page{
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 .our-profile-content{
     display: flex;
@@ -149,9 +150,11 @@
 .dashboard-profile-page-personal-statistics-information{
     display: flex;
     flex-direction: row;
+    padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
     justify-content: space-between;
+
 }
 .personal-small-details{
     display: flex;
@@ -159,6 +162,13 @@
     color: #9CA3AF;
     text-decoration: solid;
     gap: 1px;
+}
+.stats-numbers{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.stats-small-numbers{
+    font-size: 1.2rem;
 }
 .dash-profile-photo-work{
     width: 15%;
