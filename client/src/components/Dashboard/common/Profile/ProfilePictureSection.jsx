@@ -280,6 +280,13 @@ cursor : "pointer"
 <input type="text"
 className="username-input-field"
 onKeyUp = { () => { checkIfUsernameExists() }}
+onPaste={(e) => {e.preventDefault();showToast("Error", "Please type username manually.", false)}}
+onKeyDown={(e) => {
+  if(e.target.value.length >= 70 && e.key !== "Backspace"){
+    showToast("Error", "Username cannot exceed 70 characters", false)
+    e.preventDefault()
+  }
+}}
 onChange={(e) => {
   setUpdateData((prev) => {
     return {...prev, username : e.target.value}
