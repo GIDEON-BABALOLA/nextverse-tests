@@ -342,10 +342,10 @@ if(!user){
 console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -369,9 +369,9 @@ res.status(200).json(newUser);
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAUserError.txt", "userError")
     if(error instanceof userError){
-        return res.status(error.statusCode).json({ error : error.message})
+        return res.status(error.statusCode).json({ message : error.message})
     }else{
-        return res.status(500).json({error : "Internal Server Error"})
+        return res.status(500).json({message : "Internal Server Error"})
     }
 }
 }
@@ -433,10 +433,10 @@ const logoutUser = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "logoutUserError.txt", "userError")
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -467,10 +467,10 @@ const userRefreshToken = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "userRefreshTokenError.txt", "userError")
         if (error instanceof userError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
@@ -506,46 +506,76 @@ const uploadUserPicture = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "uploadUserProfileError.txt", "userError")
         if (error instanceof cloudinaryError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }else if(error instanceof userError){
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
         }
 }
 //This Is To update A User
 const updateUser = async (req, res) => {
-    console.log(req.body)
+    console.log(req.body, "Gidiboy")
+    const attributesThatCanBeUpdated = [
+        "username", "mobile", "password", "bio", "picture",   
+       ]
 try{
     if(req.user == null){
         throw new userError("Your Account Does Not Exist", 404)
     }
-    if(!Object.keys(req.body).length === 0 || !Object.values(req.body).length === 0){
+    if(Object.keys(req.body).length === 0){
         throw new userError("Enter The Details You Want To Update", 400)
     }
     const { _id } = req.user;
     validateMongoDbId(_id)
 const id = _id.toString();
-    const updatedUser =  await User.findByIdAndUpdate(id, {
-username:req.body.username,
-mobile : req.body.mobile,
-password : req.body.password,
-bio : req.body.bio
-    },
+for(const key in req.body){
+    const value = req.body[key]
+    if (req.body.hasOwnProperty(key)) {
+        const isValidCategory = attributesThatCanBeUpdated.includes(key)
+        if(!isValidCategory){
+           throw new userError(`You cannot update your ${key}`, 400)
+        }
+        if (!value) {
+            throw new userError(`Pls Enter The Values You Want To Update`, 400)
+        }
+        if(key == "password"){
+            await validatePassword(value)
+            const hashedPassword = await bcrypt.hash(value, 10);
+            req.body.password =  hashedPassword
+        }
+        if(key == "username"){
+            const existingUser = await User.findOne({ username: value });
+            if (existingUser && existingUser._id.toString() !== id) {
+                throw new userError("Username is already taken", 400);
+            }
+  
+        }
+        if(key == "mobile"){
+            const existingUser = await User.findOne({ mobile: value });
+            if (existingUser && existingUser._id.toString() !== id) {
+                throw new userError("Phone number is already in use", 400);
+            }
+        }
+    }
+}
+    const updatedUser =  await User.findByIdAndUpdate(id, req.body,
     {
         new : true
-    })
-    const newUser = _.omit(updatedUser.toObject(), "refreshToken")
-    res.status(201).json(newUser)
+    }).select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress -password -followers -following -bookmarks")
+    res.status(200).json({message : "User Successfully Updated", user : updatedUser})
 }catch(error){
     logEvents(`${error.name}: ${error.stack}`, "UpdateAUserError.txt", "user")
     if (error instanceof userError) {
-        return res.status(error.statusCode).json({ error : error.message})
+        return res.status(error.statusCode).json({ message : error.message})
+    }
+    else if(error instanceof validatorError){
+        return res.status(error.statusCode).json({error : error.message})
     }
     else{
-        return res.status(500).json({error : "Internal Server Error"})
+        return res.status(500).json({message : "Internal Server Error"})
         }
 }
 }
@@ -566,9 +596,9 @@ const deleteUser = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "deleteUserError.txt", "userError")
          if(error instanceof userError){
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
         }
     }
 }
@@ -594,9 +624,9 @@ const followUser = async (req, res) => {
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "followUserError.txt", "userError")
         if(error instanceof userError){
-           return res.status(error.statusCode).json({ error : error.message})
+           return res.status(error.statusCode).json({ message : error.message})
        }else{
-           return res.status(500).json({error : "Internal Server Error"})
+           return res.status(500).json({message : "Internal Server Error"})
        }   
     }
 }
@@ -623,9 +653,9 @@ const unfollowUser = async(req, res) => {
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "unfollowUserError.txt", "userError")
         if(error instanceof userError){
-           return res.status(error.statusCode).json({ error : error.message})
+           return res.status(error.statusCode).json({ message : error.message})
        }else{
-           return res.status(500).json({error : "Internal Server Error"})
+           return res.status(500).json({message : "Internal Server Error"})
        }  
     }
 }
@@ -660,9 +690,9 @@ const getAllUsers = async (req, res) => {
     catch(error){
         logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
         if(error instanceof userError){
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
         }
     }
     }

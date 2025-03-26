@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react"
-import useImageLoad from "../../hooks/useImageLoaded"
-const CustomAvatar = ({ image, ...props}) => {
+import useImageLoad from "../../../../hooks/useImageLoaded"
+import "../../../../styles/components/Dashboard/dashboard-profile-page.css"
+const ProfileAvatar = ({ image, ...props}) => {
   console.log(image)
   const [loading, setLoading] = useState(true)
   const { loaded, error } = useImageLoad(image);
@@ -17,7 +18,7 @@ const CustomAvatar = ({ image, ...props}) => {
   return (
     <>{ loading ? 
       <div
-      {...props} className="feed-loaders feed-loader-avatar" style={{width : "80%", height :"80%"}}></div>
+      {...props} className="dashboard-profile-loaders dashboard-profile-loaders-avatar" style={{width : "80%", height :"80%", cursor : "pointer"}}></div>
     :
     <img src={image} {...props}></img>
     }
@@ -25,4 +26,4 @@ const CustomAvatar = ({ image, ...props}) => {
   )
 }
 
-export default CustomAvatar
+export default ProfileAvatar

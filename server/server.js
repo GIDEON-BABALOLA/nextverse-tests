@@ -15,6 +15,7 @@ const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.
 const designerRouter = require(path.join(__dirname,  "routes", "designerRoute.js"))
 const fixRouter = require(path.join(__dirname,  "routes", "fixRoute.js"))
 const newsletterRouter = require(path.join(__dirname,  "routes", "newsletterRoute.js"))
+const generalRouter = require(path.join(__dirname,  "routes", "generalRoute.js"))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors(corsOptions))
@@ -47,8 +48,8 @@ app.use("/api/designer", designerRouter);
 app.use("/api/story", storyRouter); 
 app.use("/api/note", noteRouter); 
 app.use("/api/newsletter", newsletterRouter); 
+app.use("/api/general", generalRouter)
 app.use("/api/fix", fixRouter); 
-console.log(process.env.LITENOTE_MAILTRAP_EMAIL_TOKEN)
 mongoose.connect(process.env.LITENOTE_MONGODB_URL)
 .then(() => {
       app.listen(PORT, () => {

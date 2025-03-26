@@ -1,0 +1,57 @@
+20250326	18:00:46	6d3b3e27-af7f-445e-9cdf-929cf73975db	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	18:01:19	46a342f1-7bde-4d06-9ebc-58c552f5f192	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	19:52:34	21d02b2b-66bb-4a30-be58-36e220f803ee	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	19:52:40	3eae8cad-ef2d-45c3-a962-02c2918bd8c8	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	19:53:11	41ae0153-4f9c-404e-92dc-6cf602eb060f	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	19:53:42	dd33b839-2c16-4897-a110-676c87862956	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	19:54:02	ebc60cfc-bcbb-4681-bf8f-1a94751757e3	userError: userError: Enter The Details You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:529:15)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	19:56:06	dfbf42ef-a9e9-4e25-a4b9-ba5066bf9f4e	userError: userError: Pls Enter The Values You Want To Update
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:542:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	20:11:04	3533894e-6e99-422f-85fa-9c5b8a6ceb58	ReferenceError: ReferenceError: Cow is not defined
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:525:17)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250326	20:11:34	bdf1c53c-04b5-4392-a510-4d8839542e77	ReferenceError: ReferenceError: Cow is not defined
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:525:17)
+    at Layer.handle [as handle_request] (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

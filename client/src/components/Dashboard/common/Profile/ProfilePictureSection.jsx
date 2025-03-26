@@ -4,16 +4,175 @@ import useWindowSize from "../../../../hooks/useWindowSize"
 import { MdOutlineCreate } from "react-icons/md"
 import { useEffect, useState } from "react"
 import useImageLoad from "../../../../hooks/useImageLoaded"
-import { useAuthContext } from "../../../../hooks/useAuthContext"
-const ProfilePictureSection = ({ profile, startEditing, dashboardProfile }) => {
-    const { user } = useAuthContext();
-    useEffect(() => {
-      
-    })
+import { useUpdateAUser } from "../../../../hooks/useUpdateAUser"
+import { MdClose } from "react-icons/md"
+import SpecialModal from "../../../common/SpecialModal"
+import { useGetAllAvatars } from "../../../../hooks/useGetAllAvatars"
+import ErrorMessage from "../../../common/ErrorMessage"
+import { FaCheck } from "react-icons/fa"
+import ProfileAvatar from "./ProfileAvatar"
+import { useToastContext } from "../../../../hooks/useToastContext"
+import LoadingSpinner from "../../../Loaders/LoadingSpinner"
+import { usernameValidate } from "../../../../helpers/Validator"
+import { axiosConfig } from "../../../../api/axiosConfig"
+import { FaTimes } from "react-icons/fa"
+const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDashboardProfile }) => {
+  const {updateAUser, isLoading, error : updateError, data, statusCode } = useUpdateAUser()
+  const { showToast } = useToastContext()
+  const getAllAvatars = useGetAllAvatars();
+  const [isChecking, setIsChecking] = useState(false)
     const [avatarLoading, setAvatarLoading] = useState(true)
+    const [avatars, setAvatars] = useState([])
+    const [usernameError, setUsernameError] = useState(false)
+    const [updateData, setUpdateData] = useState({
+      username: "",
+      picture: ""
+    });
+      const checkIfUsernameExists = async () => {
+        setIsChecking(true)
+        try{
+    const response = await axiosConfig.post("/user/duplicate-username", {
+      username  : updateData.username
+    })
+    if(response){
+      setIsChecking(false)
+      setUsernameError(false)
+    }
+        }catch(error){
+          setUsernameError(true)
+          setIsChecking(false)
+        }
+      }
+    const updateUserData = () => {
+      const correctUsername = usernameValidate(updateData.username)
+      if(!updateData.username){
+        showToast("Error", "Pls Enter Your New Username", false)
+        return;
+      }
+      if(usernameError){
+        showToast("Error", "This username is taken already", false)
+        return;
+      }
+      if(!correctUsername){
+        showToast("Error", "Username Can Only Contain Alphanumerics, Hyphens And Underscores", false)
+        return;
+          }
+      
+      updateAUser(updateData)
+    }
     let profileImage = dashboardProfile.picture
+    const [openModal, setOpenModal] = useState(false)
     const { width } = useWindowSize() 
     const { loaded, error} = useImageLoad(profileImage) //This is hard coded
+    useEffect(() => {
+      if(openModal){
+        getAllAvatars.getAllAvatars(50);
+      }
+          }, [openModal])
+          useEffect(() => {
+console.log(dashboardProfile)
+          }, [dashboardProfile])
+      useEffect(() => {
+if(Object.keys(data).length !== 0 && statusCode ==  200){
+  showToast("Success", data.message, true)
+  setDashboardProfile((prev) => {
+    const allowedFields = Object.keys(prev); // Get the allowed keys from initial state
+
+    const filteredUserData = Object.keys(data.user).reduce((acc, key) => {
+      if (allowedFields.includes(key)) {
+        acc[key] = data.user[key]; // Only include allowed fields
+      }
+      return acc;
+    }, {});
+  console.log(filteredUserData)
+    return { ...prev, ...filteredUserData }; // Update state with filtered data
+  });
+  startEditing("names")
+}
+setUpdateData({username : "", picture : ""})
+if(updateError){
+  showToast("Error", updateError.message, false)
+}
+      }, [data, updateError, statusCode])
+          useEffect(() => {
+console.log(getAllAvatars.error)
+          }, [getAllAvatars])
+    useEffect(() => {
+      if(getAllAvatars.data.length > 0){
+        console.log(getAllAvatars.data)
+        setAvatars(getAllAvatars.data)
+      }
+    }, [getAllAvatars.data])
+    const resendRequest = () => {
+      getAllAvatars.getAllAvatars(50);
+    }
+    const previewUserHtml = () => {
+      return <>
+      <div className="avatars-closer">
+      <MdClose size={30} onClick={() => {setOpenModal(false)}}/>
+      </div>
+      <> { !getAllAvatars.error &&
+      <>
+      {getAllAvatars.isLoading ? 
+      <div className="avatars-spinners">
+        <LoadingSpinner />
+      </div>
+      : 
+            <div 
+            className="flex-avatars"
+            >
+      {
+        avatars.map((avatar, index) => (
+          <ProfileAvatar 
+          onClick={() => { setUpdateData((prev) => {
+            console.log(avatar.url)
+            return {...prev, picture : avatar.url}
+          });
+            setDashboardProfile((prev) => {
+              return {...prev, picture : avatar.url}
+            })
+          }}
+          key={index} image={avatar.url} width="20px" className={`profile-man ${updateData.picture == avatar.url ? "selected" : ""}`}/>
+        ))
+      }
+      </div>
+    }
+    </>
+  }
+      </>
+              {getAllAvatars.error && <>
+
+
+{ getAllAvatars.error?.code == "ERR_NETWORK" ? 
+  <ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+getAllAvatars.error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content,Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</>
+}
+      </>
+
+    }
 useEffect(() => {
 if(loaded){
     setAvatarLoading(false)
@@ -23,17 +182,19 @@ setAvatarLoading(true)
 }
 }, [error, loaded])
 const saveChanges = () => {
-  startEditing("names")
+  updateUserData()
 }
 const uploadNewPicture = () => {
 
 }
 const choosePicture = () => {
-
+setOpenModal(true)
 }
 
   return (
     <>
+       <SpecialModal openModal={openModal} setOpenModal={setOpenModal}
+       content={previewUserHtml()} height={400} width={800}/>
            { profile["names"] ?<div className="dashboard-profile-page-photo-section"
    >
    <div style={{display : "flex", 
@@ -112,13 +273,31 @@ cursor : "pointer"
   </div>
 </section> 
 <section className="editme-profile-page-photo-section-second">
-<h6>Full Name</h6>
   <div style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between"}}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
-First name
-<input type="text"></input>
+<span style={{fontSize : "1.2rem"}}>Username</span>
+<div className="profile-username-container">
+<input type="text"
+className="username-input-field"
+onKeyUp = { () => { checkIfUsernameExists() }}
+onChange={(e) => {
+  setUpdateData((prev) => {
+    return {...prev, username : e.target.value}
+  })
+  
+}}></input>
+{
+  isChecking ? 
+<LoadingSpinner className="username-loader"/>
+:
+usernameError ?
+updateData.username && <span className="username-checkmark" ><FaTimes size={10} color="#ff5e62" /></span>
+:
+updateData.username &&<span className="username-checkmark" ><FaCheck size={10} color="green" /></span>
+}
+</div>
   </div>
-  <span className="choose-new-picture-button" onClick={() => choosePicture()}>
+  <span className="choose-new-picture-button special-modal-client" onClick={() => choosePicture()}>
       Choose New Picture
     </span>
 
@@ -126,7 +305,13 @@ First name
   </div>
   <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
   <span className="save-changes" onClick={() => saveChanges()}>
-    Save Changes
+    {
+      isLoading ? 
+      <span style={{padding : "30px 30px"}}>
+      <LoadingSpinner/>
+      </span>
+       : "Save Changes"
+    }
     </span>
   </div>
 </section>

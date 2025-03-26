@@ -98,6 +98,24 @@
 	cursor: text;
 	overflow: clip;
 	user-select: none;
+
+}
+.profile-username-container{
+    position: relative;
+    width: 100%; /* Make it responsive */
+    max-width: 300px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+}
+.username-loader{
+    position: absolute;
+    right:-140px; /* Aligns perfectly inside the input */
+
+   
+}
+.username-checkmark{
+    position: absolute;
+    left: 90%
 }
 .dashboard-profile-page-personal-information{
     border : 1.4px solid #9CA3AF;
@@ -174,9 +192,67 @@
     width: 15%;
     border-radius : 50%
 }
-@media screen and (max-width:768px) {
+.flex-avatars {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Ensures avatars are exactly 20px wide */
+    gap:  50px 5px; /* Reduce spacing */
+    /* padding: 10px; */
+    justify-content: center;
+    align-items: center;
+}
+.profile-man{
+    width: 60px;
+    cursor: pointer;
+   border: 5px solid #e5e5e5;
+    border-radius: 50%; 
+}
+.profile-man.selected{
+    border: 5px solid #ADD8E6;
+}
+.avatars-closer{
+    cursor: pointer;
+  
+}
+.avatars-spinners{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  padding: 100px 0px;
+  
+}
+.dashboard-profile-loaders{
+    object-fit: cover;
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+   }
+   .dashboard-profile-loaders-avatar{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+   }
+   .username-loader{
+    position: absolute;
+    left: 40%;
+    /* transform: translateX(-90%); */
+   }
+@media screen and (max-width: 768px) {
     .dashboard-profile-page{
         margin-top: 70px;
+    }
+    .flex-avatars{
+        grid-template-columns: repeat(4, 70px);
+        margin: 0;
+    }
+
+    .choose-new-picture-button{
+        margin-top: 20px;
+        width: 300px;
+        cursor: pointer;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 1.3rem;
     }
     .dash-profile-photo-work{
         width: 20%;

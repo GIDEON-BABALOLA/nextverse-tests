@@ -5,6 +5,7 @@ import ProfilePictureSection from "../../components/Dashboard/common/Profile/Pro
 import PersonalInformationSection from "../../components/Dashboard/common/Profile/PersonalInformationSection";
 import PersonalStatisticsSession from "../../components/Dashboard/common/Profile/PersonalStatisticsSession";
 import { getAllStickyNotes } from "../../helpers/handleStickyNotes";
+import Toast from "../../components/common/Toast";
 import useIndexedDB from "../../hooks/useIndexedDB";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetAUser } from "../../hooks/useGetAUser";
@@ -92,7 +93,7 @@ switch (params) {
       const [contextMenu, setContextMenu] = useState()
   return (
     <>
-
+<Toast />
     <main  className="dashboard-profile-page">
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
    <span style={{textDecoration:"bolder"}}>
