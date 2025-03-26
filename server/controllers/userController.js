@@ -476,6 +476,7 @@ const userRefreshToken = async (req, res) => {
 }
 //This is to upload a user picture
 const uploadUserPicture = async (req, res) => {
+    console.log(req.file)
     try{
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
@@ -504,6 +505,7 @@ const uploadUserPicture = async (req, res) => {
     const newUser = _.omit(user.toObject(), "refreshToken")
     res.status(200).json(newUser)
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "uploadUserProfileError.txt", "userError")
         if (error instanceof cloudinaryError) {
             return res.status(error.statusCode).json({ message : error.message})

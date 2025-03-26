@@ -7,10 +7,11 @@ export const useUploadProfileImage = () => {
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
     const uploadProfileImage = async (data) => {
+        console.log(data)
         setIsLoading(true) 
         try{
             setError(null)
-const response = await axiosConfig.put(`/user/upload-user-picture`,
+const response = await axiosConfig.post(`/user/upload-user-picture`,
 data,
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds

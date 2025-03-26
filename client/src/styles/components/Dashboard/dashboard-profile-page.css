@@ -190,7 +190,13 @@
 }
 .dash-profile-photo-work{
     width: 15%;
-    border-radius : 50%
+    border-radius : 50%;
+   height: 10%;
+   object-fit: cover;
+   width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
+    object-fit: cover; 
 }
 .flex-avatars {
     display: grid;

@@ -30,7 +30,8 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
     const [openModal, setOpenModal] = useState(false)
     const [attachmentModal, setAttachmentModal ] = useState(false)
     const [usernameError, setUsernameError] = useState(false)
-      const [attachmentLine, setAttachmentLine] = useState(0)
+    const [attachmentLine, setAttachmentLine] = useState(0)
+    const uploadProfileImage = useUploadProfileImage();
     const [updateData, setUpdateData] = useState({
       username: "",
       picture: ""
@@ -113,13 +114,24 @@ console.log(getAllAvatars.error)
       getAllAvatars.getAllAvatars(50);
     }
     const onUpload = (e) => {
+      const formData = new FormData()
       const file = e.target.files[0];
       const maxSize = 2 * 1024 * 1024
-      if(file.size > maxSize){
-        showToast(Error, "Image Size Must Be Less Than 2MB", false)
+      console.log(file)
+      const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
+      if(!validTypes.includes(file.type)){
+        e.target.value = ""
+        showToast("Error", "Please Choose An Image File", false)
         return;
       }
-      console.log(e.target.files[0])
+      if(file.size > maxSize){
+        e.target.value = ""
+        showToast("Error", "Image Size Must Be Less Than 2MB", false)
+        return;
+      }
+      console.log(file)
+      formData.append("profile-picture", file)
+      uploadProfileImage.uploadProfileImage(formData)
     }
     const previewAvatarHtml = () => {
       return <>

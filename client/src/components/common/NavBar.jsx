@@ -294,7 +294,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
   {currentUrl !== "" && <ModeToggler />}
 </div>
 
-    <Avatar className="profile-photo-home"
+    <Avatar className="profile-photo-homer"
 onClick={showLoggedInUserOptions}
  image={user["picture"]}
  style={{width : width < 768 ? "7%": "3%"}}

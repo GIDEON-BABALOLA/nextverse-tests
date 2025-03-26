@@ -111,6 +111,13 @@ width: 6px;
 height: 100%;
 background:var(--color-primary);
 } 
+.navbar-context-profile-photo-home, .profile-photo-homer{
+ width: 100px; 
+ height: 40px;
+  border-radius: 50%; 
+  object-fit: cover; 
+ 
+}
 .litenote-nav-sidebar-aside  .navside .nav-sidebar-link.active svg {
 color: var(--color-primary);
 margin-left: calc(1rem - 3px);
