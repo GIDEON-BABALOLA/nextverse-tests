@@ -129,7 +129,8 @@ const previewAttachmentHtml = () => {
 <span style={{fontSize : "10px"}}>Powered By</span> <CloudinaryIcon size={55}/>
 </div>
 
-  </>)
+  </>
+  )
 }
 const attachmentFunction = () => {
   setOpenModal(true)

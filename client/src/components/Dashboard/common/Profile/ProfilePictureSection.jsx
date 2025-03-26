@@ -14,8 +14,12 @@ import ProfileAvatar from "./ProfileAvatar"
 import { useToastContext } from "../../../../hooks/useToastContext"
 import LoadingSpinner from "../../../Loaders/LoadingSpinner"
 import { usernameValidate } from "../../../../helpers/Validator"
+import { MdCloudUpload } from "react-icons/md"
+import { FaGoogleDrive } from "react-icons/fa"
 import { axiosConfig } from "../../../../api/axiosConfig"
 import { FaTimes } from "react-icons/fa"
+import { useUploadProfileImage } from "../../../../hooks/useUploadProfileImage"
+import CloudinaryIcon from "../../../../styles/components/common/Icons/CloudinaryIcon"
 const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDashboardProfile }) => {
   const {updateAUser, isLoading, error : updateError, data, statusCode } = useUpdateAUser()
   const { showToast } = useToastContext()
@@ -23,7 +27,10 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
   const [isChecking, setIsChecking] = useState(false)
     const [avatarLoading, setAvatarLoading] = useState(true)
     const [avatars, setAvatars] = useState([])
+    const [openModal, setOpenModal] = useState(false)
+    const [attachmentModal, setAttachmentModal ] = useState(false)
     const [usernameError, setUsernameError] = useState(false)
+      const [attachmentLine, setAttachmentLine] = useState(0)
     const [updateData, setUpdateData] = useState({
       username: "",
       picture: ""
@@ -61,7 +68,6 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
       updateAUser(updateData)
     }
     let profileImage = dashboardProfile.picture
-    const [openModal, setOpenModal] = useState(false)
     const { width } = useWindowSize() 
     const { loaded, error} = useImageLoad(profileImage) //This is hard coded
     useEffect(() => {
@@ -106,7 +112,16 @@ console.log(getAllAvatars.error)
     const resendRequest = () => {
       getAllAvatars.getAllAvatars(50);
     }
-    const previewUserHtml = () => {
+    const onUpload = (e) => {
+      const file = e.target.files[0];
+      const maxSize = 2 * 1024 * 1024
+      if(file.size > maxSize){
+        showToast(Error, "Image Size Must Be Less Than 2MB", false)
+        return;
+      }
+      console.log(e.target.files[0])
+    }
+    const previewAvatarHtml = () => {
       return <>
       <div className="avatars-closer">
       <MdClose size={30} onClick={() => {setOpenModal(false)}}/>
@@ -173,6 +188,58 @@ fireClick = {resendRequest}
       </>
 
     }
+    const previewAttachmentHtml = () => {
+      const slideLine =(e, index) => {
+        setAttachmentLine(e.target.offsetLeft - 20)
+        const allAttachments = document.querySelectorAll(".attach-picture-main")
+        allAttachments.forEach((content) => content.classList.remove("active"))
+        allAttachments[index].classList.add("active")
+        }
+  return <>
+<section className="attach-picture-options">
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257539/Assets/images/hdd_fpfs8i.svg"} width="15%"/>
+  <span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span>
+  </div>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257535/Assets/images/google-drive_o6oi9s.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257531/Assets/images/camera_z43upm.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
+  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257533/Assets/images/dropbox_v5sl8k.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>
+  <div
+  onClick={slideLine}
+   className="slideline" style={{left : attachmentLine + "px"}}></div>
+  {/* <div>Picture To Text</div> */}
+</section>
+<section className="attach-picture-main active" >
+<span><MdCloudUpload size={80} /></span>
+<span><b>Upload Image</b></span>
+<span>Image Size Must Be Less Than <b>2MB</b></span>
+</section>
+<section className="attach-picture-main">
+  Upload Pictures from your google drive
+  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to Google Drive</button>
+</section>
+<section className="attach-picture-main">
+  snap a picture
+</section>
+<section   className="attach-picture-main">
+  Upload Pictures from your dropbox
+  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to DropBox</button>
+</section>
+<input onChange={onUpload} type="file" id="file-input"
+        style={{display: "none", cursor : "pointer"}}
+        accept="image/*"
+        ></input>
+<button className="attach-picture-button special-modal-client" onClick={() => {
+  document.getElementById("file-input").click()
+  setAttachmentModal(true)
+
+  }}>Select Image</button>
+<div style={{display : "flex", flexDirection :"row", alignItems : "center", justifyContent : "center"}}>
+<span style={{fontSize : "10px"}}>Powered By</span> <CloudinaryIcon size={55}/>
+</div>
+
+  </>
+    }
+    
 useEffect(() => {
 if(loaded){
     setAvatarLoading(false)
@@ -185,7 +252,7 @@ const saveChanges = () => {
   updateUserData()
 }
 const uploadNewPicture = () => {
-
+setAttachmentModal(true)
 }
 const choosePicture = () => {
 setOpenModal(true)
@@ -193,8 +260,15 @@ setOpenModal(true)
 
   return (
     <>
+    <SpecialModal 
+       openModal={attachmentModal}
+       setOpenModal={setAttachmentModal}
+       content={previewAttachmentHtml()}
+       width={500}
+       height={400}
+       />
        <SpecialModal openModal={openModal} setOpenModal={setOpenModal}
-       content={previewUserHtml()} height={400} width={800}/>
+       content={previewAvatarHtml()} height={400} width={800} dismiss={false}/>
            { profile["names"] ?<div className="dashboard-profile-page-photo-section"
    >
    <div style={{display : "flex", 
@@ -264,7 +338,7 @@ padding : "5px 15px",
 borderRadius : "5px",
 cursor : "pointer"
 }}>
-    <span className="our-buttons upload" onClick={() => {uploadNewPicture()}}>
+    <span className="our-buttons upload special-modal-client" onClick={() => {uploadNewPicture()}}>
       Upload New Picture
     </span>
     <span className="our-buttons delete">

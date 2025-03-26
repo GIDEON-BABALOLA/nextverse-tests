@@ -24,3 +24,9 @@
 //   }
 // };
 // fetchImagesFromFolder("Avatars")
+//name attribute is important
+const form = document.querySelector("form")
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+})
+const formData = new formData();
