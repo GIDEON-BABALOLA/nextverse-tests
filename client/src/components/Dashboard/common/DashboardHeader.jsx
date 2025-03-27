@@ -106,7 +106,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
             <div>
              <CustomAvatar
          image={user["picture"]}
-         className="sideman-man "
+         className="sideman-new-man "
          alt="Dashboard Profile Picture"
          style={{cursor : "pointer"}}
          onClick={showLoggedUserOptions}

@@ -200,6 +200,18 @@ fireClick = {resendRequest}
       </>
 
     }
+    useEffect(() => {
+if(Object.keys(uploadProfileImage.data).length !== 0 && uploadProfileImage.statusCode == 200){
+  showToast("Success", uploadProfileImage.data.message, true)
+  setDashboardProfile((prev) => {
+    return {...prev, picture : uploadProfileImage.data.picture}
+  })
+  setAttachmentModal(false)
+}
+if(uploadProfileImage.error){
+  showToast("Error", uploadProfileImage.error.message, false)
+}
+    }, [uploadProfileImage.data, uploadProfileImage.error, uploadProfileImage.statusCode])
     const previewAttachmentHtml = () => {
       const slideLine =(e, index) => {
         setAttachmentLine(e.target.offsetLeft - 20)
@@ -244,7 +256,9 @@ fireClick = {resendRequest}
   document.getElementById("file-input").click()
   setAttachmentModal(true)
 
-  }}>Select Image</button>
+  }}>
+    { uploadProfileImage.isLoading ? <LoadingSpinner /> : "Select Image"}
+  </button>
 <div style={{display : "flex", flexDirection :"row", alignItems : "center", justifyContent : "center"}}>
 <span style={{fontSize : "10px"}}>Powered By</span> <CloudinaryIcon size={55}/>
 </div>

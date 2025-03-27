@@ -49,6 +49,12 @@
     align-items: center;
     justify-content: center;
     }
+    .sideman-new-man{
+      width: 40px; 
+      height: 40px;
+       border-radius: 50%; 
+       object-fit: cover; 
+    }
     .litenote-dashboard-right .litenote-dashboard-theme-toggler span.active{
    background: var(--color-primary);
    color: #fff;

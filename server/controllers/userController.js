@@ -476,8 +476,8 @@ const userRefreshToken = async (req, res) => {
 }
 //This is to upload a user picture
 const uploadUserPicture = async (req, res) => {
-    console.log(req.file)
     try{
+
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
         }
@@ -502,8 +502,7 @@ const uploadUserPicture = async (req, res) => {
     fs.unlinkSync(req.file.path) //delete the image from server
     user.picture = picture.url;
     await user.save()
-    const newUser = _.omit(user.toObject(), "refreshToken")
-    res.status(200).json(newUser)
+    res.status(200).json({message : "Picture Successfully Updated", picture : picture.url})
     }catch(error){
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "uploadUserProfileError.txt", "userError")
