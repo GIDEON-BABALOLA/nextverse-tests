@@ -44,11 +44,6 @@ const designerAttributes = [
   ...generalAttributes,
   "title",
   "socials"
-];
-
-
-console.log(developerAttributes);
-
-  
+];  
   module.exports = { userAttributes, adminAttributes, developerAttributes, designerAttributes}
   

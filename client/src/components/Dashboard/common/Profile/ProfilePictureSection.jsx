@@ -8,6 +8,7 @@ import { useUpdateAUser } from "../../../../hooks/useUpdateAUser"
 import { MdClose } from "react-icons/md"
 import SpecialModal from "../../../common/SpecialModal"
 import { useGetAllAvatars } from "../../../../hooks/useGetAllAvatars"
+import ImageUpload from "../../../common/ImageUpload"
 import ErrorMessage from "../../../common/ErrorMessage"
 import { FaCheck } from "react-icons/fa"
 import ProfileAvatar from "./ProfileAvatar"
@@ -47,7 +48,9 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
       setUsernameError(false)
     }
         }catch(error){
+          if(updateData.username !== dashboardProfile.username){
           setUsernameError(true)
+          }
           setIsChecking(false)
         }
       }
@@ -77,7 +80,12 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
       }
           }, [openModal])
           useEffect(() => {
-console.log(dashboardProfile)
+if(!Object.values(dashboardProfile).includes("")){
+  console.log(dashboardProfile.username)
+setUpdateData((prev) => {
+  return{...prev, username : dashboardProfile.username}
+})
+}
           }, [dashboardProfile])
       useEffect(() => {
 if(Object.keys(data).length !== 0 && statusCode ==  200){
@@ -116,6 +124,7 @@ console.log(getAllAvatars.error)
     const onUpload = (e) => {
       const formData = new FormData()
       const file = e.target.files[0];
+      console.log(file)
       const maxSize = 2 * 1024 * 1024
       console.log(file)
       const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
@@ -202,10 +211,10 @@ fireClick = {resendRequest}
     }
     useEffect(() => {
 if(Object.keys(uploadProfileImage.data).length !== 0 && uploadProfileImage.statusCode == 200){
-  showToast("Success", uploadProfileImage.data.message, true)
   setDashboardProfile((prev) => {
     return {...prev, picture : uploadProfileImage.data.picture}
   })
+  showToast("Success", uploadProfileImage.data.message, true)
   setAttachmentModal(false)
 }
 if(uploadProfileImage.error){
@@ -234,7 +243,7 @@ if(uploadProfileImage.error){
 </section>
 <section className="attach-picture-main active" >
 <span><MdCloudUpload size={80} /></span>
-<span><b>Upload Image</b></span>
+<span><b>Drag and drop or Click here to upload image.</b></span>
 <span>Image Size Must Be Less Than <b>2MB</b></span>
 </section>
 <section className="attach-picture-main">
@@ -289,7 +298,7 @@ setOpenModal(true)
     <SpecialModal 
        openModal={attachmentModal}
        setOpenModal={setAttachmentModal}
-       content={previewAttachmentHtml()}
+       content={<ImageUpload isLoading={uploadProfileImage.isLoading} onUpload={onUpload} setOpenModal={setAttachmentModal}/>}
        width={500}
        height={400}
        />
@@ -379,6 +388,7 @@ cursor : "pointer"
 <div className="profile-username-container">
 <input type="text"
 className="username-input-field"
+value={updateData.username}
 onKeyUp = { () => { checkIfUsernameExists() }}
 onPaste={(e) => {e.preventDefault();showToast("Error", "Please type username manually.", false)}}
 onKeyDown={(e) => {

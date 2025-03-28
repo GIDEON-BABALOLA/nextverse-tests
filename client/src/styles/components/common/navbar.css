@@ -116,6 +116,7 @@ background:var(--color-primary);
  height: 40px;
   border-radius: 50%; 
   object-fit: cover; 
+  cursor: pointer;
  
 }
 .litenote-nav-sidebar-aside  .navside .nav-sidebar-link.active svg {
