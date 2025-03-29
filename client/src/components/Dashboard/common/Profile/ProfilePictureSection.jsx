@@ -329,6 +329,7 @@ cursor : "pointer"
 :
 
 <div className="dashboard-edit-profile-page-photo-section">
+
 <section className="editme-profile-page-photo-section">
 <div style={{display : "flex", 
    flexDirection : "row", alignItems :"center", gap : width  < 768 ?  "10px" : "20px",
@@ -347,6 +348,7 @@ className="dashboard-profile-page-edit-loading-avatar"
    }
     
   <span>
+  
   {width < 768 ? <h4><b>Profile Picture</b></h4> : <h3><b>Profile Picture</b></h3>}
   <h6 style={{color: "#9CA3AF"}}>PNG, SVG under 2MB</h6>
   <h6 style={{color : "#9CA3AF"}}>Technical Writer</h6>
@@ -405,7 +407,7 @@ updateData.username &&<span className="username-checkmark" ><FaCheck size={10} c
 
 
   </div>
-  <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
+  <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "space-between", marginTop : "10px"}}>
   <span className="save-changes" onClick={() => saveChanges()}>
     {
       isLoading ? 
@@ -414,6 +416,9 @@ updateData.username &&<span className="username-checkmark" ><FaCheck size={10} c
       </span>
        : "Save Changes"
     }
+    </span>
+    <span className="save-changes" onClick={() => { startEditing("names")}}>
+Cancel
     </span>
   </div>
 </section>

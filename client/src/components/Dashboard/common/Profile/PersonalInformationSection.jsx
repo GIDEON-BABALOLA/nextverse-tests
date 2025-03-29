@@ -4,8 +4,23 @@ import useWindowSize from "../../../../hooks/useWindowSize"
 import { FaPhoneAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 import { MdOutlineCreate } from "react-icons/md"
 import { bioSuggestions } from "../../../../helpers/bioSuggestions"
+import { useUpdateAUser } from "../../../../hooks/useUpdateAUser"
+import { useToastContext } from "../../../../hooks/useToastContext"
+import LoadingSpinner from "../../../Loaders/LoadingSpinner"
+import { useEffect } from "react"
+import { passwordValidate, mobileValidate } from "../../../../helpers/Validator"
 import { useState } from "react"
-const PersonalInformationSection = ({ profile, startEditing, dashboardProfile }) => {
+const PersonalInformationSection = ({ profile, startEditing, dashboardProfile, setDashboardProfile }) => {
+   const {updateAUser, isLoading, error : updateError, data, statusCode } = useUpdateAUser()
+   const { showToast } = useToastContext();
+   const initialUpdateData = 
+    {
+      mobile : "+234",
+      password : "",
+      bio : bioSuggestions()
+     }
+   
+   const [updateData, setUpdateData] = useState(initialUpdateData)
     const { width } = useWindowSize()
     const [passwordVisibility, setPasswordVisibility] = useState({
         currentPassword : false,
@@ -28,6 +43,50 @@ switch (params) {
         break;
 }
     }
+  const saveChanges =  () => {
+            if(!updateData.password){
+              showToast("Error", "Pls Enter Your New Password", false)
+              return;
+            }
+            const correctPassword = passwordValidate(updateData.password)
+            const correctMobile = mobileValidate(updateData.mobile)
+          if(!updateData.bio){
+            showToast("Error", "Pls Enter Your New Bio", false)
+            return;
+          }
+          if(!correctMobile){
+            showToast("Error", "Pls Enter Your Correct Nigerian Number")
+            return;
+          }
+          if(updateData.password && correctPassword !== true){
+            showToast("Error", correctPassword, false)
+            return;
+          }
+          updateAUser(updateData)
+  }
+        useEffect(() => {
+  if(Object.keys(data).length !== 0 && statusCode ==  200){
+    showToast("Success", data.message, true)
+    setDashboardProfile((prev) => {
+      const allowedFields = Object.keys(prev); // Get the allowed keys from initial state
+  
+      const filteredUserData = Object.keys(data.user).reduce((acc, key) => {
+        if (allowedFields.includes(key)) {
+          acc[key] = data.user[key]; // Only include allowed fields
+        }
+        return acc;
+      }, {});
+      return { ...prev, ...filteredUserData }; // Update state with filtered data
+
+    });
+    setUpdateData(initialUpdateData)
+    startEditing("personal")
+  }
+  if(updateError){
+    showToast("Error", updateError.message, false)
+  }
+        }, [data, updateError, statusCode])
+  
   return (
     <>
         { profile["personal"] ? <div className="dashboard-profile-page-personal-information"
@@ -118,7 +177,11 @@ Current Number
   </div>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
  New Number
-  <input type="text" value={"+234"}></input>
+  <input type="text" value={updateData.mobile} onChange={(e) => {
+    setUpdateData((prev) => {
+      return {...prev, mobile : e.target.value}
+    })
+  }}></input>
   <FaPhoneAlt style={{position : "relative", left  :"275px", bottom : "30px"}} />
   </div>
 
@@ -161,8 +224,14 @@ onClick={()=> toggleVisibility("currentPassword")}
   </div>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
  New Password
-  <input  value={"currentpassword"}
+  <input  
   type={passwordVisibility["newPassword"] ? "text" : "password"}
+  value={updateData.password}
+  onChange={(e) => {
+    setUpdateData((prev) => {
+      return {...prev, password : e.target.value}
+    })
+  }}
   style={{fontSize: "1.5rem", paddingLeft : "30px"}}
   ></input>
   <FaLock size={10} style={{position : "relative", left  :"10px", bottom : "30px"}} />
@@ -201,7 +270,12 @@ Current Bio Information
   </div>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>
  New Bio Information
-  <input  value={bioSuggestions()}
+  <input  value={updateData.bio}
+  onChange={(e) => {
+    setUpdateData((prev) => {
+      return {...prev, bio : e.target.value}
+    })
+  }}
   type="text"
   style={{fontSize: "1.2rem"}}
   ></input>
@@ -209,10 +283,20 @@ Current Bio Information
   </div>
 
   </div>
-  <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "flex-start"}}>
-  <span className="save-changes" onClick={() => { startEditing("personal")}}>
-    Save Changes
-    </span>
+  <div style={{display : "flex", flexDirection : "row", alignItems : "flex-end", justifyContent : "space-between", marginTop : "10px"}}>
+
+      <span className="save-changes" onClick={() => saveChanges()}>
+        {
+          isLoading ? 
+          <span style={{padding : "30px 30px"}}>
+          <LoadingSpinner/>
+          </span>
+           : "Save Changes"
+        }
+        </span>
+        <span className="save-changes" onClick={() => startEditing("personal")}>
+       Cancel
+        </span>
   </div>
 </section>
 </div>

@@ -65,7 +65,7 @@ setDashboardProfile((prev) => {
  mobile : user.mobile,
  totalFollowers: user.totalfollowers,
  totalFollowing : user.totalfollowing,
- isVerified : user.verification
+ isVerified : user.verification,
 }
 })
   }, [user, db])

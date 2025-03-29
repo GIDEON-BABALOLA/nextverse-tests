@@ -92,7 +92,7 @@ const ImageUpload = ({ onUpload, isLoading, setOpenModal, dropImage, selectedIma
     <section className="attach-picture-main">
     <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257535/Assets/images/google-drive_o6oi9s.svg"} width="15%"/>
       Upload Pictures from your google drive
-      <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to Google Drive</button>
+      <button className="connect-to-services-button"> <FaGoogleDrive color="white"/> Connect to Google Drive</button>
     </section>
     <section className="attach-picture-main">
       snap a picture
