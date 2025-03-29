@@ -32,6 +32,7 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
     const [attachmentModal, setAttachmentModal ] = useState(false)
     const [usernameError, setUsernameError] = useState(false)
     const [attachmentLine, setAttachmentLine] = useState(0)
+    const [selectedImage, setSelectedImage] = useState("")
     const uploadProfileImage = useUploadProfileImage();
     const [updateData, setUpdateData] = useState({
       username: "",
@@ -121,12 +122,30 @@ console.log(getAllAvatars.error)
     const resendRequest = () => {
       getAllAvatars.getAllAvatars(50);
     }
+    const uploadImage = (file) => {
+      setSelectedImage(file.name)
+const formData = new FormData();
+formData.append("profile-picture", file)
+uploadProfileImage.uploadProfileImage(formData)
+    }
     const onUpload = (e) => {
-      const formData = new FormData()
       const file = e.target.files[0];
-      console.log(file)
       const maxSize = 2 * 1024 * 1024
-      console.log(file)
+      const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
+      if(!validTypes.includes(file.type)){
+        showToast("Error", "Please Choose An Image File", false)
+        return;
+      }
+      if(file.size > maxSize){
+        showToast("Error", "Image Size Must Be Less Than 2MB", false)
+        return;
+      }
+      uploadImage(file)
+    }
+    const dropImage = (e) => {
+      e.preventDefault()
+      const file = e.dataTransfer.files[0]
+      const maxSize = 2 * 1024 * 1024
       const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
       if(!validTypes.includes(file.type)){
         e.target.value = ""
@@ -138,9 +157,17 @@ console.log(getAllAvatars.error)
         showToast("Error", "Image Size Must Be Less Than 2MB", false)
         return;
       }
-      console.log(file)
-      formData.append("profile-picture", file)
-      uploadProfileImage.uploadProfileImage(formData)
+      uploadImage(file)
+    }
+    const dropboxSuccess = (file) => {
+const fileUrl = file[0].link.replace("dl=0", "raw=1");
+setDashboardProfile((prev) => {
+  return {...prev, picture : fileUrl}
+})
+setUpdateData((prev) => {
+  return {...prev, picture : fileUrl}
+})
+updateAUser({picture : fileUrl})
     }
     const previewAvatarHtml = () => {
       return <>
@@ -214,6 +241,7 @@ if(Object.keys(uploadProfileImage.data).length !== 0 && uploadProfileImage.statu
   setDashboardProfile((prev) => {
     return {...prev, picture : uploadProfileImage.data.picture}
   })
+  setSelectedImage("")
   showToast("Success", uploadProfileImage.data.message, true)
   setAttachmentModal(false)
 }
@@ -221,59 +249,6 @@ if(uploadProfileImage.error){
   showToast("Error", uploadProfileImage.error.message, false)
 }
     }, [uploadProfileImage.data, uploadProfileImage.error, uploadProfileImage.statusCode])
-    const previewAttachmentHtml = () => {
-      const slideLine =(e, index) => {
-        setAttachmentLine(e.target.offsetLeft - 20)
-        const allAttachments = document.querySelectorAll(".attach-picture-main")
-        allAttachments.forEach((content) => content.classList.remove("active"))
-        allAttachments[index].classList.add("active")
-        }
-  return <>
-<section className="attach-picture-options">
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257539/Assets/images/hdd_fpfs8i.svg"} width="15%"/>
-  <span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span>
-  </div>
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257535/Assets/images/google-drive_o6oi9s.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257531/Assets/images/camera_z43upm.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257533/Assets/images/dropbox_v5sl8k.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>
-  <div
-  onClick={slideLine}
-   className="slideline" style={{left : attachmentLine + "px"}}></div>
-  {/* <div>Picture To Text</div> */}
-</section>
-<section className="attach-picture-main active" >
-<span><MdCloudUpload size={80} /></span>
-<span><b>Drag and drop or Click here to upload image.</b></span>
-<span>Image Size Must Be Less Than <b>2MB</b></span>
-</section>
-<section className="attach-picture-main">
-  Upload Pictures from your google drive
-  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to Google Drive</button>
-</section>
-<section className="attach-picture-main">
-  snap a picture
-</section>
-<section   className="attach-picture-main">
-  Upload Pictures from your dropbox
-  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to DropBox</button>
-</section>
-<input onChange={onUpload} type="file" id="file-input"
-        style={{display: "none", cursor : "pointer"}}
-        accept="image/*"
-        ></input>
-<button className="attach-picture-button special-modal-client" onClick={() => {
-  document.getElementById("file-input").click()
-  setAttachmentModal(true)
-
-  }}>
-    { uploadProfileImage.isLoading ? <LoadingSpinner /> : "Select Image"}
-  </button>
-<div style={{display : "flex", flexDirection :"row", alignItems : "center", justifyContent : "center"}}>
-<span style={{fontSize : "10px"}}>Powered By</span> <CloudinaryIcon size={55}/>
-</div>
-
-  </>
-    }
     
 useEffect(() => {
 if(loaded){
@@ -298,7 +273,17 @@ setOpenModal(true)
     <SpecialModal 
        openModal={attachmentModal}
        setOpenModal={setAttachmentModal}
-       content={<ImageUpload isLoading={uploadProfileImage.isLoading} onUpload={onUpload} setOpenModal={setAttachmentModal}/>}
+       content={
+       <ImageUpload
+       isLoading={uploadProfileImage.isLoading}
+       dropboxLoading={isLoading}
+       dropImage={dropImage} 
+       dropboxSuccess={dropboxSuccess}
+       onUpload={onUpload}
+       setOpenModal={setAttachmentModal}
+       selectedImage={selectedImage}
+       />
+      }
        width={500}
        height={400}
        />

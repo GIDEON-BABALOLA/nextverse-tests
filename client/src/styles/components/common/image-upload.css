@@ -11,8 +11,14 @@
     display: none;
     animation: moving .5s ease;
     }
+.attach-picture-main.google-drive{
+    padding: 40px 0px;
+}
 .attach-picture-main.active{
     display: flex;
+}
+.attach-picture-main.dropbox{
+    padding: 40px 0px;
 }
 .attach-picture-button{
     display: block;

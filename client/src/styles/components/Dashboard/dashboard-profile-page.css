@@ -189,11 +189,12 @@
     font-size: 1.2rem;
 }
 .dash-profile-photo-work{
-   width: 100px; 
+    width: 100px; 
     height: 100px; 
     border-radius: 50%; 
     object-fit: cover; 
-    cursor: pointer;
+    cursor: pointer; 
+ 
 }
 .flex-avatars {
     display: grid;
@@ -258,6 +259,9 @@
         font-size: 1.3rem;
     }
     .dash-profile-photo-work{
-        width: 20%;
+        width: 50px;
+        cursor: pointer;
+        border-radius:  50%;
+        height: 50px;
     }
 }
