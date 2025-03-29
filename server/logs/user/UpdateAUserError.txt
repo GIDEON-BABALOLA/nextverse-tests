@@ -55,3 +55,6 @@
     at next (C:\Users\user\Desktop\Projects\nextverse\server\node_modules\express\lib\router\route.js:149:13)
     at authMiddleware (C:\Users\user\Desktop\Projects\nextverse\server\middlewares\authMiddleware.js:47:13)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250329	20:41:48	5f3b798d-274e-47a6-a326-7b3ff585b69f	userError: userError: Phone number is already in use
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:561:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

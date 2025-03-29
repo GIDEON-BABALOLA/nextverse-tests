@@ -31,7 +31,6 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
     const [openModal, setOpenModal] = useState(false)
     const [attachmentModal, setAttachmentModal ] = useState(false)
     const [usernameError, setUsernameError] = useState(false)
-    const [attachmentLine, setAttachmentLine] = useState(0)
     const [selectedImage, setSelectedImage] = useState("")
     const uploadProfileImage = useUploadProfileImage();
     const [updateData, setUpdateData] = useState({
