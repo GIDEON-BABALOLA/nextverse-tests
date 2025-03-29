@@ -7,11 +7,12 @@ import BookmarkList from "../../components/Dashboard/common/BookmarkList.jsx";
 import { useGetUserBookmarks } from "../../hooks/useGetUserBookmarks.jsx";
 import Tab from "../../components/common/Tab.jsx";
 import "../../styles/components/Dashboard/bookmark-page.css"
-const BookmarksPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const BookmarksPage = ({sidebarRef}) => {
     const { getUserBookmarks, isLoading, error, data, bookmarkCount } = useGetUserBookmarks();
     const {  currentStoryId } = useModalContext()
     const { closeContextMenu } = useModalContext();
     const [bookmarkData, setBookmarkData] = useState([])
+    const [dashboardToast, setDashboardToast] = useState(true)
     const [originalBookmarkData, setOriginalBookmarkData] = useState([])
     const [bookmarkNumber, setBookmarkNumber] = useState(bookmarkCount)
   const [tabs, setTab] = useState({

@@ -2,7 +2,7 @@ import "../../styles/components/Dashboard/dashboard-toast.css"
 import useWindowSize from "../../hooks/useWindowSize"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-const DashboardToast = ({dashboardToast, setDashboardToast, loadPage}) => {
+const DashboardToast = ({dashboardToast, setDashboardToast}) => {
   const currentPage = useParams();
   const currentUrl = Object.values(currentPage)[0].split("/")[1]
   const {width} = useWindowSize()
@@ -14,11 +14,12 @@ const DashboardToast = ({dashboardToast, setDashboardToast, loadPage}) => {
   useEffect(() => {
     setTimeout(() => {
       if(dashboardToast== true){
+        console.log("how")
         setTrigger(true)
       }      
     }, 60);
 
-  }, [loadPage])
+  }, [dashboardToast])
   return (
     
     <div className={`litenote-dashboard-slide-up ${trigger ? "show" : ""} `} >

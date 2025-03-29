@@ -238,8 +238,8 @@ onClick={()=> toggleVisibility("currentPassword")}
   { passwordVisibility["newPassword"] ? 
     <FaEyeSlash
     onClick={()=> toggleVisibility("newPassword")}
-     size={10} style={{position : "relative", left  :"280px", bottom : "45px", cursor : "pointer"}} />
- : <FaEye size={10} style={{position : "relative", left  :"280px", bottom : "45px", cursor : "pointer"}} 
+     size={15} style={{position : "relative", left  :"280px", bottom : "45px", cursor : "pointer"}} />
+ : <FaEye size={15} style={{position : "relative", left  :"280px", bottom : "45px", cursor : "pointer"}} 
 onClick={()=> toggleVisibility("newPassword")}
 
  />
@@ -253,7 +253,9 @@ onClick={()=> toggleVisibility("newPassword")}
 
 <div>
 <h4><b>Bio</b></h4><section className="editme-profile-page-photo-section-second" style={{padding : "0px 0px"}}>
-  <div style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between",
+  <div 
+  className="bio-info-input"
+  style={{display : width > 768 && "flex", flexDirection : width > 768 && "row", justifyContent : width > 768 && "space-between",
   marginTop : "5px"
   }}>
   <div style={{display :"flex", flexDirection : "column", gap : "3px"}}>

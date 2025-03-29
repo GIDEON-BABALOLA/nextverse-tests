@@ -3,8 +3,9 @@ import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
 import { useState, useEffect } from "react";
 import "../../styles/components/Dashboard/messages-page.css"
-const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const SettingsPage = ({sidebarRef}) => {
   const [loadPage, setLoadPage] = useState(true)
+  const [dashboardToast, setDashboardToast] = useState(true)
   useEffect(() => {
     setTimeout(() => {
       setLoadPage(false)

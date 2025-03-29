@@ -8,9 +8,10 @@ import "../../styles/components/Dashboard/messages-page.css"
 import NotificationsTab from "../../components/Dashboard/common/Profile/Notifications/NotificationsTab";
 import NotificationsList from "../../components/Dashboard/common/Profile/Notifications/NotificationsList";
 
-const NotificationsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const NotificationsPage = ({sidebarRef}) => {
     const { width } = useWindowSize();
   const [loadPage, setLoadPage] = useState(true)
+  const [dashboardToast, setDashboardToast]  = useState(true)
   const [currentNotification, setCurrentNotification] = useState({
     profile : true,
     stories : false

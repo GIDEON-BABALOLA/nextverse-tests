@@ -249,7 +249,12 @@
         grid-template-columns: repeat(4, 70px);
         margin: 0;
     }
-
+.bio-info-input{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   gap: 20px;
+}
     .choose-new-picture-button{
         margin-top: 20px;
         width: 300px;

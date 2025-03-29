@@ -17,10 +17,11 @@ import StoriesAnalytics from '../../components/Dashboard/common/StoriesAnalytics
 import DashboardToast from '../../components/common/DashboardToast';
 import ConnectivityToast from '../../components/common/connectivityToast';
 import RotationLoader from '../../components/Loaders/RotationLoader';
-const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
+const AnalyticsPage = ({sidebarRef}) => {
     let time = new Date().toLocaleTimeString();
     const [timed, setTime] = useState(time)
     const [loadPage, setLoadPage] = useState(true)
+    const [dashboardToast, setDashboardToast] = useState(true)
     const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const datetime = new Date()
     useEffect(() => {
@@ -43,7 +44,7 @@ const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    :<>
              <main className='analytics-page-main'>
              <ConnectivityToast />
-             <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} loadPage={loadPage}/>
+             <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
      <h1 className='litenote-dashboard-h-one'>Dashboard</h1>
      <div className="litenote-dashboard-date">
        {/* <input type="date" /> */}

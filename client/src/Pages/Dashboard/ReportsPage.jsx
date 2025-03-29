@@ -10,10 +10,11 @@ import { MdCalendarToday } from "react-icons/md";
 import "../../styles/components/Reports/reports-page.css"
 import React from "react";
 import Calendar from "../../components/common/Calendar"
-const ReportsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const ReportsPage = ({ sidebarRef}) => {
   const reportsListContainer = useRef()
   const [loadPage, setLoadPage] = useState(true)
   const [timeLineHeight, setTimeLineHeight] = useState("")
+  const [dashboardToast, setDashboardToast] = useState(true)
   useEffect(() => {
     setTimeout(() => {
       setLoadPage(false)

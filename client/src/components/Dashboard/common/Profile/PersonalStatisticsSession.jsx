@@ -18,15 +18,7 @@ const PersonalStatisticsSession = ({ dashboardProfile }) => {
 marginBottom : "10px"
 }}>
 <h4><b>My Statistics</b></h4>
-<div style={{display : "flex", flexDirection  :"row", alignItems : "center", gap : "1px",
-border : "1px solid #777777",
-justifyContent : "space-around",
-padding : "5px 15px",
-borderRadius : "5px",
-cursor : "pointer"
-}}>
-    <MdOutlineCreate /> Edit
-  </div>
+
 </section>
 <section className="dashboard-profile-page-personal-statistics-information">
 <section style={{display : "flex", flexDirection : "column", gap : "40px"}}>

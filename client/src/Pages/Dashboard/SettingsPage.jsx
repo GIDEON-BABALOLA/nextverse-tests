@@ -11,7 +11,8 @@ import { MdNotificationsNone } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import DeleteConsent from "../../components/common/DeleteConsent";
-const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const SettingsPage = ({ sidebarRef}) => {
+  const [dashboardToast, setDashboardToast]  = useState(true)
   const devops = (e) => {
     let settingsData = JSON.stringify({
  notifications : {

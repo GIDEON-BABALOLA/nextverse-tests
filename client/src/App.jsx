@@ -135,15 +135,15 @@ if(location["*"]  !== ""){
   <Route path="login" element={<LoginPage />} />
   <Route path="note/:email/:id" element={ <NoteReaderPage />} />
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
-          <Route path="bookmarks" element={<BookmarksPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="notifications" element={<NotificationsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
-          <Route path="users" element={<UsersPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
-          <Route path="settings" element={<SettingsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="publish" element={<PublishPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="profile" element={<DashboardProfilePage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
-          <Route path="messages" element={<MessagesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} sidebarRef={sidebarRef} />}/>
+          <Route path="bookmarks" element={<BookmarksPage sidebarRef={sidebarRef} />}/>
+          <Route path="notifications" element={<NotificationsPage  sidebarRef={sidebarRef} />}/>
+          <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} />}/>
+          <Route path="users" element={<UsersPage sidebarRef={sidebarRef} />}/>
+          <Route path="settings" element={<SettingsPage  sidebarRef={sidebarRef} />}/>
+          <Route path="publish" element={<PublishPage  sidebarRef={sidebarRef} />}/>
+          <Route path="reports" element={<ReportsPage  sidebarRef={sidebarRef} />}/>
+          <Route path="profile" element={<DashboardProfilePage  sidebarRef={sidebarRef} />}/>
+          <Route path="messages" element={<MessagesPage  sidebarRef={sidebarRef} />}/>
         </Route>
 
 <Route path="register" element={<RegisterPage />} />

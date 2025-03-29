@@ -15,6 +15,7 @@ import ProfileAvatar from "./ProfileAvatar"
 import { useToastContext } from "../../../../hooks/useToastContext"
 import LoadingSpinner from "../../../Loaders/LoadingSpinner"
 import { usernameValidate } from "../../../../helpers/Validator"
+import { useAuthContext } from "../../../../hooks/useAuthContext"
 import { MdCloudUpload } from "react-icons/md"
 import { FaGoogleDrive } from "react-icons/fa"
 import { axiosConfig } from "../../../../api/axiosConfig"
@@ -23,6 +24,7 @@ import { useUploadProfileImage } from "../../../../hooks/useUploadProfileImage"
 import CloudinaryIcon from "../../../../styles/components/common/Icons/CloudinaryIcon"
 const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDashboardProfile }) => {
   const {updateAUser, isLoading, error : updateError, data, statusCode } = useUpdateAUser()
+  const { dispatch, user} = useAuthContext();
   const { showToast } = useToastContext()
   const getAllAvatars = useGetAllAvatars();
   const [isChecking, setIsChecking] = useState(false)
@@ -81,15 +83,20 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
           }, [openModal])
           useEffect(() => {
 if(!Object.values(dashboardProfile).includes("")){
-  console.log(dashboardProfile.username)
 setUpdateData((prev) => {
   return{...prev, username : dashboardProfile.username}
 })
 }
           }, [dashboardProfile])
+          useEffect(() => {
+if(updateData.picture && user?.picture !== updateData.picture){
+  dispatch({type : "UPDATE", payload : {picture : updateData.picture}})
+}
+          }, [updateData, dispatch, user?.picture])
       useEffect(() => {
 if(Object.keys(data).length !== 0 && statusCode ==  200){
   showToast("Success", data.message, true)
+  setAttachmentModal(false)
   setDashboardProfile((prev) => {
     const allowedFields = Object.keys(prev); // Get the allowed keys from initial state
 
@@ -99,7 +106,6 @@ if(Object.keys(data).length !== 0 && statusCode ==  200){
       }
       return acc;
     }, {});
-  console.log(filteredUserData)
     return { ...prev, ...filteredUserData }; // Update state with filtered data
   });
   startEditing("names")

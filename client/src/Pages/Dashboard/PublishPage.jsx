@@ -12,10 +12,11 @@ import StickyNotes from "../../components/Dashboard/common/StickyNotes";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import PublishTab from "./PublishTab";
 
-const StoriesPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const StoriesPage = ({ sidebarRef}) => {
   const { user } = useAuthContext()
   const {width } =  useWindowSize()
   const [stickyNotesCount, setStickyNotesCount ] = useState(0)
+  const [dashboardToast, setDashboardToast] = useState(true)
   const [notesCount, setNotesCount] = useState(0)
   const selectMenu = useRef() 
   const list = useRef()

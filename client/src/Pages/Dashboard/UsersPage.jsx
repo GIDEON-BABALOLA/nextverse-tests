@@ -8,13 +8,14 @@ import useWindowSize from "../../hooks/useWindowSize";
 import { MdCheckCircle, MdClear } from "react-icons/md";
 import SpecialModal  from "../../components/common/SpecialModal"
 import DashboardPagination from "../../components/Dashboard/common/DashboardPagination";
-const UsersPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const UsersPage = ({ sidebarRef}) => {
   const { width } =useWindowSize()
   const [openModal, setOpenModal] = useState(false)
   const [userToBePreview, setUserToBePreviewed] = useState()
   const [rangeValue, setRangeValue] = useState(0)
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResult, setSearchResult] = useState("")
+  const [dashboardToast, setDashboardToast] = useState(true)
   const [tableFilter, setTableFilter] = useState({
     Delete : true,
     Newsletter : true,

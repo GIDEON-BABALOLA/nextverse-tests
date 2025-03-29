@@ -14,9 +14,11 @@ import useWindowSize from "../../hooks/useWindowSize";
 import "../../styles/components/Dashboard/dashboard-profile-page.css"
 import { useState, useEffect } from "react";
 import { FaSmileBeam } from "react-icons/fa";
-const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+const DashboardProfilePage = ({ sidebarRef}) => {
+  const {getAUser, isLoading, error, data, statusCode } = useGetAUser()
    const db = useIndexedDB("stickyNotes")
   const { user } = useAuthContext()
+  const [dashboardToast, setDashboardToast] = useState(true)
   const [dashboardProfile, setDashboardProfile] = useState({
     username : "",
     email : "",
@@ -69,6 +71,23 @@ setDashboardProfile((prev) => {
 }
 })
   }, [user, db])
+  useEffect(() => {
+getAUser(user._id, "picture, username, email, bio, mobile, totalfollowers, totalfollowing, verification")
+  }, [])
+useEffect(() => {
+  setDashboardProfile((prev) => {
+    return {...prev,
+   picture : data.picture,
+   username : data.username,
+   email : data.email,
+   bio : data.bio,
+   mobile : data.mobile,
+   totalFollowers: data.totalfollowers,
+   totalFollowing : data.totalfollowing,
+   isVerified : data.verification,
+  }
+  })
+}, [data])
   const startEditing = (params) => {
 switch (params) {
   case "names":
@@ -93,8 +112,15 @@ switch (params) {
       const [contextMenu, setContextMenu] = useState()
   return (
     <>
+    
 <Toast />
-    <main  className="dashboard-profile-page">
+
+{
+  isLoading ? 
+  <RotationLoader />
+  :
+<>
+<main  className="dashboard-profile-page">
    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
    <span style={{textDecoration:"bolder"}}>
    
@@ -123,8 +149,11 @@ dashboardProfile={dashboardProfile}
     }}>
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
     </div>
+</>
+}
+  
     </>
   )
 }
 
-export default SettingsPage
+export default DashboardProfilePage
