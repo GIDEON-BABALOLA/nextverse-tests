@@ -14,3 +14,13 @@
 20250323	04:55:46	86a75dfe-2dc0-4b8e-8b5b-4c02b52f3ea9	Error: Invalid select: select only takes 1 argument
 20250323	04:58:56	26879e81-372c-4cc2-be99-6953ae71b351	ReferenceError: used is not defined
 20250323	04:59:40	058e6ded-bf94-440d-a6d3-59430eada228	ReferenceError: used is not defined
+20250330	15:50:02	966e3c02-a516-4fd7-8b38-6bcc1d13e7be	userError: Your Account Does Not Exist
+20250330	15:54:19	efd670e2-fd8a-43ed-97c7-df1fb9c97cfe	userError: Your Account Does Not Exist
+20250330	15:54:50	925ca7c5-11b6-41e5-85de-40232c1220af	userError: Your Account Does Not Exist
+20250330	15:57:51	1db7369a-1a52-401f-a49b-4ba9396e00b5	userError: Your Account Does Not Exist
+20250330	16:20:14	884e348e-0123-492d-926b-8860647745c5	userError: Your Account Does Not Exist
+20250330	16:22:11	20bf6670-02c9-4fd9-bce1-ecdbc7ebe396	userError: Your Account Does Not Exist
+20250330	16:24:05	e7555c29-755b-43f7-af15-01fa666d0ffa	userError: Your Account Does Not Exist
+20250330	16:26:00	03e279fa-5a53-4f43-97a2-10176a3a6cf3	userError: Your Account Does Not Exist
+20250330	16:44:36	7505d938-7f2c-47c4-965f-107201c34e5d	userError: Your Account Does Not Exist
+20250330	16:45:22	df0cb76f-d6f7-49df-b891-c0d11db2ae2b	userError: Your Account Does Not Exist

@@ -30,6 +30,20 @@ const cloudinaryDelete = async (folderName) => {
     throw new cloudinaryError("Unable To Delete Your Picture, Check Internet Connection", 400)
   }
 }
+const cloudinaryCheckIfFolderExists = async (foldername, subfoldername) => {
+  try {
+await cloudinary.api.sub_folders(`${foldername}/${subfoldername}`);
+return true
+  }
+  catch(error){
+    console.log(error.error.http_code)
+    if (error.error.http_code === 404) {
+      return false;
+    }
+    return false; // Ensure function always returns a value
+  }
+  }
+
 const cloudinaryDeveloperDelete = async (folderName) => {
   try{
     await cloudinary.api.delete_resources_by_prefix(`Developer/${folderName}`);
@@ -61,5 +75,6 @@ module.exports =  { cloudinaryUpload,
    cloudinaryDelete,
   cloudinarySingleDelete,
   cloudinaryDeveloperDelete,
-  cloudinaryDesignerDelete
+  cloudinaryDesignerDelete,
+  cloudinaryCheckIfFolderExists
 }

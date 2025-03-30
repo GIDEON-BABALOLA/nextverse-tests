@@ -1,11 +1,11 @@
-// const cloudinary = require("cloudinary")
-// require("dotenv").config()
-// cloudinary.config({
-//     cloud_name : process.env.LITENOTE_CLOUDINARY_CLOUD_NAME,
-//     api_key : process.env.LITENOTE_CLOUDINARY_API_KEY,
-//     api_secret : process.env.LITENOTE_CLOUDINARY_API_SECRET
+const cloudinary = require("cloudinary")
+require("dotenv").config()
+cloudinary.config({
+    cloud_name : process.env.LITENOTE_CLOUDINARY_CLOUD_NAME,
+    api_key : process.env.LITENOTE_CLOUDINARY_API_KEY,
+    api_secret : process.env.LITENOTE_CLOUDINARY_API_SECRET
     
-// })
+})
 // const fetchImagesFromFolder = async (folderPath) => {
 //   try {
 //     const result = await cloudinary.v2.api.resources({
@@ -25,8 +25,20 @@
 // };
 // fetchImagesFromFolder("Avatars")
 //name attribute is important
-const form = document.querySelector("form")
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-})
-const formData = new formData();
+// const checkIfFolderExists = async (folderName) => {
+//     try {
+//         const response = await cloudinary.v2.api.sub_folders(folderName);
+//         console.log(`Folder "${folderName}" exists.`);
+//         return true;
+//     } catch (error) {
+//         if (error.http_code === 404) {
+//             console.log(`Folder "${folderName}" does not exist.`);
+//             return false;
+//         }
+//         console.error("Error:", error.message);
+//         return false;
+//     }
+// };
+
+// Usage
+checkIfFolderExists("User/user1@gmail.com");

@@ -15,7 +15,7 @@ const { cloudinaryError, validatorError, emailError } = require("../utils/custom
 const { Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
-const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
+const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { generateEmailContent, sendEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 //User Registration
@@ -583,12 +583,15 @@ for(const key in req.body){
 }
 const deleteUser = async (req, res) => {
     try{
+
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
         }
         const oldUser = await User.findOneAndDelete({_id: req.user._id})
-        if(user.picture.length > 0){
-            await cloudinaryDelete(user.email)
+        const cloudinaryExists =  await cloudinaryCheckIfFolderExists("User", oldUser.email)
+        console.log(cloudinaryExists)
+        if(oldUser.picture.length > 0 && cloudinaryExists){
+            await cloudinaryDelete(oldUser.email)
         }
         if(!oldUser){
             throw new userError("Your Account Does Not Exist", 404)
@@ -598,7 +601,11 @@ const deleteUser = async (req, res) => {
         logEvents(`${error.name}: ${error.message}`, "deleteUserError.txt", "userError")
          if(error instanceof userError){
             return res.status(error.statusCode).json({ message : error.message})
-        }else{
+        }
+        else if(error instanceof cloudinaryError){
+            return res.status(error.statusCode).json({message : error.message})
+        }
+        else{
             return res.status(500).json({message : "Internal Server Error"})
         }
     }
