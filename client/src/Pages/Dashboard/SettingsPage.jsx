@@ -6,13 +6,19 @@ import colors from "../../data/colors.json"
 import { FaPlus } from "react-icons/fa";
 import { MdOutlineRectangle } from "react-icons/md";
 import "../../styles/components/Dashboard/dashboard-settings-page.css"
+import Avatar from "../../components/common/Avatar";
+import CommonAvatar from "../../components/common/CommonAvatar";
 import { FaRegUser, FaRegTrashAlt  } from "react-icons/fa";
 import { MdNotificationsNone } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import DeleteConsent from "../../components/common/DeleteConsent";
+import { useDeleteMyAccount } from "../../hooks/useDeleteMyAccount";
 const SettingsPage = ({ sidebarRef}) => {
   const [dashboardToast, setDashboardToast]  = useState(true)
+  const { deleteMyAccount, isLoading, error, data, statusCode } = useDeleteMyAccount();
+  const { user } = useAuthContext()
   const devops = (e) => {
     let settingsData = JSON.stringify({
  notifications : {
@@ -62,10 +68,14 @@ const SettingsPage = ({ sidebarRef}) => {
 <h2>Profile</h2>
 </div>
 <div style={{display : "flex", flexDirection : "row", alignItems :"center", gap : "20px", paddingTop : "10px"}}>
-  <img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1730507575/Avatars/yxuavl3ckq9ziaw0kavl_ow59tp.jpg"} style={{width : "10%", borderRadius : "50%"}}/>
+  <CommonAvatar
+  style={{height : "80px", width: "80px"}}
+  image={user.picture}
+  className="settings-page-avatar"
+  />
   <div>
-  <h3>Gideon Babalola</h3>
-  <h6 style={{color: "#9CA3AF"}}>gideonbabalola69@gmail.com</h6>
+  <h3>{user.username}</h3>
+  <h6 style={{color: "#9CA3AF"}}>{user.email}</h6>
   </div>
 </div>
 <Link to={"/dashboard/profile"}>

@@ -45,6 +45,17 @@ html, #root {
       #d6249f 60%,#285AEB 90%
   );;
   }
+  .common-avatar{
+    border-radius: 50%;
+    object-fit: cover;
+    
+        background:var(--skeleton-background);
+        background-size: 200% 100%;
+        box-sizing: border-box;
+          vertical-align: middle;
+        -webkit-animation: 1.5s shine linear infinite;
+                animation: 1.5s shine linear infinite;
+  }
   .remove-scrolling { 
     height: 100%; 
     overflow: hidden; 

@@ -586,15 +586,14 @@ const deleteUser = async (req, res) => {
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
         }
-        const user = await User.findOneAndDelete({_id: req.user._id})
+        const oldUser = await User.findOneAndDelete({_id: req.user._id})
         if(user.picture.length > 0){
             await cloudinaryDelete(user.email)
         }
-        if(!user){
-            throw new userError("User Does Not Exist", 404)
+        if(!oldUser){
+            throw new userError("Your Account Does Not Exist", 404)
         }
-        const newUser = _.omit(user.toObject(), "refreshToken")
-        res.status(200).json(newUser)
+        res.status(200).json({message : "Successfully Deleted Your Account", user : oldUser})
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "deleteUserError.txt", "userError")
          if(error instanceof userError){
