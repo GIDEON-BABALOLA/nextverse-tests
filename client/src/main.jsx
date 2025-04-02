@@ -7,6 +7,7 @@ import { AuthContextProvider } from './context/AuthContext.jsx'
 import { ThemeContextProvider } from './context/ThemeContext.jsx'
 import { ModalContextProvider } from "./context/ModalContext.jsx"
 import { ToastContextProvider } from './context/ToastContext.jsx'
+import { SettingsContextProvider } from "./context/SettingsContext.jsx"
 import { ConsentContextProvider } from './context/ConsentContext.jsx'
 import { StickyNotesContextProvider } from './context/StickyNotesContext.jsx'
 import { ProfileContextProvider } from './context/ProfileContext.jsx'
@@ -15,10 +16,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
   <AuthContextProvider>
   <ProfileContextProvider>
+  <ToastContextProvider>
   <ThemeContextProvider>
+  <SettingsContextProvider>
+
   <ConsentContextProvider>
   <ModalContextProvider>
-  <ToastContextProvider>
   <ChatBotProvider>  
   <StickyNotesContextProvider>
 
@@ -27,10 +30,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </Routes>
   </StickyNotesContextProvider>
   </ChatBotProvider>
-  </ToastContextProvider>
   </ModalContextProvider>
   </ConsentContextProvider>
+  </SettingsContextProvider>
   </ThemeContextProvider>
+  </ToastContextProvider>
   </ProfileContextProvider>
   </AuthContextProvider>
   </Router>

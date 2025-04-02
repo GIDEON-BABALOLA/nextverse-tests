@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react"
-const GoogleDrivePicker = () => {
+import useDrivePicker from 'react-google-drive-picker'
+import { FaGoogleDrive } from "react-icons/fa"
+const GoogleDrivePicker = ({ googleDriveSuccess }) => {
+  const googleDriveAPIClientId = import.meta.env.VITE_REACT_GOOGLE_DRIVE_CLIENT_ID
+  const googleDriveAPIKey =  import.meta.env.VITE_REACT_GOOGLE_DRIVE_API_KEY
     const [openPicker, authResponse] = useDrivePicker();  
   // const customViewsArray = [new google.picker.DocsView()]; // custom view
   const handleOpenPicker = () => {
     openPicker({
-      clientId: "xxxxxxxxxxxxxxxxx",
-      developerKey: "xxxxxxxxxxxx",
+      clientId: googleDriveAPIClientId,
+      developerKey: "AIzaSyCyISUrMdTd1_g_xME7K8D9uG8e1z5etX8",
       viewId: "DOCS",
       // token: token, // pass oauth token in case you already have one
       showUploadView: true,
@@ -13,17 +17,13 @@ const GoogleDrivePicker = () => {
       supportDrives: true,
       multiselect: true,
       // customViews: customViewsArray, // custom view
-      callbackFunction: (data) => {
-        if (data.action === 'cancel') {
-          console.log('User clicked cancel/close button')
-        }
-        console.log(data)
-      },
+      callbackFunction: googleDriveSuccess
     })
   }
   return (
     <div>
-    <button onClick={() => handleOpenPicker()}>Open Picker</button>
+            <button className="connect-to-services-button" onClick={() => handleOpenPicker()}> <FaGoogleDrive color="white"/> Connect to Google Drive</button>
+
 </div>
   )
 }

@@ -1,28 +1,25 @@
 import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
-import RotationLoader from "../../components/Loaders/RotationLoader"
 import { useState, useEffect } from "react";
-import colors from "../../data/colors.json"
-import { FaPlus } from "react-icons/fa";
-import { MdOutlineRectangle } from "react-icons/md";
 import "../../styles/components/Dashboard/dashboard-settings-page.css"
-import Avatar from "../../components/common/Avatar";
 import CommonAvatar from "../../components/common/CommonAvatar";
 import ToggleSwitch from "../../components/Dashboard/common/ToogleSwitch";
 import Toast from "../../components/common/Toast";
 import { FaRegUser, FaRegTrashAlt  } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { MdNotificationsNone } from "react-icons/md";
+import { useToastContext } from "../../hooks/useToastContext";
 import { MdLockOutline } from "react-icons/md";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import DeleteConsent from "../../components/common/DeleteConsent";
-import { useToastContext } from "../../hooks/useToastContext";
 import { useDeleteMyAccount } from "../../hooks/useDeleteMyAccount";
+import { useSettingsContext } from "../../hooks/useSettingsContext";
 const SettingsPage = ({ sidebarRef}) => {
   const [dashboardToast, setDashboardToast]  = useState(true)
+const { showToast } = useToastContext();
+const { checkbox, handleChange } = useSettingsContext();
   const router = useNavigate();
-  const { showToast } = useToastContext()
   const { deleteMyAccount, isLoading, error, data, statusCode } = useDeleteMyAccount();
   const { user } = useAuthContext()
   const [openModal, setOpenModal] = useState(false)
@@ -90,15 +87,15 @@ if(error){
 <div style={{marginTop : "15px", display :"flex", flexDirection : "column", gap : "10px", color : "#9CA3AF"}}>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between",}}    >
 <h5>Push Notifications</h5>
-<ToggleSwitch id={"push"}/>
+<ToggleSwitch id={"push"} handleChange={handleChange} checked={checkbox.push} />
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
 <h5>Email Notifications</h5>
-<ToggleSwitch id={"email"}/>
+<ToggleSwitch id={"email"} handleChange={handleChange} checked={ checkbox.email}  />
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
 <h5>SMS Notifications</h5>
-<ToggleSwitch id={"sms"}/>
+<ToggleSwitch id={"sms"} handleChange={handleChange} checked={checkbox.sms} />
 </div>
 </div>
 </div>
@@ -111,13 +108,13 @@ if(error){
 </div>
 <div style={{marginTop : "15px", display :"flex", flexDirection : "column", gap : "10px", color : "#9CA3AF"}}>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between",}}    >
-<h5>Enable Dark Mode</h5>
-<ToggleSwitch />
+<h5>Change Theme Mode</h5>
+<ToggleSwitch id={"theme"} handleChange={handleChange} checked={ checkbox.theme} />
 </div>
 
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between"}}>
-<h5>Default Sticky Note Shape</h5>
-<ToggleSwitch />
+<h5>Ads Preferences</h5>
+<ToggleSwitch  id={"adsPreferences"} handleChange={handleChange} checked={checkbox.adsPreferences} />
 </div>
 </div>
 </div>
@@ -130,15 +127,15 @@ if(error){
 <div style={{marginTop : "15px", display :"flex", flexDirection : "column", gap : "10px", color : "#9CA3AF"}}>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between", alignItems : "center", }}    >
 <h5>Two Factor Authentication</h5>
-<ToggleSwitch id={"two-factor"}/>
+<ToggleSwitch id={"twoFactor"} handleChange={handleChange} checked={ checkbox.twoFactor} />
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between", alignItems : "center", }}    >
-<h5>Allow Cookies In Browser</h5>
-<ToggleSwitch id={"cookies"}/>
+<h5>Allow Third-Party Cookies In Browser</h5>
+<ToggleSwitch id={"cookies"} handleChange={handleChange} checked={ checkbox.cookies} />
 </div>
 <div style={{display : "flex", flexDirection : "row", justifyContent  : "space-between", alignItems : "center", }}    >
 <h5>Restore Default Settings</h5>
-<ToggleSwitch id={"defaultSettings"}/>
+<ToggleSwitch id={"defaultSettings"} handleChange={handleChange} checked={ checkbox.defaultSettings} />
 </div>
 </div>
 <Link to={"/dashboard/profile"}>

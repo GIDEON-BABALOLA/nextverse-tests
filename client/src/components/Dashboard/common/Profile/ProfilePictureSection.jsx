@@ -174,6 +174,12 @@ setUpdateData((prev) => {
 })
 updateAUser({picture : fileUrl})
     }
+    const googleDriveSuccess = (data) => {
+      if (data.action === 'cancel') {
+        console.log('User clicked cancel/close button')
+      }
+      console.log(data)
+    }
     const previewAvatarHtml = () => {
       return <>
       <div className="avatars-closer">
@@ -246,6 +252,9 @@ if(Object.keys(uploadProfileImage.data).length !== 0 && uploadProfileImage.statu
   setDashboardProfile((prev) => {
     return {...prev, picture : uploadProfileImage.data.picture}
   })
+  setUpdateData((prev) => {
+    return {...prev, picture : uploadProfileImage.data.picture}
+  })
   setSelectedImage("")
   showToast("Success", uploadProfileImage.data.message, true)
   setAttachmentModal(false)
@@ -284,6 +293,7 @@ setOpenModal(true)
        dropboxLoading={isLoading}
        dropImage={dropImage} 
        dropboxSuccess={dropboxSuccess}
+       googleDriveSuccess={googleDriveSuccess}
        onUpload={onUpload}
        setOpenModal={setAttachmentModal}
        selectedImage={selectedImage}

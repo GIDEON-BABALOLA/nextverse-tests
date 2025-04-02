@@ -2,6 +2,7 @@ import "../../styles/components/common/cookie-consent.css"
 import { FaCookieBite } from "react-icons/fa"
 import { setCookie } from "../../helpers/CookiesConfiguration"
 import { useConsentContext } from "../../hooks/useConsentContext"
+import { useSettingsContext } from "../../hooks/useSettingsContext"
 import { useRef, useState } from "react"
 const CookieConsent = () => {
     const {
@@ -10,6 +11,7 @@ showCookieConsent,
 closeCookieConsent,
 cookieConsent
     } = useConsentContext()
+const { checkbox } = useSettingsContext();
     const [readMore, setReadMore] = useState(false)
     let startX, startY, endX, endY;
     const minSwipeDistance = 50;
@@ -17,6 +19,14 @@ cookieConsent
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
       }
+    const acceptCookies = () => {
+      if(!checkbox.cookies){
+        showCookieConsent(false)
+        return
+        
+      }
+      setCookie("cookie-consent", true, 30); //cookie consent will only appear 30 days, after if you accept it
+    }
     const handleTouchEnd = (event) => {
         endX = event.changedTouches[0].clientX;
         endY = event.changedTouches[0].clientY;
@@ -72,8 +82,7 @@ return;
 
     <div className="litenote-cookie-buttons" ref={buttons}>
         <button className="litenote-cookie-button" id="acceptBtn" onClick={()=> {
-               setCookie("cookie-consent", true, 30); //cookie consent will only appear 30 days, after if you accept it
-               showCookieConsent(false)
+   acceptCookies()
         }}>Accept</button>
         <button className="litenote-cookie-button decline" onClick={() => {
           closeCookieConsent()

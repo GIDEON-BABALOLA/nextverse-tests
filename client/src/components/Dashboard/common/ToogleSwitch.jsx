@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import Switch from "react-switch";
 import { useThemeContext } from "../../../hooks/useThemeContext";
-const SwitchExample = () => {
-  const [checked, setChecked] = useState(false);
+const ToggleSwitch = ({ id, checked, handleChange }) => {
   const { colorMode } = useThemeContext();
-  const handleChange = (checked) => {
-    setChecked(checked);
-  };
-
   return (
-    <label>
+    <label id={id}>
       <Switch 
-      onChange={handleChange}
+      onChange={(e) =>  handleChange(e, id)}
       checked={checked}
       checkedIcon={false}
       uncheckedIcon={false}
@@ -22,4 +17,4 @@ const SwitchExample = () => {
   );
 };
 
-export default SwitchExample;
+export default ToggleSwitch;

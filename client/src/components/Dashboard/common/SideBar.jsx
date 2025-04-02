@@ -12,9 +12,12 @@ import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
 import useWindowSize from '../../../hooks/useWindowSize';
 import useImageLoad from '../../../hooks/useImageLoaded';
+import SpecialModal from '../../common/SpecialModal';
+import LogoutConsent from '../../common/LogoutConsent';
 import { useState } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    const [loading, setLoading] = useState(true)
+   const [openModal,setOpenModal] = useState(false)
    const { loaded, error } = useImageLoad("https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png");
    useEffect(() => {
       if (error) {
@@ -77,14 +80,23 @@ sidebarRef.current.style.display = "block";
    }
    const dave = () => {
       setDashboardToast(false)
-      sidebarRef.current.classList.add("litenote-sidebar-aside-close")
+sidebarRef.current.classList.add("litenote-sidebar-aside-close")
 sidebarRef.current.style.display = "block";
+   }
+   const handleLogout = () => {
+      setDashboardToast(false)
+      sidebarRef.current.classList.add("litenote-sidebar-aside-close")
+      sidebarRef.current.style.display = "block";
+      setOpenModal(true)
    }
    useEffect(()=> {
 clickSidebarMenu()
    }, [currentUrl] )
   return (
 <>
+<SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
+
+setOpenModal={setOpenModal} />} height={350} width={400}/>
 <aside className="litenote-sidebar-aside"
 
 ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
@@ -188,12 +200,14 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                            <h3 className="litenote-dashboard-h-three">Settings</h3>
                         </Link>
                         
-                        <Link href="/dashboard/logout"  className={`sidebar-links ${currentUrl === "logout" && "active"}`}
-                           onClick={dave}
+                        <span style={{cursor : "pointer"}}
+                         href="/dashboard/logout"  className={`sidebar-links ${currentUrl === "logout" && "active"} special-modal-client
+         `}
+                           onClick={handleLogout}
                            >
-                        <MdLogout size={24} />
-                           <h3 className="litenote-dashboard-h-three">Logout</h3>
-                        </Link>
+                        <MdLogout size={24} className='special-modal-client'/>
+                           <h3 className="litenote-dashboard-h-three special-modal-client">Logout</h3>
+                        </span>
                        
                     </div>
                 </aside>
