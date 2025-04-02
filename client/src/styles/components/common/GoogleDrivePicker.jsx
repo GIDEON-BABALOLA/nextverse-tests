@@ -9,7 +9,7 @@ const GoogleDrivePicker = ({ googleDriveSuccess }) => {
   const handleOpenPicker = () => {
     openPicker({
       clientId: googleDriveAPIClientId,
-      developerKey: "AIzaSyCyISUrMdTd1_g_xME7K8D9uG8e1z5etX8",
+      developerKey: googleDriveAPIKey,
       viewId: "DOCS",
       // token: token, // pass oauth token in case you already have one
       showUploadView: true,
