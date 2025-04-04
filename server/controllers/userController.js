@@ -7,11 +7,12 @@ const mongoose = require("mongoose")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
+const Notification = require(path.join(__dirname, "..", "models", "notificationModel.js"))
 const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
-const { cloudinaryError, validatorError, emailError } = require("../utils/customError");
+const { cloudinaryError, validatorError, notificationError,  emailError } = require("../utils/customError");
 const { Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
@@ -624,16 +625,29 @@ const followUser = async (req, res) => {
         let alreadyFollowed = userToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(!alreadyFollowed){
             const user =  await User.followuser(_id, userToBeFollowed._id) //This has been configured in the users model
-                return  res.status(201).json(user)                   
+            await Notification.createProfileNotification(
+            userToBeFollowed._id,
+            req.user._id,
+            "follow",
+            `${req.user.username} just followed you`, 
+            req.user._id
+        
+        )
+            return  res.status(201).json(user)                   
                              
         }
             res.status(200).json(userToBeFollowed)               
          
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "followUserError.txt", "userError")
         if(error instanceof userError){
            return res.status(error.statusCode).json({ message : error.message})
-       }else{
+       }
+           else if(error instanceof notificationError){
+               return res.status(error.statusCode).json({ message: error.message });
+           }
+       else{
            return res.status(500).json({message : "Internal Server Error"})
        }   
     }

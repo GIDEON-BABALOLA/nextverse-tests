@@ -1,0 +1,77 @@
+
+.litenote-cookie-wrapper{
+    position: fixed;
+    bottom: 50px;
+    left: -370px;
+    background: #fff;
+    max-width: 340px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px 25px 22px;
+    width: 100%;
+    transition: left  0.4s ease;
+    font-family: "Poppins", sans-serif;
+    z-index: 2;
+    box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.25);
+
+}
+.litenote-cookie-wrapper.show{
+    left: 20px ;
+ 
+}
+.cookie-image{
+    color: #ff5e62;
+    
+  
+}
+.litenote-cookie-wrapper .litenote-cookie-header{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+.litenote-cookie-header h3{
+    color: #ff5e62;
+    font-weight: 500;
+}
+.litenote-cookie-wrapper .litenote-cookie-data{
+    margin-top: 16px;
+}
+.litenote-cookie-wrapper .litenote-cookie-data p{
+    color: #333;
+    font-size: 16px;
+}
+.litenote-cookie-data p a{
+    color: #ff5e62;
+    text-decoration: none;
+    cursor: pointer;
+}
+.litenote-cookie-data p a:hover{
+    text-decoration: underline;
+}
+.litenote-cookie-wrapper .litenote-cookie-buttons{
+    margin-top: 16px;
+    width:  100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.litenote-cookie-buttons .litenote-cookie-button{
+    width: calc( 100% / 2 - 10px);
+    padding: 10px 0;
+    border-radius: 4px;
+    border: none;
+    background: #ff5e62;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    font-weight: 700;
+}
+.litenote-cookie-buttons .litenote-cookie-button:hover{
+    background-color: #ff585b;
+}
+
+.litenote-newsletter-news__btn:active{
+  transform: scale(0.95);
+}
+

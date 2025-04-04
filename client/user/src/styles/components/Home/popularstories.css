@@ -1,0 +1,47 @@
+.popular-stories-featured-stories {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    /* margin-bottom: 0px; */
+  }
+  
+.popular-stories-featured-stories h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  .popular-stories-story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .popular-stories-story-card {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    animation: slideUp 0.5s ease;
+  }
+  
+  .popular-stories-story-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .popular-stories-story-card p {
+    color: #666;
+  }
+
+  @media (max-width: 767px) {
+    .popular-stories-featured-stories {
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 0 20px;
+        margin-bottom: 0px;
+      }
+  }

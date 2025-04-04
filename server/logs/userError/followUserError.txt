@@ -7,3 +7,11 @@
 20250207	23:42:28	b2a953c0-a0da-4f80-a336-edc80ad34f51	userError: What is the email of the user you want to follow
 20250207	23:42:30	e3f2b9ea-8aad-4b03-addc-f3988f21ade3	userError: What is the email of the user you want to follow
 20250207	23:42:31	9565fcfb-96ce-45c6-aabc-dd3ef81e478b	userError: What is the email of the user you want to follow
+20250403	11:28:14	59c973be-35b4-44d5-b38d-c2bb12c4b0f8	ValidationError: Notification validation failed: type: `profile` is not a valid enum value for path `type`.
+20250403	11:33:05	19ab8670-f451-4d05-a408-5d7073fb4b2e	ValidationError: Notification validation failed: type: `User` is not a valid enum value for path `type`.
+20250403	11:35:31	370a71eb-3582-4a73-a2d3-2906cd86bb9a	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
+20250403	11:38:28	5b352a0b-5467-4b6a-bc15-d6332f509c9a	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
+20250403	11:39:33	53e35dc0-d391-4790-baec-3c91fa72a7ec	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
+20250403	11:40:09	0e09d5ac-5e4e-49e8-b6e3-bbd3dd78aa89	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
+20250403	11:47:07	26b12c10-cb65-4e39-9477-f26aac7e6cff	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
+20250403	11:47:35	be5db234-be72-4e85-887e-320b5a4f3c9d	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.

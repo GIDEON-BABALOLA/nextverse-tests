@@ -5,9 +5,10 @@ const fs = require('fs');
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
+const Notification = require(path.join(__dirname, "..", "models", "notificationModel.js"))
 const _ = require('lodash');
 const slugify = require("slugify")
-const { cloudinaryError, userError } = require("../utils/customError");
+const { cloudinaryError, userError, notificationError } = require("../utils/customError");
 const { Console } = require("console");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -430,6 +431,7 @@ const commentAStory = async (req, res) => {
         // Add the comment to the story using static method
         const date = new Date();
         const commentedStory = await story.addComment( comment, req.user._id, date);
+        await Notification.createStoryNotification(story.userId, story._id, "comment", `${req.user.username} commented on your story.`, req.user._id)
         // Respond with the updated story
         res.status(201).json(commentedStory.toObject().comments[0]);
     } catch (error) {
@@ -544,13 +546,14 @@ try{
     const story = await Story.findById(id);
   // Add the like to the story using static method
  await story.addLike(req.user._id);
-        
+ await Notification.createStoryNotification(story.userId, story._id, "like", `${req.user.username} liked your story.`, req.user._id)
   // Respond with the updated story
     res.status(201).json({"message" : "successfull"});        
 
 
 
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
     if (error instanceof userError) {
         return res.status(error.statusCode).json({ message: error.message });
@@ -579,7 +582,11 @@ catch(error){
     logEvents(`${error.name}: ${error.message}`, "unlikeAStoryError.txt", "storyError");
     if (error instanceof userError) {
         return res.status(error.statusCode).json({ message: error.message });
-    } else {
+    } 
+    else if(error instanceof notificationError){
+        return res.status(error.statusCode).json({ message: error.message });
+    }
+    else {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }

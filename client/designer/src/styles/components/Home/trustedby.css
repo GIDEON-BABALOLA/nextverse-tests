@@ -1,0 +1,47 @@
+.trusted-by{
+    overflow: hidden;
+    padding: 60px 0;
+    background: white;
+    white-space: nowrap; 
+    position: relative ;
+}
+.trusted-by:hover .trusted-by-logo-slide{
+animation-play-state: paused;
+}
+@keyframes trusted-by-slide {
+from {
+transform: translateX(0);
+}
+to{
+    transform: translateX(-100%);
+}
+}
+.trusted-by:before,
+.trusted-by:after{
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    z-index: 2;
+    content: "";
+
+}
+.trusted-by:before{
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+.trusted-by:after{
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.trusted-by-logo-slide{
+    display: inline-block;
+    animation: 20s trusted-by-slide infinite linear;
+    /* all the logoes will be on one line*/
+
+}
+.trusted-by-logo-slide img{
+    height: 50px;
+    margin: 0 40px; /* 40px on the left and the right*/
+}

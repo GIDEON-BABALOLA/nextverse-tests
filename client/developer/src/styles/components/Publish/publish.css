@@ -1,0 +1,160 @@
+
+.litenote-publish-body {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  background:  white;
+  animation: fade-in 0.5s ease-in-out;
+}
+.litenote-publish-submit-story {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.litenote-publish-container {
+  max-width: 600px;
+  width: 90%;
+  padding: 40px;
+  background:linear-gradient(to right, #ff9966, #ff5e62); ;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  animation: slide-up 0.5s ease-in-out;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.litenote-publish-submit-story h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: slide-up 0.5s ease-in-out;
+}
+
+.litenote-publish-form-group {
+  margin-bottom: 20px;
+  animation: slide-up 0.5s ease-in-out;
+}
+
+.litenote-publish-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color:white
+}
+
+.litenote-publish-form-group input,
+.litenote-publish-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color:white;
+  color: #1b1818;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  animation: slide-up 0.5s ease-in-out;
+}
+
+.litenote-publish-form-group textarea {
+  height: 150px;
+}
+
+
+.litenote-publish-submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: hsla(0, 0%, 100%, 0.863);
+  color: #ff5e62;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  animation: slide-up 0.5s ease-in-out;
+  margin-top: 20px;
+}
+
+.litenote-publish-submit-btn:hover {
+  background: linear-gradient(to right, #ff9966, #ff5e62); 
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .litenote-publish-form-container {
+    padding: 10px;
+  }
+  
+  .litenote-publish-input,
+  .litenote-publish-textarea,
+  .litenote-publish-select {
+    padding: 8px;
+  }
+}
+
+.litenote-publish-category-select {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.litenote-publish-category-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4B4B4B;
+  color: #E5E5E5;
+  cursor: pointer;
+}
+
+.litenote-publish-category-select::after {
+  content: "\25BC";
+  font-size: 14px;
+  color: #E5E5E5;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.litenote-publish-category-select select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(122, 0, 171, 0.5);
+}
+
+.litenote-publish-category-select select option {
+  background-color: #4B4B4B;
+  color: #E5E5E5;
+}
+
+

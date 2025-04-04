@@ -308,14 +308,24 @@ res.status(200).json(newUser)
 }
 const getAllUsers = async (req, res) => {
 try{
-const gotUsers = await User.find()
+    let query;
+    query = await User.find()
+    //Pagination, for different pages
+const page = req.query.page;
+const limit = req.query.limit;
+const skip = (page - 1) * limit;
+query = query.skip(skip).limit(limit);
+    if(req.query.fields){
+        const fields = req.query.fields.split(",").join(" ")
+        query = query.select(fields)
+    
+    }
+const gotUsers = await query.lean();
+const userCount = await User.countDocuments();
 if(!gotUsers){
     throw new adminError("No User Has Been Registered For Your Application", 204)
 }
-const usersToBeSent = gotUsers.map((user) => {
-    return _.omit(user.toObject(), "refreshToken")
-})
-res.status(200).json(usersToBeSent)
+res.status(200).json({ users : gotUsers, userCount : userCount })
 }
 catch(error){
     logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")

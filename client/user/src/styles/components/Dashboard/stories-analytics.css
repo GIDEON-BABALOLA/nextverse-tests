@@ -1,0 +1,65 @@
+
+ /*  -------Stories Analytics smallerTablets--------- */
+  .litenote-dashboard-stories-analytics{
+ margin-top: 2rem;
+ }
+ .litenote-dashboard-stories-analytics h2{
+ margin-bottom: 0.8rem;
+ }
+ .litenote-dashboard-stories-analytics .litenote-dashboard-item{
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap:1em;
+ margin-bottom: 0.8rem;
+ padding: 1.4rem var(--card-padding);
+ border-radius:var(--border-radius-3);
+ box-shadow:var(--box-shadow);
+ transition: all 300ms ease ;
+ }
+ 
+  .litenote-dashboard-stories-analytics .litenote-dashboard-item:hover{
+     box-shadow: none;
+ }
+ .litenote-dashboard-stories-analytics .litenote-dashboard-right{
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin: 0;
+  width: 100%;
+ }
+.litenote-dashboard-stories-analytics .litenote-dashboard-item .litenote-dashboard-icon{
+  padding: 0.6rem;
+  color: var(--color-white);
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+ }
+  .litenote-dashboard-stories-analytics .litenote-dashboard-item.stories .litenote-dashboard-icon{
+  background: var(--color-danger);
+ }
+ .litenote-dashboard-stories-analytics .litenote-dashboard-item.views .litenote-dashboard-icon{
+  background: var(--color-success);
+ }
+ .litenote-dashboard-stories-analytics .litenote-dashboard-item.add {
+ background-color: transparent;
+ border: 2px dashed var(--color-primary);
+ color:var(--color-primary);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ }
+ .litenote-dashboard-stories-analytics .litenote-dashboard-item.add div{
+ display: flex;
+ align-items: center;
+ gap:0.6rem;
+ }
+ .litenote-dashboard-stories-analytics .litenote-dashboard-item.add div h3{
+ font-weight: 600;
+ }
+
+ .litenote-dashboard-stories-analytics .litenote-dashboard-item{
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+ }

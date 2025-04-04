@@ -40,6 +40,13 @@ class storyError extends Error {
         this.statusCode = statusCode; //status code
     }
 }
+class notificationError extends Error {
+    constructor(message, statusCode){
+        super(message);
+        this.name = this.constructor.name;
+        this.statusCode = statusCode; //status code
+    }
+}
 
 
 class cloudinaryError extends Error{
@@ -63,6 +70,15 @@ class emailError extends Error{
         this.statusCode = statusCode;
     }
 }
-module.exports = { userError, cloudinaryError, uploadError, adminError, validatorError, storyError, emailError,
-developerError, designerError
+module.exports = {
+userError,
+cloudinaryError,
+uploadError,
+adminError,
+validatorError,
+storyError,
+emailError,
+developerError,
+designerError,
+notificationError
  }

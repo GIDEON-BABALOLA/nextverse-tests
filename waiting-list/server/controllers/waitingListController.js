@@ -49,13 +49,14 @@ const getWaitingList = async (req, res) => {
     const limitInt = parseInt(req.query.limit, 10);
 
     // Calculate the number of documents to skip
-    const skip = (pageInt - 1) * limitInt;
-        const waitingList = await WaitingList.find()
-        .limit(limitInt)
-        .skip(skip)
-        .exec();
+    const gotUsers = await User.find()
+    .skip(skip) // Skip users for the current page
+    .limit(pageLimit) // Limit the number of users per page
+    .select("-refreshToken") // Exclude the 'refreshToken' field
+    .exec();
+
         const storyCount = await WaitingList.countDocuments();
-if(req.query.page){
+if(req.query.page){a
     if(skip >= storyCount){
         throw new waitingListError( "This page does not exist",404)
     }

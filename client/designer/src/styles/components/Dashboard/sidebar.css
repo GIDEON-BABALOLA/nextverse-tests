@@ -1,0 +1,138 @@
+:root{
+--sidebar-badge-background : #FF7782EC;
+--sidebar-badge-color : white;
+}
+.dark-theme-variables{
+    --sidebar-badge-background : #FF7782EC;
+    --sidebar-badge-color : #333;
+}
+.litenote-sidebar-aside{
+    height:100vh;
+    font-family: "Poppins", sans-serif;
+/*   background-color: grey; */
+}
+
+.litenote-sidebar-aside .top{
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-top: 1.4rem;
+}
+.litenote-sidebar-aside .logo{
+    display: flex;
+    gap: 0.8rem;
+}
+.litenote-sidebar-aside .logo img{
+   width: 2rem;
+   height: 2rem;
+}
+
+.litenote-sidebar-aside .close{
+display: none;
+}
+
+/* ---------side bar-------------- */
+
+.litenote-sidebar-aside  .sidebar{
+
+    display: flex;
+    flex-direction:column ;
+    height: 85vh;
+    position: relative;
+    top: 6rem;
+    position: fixed;
+}
+
+.litenote-sidebar-aside h3{
+font-weight: 500;
+}
+.litenote-sidebar-aside  .sidebar .sidebar-links{
+ display: flex;
+ color: var(--color-info-dark);
+ margin-left: 2rem;
+ gap: 1rem;
+ align-items: center;
+ position: relative;
+ height: 3.7rem;
+ transition: all 300ms ease;
+ text-decoration: none;
+}
+
+
+.litenote-sidebar-aside  .sidebar .sidebar-links svg {
+    font-size: 1.6rem;
+    transition: all 300ms ease ;
+}
+.litenote-sidebar-aside  .sidebar .sidebar-links:last-child{
+position: absolute;
+bottom: 0rem;
+width: 100%;
+} 
+.litenote-sidebar-aside  .sidebar .sidebar-links.active {
+background: var(--color-light);
+color: var(--color-primary);
+margin-left: 0;
+} 
+.litenote-sidebar-aside  .sidebar .sidebar-links.active::before {
+content: "";
+width: 6px;
+height: 100%;
+background:var(--color-primary);
+} 
+.litenote-sidebar-aside  .sidebar .sidebar-links.active svg {
+color: var(--color-primary);
+margin-left: calc(1rem - 3px);
+} 
+.litenote-sidebar-aside  .sidebar .sidebar-links.hover  {
+    color: var(--color-primary);
+} 
+.litenote-sidebar-aside  .sidebar .sidebar-links:hover svg {
+ margin-left:1rem ;
+} 
+.litenote-sidebar-aside  .sidebar .message-count {
+background: var(--color-danger);
+color: var(--color-white);
+padding: 2px 10px; 
+font-size: 11px ;
+border-radius: var(--border-radius-1);
+} 
+
+.litenote-sidebar-aside  .this-is-a-user .sidebar-links{
+height: 4rem;
+}
+.litenote-sidebar-aside  .this-is-not-a-user .sidebar-links{
+    height: 3.3rem;
+    }
+.golange{
+    display: none;
+}
+
+.sidebar_button__badge {
+    background-color: var(--sidebar-badge-background);
+    border-radius: 50%;
+    color: var(--sidebar-badge-color);
+   
+    padding: 1.8px 5px;
+    font-size: 10px;
+    
+    position: absolute; /* Position the badge within the relatively positioned button */
+    top: 0;
+    right: 125px;
+    
+  }
+  .sidebar-loaders{
+    object-fit: cover;
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+  }
+  .sidebar-loaders-logo{
+    width: 50px;
+    height: 20px;
+  }
+  .sideman-man{
+    width: 30px;
+   
+    border-radius: 50%; 
+}

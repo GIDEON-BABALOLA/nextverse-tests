@@ -1,0 +1,47 @@
+
+.intro-hero {
+    background-image: linear-gradient(to right, #ff9966, #ff5e62);
+    color: #fff;
+    padding: 150px 20px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+    margin-top: 1%;
+  }
+  .button-cover{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+  .intro-hero h1 {
+    font-size: 48px !important;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  .intro-hero p {
+    font-size: 18px;
+    margin-bottom: 50px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .intro-btn {
+    display: inline-block;
+    background-color: #fff;
+    color: #ff5e62;
+    text-decoration: none;
+    padding: 20px 30px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .intro-btn.first{
+    background-color: #333;
+    color: white;
+  }
+  .intro-btn:hover {
+    background-color: #ff5e62;
+    color: #fff;
+  }

@@ -1,0 +1,110 @@
+.country-select-container{
+    font-family: "Poppins" sans-serif;
+}
+.country-select-wrapper{
+    width: 300px;
+    margin: 1px auto 0;
+}
+
+.country-select-select-btn, .country-select-options li{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+} 
+.country-select-select-btn{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 65px;
+    padding: 0 20px;
+    border-radius: 7px;
+    background: #fff;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.country-select-select-btn svg{
+    font-size: 31px;
+    transition: transform 0.3s linear;
+}
+.country-select-wrapper.active .country-select-select-btn svg{
+    transform: rotate(-180deg);
+}
+.country-select-content{
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 7px;
+    transform: scale(0);
+transform-origin: top center;
+transition: transform 0.5s ease;
+display: none;
+}
+.country-select-wrapper.active .country-select-content{
+    transform: scale(1);
+    /* display: block; */
+     display: block;
+}
+.country-select-content .country-select-search{
+    position: relative;
+}
+.country-select-search svg{
+    left: 15px;
+    line-height: 53px;
+    position: absolute;
+    color: #999;
+    font-size: 20px;
+    top: 18px;
+}
+
+.country-select-search input{
+    height: 53px;
+    width: 100%;
+    font-size: 17px;
+    padding: 0 15px 0 43px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #b3b3b3;
+    
+}
+.country-select-search input::placeholder{
+    color: #999;
+}
+.country-select-content .country-select-options{
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-left: -35px;
+}
+
+/* .country-select-options::-webkit-scrollbar{
+    width: 7px;
+}
+
+.country-select-options::-webkit-scrollbar-track{
+   background: #f1f1f1;
+
+   border-radius: 25px;
+}
+.country-select-options::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+} */
+
+.country-select-options li{
+    height: 50px;
+    border-radius: 5px;
+    padding: 2px 13px;
+    font-size: 21px;
+    border-radius: 5px;
+    display : "flex";
+    flex-direction: row;
+    justify-content: space-between;
+}
+.country-select-options li:hover{
+    background: #f2f2f2;
+}
+.select-not-found{
+    
+    color: #999;
+}
