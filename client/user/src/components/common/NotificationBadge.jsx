@@ -8,5 +8,5 @@ export default function SimpleBadge() {
       <MailIcon color="action" />
       <NotificationsIcon color="action"/>
     </Badge>
-  );
+  )
 }
