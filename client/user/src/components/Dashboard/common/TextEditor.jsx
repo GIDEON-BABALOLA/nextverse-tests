@@ -1,6 +1,13 @@
 import { MdAttachFile, MdCloudUpload } from "react-icons/md"
 import SpecialModal from "../../common/SpecialModal"
 import CloudinaryIcon from "../../../styles/components/common/Icons/CloudinaryIcon"
+import { useCreateAStory } from "../../../hooks/useCreateAStory";
+import useWindowSize from "../../../hooks/useWindowSize";
+import ImageUpload from "../../common/ImageUpload";
+import { useToastContext } from "../../../hooks/useToastContext";
+import CommonAvatar from "../../../components/common/CommonAvatar"
+import LoadingSpinner from "../../Loaders/LoadingSpinner";
+import Toast from "../../../components/common/Toast"
 import { FaGoogleDrive } from "react-icons/fa";
 import { FaBold,
     FaItalic,
@@ -26,9 +33,16 @@ import { FaBold,
  import { useEffect, useRef, useState } from "react";
  import "../../../styles/components/Dashboard/text-editor.css"
 const TextEditor = () => {
+  const { createAStory, isLoading, error, data, statusCode } = useCreateAStory()
+  const [storyPictures, setStoryPictures] = useState([{}, {}, {}])
+  const [selectedImage, setSelectedImage] = useState()
+  const [storyContent, setStoryContent] = useState()
+  const [storyTitle, setStoryTitle] = useState()
+  const { width } = useWindowSize();
   const [wordCount, setWordCount] = useState(0)
-  const [openModal, setOpenModal] = useState(false)
-  const [attachmentLine, setAttachmentLine] = useState(0)
+  const [attachmentModal, setAttachmentModal] = useState(false)
+  const [titleCategoryModal, setTitleCategoryModal] = useState(false)
+  const { showToast } = useToastContext()
     const alignButtons = useRef([])
     const spacingButtons = useRef([])
     const formatButtons = useRef([])
@@ -51,11 +65,8 @@ const TextEditor = () => {
     });
     }
     const scrollTextArea = (e) => {
-      const textWithoutTags = textAreaRef?.current?.innerText.replace(/\s+/g, ' ')
-      setWordCount(textWithoutTags.length)
-    // what we Are going to be saving into the database from here is e.target.innerHtml, and we are going to be saving it as a string format
-             textAreaRef.current.style.height ="63px"
-        textAreaRef.current.style.height ="auto"
+textAreaRef.current.style.height ="63px"
+textAreaRef.current.style.height ="auto"
 textAreaRef.current.style.height =`${e.target.scrollHeight}px`
     }
     const highlighterRemover = (className) => {
@@ -87,53 +98,39 @@ const highlighter = (className, needsRemoval) => {
     }
     });
 };
-const previewAttachmentHtml = () => {
-  const slideLine =(e, index) => {
-  setAttachmentLine(e.target.offsetLeft - 20)
-  const allAttachments = document.querySelectorAll(".attach-picture-main")
-  allAttachments.forEach((content) => content.classList.remove("active"))
-  allAttachments[index].classList.add("active")
+const submitNote = () => {
+// const cleanHtml = sanitizeHtml(noteContent, {
+// allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
+// allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
+//   });
+const formData = new FormData();
+formData.append("picture", file)
+setTitleCategoryModal(true)
+    const cleanHtml = storyContent
+    if(wordCount == 0 || !cleanHtml ){
+      showToast("Error", "Please Enter The Content Of Your Story", false)
+      return;
+    }
+createAStory(storyTitle, cleanHtml)
+                    
+                  }
+const handlePlaceholder = () => {
+  const editor = textAreaRef.current;
+  const textWithoutTags = editor.innerText.replace(/\s+/g, ' ').trim()
+  setWordCount(textWithoutTags.length)
+  if (editor) {
+    setStoryContent(editor.innerHTML)
   }
-  return (
-  <>
-<section className="attach-picture-options">
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257539/Assets/images/hdd_fpfs8i.svg"} width="15%"/>
-  <span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 0) } > Local Device</span>
-  </div>
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257535/Assets/images/google-drive_o6oi9s.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 1) }  > Google Drive</span></div>
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257531/Assets/images/camera_z43upm.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 2) } > Take Photo</span></div>
-  <div ><img src={"https://res.cloudinary.com/doctr0fct/image/upload/v1733257533/Assets/images/dropbox_v5sl8k.svg"} width="15%"/><span style={{fontSize : "0.9rem"}} onClick={(e) => slideLine(e, 3) } > DropBox</span></div>
-  <div
-  onClick={slideLine}
-   className="slideline" style={{left : attachmentLine + "px"}}></div>
-  {/* <div>Picture To Text</div> */}
-</section>
-<section className="attach-picture-main active" >
-<span><MdCloudUpload size={80} /></span>
-<span><b>Upload Image</b></span>
-<span>Image Size Must Be Less Than <b>2MB</b></span>
-</section>
-<section className="attach-picture-main">
-  Upload Pictures from your google drive
-  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to Google Drive</button>
-</section>
-<section className="attach-picture-main">
-  snap a picture
-</section>
-<section   className="attach-picture-main">
-  Upload Pictures from your dropbox
-  <button className="connect-to-services-button"> <FaGoogleDrive color="white"/>Connect to DropBox</button>
-</section>
-<button className="attach-picture-button">Select Image</button>
-<div style={{display : "flex", flexDirection :"row", alignItems : "center", justifyContent : "center"}}>
-<span style={{fontSize : "10px"}}>Powered By</span> <CloudinaryIcon size={55}/>
-</div>
-
-  </>
-  )
-}
+  if (editor.innerText.trim().length === 0) {
+  editor.setAttribute("data-placeholder", "Let Your Pen Speak...");
+  editor.classList.add("empty"); 
+  } else {
+  editor.removeAttribute("data-placeholder");
+  editor.classList.remove("empty"); 
+  }
+};
 const attachmentFunction = () => {
-  setOpenModal(true)
+  setAttachmentModal(true)
 }
 const initializer = () => {
     //function calls for highlighting buttons
@@ -206,18 +203,96 @@ document.execCommand(command, defaultui, value);
       useEffect(() => {
 initializer()
       }, [])
-      
-  return (
-    <div className="litenote-text-editor-container">
-    <SpecialModal 
-    openModal={openModal}
-    setOpenModal={setOpenModal}
-    content={previewAttachmentHtml()}
-    width={500}
-    height={400}
-    dismiss={false}
+    const dropImage = () => {
 
-    />
+    }
+    const dropboxSuccess = (file) => {
+      const fileUrl = file[0].link.replace("dl=0", "raw=1");
+      if([...storyPictures].length === 3){
+        setAttachmentModal(false)
+        showToast("Error", "You can only upload a maximum of three images", false)
+        return
+      }
+      setStoryPictures((prev) => {
+        return [...prev, { name : file[0].name, src : fileUrl, source : "cloud"}]
+      })
+      setAttachmentModal(false)
+    }
+    const googleDriveSuccess = () => {
+
+    }
+    const onUpload = (e) => {
+      const file = e.target.files[0];
+      const maxSize = 2 * 1024 * 1024
+      const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
+      if(!validTypes.includes(file.type)){
+        showToast("Error", "Please Choose An Image File", false)
+        return;
+      }
+      if(file.size > maxSize){
+        showToast("Error", "Image Size Must Be Less Than 2MB", false)
+        return;
+      }
+      if([...storyPictures].length === 3){
+        setAttachmentModal(false)
+        showToast("Error", "You can only upload a maximum of three images", false)
+        return
+      }
+      setSelectedImage(file.name)
+      e.target.value = ""
+      const imageURL = URL.createObjectURL(file);
+      setStoryPictures((prev) => {
+        return [...prev, { name : file.name, src : imageURL, source : "local"}]
+      })
+    }
+const removeStoryPicture = (pic) => {
+const newStoryPictures = [...storyPictures].filter((picture) => picture.name !== pic.name)
+setStoryPictures(newStoryPictures)
+}
+    useEffect(() => {
+if(selectedImage){
+  setTimeout(() => {
+    setAttachmentModal(false)  
+    setSelectedImage("")  
+  }, 500);
+  
+
+}
+    }, [selectedImage])
+    const previewTitleCategoryContent = () => {
+return <div>
+  Hi there
+</div>
+    }
+  return (
+    <>
+    <Toast />
+        <div className="litenote-text-editor-container">
+      <SpecialModal 
+           openModal={attachmentModal}
+           setOpenModal={setAttachmentModal}
+           width={width < 768 ? 350 : 500}
+           height={400}
+           content={
+           <ImageUpload
+           isLoading={isLoading}
+           dropboxLoading={isLoading}
+           dropImage={dropImage} 
+           dropboxSuccess={dropboxSuccess}
+           googleDriveSuccess={googleDriveSuccess}
+           onUpload={onUpload}
+           setOpenModal={setAttachmentModal}
+           selectedImage={selectedImage}
+           />
+          }
+           />
+           <SpecialModal 
+            openModal={titleCategoryModal}
+            setOpenModal={setTitleCategoryModal}
+            width={width < 768 ? 350 : 500}
+            height={400}
+            content={previewTitleCategoryContent()}
+           />
     <Toaster />
 
     <h5 style={{color : "#CED4DA"}}>Text</h5>
@@ -351,22 +426,44 @@ initializer()
     </div>
    
     {/* I am going to replace this input with auto resize text input when I find it online */}
+       {/* I am going to replace this input with auto resize text input when I find it online */}
+       {
+      storyPictures.map((pic, index) => (
+        <div className="text-editor-small-image-container" key={index}>
+          <CommonAvatar
+          style={{height : "50px", width: "80px"}}
+          image={"https://res.cloudinary.com/doctr0fct/image/upload/v1733302193/Story/user8%40gmail.com/tmnwdkvk3gon0rgrr3hs.jpg"}
+          className="text-editor-small-image-preview"
+          />
+        <button className="text-editor-small-cancel-btn" >×</button>
+      </div>
+      ))
+    }
     <div 
     ref={textAreaRef}
     style={{height : "59px", border : "1px solid transparent"}}
     id="editable"
-    placeholder="Type Something here..."
-    className="textArea" 
+    className="textArea empty" 
     onInput={scrollTextArea}
     onBlur={scrollTextArea}
     spellCheck="true"
-     data-placeholder="Let Your Pen Speak..."
-    contentEditable="true" ></div>
+    onKeyUp={handlePlaceholder}
+    data-placeholder="Let Your Pen Speak..."
+    contentEditable="true" >
+    </div>
   <div className="text-editor-bottom">
-    <button className="computerprogrammer">
-    <span style={{fontSize : "5px"}}>
+    <button className="computerprogrammer special-modal-client" onClick={() => { submitNote()}}>
+      {
+        isLoading ? 
+        <span className="text-editor-loading-spinner special-modal-client">
+        <LoadingSpinner />
+        </span>
+
+      :
+    <span >
     Submit
     </span>
+}
    </button>
     </div>
   
@@ -375,6 +472,8 @@ initializer()
 
     </section>
 </div>
+    </>
+
   )
 }
 

@@ -1,26 +1,21 @@
 import { useState } from "react";
-// import  useAuthContext  from "../context/AuthContext";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useCreateAStory = () => {
+export const useGetNotificationsCount = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
-    const [data, setData] = useState([])
-    const createAStory = async (title, content) => {
+    const [notificationsCount, setNotificationsCount] = useState(0)
+    const getNotificationsCount = async () => {
+        console.log("how na")
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post(`/story/create-a-story`,
-    {
-        title : title,
-        content : content
-    }, 
-    {
-        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
-    }
+const response = await axiosConfig.get("/notification/get-notifications-count", {
+    signal : AbortSignal.timeout(axiosProperties["timeout"])
+}
 )
 if(response && response.data){
-    setData(response.data.story)
+    setNotificationsCount(response.data.notificationsCount)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -29,25 +24,26 @@ if(response && response.data){
     
 }
         }
+        
         catch(error){
-            console.log(error.code)
-setIsLoading(false)
+            setNotificationsCount(0)
+            setIsLoading(false)
             if(error.message == "canceled"){
-setError({message : "Your Request Has Timed Out", code : error.code})
+                setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
                 setError({message : "Our Service Is Currently Offline", code : error.code})
             }
-            else if(error.message == "Request failed with status code 404"){
-                setError({message : "Not Found", code : error.code})
-            }
             else{
-            setData([])
-            setIsLoading(false)
             setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)
         }
     }
     }
-    return {createAStory, isLoading, error, data, statusCode} 
+    return {getNotificationsCount,
+         isLoading,
+         error,
+         statusCode,
+         notificationsCount,
+        } 
 }

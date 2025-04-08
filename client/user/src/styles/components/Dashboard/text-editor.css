@@ -7,6 +7,8 @@
 --text-editor-button-background : #ffff;
 --texter : #777777;
 --keyboard : black;
+--small-cancel-button-color : white;
+--small-cancel-button-background : rgba(0, 0, 0, 0.5);
 }
 .dark-theme-variables{
     --text-editor-background : #00000066;
@@ -14,6 +16,8 @@
     --text-editor-button-background : #181A1E;
     --texter : #ffff;
     --keyboard : black;
+    --small-cancel-button-color : black;
+--small-cancel-button-background : white;
 }
 
 .slideline{
@@ -183,7 +187,7 @@ input[type="color"]::-webkit-color-swatch {
     resize: none;
     font-size: 16px;
     border-radius: #bfbfbf;
-    margin-top: 20px;
+    margin-top: 10px;
     max-height: 330px;
     background: var(--text-editor-background);
     color: var(--texter);
@@ -215,7 +219,7 @@ input[type="color"]::-webkit-color-swatch {
     /* justify-content: space-between; */
     align-items: center;
 }
-#editable[data-placeholder]:empty::before {
+.textArea.empty::before {
     content: attr(data-placeholder);
     color: gray;
     pointer-events: none; /* Prevent placeholder from being editable */
@@ -223,10 +227,46 @@ input[type="color"]::-webkit-color-swatch {
     font-family: "Fira Code", serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-size: 3px;
+  font-size: 16px;
 
   }
+  .text-editor-loading-spinner{
+    padding: 10px 20px;
+  }
+  .text-editor-small-image-container {
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0;
+    margin-bottom: 0px;
+  }
+  
+  .text-editor-small-image-preview {
+    max-width: 100%;
+    width: 80px;
+    height: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    display: block;
+  }
+  
+  .text-editor-small-cancel-btn {
+    position: absolute;
+    top: -10px;
+    right: -7px;
+background: var(--small-cancel-button-background);
+color: var(--small-cancel-button-color);
 
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1;
+  }
+  
 @media screen and (max-width:1200px) {
     .litenote-text-editor-container{
     background-color: var(--text-editor-background);

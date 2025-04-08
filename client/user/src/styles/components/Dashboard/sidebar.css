@@ -1,10 +1,12 @@
 :root{
 --sidebar-badge-background : #FF7782EC;
 --sidebar-badge-color : white;
+--messages-count-color : white;
 }
 .dark-theme-variables{
     --sidebar-badge-background : #FF7782EC;
     --sidebar-badge-color : #333;
+    --messages-count-color : white;
 }
 .litenote-sidebar-aside{
     height:100vh;
@@ -90,8 +92,8 @@ margin-left: calc(1rem - 3px);
  margin-left:1rem ;
 } 
 .litenote-sidebar-aside  .sidebar .message-count {
-background: var(--color-danger);
-color: var(--color-white);
+background: var(--litenote-notification-badge-background);
+color: var(--messages-count-color);
 padding: 2px 10px; 
 font-size: 11px ;
 border-radius: var(--border-radius-1);

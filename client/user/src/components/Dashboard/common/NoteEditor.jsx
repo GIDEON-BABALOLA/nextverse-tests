@@ -151,7 +151,6 @@ console.log(currentStoryId)
     return;
   }
   if(currentNoteDetails.title.length == 0){ 
-    console.log(currentNoteDetails)
 createANote(noteTitle, cleanHtml)
   }else{
     console.log(currentNoteDetails, currentStoryId)

@@ -14,6 +14,7 @@ import Hamburger from 'hamburger-react'
 import { MdGridView, MdLogout, MdLightMode, MdDarkMode,
   MdPersonAdd,
   MdLogin, MdSettings, MdManageSearch ,  MdAutoStories }from "react-icons/md"
+  import { useGetNotificationsCount } from "../../hooks/useGetNotificationsCount"
 import { useState, useEffect } from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import { useParams } from "react-router-dom"
@@ -30,11 +31,15 @@ const NavBar = () => {
   const { user } = useAuthContext()
 const [isOpen, setOpen] = useState(false)
 const [openModal, setOpenModal] = useState("")
+const { notificationsCount,getNotificationsCount } = useGetNotificationsCount()
   useEffect(() => {
 if(width < 768){
   isOpen ? showNavSidebar()  : closeNavSidebar()
 }
   }, [isOpen])
+  useEffect(() => {
+getNotificationsCount()
+  }, [])
   const currentPage = useParams();
   const navSidebarRef = useRef()
   const currentUrl = currentPage["*"]
@@ -315,8 +320,9 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
   <>
   <div style={{display : "flex", flexDirection : "row", justifyContent : "center", gap : "10px", alignItems : "center"}}>
   {currentUrl !== "" && <ModeToggler />}
-  <NotificationBadge />
-{currentUrl !== "" && <MdOutlineNotifications size={26} style={{cursor : "pointer"}} className="navbar-notification-icon"/>}
+{currentUrl !== "" &&  <NotificationBadge fontSize={25} iconColor={"#7d8da1"} badgeColor={"var(--litenote-notification-badge-background)"}
+number={notificationsCount}
+/> }
 </div>
 
     <Avatar className="profile-photo-homer"

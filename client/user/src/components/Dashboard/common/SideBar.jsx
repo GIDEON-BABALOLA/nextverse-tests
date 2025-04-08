@@ -4,11 +4,13 @@ import { MdGridView, MdGroups,
    MdNotifications,
    MdAutoStories, MdPersonOutline, MdReport, MdEmail, MdSettings, MdLogout, MdClose } from 'react-icons/md';
 import { FaHome, FaBookmark } from 'react-icons/fa';
+import NotificationBadge from "../../common/NotificationBadge"
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
 import { CgFeed} from "react-icons/cg"
 import { useThemeContext } from '../../../hooks/useThemeContext';
 import { MdDynamicFeed } from "react-icons/md";
+import { useGetNotificationsCount } from "../../../hooks/useGetNotificationsCount"
 import {  useEffect } from 'react';
 import useWindowSize from '../../../hooks/useWindowSize';
 import useImageLoad from '../../../hooks/useImageLoaded';
@@ -17,6 +19,7 @@ import LogoutConsent from '../../common/LogoutConsent';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import { useState } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
+   const { notificationsCount, getNotificationsCount } = useGetNotificationsCount();
    const { user } = useAuthContext();
    console.log(user)
    const [loading, setLoading] = useState(true)
@@ -94,6 +97,9 @@ sidebarRef.current.style.display = "block";
    useEffect(()=> {
 clickSidebarMenu()
    }, [currentUrl] )
+   useEffect(() => {
+      getNotificationsCount()
+   }, [])
   return (
 <>
 <SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
@@ -189,8 +195,10 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                         <Link to="/dashboard/notifications" className={`sidebar-links ${currentUrl === "notifications" && "active"}`}
                         
                         onClick={dave}>
-                        <MdNotifications size={24} />
-                        <span className="sidebar_button__badge">10</span>
+                      
+                        <NotificationBadge fontSize={25} iconColor={"#7d8da1"} badgeColor={"var(--litenote-notification-badge-background)"} 
+                        number={notificationsCount}
+                        />
 
                            <h3 className="litenote-dashboard-h-three" >Notifications</h3>
                            {/* <span className="message-count">26</span> */}

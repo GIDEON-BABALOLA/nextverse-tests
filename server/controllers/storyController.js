@@ -22,7 +22,7 @@ const createStory = async(req, res) => {
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
-    const {title, caption, content,  category } = req.body
+    const {title, caption, content, category, picture } = req.body
 try{
     if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
@@ -88,10 +88,7 @@ const time = countWordsAndEstimateReadingTime(content)
         case "admin":
             await Admin.createStory(req.user._id, story._id);
     }
-    const {estimatedReadingTime, date, ...rest} = newStory
-    res.status(201).json({...rest, estimatedReadingTime :`${time.minutes} minutes ${time.seconds} seconds read`,
-    date : `${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`
- })
+    res.status(201).json({ message : "Story Successfully Created", story : story})
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "createStoryError.txt", "storyError")
     if (error instanceof userError) {

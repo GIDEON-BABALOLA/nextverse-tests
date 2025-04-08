@@ -3,10 +3,12 @@
 :root{
 --lite-note-mode : #f8f8f8;
 --still-no-stories-loader : black;
+--litenote-notification-badge-background : #fe808b;
 }
 .dark-theme-variables{
   --lite-note-mode : #181A1E;
   --still-no-stories-loader : #fff;
+  --litenote-notification-badge-background : #526cdf;
 }
 * {
   margin: 0;

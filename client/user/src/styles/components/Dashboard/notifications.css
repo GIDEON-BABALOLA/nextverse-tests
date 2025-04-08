@@ -14,7 +14,7 @@
     --notification-header : white;
     --notification-slideline : white;
     --notification-badge : white;
-    --notification-badge-color : black;
+    --notification-badge-color : white;
     --notification-card-hover : rgba(132,139,200,0.18);
     --notification-statement : white;
     --notification-name : white;
@@ -74,7 +74,7 @@ border-bottom: 2px solid var(--notification-slideline)
 
 
 .my-notifications-tab .my-notifications-badge {
-    background: var(--notification-badge);
+    background:var(--litenote-notification-badge-background);
     color: var(--notification-badge-color);
     padding: 2px 8px;
     border-radius: 12px;
@@ -128,8 +128,8 @@ border-bottom: 2px solid var(--notification-slideline)
 .my-notifications-item.active{
 display: flex; 
 }
-.no-notifications{
-    
+.my-notification-date{
+    word-break: keep-all;
 }
 
 @keyframes moving{

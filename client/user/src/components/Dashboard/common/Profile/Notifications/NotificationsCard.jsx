@@ -3,7 +3,10 @@ import { useRef } from "react"
 import CommonAvatar from "../../../../common/CommonAvatar"
 import useNavigateStory from "../../../../../hooks/useNavigateStory"
 import useNavigateProfile from "../../../../../hooks/useNavigateProfile"
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
+import { compactFormatDistanceToNow } from "../../../../../helpers/formatDate"
 const NotificationsCard = ({ notification, currentNotification, isLoading }) => {
+  console.log(notification)
   const navigateToStory = useNavigateStory();
   const navigateToProfile = useNavigateProfile()
   const notify = useRef()
@@ -58,6 +61,11 @@ const NotificationsCard = ({ notification, currentNotification, isLoading }) => 
             <span className="my-notifications-time">{notification.time}</span>
            {  currentNotification.profile &&   <span href="#" className="my-notifications-view-button" onClick={() => { navigateToProfile(notification.referenceId.username)}}>View Profile  </span> }
            {  currentNotification.story && <span href="#" className="my-notifications-view-button" onClick={() => { navigateToStory(notification.referenceId)}} >View Story  </span> }
+           <span className="my-notification-date">
+            {compactFormatDistanceToNow(notification.createdAt)}
+            {/* { formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })} */}
+            </span>
+
         </div>
     </div>
     <div>
