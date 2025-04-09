@@ -5,6 +5,7 @@ import useNavigateStory from "../../../../../hooks/useNavigateStory"
 import useNavigateProfile from "../../../../../hooks/useNavigateProfile"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 import { compactFormatDistanceToNow } from "../../../../../helpers/formatDate"
+// import { FaEllipsisH } from "react-icons/fa";
 const NotificationsCard = ({ notification, currentNotification, isLoading }) => {
   console.log(notification)
   const navigateToStory = useNavigateStory();
@@ -41,7 +42,7 @@ const NotificationsCard = ({ notification, currentNotification, isLoading }) => 
     </div>
 </li>
 :
-<li className="my-notifications-item active" ref={notify}>
+<li className={ `my-notifications-item active ${!notification.isRead && "new"}`} ref={notify}>
     <CommonAvatar
   style={{height : "60px", width: "60px"}}
   image={notification.actor.picture}
@@ -68,9 +69,9 @@ const NotificationsCard = ({ notification, currentNotification, isLoading }) => 
 
         </div>
     </div>
-    <div>
-    </div>
-
+    {/* <div>
+      <FaEllipsisH />
+    </div> */}
 </li>
 }
     </>

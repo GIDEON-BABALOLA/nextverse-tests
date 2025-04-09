@@ -13,7 +13,15 @@ const getMyNotifications = async (req, res) => {
         .skip(skip)
         .limit(limit)
         .lean()
-        console.log(notifications.length, page)
+        // Extract the _id of the fetched notifications
+        const notificationIds = notifications.map(n => n._id);
+
+        // Update their 'isRead' field to true
+        await Notification.updateMany(
+        { _id: { $in: notificationIds }, isRead: false }, // Optional: only update unread ones
+        { $set: { isRead: true } }
+          );
+
         const storyNotificationCount = await Notification.countDocuments({ user: req.user._id, category : "story" })
         const profileNotificationCount = await Notification.countDocuments({user: req.user._id, category : "profile"})
         res.status(200).json({

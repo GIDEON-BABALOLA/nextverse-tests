@@ -249,6 +249,13 @@ input[type="color"]::-webkit-color-swatch {
     object-fit: cover;
     display: block;
   }
+  .text-editor-loaders{
+     object-fit: cover;
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+  }
   
   .text-editor-small-cancel-btn {
     position: absolute;

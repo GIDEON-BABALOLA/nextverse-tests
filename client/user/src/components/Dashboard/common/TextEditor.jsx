@@ -5,8 +5,9 @@ import { useCreateAStory } from "../../../hooks/useCreateAStory";
 import useWindowSize from "../../../hooks/useWindowSize";
 import ImageUpload from "../../common/ImageUpload";
 import { useToastContext } from "../../../hooks/useToastContext";
-import CommonAvatar from "../../../components/common/CommonAvatar"
+import TextEditorImage from "../common/TextEditorImage"
 import LoadingSpinner from "../../Loaders/LoadingSpinner";
+import { v4 as uuidv4 } from 'uuid';
 import Toast from "../../../components/common/Toast"
 import { FaGoogleDrive } from "react-icons/fa";
 import { FaBold,
@@ -34,7 +35,8 @@ import { FaBold,
  import "../../../styles/components/Dashboard/text-editor.css"
 const TextEditor = () => {
   const { createAStory, isLoading, error, data, statusCode } = useCreateAStory()
-  const [storyPictures, setStoryPictures] = useState([{}, {}, {}])
+  const [storyPictures, setStoryPictures] = useState([])
+  const [localPictures, setLocalPictures] = useState([])
   const [selectedImage, setSelectedImage] = useState()
   const [storyContent, setStoryContent] = useState()
   const [storyTitle, setStoryTitle] = useState()
@@ -99,12 +101,16 @@ const highlighter = (className, needsRemoval) => {
     });
 };
 const submitNote = () => {
+  const pureLocalPictures = [...localPictures].map((pic) => {
+    return pic.file
+  })
 // const cleanHtml = sanitizeHtml(noteContent, {
 // allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
 // allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
 //   });
+console.log(pureLocalPictures)
 const formData = new FormData();
-formData.append("picture", file)
+formData.append("picture", pureLocalPictures)
 setTitleCategoryModal(true)
     const cleanHtml = storyContent
     if(wordCount == 0 || !cleanHtml ){
@@ -203,8 +209,36 @@ document.execCommand(command, defaultui, value);
       useEffect(() => {
 initializer()
       }, [])
-    const dropImage = () => {
-
+    const dropImage = (e) => {
+      e.preventDefault()
+      const file = e.dataTransfer.files[0]
+      const maxSize = 2 * 1024 * 1024
+      const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
+      if(!validTypes.includes(file.type)){
+        e.target.value = ""
+        showToast("Error", "Please Choose An Image File", false)
+        return;
+      }
+      if(file.size > maxSize){
+        e.target.value = ""
+        showToast("Error", "Image Size Must Be Less Than 2MB", false)
+        return;
+      }
+      if([...storyPictures].length === 3){
+        setAttachmentModal(false)
+        showToast("Error", "You can only upload a maximum of three images", false)
+        return
+      }
+      setSelectedImage(file.name)
+      e.target.value = ""
+      const imageURL = URL.createObjectURL(file);
+      const imageID = uuidv4()
+      setLocalPictures((prev) => {
+        return [...prev, { id: imageID, file}]
+      })
+      setStoryPictures((prev) => {
+        return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
+      })
     }
     const dropboxSuccess = (file) => {
       const fileUrl = file[0].link.replace("dl=0", "raw=1");
@@ -213,8 +247,9 @@ initializer()
         showToast("Error", "You can only upload a maximum of three images", false)
         return
       }
+      const imageID = uuidv4()
       setStoryPictures((prev) => {
-        return [...prev, { name : file[0].name, src : fileUrl, source : "cloud"}]
+        return [...prev, { id: imageID, name : file[0].name, src : fileUrl, source : "cloud"}]
       })
       setAttachmentModal(false)
     }
@@ -223,6 +258,7 @@ initializer()
     }
     const onUpload = (e) => {
       const file = e.target.files[0];
+      console.log(file)
       const maxSize = 2 * 1024 * 1024
       const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
       if(!validTypes.includes(file.type)){
@@ -241,12 +277,20 @@ initializer()
       setSelectedImage(file.name)
       e.target.value = ""
       const imageURL = URL.createObjectURL(file);
+      const imageID = uuidv4();
+      setLocalPictures((prev) => {
+        return [...prev, { id: imageID, file}]
+      })
       setStoryPictures((prev) => {
-        return [...prev, { name : file.name, src : imageURL, source : "local"}]
+        return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
     }
 const removeStoryPicture = (pic) => {
-const newStoryPictures = [...storyPictures].filter((picture) => picture.name !== pic.name)
+if(pic.source == "local"){
+  const newLocalPictures = [...localPictures].filter((picture) => picture.id !== pic.id)
+  setLocalPictures(newLocalPictures)
+}
+const newStoryPictures = [...storyPictures].filter((picture) => picture.id !== pic.id)
 setStoryPictures(newStoryPictures)
 }
     useEffect(() => {
@@ -430,12 +474,11 @@ return <div>
        {
       storyPictures.map((pic, index) => (
         <div className="text-editor-small-image-container" key={index}>
-          <CommonAvatar
-          style={{height : "50px", width: "80px"}}
-          image={"https://res.cloudinary.com/doctr0fct/image/upload/v1733302193/Story/user8%40gmail.com/tmnwdkvk3gon0rgrr3hs.jpg"}
+          <TextEditorImage
+          image={pic.src}
           className="text-editor-small-image-preview"
           />
-        <button className="text-editor-small-cancel-btn" >×</button>
+        <button className="text-editor-small-cancel-btn" onClick={() => removeStoryPicture(pic)} >×</button>
       </div>
       ))
     }

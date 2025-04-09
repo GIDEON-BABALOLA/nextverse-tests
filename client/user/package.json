@@ -46,6 +46,7 @@
     "react-switch": "^7.1.0",
     "sanitize-html": "^2.14.0",
     "typewriter-effect": "^2.21.0",
+    "uuid": "^11.1.0",
     "vaul": "^1.0.0"
   },
   "devDependencies": {

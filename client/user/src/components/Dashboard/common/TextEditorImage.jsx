@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react"
-import useImageLoad from "../../hooks/useImageLoaded"
+import useImageLoad from "../../../hooks/useImageLoaded"
 const CommonAvatar = ({ image, ...props}) => {
   console.log(image)
   const [loading, setLoading] = useState(true)
@@ -17,9 +17,9 @@ setLoading(true)
   }, [loaded, error])
   return (
     <>{ loading ? 
-      <span
+      <div
        {...props}
-       className="common-avatar">&nbsp;</span>
+       className="text-editor-loaders text-editor-small-image-preview"></div>
     :
     <img src={image} {...props}></img>
     }

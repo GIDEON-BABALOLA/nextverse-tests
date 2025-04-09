@@ -4,9 +4,10 @@
     --notification-slideline : #ff3e3e;
     --notification-badge : #ff3e3e;
     --notification-badge-color : white;
-    --notification-card-hover : #f9f9f9;
+    --notification-card-hover : #e5e5e5;
     --notification-statement : #666;
     --notification-name : #333;
+    --notification-dot: #fe808b;
 
 }
 .dark-theme-variables{
@@ -18,6 +19,7 @@
     --notification-card-hover : rgba(132,139,200,0.18);
     --notification-statement : white;
     --notification-name : white;
+    --notification-dot: #7380ec;
 }
 .my-notifications-container {
     width: 100%;
@@ -47,6 +49,16 @@
 }
 .my-notifications-tab.active {
 border-bottom: 2px solid var(--notification-slideline)
+}
+.my-notifications-item.new{
+    background-color: var(--notification-card-hover);
+}
+.notification-dot{
+    width: 8px;
+    height: 8px;
+    background-color:var(--notification-dot); /* or any color */
+    border-radius: 50%;
+
 }
 .slideline-notification{
     position: absolute;
