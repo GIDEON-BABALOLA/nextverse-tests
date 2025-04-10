@@ -402,10 +402,15 @@ const isFollowing = !!exists;
 const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
 "verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
 )
+const cleanedStories = detailsOfUserToBeSent.stories.filter(
+    story => Object.keys(story).length > 0
+  );
+detailsOfUserToBeSent.stories = cleanedStories
     res.status(200).json({user : detailsOfUserToBeSent, isFollowing : isFollowing}) 
    
 //  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ message : error.message})
@@ -775,10 +780,13 @@ const getAllUsers = async (req, res) => {
           .slice('stories', [parseInt(skip), parseInt(limit)])
           .lean();
        const storiesToBeSent = userStories["stories"].map((item) => ({...item.storyId}))
-       const enrichedStories = storiesToBeSent.map((story) => ({
+       const cleanedStories = storiesToBeSent.filter(
+        story => Object.keys(story).length > 0
+      );
+       const enrichedStories = cleanedStories.map((story) => ({
         ...story,
-        picture : story.picture[Math.floor(Math.random() * story.picture.length)],
-        isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
+        picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
+        isLiked: story?.likes?.some((like) => like.likedBy.toString() == req.user._id.toString()),
       }));
         res.status(200).json({ stories : enrichedStories, count : storiesCount})          
 

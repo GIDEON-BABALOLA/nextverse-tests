@@ -18,6 +18,9 @@ const cloudinaryUpload = async (filesToUpload, folderName) => {
           );
 return { url : result.secure_url}
     }catch(error){
+     if(error?.message?.toLowerCase().includes("stale request")){
+      throw new cloudinaryError("Change Your Device Time, It Is Incorrect", 400)
+     }
       throw new cloudinaryError("Unable To Upload Picture, Check Internet Connection", 400)
     }
 }

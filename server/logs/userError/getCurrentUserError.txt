@@ -28,3 +28,14 @@
 20250331	10:54:47	e9e2f8ae-f5ec-4c10-b088-b860ebe022a1	userError: Your Account Does Not Exist
 20250401	14:44:43	82f84f95-4729-4385-ad2c-cd8832ac2576	userError: Your Account Does Not Exist
 20250403	11:54:58	8d367f23-77dc-4cd5-a77f-5cbfc94afbda	userError: Your Account Does Not Exist
+20250410	17:06:25	f36959e4-cd7f-4df9-869b-d5b7308f37f5	ReferenceError: storiesToBeSent is not defined
+20250410	17:07:57	1e1556cd-4bf4-4ff1-992d-26a438c8c645	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:08:03	01b078a7-2a37-480f-b27f-4ac94dee6c9b	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:08:05	93728350-62b3-4232-a81c-1537e687e480	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:08:21	dfcccae0-b36a-4bee-9cdd-bc79680365d0	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:08:44	ea8fb381-05d2-41f3-848e-daa7f1e50b94	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:09:04	9ee00ff6-294e-4fe2-8c1a-d5ee5f5dfb98	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:09:05	9bd6ec4a-1a29-4aab-8ff9-0cce08ad95ef	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:09:24	a48deaae-d400-4729-8a2a-5ba60100dadf	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:09:39	476d37d9-e796-456b-912d-36687f2c137d	TypeError: Cannot read properties of undefined (reading 'stories')
+20250410	17:10:28	14d2df14-af67-4e43-892e-2c32f437e921	TypeError: Cannot read properties of undefined (reading 'stories')

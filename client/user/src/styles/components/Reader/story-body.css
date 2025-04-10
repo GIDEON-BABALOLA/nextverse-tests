@@ -5,11 +5,22 @@
 .dark-theme-variables{
     --story-display-content-color : white;
 }
+.story-now-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.story-now-container-picture{
+    margin-top: 0px;
+}
 .story-body-images{
     object-fit: cover;
-    width: 93%;
-    height: 30%;
+    width: 100%;
+    height: 40%;
     border-radius: 10px;
+    
     
 }
 .skeleton-image-story-images{
@@ -30,11 +41,16 @@
     line-height: 2.5rem;
     font-family: "Poppins";
     font-size: 1.3rem;
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row;
     align-items: center;
     justify-content: center;
-    text-align:justify;
+    text-align:justify; */
   width: 92%;
   color: var(--story-display-content-color);
+}
+@media (max-width: 768px) {    
+    .story-body-images{
+    width: 100%;
+}
 }

@@ -227,6 +227,7 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
+      insertTextAtCursor(`[Image ${storyPictures.length}]`);
     }
     const dropboxSuccess = (file) => {
       const fileUrl = file[0].link.replace("dl=0", "raw=1");
@@ -239,6 +240,7 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id: imageID, name : file[0].name, src : fileUrl, source : "cloud"}]
       })
+      insertTextAtCursor(`[Image ${storyPictures.length}]`);
       setAttachmentModal(false)
     }
     const googleDriveSuccess = () => {
@@ -272,6 +274,12 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
+      if (textAreaRef.current) {
+        const imgTag = `<img src="${imageURL}" alt="Uploaded Image" style="max-width:40%; margin:1em 0; border-radius:10px;" />`;
+        const currentContent = textAreaRef.current.innerHTML;
+        textAreaRef.current.innerHTML = currentContent + imgTag;
+      }
+      // insertTextAtCursor(`[Image ${storyPictures.length}]`);
     }
 const removeStoryPicture = (pic) => {
 if(pic.source == "local"){
@@ -295,9 +303,12 @@ if(selectedImage){
       const pureLocalPictures = [...localPictures].map((pic) => {
         return pic.file
       })
+      const pureCloudPictures = [...storyPictures].filter((pic) => pic.source !== "local").map((cloudPic) => { return cloudPic.src} )
       const storyCategory = Object.keys(category).find(key => category[key] === true);
+      const totalImages = pureCloudPictures.length + pureLocalPictures.length
       if(storyPictures.length == 0){
         showToast("Error", "Please Choose An Image For Your Story", false)
+        return;
       }
       if(wordCount == 0 || !storyContent ){
         showToast("Error", "Please Enter The Content Of Your Story", false)
@@ -305,17 +316,29 @@ if(selectedImage){
       }
       if(!storyTitle){
         showToast("Error", "Please Enter A Title For Your Story", false)
+        return;
       }
       if(!storyCategory){
         showToast("Error", "Please Enter A Category For Your Story", false)
+        return
       }
-      const formData = new FormData();
-      pureLocalPictures.forEach((file) => {
+      console.log(totalImages)
+      if(totalImages === 0){
+        showToast("Error", "Please Select An Image For Your Story", false)
+        return
+      }
+    const formData = new FormData();
+    pureLocalPictures.forEach((file) => {
         formData.append("picture", file);
-      });
+    });
+    pureCloudPictures.forEach((url) => {
+        formData.append("cloudImages", url)
+    })
     formData.append("title", storyTitle)
     formData.append("content", storyContent)
     formData.append("category", storyCategory)
+    setTitleCategoryModal(false)
+    console.log(storyContent)
     createAStory(formData)
                         
                       }
@@ -324,10 +347,39 @@ if(error){
   showToast("Error", error.message, false)
 }
 if(Object.keys(data).length !== 0 && statusCode == 201){
-  setTitleCategoryModal(false)
+  textAreaRef.current.innerHTML = ""
+  setStoryTitle("")
+  setWordCount(0)
+  setStoryContent("")
+  setStoryPictures([])
+  setLocalPictures([])
+  setCategory(prev => {
+    const reset = {};
+    for (let key in prev) {
+      reset[key] = false;
+    }
+    return reset;
+  });
   showToast("Success", data.message, true)
 }
     }, [error, data, statusCode])
+    function insertTextAtCursor(text) {
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+    
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+    
+      const textNode = document.createTextNode(text);
+      range.insertNode(textNode);
+    
+      // Move cursor to the end of inserted text
+      range.setStartAfter(textNode);
+      range.setEndAfter(textNode);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    
     const previewTitleCategoryContent = () => {
 return <>
   <div className="title-category-container">
@@ -526,7 +578,7 @@ return <>
     className="textArea empty" 
     onInput={scrollTextArea}
     onBlur={scrollTextArea}
-    spellCheck="true"
+    spellCheck="false"
     onKeyUp={handlePlaceholder}
     data-placeholder="Let Your Pen Speak..."
     contentEditable="true" >

@@ -72,3 +72,16 @@
 20250409	17:52:13	3ad4e2db-68fa-415e-a8fa-fcefff0b3cb8	userError: You Cannot Create A Story With The Category undefined
 20250409	17:52:19	ccd24ea3-9088-4933-a3ed-1caf98a96a41	userError: You Cannot Create A Story With The Category undefined
 20250410	03:25:24	c6053571-2af1-4bfa-a10a-5176fd65b2ea	userError: Please upload at least one image
+20250410	03:27:00	7431aa59-5b6e-433b-98c8-14003df8c7ee	userError: Please upload at least one image
+20250410	03:28:32	c86af7d4-ce42-4cee-a6a9-40fa37c69b41	userError: Please upload at least one image
+20250410	03:30:00	2f6587b3-5082-457d-8c9d-6032bf406b33	userError: Please upload at least one image
+20250410	03:30:47	a552924e-0187-44d1-bd9b-1a728b428194	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20250410	03:39:51	430c46b8-dd5e-4669-b71e-38382454e7ae	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20250410	03:40:36	d1af1029-ee77-436a-934a-0c5f1ea8435a	cloudinaryError: Unable To Upload Picture, Check Internet Connection
+20250410	03:46:12	6ddb56e7-0b86-48dc-844f-b49ddede4371	cloudinaryError: Change Your Device Time, It Is Incorrect
+20250410	14:25:13	694d099b-0e52-4074-9a31-d41af0c857d2	userError: You Cannot Create A Story With The Category undefined
+20250410	14:25:28	80b325f3-3b96-43f3-9812-39d242ffb5b0	userError: You Cannot Create A Story With The Category undefined
+20250410	14:26:02	c6c445fb-165d-43da-9b10-b8383c152042	userError: You Cannot Create A Story With The Category undefined
+20250410	14:32:32	b9e3cbfb-65f5-465a-9749-97bbc7cbf479	userError: You are only allowed to upload a maximum of 3 images
+20250410	15:53:37	98b96b76-1ba4-4b5a-a9f9-44c9a283b32f	TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+20250410	16:14:54	c44c68d7-3577-4f3e-bc6f-04f2e0ff5922	userError: You Cannot Create A Story With The Category nonfiction

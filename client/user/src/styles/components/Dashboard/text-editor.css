@@ -287,10 +287,9 @@ color: var(--small-cancel-button-color);
   }
   .title-part-input{
     border-radius: 12px;
-    padding: 10px 4px;
+    padding: 10px 10px;
     outline: none;
     border: 1px solid #cccccc;
-    cursor:  pointer !important;
   }
   .button-part{
     display: flex;

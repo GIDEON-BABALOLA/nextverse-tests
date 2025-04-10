@@ -153,6 +153,7 @@ className="story-display-main"
       content={data.content}
       title={data.title}
       picture={data.picture}
+      pictures={data.pictures}
       author={data.author}
       avatar={data.avatar}
       userId={data.userId}

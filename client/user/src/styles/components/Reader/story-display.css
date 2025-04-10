@@ -38,7 +38,7 @@ background-color: var(--story-display-page-background);
    padding-top: 10px;
 }
 .story-body-image-loader{
-    width: 93%;
+    width: 100%;
     border-radius: 10px;
     padding: 200px;
     object-fit: cover;
@@ -47,8 +47,6 @@ background-color: var(--story-display-page-background);
     -webkit-animation: 1.5s shine linear infinite;
             animation: 1.5s shine linear infinite;
             object-fit: cover;
-            width: 93%;
-            height: 30%;
             border-radius: 10px;
 }
 .litenote-suggestion-stories{
@@ -139,6 +137,7 @@ background-color: var(--story-display-page-background);
     }
     
     .story-body-image-loader{
+        width: 100%;
         padding: 100px;
     }
 }
@@ -153,5 +152,10 @@ background-color: var(--story-display-page-background);
     }
     .litenote-more-from-stories{
         width: 300px;
+    }
+        
+    .story-body-image-loader{
+        width: 100%;
+        padding: 100px;
     }
 }

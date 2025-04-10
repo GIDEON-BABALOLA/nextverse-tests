@@ -19,18 +19,17 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 const createStory = async(req, res) => {
     const datetime = new Date()
     const { id } = req.user
-    let localPictures = [];
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
-if (req.body.pictures) {
-    localPictures = req.body.pictures
-  }
-else if(req.body.pictures && !Array.isArray(req.body.pictures)){
-    localPictures = [req.body.pictures]
+let cloudImages = [];
+if (req.body.cloudImages) {
+  cloudImages = Array.isArray(req.body.cloudImages)
+    ? req.body.cloudImages
+    : [req.body.cloudImages];
 }
-else{
-localPictures = []
+if(req.body.category == "nonfiction"){
+    req.body.category = "non-fiction"
 }
     const {title, content, category } = req.body
 try{
@@ -48,8 +47,7 @@ try{
     if(foundStory){
      throw new userError("Pls Kindly Choose Another Title, This title Has already Been Taken", 400)
     }
-    console.log(localPictures)
-    const totalImages = req.files.length + localPictures.length;
+    const totalImages = req.files.length + cloudImages.length;
     if (totalImages === 0) {
         throw new userError("Please upload at least one image", 400);
       }
@@ -71,9 +69,9 @@ for (const file of req.files) {
     fs.unlinkSync(path); // clean up local file
   }
 }
-if(localPictures.length !== 0 ){
-for (const picture of localPictures){
-    urls.push(picture)
+if(cloudImages.length !== 0 ){
+for (const url of cloudImages){
+    urls.push(url)
 }
 }
 //number of words in the story
@@ -226,7 +224,8 @@ await foundStory.save()
 const adjustedStory = foundStory.toObject();
     res.status(200).json({ story :
          {...adjustedStory,
-        picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]
+picture :    adjustedStory.picture[Math.floor(Math.random() * adjustedStory.picture.length)],
+pictures : adjustedStory.picture
     },
          isFollowing : isFollowing,
          isLiked : isLiked,
