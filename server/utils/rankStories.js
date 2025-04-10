@@ -12,9 +12,8 @@ const rankStories = (stories, number) => {
         (weights.totalLikes * storyConvertedToObject.totalLikes) +
         (weights.totalBookmarks * storyConvertedToObject.totalBookmarks)
         return {...storyConvertedToObject,
-        picture  :storyConvertedToObject.picture == 2 ? storyConvertedToObject.picture[Math.round(Math.random())]
-        : storyConvertedToObject.picture[0],
-        popularityScore}
+        popularityScore
+    }
     })
  const topStories = storiesToBeRanked.sort((a, b) => b.popularityScore - a.popularityScore)
  .slice(0, number)

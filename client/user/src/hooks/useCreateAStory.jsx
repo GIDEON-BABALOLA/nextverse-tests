@@ -6,21 +6,18 @@ export const useCreateAStory = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
-    const createAStory = async (title, content) => {
+    const createAStory = async (formData) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
 const response = await axiosConfig.post(`/story/create-a-story`,
+   formData, 
     {
-        title : title,
-        content : content
-    }, 
-    {
-        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
+        signal : AbortSignal.timeout(60000) //times out after 1 minute
     }
 )
 if(response && response.data){
-    setData(response.data.story)
+    setData(response.data)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -36,7 +33,7 @@ setIsLoading(false)
 setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
-                setError({message : "Our Service Is Currently Offline", code : error.code})
+                setError({message : "Our aervice Is Currently Offline", code : error.code})
             }
             else if(error.message == "Request failed with status code 404"){
                 setError({message : "Not Found", code : error.code})

@@ -85,6 +85,8 @@ padding-right: 0px;
 
 	width: 10%;
 	border-radius: 50%;
+	height: 40px;
+	width: 40px;
   
   }
   .story-card-user-info{
@@ -148,27 +150,15 @@ padding-right: 0px;
     }
 
 }
-@media screen and (max-width:1200px) {
+
 
 	.litenote-stories-select-menu{
 		width: 380px;
 		margin: 10px auto;
 	}
-	.letsgo-stories{
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-	
-	}
-	.litenote-stories-react-icons{
-		margin: 2%;
-	}
-	.show-me-hello{
-	margin-top : 90px;
-	 font-weight : 1000;
-	  font-family : "Poppins";
-	margin-left: 15px;
-	}
+
+
+
 	.dropdown-stories-select-notification{
 		display: flex;
 		align-items: center;
@@ -268,15 +258,32 @@ z-index: 2;
 	.litenote-stories-options .litenote-stories-option:hover{
 	background: var(--dropdwon-settings-category-hover-text);
 	}
-	.litenote-browse-option i{
-		font-size: 25px;
-		margin-right: 12px;
-	}
 	.litenote-stories-option .litenote-stories-option-text{
 		font-size: 18px;
 		color : var(--dropdown-settings-category-text)
 	}
-}
+
+	@media screen and (max-width:1200px) {
+		.letsgo-stories{
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		
+		}
+		.litenote-stories-react-icons{
+			margin: 2%;
+		}
+		.show-me-hello{
+			margin-top : 90px;
+			 font-weight : 1000;
+			  font-family : "Poppins";
+			margin-left: 15px;
+			}
+			.litenote-browse-option i{
+				font-size: 25px;
+				margin-right: 12px;
+			}
+	}
 @media screen and (max-width: 768px) {
 	.litenote-stories-select-menu{
 		width: 350px;
@@ -284,3 +291,7 @@ z-index: 2;
 		margin-bottom: 0px;
 	}
 }
+
+
+
+

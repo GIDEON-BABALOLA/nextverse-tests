@@ -23,3 +23,4 @@
 20250104	12:38:34	88840388-3e68-49fc-8c30-98a0b2c0a189	TypeError: Cannot read properties of undefined (reading 'toString')
 20250104	12:38:42	963d9c07-c4f4-4a74-98b0-69f77bd4a94e	TypeError: Cannot read properties of undefined (reading 'toString')
 20250104	12:39:53	a748609d-482a-4485-8314-5f2162522e9b	TypeError: Cannot read properties of undefined (reading 'toString')
+20250409	09:16:40	19cf5e94-63bc-4291-8ac2-a850a940e4cd	userError: You Cannot Get Popular Stories From This Category s

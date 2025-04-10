@@ -735,10 +735,10 @@ const getAllUsers = async (req, res) => {
       })
       .slice('bookmarks', [parseInt(skip), parseInt(limit)])
       .lean();
-      console.log(userBookmarks)
    const bookmarksToBeSent = userBookmarks["bookmarks"].map((item) => ({...item.bookmarkId,  createdAt: item.createdAt}))
    const enrichedBookmarks = bookmarksToBeSent.map((story) => ({
     ...story,
+    picture : story.picture[Math.floor(Math.random() * story.picture.length)],
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
@@ -777,6 +777,7 @@ const getAllUsers = async (req, res) => {
        const storiesToBeSent = userStories["stories"].map((item) => ({...item.storyId}))
        const enrichedStories = storiesToBeSent.map((story) => ({
         ...story,
+        picture : story.picture[Math.floor(Math.random() * story.picture.length)],
         isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
       }));
         res.status(200).json({ stories : enrichedStories, count : storiesCount})          

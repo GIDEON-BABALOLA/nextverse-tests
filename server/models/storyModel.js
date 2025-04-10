@@ -71,10 +71,6 @@ const storySchema = new mongoose.Schema({
             required: true
         }
     },
-    caption:{
-        type:String,
-        required:true,
-    },
     content:{
         type:String,
         required:true,

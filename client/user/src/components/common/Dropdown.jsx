@@ -1,7 +1,7 @@
 import  { useState, useRef} from 'react'
 import { FaAngleDown } from 'react-icons/fa'
 
-const Dropdown = ({ tabs, setTab, scale, counts}) => {
+const Dropdown = ({ tabs, setTab, scale, counts, ...props}) => {
     const selectMenu = useRef() 
     const list = useRef()
     const selectButton = useRef()
@@ -43,18 +43,27 @@ const selectedOption = optionMapping[tab];
         }
       }
   return (
-<div className={`litenote-stories-select-menu  ${active ? 'active' : ''}`} ref={selectMenu}
+<div 
+className={`litenote-stories-select-menu  ${active ? 'active' : ''}`} ref={selectMenu}
 style={{marginBottom : "20px"}}
+{...props} 
 >
 <div className="litenote-stories-select-btn"  onClick={openOption}>
 <span className="litenote-stories-sBtn-text" ref={selectButton} >Filter By Category</span>
 <FaAngleDown  className="litenote-angle-down"/>
 </div>
-<ul className={`litenote-stories-options ${active ? 'show' : 'close'}`} ref={list}>
+<ul 
+className={`litenote-stories-options
+   ${active ? 'show' : 'close'}`} 
+   
+   ref={list}
+   {...props}
+   >
 { Object.entries(tabs).map(([key, value], index) => (
     <li
     key={index}
-     className="litenote-stories-option"  onClick={chooseOption}>
+     className="litenote-stories-option" 
+     onClick={chooseOption}>
 
 <span className="litenote-stories-option-text">{key[0].toUpperCase() + key.slice(1)}</span>
 {scale &&  

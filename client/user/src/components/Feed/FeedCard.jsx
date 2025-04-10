@@ -30,8 +30,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const [likedBefore, setLikedBefore] = useState(story.isLiked)
   let storyPicture = ""
   if(isLoading === false){
-    //  storyPicture = story.picture[Math.round(Math.random())]
-    storyPicture = story.picture[0]
+    storyPicture = story.picture
   }
 
   const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)

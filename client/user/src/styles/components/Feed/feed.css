@@ -209,9 +209,10 @@
     margin-right: 5px;
 }
 .feed-man{
-    width: 20px;
-   
+    width: 35px;
+     height: 35px;
     border-radius: 50%; 
+    object-fit: cover;
 }
 .feed-behind{
      background-color: var(--feed-behind-background);
@@ -331,9 +332,10 @@
     background: transparent;
 }
 .feed-profile-images-trending{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    object-fit: cover;
     margin-right: 10px;
 }
 .feed-profile-images-following{

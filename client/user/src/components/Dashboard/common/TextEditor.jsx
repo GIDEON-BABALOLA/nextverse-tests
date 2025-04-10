@@ -7,6 +7,7 @@ import ImageUpload from "../../common/ImageUpload";
 import { useToastContext } from "../../../hooks/useToastContext";
 import TextEditorImage from "../common/TextEditorImage"
 import LoadingSpinner from "../../Loaders/LoadingSpinner";
+import Dropdown from "../../common/Dropdown";
 import { v4 as uuidv4 } from 'uuid';
 import Toast from "../../../components/common/Toast"
 import { FaGoogleDrive } from "react-icons/fa";
@@ -52,7 +53,14 @@ const TextEditor = () => {
     const fontName = useRef()
     const textAreaRef = useRef()
     const fontSizeRef = useRef()
-
+    const [category, setCategory] = useState({
+      technology : false,
+      fiction : false,
+      adventure : false,
+      nonfiction : false,
+      romance : false,
+      memoir : false
+    })
     //initial settings
     //Highlight clicked button
     const copyTextArea = () => {
@@ -100,26 +108,6 @@ const highlighter = (className, needsRemoval) => {
     }
     });
 };
-const submitNote = () => {
-  const pureLocalPictures = [...localPictures].map((pic) => {
-    return pic.file
-  })
-// const cleanHtml = sanitizeHtml(noteContent, {
-// allowedTags: ["b", "i", "em", "strong", "p", "ul", "li", "a"], // Allow only safe tags
-// allowedAttributes: { "a": ["href"] }, // Allow only safe attributes
-//   });
-console.log(pureLocalPictures)
-const formData = new FormData();
-formData.append("picture", pureLocalPictures)
-setTitleCategoryModal(true)
-    const cleanHtml = storyContent
-    if(wordCount == 0 || !cleanHtml ){
-      showToast("Error", "Please Enter The Content Of Your Story", false)
-      return;
-    }
-createAStory(storyTitle, cleanHtml)
-                    
-                  }
 const handlePlaceholder = () => {
   const editor = textAreaRef.current;
   const textWithoutTags = editor.innerText.replace(/\s+/g, ' ').trim()
@@ -298,15 +286,64 @@ if(selectedImage){
   setTimeout(() => {
     setAttachmentModal(false)  
     setSelectedImage("")  
-  }, 500);
+  }, 100);
   
 
 }
     }, [selectedImage])
+    const submitNote = () => {
+      const pureLocalPictures = [...localPictures].map((pic) => {
+        return pic.file
+      })
+      const storyCategory = Object.keys(category).find(key => category[key] === true);
+      if(storyPictures.length == 0){
+        showToast("Error", "Please Choose An Image For Your Story", false)
+      }
+      if(wordCount == 0 || !storyContent ){
+        showToast("Error", "Please Enter The Content Of Your Story", false)
+        return;
+      }
+      if(!storyTitle){
+        showToast("Error", "Please Enter A Title For Your Story", false)
+      }
+      if(!storyCategory){
+        showToast("Error", "Please Enter A Category For Your Story", false)
+      }
+      const formData = new FormData();
+      pureLocalPictures.forEach((file) => {
+        formData.append("picture", file);
+      });
+    formData.append("title", storyTitle)
+    formData.append("content", storyContent)
+    formData.append("category", storyCategory)
+    createAStory(formData)
+                        
+                      }
+    useEffect(() => {
+if(error){
+  showToast("Error", error.message, false)
+}
+if(Object.keys(data).length !== 0 && statusCode == 201){
+  setTitleCategoryModal(false)
+  showToast("Success", data.message, true)
+}
+    }, [error, data, statusCode])
     const previewTitleCategoryContent = () => {
-return <div>
-  Hi there
+return <>
+  <div className="title-category-container">
+<div className="title-part">
+<span style={{textAlign : "left"}} >Title</span>
+<input className="title-part-input" value={storyTitle} onChange={(e) => setStoryTitle(e.target.value)}></input>
 </div>
+<div className="category-part">
+<span style={{textAlign : "left"}}>Category</span>
+<Dropdown tabs={category} setTab={setCategory} scale={false} style={{maxWidth : "30rem"}}/>
+</div>
+<div className="button-part">
+<button className="final-submit-button" onClick={() => submitNote()}>Submit</button>
+</div>
+  </div>
+</>
     }
   return (
     <>
@@ -333,7 +370,7 @@ return <div>
            <SpecialModal 
             openModal={titleCategoryModal}
             setOpenModal={setTitleCategoryModal}
-            width={width < 768 ? 350 : 500}
+            width={width < 768 ? 400 : 400}
             height={400}
             content={previewTitleCategoryContent()}
            />
@@ -495,15 +532,15 @@ return <div>
     contentEditable="true" >
     </div>
   <div className="text-editor-bottom">
-    <button className="computerprogrammer special-modal-client" onClick={() => { submitNote()}}>
+    <button className="computerprogrammer special-modal-client" onClick={() => { setTitleCategoryModal(true)}}>
       {
         isLoading ? 
-        <span className="text-editor-loading-spinner special-modal-client">
+        <span className="text-editor-loading-spinner">
         <LoadingSpinner />
         </span>
 
       :
-    <span >
+    <span className="special-modal-client" >
     Submit
     </span>
 }

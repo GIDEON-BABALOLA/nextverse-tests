@@ -46,6 +46,10 @@ background-color: var(--story-display-page-background);
     background-size: 200% 100%;
     -webkit-animation: 1.5s shine linear infinite;
             animation: 1.5s shine linear infinite;
+            object-fit: cover;
+            width: 93%;
+            height: 30%;
+            border-radius: 10px;
 }
 .litenote-suggestion-stories{
     margin: 0% auto;

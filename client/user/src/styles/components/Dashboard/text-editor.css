@@ -9,6 +9,7 @@
 --keyboard : black;
 --small-cancel-button-color : white;
 --small-cancel-button-background : rgba(0, 0, 0, 0.5);
+--final-submit-background: #ff5e62;
 }
 .dark-theme-variables{
     --text-editor-background : #00000066;
@@ -18,6 +19,7 @@
     --keyboard : black;
     --small-cancel-button-color : black;
 --small-cancel-button-background : white;
+--final-submit-background: #7380ec;
 }
 
 .slideline{
@@ -273,7 +275,46 @@ color: var(--small-cancel-button-color);
     font-weight: 300;
     line-height: 1;
   }
+  .title-category-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  .title-part{
+    display: flex;
+    flex-direction: column;
+  }
+  .title-part-input{
+    border-radius: 12px;
+    padding: 10px 4px;
+    outline: none;
+    border: 1px solid #cccccc;
+    cursor:  pointer !important;
+  }
+  .button-part{
+    display: flex;
+    flex-direction: column;
+  }
   
+  .final-submit-button{
+border: none;
+outline: none;
+padding: 15px 10px;
+border-radius: 12px;
+color: white;
+background-color: var(--final-submit-background);
+  }
+  .custom-select{
+    outline: none;
+  }
+  .custom-select-option{
+    
+  }
+  .category-part{
+    display: flex;
+    flex-direction: column;
+  }
 @media screen and (max-width:1200px) {
     .litenote-text-editor-container{
     background-color: var(--text-editor-background);

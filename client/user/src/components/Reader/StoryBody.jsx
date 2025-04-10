@@ -20,8 +20,8 @@ const StoryBody = ({ content, title, picture, avatar, author, userId, isFollowin
     {title}
     
     </h2>
-    {loading ?
-     <div className="story-body-image-loader">&nbsp;</div>
+    {!loading ?
+     <div className="story-body-image-loader"></div>
      :
      <img src={picture}
     className="story-body-images"

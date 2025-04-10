@@ -6,7 +6,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 export default function SimpleBadge({ fontSize, badgeColor, iconColor, number}) {
   return (
     <Badge badgeContent={number} 
-    showZero={true}
+    showZero={false}
     sx={{
       '& .MuiBadge-badge': {
         backgroundColor: badgeColor,  // Custom background

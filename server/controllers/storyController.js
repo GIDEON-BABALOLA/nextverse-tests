@@ -19,15 +19,25 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 const createStory = async(req, res) => {
     const datetime = new Date()
     const { id } = req.user
+    let localPictures = [];
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
-    const {title, caption, content, category, picture } = req.body
+if (req.body.pictures) {
+    localPictures = req.body.pictures
+  }
+else if(req.body.pictures && !Array.isArray(req.body.pictures)){
+    localPictures = [req.body.pictures]
+}
+else{
+localPictures = []
+}
+    const {title, content, category } = req.body
 try{
     if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
             }
-    if(!title || !caption || !content || !category){
+    if(!title || !content || !category){
         throw new userError("Please Fill In All The Fields", 400)
     }
     const isValidCategory = defaultCategory.includes(category)
@@ -38,30 +48,33 @@ try{
     if(foundStory){
      throw new userError("Pls Kindly Choose Another Title, This title Has already Been Taken", 400)
     }
-    if(req.files.length === 0){
-        throw new userError("Pls Choose An Image To Upload", 400)
-    }
-    if(req.files.length > 3){
-        throw new userError("You are only allowed to upload Two Pictures", 400)
-    }
-    // else if(req.files.length < 2){
-    // throw new userError("Pls Upload Two Images For This Story", 400)
-    // }
-    //users can now upload one picture per story
-    if(!title  || !caption ||!content || !category){
-        throw new userError("Please Fill In All The Fields", 400)
-    }
+    console.log(localPictures)
+    const totalImages = req.files.length + localPictures.length;
+    if (totalImages === 0) {
+        throw new userError("Please upload at least one image", 400);
+      }
+    if (totalImages > 3) {
+        throw new userError("You are only allowed to upload a maximum of 3 images", 400);
+      }
 const uploader =  (path) => cloudinaryUpload(path, `Story/${req.user.email}`)
 const urls = []
-for( const file of req.files){
+if(req.files.length !== 0){
+// Process local files
+for (const file of req.files) {
     const { path, size } = file;
-    if(size > 2000000){
-        fs.unlinkSync(path) //delete the image from server
-        throw new userError("Image size too large (max 2MB)", 400)
+    if (size > 2 * 1024 * 1024) {
+      fs.unlinkSync(path); // delete large image
+      throw new userError("Image size too large (max 2MB)", 400);
     }
-const newPath = await uploader(path)
-urls.push(newPath.url)
-fs.unlinkSync(path)
+    const newPath = await uploader(path);
+    urls.push(newPath.url);
+    fs.unlinkSync(path); // clean up local file
+  }
+}
+if(localPictures.length !== 0 ){
+for (const picture of localPictures){
+    urls.push(picture)
+}
 }
 //number of words in the story
 // According to research, the average reading speed for adults is around 200-250 words per minute, but this can vary depending on factors such as age and reading experience.
@@ -73,7 +86,6 @@ const time = countWordsAndEstimateReadingTime(content)
         userId : id,
         title : title,
         slug : slugify(title),
-        caption,
         content : content,
         category,
         picture : urls,
@@ -90,6 +102,7 @@ const time = countWordsAndEstimateReadingTime(content)
     }
     res.status(201).json({ message : "Story Successfully Created", story : story})
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "createStoryError.txt", "storyError")
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ message : error.message})
@@ -212,7 +225,9 @@ foundStory.totalViews = totalViews.toString()
 await foundStory.save()
 const adjustedStory = foundStory.toObject();
     res.status(200).json({ story :
-         {...adjustedStory, picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]},
+         {...adjustedStory,
+        picture : adjustedStory.picture.length == 2 ?  adjustedStory.picture[Math.round(Math.random())] :adjustedStory.picture[0]
+    },
          isFollowing : isFollowing,
          isLiked : isLiked,
          isBookmarked : isBookmarked
@@ -291,9 +306,11 @@ if(req.query.page){
 const allStories = await query.lean();
 const enrichedFeed = allStories.map((story) => ({
   ...story,
+  picture : story.picture[Math.floor(Math.random() * story.picture.length)],
   isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
   isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
 }));
+console.log(enrichedFeed)
     res.status(200).json({stories : enrichedFeed, count : storyCount})       
    
 
@@ -363,10 +380,10 @@ try{
     }
     const enrichedPopularStories = foundStories.map((story) => ({
         ...story,
+        picture : story.picture[Math.floor(Math.random() * story.picture.length)],
         isLiked: story.likes.some((like) => like.likedBy.toString() == userId.toString()),
         isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == userId.toString())
       }));
-
     const mostPopularStories = rankStories(enrichedPopularStories, number)
         res.status(200).json(mostPopularStories)         
         
