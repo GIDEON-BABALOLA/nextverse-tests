@@ -42,7 +42,7 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
     
     </h2>
       </div>
-
+{/* 
     {loading ?
      <div className="story-body-image-loader"></div>
      :
@@ -52,7 +52,7 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
     ></img>
    
     
-    }
+    } */}
   
     <p className="story-reader-content"
      ref={storyBodyRef}

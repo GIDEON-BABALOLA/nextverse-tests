@@ -49,9 +49,10 @@ ref={tabRef}
           Object.keys(tabs).find(key => tabs[key] === true)[0].toUpperCase()
            +Object.keys(tabs).find(key => tabs[key] === true).slice(1)
            }</span>
-                             <span className="publish-tabs-number"
+                            {  Object.keys(tabs).find(key => tabs[key] === true) !== "write" && <span className="publish-tabs-number"
      style={{ fontSize : "1rem" }}
      >{counts[Object.keys(tabs).find(key => tabs[key] === true)]} </span>
+                            }
 
         </div>
   

@@ -227,7 +227,8 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
-      insertTextAtCursor(`[Image ${storyPictures.length}]`);
+      insertTextAtCursor(`[Image ${storyPictures.length + 1}]`);
+      handlePlaceholder(); 
     }
     const dropboxSuccess = (file) => {
       const fileUrl = file[0].link.replace("dl=0", "raw=1");
@@ -240,7 +241,8 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id: imageID, name : file[0].name, src : fileUrl, source : "cloud"}]
       })
-      insertTextAtCursor(`[Image ${storyPictures.length}]`);
+      insertTextAtCursor(`[Image ${storyPictures.length} + 1]`);
+      handlePlaceholder(); 
       setAttachmentModal(false)
     }
     const googleDriveSuccess = () => {
@@ -274,12 +276,8 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
-      if (textAreaRef.current) {
-        const imgTag = `<img src="${imageURL}" alt="Uploaded Image" style="max-width:40%; margin:1em 0; border-radius:10px;" />`;
-        const currentContent = textAreaRef.current.innerHTML;
-        textAreaRef.current.innerHTML = currentContent + imgTag;
-      }
-      // insertTextAtCursor(`[Image ${storyPictures.length}]`);
+      insertTextAtCursor(`[Image ${storyPictures.length + 1}]`);
+      handlePlaceholder(); 
     }
 const removeStoryPicture = (pic) => {
 if(pic.source == "local"){
@@ -353,6 +351,7 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
   setStoryContent("")
   setStoryPictures([])
   setLocalPictures([])
+  textAreaRef.current.style.height = "59px";
   setCategory(prev => {
     const reset = {};
     for (let key in prev) {

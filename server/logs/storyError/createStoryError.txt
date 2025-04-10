@@ -85,3 +85,4 @@
 20250410	14:32:32	b9e3cbfb-65f5-465a-9749-97bbc7cbf479	userError: You are only allowed to upload a maximum of 3 images
 20250410	15:53:37	98b96b76-1ba4-4b5a-a9f9-44c9a283b32f	TypeError: Cannot read properties of undefined (reading 'toLowerCase')
 20250410	16:14:54	c44c68d7-3577-4f3e-bc6f-04f2e0ff5922	userError: You Cannot Create A Story With The Category nonfiction
+20250410	21:55:14	f0ec2943-c599-40c1-ab97-f40cb218d589	cloudinaryError: Unable To Upload Picture, Check Internet Connection

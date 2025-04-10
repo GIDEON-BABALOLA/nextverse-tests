@@ -37,7 +37,7 @@
     color: var(--story-display-content-color);
 }
 .story-reader-content{
-    margin-top: 30px;
+    margin-top: 0px;
     line-height: 2.5rem;
     font-family: "Poppins";
     font-size: 1.3rem;
