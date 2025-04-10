@@ -71,3 +71,4 @@
 20250409	17:49:47	8020c7a1-212b-476c-a5c9-4715a0e35466	userError: Please Fill In All The Fields
 20250409	17:52:13	3ad4e2db-68fa-415e-a8fa-fcefff0b3cb8	userError: You Cannot Create A Story With The Category undefined
 20250409	17:52:19	ccd24ea3-9088-4933-a3ed-1caf98a96a41	userError: You Cannot Create A Story With The Category undefined
+20250410	03:25:24	c6053571-2af1-4bfa-a10a-5176fd65b2ea	userError: Please upload at least one image
