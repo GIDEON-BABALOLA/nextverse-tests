@@ -15,20 +15,14 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
     setLoading(false)
     }
   }, [loaded, error])
-
   function replaceImagePlaceholders(container, pictures) {
-    console.log(pictures)
     const spans = container.querySelectorAll("span");
-    console.log(spans)
     spans.forEach(span => {
       const match = span.innerText.match(/\[Image ([^\]]+)]/);
       if (match) {
         const imageName = match[1];
-        console.log(imageName)
         const imageObj = pictures.find(pic => pic.name === imageName);
-        console.log(imageObj)
         if (imageObj) {
-          console.log(imageObj.url)
           const img = document.createElement("img");
           img.src = imageObj.url;
           img.alt = imageObj.name;
@@ -40,21 +34,33 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
       }
     });
   }
-  
+  function replaceImageWithLoadingState(content, loading) {
+    const regex = /<img\s+[^>]*src=["']([^"']+)["'][^>]*>/g;
+    
+  return content.replace(regex, (_, picture) => {
+console.log(picture)
+    return loading ? 
+      `<div class="story-body-image-loader"></div>` 
+      : 
+      `<img src="${picture}" class="story-body-images" />`;
+  });
+  }
   function renderStoryWithImages(content, pictures) {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = content
     replaceImagePlaceholders(tempDiv, pictures);
-    storyBodyRef.current.innerHTML =  tempDiv.innerHTML
+    return tempDiv.innerHTML;
   }
   
   
   
   useEffect(() => {
-    console.log(pictures)
     if (storyBodyRef.current) {
-       renderStoryWithImages(content, pictures); // make sure 'pictures' is accessible here
+     const realContent =   renderStoryWithImages(content, pictures); // make sure 'pictures' is accessible here
+     const finalContent = replaceImageWithLoadingState(realContent, false)
+     console.log(finalContent)
       // storyBodyRef.current.innerHTML = finalHTML;
+      storyBodyRef.current.innerHTML =  finalContent
     }
   }, [content, pictures]);
   const storyBodyRef = useRef()
