@@ -7,18 +7,23 @@ import useNavigateStory from "../../hooks/useNavigateStory";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
 const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetails}) => {
+  console.log(story)
   const { popularStories } = usePopularStoriesContext()
   const navigateToStory = useNavigateStory();
   const navigateToProfile = useNavigateProfile();
   const position = popularStories.indexOf(story)
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
-  const imageStatus = useMultipleImageLoad(story.picture, story.avatar, popularStories);
+  let storyPicture = ""
+  if(isLoading === false){
+    storyPicture = story.picture.url
+  }
+  const imageStatus = useMultipleImageLoad(storyPicture, story.avatar, popularStories);
   useEffect(() => {
     if (!imageStatus) return; // Ensures imageStatus is defined
   
     imageStatus.forEach(({ url, loaded, error }) => {
-      if (url === story.picture) {
+      if (url === storyPicture) {
         if (loaded) {
           setPictureLoading(false);
         }
@@ -34,7 +39,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
         }
       }
     });
-  }, [imageStatus, story.avatar, story.picture, popularStories]); // Triggers every time imageStatus changes
+  }, [imageStatus, story.avatar, storyPicture, popularStories]); // Triggers every time imageStatus changes
   const showMyModal = (e) => {
     setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
     fireClick(e, getStoryUrl(story), story._id)
@@ -73,7 +78,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
                 <div  className="skeleton-image caller" />
               </div>:
               <div className="litenote-profile-story-image">
-                <img src={story.picture} alt="Story Image" />
+                <img src={storyPicture} alt="Story Image" />
               </div>
               }
             </div>

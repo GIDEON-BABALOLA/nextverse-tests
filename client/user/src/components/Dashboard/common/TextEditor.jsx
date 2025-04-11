@@ -109,6 +109,7 @@ const highlighter = (className, needsRemoval) => {
     });
 };
 const handlePlaceholder = () => {
+  console.log(textAreaRef.current.style.color)
   const editor = textAreaRef.current;
   const textWithoutTags = editor.innerText.replace(/\s+/g, ' ').trim()
   setWordCount(textWithoutTags.length)
@@ -222,15 +223,16 @@ initializer()
       const imageURL = URL.createObjectURL(file);
       const imageID = uuidv4()
       setLocalPictures((prev) => {
-        return [...prev, { id: imageID, file}]
+        return [...prev, { id: imageID, name: file.name, file}]
       })
       setStoryPictures((prev) => {
         return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
-      insertTextAtCursor(`[Image ${storyPictures.length + 1}]`);
+      insertTextAtCursor(`[Image ${file.name}]`, "#7380ec");
       handlePlaceholder(); 
     }
     const dropboxSuccess = (file) => {
+      console.log(file)
       const fileUrl = file[0].link.replace("dl=0", "raw=1");
       if([...storyPictures].length === 3){
         setAttachmentModal(false)
@@ -241,7 +243,7 @@ initializer()
       setStoryPictures((prev) => {
         return [...prev, { id: imageID, name : file[0].name, src : fileUrl, source : "cloud"}]
       })
-      insertTextAtCursor(`[Image ${storyPictures.length} + 1]`);
+      insertTextAtCursor(`[Image ${file[0].name}]`, "#7380ec");
       handlePlaceholder(); 
       setAttachmentModal(false)
     }
@@ -250,7 +252,7 @@ initializer()
     }
     const onUpload = (e) => {
       const file = e.target.files[0];
-      console.log(file)
+      console.log(file.name)
       const maxSize = 2 * 1024 * 1024
       const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
       if(!validTypes.includes(file.type)){
@@ -271,12 +273,12 @@ initializer()
       const imageURL = URL.createObjectURL(file);
       const imageID = uuidv4();
       setLocalPictures((prev) => {
-        return [...prev, { id: imageID, file}]
+        return [...prev, { id: imageID, name: file.name, file}]
       })
       setStoryPictures((prev) => {
         return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
       })
-      insertTextAtCursor(`[Image ${storyPictures.length + 1}]`);
+      insertTextAtCursor(`[Image ${file.name}]`, "#7380ec");
       handlePlaceholder(); 
     }
 const removeStoryPicture = (pic) => {
@@ -301,7 +303,7 @@ if(selectedImage){
       const pureLocalPictures = [...localPictures].map((pic) => {
         return pic.file
       })
-      const pureCloudPictures = [...storyPictures].filter((pic) => pic.source !== "local").map((cloudPic) => { return cloudPic.src} )
+      const pureCloudPictures = [...storyPictures].filter((pic) => pic.source !== "local").map((cloudPic) => { return cloudPic} )
       const storyCategory = Object.keys(category).find(key => category[key] === true);
       const totalImages = pureCloudPictures.length + pureLocalPictures.length
       if(storyPictures.length == 0){
@@ -329,9 +331,7 @@ if(selectedImage){
     pureLocalPictures.forEach((file) => {
         formData.append("picture", file);
     });
-    pureCloudPictures.forEach((url) => {
-        formData.append("cloudImages", url)
-    })
+    formData.append("cloudImages", JSON.stringify(pureCloudPictures));
     formData.append("title", storyTitle)
     formData.append("content", storyContent)
     formData.append("category", storyCategory)
@@ -352,6 +352,7 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
   setStoryPictures([])
   setLocalPictures([])
   textAreaRef.current.style.height = "59px";
+  textAreaRef.current.style.height ="auto"
   setCategory(prev => {
     const reset = {};
     for (let key in prev) {
@@ -362,22 +363,35 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
   showToast("Success", data.message, true)
 }
     }, [error, data, statusCode])
-    function insertTextAtCursor(text) {
+    function insertTextAtCursor(text, color) {
       const sel = window.getSelection();
       if (!sel.rangeCount) return;
     
       const range = sel.getRangeAt(0);
       range.deleteContents();
     
-      const textNode = document.createTextNode(text);
-      range.insertNode(textNode);
+      // Create styled span
+      const span = document.createElement('span');
+      span.textContent = text;
+      span.style.textDecoration = "underline";
+      span.style.cursor = "pointer";
+      span.style.color = color;
     
-      // Move cursor to the end of inserted text
-      range.setStartAfter(textNode);
-      range.setEndAfter(textNode);
+      // Insert the span
+      range.insertNode(span);
+    
+      // Create a zero-width space (ZWS) and insert it after the span
+      const spacer = document.createTextNode('\u200B');
+      span.parentNode.insertBefore(spacer, span.nextSibling);
+    
+      // Move cursor to after the ZWS (so new text is not styled)
+      const newRange = document.createRange();
+      newRange.setStartAfter(spacer);
+      newRange.setEndAfter(spacer);
       sel.removeAllRanges();
-      sel.addRange(range);
+      sel.addRange(newRange);
     }
+    
     
     const previewTitleCategoryContent = () => {
 return <>

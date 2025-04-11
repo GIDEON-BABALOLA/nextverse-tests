@@ -15,7 +15,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
   let storyPicture = ""
   if(isLoading === false){
     //  storyPicture = story.picture[Math.round(Math.random())]
-    storyPicture = story.picture[0]
+    storyPicture = story.picture.url
   }
 
   const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)

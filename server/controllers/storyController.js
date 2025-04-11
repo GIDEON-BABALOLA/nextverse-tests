@@ -22,16 +22,11 @@ const createStory = async(req, res) => {
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
-let cloudImages = [];
-if (req.body.cloudImages) {
-  cloudImages = Array.isArray(req.body.cloudImages)
-    ? req.body.cloudImages
-    : [req.body.cloudImages];
-}
 if(req.body.category == "nonfiction"){
     req.body.category = "non-fiction"
 }
     const {title, content, category } = req.body
+const cloudImages = JSON.parse(req.body.cloudImages)
 try{
     if(!validateMongoDbId(id)){
         throw new userError("Pls enter a parameter recognized by the database", 400)
@@ -65,13 +60,13 @@ for (const file of req.files) {
       throw new userError("Image size too large (max 2MB)", 400);
     }
     const newPath = await uploader(path);
-    urls.push(newPath.url);
+    urls.push( {name : file.originalname, url : newPath.url });
     fs.unlinkSync(path); // clean up local file
   }
 }
 if(cloudImages.length !== 0 ){
-for (const url of cloudImages){
-    urls.push(url)
+for (const image of cloudImages){
+    urls.push({name : image.name, url : image.src  })
 }
 }
 //number of words in the story
@@ -309,10 +304,7 @@ const enrichedFeed = allStories.map((story) => ({
   isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
   isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
 }));
-console.log(enrichedFeed)
     res.status(200).json({stories : enrichedFeed, count : storyCount})       
-   
-
 }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAllStoryError.txt", "storyError")
@@ -345,6 +337,7 @@ query = query.skip(skip).limit(limit);
 const suggestedStories = await query.lean();
 const enrichedStorySuggestions = suggestedStories.map((story) => ({
     ...story,
+    picture : story.picture[Math.floor(Math.random() * story.picture.length)],
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
     isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
   }));
@@ -383,6 +376,7 @@ try{
         isLiked: story.likes.some((like) => like.likedBy.toString() == userId.toString()),
         isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == userId.toString())
       }));
+      console.log(enrichedPopularStories)
     const mostPopularStories = rankStories(enrichedPopularStories, number)
         res.status(200).json(mostPopularStories)         
         

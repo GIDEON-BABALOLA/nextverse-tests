@@ -192,3 +192,23 @@ const fixUserModel = async (req, res) => {
 };
 
 module.exports = { fixDeveloperModel, populateStories, populateUsers, fixUserModel, fixAdminModel, fixDesignerModel }
+
+
+
+// // Get all storyIds from the User's stories
+// const user = await User.findOne({ _id: req.user._id });
+
+// // Find all storyIds in the User's stories
+// const storyIds = user.stories.map(story => story.storyId);
+
+// // Check if each storyId exists in the Story collection
+// const existingStories = await Story.find({ _id: { $in: storyIds } }).select('_id');
+
+// // Get an array of storyIds that exist in the Story collection
+// const existingStoryIds = existingStories.map(story => story._id);
+
+// // Remove the non-existing story references from the User model
+// await User.updateOne(
+//   { _id: req.user._id },
+//   { $pull: { stories: { storyId: { $nin: existingStoryIds } } } }
+// );

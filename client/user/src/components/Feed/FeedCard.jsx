@@ -17,6 +17,7 @@ import { MdVisibility,
 } from "react-icons/md";
 
 const FeedCard = ({ fireClick, story, isLoading, view}) => {
+  console.log(story)
   const likeStory = useLikeAStory();
   const unlikeStory = useUnLikeAStory();
   const navigateToStory = useNavigateStory(); 
@@ -30,7 +31,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const [likedBefore, setLikedBefore] = useState(story.isLiked)
   let storyPicture = ""
   if(isLoading === false){
-    storyPicture = story.picture
+    storyPicture = story.picture.url
   }
 
   const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)

@@ -12,8 +12,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
   const [avatarLoading, setAvatarLoading] = useState(true);
   let storyPicture = ""
   if(isLoading === false){
-    console.log(story.picture)
-    storyPicture = story.picture
+    storyPicture = story.picture.url
   }
 
   const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)
