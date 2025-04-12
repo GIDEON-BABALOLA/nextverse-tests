@@ -1,20 +1,47 @@
 import "../../styles/components/Reader/story-body.css"
 import { useRef } from "react"
 import useImageLoad from "../../hooks/useImageLoaded"
+import  useArrayOfImagesLoad from "../../hooks/useArrayOfImagesLoaded"
 import { useState, useEffect } from "react"
 import StoryAuthor from "./StoryAuthor"
+import { useMemo } from "react"
 const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId, isFollowing, views, likes}) => {
-  const [loading, setLoading] = useState(true)
-  const { loaded, error } = useImageLoad(picture);
+  const [ imageStates, setImageStates] = useState({})
+  const [urlOfPicturesInArray, setUrlOfPicturesInArray] = useState([])
+  const imageStatus =  useArrayOfImagesLoad(urlOfPicturesInArray);
+  const setImageStatesFunction = (url, loaded, error) => {
+    setImageStates((prevState) => ({
+      ...prevState,
+      [url]: { loaded: loaded, error: error },
+    }));
+  }
   useEffect(() => {
-    if (error) {
-  setLoading(true)
+    if (!imageStatus) return;
+    pictures.forEach((pic) => {
+      imageStatus.forEach(({ url, loaded, error }) => {
+        console.log(url); // This won't log infinitely now
+        if (pic.url === url) {
+          if (loaded) setImageStatesFunction(url, true, false);
+          if (error) setImageStatesFunction(url, false, true);
+        }
+      });
+    });
+  }, [pictures, imageStatus]); // <-- Add imageStatus here
+  useEffect(() => {
+    if (pictures.length) {
+      const urls = pictures.map((pic) => pic.url);
+      setUrlOfPicturesInArray(urls);
+      setImageStates(
+        urls.reduce((acc, url) => {
+          acc[url] = { loaded: false, error: false };
+          return acc;
+        }, {})
+      );
     }
+  }, [pictures]);
   
-    if (loaded === true) {
-    setLoading(false)
-    }
-  }, [loaded, error])
+  useEffect(() => {
+  }, [imageStates])
   function replaceImagePlaceholders(container, pictures) {
     const spans = container.querySelectorAll("span");
     spans.forEach(span => {
@@ -34,16 +61,24 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
       }
     });
   }
+  function decodeHTML(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    return doc.documentElement.textContent;
+  }
   function replaceImageWithLoadingState(content, loading) {
     const regex = /<img\s+[^>]*src=["']([^"']+)["'][^>]*>/g;
-    
   return content.replace(regex, (_, picture) => {
-console.log(picture)
-    return loading ? 
+    if (!imageStates || !imageStates[decodeHTML(picture)]) {
+      console.log(decodeHTML(picture))
+      return  `<div class="story-body-image-loader"></div>` 
+    }
+    const { loaded } = imageStates[decodeHTML(picture)];    
+    return !loaded ? 
       `<div class="story-body-image-loader"></div>` 
       : 
       `<img src="${picture}" class="story-body-images" />`;
-  });
+  })
   }
   function renderStoryWithImages(content, pictures) {
     const tempDiv = document.createElement("div");
@@ -58,11 +93,10 @@ console.log(picture)
     if (storyBodyRef.current) {
      const realContent =   renderStoryWithImages(content, pictures); // make sure 'pictures' is accessible here
      const finalContent = replaceImageWithLoadingState(realContent, false)
-     console.log(finalContent)
       // storyBodyRef.current.innerHTML = finalHTML;
       storyBodyRef.current.innerHTML =  finalContent
     }
-  }, [content, pictures]);
+  }, [content, pictures, imageStates]);
   const storyBodyRef = useRef()
   return (
     <div className="story-now-container">

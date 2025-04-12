@@ -20,9 +20,11 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
 
   const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)
   useEffect(() => {
+    console.log(imageStatus)
     if (!imageStatus) return; // Ensures imageStatus is defined
   
     imageStatus.forEach(({ url, loaded, error }) => {
+      console.log(url)
       if (url === storyPicture) {
         if (loaded) {
           setPictureLoading(false);

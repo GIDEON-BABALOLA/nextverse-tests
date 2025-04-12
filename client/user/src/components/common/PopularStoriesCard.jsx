@@ -39,7 +39,9 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
         }
       }
     });
-  }, [imageStatus, story.avatar, storyPicture, popularStories]); // Triggers every time imageStatus changes
+  }, [imageStatus, story.avatar, storyPicture, popularStories]); 
+  
+  // Triggers every time imageStatus changes
   const showMyModal = (e) => {
     setCurrentStoryDetails({ isLiked : story.isLiked, isBookmarked : story.isBookmarked})
     fireClick(e, getStoryUrl(story), story._id)

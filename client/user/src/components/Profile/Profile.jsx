@@ -21,6 +21,7 @@ const Profile = () => {
   const { getUserProfile, data, isLoading, error, isFollowing } = useGetUserProfile();
   const [stories, setStories] = useState([{}, {}, {}])
   const [emptyData, setEmptyData] = useState(false)
+  
   useEffect(() => {
 console.log(decodeURIComponent(username))
     setEmptyData(false)

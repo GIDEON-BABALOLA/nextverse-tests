@@ -41,6 +41,7 @@ background-color: var(--story-display-page-background);
     width: 100%;
     border-radius: 10px;
     padding: 200px;
+    margin: 10px 0px;
     object-fit: cover;
     background: var(--skeleton-background);
     background-size: 200% 100%;
@@ -159,3 +160,4 @@ background-color: var(--story-display-page-background);
         padding: 100px;
     }
 }
+

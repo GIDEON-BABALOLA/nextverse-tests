@@ -405,7 +405,11 @@ const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
 const cleanedStories = detailsOfUserToBeSent.stories.filter(
     story => Object.keys(story).length > 0
   );
-detailsOfUserToBeSent.stories = cleanedStories
+  const enrichedStories = cleanedStories.map((story) => ({
+    ...story,
+    picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
+  }));
+detailsOfUserToBeSent.stories = enrichedStories
     res.status(200).json({user : detailsOfUserToBeSent, isFollowing : isFollowing}) 
    
 //  const newUser = _.omit(user.toObject(), "refreshToken")
