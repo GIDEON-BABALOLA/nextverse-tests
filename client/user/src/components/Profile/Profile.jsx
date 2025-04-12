@@ -32,6 +32,7 @@ console.log(decodeURIComponent(username))
   }
   useEffect(() => {
   if(Object.keys(data).length > 1){
+    console.log(data)
     setStories(data["stories"])
     dispatch({ type: "LOAD_PROFILE", payload:data });
   }

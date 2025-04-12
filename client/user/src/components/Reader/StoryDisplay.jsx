@@ -128,9 +128,11 @@ className="story-display-main"
    <div className="story-display-main">
    <div className="read-story-body">
    <StoryAuthor
-      author={data.author}
-      avatar={data.avatar}
-      userId={data.userId}
+      author={data.userId.username}
+      avatar={data.userId.picture}
+      email = {data.userId.email}
+      bio = {data.userId.bio}
+      userId={data.userId._id}
       viewsNumber={data.totalViews}
       likes={likes}
       setLikesNumber={setLikesNumber}
@@ -167,9 +169,11 @@ className="story-display-main"
     </b></span>
     
     <StoryAuthor
-         author={data.author}
-         avatar={data.avatar}
-         userId={data.userId}
+        author={data.userId.username}
+        avatar={data.userId.picture}
+        email = {data.userId.email}
+        bio = {data.userId.bio}
+        userId={data.userId._id}
          viewsNumber={data.totalViews}
          likes={likes}
          setLikesNumber={setLikesNumber}

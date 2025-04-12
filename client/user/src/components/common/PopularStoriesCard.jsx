@@ -15,10 +15,12 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
   let storyPicture = ""
+  let storyAvatar = ""
   if(isLoading === false){
     storyPicture = story.picture.url
+    storyAvatar = story.userId.picture
   }
-  const imageStatus = useMultipleImageLoad(storyPicture, story.avatar, popularStories);
+  const imageStatus = useMultipleImageLoad(storyPicture, storyAvatar, popularStories);
   useEffect(() => {
     if (!imageStatus) return; // Ensures imageStatus is defined
   
@@ -30,7 +32,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
         if (error) {
           setPictureLoading(true)
         }
-      } else if (url === story.avatar) {
+      } else if (url === storyAvatar) {
         if (loaded) {
           setAvatarLoading(false);
         }
@@ -39,7 +41,7 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
         }
       }
     });
-  }, [imageStatus, story.avatar, storyPicture, popularStories]); 
+  }, [imageStatus, storyAvatar, storyPicture, popularStories]); 
   
   // Triggers every time imageStatus changes
   const showMyModal = (e) => {
@@ -92,9 +94,9 @@ const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetail
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={story.avatar} />
+              : <img className="story-card-avatar" src={storyAvatar} />
                }
-               <span onClick={() => {navigateToProfile(story.author)}}>{story.author}</span>
+               <span onClick={() => {navigateToProfile(story.userId.username)}}>{story.userId.username}</span>
                </div>
 
                <FaEllipsisH

@@ -75,7 +75,6 @@ const time = countWordsAndEstimateReadingTime(content)
 
     const newStory = {
         author : req.user.username,
-        avatar : req.user.picture,
         userId : id,
         title : title,
         slug : slugify(title),
@@ -193,7 +192,9 @@ if(!id){
 }
 
 const foundStory = await Story.findById(id)
-.select("estimatedReadingTime date _id author avatar title content userId picture totalLikes totalViews")
+.populate("userId", "picture username email bio")
+.select("estimatedReadingTime date _id author title content  picture totalLikes totalViews")
+console.log(foundStory)
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : foundStory.userId
@@ -241,7 +242,6 @@ const getAllStories = async (req, res) => {
     try{
         //filtering
 const queryObj = {...req.query}
-console.log(req.query.page, req.query.limit)
 const excludeFields = ["page", "sort", "limit", "fields"]
 excludeFields.forEach((el) => delete queryObj[el])
    // Handle date filtering specifically
@@ -297,7 +297,7 @@ if(req.query.page){
     //     throw new userError( "This page does not exist", 404)
     // }
 }
-const allStories = await query.lean();
+const allStories = await query.populate('userId', 'username picture').lean();
 const enrichedFeed = allStories.map((story) => ({
   ...story,
   picture : story.picture[Math.floor(Math.random() * story.picture.length)],
@@ -334,7 +334,7 @@ const getSuggestedStories = async (req, res) => {
         }
 const skip = (page - 1) * limit;
 query = query.skip(skip).limit(limit);
-const suggestedStories = await query.lean();
+const suggestedStories = await query.populate('userId', 'username picture').lean();
 const enrichedStorySuggestions = suggestedStories.map((story) => ({
     ...story,
     picture : story.picture[Math.floor(Math.random() * story.picture.length)],
@@ -365,10 +365,10 @@ try{
     }
     let foundStories;
     if(category == "all"){
-        foundStories = await Story.find().lean();
+        foundStories = await Story.find().populate('userId', 'username picture').lean();
     }
     else{
-        foundStories = await Story.find({ category : category}).lean()
+        foundStories = await Story.find({ category : category}).populate('userId', 'username picture').lean()
     }
     const enrichedPopularStories = foundStories.map((story) => ({
         ...story,
@@ -376,7 +376,6 @@ try{
         isLiked: story.likes.some((like) => like.likedBy.toString() == userId.toString()),
         isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == userId.toString())
       }));
-      console.log(enrichedPopularStories)
     const mostPopularStories = rankStories(enrichedPopularStories, number)
         res.status(200).json(mostPopularStories)         
         
@@ -669,8 +668,6 @@ const unBookmarkAStory = async (req, res) => {
 //To Delete A Story
 const deleteAStory = async(req, res) => {
     const { id } = req.params;
-    console.log(id)
-    console.log(req.user.role)
     validateMongoDbId(id)
     try{
         if(!id){

@@ -9,16 +9,20 @@ import { getStoryUrl } from "../../helpers/getStoryUrl";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 
 const SuggestionCard = ({ fireClick, story, isLoading}) => {
+  console.log(story)
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
   const navigate = useNavigate();
   let storyPicture = ""
+  let storyAvatar = ""
   if(isLoading === false){
+    console.log(story.userId)
     //  storyPicture = story.picture[Math.round(Math.random())]
     storyPicture = story.picture.url
+    storyAvatar = story.userId.picture
   }
 
-  const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)
+  const imageStatus = useMultipleImageLoad(storyPicture, storyAvatar)
   useEffect(() => {
     console.log(imageStatus)
     if (!imageStatus) return; // Ensures imageStatus is defined
@@ -32,7 +36,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
         if (error) {
           setPictureLoading(true)
         }
-      } else if (url === story.avatar) {
+      } else if (url === storyAvatar) {
         if (loaded) {
           setAvatarLoading(false);
         }
@@ -42,7 +46,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
         }
       }
     });
-  }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
+  }, [imageStatus, story.picture, storyAvatar]); // Triggers every time imageStatus changes
   const showMyModal = (e) => {
     fireClick(e, getStoryUrl(story), story._id)
   }
@@ -51,7 +55,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
     .replace(/[^a-z0-9]+/g, "-") 
     .replace(/^-+|-+$/g, ""); 
     console.log(encodedTitle)
-  navigate(`/story/${story.author}/${encodedTitle}/${story._id}`)
+  navigate(`/story/${story.userId.username}/${encodedTitle}/${story._id}`)
   }
   return (
  <> {
@@ -97,9 +101,9 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={story.avatar} />
+              : <img className="story-card-avatar" src={storyAvatar} />
                }
-               <span>{story.author}</span>
+               <span>{story.userId.username}</span>
              
                </div>
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} 

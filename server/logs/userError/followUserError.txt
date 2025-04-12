@@ -15,3 +15,5 @@
 20250403	11:40:09	0e09d5ac-5e4e-49e8-b6e3-bbd3dd78aa89	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
 20250403	11:47:07	26b12c10-cb65-4e39-9477-f26aac7e6cff	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
 20250403	11:47:35	be5db234-be72-4e85-887e-320b5a4f3c9d	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
+20250412	19:57:23	0b7d61fd-b369-4760-90fb-d8b2f8f0b521	userError: You Cannot Follow Yourself On This Platform
+20250412	19:57:25	f1565c8f-8faa-4b99-9822-77bae1754abc	userError: You Cannot Follow Yourself On This Platform

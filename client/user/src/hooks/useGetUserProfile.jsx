@@ -17,6 +17,7 @@ export const useGetUserProfile = () => {
     }
             ); // Your API route
 if(response && response.data){
+    console.log(response.data.user)
     setData(response.data.user)
     setStatusCode(response.status)
     setIsFollowing(response.data.isFollowing)

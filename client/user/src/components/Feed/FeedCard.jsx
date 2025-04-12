@@ -5,10 +5,12 @@ import useNavigateStory from "../../hooks/useNavigateStory";
 import useMultipleImageLoad from "../../hooks/useMultipleImageLoaded";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { getMonthNumber } from "../../helpers/getMonthNumber";
+import { useRef } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
 import { formatNumber } from "../../helpers/formatNumber";
 import { useLikeAStory } from "../../hooks/useLikeAStory";
 import { useUnLikeAStory } from "../../hooks/useUnlikeAStory";
+import { derivePlainTextFromHtml } from "../../helpers/derivePlainTextFromHtml";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
 import { MdVisibility,
    MdOutlineFavoriteBorder,
@@ -19,6 +21,7 @@ import { MdVisibility,
 const FeedCard = ({ fireClick, story, isLoading, view}) => {
   console.log(story)
   const likeStory = useLikeAStory();
+  const listFeedCardContentRef = useRef()
   const unlikeStory = useUnLikeAStory();
   const navigateToStory = useNavigateStory(); 
   const navigateToProfile = useNavigateProfile()
@@ -30,11 +33,13 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const [likesCount, setLikesCount] = useState(story.totalLikes)
   const [likedBefore, setLikedBefore] = useState(story.isLiked)
   let storyPicture = ""
+  let storyAvatar = ""
   if(isLoading === false){
     storyPicture = story.picture.url
+    storyAvatar = story.userId.picture
   }
 
-  const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)
+  const imageStatus = useMultipleImageLoad(storyPicture, storyAvatar)
   useEffect(() => {
     if (!imageStatus) return; // Ensures imageStatus is defined
   
@@ -46,7 +51,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
         if (error) {
           setPictureLoading(true)
         }
-      } else if (url === story.avatar) {
+      } else if (url === storyAvatar) {
         if (loaded) {
           setAvatarLoading(false);
         }
@@ -56,7 +61,7 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
         }
       }
     });
-  }, [imageStatus, story.picture, story.avatar]); // Triggers every time imageStatus changes
+  }, [imageStatus, story.picture, storyAvatar]); // Triggers every time imageStatus changes
   const likeTheStory = () => {
     setLiking(true)
     setLikedBefore(false)
@@ -168,6 +173,14 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
   const showMyModal = (e) => {
     fireClick(e, getStoryUrl(story), story._id)
   }
+  useEffect(() => {
+if(story.content  && !isLoading && view == "list"){
+      console.log("gideon")
+      const derived = derivePlainTextFromHtml(story.content)
+      listFeedCardContentRef.current.innerText = derived.slice(0, width < 768 ? 70 : 200) + "..."
+}
+    
+  }, [story, width, isLoading, view])
   return (
  <> 
  {
@@ -215,9 +228,9 @@ const FeedCard = ({ fireClick, story, isLoading, view}) => {
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={story.avatar} />
+              : <img className="story-card-avatar" src={storyAvatar} />
                }
-               <span onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
+               <span onClick={() => { navigateToProfile(story.userId.username)}} >{story.userId.username}</span>
                </div>
 
                <div className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px", display : "flex", gap : "10px", alignItems :"center"}} >
@@ -383,10 +396,10 @@ className="list-view-card-second-section"
     <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
     { avatarLoading ? <div className="feed-loaders feed-loaders-avatar"></div>
 :
-    <img src={story.avatar}></img>
+    <img src={storyAvatar}></img>
     }
     <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
-<span><b>{story.author}</b></span>
+<span><b>{story.userId.username}</b></span>
 <span>Blogger</span>
     </div>
 
@@ -399,8 +412,10 @@ className="list-view-card-second-section"
 {story.title}
 </b>
 </h6> : <h3>{story.title}</h3>} 
-<span onClick={() => { navigateToStory(story)}} style={{cursor : "pointer"}} >
-{story.content.slice(0, width < 768 ? 70 : 200)  + "..." }
+<span 
+ref={listFeedCardContentRef}
+onClick={() => { navigateToStory(story)}} style={{cursor : "pointer"}} >
+
 </span>
     </div>
     { width > 768 && <div style={{display :"flex", flexDirection : "row",

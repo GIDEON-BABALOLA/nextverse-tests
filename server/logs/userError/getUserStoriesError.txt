@@ -36,3 +36,10 @@
 20250410	16:30:48	560d2f54-e30d-4827-ad71-8bb251d062b7	TypeError: Cannot read properties of undefined (reading 'length')
 20250410	16:31:43	1911a9b2-401a-4cc3-a51e-5c60016f0e62	TypeError: Cannot read properties of undefined (reading 'length')
 20250410	16:32:08	f435bc81-2956-47e1-9daa-e81804ec62b2	TypeError: Cannot read properties of undefined (reading 'NaN')
+20250412	19:09:19	92b0b78e-d222-4aad-a7da-bcf18cc61a55	StrictPopulateError: Cannot populate path `user.userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20250412	19:09:20	83b9f39a-6fec-4ad0-b514-23baf7cd6ae6	StrictPopulateError: Cannot populate path `user.userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20250412	19:09:42	2c107c37-c7e3-42aa-9631-60c6613968bb	StrictPopulateError: Cannot populate path `userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20250412	19:09:44	00e9cca6-051e-4398-9294-3cdfaab316b7	StrictPopulateError: Cannot populate path `userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20250412	19:23:01	81b1095b-8530-493b-8941-b09f27048038	TypeError: Cannot read properties of null (reading '_id')
+20250412	23:00:55	8f08650e-614f-4b62-8958-04c3aafb828d	StrictPopulateError: Cannot populate path `userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20250412	23:04:32	da52dfc2-6d5c-46c6-951f-0dd2ec9e2d5a	StrictPopulateError: Cannot populate path `userId` because it is not in your schema. Set the `strictPopulate` option to false to override.

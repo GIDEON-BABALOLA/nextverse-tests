@@ -1,6 +1,7 @@
 import { MdAttachFile, MdCloudUpload } from "react-icons/md"
 import SpecialModal from "../../common/SpecialModal"
 import CloudinaryIcon from "../../../styles/components/common/Icons/CloudinaryIcon"
+import useNavigateStory from "../../../hooks/useNavigateStory";
 import { useCreateAStory } from "../../../hooks/useCreateAStory";
 import useWindowSize from "../../../hooks/useWindowSize";
 import ImageUpload from "../../common/ImageUpload";
@@ -33,9 +34,12 @@ import { FaBold,
   import toast, { Toaster } from "react-hot-toast";
  import { FaRotateLeft, FaRotateRight } from "react-icons/fa6";
  import { useEffect, useRef, useState } from "react";
+ import DashboardToast from "../../common/DashboardToast";
  import "../../../styles/components/Dashboard/text-editor.css"
 const TextEditor = () => {
   const { createAStory, isLoading, error, data, statusCode } = useCreateAStory()
+    const [dashboardToast, setDashboardToast]  = useState(false)
+  const navigateToStory = useNavigateStory()
   const [storyPictures, setStoryPictures] = useState([])
   const [localPictures, setLocalPictures] = useState([])
   const [selectedImage, setSelectedImage] = useState()
@@ -343,6 +347,7 @@ if(selectedImage){
     useEffect(() => {
 if(error){
   showToast("Error", error.message, false)
+  setDashboardToast(false)
 }
 if(Object.keys(data).length !== 0 && statusCode == 201){
   textAreaRef.current.innerHTML = ""
@@ -353,6 +358,7 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
   setLocalPictures([])
   textAreaRef.current.style.height = "59px";
   textAreaRef.current.style.height ="auto"
+  setDashboardToast(true)
   setCategory(prev => {
     const reset = {};
     for (let key in prev) {
@@ -391,7 +397,15 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
       sel.removeAllRanges();
       sel.addRange(newRange);
     }
-    
+    const handlePaste = (event) => {
+      event.preventDefault();
+
+      // Get the text from the clipboard (strip all formatting)
+      const plainText = event.clipboardData.getData('text/plain');
+  
+      // Insert plain text at the current cursor position
+      document.execCommand('insertText', false, plainText);
+    }
     
     const previewTitleCategoryContent = () => {
 return <>
@@ -410,8 +424,22 @@ return <>
   </div>
 </>
     }
+ const previewShowStoryButton = () => {
+  return <>
+  {/* Object.keys(data).length !== 0  ? navigateToStory(data.story) : "" */}
+  <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", alignItems : "center", gap : "10px"}}>
+  <span>Click on the button to view your story</span>
+  <span href="/" className="slidesubmitbtn" onClick={() => navigateToStory(data.story)}>View Story</span>
+  </div>
+  </>
+ }
   return (
     <>
+       <DashboardToast 
+      dashboardToast={dashboardToast}
+      setDashboardToast={setDashboardToast}
+      customContent={previewShowStoryButton()}
+       />
     <Toast />
         <div className="litenote-text-editor-container">
       <SpecialModal 
@@ -593,6 +621,7 @@ return <>
     onBlur={scrollTextArea}
     spellCheck="false"
     onKeyUp={handlePlaceholder}
+    onPaste={handlePaste}
     data-placeholder="Let Your Pen Speak..."
     contentEditable="true" >
     </div>

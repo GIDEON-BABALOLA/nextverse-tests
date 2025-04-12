@@ -66,7 +66,7 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
     const doc = parser.parseFromString(html, "text/html");
     return doc.documentElement.textContent;
   }
-  function replaceImageWithLoadingState(content, loading) {
+  function replaceImageWithLoadingState(content) {
     const regex = /<img\s+[^>]*src=["']([^"']+)["'][^>]*>/g;
   return content.replace(regex, (_, picture) => {
     if (!imageStates || !imageStates[decodeHTML(picture)]) {
@@ -92,7 +92,7 @@ const StoryBody = ({ content, title, picture,  pictures, avatar, author, userId,
   useEffect(() => {
     if (storyBodyRef.current) {
      const realContent =   renderStoryWithImages(content, pictures); // make sure 'pictures' is accessible here
-     const finalContent = replaceImageWithLoadingState(realContent, false)
+     const finalContent = replaceImageWithLoadingState(realContent)
       // storyBodyRef.current.innerHTML = finalHTML;
       storyBodyRef.current.innerHTML =  finalContent
     }

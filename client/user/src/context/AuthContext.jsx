@@ -1,5 +1,5 @@
 import { createContext, useReducer, useState, useEffect} from "react"
-import { axiosConfig } from "../api/axiosConfig"
+import { axiosConfig, axiosProperties } from "../api/axiosConfig"
 export const AuthContext = createContext()
 export const authReducer = (state, action) => {
     switch(action.type){
@@ -24,7 +24,11 @@ useEffect(() => {
     // Function to check if user is logged in
     const fetchUser = async () => {
       try {
-        const response = await axiosConfig.get("/user/get-current-user"); // Your API route
+        const response = await axiosConfig.get("/user/get-current-user",
+          {
+            signal : AbortSignal.timeout(axiosProperties["timeout"])
+        }
+        ); // Your API route
         const userData = response.data;
         console.log(userData)
         dispatch({ type: "LOGIN", payload: userData }); // Dispatch login action with user data

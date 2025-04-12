@@ -12,6 +12,8 @@ import { formatNumber } from "../../helpers/formatNumber";
 const StoryAuthor = ({ author,
   avatar,
   userId,
+  bio, 
+  email,
   isFollowing,
   viewsNumber,
   storyId,
@@ -60,7 +62,7 @@ setImPossibleToFollow(true)
   }, [userData])
   const followAUser = () => {
     setFollowing(true)
-    followUser(userData["email"])
+    followUser(email)
   }
   const likeTheStory = () => {
     console.log("clicked like")
@@ -225,7 +227,7 @@ setLikes(newLikes)
    { loading ? <div className="story-display-avatar-loader"></div> : <img src={avatar} alt={author} />}
     <div style={{display : "flex", flexDirection : "column"}}>
         <span onClick={() => { navigateToProfile(author)}}><b>{author}</b></span>
-       { userLoading ?  <div className="story-loaders story-loaders-info"></div>  :<span>{userData["bio"]}</span> }
+       { userLoading ?  <div className="story-loaders story-loaders-info"></div>  :<span>{bio}</span> }
        <div>
      
        </div>

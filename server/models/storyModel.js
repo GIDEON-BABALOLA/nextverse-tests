@@ -47,10 +47,6 @@ const storySchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    avatar : {
-        type : String,
-        required : true,
-    },
     title:{
         type:String,
         required:true,
@@ -93,11 +89,7 @@ const storySchema = new mongoose.Schema({
             type : String,
             required : true
         }
-    },
-    userId : {
-        type : String,
-        required : true
-    },           
+    },          
     picture : {
         type: Array,
         required : true,
@@ -127,7 +119,11 @@ const storySchema = new mongoose.Schema({
     totalBookmarks : {
         type : Number,
         default : 0
-    }
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // This tells Mongoose to reference the 'User' model
+      },
 }, {
     timestamps : true,
     autoIndex: false

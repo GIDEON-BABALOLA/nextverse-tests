@@ -1,5 +1,34 @@
+require("dotenv").config()
+const mongoose = require('mongoose');
+const express = require("express")
+const app = express();
+const User = require('./models/userModel'); // Assuming you have a User model
 
-const dave = "https://www.dropbox.com/scl/fi/6giw6nnzq9mxfgpnx86s2/wp11695146-gaming-red-desktop-wallpapers-1.png?rlkey=f8g8cephk93d256tc69om6fpv&raw=1"
-const give = "https://www.dropbox.com/scl/fi/6giw6nnzq9mxfgpnx86s2/wp11695146-gaming-red-desktop-wallpapers-1.png?rlkey=f8g8cephk93d256tc69om6fpv&amp;raw=1"
-const how = "https://www.dropbox.com/scl/fi/6giw6nnzq9mxfgpnx86s2/wp11695146-gaming-red-desktop-wallpapers-1.png?rlkey=f8g8cephk93d256tc69om6fpv&raw=1"
-console.log(dave == how)
+// Function to delete all users except for the one with the given email
+const deleteAllUsersExceptOne = async (email) => {
+  try {
+    // Find the user to exclude by email
+    const userToExclude = await User.findOne({ email });
+
+    // If no user is found with the provided email, throw an error
+    if (!userToExclude) {
+      throw new Error('User not found');
+    }
+
+    // Delete all users except the one to exclude
+    const result = await User.deleteMany({
+      _id: { $ne: userToExclude._id }, // Exclude the user with the given email
+    });
+
+    console.log(`${result.deletedCount} users deleted, excluding the user with email: ${email}`);
+  } catch (error) {
+    console.error('Error deleting users:', error);
+  }
+};
+
+mongoose.connect(process.env.LITENOTE_MONGODB_URL)
+.then(() => {
+
+        deleteAllUsersExceptOne('user10@gmail.com');  // Replace with the email of the user you want to keep
+})
+// Usage

@@ -4,12 +4,16 @@ import useImageLoad from "../../hooks/useImageLoaded"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { getMonthNumber } from "../../helpers/getMonthNumber";
 import useNavigateStory from "../../hooks/useNavigateStory";
+import { derivePlainTextFromHtml } from "../../helpers/derivePlainTextFromHtml";
+import { useRef } from "react";
 const TrendingCard = ({ trending, isLoading }) => {
+  console.log(trending)
   const navigateToStory = useNavigateStory();
+  const trendingContentRef = useRef();
     const [pictureLoading, setPictureLoading] = useState(true)
     let storyPicture = ""
     if(isLoading === false){
-      storyPicture = trending.picture
+      storyPicture = trending.picture.url
     }
   
     const { loaded, error } = useImageLoad(storyPicture);
@@ -22,6 +26,17 @@ const TrendingCard = ({ trending, isLoading }) => {
         setPictureLoading(false)
         }
       }, [loaded, error, trending.picture])
+      // const derivePlainTextFromHtml = (html) => {
+      //   const tag = document.createElement("div")
+      //   tag.innerHTML = html;
+      //   return tag.innerText
+      // }
+      useEffect(() => {
+if(trending.content){
+  const derived = derivePlainTextFromHtml(trending.content)
+trendingContentRef.current.innerText = derived.slice(0, 60) + "..."
+}
+      }, [trending])
   return (
     <>
       {
@@ -56,7 +71,7 @@ const TrendingCard = ({ trending, isLoading }) => {
                <div><b>Trending in {trending.category}</b> <span style={{color : ""}}> - &nbsp;
 <span>
 {  
-  formatDistanceToNow(new Date(2024, getMonthNumber(`${trending.date.month.toLowerCase()}`),
+  formatDistanceToNow(new Date(trending.date.year, getMonthNumber(`${trending.date.month.toLowerCase()}`),
    trending.date.day), { addSuffix: true })
 
    }</span>
@@ -66,7 +81,7 @@ const TrendingCard = ({ trending, isLoading }) => {
                </section>
                    <div>
                    <b>{trending.title}</b></div>
-                   <p>{trending.content.slice(0, 60)}...</p>
+                   <p ref={trendingContentRef}></p>
                </div>
            
                

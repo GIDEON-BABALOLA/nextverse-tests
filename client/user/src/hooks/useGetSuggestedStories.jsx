@@ -13,7 +13,7 @@ export const useGetSuggestedStories = () => {
             userId : userId,
             currentStoryId : currentStoryId,
             type : type,
-            fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes  date bookmarks"
+            fields : "author estimatedReadingTime avatar userId category totalViews totalLikes picture title likes  date bookmarks"
         }
         setIsLoading(true) //starting the request
         try{

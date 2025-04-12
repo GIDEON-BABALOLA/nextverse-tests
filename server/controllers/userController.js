@@ -62,7 +62,7 @@ await validatePassword(password)
 const foundUser = await User.findOne({email : email})
 const foundMobile = await User.findOne({mobile : mobile})
 if(foundUser && foundUser.status == false){
-    res.status(200).json({ message : "Success, Check Your Email To Verify Your Account"})
+  return  res.status(200).json({ message : "Success, Check Your Email To Verify Your Account"})
 }
 if(foundUser) {
     throw new userError("User Already Exists", 400)
@@ -109,6 +109,7 @@ await sendEmail(data)
 const newUser = await User.create({ 
     username, 
     email, 
+    bio : "writer",
     password :  hashedPassword,
     mobile : mobile, 
     ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
@@ -735,17 +736,16 @@ const getAllUsers = async (req, res) => {
         if(!user){
             throw new userError("You are not a user of litenote", 400)
         }
-        const bookmarksCount = user ? user.bookmarks.length : 0;
-        const userBookmarks = await User.findOne({ _id: req.user._id })
-      .populate({
-        path: 'bookmarks.bookmarkId',
-        select: 'title author avatar estimatedReadingTime category picture likes bookmarks' 
-        // You can add other fields here as needed
-      })
-      .slice('bookmarks', [parseInt(skip), parseInt(limit)])
-      .lean();
-   const bookmarksToBeSent = userBookmarks["bookmarks"].map((item) => ({...item.bookmarkId,  createdAt: item.createdAt}))
-   const enrichedBookmarks = bookmarksToBeSent.map((story) => ({
+        const bookmarkedStories = await Story.find({
+            'bookmarks.bookmarkBy': req.user._id
+          })
+            .sort({ createdAt: -1 }) // Newest first
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .populate("userId", "picture username email bio")
+            .lean();
+    const bookmarksCount = await Story.countDocuments({"bookmarks.bookmarkBy" : req.user_id})
+   const enrichedBookmarks = bookmarkedStories.map((story) => ({
     ...story,
     picture : story.picture[Math.floor(Math.random() * story.picture.length)],
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
@@ -770,23 +770,20 @@ const getAllUsers = async (req, res) => {
             console.log(page, limit)
             try{
             const skip = (page - 1) * limit;
-            const user = await User.findOne({ _id: req.user._id }).lean();
-            if(!user){
-                throw new userError("You are not a user of litenote", 400)
-            }
-            const storiesCount = user ? user.stories.length : 0;
-            const userStories = await User.findOne({ _id: req.user._id })
-          .populate({
-            path: 'stories.storyId',
-            select: 'title author avatar estimatedReadingTime category picture likes bookmarks' 
-            // You can add other fields here as needed
-          })
-          .slice('stories', [parseInt(skip), parseInt(limit)])
-          .lean();
-       const storiesToBeSent = userStories["stories"].map((item) => ({...item.storyId}))
-       const cleanedStories = storiesToBeSent.filter(
-        story => Object.keys(story).length > 0
-      );
+            const stories = await Story.find({userId: req.user._id})
+            .sort({ createdAt: -1 }) // Newest first
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .populate("userId", "picture username email bio")
+            .lean()
+       const storiesCount =  await Story.countDocuments({userId: req.user._id}) || 0;
+       const cleanedStories = stories.filter(story => {
+        // Remove stories with empty objects, null or undefined values, and null/undefined _id
+        return Object.keys(story).length > 0 && 
+               story._id != null && 
+               !Object.values(story).includes(null) && 
+               !Object.values(story).includes(undefined);
+      });
        const enrichedStories = cleanedStories.map((story) => ({
         ...story,
         picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],

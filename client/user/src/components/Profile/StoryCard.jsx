@@ -6,16 +6,19 @@ import useNavigateProfile from "../../hooks/useNavigateProfile";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
 import { useModalContext } from "../../hooks/useModalContext";
 const StoryCard = ({ fireClick, story, isLoading}) => {
+  console.log(story)
   const navigateToStory = useNavigateStory();
   const navigateToProfile = useNavigateProfile()
   const [pictureLoading, setPictureLoading] = useState(true);
   const [avatarLoading, setAvatarLoading] = useState(true);
   let storyPicture = ""
+  let storyAvatar = ""
   if(isLoading === false){
     storyPicture = story.picture.url
+    storyAvatar = story.userId.picture
   }
 
-  const imageStatus = useMultipleImageLoad(storyPicture, story.avatar)
+  const imageStatus = useMultipleImageLoad(storyPicture, storyAvatar)
   useEffect(() => {
     if (!imageStatus) return; // Ensures imageStatus is defined
   
@@ -27,7 +30,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
         if (error) {
           setPictureLoading(true)
         }
-      } else if (url === story.avatar) {
+      } else if (url === storyAvatar) {
         if (loaded) {
           setAvatarLoading(false);
         }
@@ -37,7 +40,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
         }
       }
     });
-  }, [imageStatus, story.picture, story.avatar]); 
+  }, [imageStatus, story.picture, storyAvatar]); 
   const showMyModal = (e) => {
     fireClick(e, getStoryUrl(story), story._id)
   }
@@ -86,9 +89,9 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
               : <img className="story-card-avatar" 
-               src={story.avatar} />
+               src={storyAvatar} />
                }
-               <span  onClick={() => { navigateToProfile(story.author)}} >{story.author}</span>
+               <span  onClick={() => { navigateToProfile(story.userId.username)}} >{story.userId.username}</span>
              
                </div>
                <FaEllipsisH 
