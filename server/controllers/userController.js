@@ -732,10 +732,6 @@ const getAllUsers = async (req, res) => {
         const { page, limit } = req.query;
         try{
         const skip = (page - 1) * limit;
-        const user = await User.findOne({ _id: req.user._id }).lean();
-        if(!user){
-            throw new userError("You are not a user of litenote", 400)
-        }
         const bookmarkedStories = await Story.find({
             'bookmarks.bookmarkBy': req.user._id
           })
