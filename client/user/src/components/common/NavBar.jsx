@@ -320,9 +320,11 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
   <>
   <div style={{display : "flex", flexDirection : "row", justifyContent : "center", gap : "10px", alignItems : "center"}}>
   {currentUrl !== "" && <ModeToggler />}
-{currentUrl !== "" &&  <NotificationBadge fontSize={25} iconColor={"#7d8da1"} badgeColor={"var(--litenote-notification-badge-background)"}
+  <Link to={"/dashboard/notifications"}>
+  {currentUrl !== "" &&  <NotificationBadge fontSize={25} iconColor={"#7d8da1"} badgeColor={"var(--litenote-notification-badge-background)"}
 number={notificationsCount}
 /> }
+  </Link>
 </div>
 
     <Avatar className="profile-photo-homer"

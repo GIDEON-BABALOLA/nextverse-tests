@@ -63,7 +63,7 @@ trendingContentRef.current.innerText = derived.slice(0, 60) + "..."
                   <div>
            
                    <FeedAvatar
-           image={trending.avatar}
+           image={trending.userId.picture}
            alt="Author"
            className="feed-profile-images-trending" 
            />

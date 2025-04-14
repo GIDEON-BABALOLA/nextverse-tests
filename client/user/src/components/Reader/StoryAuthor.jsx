@@ -224,7 +224,8 @@ setLikes(newLikes)
     <>
         <div className="story-follow-suggestion">
     <div style={{display : "flex", flexDirection : "row", alignItems : "center", cursor : "pointer"}}>
-   { loading ? <div className="story-display-avatar-loader"></div> : <img src={avatar} alt={author} />}
+   { loading ? <div className="story-display-avatar-loader"></div> : <img src={avatar} alt={author}  className="story-card-avatar"
+    style={{width : "40px", height : "40px"}}/>}
     <div style={{display : "flex", flexDirection : "column"}}>
         <span onClick={() => { navigateToProfile(author)}}><b>{author}</b></span>
        { userLoading ?  <div className="story-loaders story-loaders-info"></div>  :<span>{bio}</span> }

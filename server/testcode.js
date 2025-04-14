@@ -32,3 +32,21 @@ mongoose.connect(process.env.LITENOTE_MONGODB_URL)
         deleteAllUsersExceptOne('user10@gmail.com');  // Replace with the email of the user you want to keep
 })
 // Usage
+
+
+const removeStoryPictureFromText = (name) => {
+  const tag = document.createElement("div")
+  tag.innerHTML = storyContent;
+  const spans = tag.querySelectorAll("span");
+  spans.forEach(span => {
+    const match = span.innerText.match(/\[Image ([^\]]+)]/);
+    if (match) {
+      const imageName = match[1];
+if(name == imageName){
+  span.remove()
+}
+    }
+  });
+  console.log(spans)
+  return tag.innerHTML
+}

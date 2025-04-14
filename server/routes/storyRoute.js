@@ -17,7 +17,8 @@ const {
     getPopularStories,
     getSuggestedStories,
     getStoryComments,
-    getStoryLikes
+    getStoryLikes,
+    searchStories
 } = require(path.join(__dirname, "..", "controllers", "storyController.js"))
 const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
@@ -33,6 +34,7 @@ router.put("/unlike-a-story/:id", authMiddleware, unLikeAStory)
 // router.post("/upload-now",  uploadVideoMiddleware, uploadNow)
 router.get("/get-a-story/:id", authMiddleware,   getAStory)
 router.get("/get-all-stories", authMiddleware, getAllStories)
+router.get("/search-stories", authMiddleware, searchStories)
 router.get("/get-popular-stories/:category/:number", getPopularStories)
 router.get("/get-suggested-stories", authMiddleware, getSuggestedStories)
 router.get("/get-story-comments/:id", authMiddleware, getStoryComments)

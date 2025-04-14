@@ -101,7 +101,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={storyAvatar} />
+              : <img className="story-card-avatar" src={storyAvatar}     style={{objectFit : "cover"}}/>
                }
                <span>{story.userId.username}</span>
              

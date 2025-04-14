@@ -740,7 +740,8 @@ const getAllUsers = async (req, res) => {
             .limit(parseInt(limit))
             .populate("userId", "picture username email bio")
             .lean();
-    const bookmarksCount = await Story.countDocuments({"bookmarks.bookmarkBy" : req.user_id})
+    const bookmarksCount = await Story.countDocuments({"bookmarks.bookmarkBy" : req.user._id})
+    console.log(bookmarksCount)
    const enrichedBookmarks = bookmarkedStories.map((story) => ({
     ...story,
     picture : story.picture[Math.floor(Math.random() * story.picture.length)],

@@ -6,23 +6,11 @@ export const useGetSearchResults = () => {
     const [statusCode, setStatusCode] = useState(null)
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
-    const getSearchResults = async (title) => {
-        const parameters = {
-            page : page,
-            limit : limit,
-            category : category,
-            userId : userId,
-           fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes"
-            
-        }
-        if(category == "all"){
-delete parameters.category
-        }
+    const getSearchResults = async (search_query, page, limit) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/story/get-all-stories", {
-    params : parameters,
+const response = await axiosConfig.get(`story/search-stories?search_query=${search_query}&page=${page}&limit=${limit}`, {
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }
 )
@@ -34,10 +22,8 @@ if(response && response.data){
     setTimeout(() => {
         setIsLoading(false)
     }, 100)
-    
 }
         }
-        
         catch(error){
             setStoryCount(0)
 setIsLoading(false)

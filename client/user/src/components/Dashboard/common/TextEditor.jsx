@@ -113,7 +113,6 @@ const highlighter = (className, needsRemoval) => {
     });
 };
 const handlePlaceholder = () => {
-  console.log(textAreaRef.current.style.color)
   const editor = textAreaRef.current;
   const textWithoutTags = editor.innerText.replace(/\s+/g, ' ').trim()
   setWordCount(textWithoutTags.length)
@@ -285,6 +284,11 @@ initializer()
       insertTextAtCursor(`[Image ${file.name}]`, "#7380ec");
       handlePlaceholder(); 
     }
+    const removeStoryPictureFromText = (name) => {
+      const pattern = new RegExp(`<span[^>]*>\\[Image ${name}\\]<\\/span>`, 'g');
+      return storyContent.replace(pattern, '');
+    };
+    
 const removeStoryPicture = (pic) => {
 if(pic.source == "local"){
   const newLocalPictures = [...localPictures].filter((picture) => picture.id !== pic.id)
@@ -292,6 +296,9 @@ if(pic.source == "local"){
 }
 const newStoryPictures = [...storyPictures].filter((picture) => picture.id !== pic.id)
 setStoryPictures(newStoryPictures)
+const newContent = removeStoryPictureFromText(pic.name)
+textAreaRef.current.innerHTML = newContent
+setStoryContent(newContent)
 }
     useEffect(() => {
 if(selectedImage){
@@ -364,6 +371,7 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
     for (let key in prev) {
       reset[key] = false;
     }
+    console.log(reset)
     return reset;
   });
   showToast("Success", data.message, true)

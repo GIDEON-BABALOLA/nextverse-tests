@@ -89,6 +89,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
               : <img className="story-card-avatar" 
+              style={{objectFit : "cover"}}
                src={storyAvatar} />
                }
                <span  onClick={() => { navigateToProfile(story.userId.username)}} >{story.userId.username}</span>

@@ -17,3 +17,8 @@
 20250403	11:47:35	be5db234-be72-4e85-887e-320b5a4f3c9d	ValidationError: Notification validation failed: type: `dave` is not a valid enum value for path `type`.
 20250412	19:57:23	0b7d61fd-b369-4760-90fb-d8b2f8f0b521	userError: You Cannot Follow Yourself On This Platform
 20250412	19:57:25	f1565c8f-8faa-4b99-9822-77bae1754abc	userError: You Cannot Follow Yourself On This Platform
+20250414	10:32:50	f05858c7-1b32-4476-ae38-c815d9822a46	userError: You Cannot Follow Yourself On This Platform
+20250414	10:32:51	be700a3b-ba81-4bf7-9e78-995a5ad26baa	userError: You Cannot Follow Yourself On This Platform
+20250414	10:32:53	fb78b054-c9f6-4af6-9420-8682840bda7e	userError: You Cannot Follow Yourself On This Platform
+20250414	10:32:54	2375683b-e502-4158-bf0f-78833d352a64	userError: You Cannot Follow Yourself On This Platform
+20250414	10:32:55	442fbe2f-16aa-418f-811e-82f9488295c8	userError: You Cannot Follow Yourself On This Platform

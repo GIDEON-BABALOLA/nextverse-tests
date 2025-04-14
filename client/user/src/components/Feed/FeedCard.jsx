@@ -228,7 +228,9 @@ if(story.content  && !isLoading && view == "list"){
                { avatarLoading ?  <span className="skeleton-story-avatar story-card-avatar"
                style={{alignSelf  :"center"}}
                >&nbsp;</span>
-              : <img className="story-card-avatar" src={storyAvatar} />
+              : <img className="story-card-avatar" src={storyAvatar} 
+              style={{objectFit : "cover"}}
+              />
                }
                <span onClick={() => { navigateToProfile(story.userId.username)}} >{story.userId.username}</span>
                </div>

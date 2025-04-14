@@ -193,7 +193,7 @@ if(!id){
 
 const foundStory = await Story.findById(id)
 .populate("userId", "picture username email bio")
-.select("estimatedReadingTime date _id author title content  picture totalLikes totalViews")
+.select("estimatedReadingTime date _id author title content picture totalLikes totalViews")
 console.log(foundStory)
 const exists = await User.exists({
     email: req.user.email,
@@ -316,6 +316,56 @@ const enrichedFeed = allStories.map((story) => ({
         }
 }
 }
+const searchStories = async (req, res) => {
+    const search = req.query.search_query; // your frontend will use ?query=something
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+  try {
+    if (!search) {
+      return res.status(400).json({ message: "Search query is required." });
+    }
+    // Basic text search using regex (title and description)
+    const stories = await Story.find({
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { content: { $regex: search, $options: "i" } }
+      ]
+    })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .populate("userId", "username picture")
+      .lean();
+
+    const totalCount = await Story.countDocuments({
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } }
+      ]
+    });
+
+    const enrichedResults = stories.map((story) => ({
+      ...story,
+      picture: story.picture[Math.floor(Math.random() * story.picture.length)],
+      isLiked: story.likes.some(
+        (like) => like.likedBy.toString() === req.user._id.toString()
+      ),
+      isBookmarked: story.bookmarks.some(
+        (bm) => bm.bookmarkBy.toString() === req.user._id.toString()
+      )
+    }));
+    res.status(200).json({ stories: enrichedResults, count: totalCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong with the search." });
+  }
+};
+
+module.exports = {
+  searchStories
+};
+
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
     const queryObj = {...req.query}
@@ -701,6 +751,7 @@ module.exports = {
     createStory,
     getAStory,
     getAllStories,
+    searchStories,
     getSuggestedStories,
     updateAStory,
     deleteAStory,

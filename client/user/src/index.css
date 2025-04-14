@@ -20,6 +20,7 @@
 .no-scroll {
   overflow: hidden;
 }
+
 html, #root {
     /* width: 100%;
     min-height: 100%;
@@ -107,6 +108,9 @@ html, #root {
     padding: 3px 8px;
     text-wrap: nowrap;
     white-space: nowrap;
+  }
+  .story-card-avatar{
+    object-fit: cover;
   }
   .plus-button {
     width: 50px;
