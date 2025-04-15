@@ -11,7 +11,7 @@ import NoContent from '../common/NoContent';
 import ErrorMessage from '../common/ErrorMessage';
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
-  const closeContextMenu = useModalContext()
+  const  { closeContextMenu, showModal} = useModalContext()
   const query = searchParams.get('search_query');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState([{}, {}, {}])
