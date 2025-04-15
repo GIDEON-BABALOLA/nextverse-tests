@@ -14,6 +14,7 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
   let storyPicture = ""
   let storyAvatar = ""
   if(isLoading === false){
+    console.log(story.userId.picture)
     storyPicture = story.picture.url
     storyAvatar = story.userId.picture
   }
@@ -105,7 +106,8 @@ const StoryCard = ({ fireClick, story, isLoading}) => {
                 <div className="story-card-bottom-info">
                <span className="litenote-profile-story-category"
                style={{color : "#777777"}}
-               >{story.category.charAt(0).toUpperCase() + story.category.slice(1)}</span><span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
+               >{story.category.charAt(0).toUpperCase() + story.category.slice(1)}</span>
+               <span>{story["estimatedReadingTime"]["minutes"] == 0 ? `${story["estimatedReadingTime"]["seconds"]} seconds read` : `${story["estimatedReadingTime"]["minutes"]} minutes read`  }</span>
                </div>
               </div>
             </div>

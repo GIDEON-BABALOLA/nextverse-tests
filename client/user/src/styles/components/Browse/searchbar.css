@@ -74,7 +74,7 @@
     
     
     .litenote-browse-search-result-box ul::-webkit-scrollbar{
-        width: 4px;
+        width: 13px;
     }
     
     .litenote-browse-search-result-box ul::-webkit-scrollbar-track{
@@ -150,7 +150,9 @@
     .litenote-browse-search-result-box{
      max-height: 300px;
      overflow-y: scroll; 
-       
+    }
+    .litenote-browse-search-result-box.inactive{
+        display: none;
     }
     .fa-magnifying-glass{
         padding: 15%;

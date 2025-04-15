@@ -239,6 +239,7 @@ pictures : adjustedStory.picture
 }
 }
 const getAllStories = async (req, res) => {
+
     try{
         //filtering
 const queryObj = {...req.query}
@@ -329,22 +330,25 @@ const searchStories = async (req, res) => {
     const stories = await Story.find({
       $or: [
         { title: { $regex: search, $options: "i" } },
-        { content: { $regex: search, $options: "i" } }
+        { content: { $regex: search, $options: "i" } },
+        { author: { $regex: search, $options: "i" } }
       ]
     })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .populate("userId", "username picture")
+      .select("-content")
       .lean();
-
+      console.log(stories.length)
     const totalCount = await Story.countDocuments({
       $or: [
         { title: { $regex: search, $options: "i" } },
-        { description: { $regex: search, $options: "i" } }
+        { content: { $regex: search, $options: "i" } },
+        { author: { $regex: search, $options: "i" } },
       ]
     });
-
+   console.log(totalCount)
     const enrichedResults = stories.map((story) => ({
       ...story,
       picture: story.picture[Math.floor(Math.random() * story.picture.length)],
@@ -357,15 +361,51 @@ const searchStories = async (req, res) => {
     }));
     res.status(200).json({ stories: enrichedResults, count: totalCount });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Something went wrong with the search." });
+    console.log(error)
+    logEvents(`${error.name}: ${error.message}`, "searchStoriesError.txt", "storyError")
+    if (error instanceof userError) {
+    return  res.status(error.statusCode).json({ message : error.message})
+    }
+     else{
+    return res.status(500).json({message : "Internal Server Error"})
+        }
   }
 };
+const liveSearchSuggestions = async (req, res) => {
+    const search = req.query.search_query
+    try{
+        if (!search) {
+            return res.status(400).json({ message: "Search query is required." });
+          }
+          // Basic text search using regex (title and description)
+          const stories = await Story.find({
+            $or: [
+              { title: { $regex: search, $options: "i" } },
+              { content: { $regex: search, $options: "i" } },
+              { author: { $regex: search, $options: "i" } }
+            ]
+          })
+            .sort({ createdAt: -1 })
+            .limit(20)
+            .populate("userId", "username picture")
+            .select("title estimatedReadingTime")
+            .lean();
+            console.log(stories.length)
+            res.status(200).json({ stories: stories });
+    }
+    
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "searchStoriesError.txt", "storyError")
+        if (error instanceof userError) {
+        return  res.status(error.statusCode).json({ message : error.message})
+        }
+         else{
+        return res.status(500).json({message : "Internal Server Error"})
+            }
+    }
 
-module.exports = {
-  searchStories
-};
-
+}
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
     const queryObj = {...req.query}
@@ -765,5 +805,7 @@ module.exports = {
     uploadNow,
     getPopularStories,
     getStoryComments,
-    getStoryLikes
+    getStoryLikes,
+    searchStories,
+    liveSearchSuggestions
 }
