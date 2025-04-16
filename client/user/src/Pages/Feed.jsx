@@ -3,6 +3,7 @@ import "../styles/components/Feed/feed.css"
 import { useModalContext } from "../hooks/useModalContext";
 import FeedList from "../components/Feed/FeedList";
 import FeedRightSidebar from "../components/Feed/FeedRightSidebar";
+import FeedSearch from "../components/Feed/FeedSearch";
 import FeedLeftSidebar from "../components/Feed/FeedLeftSidebar";
 import FeedBottomNav from "../components/Feed/FeedBottomNav";
 import ConnectivityToast from "../components/common/connectivityToast";
@@ -67,23 +68,7 @@ const FeedPage = () => {
         <div className="feed-header">
             <div className="feed-logo">Lite Note</div>
            { width < 768 &&<>
-            <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
-  <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-    <FaSearch className="search-magphone" />
-    <input
-      type="text"
-      placeholder="Search Anything"
-      className="feed-search-bar"
-      style={{
-        paddingLeft: '35px', // Add padding to the left to accommodate the search icon
-        paddingRight: '35px', // Add padding to the right to accommodate the times icon
-        width: '100%',
-   
-      }}
-    />
-    <FaTimes className="searchXphone" />
-  </div>
-</div>
+ <FeedSearch />
 
 
            </> }

@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
-const LiveSuggestions = ( { searchResult, chooseOption, openModal, setOpenModal, ...props }) => {
+import LoadingSpinner from "../Loaders/LoadingSpinner";
+const LiveSuggestions = ( { searchResult, chooseOption, openModal, setOpenModal, isLoading,  ...props }) => {
     const liveSuggestionsRef = useRef()
     const closeLiveSuggestions  = (e) => {
         console.log(e.target.classList)
@@ -40,27 +41,38 @@ const LiveSuggestions = ( { searchResult, chooseOption, openModal, setOpenModal,
     {  searchResult.length !== 0 && <ul
      {...props}
     >
-    {
-      searchResult.map((search) => (
-        <li key={search} onClick={
-          () => {
-          chooseOption(search.title)}} className="browse-list-option">
-    <section>
-    {search.title}
-    <div style={{color : "#8f8f8f"}}>
-          by {search.userId.username}
-        </div>
+      <>
+      {isLoading ? 
+       <div style={{display :"flex", flexDirection : "column", 
+        alignItems : "center", justifyContent : "center", padding : "80px 0px"}}>
+<LoadingSpinner style={{color : "var(--loading-spinner-color-for-search)"}}/>
+   </div>  : 
+  <>
+  {
+  searchResult.map((search) => (
+    <li key={search} onClick={
+      () => {
+      chooseOption(search)}} className="browse-list-option">
+<section>
+{search.title}
+<div style={{color : "#8f8f8f"}}>
+      by {search.userId.username}
+    </div>
+</section>
+ <section style={{color : "#8f8f8f", fontSize : '10px'}}>
+ {search["estimatedReadingTime"]["minutes"] == 0 ? `${search["estimatedReadingTime"]["seconds"]} seconds read` : `${search["estimatedReadingTime"]["minutes"]} minutes read`  }
     </section>
-     <section style={{color : "#8f8f8f", fontSize : '10px'}}>
-     {search["estimatedReadingTime"]["minutes"] == 0 ? `${search["estimatedReadingTime"]["seconds"]} seconds read` : `${search["estimatedReadingTime"]["minutes"]} minutes read`  }
-        </section>
+
     
-        
-        </li>
-      )) 
-    
-    
+    </li>
+  )) 
+}
+  </>
+
     }
+      </>
+  
+
     </ul>
     }
     </div>

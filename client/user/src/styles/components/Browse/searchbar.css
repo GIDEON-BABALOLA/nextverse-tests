@@ -4,12 +4,27 @@
     --search-box-color : #333;
     --magnifying-svg-color : #8f8f8f;
     --search-placeholder-color : #555;
+    --litenote-browse-search-result-box-background : white;
+    --litenote-browse-search-result-box-box-shadow :  0  4px 8px rgba(0, 0, 0, 0.1);
+    --litenote-browse-search-result-box-title : black;
+    --litenote-browse-search-result-box-border-top : #999;
+    --important-hover : #e5e7eb;
+    --important-hover-color : black;
+    --loading-spinner-color-for-search : black; 
     }
     .dark-theme-variables{
         --search-box-background : black;
         --search-box-color : white;
         --magnifying-svg-color : white;
         --search-placeholder-color : white;
+        --litenote-browse-search-result-box-background : white;
+        --litenote-browse-search-result-box-background :  #181a1e;
+        --litenote-browse-search-result-box-box-shadow :  #00000066 0px 12px 12px 0px;
+        --litenote-browse-search-result-box-title : white;
+        --litenote-browse-search-result-box-border-top : black;
+        --important-hover : rgba(132,139,200,0.18);
+        --loading-spinner-color-for-search : white; 
+        --important-hover-color : white;
     }
     .litenote-browse-search-box{
     width: 700px;
@@ -54,13 +69,12 @@
         color : var(--search-placeholder-color)
     }
     .litenote-browse-search-result-box ul{
-        border-top: 1px solid #999;
+        border-top: 1px solid var(--litenote-browse-search-result-box-border-top);
         padding: 15px 10px;
         position: absolute; /* Position the dropdown absolutely */
         left: 0;
         right: 0;
         z-index: 1000; /* Ensure it appears above other elements */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for better visibility */
         border-radius: 10px 10px 8px 8px; /* Round the bottom corners */
         width: 700px;
         background: #fff;
@@ -68,6 +82,8 @@
         margin-top: 0px;
         overflow-y: auto;
         max-height: 400px;
+        background-color: var(--litenote-browse-search-result-box-background);
+      box-shadow: var(--litenote-browse-search-result-box-box-shadow);
         
     }
     
@@ -92,10 +108,11 @@
         border-radius: 3px;
         padding: 20px 10px;
         cursor: pointer;
+        color: var( --litenote-browse-search-result-box-title);
     }
     .litenote-browse-search-result-box ul li:hover{
-        background:#e5e7eb;
-    
+        background:var(--important-hover);
+       color: var(--important-hover-color);
     }
     .litenote-browse-microphone{
         color: black;

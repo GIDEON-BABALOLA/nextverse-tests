@@ -66,11 +66,11 @@ if(data.length > 0 ){
     setSearchResult([]);
     resetTranscript()
   }
-  const chooseOption = (title) => {
-    setSearchQuery(title)
+  const chooseOption = (story) => {
+    setSearchQuery(story.title)
     setSearchResult([]);
-    if(title){
-      const cleanSearchQuery = title.trim().replace(/\s+/g, "+")
+    if(story.title){
+      const cleanSearchQuery = story.title.trim().replace(/\s+/g, "+")
       navigate(`/explore/search?search_query=${cleanSearchQuery}`);
     }
   }

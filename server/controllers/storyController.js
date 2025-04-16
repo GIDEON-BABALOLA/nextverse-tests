@@ -388,7 +388,7 @@ const liveSearchSuggestions = async (req, res) => {
             .sort({ createdAt: -1 })
             .limit(20)
             .populate("userId", "username picture")
-            .select("title estimatedReadingTime")
+            .select("title estimatedReadingTime author")
             .lean();
             console.log(stories.length)
             res.status(200).json({ stories: stories });
