@@ -764,6 +764,33 @@ const getAllUsers = async (req, res) => {
         }
         const getUserStories = async (req, res) => {
             const { page, limit } = req.query;
+            const { username } = req.params
+            console.log(page, limit)
+            try{
+                console.log(chai)
+                const skip = (page - 1) * limit;
+                const user = await User.findOne({username : username})
+                const stories =  await Story.find({ userId: user._id })
+                .populate("userId", "username picture")
+                .sort({ createdAt: -1 }) // Newest first
+                .skip(parseInt(skip))
+                .limit(parseInt(limit))
+                .lean()
+                const storiesCount =  await Story.countDocuments({ userId: user._id }) || 0;
+                res.status(200).json({stories : stories, storyCount : storiesCount})
+            }
+            catch(error){
+                console.log(error)
+                logEvents(`${error.name}: ${error.message}`, "getUserStoriesError.txt", "userError")
+                if(error instanceof userError){
+                    return res.status(error.statusCode).json({ message : error.message})
+                }else{
+                    return res.status(500).json({message : "Internal Server Error"})
+                }
+            }
+        }
+        const getCurrentUserStories = async (req, res) => {
+            const { page, limit } = req.query;
             console.log(page, limit)
             try{
             const skip = (page - 1) * limit;
@@ -792,7 +819,7 @@ const getAllUsers = async (req, res) => {
             }
             catch(error){
                 console.log(error)
-                logEvents(`${error.name}: ${error.message}`, "getUserStoriesError.txt", "userError")
+                logEvents(`${error.name}: ${error.message}`, "getCurrentUserStoriesError.txt", "userError")
                 if(error instanceof userError){
                     return res.status(error.statusCode).json({ message : error.message})
                 }else{
@@ -818,5 +845,6 @@ module.exports = {
     getAllUsers,
     getAUser,
     getUserBookmarks,
-    getUserStories
+    getUserStories,
+    getCurrentUserStories
 }

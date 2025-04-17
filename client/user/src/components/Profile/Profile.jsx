@@ -9,6 +9,7 @@ import { FaBookmark } from "react-icons/fa";
 import { useModalContext } from "../../hooks/useModalContext"
 import { useProfileContext } from "../../hooks/useProfileContext"
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
+import ProfileStories from "./ProfileStories"
 import { useParams } from "react-router-dom"
 import ErrorMessage from "../common/ErrorMessage"
 import NoContent from "../common/NoContent"
@@ -19,12 +20,8 @@ const Profile = () => {
   const { username } = useParams();
   const { dispatch, profile } = useProfileContext()
   const { getUserProfile, data, isLoading, error, isFollowing } = useGetUserProfile();
-  const [stories, setStories] = useState([{}, {}, {}])
-  const [emptyData, setEmptyData] = useState(false)
-  
   useEffect(() => {
 console.log(decodeURIComponent(username))
-    setEmptyData(false)
     getUserProfile(decodeURIComponent(username));
   }, [username])
   const resendRequest = () => {
@@ -32,36 +29,15 @@ console.log(decodeURIComponent(username))
   }
   useEffect(() => {
   if(Object.keys(data).length > 1){
-    console.log(data)
-    setStories(data["stories"])
     dispatch({ type: "LOAD_PROFILE", payload:data });
   }
   }, [data, dispatch])
-  useEffect(() => {
-    if(Object.keys(data).length > 1){
-    if(!isLoading){
-      if(data["stories"].length == 0){
-        setEmptyData(true)
-      }else{
-        setEmptyData(false)
-      }
-    }
-  }
-        }, [data, isLoading])
-  const {
-           contextMenu,
-            shareModal,
-        shareRef,
-        fireClick,
-        setContextMenu,
-        closeContextMenu
-     } = useModalContext()
+  const { closeContextMenu } = useModalContext()
   return (
     <>
 <div>
 {  !error   &&
  <section className="litenote-profile-user-profile" onClick={() => closeContextMenu()}>
-  <Share  share={shareRef} shareModal={shareModal}/>
 <div className="litenote-profile-container">
 <div className="litenote-profile-header" style={{
 
@@ -85,41 +61,7 @@ borderRadius : "10px", padding : "30px"}}>
 
 <div className="litenote-profile-stories">
 {isLoading ? <div className="profile-loader profile-loader-bio"></div> : <h3 className="litenote-profile-section-title">{profile["username"]} Stories</h3>}
-{
-  emptyData ? 
-  <div>
-    <NoContent message={"Share your favorite moments and make this space yours"}/>
-  </div>
-  :
-  <div className="litenote-profile-stories-grid">
-  {
-    stories.map((story, index) => (
-      <StoryCard  shareModal={shareModal} 
-       isLoading={isLoading}
-      fireClick={fireClick} story={story} key={index}/>
-    ))
-
-  }
-  
- <ContextMenu
- state={"feed"}
- contextMenu={contextMenu}
- stories={stories}
- shareModal={shareModal}
-            setContextMenu={setContextMenu}
-            contextMenuData={[
-            {id : 1, icon : <FaShareAlt />
-            , label : "Share", type : "default"},
-            {id : 2, icon : <FaBookmark />
-            , label : "Bookmark", type : "custom"},
-            {id : 3, icon : <MdOutlineFavorite />
-              , label : "Like", type : "custom"},
-            {id : 4, icon : <MdReadMore/>
-            , label : "Read More"}
-]} />
-</div>
-}
-
+<ProfileStories username={username}/>
 </div>
 </div>
 </section> 

@@ -8,7 +8,7 @@ import { FaShareAlt, FaTimes } from "react-icons/fa"
 import { useEffect, useRef, useState } from "react"
 import ErrorMessage from "../../common/ErrorMessage"
 import LoadingCard from "../../Profile/LoadingCard"
-import { useGetUserStories } from "../../../hooks/useGetUserStories"
+import { useGetCurrentUserStories } from "../../../hooks/useGetCurrentUserStories"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { FaBoxOpen, FaSearch } from "react-icons/fa"
 import DeleteConsent from "../../common/DeleteConsent"
@@ -17,7 +17,7 @@ import { useDeleteAStory } from "../../../hooks/useDeleteAStory"
 import { useToastContext } from "../../../hooks/useToastContext"
 import Toast from "../../common/Toast"
 const StoriesPreview = ({ setCounts, setTab, setSlideDistance }) => {
-  const { getUserStories, isLoading, error, data, storyCount } = useGetUserStories();
+  const { getCurrentUserStories, isLoading, error, data, storyCount } = useGetCurrentUserStories();
   const deleteStory = useDeleteAStory();
   const [openModal, setOpenModal] = useState(false)
   const { width } = useWindowSize();
@@ -66,7 +66,7 @@ if(!deleteStory.error && Object.keys(deleteStory.data).length > 0 ){
 }
     }, [deleteStory.data, deleteStory.error])
 useEffect(() => {
-  getUserStories(page, limit)
+  getCurrentUserStories(page, limit)
 }, [page, limit])
 useEffect(() => {
   if(width < 767){
@@ -124,9 +124,6 @@ observer.observe(lastItemRef.current);
   };
 }, [lastItemRef, isLoading, myStories, storyCount, preventLoadMore]);
 useEffect(() => {
-console.log(emptyData)
-}, [emptyData])
-useEffect(() => {
   if(!isLoading){
     if(preventLoadMore && myStories.length == 0){
       setEmptyData(true)
@@ -144,7 +141,7 @@ deleteStory.deleteAStory(currentStoryId)
       }
 const resendRequest = () => {
   setEmptyData(false)
-  getUserStories(page, limit)
+  getCurrentUserStories(page, limit)
 }
 const startWriting = () => {
 setSlideDistance(0)

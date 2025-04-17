@@ -43,3 +43,26 @@
 20250412	19:23:01	81b1095b-8530-493b-8941-b09f27048038	TypeError: Cannot read properties of null (reading '_id')
 20250412	23:00:55	8f08650e-614f-4b62-8958-04c3aafb828d	StrictPopulateError: Cannot populate path `userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
 20250412	23:04:32	da52dfc2-6d5c-46c6-951f-0dd2ec9e2d5a	StrictPopulateError: Cannot populate path `userId` because it is not in your schema. Set the `strictPopulate` option to false to override.
+20250416	22:45:34	cc8c4f74-2bb1-4b36-ba6c-6db6a74e6bc9	TypeError: Cannot read properties of undefined (reading 'storyId')
+20250416	22:45:34	8b3f0388-6166-49fd-a09c-b59d907e6e5c	TypeError: Cannot read properties of undefined (reading 'storyId')
+20250416	22:46:22	c95b4184-e207-415d-9b42-d847e59436b6	TypeError: Cannot read properties of undefined (reading 'storyId')
+20250416	22:46:43	2be23245-0452-4ad9-b807-117eb6f0df89	TypeError: Cannot read properties of undefined (reading 'storyId')
+20250416	22:46:47	a97f4e24-106c-4b2f-86ec-ef86d7526409	TypeError: Cannot read properties of undefined (reading 'storyId')
+20250416	22:46:47	aa7fca1f-16c1-4b23-acee-38bbbaf55f26	TypeError: Cannot read properties of undefined (reading 'storyId')
+20250416	22:48:45	4b6c9ab4-773f-4f8b-a592-2d5d37a42033	TypeError: Cannot read properties of null (reading 'stories')
+20250416	22:48:46	5aba0c72-3947-4878-b027-2131701cb789	TypeError: Cannot read properties of null (reading 'stories')
+20250416	22:49:37	bc8df15a-fd18-4234-ad7b-2b46684c0d36	TypeError: Cannot read properties of null (reading 'stories')
+20250416	22:49:41	ac9568f8-06d6-47ff-8399-098eeaf27e91	TypeError: Cannot read properties of null (reading 'stories')
+20250416	22:49:41	db3dd1b5-0580-4eb8-8edb-7fa59c144fe9	TypeError: Cannot read properties of null (reading 'stories')
+20250416	22:50:30	3268206c-da1f-4c9b-850f-90f723167de8	TypeError: Cannot read properties of null (reading 'stories')
+20250416	22:50:30	c07149cf-ec15-49f8-8130-ebf3e0a82995	TypeError: Cannot read properties of null (reading 'stories')
+20250416	23:15:17	dec937ca-ae92-462e-8bf6-bc3ceb700953	ReferenceError: chai is not defined
+20250416	23:15:19	282218eb-1dd0-455d-9335-0516bb7468a5	ReferenceError: chai is not defined
+20250416	23:15:20	b36181d9-5200-44fa-bbaa-3927b285b715	ReferenceError: chai is not defined
+20250416	23:15:25	54c8af74-f714-463e-8359-0173b38e3d8f	ReferenceError: chai is not defined
+20250416	23:15:50	cc0614a1-6e3c-4902-9ec1-e7ec8872c19f	ReferenceError: chai is not defined
+20250416	23:16:25	6880bc80-a929-4e8f-a763-3db60d13199a	ReferenceError: chai is not defined
+20250416	23:16:28	70ab215c-a496-4823-badb-caf61e6e0a7e	ReferenceError: chai is not defined
+20250416	23:17:10	fd43b8c5-2f3f-40ea-8b3b-49e03e4832f3	ReferenceError: chai is not defined
+20250416	23:46:32	94e60f37-4ea3-4462-a9f3-e248eb02707a	ReferenceError: chai is not defined
+20250416	23:46:37	9cd6d763-4d28-44df-9a95-fa070991d432	ReferenceError: chai is not defined

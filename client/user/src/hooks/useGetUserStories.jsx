@@ -6,7 +6,7 @@ export const useGetUserStories = () => {
     const [statusCode, setStatusCode] = useState(null)
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
-    const getUserStories = async (page, limit) => {
+    const getUserStories = async (page, limit, username) => {
         const parameters = {
             page : page,
             limit : limit,
@@ -14,7 +14,7 @@ export const useGetUserStories = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/user/get-user-stories", {
+const response = await axiosConfig.get(`/user/get-user-stories/${username}`, {
     params : parameters,
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }

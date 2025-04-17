@@ -40,3 +40,5 @@
 20250410	17:09:39	476d37d9-e796-456b-912d-36687f2c137d	TypeError: Cannot read properties of undefined (reading 'stories')
 20250410	17:10:28	14d2df14-af67-4e43-892e-2c32f437e921	TypeError: Cannot read properties of undefined (reading 'stories')
 20250412	19:23:07	17f1d509-c7a1-4753-9668-6cf214dac5a6	userError: Your Account Does Not Exist
+20250416	22:07:00	7a483e25-d267-4f28-aa56-612facfc3b98	TypeError: Cannot read properties of undefined (reading 'NaN')
+20250416	22:07:04	fb2961ee-6ed6-4cd2-8a76-fef3049e77b6	TypeError: Cannot read properties of undefined (reading 'NaN')

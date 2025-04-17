@@ -1,21 +1,27 @@
 import { useState } from "react";
 import { axiosConfig, axiosProperties } from "../api/axiosConfig";
-export const useGetAllAvatars = () => {
+export const useGetCurrentUserStories = () => {
     const [error, setError] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [statusCode, setStatusCode] = useState(null)
+    const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
-    const getAllAvatars = async (number) => {
+    const getCurrentUserStories = async (page, limit) => {
+        const parameters = {
+            page : page,
+            limit : limit,
+        }
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/general/get-all-avatars/${parseInt(number)}`,
-    {
-        signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
-    }
+const response = await axiosConfig.get(`/user/get-current-user-stories`, {
+    params : parameters,
+    signal : AbortSignal.timeout(axiosProperties["timeout"])
+}
 )
 if(response && response.data){
-    setData(response.data.avatars)
+    setData(response.data.stories)
+    setStoryCount(response.data.count)
     setStatusCode(response.status)
     setError(null)
     setTimeout(() => {
@@ -24,25 +30,23 @@ if(response && response.data){
     
 }
         }
+        
         catch(error){
-            console.log("error")
-setData([])
+            setStoryCount(0)
 setIsLoading(false)
             if(error.message == "canceled"){
-setError({message : "Your Request Has Timed Out", code : error.code})
+                setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
                 setError({message : "Our Service Is Currently Offline", code : error.code})
             }
-            else if(error.message == "Request failed with status code 404"){
-                setError({message : "Not Found", code : error.code})
-            }
             else{
+            setData([])
             setIsLoading(false)
             setError({message : error.response.data.message, code : error.code})
             setStatusCode(error.response.status)
         }
     }
     }
-    return {getAllAvatars,  isLoading, error, data, statusCode} 
+    return {getCurrentUserStories, isLoading, error, data, statusCode, storyCount} 
 }
