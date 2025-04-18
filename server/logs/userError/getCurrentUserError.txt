@@ -42,3 +42,6 @@
 20250412	19:23:07	17f1d509-c7a1-4753-9668-6cf214dac5a6	userError: Your Account Does Not Exist
 20250416	22:07:00	7a483e25-d267-4f28-aa56-612facfc3b98	TypeError: Cannot read properties of undefined (reading 'NaN')
 20250416	22:07:04	fb2961ee-6ed6-4cd2-8a76-fef3049e77b6	TypeError: Cannot read properties of undefined (reading 'NaN')
+20250417	17:07:11	c27de285-da09-4a55-9abf-d774c9e481a1	Error: Invalid select: select only takes 1 argument
+20250417	17:07:54	31876ef6-2e7f-4497-906a-fc8420c5623c	TypeError: Cannot read properties of undefined (reading 'map')
+20250417	17:07:55	0ce912f8-0a0c-4228-a43a-2b3884f77564	TypeError: Cannot read properties of undefined (reading 'map')

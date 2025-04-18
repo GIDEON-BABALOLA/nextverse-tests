@@ -1,12 +1,9 @@
-
-
 import { useRef, useEffect } from "react";
 import LoadingSpinner from "../Loaders/LoadingSpinner";
 import CommonAvatar from "./CommonAvatar";
 import { MdClose } from "react-icons/md"
 import { useState, } from "react";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
-import "../../styles/components/common/live-suggestions.css"
 const LiveSuggestions = ( { searchResult, userSearchResult, chooseOption, openModal, setOpenModal, isLoading, searchQuery,  ...props }) => {
   const [recent, setRecents] = useState([])
   useEffect(() => {
@@ -17,12 +14,12 @@ const LiveSuggestions = ( { searchResult, userSearchResult, chooseOption, openMo
     const liveSuggestionsRef = useRef()
     const navigateToProfile = useNavigateProfile()
     const closeLiveSuggestions  = (e) => {
+        console.log(e.target.classList)
         if(e.target.tagName == "svg" || e.target.tagName == "IMG" || e.target.tagName == "path"
           || Object.values(e.target.classList).includes("special-modal-client")
         ){
           return;
         }
-        console.log(liveSuggestionsRef.current.getBoundingClientRect())
               if( e.clientX < parseInt(liveSuggestionsRef.current.getBoundingClientRect().left) || e.clientX > parseInt(liveSuggestionsRef.current.getBoundingClientRect().left) + liveSuggestionsRef.current.getBoundingClientRect().width)
                 {
                   setOpenModal(false)
@@ -39,6 +36,7 @@ const LiveSuggestions = ( { searchResult, userSearchResult, chooseOption, openMo
             if(liveSuggestionsRef.current){
               closeLiveSuggestions(e)
             }
+        ``
           })
           return () =>{
             document.removeEventListener('click', (e) => {
@@ -48,7 +46,7 @@ const LiveSuggestions = ( { searchResult, userSearchResult, chooseOption, openMo
             }
           )
           }
-          }, [openModal])
+          }, [])
           const handleUserClick = (user) => {
             const { username } = user
             navigateToProfile(username)
@@ -65,21 +63,15 @@ const newRecents = recent.filter((user) => user.username !== username)
 setRecents(newRecents)
 localStorage.setItem("userSearchResult", JSON.stringify(newRecents))
           }
-          const clearAll = () => {
-            setRecents([])
-            localStorage.removeItem("userSearchResult")
-          }
   return (
-    <div
-    ref={liveSuggestionsRef}
-    className={`litenote-browse-search-result-box ${openModal  == false  ? "inactive" : ""}`}> 
-    
+    <div className={`litenote-browse-search-result-box ${!openModal && "inactive"}`} ref={liveSuggestionsRef}> <ul
+     {...props}
+    >
       { recent.length !== 0 && userSearchResult && searchQuery.length == 0 &&
-      <ul {...props}>
       <>
-        <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", cursor : "pointer", alignItems : "center", padding :"10px 10px"}}>
-        <span style={{fontSize : "1.7rem", fontWeight : 600}} className="recent-color" >Recent</span>
-        <span className="clear-all-color" onClick={() => clearAll()}>Clear all</span>
+            <div style={{display : "flex", flexDirection : "row", justifyContent : "space-between", cursor : "pointer"}}>
+        <span style={{fontSize : "1.3rem"}}>Recent</span>
+        <span>Clear all</span>
       </div>
       {
   recent.map((search) => (
@@ -102,10 +94,8 @@ image={search.picture} className="users-place-picture"/>
   )) 
 }
       </>
-      </ul>
 }
 {  searchResult.length !== 0 && searchQuery &&
-<ul {...props}>
       <>
       {isLoading ? 
        <div style={{display :"flex", flexDirection : "column", 
@@ -157,10 +147,10 @@ image={search.picture} className="users-place-picture"/>
 
     }
       </>
-      </ul>
   
 }
 
+    </ul>
     
     </div>
   )

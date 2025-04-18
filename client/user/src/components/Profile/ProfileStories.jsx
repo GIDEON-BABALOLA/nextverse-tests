@@ -11,8 +11,8 @@ import StoryCard from "../../components/Profile/StoryCard"
 import { useGetUserStories } from "../../hooks/useGetUserStories"
 import { useState, useEffect } from "react"
 const ProfileStories = ({ username }) => {
-  const  { getUserStories, isLoading, error, data, statusCode, storyCount } = useGetUserStories();
-  const { lastItemRef } = useRef();
+  const  { getUserStories, isLoading, error, data,  storyCount } = useGetUserStories();
+  const  lastItemRef  = useRef();
   const { shareModal, shareRef, fireClick, contextMenu, setContextMenu} = useModalContext()
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [preventLoadMore, setPreventLoadMore] = useState(false)
@@ -35,6 +35,7 @@ const ProfileStories = ({ username }) => {
     return [...prev, ...newBookmarks];
   }
   useEffect(() => {
+    console.log(data)
     if(data.length == 0 && storyCount > 0){
       setPage(1)
     }
@@ -107,7 +108,7 @@ const ProfileStories = ({ username }) => {
      {
        stories.map((story, index) => (
          <StoryCard  shareModal={shareModal} 
-          isLoading={isLoading}
+          isLoading={false}
          fireClick={fireClick} story={story} key={index}/>
        ))
    

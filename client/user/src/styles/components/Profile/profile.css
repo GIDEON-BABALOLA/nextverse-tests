@@ -23,6 +23,9 @@
     --follow-toast-message : white;
     
   }
+  .swipe-drawer{
+border-radius: 20px;
+  }
   .follow-toast-message{
 color: var(--follow-toast-message);
   }

@@ -373,6 +373,8 @@ const searchStories = async (req, res) => {
 };
 const liveSearchSuggestions = async (req, res) => {
     const search = req.query.search_query
+    const limit = req.query.limit
+    console.log(search, limit)
     try{
         if (!search) {
             return res.status(400).json({ message: "Search query is required." });
@@ -386,12 +388,20 @@ const liveSearchSuggestions = async (req, res) => {
             ]
           })
             .sort({ createdAt: -1 })
-            .limit(20)
+            .limit(limit)
             .populate("userId", "username picture")
             .select("title estimatedReadingTime author")
             .lean();
-            console.log(stories.length)
-            res.status(200).json({ stories: stories });
+            const users = await User.find({
+                $or: [
+                  { username: { $regex: search, $options: "i" } },
+                ]
+              })
+                .sort({ createdAt: -1 })
+                .select("username bio picture -_id")
+                .limit(limit)
+                .lean();
+            res.status(200).json({ stories: stories, users : users });
     }
     
     catch(error){

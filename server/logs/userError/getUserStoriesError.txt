@@ -66,3 +66,15 @@
 20250416	23:17:10	fd43b8c5-2f3f-40ea-8b3b-49e03e4832f3	ReferenceError: chai is not defined
 20250416	23:46:32	94e60f37-4ea3-4462-a9f3-e248eb02707a	ReferenceError: chai is not defined
 20250416	23:46:37	9cd6d763-4d28-44df-9a95-fa070991d432	ReferenceError: chai is not defined
+20250417	16:34:45	02bc855c-45eb-424a-8b74-203517fbc481	ReferenceError: chai is not defined
+20250417	16:35:13	b2ebac5c-d6ff-4bba-83aa-c552c66fce88	ReferenceError: chai is not defined
+20250417	16:36:03	45420880-06d7-4d2b-86e6-617762d51591	ReferenceError: chai is not defined
+20250417	16:36:35	8bddd1fe-af8a-4708-8522-c3062b7c11ad	ReferenceError: chai is not defined
+20250417	16:36:38	d504aada-2025-485b-9cef-be1c3e95abc5	ReferenceError: chai is not defined
+20250417	16:37:03	c9649902-171b-4cb6-b36d-b227d11539f5	ReferenceError: chai is not defined
+20250417	16:37:42	5c3a45dd-5a0b-4070-b634-ce7611969b52	ReferenceError: chai is not defined
+20250417	16:37:47	09d5ebe3-a73b-45ac-98ef-71a7b82e07e8	ReferenceError: chai is not defined
+20250417	16:37:47	5656a675-2bf1-4cc8-93b0-75b77e6457f1	ReferenceError: chai is not defined
+20250417	16:46:59	b65b13cd-3ba8-4d60-834e-ecbf1f08d7aa	ReferenceError: chai is not defined
+20250417	18:20:17	13bf527f-d439-4ff3-abf5-6d17fc453ae4	TypeError: Cannot read properties of null (reading '_id')
+20250417	18:20:19	320bebab-3943-4343-881f-fa7917fb71b1	TypeError: Cannot read properties of null (reading '_id')

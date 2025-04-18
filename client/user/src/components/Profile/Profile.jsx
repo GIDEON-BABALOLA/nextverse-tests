@@ -9,6 +9,7 @@ import { FaBookmark } from "react-icons/fa";
 import { useModalContext } from "../../hooks/useModalContext"
 import { useProfileContext } from "../../hooks/useProfileContext"
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
+import SideDrawer from "../common/SideDrawer"
 import ProfileStories from "./ProfileStories"
 import { useParams } from "react-router-dom"
 import ErrorMessage from "../common/ErrorMessage"
@@ -20,6 +21,11 @@ const Profile = () => {
   const { username } = useParams();
   const { dispatch, profile } = useProfileContext()
   const { getUserProfile, data, isLoading, error, isFollowing } = useGetUserProfile();
+    const [open, setOpen] = useState(false);
+    const toggleDrawer = (newOpen) => {
+      console.log(newOpen)
+      setOpen(newOpen);
+    }
   useEffect(() => {
 console.log(decodeURIComponent(username))
     getUserProfile(decodeURIComponent(username));
@@ -29,6 +35,7 @@ console.log(decodeURIComponent(username))
   }
   useEffect(() => {
   if(Object.keys(data).length > 1){
+    console.log(data)
     dispatch({ type: "LOAD_PROFILE", payload:data });
   }
   }, [data, dispatch])
@@ -36,6 +43,7 @@ console.log(decodeURIComponent(username))
   return (
     <>
 <div>
+  <SideDrawer open={open} setOpen={setOpen} toggleDrawer={toggleDrawer} anchor={"right"}/>
 {  !error   &&
  <section className="litenote-profile-user-profile" onClick={() => closeContextMenu()}>
 <div className="litenote-profile-container">
@@ -54,7 +62,7 @@ borderRadius : "10px", padding : "30px"}}>
   </div>
 </div>
 
-<span style={{color : "white", alignSelf : "flex-end"}}>
+<span style={{color : "white", alignSelf : "flex-end", cursor : "pointer"}} onClick={() => toggleDrawer(true)}>
   <FaEllipsisH />
 </span>
 </div>

@@ -15,7 +15,7 @@ import useWindowSize from "../../hooks/useWindowSize";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast"
 const SearchBar = () => {
-  const { getLiveSearchSuggestions, isLoading, error, data, statusCode } = useGetLiveSearchSuggestions()
+  const { getLiveSearchSuggestions, isLoading, error, stories, statusCode } = useGetLiveSearchSuggestions()
   const [openModal, setOpenModal] = useState(true)
   const [searchParams] = useSearchParams();
   const { showToast } = useToastContext();
@@ -33,10 +33,10 @@ toast.error("No Internet")
     setSearchQuery(transcript)
     }, [transcript])
   useEffect(() => {
-if(data.length > 0 ){
-  setSearchResult(data);
+if(stories.length > 0 ){
+  setSearchResult(stories);
 }
-  }, [data])
+  }, [stories])
   const searchStory = () => {
     if(searchQuery.length == 0){
       showToast("Error", "Pls Enter A word To Search For", false)
@@ -55,7 +55,7 @@ if(data.length > 0 ){
     setOpenModal(true)
     setSearchQuery(e.target.value)
     if (e.target.value.length) {
-      getLiveSearchSuggestions(e.target.value)
+      getLiveSearchSuggestions(e.target.value, 20)
      
     }else{
       setSearchResult([]);
@@ -79,6 +79,9 @@ if(data.length > 0 ){
 setSearchQuery(query)
     }
   }, [query])
+  useEffect(() => {
+    console.log(searchResult)
+  })
   return (
     <>
       <div className="litenote-browse-search-box">
@@ -94,6 +97,7 @@ id="input-box"
 onKeyDown={triggerEnter}
 placeholder=" Search Your Favourite Stories"
 autoComplete="off"
+spellCheck={false}
 onChange={startSearch}
 />
 <button className="litenote-browse-search-button">
@@ -143,6 +147,8 @@ onChange={startSearch}
 <LiveSuggestions chooseOption={chooseOption} searchResult={searchResult}
 openModal={openModal}
 setOpenModal={setOpenModal}
+searchQuery={searchQuery}
+isLoading={isLoading}
 />
     </div>
 

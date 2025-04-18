@@ -9,22 +9,25 @@ const FeedSearch = () => {
      const navigateToStory = useNavigateStory();
        const [searchQuery, setSearchQuery] = useState("")
        const [searchResult, setSearchResult] = useState([])
-       const [openModal, setOpenModal] =  useState(true)
-        const { getLiveSearchSuggestions, isLoading, error, data, statusCode } = useGetLiveSearchSuggestions()
+       const [userSearchResult, setUserSearchResult] = useState([])
+       const [openModal, setOpenModal] =  useState(false)
+        const { getLiveSearchSuggestions, isLoading, error, stories, users, statusCode } = useGetLiveSearchSuggestions()
           useEffect(() => {
-        if(data.length > 0 ){
-          console.log(data)
-          setSearchResult(data);
+        if(stories.length > 0 ){
+          console.log(stories)
+          setSearchResult(stories);
+          setUserSearchResult(users)
         }
-          }, [data])
+          }, [stories])
         const startSearch = (e) => {
           setOpenModal(true)
           setSearchQuery(e.target.value)
           if (e.target.value.length) {
-            getLiveSearchSuggestions(e.target.value)
+            getLiveSearchSuggestions(e.target.value, 3)
            
           }else{
             setSearchResult([]);
+            setUserSearchResult([])
           }
         }
         const chooseOption = (story) => {
@@ -44,8 +47,10 @@ const FeedSearch = () => {
     <input
       type="text"
       placeholder="Search Anything"
-      className="search-input"
+      className="search-input special-modal-client"
       onChange={startSearch}
+      onFocus={() => setOpenModal(true)}
+            spellCheck={false}
       value={searchQuery}
     />
      { searchQuery.length !== 0 && <FaTimes className="clear-icon" onClick={() => clearSearch()}/> }
@@ -54,7 +59,9 @@ const FeedSearch = () => {
 
 <LiveSuggestions 
 style={{width : "350px"}}
+userSearchResult={userSearchResult}
 isLoading={isLoading}
+searchQuery={searchQuery}
 searchResult={searchResult} chooseOption={chooseOption} openModal={openModal} setOpenModal={setOpenModal}/>
    </>
   )

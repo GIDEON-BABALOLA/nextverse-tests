@@ -100,7 +100,9 @@ setSlideDistance={setSlideDistance}
 
     </main>
 
-    <div className="litenote-dashboard-right reports-page-right-stories">
+    <div className="litenote-dashboard-right reports-page-right-stories"
+    style={{left : 900}}
+    >
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
 
     </div>

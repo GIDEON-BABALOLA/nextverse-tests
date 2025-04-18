@@ -44,6 +44,7 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 15px;
+    object-fit: cover;
 }
 .skeleton-image-follower-avatar{
     width: 50px;

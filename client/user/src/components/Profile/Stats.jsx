@@ -23,7 +23,7 @@ const Stats = ({ isLoading }) => {
     :
     <>
     <div className="litenote-profile-stat">
-            <span className="litenote-profile-stat-value"><Counter end={profile["stories"].length}/></span>
+            <span className="litenote-profile-stat-value"><Counter end={profile["totalStories"]}/></span>
             <span className="litenote-profile-stat-label" style={{color : "white"}}   >Stories</span>
           </div>
           <div className="litenote-profile-stat">

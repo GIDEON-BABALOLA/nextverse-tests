@@ -385,38 +385,25 @@ res.status(200).json(newUser);
             throw new userError("Your Account Does Not Exist", 404)
         }
 
-const user = await User.findOne({ username: username }).populate({ path: 'stories.storyId',
-})
+const user = await User.findOne({ username: username })
+.select("-refreshToken -verificationCode -verificationToken -verificationExpires -ipAddress -password -stories")
+.lean()
 if(!user){
     throw new userError("Your Account Does Not Exist", 401)
 }
-const mark = user.toObject();
-mark.stories = mark.stories.map((story) => {
-    return { ...story.storyId}
-})
+const totalStories =  await Story.countDocuments({userId : req.user._id}) || 0
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : user._id
 });
+console.log(user)
 const isFollowing = !!exists;
-// picture : storyConvertedToObject.picture[Math.round(Math.random())]
-const detailsOfUserToBeSent = _.omit(mark, "refreshToken",
-"verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress", "password"
-)
-const cleanedStories = detailsOfUserToBeSent.stories.filter(
-    story => Object.keys(story).length > 0
-  );
-  const enrichedStories = cleanedStories.map((story) => ({
-    ...story,
-    picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
-  }));
-detailsOfUserToBeSent.stories = enrichedStories
-    res.status(200).json({user : detailsOfUserToBeSent, isFollowing : isFollowing}) 
+    res.status(200).json({user :  {...user, totalStories : totalStories}, isFollowing : isFollowing}) 
    
 //  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
         console.log(error)
-        logEvents(`${error.name}: ${error.message}`, "getCurrentUserError.txt", "userError")
+        logEvents(`${error.name}: ${error.message}`, "getUserProfileError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ message : error.message})
         }
@@ -767,17 +754,23 @@ const getAllUsers = async (req, res) => {
             const { username } = req.params
             console.log(page, limit)
             try{
-                console.log(chai)
                 const skip = (page - 1) * limit;
                 const user = await User.findOne({username : username})
                 const stories =  await Story.find({ userId: user._id })
+                .select("-content")
                 .populate("userId", "username picture")
                 .sort({ createdAt: -1 }) // Newest first
                 .skip(parseInt(skip))
                 .limit(parseInt(limit))
                 .lean()
-                const storiesCount =  await Story.countDocuments({ userId: user._id }) || 0;
-                res.status(200).json({stories : stories, storyCount : storiesCount})
+                const enrichedStories = stories.map((story) => ({
+                    ...story,
+                    picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
+                    isLiked: story?.likes?.some((like) => like.likedBy.toString() == req.user._id.toString()),
+                    isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
+                  }));
+                const storiesCount = await Story.countDocuments({ userId: user._id }) || 0;
+                res.status(200).json({stories : enrichedStories, count : storiesCount})
             }
             catch(error){
                 console.log(error)
@@ -795,6 +788,7 @@ const getAllUsers = async (req, res) => {
             try{
             const skip = (page - 1) * limit;
             const stories = await Story.find({userId: req.user._id})
+            .select("-content")
             .sort({ createdAt: -1 }) // Newest first
             .skip(parseInt(skip))
             .limit(parseInt(limit))
@@ -812,6 +806,7 @@ const getAllUsers = async (req, res) => {
         ...story,
         picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
         isLiked: story?.likes?.some((like) => like.likedBy.toString() == req.user._id.toString()),
+        isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
       }));
         res.status(200).json({ stories : enrichedStories, count : storiesCount})          
 

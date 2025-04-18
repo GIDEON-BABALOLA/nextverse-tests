@@ -38,7 +38,7 @@ alt="Author"
 </span>
     </li>
     <li className="phone-feed-sidebar-item">
-<span className="phone-feed-sidebar-nav-link" onClick={() => { navigatePage("/dashboard/analytics")}}>
+<span className="phone-feed-sidebar-nav-link" onClick={() => { navigatePage("/dashboard/publish")}}>
 <MdGridView className="phone-feed-sidebar-icon" />
 <span className="phone-feed-sidebar-nav-name">Dashboard</span>
 </span>
@@ -72,7 +72,7 @@ alt="Author"
    
     </span>
     </div>
-    <div className="feed-sidebar-icon" onClick={() => { navigatePage("/dashboard/analytics")}}>
+    <div className="feed-sidebar-icon" onClick={() => { navigatePage("/dashboard/publish")}}>
     <span  style={{cursor : "pointer"}}>
       <SidebarItem icon={ <MdGridView size={20}  color="#757575" />} title="Dashboard"/>
    
