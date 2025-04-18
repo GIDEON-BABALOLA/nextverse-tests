@@ -16,6 +16,7 @@ const designerRouter = require(path.join(__dirname,  "routes", "designerRoute.js
 const fixRouter = require(path.join(__dirname,  "routes", "fixRoute.js"))
 const newsletterRouter = require(path.join(__dirname,  "routes", "newsletterRoute.js"))
 const notificationRouter = require(path.join(__dirname,  "routes", "notificationRoute.js"))
+const reportRouter = require(path.join(__dirname, "routes", "reportRoute"))
 const generalRouter = require(path.join(__dirname,  "routes", "generalRoute.js"))
 app.use(express.json())
 app.use(cookieParser())
@@ -50,6 +51,7 @@ app.use("/api/story", storyRouter);
 app.use("/api/note", noteRouter); 
 app.use("/api/newsletter", newsletterRouter); 
 app.use("/api/notification", notificationRouter); 
+app.use("/api/report", reportRouter)
 app.use("/api/general", generalRouter)
 app.use("/api/fix", fixRouter); 
 mongoose.connect(process.env.LITENOTE_MONGODB_URL)

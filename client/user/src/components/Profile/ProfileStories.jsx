@@ -13,7 +13,7 @@ import { useState, useEffect } from "react"
 const ProfileStories = ({ username }) => {
   const  { getUserStories, isLoading, error, data,  storyCount } = useGetUserStories();
   const  lastItemRef  = useRef();
-  const { shareModal, shareRef, fireClick, contextMenu, setContextMenu} = useModalContext()
+  const { shareModal, shareRef, fireClick, contextMenu, setContextMenu, shareUrl, setShareUrl} = useModalContext()
   const [loadingState, setLoadingState] = useState([{}, {}, {}])
   const [preventLoadMore, setPreventLoadMore] = useState(false)
   const [page, setPage] = useState(1)
@@ -86,7 +86,8 @@ const ProfileStories = ({ username }) => {
   }
   return (
    <>
-     <Share  share={shareRef} shareModal={shareModal}/>
+     <Share 
+      share={shareRef} shareModal={shareModal} shareUrl={shareUrl} setShareUrl={setShareUrl}/>
 
    {
     !error  &&

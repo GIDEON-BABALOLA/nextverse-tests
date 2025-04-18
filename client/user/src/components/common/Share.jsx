@@ -1,10 +1,20 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FaLink } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
 import "../../styles/components/common/share.css"
 import useWindowSize from "../../hooks/useWindowSize";
 const Share = ( { share, shareModal, shareUrl, setShareUrl}) => {
+  const [shareType, setShareType] = useState("")
+  useEffect(() => {
+    console.log(shareUrl);
+    
+if(shareUrl?.split("/").includes("profile")){
+  setShareType("Profile")
+}else{
+  setShareType("Story")
+}
+  }, [shareUrl])
   const { width } = useWindowSize();
 const [text, setText] = useState(false)
   const closeShareModal = () => {
@@ -22,7 +32,10 @@ const [text, setText] = useState(false)
 navigator.clipboard.writeText(shareUrl);
 setText(!text)
   }
-  
+  useEffect(() => {
+console.log(shareUrl);
+
+  }, [shareUrl])
   return (
     <section>
 
@@ -31,7 +44,7 @@ setText(!text)
      ref={share}>
         <form>
             <header>
-                <h2>Share this story</h2>
+                <h2>Share this { shareType == "Profile" ? "Profile" : "story" }</h2>
                 <button className="litenote-close-btn secndary" type="button" onClick={closeShareModal}>
                 <span>
                 <FaTimes style={{outline : "none"}}/>
@@ -59,7 +72,7 @@ setText(!text)
                 <img src="https://res.cloudinary.com/doctr0fct/image/upload/v1733759374/Assets/images/svgexport-76_gtndts.svg" style={{width :  width < 768 ?  "40px" :" 60px"}}
  onClick={() =>
             handleShareClick(
-`mailto:?subject=${encodeURIComponent("Check Out This Amazing Story")}&body=${encodeURIComponent(shareUrl)}`
+`mailto:?subject=${encodeURIComponent( shareType == "Profile" ? "Check Out This Profile" :"Check Out This Amazing Story")}&body=${encodeURIComponent(shareUrl)}`
             )
           }
 
@@ -69,7 +82,7 @@ setText(!text)
             handleShareClick(
               `https://twitter.com/intent/tweet?url=${encodeURIComponent(
                 shareUrl
-              )}&text=${encodeURIComponent("Check Out This Amazing Story")}`
+              )}&text=${encodeURIComponent(shareType == "Profile" ? "Check Out This Profile" :"Check Out This Amazing Story")}`
             )
           }
 
@@ -78,7 +91,7 @@ setText(!text)
  onClick={() =>
             handleShareClick(
            `https://api.whatsapp.com/send?text=${encodeURIComponent(
-        "Check Out This Amazing Story" + " " + shareUrl
+            shareType == "Profile" ? "Check Out This Profile" :"Check Out This Amazing Story" + " " + shareUrl
       )}`
             )
           }
@@ -91,7 +104,7 @@ onClick={() => {
   handleShareClick(
     `https://www.reddit.com/submit?url=${encodeURIComponent(
   shareUrl
-)}&title=${encodeURIComponent("Check Out This Amazing Story")}`
+)}&title=${encodeURIComponent(shareType == "Profile" ? "Check Out This Profile" :"Check Out This Amazing Story")}`
   )
 }}
 
@@ -101,7 +114,7 @@ onClick={() => {
             handleShareClick(
             `https://t.me/share/url?url=${encodeURIComponent(
   shareUrl
-)}&text=${encodeURIComponent("Check Out This Amazing Story")}`
+)}&text=${encodeURIComponent(shareType == "Profile" ? "Check Out This Profile" :"Check Out This Amazing Story")}`
             )
           }
 

@@ -47,6 +47,13 @@ class notificationError extends Error {
         this.statusCode = statusCode; //status code
     }
 }
+class reportError extends Error {
+    constructor(message, statusCode){
+        super(message);
+        this.name = this.constructor.name;
+        this.statusCode = statusCode; //status code
+    }
+}
 
 
 class cloudinaryError extends Error{
@@ -80,5 +87,6 @@ storyError,
 emailError,
 developerError,
 designerError,
-notificationError
+notificationError,
+reportError
  }

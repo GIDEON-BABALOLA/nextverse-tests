@@ -83,7 +83,7 @@ type={stories.error.code}
 fireClick = {resendRequest}
 />
 :
-stories.errorr?.code == "ERR_CANCELED"
+stories.error?.code == "ERR_CANCELED"
 
 ?
 <ErrorMessage title={"Timeout Error"} 

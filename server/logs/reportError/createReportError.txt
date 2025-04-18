@@ -1,0 +1,8 @@
+20250418	16:03:32	b27c1131-5266-4d03-a311-98e6fd45a319	reportError: Pls Enter A Correct Category
+20250418	16:03:42	762d5358-6c25-4cf8-8aae-ccb22fb6b306	reportError: Pls Enter A Correct Category
+20250418	16:04:08	b3dbeb73-ca02-44ab-964b-a74fd9b32ca2	reportError: Pls Enter A Correct Category
+20250418	16:04:33	4011555e-b30b-4e04-9bec-8eab9a079d0a	reportError: You Cannot Report Your Account
+20250418	16:04:40	52aad231-6a39-448f-97ec-67f7a948ff27	reportError: You Cannot Report Your Account
+20250418	16:04:58	8ed91f49-9cbc-495c-b479-a7deb6d3aa9a	ValidationError: Report validation failed: content: Path `content` is required., category: `fake account` is not a valid enum value for path `category`.
+20250418	16:05:47	1e3e8cf5-4ba6-484a-b135-c56b4de19c4b	ValidationError: Report validation failed: content: Path `content` is required.
+20250418	16:11:56	6714305a-30b1-4af7-9e60-fbb5f153ef1a	ReferenceError: you is not defined

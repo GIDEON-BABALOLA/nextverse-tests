@@ -15,13 +15,13 @@ export const ModalContextProvider = ({children}) => {
     const shareRef = useRef();
     const { width, height} = useWindowSize();
     const fireClick = (e, storyUrl, id) => {
-      console.log(id)
         setShareUrl(storyUrl)
         setCurrentStoryId(id)
         updateMenuPosition(e.clientX, e.clientY);
         contextMenu.current.style.visibility = "visible";
       };
     const updateMenuPosition = (x, y) => {
+      console.log(contextMenu)
         const maxTopValue = height - contextMenu.current.offsetHeight;
         const maxLeftValue = width - contextMenu.current.offsetWidth;
         contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
@@ -93,6 +93,7 @@ export const ModalContextProvider = ({children}) => {
       useEffect(() => {
         setShareModal(shareRef);
       }, []);
+  
     return (
         <>
         <ModalContext.Provider
