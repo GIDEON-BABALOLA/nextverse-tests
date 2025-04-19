@@ -1,0 +1,13 @@
+:root{
+--recent-color : black;
+}
+.dark-theme-variables{
+    --recent-color : white;
+}
+.recent-color{
+    color: var(--recent-color);
+}
+.clear-all-color{
+    color: #526cdf;
+    font-size: 1.4rem;
+}

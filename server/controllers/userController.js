@@ -8,11 +8,11 @@ const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const Notification = require(path.join(__dirname, "..", "models", "notificationModel.js"))
-const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
+const { userError, cloudinaryError, validatorError, notificationError,  emailError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
-const { cloudinaryError, validatorError, notificationError,  emailError } = require("../utils/customError");
+
 const { Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
@@ -176,6 +176,7 @@ await user.save()
 return res.status(201).json({message : "Account Verification Successfull, Go To Login"})
 
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "verifyUserRegistrationError.txt", "userError")
     if (error instanceof userError) {
         return  res.status(error.statusCode).json({ message : error.message})
@@ -248,6 +249,7 @@ user.verificationTokenExpires = time;
 await user.save()
 return res.status(201).json({ message : "Success, Check Your Email To Verify Your Account, Another Link has been sent"})
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "resendUserVerificationError.txt", "userError")
         if (error instanceof userError) {
             return  res.status(error.statusCode).json({ message : error.message})
@@ -287,13 +289,15 @@ return res.status(201).json({ message : "Success, Check Your Email To Verify You
 //User Logging in
 const loginUser = async (req, res) => {
 try{
-const { email, password} = req.body;
+const { email, password } = req.body;
 if(!email || !password){
     throw new userError("Please Provide An Email And A Password", 400)
 }
 await validateEmail(email)
 await validatePassword(password)
 const foundUser = await User.findOne({email : email})
+.select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress")
+.lean()
 if(!foundUser){
     throw new userError("Your Account Does Not Exist", 404)
 }
@@ -306,16 +310,17 @@ if(foundUser && match){
     const refreshToken = generateRefreshToken(id, foundUser.role)
     await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
     res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 7, sameSite : "None",  secure : true })
-    //Three Day Refresh Token
-    const detailsOfUserToBeSent = _.omit(foundUser.toObject(), "refreshToken",
-"verificationCode", "verificationToken", "verificationTokenExpires", "ipAddress",
-)
-res.status(201).json({...detailsOfUserToBeSent, accessToken : generateAccessToken(id, foundUser.role)})
+    //Seven Day Refresh Token
+    res.status(201).json({
+        user : {...foundUser, accessToken : generateAccessToken(id, foundUser.role)},
+        message : "Successfully Logged In User"
+    })
  }
 else{
     throw new userError("Invalid Credentials", 401)
 }
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "loginUserError.txt", "userError")
     if (error instanceof userError) {
        return  res.status(error.statusCode).json({ message : error.message})
@@ -336,7 +341,9 @@ const getCurrentUser = async  (req, res) => {
         }
 const { id } = req.user
 validateMongoDbId(id)
-const user = await User.findById(id).select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress -password -followers -following -bookmarks")
+const user = await User.findById(id)
+.select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress -password -followers -following -bookmarks")
+.lean()
 if(!user){
     throw new userError("You Are Not Logged In", 401)
 }
@@ -354,10 +361,9 @@ console.log(error)
 }
 const getAUser = async (req, res) => {
     const { id } = req.params;
-
 try{
     let query;
-    query =   User.findOne({_id : id})
+    query = User.findOne({_id : id}).select("-refreshToken")
     if(req.query.fields){
         const fields = req.query.fields.split(",").join(" ")
         query = query.select(fields)
@@ -367,9 +373,9 @@ const gotUser = await query
 if(!gotUser){
     throw new userError(`This user does not exist`, 400)
 }
-const newUser = _.omit(gotUser.toObject(), "refreshToken")
-res.status(200).json(newUser);
+res.status(200).json(gotUser);
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.message}`, "getAUserError.txt", "userError")
     if(error instanceof userError){
         return res.status(error.statusCode).json({ message : error.message})
@@ -386,7 +392,7 @@ res.status(200).json(newUser);
         }
 
 const user = await User.findOne({ username: username })
-.select("-refreshToken -verificationCode -verificationToken -verificationExpires -ipAddress -password -stories")
+.select("-refreshToken -verificationCode -verificationToken -verificationExpires -ipAddress -password -stories -following -followers -bookmarks")
 .lean()
 if(!user){
     throw new userError("Your Account Does Not Exist", 401)
@@ -396,11 +402,8 @@ const exists = await User.exists({
     email: req.user.email,
     "following.follows" : user._id
 });
-console.log(user)
 const isFollowing = !!exists;
     res.status(200).json({user :  {...user, totalStories : totalStories}, isFollowing : isFollowing}) 
-   
-//  const newUser = _.omit(user.toObject(), "refreshToken")
     }catch(error){
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getUserProfileError.txt", "userError")
@@ -430,6 +433,7 @@ const logoutUser = async (req, res) => {
         res.clearCookie("refreshToken", {httpOnly: true,  sameSite : "None", secure : true })
         return res.status(204).json({message : "Successfully Logged Out now", "success" : true})
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "logoutUserError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ message : error.message})
@@ -447,7 +451,7 @@ const userRefreshToken = async (req, res) => {
         }
         const cookies = req.cookies;
         if(!cookies?.refreshToken){
-            throw new userError ("Please Login Again To, No RefreshToken In Cookies", 401)
+            throw new userError ("Please Login Again , No RefreshToken In Cookies", 401)
         }
         const refreshToken = cookies.refreshToken;
         const foundUser = await User.findOne({refreshToken})
@@ -464,6 +468,7 @@ const userRefreshToken = async (req, res) => {
         })
         
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "userRefreshTokenError.txt", "userError")
         if (error instanceof userError) {
             return res.status(error.statusCode).json({ message : error.message})

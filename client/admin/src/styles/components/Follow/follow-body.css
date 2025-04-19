@@ -1,0 +1,117 @@
+:root{
+--followers-body-prefix : #f0f2f5;
+--followers-header : white;
+--followers-header-color : #1c1e21;
+--followers-card : white;
+--followers-card-border : #e4e6eb;
+--follower-name : #1c1e21;
+--follower-username : #65676b;
+--follow-buttton-color : #ff4500;
+--follow-button-background : white;
+  
+}  
+.dark-theme-variables{
+    --followers-body-prefix :  #0E1012;
+    --followers-header : #181A1E;
+    --followers-header-color : white;
+    --followers-card : #181A1E;
+    --followers-card-border : #111316;
+    --follower-name : white;
+--follower-username : #757575;
+--follow-buttton-color : #6D80EC;
+--follow-button-background : #181A1E;
+  
+}
+.followers-body-prefix{
+    background-color: var(--followers-body-prefix);
+}
+.followers-body-prefix .followers-list {
+    background-color: var(--followers-card);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.followers-body-prefix .follower-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--followers-card-border);
+}
+.followers-body-prefix .follower-item:last-child {
+    border-bottom: none;
+}
+.followers-body-prefix .follower-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+.skeleton-image-follower-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.skeleton-image-follower-name{
+width: 60px;
+height: 10px;
+}
+.skeleton-image-follower-username{
+    width: 80px;
+    height: 10px;
+    margin-top: 5px;
+}
+.skeleton-image-follow{
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: auto;
+    cursor: pointer;
+    width: 50px;
+    height: 20px;
+    
+}
+.followers-body-prefix .follower-info {
+    flex-grow: 1;
+}
+.followers-body-prefix .follower-name {
+    font-weight: bold;
+    color: var(--follower-name);
+    margin-bottom: 3px;
+}
+.followers-body-prefix .follower-username {
+    color: var(--follower-username);
+    font-size: 14px;
+}
+.followers-body-prefix .follow-button {
+    background-color:var(--follow-button-background);
+    border: 1px solid var(--follow-buttton-color);
+    color: var(--follow-buttton-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: auto;
+    cursor: pointer;
+}
+.followers-body-prefix .follow-button.following {
+    background-color: #d61d45;
+    color: #ffffff
+}
+.follow-sidebar-first-links{
+    margin-top: 90px;
+}
+@media (max-width: 768px) {
+   .followers-body-prefix .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+  .followers-body-prefix  .sidebar-icon {
+        margin-bottom: 0;
+    }
+  .followers-body-prefix  .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

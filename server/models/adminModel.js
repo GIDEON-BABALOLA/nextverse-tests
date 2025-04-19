@@ -20,6 +20,23 @@ const adminSchema = new mongoose.Schema({
         required : true,
         unique : true
     },
+    status: {
+        type : Boolean,
+        required : true,
+        default : false
+    },
+    verificationToken : {
+        type : String,
+        default : null
+    },
+    verificationCode : {
+        type : Number,
+        default : null
+    },
+    verificationTokenExpires : {
+        type : Date,
+        default : null
+    },
     accessToken : {
         type:String,
     },
@@ -143,5 +160,12 @@ adminSchema.statics.unbookmarkStory = async function(adminId, bookmarkId){
             }, { new: true });
         }
     }
+adminSchema.methods.createVerificationToken = async function(otp, verificationToken, time) {
+        this.verificationToken = verificationToken
+        this.verificationTokenExpires = time
+        this.verificationCode = otp
+        return verificationToken;
+    }
+    
     
 module.exports = mongoose.model('Admin', adminSchema);

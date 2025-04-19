@@ -1,0 +1,162 @@
+:root{
+   
+    --settings-card : white;
+    --settings-border : "none"
+}
+.dark-theme-variables{
+  
+    --settings-card : #1F293780;
+    --settings-border : "0.666667px solid #374151"
+}
+.toggle-button{
+    background-color: #d2d2d2;
+    background-color: #4B5563;
+    width: 50px;
+    height: 25px;
+    border-radius: 200px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+    
+}
+.settings-page-avatar{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+.toggle-button::before{
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    margin: 5px;
+    left: -2px;
+    transition: 0.2s;
+    
+}
+.toggle-container input:checked + .toggle-button{
+background-color: #20096d;
+background-color: #4F46E5
+}
+.toggle-container input{
+    display: none;
+}
+.toggle-container input:checked + .toggle-button::before{
+    transform: translateX(20px);
+    }
+.dashboard-settings-page-title{
+    box-sizing: border-box;
+	max-width: 1280px;
+	padding: 16px 32px;
+    border-bottom: 0.666667px solid #374151;
+    /* border-left: 1px solid red;
+    border-right: 1px solid red; */
+}
+.dashboard-settings-page-title h2{
+    font-family: "Poppins";
+    font-weight: 700;
+}
+.dashboard-settings-main-page{
+    border-left: 1px solid white;
+    border-left: 0.666667px solid #374151;
+    /* border-right: 0.666667px solid #374151; */
+}
+.dashboard-settings-page-profile-card{
+    max-width: 1280px;
+    backdrop-filter: blur(16px);
+	background-color: var(--settings-card);
+    
+ 
+	border-radius: 12px;
+	box-shadow: #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #0000001A 0px 10px 15px -3px, #0000001A 0px 4px 6px -4px;
+    	/* box-shadow: #0000001A 0px 2px 5px 0px; */
+	box-sizing: border-box;
+	margin: 0px 0px 32px;
+	padding: 24px;
+    border: var(--settings-border);
+    /* padding-right: 30px; */
+}
+.settings-toggle-button{
+    align-items: center;
+	appearance: button;
+	background-color: #4F46E5;
+	border-radius: 9999px;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	position: relative;
+	transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), fill 0.15s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+.dashboard-settings-inner{
+    box-sizing: border-box;
+	margin: 0px 50.6667px;
+	max-width: 896px;
+	padding: 24px 32px;
+    padding-right: 5px;
+}
+.edit-profile-button{
+    margin-top: 30px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    background: #664AFF;
+    background: #4338CA;
+    /* background: #7380EC; */
+    height: 40px;
+    width: 100px;
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;
+}
+.edit-profile-button-long {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    background: #664AFF;
+    background: #4338CA;
+    /* background: #7380EC; */
+    height: 40px;
+    width: 180px;
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;
+}
+.edit-profile-button-delete{
+    background: #B91C1C;
+}
+
+.delete-profile-settings-card{
+    backdrop-filter: blur(16px);
+	background-color: #7F1D1D80;
+	border: 0.666667px solid #B91C1C;
+	border-radius: 12px;
+	box-shadow: #00000000 0px 0px 0px 0px, #00000000 0px 0px 0px 0px, #0000001A 0px 10px 15px -3px, #0000001A 0px 4px 6px -4px;
+	box-sizing: border-box;
+	margin: 0px 0px 32px;
+	padding: 24px;
+}
+
+@media all and (max-width: 768px) {
+.dashboard-settings-inner{
+    box-sizing: border-box;
+	margin: 0px 50.6667px;
+	max-width: 896px;
+	padding: 24px 0px;
+    padding-right: 5px;
+}
+.dashboard-settings-main-page{
+    margin-top: 30px;
+}
+
+}

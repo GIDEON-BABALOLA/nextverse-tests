@@ -36,7 +36,7 @@ const response = await axiosConfig.post("/user/login-user", {
 )
 if(response && response.data){
     // dispatch({type : "LOGIN", payload : response.data})
-    setData(response.data)
+    setData(response.data.user)
     setStatusCode(response.status)
     setError(null)
     setIsLoading(false)

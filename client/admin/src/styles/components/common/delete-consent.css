@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+.litenote-delete-modal .center {
+    position:fixed;
+    top:-50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    
+}
+.litenote-delete-modal  button{
+    outline: none;
+    border: none;
+    padding: 15px 20px;
+	background-color: #FF3D4D;
+    color: white;
+}
+.litenote-delete-modal .popup {
+    width:600px;
+    height:300px;
+    padding:30px 20px;
+    background: #f5f5f5;
+    font-family: "Urbanist", sans-serif;
+    
+    /* border-radius: 10px; */
+    box-sizing:border-box;
+    overflow-y: scroll;
+    font-family: "Poppins";
+    z-index:6;
+    text-align: center;
+    box-shadow: #00000040 -10px 10px 40px 0px;
+    opacity: 0;
+    top: -200%;
+    transform: translate(-50%, -50%)  scale(0.5);
+    transition: opacity 300ms ease-in-out,
+                top 1000ms ease-in-out,
+                transform 1000ms ease-in-out;
+                border: 1px dashed black;
+                
+}
+.litenote-delete-modal .popup::-webkit-scrollbar{
+    width:  0px;
+}
+.litenote-delete-modal .popup.active {
+    opacity: 1;
+    top: 50%;
+    transform:translate(-50%, -50%) scale(1);
+    transition: transform 300ms cubic-bezier(0.10,0.09,0.43,1.19);
+}
+
+.litenote-delete-modal .popup .btn {
+   margin:5px 0px;
+   width: 50px;
+   height: 50px;
+   border:2px solid #34f234; 
+   text-align:center;
+   display: inline-block;
+   border-radius:50%;
+   line-height: 60px;
+}
+
+.litenote-delete-modal .popup .icon .i.fa {
+    font-size: 30px;
+    color: #34f234;;
+}
+.litenote-delete-modal .popup .title {
+   margin: 5px 0px;
+   font-size: 30px;
+   font-weight:600;
+   color: black;
+}
+
+.litenote-delete-modal .popup .description {
+     color: #222;
+     font-size:15px;
+     padding: 5px;
+}
+  .litenote-delete-modal .popup .dismiss-btn {
+    margin-top: 25px;
+}
+  .litenote-delete-modal .popup .dismiss-btn button {
+  padding: 10px 20px;
+  background:#111;
+  color: #f5f5f5;
+  border: 2px solid #111;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transform: all 300ms ease-in-out;
+}
+.litenote-delete-modal .popup .dismiss-btn button:hover {
+    color: #111;
+    background: #f5f5f5;
+}
+.litenote-delete-modal .popup > div {
+    position: relative;
+    top: 10px;
+    opacity: 0;
+}
+.litenote-delete-modal .popup.active > div {
+    top: 0px;
+    opacity: 1;
+}
+.litenote-delete-modal .popup.active .icon {
+   transform: all 300ms ease-in-out 250ms;
+}
+.litenote-delete-modal .popup.active .title {
+   transform: all 300ms ease-in-out 300ms;
+}
+.litenote-delete-modal .popup.active .description{
+   transform: all 300ms ease-in-out 350ms;
+}
+.litenote-delete-modal .popup.active .dismiss-btn {
+    transition: all 300ms ease-in-out 400ms;
+}
+
+@media screen and (max-width:768px) {
+    .litenote-delete-modal .popup {
+width: 350px;
+    }
+}
