@@ -40,7 +40,7 @@ export const useRegisterAccount = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post("/user/register-user", {
+const response = await axiosConfig.post("/admin/register-admin", {
     email : email,
     password : password,
     username : username,

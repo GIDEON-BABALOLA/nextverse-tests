@@ -10,7 +10,7 @@ export const useDeleteMyAccount = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.delete("/user/delete-user",
+const response = await axiosConfig.delete("/admin/delete-admin",
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
     }

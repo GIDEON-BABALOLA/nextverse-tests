@@ -10,7 +10,7 @@ export const useGetUserProfile = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-            const response = await axiosConfig.get("/user/get-user-profile",
+            const response = await axiosConfig.get("/admin/get-admin-profile",
     {
         params: { username: username, },
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds

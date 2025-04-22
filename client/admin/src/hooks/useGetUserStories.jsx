@@ -14,12 +14,13 @@ export const useGetUserStories = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/user/get-user-stories/${username}`, {
+const response = await axiosConfig.get(`/admin/get-user-stories/${username}`, {
     params : parameters,
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }
 )
 if(response && response.data){
+    console.log(response.data.stories)
     setData(response.data.stories)
     setStoryCount(response.data.count)
     setStatusCode(response.status)

@@ -70,7 +70,7 @@ const Footer = () => {
       <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%"}}>
       <MdInfo size={15}/>
       <span style={{cursor : "pointer"}}
-      onClick={() =>  showCookieConsent(true)}>
+     >
       About Us
       </span>
       </div>

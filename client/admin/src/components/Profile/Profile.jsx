@@ -36,6 +36,7 @@ console.log(decodeURIComponent(username))
     getUserProfile(decodeURIComponent(username))
   }
   useEffect(() => {
+    console.log(data)
   if(Object.keys(data).length > 1){
     console.log(data)
     dispatch({ type: "LOAD_PROFILE", payload:data });

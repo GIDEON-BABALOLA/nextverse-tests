@@ -78,3 +78,6 @@
 20250417	16:46:59	b65b13cd-3ba8-4d60-834e-ecbf1f08d7aa	ReferenceError: chai is not defined
 20250417	18:20:17	13bf527f-d439-4ff3-abf5-6d17fc453ae4	TypeError: Cannot read properties of null (reading '_id')
 20250417	18:20:19	320bebab-3943-4343-881f-fa7917fb71b1	TypeError: Cannot read properties of null (reading '_id')
+20250421	22:55:47	c1bd8ae8-bd2e-4da6-b2a3-c82b6def8054	TypeError: Cannot read properties of null (reading '_id')
+20250421	22:55:52	20401c8d-4fac-4806-a22b-856f158a26e7	TypeError: Cannot read properties of null (reading '_id')
+20250421	22:55:53	2f47450c-dd85-4a5b-82cd-977eb1345f9d	TypeError: Cannot read properties of null (reading '_id')

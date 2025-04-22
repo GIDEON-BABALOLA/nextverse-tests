@@ -24,7 +24,7 @@ useEffect(() => {
     // Function to check if user is logged in
     const fetchUser = async () => {
       try {
-        const response = await axiosConfig.get("/user/get-current-user",
+        const response = await axiosConfig.get("/admin/get-current-admin",
           {
             signal : AbortSignal.timeout(axiosProperties["timeout"])
         }

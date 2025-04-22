@@ -147,7 +147,7 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         </Link>
                       
                         
-                      { user.role ==  "user" &&  <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}` } 
+                      { user.role ==  "admin" &&  <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}` } 
                            onClick={dave}
                         >
                         

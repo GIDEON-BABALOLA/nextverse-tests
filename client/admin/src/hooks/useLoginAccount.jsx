@@ -25,7 +25,7 @@ export const useLoginAccount = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post("/user/login-user", {
+const response = await axiosConfig.post("/admin/login-admin", {
     email : email,
     password : password,
     recaptchaToken : captchaValue

@@ -61,3 +61,18 @@
 20250414	12:12:55	60b144be-e706-48a3-a4d3-a537ce8cd11a	userError: userError: Phone number is already in use
     at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:572:23)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250421	23:25:02	2e38791d-791c-4fcd-8648-523e5a049a4c	userError: userError: Phone number is already in use
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:571:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250421	23:25:06	f8ca302a-7dff-4072-829d-8008b7ba9b60	userError: userError: Phone number is already in use
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:571:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250421	23:49:58	eb2ddb36-4cea-4102-8ec6-cf94a30e4bf9	userError: userError: Phone number is already in use
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:571:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250421	23:50:10	a62ca471-d857-4200-91df-d45ac962ade0	userError: userError: Phone number is already in use
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:571:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+20250421	23:51:58	77dcddca-825c-437b-8e88-846ccf8d897c	userError: userError: Phone number is already in use
+    at updateUser (C:\Users\user\Desktop\Projects\nextverse\server\controllers\userController.js:571:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

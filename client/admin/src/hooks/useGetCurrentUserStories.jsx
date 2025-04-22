@@ -14,7 +14,7 @@ export const useGetCurrentUserStories = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/user/get-current-user-stories`, {
+const response = await axiosConfig.get(`/admin/get-current-admin-stories`, {
     params : parameters,
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }

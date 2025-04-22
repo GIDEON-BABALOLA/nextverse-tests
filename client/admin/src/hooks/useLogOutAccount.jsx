@@ -10,7 +10,7 @@ export const useLogoutAccount = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/user/logout-user",
+const response = await axiosConfig.get("/admin/logout-admin",
     {
         signal : AbortSignal.timeout(10000) //times out after 10 seconds
     }

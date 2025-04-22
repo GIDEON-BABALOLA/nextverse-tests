@@ -124,6 +124,10 @@ const storySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // This tells Mongoose to reference the 'User' model
       },
+    adminId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin', // This tells Mongoose to reference the 'Admin' model
+    }
 }, {
     timestamps : true,
     autoIndex: false

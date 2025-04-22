@@ -9,7 +9,7 @@ export const useResendAccountVerification = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post("/user/resend-user-verification", {
+const response = await axiosConfig.post("/admin/resend-admin-verification", {
     email : email
 },
 {

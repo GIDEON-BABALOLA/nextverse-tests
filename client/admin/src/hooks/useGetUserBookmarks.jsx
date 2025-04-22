@@ -14,7 +14,7 @@ export const useGetUserBookmarks = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get("/user/get-user-bookmarks", {
+const response = await axiosConfig.get("/admin/get-admin-bookmarks", {
     params : parameters,
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }

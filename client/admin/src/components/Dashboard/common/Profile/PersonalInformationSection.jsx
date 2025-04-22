@@ -5,6 +5,7 @@ import { FaPhoneAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"
 import { MdOutlineCreate } from "react-icons/md"
 import { bioSuggestions } from "../../../../helpers/bioSuggestions"
 import { useUpdateAUser } from "../../../../hooks/useUpdateAUser"
+import { cleanObject } from "../../../../helpers/CleanObject"
 import { useToastContext } from "../../../../hooks/useToastContext"
 import LoadingSpinner from "../../../Loaders/LoadingSpinner"
 import { useEffect } from "react"
@@ -44,25 +45,27 @@ switch (params) {
 }
     }
   const saveChanges =  () => {
-            if(!updateData.password){
-              showToast("Error", "Pls Enter Your New Password", false)
-              return;
-            }
-            const correctPassword = passwordValidate(updateData.password)
-            const correctMobile = mobileValidate(updateData.mobile)
-          if(!updateData.bio){
-            showToast("Error", "Pls Enter Your New Bio", false)
-            return;
-          }
-          if(!correctMobile){
+          if(updateData.mobile  &&  updateData.mobile !== "+234" && !mobileValidate(updateData.mobile) ){
             showToast("Error", "Pls Enter Your Correct Nigerian Number")
             return;
           }
-          if(updateData.password && correctPassword !== true){
-            showToast("Error", correctPassword, false)
+          if(updateData.password && passwordValidate(updateData.password) !== true){
+            showToast("Error", passwordValidate(updateData.password), false)
             return;
           }
-          updateAUser(updateData)
+          if(!updateData.password && !updateData.mobile && !updateData.bio){
+            showToast("Error", "Pls Enter The Values You Want To Update", false)
+            return;
+          }
+          let sentData;
+          if(updateData.mobile == "+234"){
+            sentData = cleanObject({...updateData, mobile : ""})
+          }else{
+            sentData = cleanObject({...updateData})
+          }
+          
+          console.log(sentData);
+          updateAUser(sentData)
   }
         useEffect(() => {
   if(Object.keys(data).length !== 0 && statusCode ==  200){

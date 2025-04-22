@@ -18,7 +18,7 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 // To Create A New Story
 const createStory = async(req, res) => {
     const datetime = new Date()
-    const { id } = req.user
+    const { id, role } = req.user
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
@@ -75,7 +75,7 @@ const time = countWordsAndEstimateReadingTime(content)
 
     const newStory = {
         author : req.user.username,
-        userId : id,
+        ...( role == "user" ? { userId : id } : { adminId : id } ),
         title : title,
         slug : slugify(title),
         content : content,

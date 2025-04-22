@@ -1,6 +1,7 @@
 const allowedOrigins = [
 "http://localhost:3000",
 "http://localhost:5173",
+"http://localhost:5174",
 "https://litenote.app",
 "https://www.litenote.app",
 "https://litenote.vercel.appa"

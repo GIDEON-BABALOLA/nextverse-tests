@@ -1,5 +1,6 @@
 const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
+const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const fs = require('fs');
 const bcrypt = require("bcrypt")
 const crypto = require("crypto")
@@ -7,20 +8,24 @@ const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname
 const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
-const { adminError, cloudinaryError, validatorError, emailError } = require(path.join(__dirname, "..", "utils", "customError.js"))
+const { adminError, cloudinaryError, validatorError, emailError, notificationError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
-const  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
-const { adminConfirmationArray, hashAdminEmail }= require(path.join(__dirname, "..", "config", "adminConfig.js"))
+const  { cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
+const { generateEmailContent, sendEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 //Admin Registration
 const duplicateUsername = async (req, res) => {
     const { username } = req.body;
     try{
 const existingAdmin = await Admin.findOne({ username })
+const existingUser = await User.findOne({ username })
 if(existingAdmin){
+    throw new adminError("Username Already Exists", 400)
+}
+if(existingUser){
     throw new adminError("Username Already Exists", 400)
 }
 return res.status(200).json({message : "Username is available"})
@@ -410,16 +415,19 @@ const adminRefreshToken = async (req, res) => {
         console.log(error)
         logEvents(`${error.name}: ${error.message}`, "adminRefreshTokenError.txt", "adminError")
         if (error instanceof adminError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(500).json({message : "Internal Server Error"})
             }
     }
 }
 //This is to upload a admin picture
 const uploadAdminPicture = async (req, res) => {
     try{
+        if(req.user == null){
+            throw new userError("Your Account Does Not Exist", 404)
+        }
     const { _id } = req.user
     validateMongoDbId(_id)
     const admin =  await Admin.findOne({_id : _id})
@@ -441,14 +449,13 @@ const uploadAdminPicture = async (req, res) => {
     fs.unlinkSync(req.file.path) //delete the image from server
     admin.picture = picture.url;
     await admin.save()
-    const newAdmin = _.omit(admin.toObject(), "refreshToken")
-    res.status(200).json(newAdmin)
+    res.status(200).json({message : "Picture Successfully Updated", picture : picture.url})
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "uploadAdminProfileError.txt", "adminError")
         if (error instanceof cloudinaryError) {
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }else if(error instanceof adminError){
-            return res.status(error.statusCode).json({ error : error.message})
+            return res.status(error.statusCode).json({ message : error.message})
         }
         else{
             return res.status(500).json({error : "Internal Server Error"})
@@ -457,56 +464,353 @@ const uploadAdminPicture = async (req, res) => {
 }
 //This Is To update A Admin
 const updateAdmin = async (req, res) => {
+    const attributesThatCanBeUpdated = [
+        "username", "mobile", "password", "bio", "picture",   
+       ]
 try{
-    if(!Object.keys(req.body).length === 0 || !Object.values(req.body).length === 0){
-        throw new adminError("Enter The Details You Want To Update", 400)
+    if(req.user == null){
+        throw new adminError("Your Account Does Not Exist", 404)
+    }
+    if(Object.keys(req.body).length === 0){
+        throw new userError("Enter The Details You Want To Update", 400)
     }
     const { _id } = req.user;
     validateMongoDbId(_id)
 const id = _id.toString();
-
-    const updatedAdmin =  await Admin.findByIdAndUpdate(id, {
-username:req.body.username,
-mobile : req.body.mobile,
-    },
+for(const key in req.body){
+    const value = req.body[key]
+    if (req.body.hasOwnProperty(key)) {
+        const isValidCategory = attributesThatCanBeUpdated.includes(key)
+        if(!isValidCategory){
+           throw new userError(`You cannot update your ${key}`, 400)
+        }
+        if (!value) {
+            throw new userError(`Pls Enter The Values You Want To Update`, 400)
+        }
+        if(key == "password"){
+            await validatePassword(value)
+            const hashedPassword = await bcrypt.hash(value, 10);
+            req.body.password =  hashedPassword
+        }
+        if(key == "username"){
+            const existingUser = await Admin.findOne({ username: value });
+            if (existingUser && existingUser._id.toString() !== id) {
+                throw new userError("Username is already taken", 400);
+            }
+  
+        }
+        if(key == "mobile"){
+            const existingUser = await User.findOne({ mobile: value });
+            const existingAdmin = await Admin.findOne({ mobile: value });
+            
+            const isUserConflict = existingUser && existingUser._id.toString() !== id;
+            const isAdminConflict = existingAdmin && existingAdmin._id.toString() !== id;
+            
+            if (isUserConflict || isAdminConflict) {
+              throw new userError("Phone number is already in use", 400);
+            }
+        }
+    }
+}
+    const updatedAdmin =  await Admin.findByIdAndUpdate(id, req.body,
     {
         new : true
-    })
-    const newAdmin = _.omit(updatedAdmin.toObject(), "refreshToken")
-    res.status(201).json(newAdmin)
+    }).select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress -password -followers -following -bookmarks")
+    res.status(200).json({message : "Admin Successfully Updated", user : updatedAdmin})
 }catch(error){
-    logEvents(`${error.name}: ${error.message}`, "UpdateAAdminError.txt", "adminError")
+    console.log(error)
+    logEvents(`${error.name}: ${error.stack}`, "UpdateAnAdminError.txt", "user")
     if (error instanceof adminError) {
-        return res.status(error.statusCode).json({ error : error.message})
+        return res.status(error.statusCode).json({ message : error.message})
+    }
+    else if(error instanceof validatorError){
+        return res.status(error.statusCode).json({message : error.message})
     }
     else{
-        return res.status(500).json({error : "Internal Server Error"})
+        return res.status(500).json({message : "Internal Server Error"})
         }
 }
 }
 const deleteAdmin = async (req, res) => {
     try{
+
         if(req.user == null){
             throw new adminError("Your Account Does Not Exist", 404)
         }
-        const admin = await Admin.findOneAndDelete({_id: req.user._id})
-        if(admin.picture.length > 0){
-            await cloudinaryDelete(admin.email)
+        const oldAdmin = await Admin.findOneAndDelete({_id: req.user._id})
+        const cloudinaryExists =  await cloudinaryCheckIfFolderExists("Admin", oldAdmin.email)
+        if(oldAdmin.picture.length > 0 && cloudinaryExists){
+            await cloudinaryDelete(oldAdmin.email)
         }
-        if(!admin){
-            throw new adminError("Admin Does Not Exist", 404)
+        if(!oldAdmin){
+            throw new adminError("Your Account Does Not Exist", 404)
         }
-        const newAdmin = _.omit(admin.toObject(), "refreshToken")
-        res.status(200).json(newAdmin)
+        res.status(200).json({message : "Successfully Deleted Your Account", admin : oldAdmin})
     }catch(error){
+        console.log(error);
         logEvents(`${error.name}: ${error.message}`, "deleteAdminError.txt", "adminError")
          if(error instanceof adminError){
-            return res.status(error.statusCode).json({ error : error.message})
-        }else{
-            return res.status(500).json({error : "Internal Server Error"})
+            return res.status(error.statusCode).json({ message : error.message})
+        }
+        else if(error instanceof cloudinaryError){
+            return res.status(error.statusCode).json({message : error.message})
+        }
+        else{
+            return res.status(500).json({message : "Internal Server Error"})
         }
     }
 }
+
+const followUser = async (req, res) => {
+    try{
+        const { _id } = req.user;
+        const { email } = req.body;
+        if(!email){
+            throw new adminError("What is the email of the user you want to follow", 400)
+        }
+        if(email == req.user.email){
+            throw new adminError("You Cannot Follow Yourself On This Platform", 400)
+        }
+        let personToBeFollowed, followModel;
+        const userToBeFollowed = await User.findOne({email})
+        const adminToBeFollowed = await Admin.findOne({email})
+        if(userToBeFollowed){
+           personToBeFollowed = userToBeFollowed
+           followModel = User
+        }
+        else if(adminToBeFollowed){
+            personToBeFollowed = adminToBeFollowed
+            followModel = Admin
+        }
+        else{
+            throw new adminError("This User Does Not Exist", 400)
+        }
+        let alreadyFollowed = personToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
+        if(!alreadyFollowed){
+            await followModel.followuser(_id, personToBeFollowed._id) //This has been configured in the admin model
+            await Notification.createProfileNotification(
+            personToBeFollowed._id,
+            req.user._id,
+            "follow",
+            `${req.user.username} just followed you`, 
+            req.user._id
+        
+        )
+        return res.status(200).json({ message: "Successfully Followed This User." });                             
+        }
+         res.status(200).json({ message: "You already follow this user." });           
+         
+    }catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "followAdminError.txt", "adminError")
+        if(error instanceof adminError){
+           return res.status(error.statusCode).json({ message : error.message})
+       }
+           else if(error instanceof notificationError){
+               return res.status(error.statusCode).json({ message: error.message });
+           }
+       else{
+           return res.status(500).json({message : "Internal Server Error"})
+       }   
+    }
+}
+const unfollowUser = async(req, res) => {
+    try{
+        const { _id } = req.user;
+        const { email } = req.body;
+        if(!email){
+            throw new adminError("What is the email of the user you want to follow", 400)
+        }
+        if(email === req.user.email){
+            throw new adminError("You Cannot UnFollow Yourself On This Platform", 400)
+        }
+        let personToBeUnFollowed, unFollowModel;
+        const userToBeUnFollowed = await User.findOne({email})
+        const adminToBeUnFollowed = await Admin.findOne({email})
+        if(userToBeUnFollowed){
+            personToBeUnFollowed = userToBeUnFollowed
+            unFollowModel = User
+         }
+         else if(adminToBeUnFollowed){
+             personToBeUnFollowed = adminToBeUnFollowed
+             unFollowModel = Admin
+         }
+         else{
+             throw new adminError("This User Does Not Exist", 400)
+         }
+        let alreadyFollowed = personToBeUnFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
+        if(alreadyFollowed){
+            await unFollowModel.unfollowuser(_id, personToBeUnFollowed._id)//This has been configured in the admin model
+            return  res.status(200).json({ message : "Successfully Unfollowed User"})            
+
+        }
+        res.status(200).json({ message : "Successfully Unfollowed User"})
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "unfollowAdminError.txt", "adminError")
+        if(error instanceof adminError){
+           return res.status(error.statusCode).json({ message : error.message})
+       }else{
+           return res.status(500).json({message : "Internal Server Error"})
+       }  
+    }
+}
+const getAllUsers = async (req, res) => {
+    const { page, limit } = req.query;
+    try{
+    const skip = (page - 1) * limit;
+    const gotUsers = await User.find().select("following");
+    if(!gotUsers){
+        throw new userError("No User Has Been Registered For Your Application", 204)
+    }
+    let alreadyFollowedId = [];
+    const userCount = await User.countDocuments();
+    req.user.following.map((user) => {
+        alreadyFollowedId.push(user.follows)
+    })
+    const newUsersToFollow = await Admin.find({
+        _id: { $nin: alreadyFollowedId },
+    })
+        .skip(skip)
+        .limit(limit)
+        .select("email username picture bio")
+        .lean(); // Use lean if you want plain JavaScript objects    
+    const usersToBeSent = newUsersToFollow
+    .filter((user) => user.email !== req.user.email)
+    res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
+        if(error instanceof adminError){
+            return res.status(error.statusCode).json({ message : error.message})
+        }else{
+            return res.status(500).json({message : "Internal Server Error"})
+        }
+    }
+    }
+  const getAdminBookmarks = async (req, res) => {
+        const { page, limit } = req.query;
+        try{
+        const skip = (page - 1) * limit;
+        const bookmarkedStories = await Story.find({
+            'bookmarks.bookmarkBy': req.user._id
+          })
+            .sort({ createdAt: -1 }) // Newest first
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .populate("adminId", "picture username email bio")
+            .lean();
+    const bookmarksCount = await Story.countDocuments({"bookmarks.bookmarkBy" : req.user._id})
+   const enrichedBookmarks = bookmarkedStories.map((story) => ({
+    ...story,
+    picture : story.picture[Math.floor(Math.random() * story.picture.length)],
+    isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
+    isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
+  }));
+    res.status(200).json({ bookmarks : enrichedBookmarks, count : bookmarksCount})           
+
+
+        }
+        catch(error){
+            console.log(error)
+            logEvents(`${error.name}: ${error.message}`, "getAdminBookmarksError.txt", "adminError")
+            if(error instanceof adminError){
+                return res.status(error.statusCode).json({ message : error.message})
+            }else{
+                return res.status(500).json({message : "Internal Server Error"})
+            }
+        }
+        }
+    const getUserStories = async (req, res) => {
+            const { page, limit } = req.query;
+            const { username } = req.params
+            console.log(page, limit)
+            try{
+                const skip = (page - 1) * limit;
+                let  selectedId, roleId
+                const foundUser = await User.findOne({username : username})
+                const foundAdmin = await Admin.findOne({username : username})
+                if(foundUser){
+                 selectedId = foundUser._id
+                 roleId = "userId"
+                }
+                else if(foundAdmin){
+                 selectedId = foundAdmin._id
+                 roleId = "adminId"
+                }
+                else{
+                    throw new adminError("This User Does Not Exist", 400)
+                }
+                const query = {}
+                query[roleId] = selectedId
+                const stories =  await Story.find(query)
+                .select("-content")
+                .populate(roleId, "username picture")
+                .sort({ createdAt: -1 }) // Newest first
+                .skip(parseInt(skip))
+                .limit(parseInt(limit))
+                .lean()
+                const enrichedStories = stories.map((story) => ({
+                    ...story,
+                    picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
+                    isLiked: story?.likes?.some((like) => like.likedBy.toString() == req.user._id.toString()),
+                    isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
+                  }));
+                const storiesCount = await Story.countDocuments(query) || 0;
+                res.status(200).json({stories : enrichedStories, count : storiesCount})
+            }
+            catch(error){
+                console.log(error)
+                logEvents(`${error.name}: ${error.message}`, "getUserStoriesError.txt", "userError")
+                if(error instanceof adminError){
+                    return res.status(error.statusCode).json({ message : error.message})
+                }else{
+                    return res.status(500).json({message : "Internal Server Error"})
+                }
+            }
+        }
+             const getCurrentAdminStories = async (req, res) => {
+                        const { page, limit } = req.query;
+                        console.log(page, limit)
+                        try{
+                        const skip = (page - 1) * limit;
+                        const stories = await Story.find({adminId: req.user._id})
+                        .select("-content")
+                        .sort({ createdAt: -1 }) // Newest first
+                        .skip(parseInt(skip))
+                        .limit(parseInt(limit))
+                        .populate("userId", "picture username email bio")
+                        .lean()
+                   const storiesCount =  await Story.countDocuments({adminId: req.user._id}) || 0;
+                   const cleanedStories = stories.filter(story => {
+                    // Remove stories with empty objects, null or undefined values, and null/undefined _id
+                    return Object.keys(story).length > 0 && 
+                           story._id != null && 
+                           !Object.values(story).includes(null) && 
+                           !Object.values(story).includes(undefined);
+                  });
+                   const enrichedStories = cleanedStories.map((story) => ({
+                    ...story,
+                    picture : story?.picture[Math.floor(Math.random() * story?.picture?.length)],
+                    isLiked: story?.likes?.some((like) => like.likedBy.toString() == req.user._id.toString()),
+                    isBookmarked : story.bookmarks.some((bookmark) => bookmark.bookmarkBy.toString() == req.user._id.toString())
+                  }));
+                    res.status(200).json({ stories : enrichedStories, count : storiesCount})          
+            
+                 
+                        }
+                        catch(error){
+                            console.log(error)
+                            logEvents(`${error.name}: ${error.message}`, "getCurrentAdminStoriesError.txt", "adminError")
+                            if(error instanceof adminError){
+                                return res.status(error.statusCode).json({ message : error.message})
+                            }else{
+                                return res.status(500).json({message : "Internal Server Error"})
+                            }
+                        }
+                        }
 //like to ban or delete a users account
 const adminDeleteUser = async(req, res) => {
     try{
@@ -527,7 +831,7 @@ res.status(200).json(newUser)
         }
     }
 }
-const getAllUsers = async (req, res) => {
+const getAllUsersByAdmin = async (req, res) => {
 try{
     let query;
     query = await User.find()
@@ -557,24 +861,6 @@ catch(error){
     }
 }
 }
-const getAUser = async (req, res) => {
-    const { email } = req.params;
-try{
-const gotUser = await User.findOne( { email : email})
-if(!gotUser){
-    throw new adminError(`The user with email ${email} does not exist`, 400)
-}
-const newUser = _.omit(gotUser.toObject(), "refreshToken")
-res.status(200).json(newUser);
-}catch(error){
-    logEvents(`${error.name}: ${error.message}`, "getAUserError.txt", "adminError")
-    if(error instanceof adminError){
-        return res.status(error.statusCode).json({ error : error.message})
-    }else{
-        return res.status(500).json({error : "Internal Server Error"})
-    }
-}
-}
 const getTotalNumberOfUsers  = async(req, res) => {
 try{
 const totalCount = await User.countDocuments()
@@ -595,12 +881,17 @@ module.exports = {
     deleteAdmin,
     updateAdmin,
     adminDeleteUser,
-    getAllUsers,
-    getAUser,
+    getAllUsersByAdmin,
     getTotalNumberOfUsers,
     duplicateUsername,
     verifyAdminRegistration,
     resendAdminVerification,
     getAnAdmin,
-    getAdminProfile
+    getAdminProfile,
+    followUser,
+    unfollowUser,
+    getAllUsers,
+    getAdminBookmarks,
+    getUserStories,
+    getCurrentAdminStories
 }

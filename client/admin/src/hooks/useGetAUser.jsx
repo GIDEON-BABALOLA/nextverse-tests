@@ -13,7 +13,7 @@ export const useGetAUser = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.get(`/user/get-a-user/${userId}`, {
+const response = await axiosConfig.get(`/admin/get-an-admin/${userId}`, {
     params : parameters,
     signal : AbortSignal.timeout(axiosProperties["timeout"])
 }

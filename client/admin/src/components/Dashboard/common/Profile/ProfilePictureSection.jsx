@@ -42,7 +42,7 @@ const ProfilePictureSection = ({ profile, startEditing, dashboardProfile, setDas
       const checkIfUsernameExists = async () => {
         setIsChecking(true)
         try{
-    const response = await axiosConfig.post("/user/duplicate-username", {
+    const response = await axiosConfig.post("/admin/duplicate-username", {
       username  : updateData.username
     })
     if(response){

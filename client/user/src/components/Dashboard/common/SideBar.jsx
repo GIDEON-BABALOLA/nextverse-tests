@@ -146,16 +146,7 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                            <h3 className="litenote-dashboard-h-three">Bookmarks</h3>
         </Link>
                       
-                        
-                      { user.role ==  "user" &&  <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}` } 
-                           onClick={dave}
-                        >
-                        
-                        <MdGroups size={24} />
 
-                           <h3 className="litenote-dashboard-h-three"   >Users</h3>
-                        </Link>
-                      }
 
                      {  user.role == "admin" && <Link  to="/dashboard/analytics"  className={`sidebar-links ${currentUrl === "analytics" && "active"}`}
                         onClick={dave}

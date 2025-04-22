@@ -9,7 +9,7 @@ export const useVerifyAccount = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post("/user/verify-user-registration", {
+const response = await axiosConfig.post("/admin/verify-admin-registration", {
     otp : otp,
     email : email,
     token : token,
