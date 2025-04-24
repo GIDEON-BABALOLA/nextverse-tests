@@ -45,3 +45,7 @@
 20250417	17:07:11	c27de285-da09-4a55-9abf-d774c9e481a1	Error: Invalid select: select only takes 1 argument
 20250417	17:07:54	31876ef6-2e7f-4497-906a-fc8420c5623c	TypeError: Cannot read properties of undefined (reading 'map')
 20250417	17:07:55	0ce912f8-0a0c-4228-a43a-2b3884f77564	TypeError: Cannot read properties of undefined (reading 'map')
+20250422	01:32:15	00e4675a-5a00-4bbb-9b49-e9685ce67e43	userError: You Are Not Logged In
+20250422	01:32:46	9de3a7e1-0a8e-4b79-8368-84bd5ab731b9	userError: You Are Not Logged In
+20250422	01:33:27	e9bc51ef-3e0f-428e-a59c-1c8ffd8cf189	userError: You Are Not Logged In
+20250422	01:33:55	a1a5118b-7962-4c74-8004-00304f1931c2	userError: You Are Not Logged In

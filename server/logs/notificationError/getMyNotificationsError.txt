@@ -705,3 +705,17 @@
 20250403	21:01:04	ee2ab696-e215-49b7-b01c-efb0a04f1265	ReferenceError: cat is not defined
 20250403	21:01:04	e130db93-0a99-44d3-8c6f-bd1b84c34210	ReferenceError: cat is not defined
 20250403	21:01:04	a8269a3e-1cd3-4ce0-bda9-e49924c4416d	ReferenceError: cat is not defined
+20250422	01:40:14	8ccc408a-c9c4-4784-835b-e76856b9d184	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:41:38	b74371d4-8d6f-42f2-b5ce-b3d28aba3e48	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:41:41	127ce26e-ceab-4b40-b433-9ea27afdeace	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:02	a69f6676-c824-45d7-86c6-972545987cd5	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:10	972aa9e2-bc27-40ce-8a11-c5827ebf5e08	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:28	5dd424b8-4af7-4707-ab06-f1b2444a8897	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:30	242c7465-e1a4-4645-9523-757f8f9b42ae	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:39	573591be-d986-4915-90ee-9c1859300c20	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:44	71e4cd8c-9d77-4d19-baee-6e8980482050	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:45	9e2f3f2e-6fd0-425b-84d9-9cb1fb091ba5	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:47	cb1d5467-a02b-42c9-bc02-6afd56207423	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:42:48	c916e77d-a459-40e1-9104-13dbb5336f21	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:43:48	23cd815a-cf90-4eb6-acad-375c4b4b3470	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function
+20250422	01:43:49	6915f6b4-a647-48f8-822e-d5c558cd77cd	TypeError: Notification.find(...).populate(...).populate(...).sort(...).skip(...).limit(...).lean(...).filter is not a function

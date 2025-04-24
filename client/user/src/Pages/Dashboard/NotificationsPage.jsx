@@ -169,7 +169,10 @@ fireClick = {resendRequest}
 }
 </>
 }
-{emptyData ?  <NoContent
+
+{
+  !error && <>
+  {emptyData ?  <NoContent
        fireClick={
             () => {
 
@@ -196,6 +199,9 @@ resendRequest()
        </div>
        </>
 }
+  </>
+}
+
 
     </div>
     </main>

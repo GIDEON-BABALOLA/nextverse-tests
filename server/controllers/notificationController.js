@@ -13,20 +13,64 @@ const getMyNotifications = async (req, res) => {
         .skip(skip)
         .limit(limit)
         .lean()
+        console.log(notifications)
+        const cleanNotifications = notifications
+        .filter(story => {
+            // Remove stories with empty objects, null or undefined values, and null/undefined _id
+            return Object.keys(story).length > 0 && 
+                   story._id != null && 
+                   !Object.values(story).includes(null) && 
+                   !Object.values(story).includes(undefined);
+          });
+          console.log(cleanNotifications)
         // Extract the _id of the fetched notifications
-        const notificationIds = notifications.map(n => n._id);
+        const notificationIds = cleanNotifications.map(n => n._id);
 
         // Update their 'isRead' field to true
         await Notification.updateMany(
         { _id: { $in: notificationIds }, isRead: false }, // Optional: only update unread ones
         { $set: { isRead: true } }
           );
-
-        const storyNotificationCount = await Notification.countDocuments({ user: req.user._id, category : "story" })
-        const profileNotificationCount = await Notification.countDocuments({user: req.user._id, category : "profile"})
+          const storyNotificationCount = await Notification.countDocuments({
+            user: req.user._id,
+            category: "story",
+            $and: [
+              { user: { $ne: null } },
+              { type: { $ne: null } },
+              { type: { $ne: "" } },
+              { message: { $ne: null } },
+              { message: { $ne: "" } },
+              { referenceId: { $ne: null } },
+              { categoryReference: { $ne: null } },
+              { categoryReference: { $ne: "" } },
+              { actor: { $ne: null } },
+              { createdAt: { $ne: null } },
+              { updatedAt: { $ne: null } }
+            ]
+          });
+          
+          const profileNotificationCount = await Notification.countDocuments({
+            user: req.user._id,
+            category: "profile",
+            $and: [
+              { user: { $ne: null } },
+              { type: { $ne: null } },
+              { type: { $ne: "" } },
+              { message: { $ne: null } },
+              { message: { $ne: "" } },
+              { referenceId: { $ne: null } },
+              { categoryReference: { $ne: null } },
+              { categoryReference: { $ne: "" } },
+              { actor: { $ne: null } },
+              { createdAt: { $ne: null } },
+              { updatedAt: { $ne: null } }
+            ]
+          });
+          
+          console.log(storyNotificationCount, profileNotificationCount, cleanNotifications.length)
         res.status(200).json({
             "message" : "Successfully Retreived Notifications",
-            notifications : notifications,
+            notifications : cleanNotifications,
             storyNotificationCount : storyNotificationCount,
             profileNotificationCount: profileNotificationCount,
             currentNotificationCount: category == "story" ? storyNotificationCount : profileNotificationCount
@@ -49,7 +93,6 @@ const getNotificationsCount  = async (req, res) => {
     try{
         
 const notificationsCount =  await Notification.countDocuments({ user: req.user._id, isRead : false })
-console.log(notificationsCount)
 res.status(200).json({"message" : "Successfully retreived Notification Count", notificationsCount : notificationsCount})
 
     }
