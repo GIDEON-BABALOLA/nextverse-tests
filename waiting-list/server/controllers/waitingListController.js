@@ -56,13 +56,13 @@ const getWaitingList = async (req, res) => {
     .exec();
 
         const storyCount = await WaitingList.countDocuments();
-if(req.query.page){a
+if(req.query.page){
     if(skip >= storyCount){
         throw new waitingListError( "This page does not exist",404)
     }
 }
 
-    res.status(200).json({waitingList : waitingList, waitingListNumber : storyCount })
+    res.status(200).json({waitingList : gotUsers, waitingListNumber : storyCount })
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getWaitingListError.txt", "waitingListError")
         if (error instanceof waitingListError) {

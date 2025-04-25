@@ -20,10 +20,11 @@ getUserProfile,
 resendUserVerification,
 getUserBookmarks,
 getUserStories,
+getAllMyUsers,
 getCurrentUserStories
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
-const { authMiddleware, isUser, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
+const { authMiddleware, isAdministrator, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadProfileImageMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
 router.post("/register-user", verifyReCAPTCHA,  signupUser);
 router.post("/verify-user-registration", verifyUserRegistration)
@@ -38,10 +39,11 @@ router.get("/user-refresh-token", authMiddleware,  userRefreshToken)
 router.get("/get-current-user", authMiddleware, getCurrentUser)
 router.get("/get-a-user/:id", authMiddleware, getAUser)
 router.get("/get-all-users", authMiddleware, getAllUsers)
+router.get("/get-all-my-users", authMiddleware,  isAdministrator,getAllMyUsers)
 router.get("/get-user-profile", authMiddleware, getUserProfile)
 router.get("/get-user-bookmarks", authMiddleware, getUserBookmarks)
 router.get("/get-user-stories/:username", authMiddleware, getUserStories)
 router.get("/get-current-user-stories", authMiddleware, getCurrentUserStories)
-router.get("/logout-user",  authMiddleware, isUser, logoutUser)
+router.get("/logout-user",  authMiddleware, logoutUser)
 router.delete("/delete-user", authMiddleware, deleteUser)
 module.exports = router

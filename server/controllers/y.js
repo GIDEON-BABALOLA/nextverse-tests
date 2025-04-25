@@ -6,14 +6,13 @@ const crypto = require("crypto")
 const mongoose = require("mongoose")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
+const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const Notification = require(path.join(__dirname, "..", "models", "notificationModel.js"))
 const { userError, cloudinaryError, validatorError, notificationError,  emailError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
-
-const { Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -24,7 +23,11 @@ const duplicateUsername = async (req, res) => {
     try{
 const { username } = req.body;
 const existingUser = await User.findOne({ username })
+const existingAdmin = await Admin.findOne({ username })
 if(existingUser){
+    throw new userError("Username Already Exists", 400)
+}
+if(existingAdmin){
     throw new userError("Username Already Exists", 400)
 }
 return res.status(200).json({message : "Username is available"})
@@ -56,12 +59,6 @@ const { username, email, password, mobile} = req.body
 let profilePicture
 if(!username || !email || !password || !mobile){
     throw new userError("Please Fill In All The Fields", 400)
-}
-let role = "user";
-const adminEmails = process.env.ADMIN_EMAILS.split(',');
-const isAdmin = adminEmails.includes(email);
-if(isAdmin){
-    role = "admin"
 }
 await validateEmail(email)
 await validatePassword(password)
@@ -117,11 +114,9 @@ const newUser = await User.create({
     email, 
     bio : "writer",
     password :  hashedPassword,
-    verification : role == "admin" ? true : false,
     mobile : mobile, 
     ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
-    picture : profilePicture,
-    role : role
+    picture : profilePicture
  })
  const time = Date.now() + minute * 60 * 1000 //5 minutes //saved five minutes ahead in the future
 await newUser.createVerificationToken(otp, verificationToken, time);
@@ -411,6 +406,7 @@ const exists = await User.exists({
     "following.follows" : user._id
 });
 const isFollowing = !!exists;
+console.log(user, totalStories)
     res.status(200).json({user :  {...user, totalStories : totalStories}, isFollowing : isFollowing}) 
     }catch(error){
         console.log(error)
@@ -426,8 +422,6 @@ const isFollowing = !!exists;
 //To Logout A User Logged In
 const logoutUser = async (req, res) => {
     const cookies = req.cookies
-    console.log(cookies);
-    
     try{
         if(!cookies?.refreshToken){
             throw new userError("You Are Not Logged In", 401)
@@ -491,7 +485,6 @@ const userRefreshToken = async (req, res) => {
 //This is to upload a user picture
 const uploadUserPicture = async (req, res) => {
     try{
-
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
         }
@@ -532,7 +525,6 @@ const uploadUserPicture = async (req, res) => {
 }
 //This Is To update A User
 const updateUser = async (req, res) => {
-    console.log(req.body, "Gidiboy")
     const attributesThatCanBeUpdated = [
         "username", "mobile", "password", "bio", "picture",   
        ]
@@ -570,8 +562,13 @@ for(const key in req.body){
         }
         if(key == "mobile"){
             const existingUser = await User.findOne({ mobile: value });
-            if (existingUser && existingUser._id.toString() !== id) {
-                throw new userError("Phone number is already in use", 400);
+            const existingAdmin = await Admin.findOne({ mobile: value });
+            
+            const isUserConflict = existingUser && existingUser._id.toString() !== id;
+            const isAdminConflict = existingAdmin && existingAdmin._id.toString() !== id;
+            
+            if (isUserConflict || isAdminConflict) {
+              throw new userError("Phone number is already in use", 400);
             }
         }
     }
@@ -582,12 +579,13 @@ for(const key in req.body){
     }).select("-refreshToken -verificationCode -verificationToken -verificationTokenExpires -ipAddress -password -followers -following -bookmarks")
     res.status(200).json({message : "User Successfully Updated", user : updatedUser})
 }catch(error){
+    console.log(error)
     logEvents(`${error.name}: ${error.stack}`, "UpdateAUserError.txt", "user")
     if (error instanceof userError) {
         return res.status(error.statusCode).json({ message : error.message})
     }
     else if(error instanceof validatorError){
-        return res.status(error.statusCode).json({error : error.message})
+        return res.status(error.statusCode).json({message : error.message})
     }
     else{
         return res.status(500).json({message : "Internal Server Error"})
@@ -602,7 +600,6 @@ const deleteUser = async (req, res) => {
         }
         const oldUser = await User.findOneAndDelete({_id: req.user._id})
         const cloudinaryExists =  await cloudinaryCheckIfFolderExists("User", oldUser.email)
-        console.log(cloudinaryExists)
         if(oldUser.picture.length > 0 && cloudinaryExists){
             await cloudinaryDelete(oldUser.email)
         }
@@ -611,6 +608,7 @@ const deleteUser = async (req, res) => {
         }
         res.status(200).json({message : "Successfully Deleted Your Account", user : oldUser})
     }catch(error){
+        console.log(error);
         logEvents(`${error.name}: ${error.message}`, "deleteUserError.txt", "userError")
          if(error instanceof userError){
             return res.status(error.statusCode).json({ message : error.message})
@@ -623,14 +621,6 @@ const deleteUser = async (req, res) => {
         }
     }
 }
-const deleteMyUser = async (req, res) => {
-    try{
-
-    }
-    catch(error){
-        console.log(error)
-    }
-}
 const followUser = async (req, res) => {
     try{
         const { _id } = req.user;
@@ -641,23 +631,35 @@ const followUser = async (req, res) => {
         if(email == req.user.email){
             throw new userError("You Cannot Follow Yourself On This Platform", 400)
         }
+        let personToBeFollowed, followModel;
         const userToBeFollowed = await User.findOne({email})
-        let alreadyFollowed = userToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
+        const adminToBeFollowed = await Admin.findOne({email})
+        if(userToBeFollowed){
+           personToBeFollowed = userToBeFollowed
+           followModel = User
+        }
+        else if(adminToBeFollowed){
+            personToBeFollowed = adminToBeFollowed
+            followModel = Admin
+        }
+        else{
+            throw new userError("This User Does Not Exist", 400)
+        }
+        let alreadyFollowed = personToBeFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(!alreadyFollowed){
-            console.log("create notification")
-            const user =  await User.followuser(_id, userToBeFollowed._id) //This has been configured in the users model
+            await followModel.followuser(_id, personToBeFollowed._id) //This has been configured in the users model
             await Notification.createProfileNotification(
-            userToBeFollowed._id,
+            personToBeFollowed._id,
             req.user._id,
             "follow",
             `${req.user.username} just followed you`, 
             req.user._id
         
         )
-            return  res.status(201).json(user)                   
+        return res.status(200).json({ message: "Successfully Followed This User." });              
                              
         }
-            res.status(200).json(userToBeFollowed)               
+         res.status(200).json({ message: "You already follow this user." });            
          
     }catch(error){
         console.log(error)
@@ -681,19 +683,33 @@ const unfollowUser = async(req, res) => {
         if(!email){
             throw new userError("What is the email of the user you want to follow", 400)
         }
-        if(email == req.user.email){
+        if(email === req.user.email){
             throw new userError("You Cannot UnFollow Yourself On This Platform", 400)
-        }
+        }  
+        let personToBeUnFollowed, unFollowModel;
         const userToBeUnFollowed = await User.findOne({email})
-        let alreadyFollowed = userToBeUnFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
+        const adminToBeUnFollowed = await Admin.findOne({email})
+        if(userToBeUnFollowed){
+            personToBeUnFollowed = userToBeUnFollowed
+            unFollowModel = User
+         }
+         else if(adminToBeUnFollowed){
+             personToBeUnFollowed = adminToBeUnFollowed
+             unFollowModel = Admin
+         }
+         else{
+             throw new userError("This User Does Not Exist", 400)
+         }
+        let alreadyFollowed = personToBeUnFollowed.followers.find((userId) => userId.followedby.toString() === _id.toString())
         if(alreadyFollowed){
-           const user =  await User.unfollowuser(_id, userToBeUnFollowed._id)//This has been configured in the users model
-            return  res.status(201).json(user)            
+            await unFollowModel.unfollowuser(_id, personToBeUnFollowed._id)//This has been configured in the users model
+            return  res.status(200).json({ message : "Successfully Unfollowed User"})            
 
         }
-        res.status(200).json(userToBeUnFollowed)
+        res.status(200).json({ message : "Successfully Unfollowed User"})
     }
     catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "unfollowUserError.txt", "userError")
         if(error instanceof userError){
            return res.status(error.statusCode).json({ message : error.message})
@@ -702,44 +718,11 @@ const unfollowUser = async(req, res) => {
        }  
     }
 }
-const getAllMyUsers = async (req, res) => {
-    const {page, limit} = req.query;
-    try{
-          let query;
-          query =  User.find()
-          // Convert page and limit to integers
-            const pageInt = parseInt(page, 10);
-            const limitInt = parseInt(limit, 10);
-            const skip = (pageInt - 1) * limit;
-            query = query.skip(skip).limit(limitInt);
-          if(req.query.fields){
-              const fields = req.query.fields.split(",").join(" ")
-              query = query.select(fields)
-          
-          }
-      const allUsers = await query.lean()
-      const sentUsers = allUsers.map((user) => {
-        return {...user, storyCount : user.stories.length}
-      })
-      const userCount = await User.countDocuments();
-      res.status(200).json({message : "Successfully retrieved all Users For Admin", userCount : userCount, users :sentUsers})
-      
-    }
-    catch(error){
-        console.log(error)
-        logEvents(`${error.name}: ${error.message}`, "getAllMyUsersError.txt", "userError")
-        if(error instanceof userError){
-            return res.status(error.statusCode).json({ message : error.message})
-        }else{
-            return res.status(500).json({message : "Internal Server Error"})
-        }
-    }
-}
 const getAllUsers = async (req, res) => {
     const { page, limit } = req.query;
     try{
     const skip = (page - 1) * limit;
-    const gotUsers = await User.find();
+    const gotUsers = await User.find().select("following");
     if(!gotUsers){
         throw new userError("No User Has Been Registered For Your Application", 204)
     }
@@ -748,20 +731,16 @@ const getAllUsers = async (req, res) => {
     req.user.following.map((user) => {
         alreadyFollowedId.push(user.follows)
     })
-    // const newUsersToFollow = gotUsers.filter((user) => !alreadyFollowedId.includes(user._id.toString()))
     const newUsersToFollow = await User.find({
         _id: { $nin: alreadyFollowedId },
     })
         .skip(skip)
         .limit(limit)
+        .select("email username picture bio")
         .lean(); // Use lean if you want plain JavaScript objects    
     const usersToBeSent = newUsersToFollow
     .filter((user) => user.email !== req.user.email)
-    .map((user) => {
-        return _.pick(user, "email", "username", "picture", "bio")
-    })
-
-        res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
+    res.status(200).json({ users : usersToBeSent, count : userCount, currentCount : newUsersToFollow.length})         
     }
     catch(error){
         console.log(error)
@@ -786,7 +765,6 @@ const getAllUsers = async (req, res) => {
             .populate("userId", "picture username email bio")
             .lean();
     const bookmarksCount = await Story.countDocuments({"bookmarks.bookmarkBy" : req.user._id})
-    console.log(bookmarksCount)
    const enrichedBookmarks = bookmarkedStories.map((story) => ({
     ...story,
     picture : story.picture[Math.floor(Math.random() * story.picture.length)],
@@ -888,7 +866,6 @@ module.exports = {
     userRefreshToken,
     getCurrentUser,
     deleteUser,
-    deleteMyUser,
     updateUser,
     followUser,
     unfollowUser,
@@ -897,7 +874,6 @@ module.exports = {
     getUserProfile,
     resendUserVerification,
     getAllUsers,
-    getAllMyUsers,
     getAUser,
     getUserBookmarks,
     getUserStories,

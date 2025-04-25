@@ -8,7 +8,6 @@ const app = express();
 const PORT = process.env.LITENOTE_PORT
 const corsOptions = require(path.join(__dirname, "config", "corsConfig.js"))
 const userRouter = require(path.join(__dirname,  "routes", "userRoute.js"))
-const adminRouter = require(path.join(__dirname,  "routes", "adminRoute.js"))
 const storyRouter = require(path.join(__dirname,  "routes", "storyRoute.js"))
 const noteRouter = require(path.join(__dirname,  "routes", "noteRoute.js"))
 const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
@@ -44,7 +43,6 @@ app.use((err, req, res, next) => {
   });
   
 app.use("/api/user", userRouter);
-app.use("/api/admin", adminRouter);
 app.use("/api/developer", developerRouter);
 app.use("/api/designer", designerRouter);
 app.use("/api/story", storyRouter); 

@@ -7,12 +7,12 @@ user : {
 },
 category : {
     type: String,
-    enum : ["story", "profile"],
+    enum : ["story", "profile", "note"],
     required: true
 },
 type : {
     type: String,
-    enum : ["like", "comment", "follow"],
+    enum : ["like", "comment", "follow", "bookmark", "share"],
     required: true
 },
 isRead : {
@@ -26,10 +26,6 @@ message: {
 referenceId: {
     type: mongoose.Schema.Types.ObjectId,
     refPath: "categoryReference", // Dynamic reference (User or Story)
-  },
-categoryReference: {
-    type: String,
-    enum: ["User", "Story"], // Determines which model referenceId belongs to
   },
 actor: {
     type: mongoose.Schema.Types.ObjectId,
@@ -48,7 +44,6 @@ notificationSchema.statics.createStoryNotification = async function(userId, stor
         type: type,
         message: message,
         referenceId: storyId, // The story that was liked
-        categoryReference: "Story",
         actor : actor
       });
     
@@ -61,11 +56,11 @@ notificationSchema.statics.createProfileNotification = async function(userId, fo
         type: type,
         message: message,
         referenceId: followerId, // The user who followed
-        categoryReference: "User",
         actor : actor
       });
     
       await notification.save();
       console.log("Profile notification created!");
 }  
+
 module.exports = mongoose.model('Notification', notificationSchema);

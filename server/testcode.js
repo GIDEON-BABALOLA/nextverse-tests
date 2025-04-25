@@ -1,57 +1,108 @@
-// require("dotenv").config()
-// const mongoose = require('mongoose');
-// const express = require("express")
-// const app = express();
-// const User = require('./models/userModel'); // Assuming you have a User model
-
-// // Function to delete all users except for the one with the given email
-// const deleteAllUsersExceptOne = async (email) => {
-//   try {
-//     // Find the user to exclude by email
-//     const userToExclude = await User.findOne({ email });
-
-//     // If no user is found with the provided email, throw an error
-//     if (!userToExclude) {
-//       throw new Error('User not found');
-//     }
-
-//     // Delete all users except the one to exclude
-//     const result = await User.deleteMany({
-//       _id: { $ne: userToExclude._id }, // Exclude the user with the given email
-//     });
-
-//     console.log(`${result.deletedCount} users deleted, excluding the user with email: ${email}`);
-//   } catch (error) {
-//     console.error('Error deleting users:', error);
-//   }
-// };
-
-// mongoose.connect(process.env.LITENOTE_MONGODB_URL)
-// .then(() => {
-
-//         deleteAllUsersExceptOne('user10@gmail.com');  // Replace with the email of the user you want to keep
-// })
-// // Usage
-
-
-// const removeStoryPictureFromText = (name) => {
-//   const tag = document.createElement("div")
-//   tag.innerHTML = storyContent;
-//   const spans = tag.querySelectorAll("span");
-//   spans.forEach(span => {
-//     const match = span.innerText.match(/\[Image ([^\]]+)]/);
-//     if (match) {
-//       const imageName = match[1];
-// if(name == imageName){
-//   span.remove()
-// }
-//     }
-//   });
-//   console.log(spans)
-//   return tag.innerHTML
-// }
-const roleId = "userId"
-const selectedId = "123"
-const query = {}
-query[roleId] = selectedId
-console.log(query)
+[
+    {
+        "_id": "67fa9e689285809cb11c5743",
+        "username": "Bigboy",
+        "verification": false,
+        "email": "babalola.gideon@lmu.edu.ng",
+        "status": true,
+        "password": "$2b$10$fYElNLdQIyiaxtIEwiwMXeReWL58cMjUgR5nxFfzC0hUe/UE/nAKO",
+        "mobile": "08149787227",
+        "picture": "https://res.cloudinary.com/doctr0fct/image/upload/v1744621069/User/babalola.gideon%40lmu.edu.ng/slxf2bipgwffhqlon81w.jpg",
+        "newsletter": false,
+        "role": "user",
+        "totalfollowing": 0,
+        "totalfollowers": 3,
+        "createdAt": "2025-04-12T17:10:00.350Z",
+        "updatedAt": "2025-04-19T19:30:04.389Z",
+        "__v": 0
+    },
+    {
+        "_id": "67faa0479285809cb11c57bc",
+        "username": "Gidithedeveloper",
+        "verification": false,
+        "email": "gideonbabalola69@gmail.com",
+        "status": true,
+        "password": "$2b$10$IhiPgev.xvJ6hZ1QoO5IDud9.20f1wVUsNaG90/TqB71q2GR19rci",
+        "mobile": "+234",
+        "picture": "https://res.cloudinary.com/doctr0fct/image/upload/v1744827514/User/gideonbabalola69%40gmail.com/d3sr8uwobputfqtttoml.jpg",
+        "newsletter": false,
+        "role": "user",
+        "totalfollowing": 5,
+        "totalfollowers": 4,
+        "createdAt": "2025-04-12T17:17:59.723Z",
+        "updatedAt": "2025-04-24T16:28:42.842Z",
+        "__v": 0,
+        "bio": "Fiction, facts, and feels."
+    },
+    {
+        "_id": "67faa0eb9285809cb11c57d8",
+        "username": "favour_adigun",
+        "verification": false,
+        "email": "favouradigundamilare@gmail.com",
+        "status": true,
+        "password": "$2b$10$322visYa/DqobNhHJWSMgOB4e3sAKSKcpiRZglCGpcFvDipMGQAoy",
+        "mobile": "+2348149787223",
+        "picture": "https://res.cloudinary.com/doctr0fct/image/upload/v1744911201/User/favouradigundamilare%40gmail.com/xfzhbdqwszhwpnsm6vo6.jpg",
+        "newsletter": false,
+        "role": "user",
+        "totalfollowing": 2,
+        "totalfollowers": 2,
+        "createdAt": "2025-04-12T17:20:43.634Z",
+        "updatedAt": "2025-04-24T14:38:32.977Z",
+        "__v": 0,
+        "bio": "Thoughts turned into stories."
+    },
+    {
+        "_id": "67faa5e59285809cb11c57f3",
+        "username": "NextVerse",
+        "verification": false,
+        "email": "nextverse.101@gmail.com",
+        "status": true,
+        "password": "$2b$10$8ASJmnhfOCKD8KSSPlJ1FeNVlWVOr/q1X5kCViyT1boS6Y6NbY3zK",
+        "mobile": "08149787224",
+        "picture": "https://res.cloudinary.com/doctr0fct/image/upload/v1744624677/User/nextverse.101%40gmail.com/id8zl0wiqlhrgpeyptqz.jpg",
+        "newsletter": false,
+        "role": "user",
+        "totalfollowing": 0,
+        "totalfollowers": 2,
+        "createdAt": "2025-04-12T17:41:57.570Z",
+        "updatedAt": "2025-04-19T19:32:36.828Z",
+        "__v": 0
+    },
+    {
+        "_id": "67faa67a32c408a4cad42b3c",
+        "username": "NextVerse74",
+        "verification": false,
+        "email": "nextverse74@gmail.com",
+        "status": true,
+        "password": "$2b$10$Xv2C5j2Pu1KLfxM3PYXARO0.66mf.1Gx//xyRWPn2LaH10DOLSH52",
+        "mobile": "08149787225",
+        "picture": "https://www.dropbox.com/scl/fi/nfvhm38py47haqiatcn51/Gideon-Babalola.jpeg?rlkey=kw7e5hl2zzoi7uk8zlgojnsk5&raw=1",
+        "newsletter": false,
+        "role": "user",
+        "totalfollowing": 1,
+        "totalfollowers": 3,
+        "createdAt": "2025-04-12T17:44:26.222Z",
+        "updatedAt": "2025-04-25T01:56:43.843Z",
+        "__v": 0,
+        "bio": "Fiction, facts, and feels."
+    },
+    {
+        "_id": "680a67d341cd2d2b40693cf1",
+        "username": "babs",
+        "verification": false,
+        "email": "babalolagideon22@gmail.com",
+        "bio": "writer",
+        "status": true,
+        "password": "$2b$10$6fbR5f9m1mAxIKAf1SCovuTZS.f02oNO6hsyotMt9zAj0hknV4LNW",
+        "mobile": "08149787223",
+        "picture": "https://res.cloudinary.com/doctr0fct/image/upload/v1730507550/Avatars/nqygbbqcueadblm4mxjo_ntgxmg.jpg",
+        "newsletter": false,
+        "role": "admin",
+        "totalfollowing": 1,
+        "totalfollowers": 0,
+        "createdAt": "2025-04-24T16:33:23.839Z",
+        "updatedAt": "2025-04-25T01:56:43.851Z",
+        "__v": 0
+    }
+]

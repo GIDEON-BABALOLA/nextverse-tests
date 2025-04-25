@@ -4,14 +4,13 @@ const bcrypt = require("bcrypt")
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"));
 const User = require(path.join(__dirname, "..", "models", "userModel.js"));
-const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"));
-const Developer = require(path.join(__dirname, "..", "models", "adminModel.js"));
-const { userAttributes, adminAttributes, developerAttributes, designerAttributes} = require(path.join(__dirname, "..", "data", "modelAttributes.js"))
-const Designer = require(path.join(__dirname, "..", "models", "adminModel.js"));
+const Developer = require(path.join(__dirname, "..", "models", "developerModel.js"));
+const { userAttributes, developerAttributes, designerAttributes} = require(path.join(__dirname, "..", "data", "modelAttributes.js"))
+const Designer = require(path.join(__dirname, "..", "models", "designerModel.js"));
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const {  mockStories, mockPictures } = require(path.join(__dirname, "..", "data", "mockStories.js"))
 const {  mockUsers } = require(path.join(__dirname, "..", "data", "mockUsers.js"))
-const {  userError, adminError, designerError, developerError } = require("../utils/customError");
+const {  userError,designerError, developerError } = require("../utils/customError");
 const slugify = require("slugify");
 const { countWordsAndEstimateReadingTime } = require(path.join(__dirname, "..", "utils", "countWordsAndEstimateReadingTime.js"))
 const populateUsers = async(req, res) => {
@@ -136,33 +135,7 @@ const fixDeveloperModel = async (req, res) => {
   }
   }
 };
-const fixAdminModel = async (req, res) => {
-  try {
-    for(const key in req.body){
-      if (req.body.hasOwnProperty(key)) {
-        const isValidCategory = adminAttributes.includes(key)
-        if(!isValidCategory){
-           throw new adminError(`This attribute ${key} is not valid`, 400)
-            }
-        const value = req.body[key];
-        const allAdmins = await Admin.find();
-        for (let admin of allAdmins) {
-          if (admin[key]) continue;
-          await Admin.findByIdAndUpdate(admin._id, { [key]: value }, { new: true });
-        }
-    }
-    }
-    res.status(200).json({ message: "Data Updated successfully for all admins."});
-  } catch (error) {
-    console.log(error)
-    logEvents(`${error.name}: ${error.message}`, "fixAdminModelError.txt", "adminError");
-    if(error instanceof adminError){
-      return res.status(error.statusCode).json({ message : error.message})
-  }else{
-    return res.status(500).json({ message: "Internal Server Error." });
-  }
-  }
-};
+
 const fixUserModel = async (req, res) => {
   try {
     for(const key in req.body){
@@ -191,7 +164,7 @@ const fixUserModel = async (req, res) => {
   }
 };
 
-module.exports = { fixDeveloperModel, populateStories, populateUsers, fixUserModel, fixAdminModel, fixDesignerModel }
+module.exports = { fixDeveloperModel, populateStories, populateUsers, fixUserModel, fixDesignerModel }
 
 
 

@@ -13,7 +13,6 @@ const getMyNotifications = async (req, res) => {
         .skip(skip)
         .limit(limit)
         .lean()
-        console.log(notifications)
         const cleanNotifications = notifications
         .filter(story => {
             // Remove stories with empty objects, null or undefined values, and null/undefined _id
@@ -22,7 +21,6 @@ const getMyNotifications = async (req, res) => {
                    !Object.values(story).includes(null) && 
                    !Object.values(story).includes(undefined);
           });
-          console.log(cleanNotifications)
         // Extract the _id of the fetched notifications
         const notificationIds = cleanNotifications.map(n => n._id);
 
@@ -34,40 +32,14 @@ const getMyNotifications = async (req, res) => {
           const storyNotificationCount = await Notification.countDocuments({
             user: req.user._id,
             category: "story",
-            $and: [
-              { user: { $ne: null } },
-              { type: { $ne: null } },
-              { type: { $ne: "" } },
-              { message: { $ne: null } },
-              { message: { $ne: "" } },
-              { referenceId: { $ne: null } },
-              { categoryReference: { $ne: null } },
-              { categoryReference: { $ne: "" } },
-              { actor: { $ne: null } },
-              { createdAt: { $ne: null } },
-              { updatedAt: { $ne: null } }
-            ]
+            referenceId: { $exists: true, $ne: null } 
           });
           
           const profileNotificationCount = await Notification.countDocuments({
             user: req.user._id,
             category: "profile",
-            $and: [
-              { user: { $ne: null } },
-              { type: { $ne: null } },
-              { type: { $ne: "" } },
-              { message: { $ne: null } },
-              { message: { $ne: "" } },
-              { referenceId: { $ne: null } },
-              { categoryReference: { $ne: null } },
-              { categoryReference: { $ne: "" } },
-              { actor: { $ne: null } },
-              { createdAt: { $ne: null } },
-              { updatedAt: { $ne: null } }
-            ]
           });
-          
-          console.log(storyNotificationCount, profileNotificationCount, cleanNotifications.length)
+console.log(cleanNotifications, notifications)
         res.status(200).json({
             "message" : "Successfully Retreived Notifications",
             notifications : cleanNotifications,

@@ -28,3 +28,5 @@
 20250208	15:58:08	3c73c564-4ac1-4874-beeb-1e892c96614a	userError: User Already Exists
 >>>>>>> 70d7fcbf9e07cbbcf669810d9d7bc1c046b91e3c
 20250412	18:11:56	8601a9fe-44c7-4432-88ed-a8f34fc34db1	userError: Phone Number Has Been Used
+20250424	17:32:54	eec3b973-affd-4bc7-87c9-0d31c91d92fe	TypeError: Cannot read properties of undefined (reading 'email')
+20250424	17:35:45	43494f19-b8ea-47fa-8039-b7636fb7070c	userError: User Already Exists

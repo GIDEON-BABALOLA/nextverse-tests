@@ -22,3 +22,4 @@
 20250414	10:32:53	fb78b054-c9f6-4af6-9420-8682840bda7e	userError: You Cannot Follow Yourself On This Platform
 20250414	10:32:54	2375683b-e502-4158-bf0f-78833d352a64	userError: You Cannot Follow Yourself On This Platform
 20250414	10:32:55	442fbe2f-16aa-418f-811e-82f9488295c8	userError: You Cannot Follow Yourself On This Platform
+20250424	14:42:12	7fc29fe8-5b8b-4dbd-a0b3-b1addd1acca3	TypeError: Cannot read properties of null (reading '_id')

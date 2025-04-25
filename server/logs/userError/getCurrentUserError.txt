@@ -49,3 +49,14 @@
 20250422	01:32:46	9de3a7e1-0a8e-4b79-8368-84bd5ab731b9	userError: You Are Not Logged In
 20250422	01:33:27	e9bc51ef-3e0f-428e-a59c-1c8ffd8cf189	userError: You Are Not Logged In
 20250422	01:33:55	a1a5118b-7962-4c74-8004-00304f1931c2	userError: You Are Not Logged In
+20250424	13:57:18	ffa66f69-c401-4462-b687-3adf7d036174	userError: You Are Not Logged In
+20250424	17:29:18	de556854-2a6f-4411-bdb3-34d82be12e9b	userError: Your Account Does Not Exist
+20250424	17:33:42	cf32c998-6ec7-46e9-a4e3-2e128d986741	userError: Your Account Does Not Exist
+20250424	17:34:54	e8860069-b6c6-4aaf-8d12-897caf8226f2	userError: Your Account Does Not Exist
+20250424	17:35:12	5715ab58-cb40-499e-a307-ff130b0bb36d	userError: Your Account Does Not Exist
+20250424	17:35:52	86b4f647-18cd-4ef8-9879-9f91a1d42551	userError: Your Account Does Not Exist
+20250424	17:36:13	48cc7d23-f6f0-4f15-9c34-cce78abf5476	userError: Your Account Does Not Exist
+20250424	17:38:20	f417eaad-191b-4bd5-9bb6-a1efa22aa712	userError: Your Account Does Not Exist
+20250424	17:42:06	215f9477-91fc-4a2a-9dea-39d7510cca75	userError: Your Account Does Not Exist
+20250424	17:42:57	97119f91-637b-4167-823d-d4ed080b6ca9	userError: Your Account Does Not Exist
+20250424	17:43:43	0d1549a3-7003-477a-af63-9df3ce6fe9f1	userError: Your Account Does Not Exist

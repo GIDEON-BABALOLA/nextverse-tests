@@ -10,3 +10,6 @@
 20241222	21:39:15	3d69ab6c-52af-428e-909b-38d1fb6236d7	userError: Pls enter a parameter recognized by the database
 20241222	21:39:15	7e9ef91a-8579-427d-8fc2-9a7b2f951dd8	userError: Pls enter a parameter recognized by the database
 20250410	22:04:57	2b03546a-155b-4327-8acf-7db91456c1e7	TypeError: Cannot read properties of null (reading 'userId')
+20250424	15:43:30	d95088f3-ca10-4b50-9a62-2f29a32731be	ReferenceError: user is not defined
+20250424	15:43:33	3d1e26ed-c124-41fb-b25e-832e73031a5b	ReferenceError: user is not defined
+20250424	15:43:34	f6f3a84e-2c37-4902-b0af-3e5d35afbe4a	ReferenceError: user is not defined

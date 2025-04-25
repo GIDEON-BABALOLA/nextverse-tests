@@ -3,7 +3,6 @@ const path = require("path");
 const rateLimit = require('express-rate-limit')
 const { logEvents } = require(path.join(__dirname, "logEvents.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
-const Admin =  require(path.join(__dirname, "..", "models", "adminModel.js"))
 const Developer = require(path.join(__dirname, "..", "models", "developerModel.js"))
 const Designer = require(path.join(__dirname, "..", "models", "designerModel.js"))
 const authMiddleware = async (req, res, next)=>{
@@ -38,9 +37,9 @@ const authMiddleware = async (req, res, next)=>{
                     req.user = designer;
                     break;
                     case "admin":
-                    const admin = await Admin.findById(decoded?.id);
-                    req.user = admin;
-                    break;
+                        const admin = await User.findById(decoded?.id);
+                        req.user = admin;
+                        break;
                 default:
                     break;
             }

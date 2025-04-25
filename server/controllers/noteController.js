@@ -4,7 +4,7 @@ const { calculateObjectSize } = require("bson");
 const { formatSize } = require("../utils/size")
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const Note = require(path.join(__dirname, "..", "models", "noteModel"))
-const Admin = require(path.join(__dirname, "..", "models", "adminModel"))
+
 const User = require(path.join(__dirname, "..", "models", "userModel"))
 const {  userError } = require("../utils/customError");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))

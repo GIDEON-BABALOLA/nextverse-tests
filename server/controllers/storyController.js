@@ -3,7 +3,6 @@ const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEven
 const { rankStories } = require(path.join(__dirname, "..", "utils", "rankStories.js"))
 const fs = require('fs');
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
-const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const Notification = require(path.join(__dirname, "..", "models", "notificationModel.js"))
 const _ = require('lodash');
@@ -18,7 +17,7 @@ const month = ["january", "febuary", "March", "April", "May", "June", "July", "A
 // To Create A New Story
 const createStory = async(req, res) => {
     const datetime = new Date()
-    const { id, role } = req.user
+    const { id } = req.user
     const defaultCategory = [
  "fiction", "non-fiction", "romance", "adventure", "memoir", "technology"    
 ]
@@ -75,7 +74,7 @@ const time = countWordsAndEstimateReadingTime(content)
 
     const newStory = {
         author : req.user.username,
-        ...( role == "user" ? { userId : id } : { adminId : id } ),
+        userId : id,
         title : title,
         slug : slugify(title),
         content : content,
@@ -89,8 +88,6 @@ const time = countWordsAndEstimateReadingTime(content)
         case "user":
             await User.createStory(req.user._id, story._id);
             break;
-        case "admin":
-            await Admin.createStory(req.user._id, story._id);
     }
     res.status(201).json({ message : "Story Successfully Created", story : story})
 }catch(error){
@@ -599,7 +596,7 @@ const getStoryComments = async (req, res) => {
     
     }
     catch(error){
-        logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
+        logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "userError")
         if(error instanceof userError){
             return res.status(error.statusCode).json({ error : error.message})
         }else{
@@ -634,7 +631,7 @@ const getStoryComments = async (req, res) => {
         
         }
         catch(error){
-            logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "adminError")
+            logEvents(`${error.name}: ${error.message}`, "getAllUsersError.txt", "userError")
             if(error instanceof userError){
                 return res.status(error.statusCode).json({ error : error.message})
             }else{
@@ -718,11 +715,11 @@ switch (req.user.role) {
     case "user":
         await User.bookmarkStory(req.user._id, storyToBeBookmarked._id)
         break;
-    case "admin":
-        await Admin.bookmarkStory(req.user._id, storyToBeBookmarked._id)
 }
 const bookmarkedStory = await storyToBeBookmarked.addBookmark(req.user._id);
-    res.status(201).json(bookmarkedStory)    
+console.log(bookmarkedStory.userId, bookmarkedStory._id)
+await Notification.createStoryNotification(bookmarkedStory.userId, bookmarkedStory._id, "bookmark", `${req.user.username} bookmarked your story.`, req.user._id)
+res.status(201).json(bookmarkedStory)    
 
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
@@ -749,8 +746,6 @@ const unBookmarkAStory = async (req, res) => {
             case "user":
                 await User.unbookmarkStory(req.user._id, storyToBeUnbookmarked._id);
                 break;
-            case "admin":
-                await Admin.unbookmarkStory(req.user._id, storyToBeUnbookmarked._id);
         }
         const unBookmarkedStory = await storyToBeUnbookmarked.removeBookmark(req.user._id);
         res.status(201).json(unBookmarkedStory);
@@ -781,8 +776,6 @@ switch (req.user.role) {
     case "user":
         await User.deleteStory(req.user._id, id);
         break;
-    case "admin":
-        await Admin.deleteStory(req.user._id, id);
 }
     res.status(200).json({"message" : "Deletion Of Story Was Successfull"})
 
