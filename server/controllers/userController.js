@@ -67,6 +67,7 @@ await validateEmail(email)
 await validatePassword(password)
 const foundUser = await User.findOne({email : email})
 const foundMobile = await User.findOne({mobile : mobile})
+const foundUsername = await User.findOne({username: username})
 if(foundUser && foundUser.status == false){
   return  res.status(200).json({ message : "Success, Check Your Email To Verify Your Account"})
 }
@@ -75,6 +76,9 @@ if(foundUser) {
 }
 if(foundMobile){
     throw new userError("Phone Number Has Been Used", 400)
+}
+if(foundUsername){
+    throw new userError("Username Has Been Used", 400)
 }
 if(req.file){
     if(req.file.size > 2000000){
@@ -602,7 +606,6 @@ const deleteUser = async (req, res) => {
         }
         const oldUser = await User.findOneAndDelete({_id: req.user._id})
         const cloudinaryExists =  await cloudinaryCheckIfFolderExists("User", oldUser.email)
-        console.log(cloudinaryExists)
         if(oldUser.picture.length > 0 && cloudinaryExists){
             await cloudinaryDelete(oldUser.email)
         }
@@ -623,12 +626,28 @@ const deleteUser = async (req, res) => {
         }
     }
 }
-const deleteMyUser = async (req, res) => {
+const deleteAUser = async (req, res) => {
+    const { username } = req.params;
     try{
-
+        const oldUser = await User.findOneAndDelete({username: username})
+        if(!oldUser){
+            throw new userError("Your Account Does Not Exist", 404)
+        }
+        const cloudinaryExists =  await cloudinaryCheckIfFolderExists("User", oldUser.email)
+        if(oldUser.picture.length > 0 && cloudinaryExists){
+            await cloudinaryDelete(oldUser.email)
+        }
+        res.status(200).json({message : "Successfully Deleted User Account", user : oldUser})
     }
     catch(error){
         console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "deleteAUserError.txt", "userError")
+        if(error instanceof userError){
+           return res.status(error.statusCode).json({ message : error.message})
+       }
+       else{
+           return res.status(500).json({message : "Internal Server Error"})
+       }  
     }
 }
 const followUser = async (req, res) => {
@@ -714,7 +733,7 @@ const getAllMyUsers = async (req, res) => {
             query = query.skip(skip).limit(limitInt);
           if(req.query.fields){
               const fields = req.query.fields.split(",").join(" ")
-              query = query.select(fields)
+              query = query.select(fields).sort("-createdAt")
           
           }
       const allUsers = await query.lean()
@@ -888,7 +907,7 @@ module.exports = {
     userRefreshToken,
     getCurrentUser,
     deleteUser,
-    deleteMyUser,
+    deleteAUser,
     updateUser,
     followUser,
     unfollowUser,

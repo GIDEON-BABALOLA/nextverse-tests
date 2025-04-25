@@ -30,3 +30,12 @@
 20250412	18:11:56	8601a9fe-44c7-4432-88ed-a8f34fc34db1	userError: Phone Number Has Been Used
 20250424	17:32:54	eec3b973-affd-4bc7-87c9-0d31c91d92fe	TypeError: Cannot read properties of undefined (reading 'email')
 20250424	17:35:45	43494f19-b8ea-47fa-8039-b7636fb7070c	userError: User Already Exists
+20250425	22:41:07	a1b13408-f21a-4e40-b91a-7d7e52229b46	userError: Phone Number Has Been Used
+20250425	22:51:57	fb6a6993-95d0-4d36-ba95-e1cee35438d2	userError: Phone Number Has Been Used
+20250425	23:02:25	47f85370-ed30-4af5-a1c2-52fe8523b212	userError: Phone Number Has Been Used
+20250425	23:03:56	c0117047-4116-48ec-ac40-15a2399b65c7	userError: Phone Number Has Been Used
+20250425	23:05:39	3908f768-6c67-4684-856e-bd9aad6b3621	userError: Phone Number Has Been Used
+20250425	23:13:06	927298f6-ce48-45c3-bd09-849fc0118c72	MongoServerError: E11000 duplicate key error collection: litenoteDB.users index: username_1 dup key: { username: "_Jessica" }
+20250425	23:53:42	c52743ce-6dc5-4c75-ab7b-5a8b9c8424d0	MongoServerError: E11000 duplicate key error collection: litenoteDB.users index: username_1 dup key: { username: "Mosalah" }
+20250425	23:55:52	68c043ac-aea7-404f-92b6-51a7b8500c21	userError: Username Has Been Used
+20250425	23:57:48	5fbf55a0-a028-4557-af64-094edaff1409	userError: Phone Number Has Been Used

@@ -7,28 +7,37 @@ import { useState, useEffect, useRef } from "react";
 import { MdDelete,  MdClose } from "react-icons/md"
 import "../../styles/components/Dashboard/users-page.css"
 import useWindowSize from "../../hooks/useWindowSize";
+import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import CommonAvatar from "../../components/common/CommonAvatar";
 import { MdVerified } from "react-icons/md";
 import { MdCheckCircle, MdClear } from "react-icons/md";
 import SpecialModal  from "../../components/common/SpecialModal"
 import ErrorMessage from "../../components/common/ErrorMessage";
-import CustomAvatar from "../../components/common/CustomAvatar";
+import DeleteConsent from "../../components/common/DeleteConsent";
+import Toast from "../../components/common/Toast";
+import { useToastContext } from "../../hooks/useToastContext";
 import DashboardPagination from "../../components/Dashboard/common/DashboardPagination";
+import { useDeleteAUser } from "../../hooks/useDeleteAUser";
 import { useGetAllMyUsers } from "../../hooks/useGetAllMyUsers";
 import { useNavigate } from "react-router-dom";
 const UsersPage = ({ sidebarRef}) => {
   const {getAllMyUsers, isLoading, error, data : userData, statusCode, userCount} = useGetAllMyUsers();
+  const {deleteAUser, isLoading : deleteIsLoading, error: deleteError, data: deleteData, statusCode: deleteStatusCode } = useDeleteAUser();
   const navigateToProfile = useNavigateProfile();
   const { width } =useWindowSize()
+  const [paginationCount, setPaginationCount] = useState(0)
   const [openModal, setOpenModal] = useState(false)
+  const [deleteModal, setDeleteModal] = useState(false)
+  const [currentUsername, setCurrentUsername] = useState("")
   const [userToBePreview, setUserToBePreviewed] = useState()
   const [rangeValue, setRangeValue] = useState(0)
-  const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3, 4, 5])
+ const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3])
   const [emptyData, setEmptyData] = useState(false)
   const [currentValue, setCurrentValue] = useState(1);
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResult, setSearchResult] = useState("")
   const [dashboardToast, setDashboardToast] = useState(true)
+  const { showToast } = useToastContext();
   const [tableFilter, setTableFilter] = useState({
     Delete : true,
     Newsletter : true,
@@ -53,12 +62,18 @@ getAllMyUsers(currentValue, 5, "-followers, -following,  -bookmarks, -refreshTok
 setEmptyData(false)
 setSearchResult(userData)
     }
-if(userCount <= 5){
-  setPaginationNumbers([1])
-}else if(userCount > 5 && userCount <= 10){
-  setPaginationNumbers([1, 2])
-}
+    setPaginationCount(userCount)
   }, [userData, userCount])
+  useEffect(() => {
+  if(!isLoading){
+    if(paginationCount <= 5){
+      console.log(paginationCount)
+      setPaginationNumbers([1])
+    }else if(paginationCount > 5 && paginationCount <= 10){
+      setPaginationNumbers([1, 2])
+    }
+  }
+  }, [paginationCount, isLoading])
   useEffect(() => {
     if(userData.length == 0 && !error && currentValue == 1 && userCount == 0){
       setEmptyData(true)
@@ -211,6 +226,27 @@ tableRef.current.style.left = -rangeValue + "%"
 
 }, [rangeValue])
       const [contextMenu, setContextMenu] = useState()
+      const deleteUser = (username) => {
+        console.log(username)
+        deleteAUser(username)
+      }
+      const handleAccountDeletion = () => {
+      deleteAUser(userToBePreview.username)
+      }
+      useEffect(() => {
+if(deleteError){
+  showToast("Error", deleteError.message, false)
+}
+if(Object.keys(deleteData).length !== 0){
+  showToast("Success", deleteData.message, true)
+  setOpenModal(false)
+  setDeleteModal(false)
+  console.log("success")
+  const newData = [...searchResult].filter((user) => user.email !== userToBePreview.email)
+  setSearchResult(newData)
+  setPaginationCount(paginationCount - 1)
+}
+      }, [deleteData, deleteError])
       const previewUserHtml = () => {
         
         return (
@@ -249,7 +285,12 @@ tableRef.current.style.left = -rangeValue + "%"
                     </ul>
                     </div>
                     <div className="preview-user-action-buttons">
-                    <span>Delete User</span>
+                   { 
+                    deleteIsLoading ? 
+                    <span ><LoadingSpinner /></span>
+                    :
+                    <span onClick={() => deleteUser(userToBePreview.username)}>Delete User</span>
+      }
                     <span onClick={() => navigateToProfile(userToBePreview.username)}>View Profile</span>
                     </div>
         </div>
@@ -264,6 +305,7 @@ tableRef.current.style.left = -rangeValue + "%"
 }
   return (
     <>
+
     {isLoading ? 
     <>
     <RotationLoader />
@@ -271,6 +313,14 @@ tableRef.current.style.left = -rangeValue + "%"
      : <>
      { !error &&
    <main className="users-page-phone-help">
+       <DeleteConsent openModal={deleteModal} setOpenModal={setDeleteModal}
+                        title={"Are you sure you want to delete?"}
+                        message={"This action will permanently delete this Account. This cannot be undone"}
+                        buttonText ={"Delete Account"}
+                        deleteFunction={handleAccountDeletion}
+                        isLoading={deleteIsLoading}
+        />
+        <Toast />
    <SpecialModal openModal={openModal} setOpenModal={setOpenModal} content={previewUserHtml()} height={400} width={400}/>
    <div className="litenote-dashboard-right">
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
@@ -312,7 +362,7 @@ type="range" min="0" max="60" value={rangeValue} step="1"/>
   </div>
 </div>
 <div>
-<DashboardPagination paginationNumbers={paginationNumbers} setPaginationNumbers={setPaginationNumbers} userCount={userCount}
+<DashboardPagination paginationNumbers={paginationNumbers} setPaginationNumbers={setPaginationNumbers} userCount={paginationCount}
 currentValue={currentValue}
 setCurrentValue={setCurrentValue}
 />
@@ -417,7 +467,10 @@ setCurrentValue={setCurrentValue}
       { tableFilter.Newsletter && <div  className="users-table-column" data-label="Payment Status">{user.newsletter ? <MdCheckCircle style={{color : "green"}} /> : <MdClear style={{color : "red"}}  /> }</div>}
       {  tableFilter.Delete == true && <div  className="users-table-column" data-label="Payment Status"><MdDelete
       className="users-table-delete-button"
-       size= {20} style={{ padding : "2px"}}/></div>}
+      onClick={() => { setDeleteModal(true); setUserToBePreviewed(user)}}
+       size= {20} style={{ padding : "2px"}}/>
+       <span className="delloader"></span>
+       </div>}
     </li>
   ))
 }

@@ -1,2 +1,5 @@
 20240903	17:29:10	11d85ff7-31d7-4c8c-8f23-8dc34d02a01e	SyntaxError: Unexpected token r in JSON at position 70
 20240903	19:48:17	b87915e1-63ea-48d1-adcd-5f6099e86280	Error: ENOENT: no such file or directory, stat 'C:\Users\user\Desktop\Projects\nextverse\waiting-list\server\controllers\ErrorFiles.zip'
+20250425	23:36:18	4c45078a-8ec8-4b06-852d-9c892e1a7e4b	Error: Not allowed by CORS
+20250425	23:36:20	804725d1-f612-4150-b995-82b6bfda9f7c	Error: Not allowed by CORS
+20250425	23:36:21	94b34ce8-e292-4150-ae7b-e821f11c21a0	Error: Not allowed by CORS

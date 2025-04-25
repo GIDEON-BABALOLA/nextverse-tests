@@ -10,7 +10,7 @@ export const useUpdateANote = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.put(`/note/update-note/${id}`,
+const response = await axiosConfig.patch(`/note/update-note/${id}`,
     {
         title : title,
         content : content

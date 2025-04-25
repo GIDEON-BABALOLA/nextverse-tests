@@ -10,7 +10,7 @@ export const useCommentAStory = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.post(`/story/comment-a-story/${id}`,
+const response = await axiosConfig.patch(`/story/comment-a-story/${id}`,
     {
         comment : comment
     }, 

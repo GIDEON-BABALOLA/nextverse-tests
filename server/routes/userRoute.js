@@ -9,6 +9,7 @@ getCurrentUser,
 uploadUserPicture,
 userRefreshToken,
 deleteUser,
+deleteAUser,
 updateUser,
 followUser,
 getAllUsers,
@@ -34,7 +35,7 @@ router.post("/upload-user-picture", authMiddleware,  uploadProfileImageMiddlewar
 router.post("/follow-user", authMiddleware, followUser)
 router.post("/unfollow-user", authMiddleware, unfollowUser)
 router.post("/duplicate-username", duplicateUsername)
-router.put("/update-user", authMiddleware,  updateUser)
+router.patch("/update-user", authMiddleware,  updateUser)
 router.get("/user-refresh-token", authMiddleware,  userRefreshToken)
 router.get("/get-current-user", authMiddleware, getCurrentUser)
 router.get("/get-a-user/:id", authMiddleware, getAUser)
@@ -46,4 +47,5 @@ router.get("/get-user-stories/:username", authMiddleware, getUserStories)
 router.get("/get-current-user-stories", authMiddleware, getCurrentUserStories)
 router.get("/logout-user",  authMiddleware, logoutUser)
 router.delete("/delete-user", authMiddleware, deleteUser)
+router.delete("/delete-a-user/:username", authMiddleware, isAdministrator,  deleteAUser)
 module.exports = router

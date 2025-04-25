@@ -137,11 +137,26 @@ if(location["*"]  !== ""){
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
           <Route path="bookmarks" element={<BookmarksPage sidebarRef={sidebarRef} />}/>
           <Route path="notifications" element={<NotificationsPage  sidebarRef={sidebarRef} />}/>
-          <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} />}/>
-          <Route path="users" element={<UsersPage sidebarRef={sidebarRef} />}/>
+          <Route path="analytics" element={
+            user?.role == "admin" ? 
+            <AnalyticsPage sidebarRef={sidebarRef} />
+            :
+            <Navigate to="/notfound" replace/>
+            }/>
+          <Route path="users" element={
+            user?.role == "admin" ? 
+            <UsersPage sidebarRef={sidebarRef} />
+            :
+            <Navigate to="/notfound" replace/>
+            }/>
           <Route path="settings" element={<SettingsPage  sidebarRef={sidebarRef} />}/>
           <Route path="publish" element={<PublishPage  sidebarRef={sidebarRef} />}/>
-          <Route path="reports" element={<ReportsPage  sidebarRef={sidebarRef} />}/>
+          <Route path="reports" element={
+            user?.role == "admin" ? 
+            <ReportsPage sidebarRef={sidebarRef} />
+            :
+            <Navigate to="/notfound" replace/>
+            }/>
           <Route path="profile" element={<DashboardProfilePage  sidebarRef={sidebarRef} />}/>
           <Route path="messages" element={<MessagesPage  sidebarRef={sidebarRef} />}/>
         </Route>

@@ -49,12 +49,11 @@ const getWaitingList = async (req, res) => {
     const limitInt = parseInt(req.query.limit, 10);
 
     // Calculate the number of documents to skip
-    const gotUsers = await User.find()
-    .skip(skip) // Skip users for the current page
-    .limit(pageLimit) // Limit the number of users per page
-    .select("-refreshToken") // Exclude the 'refreshToken' field
-    .exec();
-
+    const skip = (pageInt - 1) * limitInt;
+        const waitingList = await WaitingList.find()
+        .limit(limitInt)
+        .skip(skip)
+        .exec();
         const storyCount = await WaitingList.countDocuments();
 if(req.query.page){
     if(skip >= storyCount){
@@ -62,7 +61,7 @@ if(req.query.page){
     }
 }
 
-    res.status(200).json({waitingList : gotUsers, waitingListNumber : storyCount })
+    res.status(200).json({waitingList : waitingList, waitingListNumber : storyCount })
     }catch(error){
         logEvents(`${error.name}: ${error.message}`, "getWaitingListError.txt", "waitingListError")
         if (error instanceof waitingListError) {

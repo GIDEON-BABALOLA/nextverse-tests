@@ -24,7 +24,7 @@ export const useUpdateAUser = () => {
         setIsLoading(true) 
         try{
             setError(null)
-const response = await axiosConfig.put(`/user/update-user`,
+const response = await axiosConfig.patch(`/user/update-user`,
 filteredData,
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds

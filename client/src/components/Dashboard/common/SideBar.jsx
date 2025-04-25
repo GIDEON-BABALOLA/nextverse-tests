@@ -7,7 +7,6 @@ import { MdGridView, MdGroups,
    MdNotifications,
    MdAutoStories, MdPersonOutline, MdReport, MdEmail, MdSettings, MdLogout, MdClose } from 'react-icons/md';
 import { FaHome, FaBookmark } from 'react-icons/fa';
-import { Navigate } from "react-router-dom";
 import NotificationBadge from "../../../components/common/NotificationBadge"
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
@@ -18,10 +17,13 @@ import { MdDynamicFeed } from "react-icons/md";
 import {  useEffect } from 'react';
 import useWindowSize from '../../../hooks/useWindowSize';
 import useImageLoad from '../../../hooks/useImageLoaded';
+import LogoutConsent from "../../../components/common/LogoutConsent"
+import SpecialModal from "../../common/SpecialModal";
 import { useState } from 'react';
 const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    const { notificationsCount, getNotificationsCount } = useGetNotificationsCount();
    const { user } = useAuthContext()
+   const [openModal, setOpenModal] = useState(false)
    const [loading, setLoading] = useState(true)
    const { loaded, error } = useImageLoad("https://res.cloudinary.com/doctr0fct/image/upload/v1715858874/company/lgudp6d1efith51xwyev.png");
    useEffect(() => {
@@ -87,6 +89,9 @@ sidebarRef.current.style.display = "block";
       if(e.target.innerText == "Notifications"){
          getNotificationsCount()
       }
+      if(e.target.innerText == "Logout"){
+         setOpenModal(true)
+      }
       setDashboardToast(false)
       sidebarRef.current.classList.add("litenote-sidebar-aside-close")
 sidebarRef.current.style.display = "block";
@@ -99,6 +104,9 @@ clickSidebarMenu()
    }, [])
   return (
 <>
+<SpecialModal openModal={openModal} setOpenModal={setOpenModal} title="" content={<LogoutConsent
+
+setOpenModal={setOpenModal} />} height={350} width={400}/>
 <aside className="litenote-sidebar-aside"
 
 ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
@@ -141,7 +149,7 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         </Link>
                       
                         
-                      { user.role == "admin" ?  <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}` } 
+                      { user.role == "admin" &&  <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}` } 
                            onClick={dave}
                         >
                         
@@ -149,16 +157,16 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
 
                            <h3 className="litenote-dashboard-h-three"   >Users</h3>
                         </Link>
-                        :   <Navigate to={`/profile/${user.username}`} />
+                     
                       }
 
-                     {  user.role == "admin" ? <Link  to="/dashboard/analytics"  className={`sidebar-links ${currentUrl === "analytics" && "active"}`}
+                     {  user.role == "admin" && <Link  to="/dashboard/analytics"  className={`sidebar-links ${currentUrl === "analytics" && "active"}`}
                         onClick={dave}
                         >
                         <MdBarChart size={24} />
                            <h3 className="litenote-dashboard-h-three">Analytics</h3>
                         </Link>
-                     :   <Navigate to={`/profile/${user.username}`} />
+                     
                      }
                         <Link to="/dashboard/publish" className={`sidebar-links ${currentUrl === "publish" && "active"}`} 
                         
@@ -181,14 +189,13 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                            <h3 className="litenote-dashboard-h-three">Profile</h3>
                         </Link>
                         
-                       {user.role == "admin" ? <Link to="/dashboard/reports" className={`sidebar-links ${currentUrl === "reports" && "active"}`} 
+                       {user.role == "admin" && <Link to="/dashboard/reports" className={`sidebar-links ${currentUrl === "reports" && "active"}`} 
                         
                         onClick={dave}>
                         <MdReport size={24} />
                            <h3 className="litenote-dashboard-h-three">Reports</h3>
                         </Link>
-                        :
-                        <Navigate to={`/profile/${user.username}`} />
+                     
                        }
                
                         <Link to="/dashboard/notifications" className={`sidebar-links ${currentUrl === "notifications" && "active"}`}
@@ -208,11 +215,11 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                            <h3 className="litenote-dashboard-h-three">Settings</h3>
                         </Link>
                         
-                        <Link href="/dashboard/logout"  className={`sidebar-links ${currentUrl === "logout" && "active"}`}
+                        <Link href="/dashboard/logout"  className={`sidebar-links special-modal-client ${currentUrl === "logout" && "active"}`}
                            onClick={dave}
                            >
-                        <MdLogout size={24} />
-                           <h3 className="litenote-dashboard-h-three">Logout</h3>
+                        <MdLogout size={24} className="special-modal-client"/>
+                           <h3 className="litenote-dashboard-h-three special-modal-client">Logout</h3>
                         </Link>
                        
                     </div>

@@ -10,7 +10,7 @@ export const useUnLikeAStory = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.put(`/story/unlike-a-story/${id}`,
+const response = await axiosConfig.patch(`/story/unlike-a-story/${id}`,
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"]) //times out after 10 seconds
     }

@@ -128,3 +128,4 @@
 20240903	07:46:03	1678cec5-d474-484c-a145-eea3769ed59c	waitingListError: You Have Already Subscribed To Our Newsletter
 20240903	07:46:14	828d7087-fa3e-42b7-939a-23510a582874	waitingListError: You Have Already Subscribed To Our Newsletter
 20240903	07:46:16	7e65ef0b-f218-4d1f-826f-787e129eb584	waitingListError: You Have Already Subscribed To Our Newsletter
+20250425	23:43:39	094929b1-ff32-4eb8-ac73-edbd9df22ba5	waitingListError: You Have Already Subscribed To Our Newsletter

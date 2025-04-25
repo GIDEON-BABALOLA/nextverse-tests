@@ -10,7 +10,7 @@ export const useShareANote = () => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
-const response = await axiosConfig.put(`/note/share-note/${id}`,
+const response = await axiosConfig.patch(`/note/share-note/${id}`,
     {
         email : email
     }, 
