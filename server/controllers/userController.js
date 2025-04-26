@@ -629,10 +629,12 @@ const deleteUser = async (req, res) => {
 const deleteAUser = async (req, res) => {
     const { username } = req.params;
     try{
-        const oldUser = await User.findOneAndDelete({username: username})
-        if(oldUser.role == "admin"){
-            throw new userError("You Cannot Delete The Account Of An Administrator")
+        const checkUser = await User.findOne({username : username})
+        console.log(checkUser)
+        if(checkUser.role == "admin"){
+            throw new userError("You Cannot Delete The Account Of An Administrator", 404)
         }
+        const oldUser = await User.findOneAndDelete({username: username})
         if(!oldUser){
             throw new userError("Your Account Does Not Exist", 404)
         }
