@@ -65,6 +65,7 @@ const bruteForceLimiter = rateLimit({
 		res.status(options.statusCode).json({message : "You Have Tried Incorrect Combinations Many Time, Pls Wait For A Minute"}),
 })
 const isAdministrator = async (req, res, next) => {
+    try{
     if(req.user.role === "admin"){
         next()  
     }
@@ -72,7 +73,12 @@ const isAdministrator = async (req, res, next) => {
         return res.status(404).json({"message" : "You are not an admin", "success": false})
     }
 }
+catch(err){
+    return res.status(500).json({message : "Internal Server Error"})
+}
+}
 const isDeveloper = async (req, res, next) => {
+    try{
     if(req.user && req.user.role === "developer"){
         next()  
     }
@@ -80,7 +86,12 @@ const isDeveloper = async (req, res, next) => {
         return res.status(404).json({"message" : "You are not a Developer For Litenote", "success": false})
     }
 }
+catch(err){
+    return res.status(500).json({message : "Internal Server Error"})
+}
+}
 const isDesigner = async (req, res, next) => {
+    try{
     
     if(req.user && req.user.role === "designer"){
         next()  
@@ -89,12 +100,21 @@ const isDesigner = async (req, res, next) => {
         return res.status(404).json({"message" : "You are not a Designer For Litenote", "success": false})
     }
 }
+catch(err){
+    return res.status(500).json({message : "Internal Server Error"})
+}
+}
 const isUser = async (req, res, next) => {
+    try{
     if(req.user && req.user.role === "user"){
         next()  
     }
     else{
         return res.status(404).json({"message" : "You are not a User", "success": false})
     }
+}
+catch(err){
+    return res.status(500).json({message : "Internal Server Error"})
+}
 }
 module.exports = { authMiddleware, isAdministrator, isDeveloper, isDesigner, isUser, bruteForceLimiter }

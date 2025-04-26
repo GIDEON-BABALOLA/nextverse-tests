@@ -28,7 +28,6 @@ const UsersPage = ({ sidebarRef}) => {
   const [paginationCount, setPaginationCount] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [deleteModal, setDeleteModal] = useState(false)
-  const [currentUsername, setCurrentUsername] = useState("")
   const [userToBePreview, setUserToBePreviewed] = useState()
   const [rangeValue, setRangeValue] = useState(0)
  const [paginationNumbers, setPaginationNumbers] = useState([1, 2, 3])
@@ -247,6 +246,13 @@ if(Object.keys(deleteData).length !== 0){
   setPaginationCount(paginationCount - 1)
 }
       }, [deleteData, deleteError])
+      useEffect(() => {
+if(!isLoading){
+  if(searchResult.length == 0 && currentValue > 1){
+    setCurrentValue(currentValue - 1)
+    }
+}
+      }, [searchResult, isLoading, currentValue])
       const previewUserHtml = () => {
         
         return (
@@ -280,8 +286,10 @@ if(Object.keys(deleteData).length !== 0){
                       <li className="preview-user-container-full-details">{userToBePreview.totalfollowing} following</li>
                       <li className="preview-user-container-full-details">{userToBePreview.mobile} mobile</li>
                       <li className="preview-user-container-full-details">{userToBePreview.storyCount} stories</li>
+                      <li className="preview-user-container-full-details">{userToBePreview.status == true ? "Status Verified" : "Status Unverified"}</li>
                       <li className="preview-user-container-full-details">{userToBePreview.updatedAt.split("T")[0]} Last-Seen</li>
                       <li className="preview-user-container-full-details">{userToBePreview.createdAt.split("T")[0]} Date-Joined</li>
+                      
                     </ul>
                     </div>
                     <div className="preview-user-action-buttons">
@@ -424,6 +432,7 @@ setCurrentValue={setCurrentValue}
       {  tableFilter.Stories && <div  className="users-table-column">Stories</div>}
       {  tableFilter.dateJoined && <div  className="users-table-column">Date-Joined</div>}
       {  tableFilter.lastSeen && <div  className="users-table-column">Last-Seen</div>}
+      
     {  tableFilter.Newsletter && <div  className="users-table-column">Newsletter</div>}
       {  tableFilter.Delete && <div  className="users-table-column">Delete</div>}
 

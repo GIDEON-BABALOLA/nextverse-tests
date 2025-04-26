@@ -39,3 +39,6 @@
 20250425	23:53:42	c52743ce-6dc5-4c75-ab7b-5a8b9c8424d0	MongoServerError: E11000 duplicate key error collection: litenoteDB.users index: username_1 dup key: { username: "Mosalah" }
 20250425	23:55:52	68c043ac-aea7-404f-92b6-51a7b8500c21	userError: Username Has Been Used
 20250425	23:57:48	5fbf55a0-a028-4557-af64-094edaff1409	userError: Phone Number Has Been Used
+20250426	21:19:38	a56edcf6-6bdc-4bd1-a0db-876305aed504	userError: User Already Exists
+20250426	21:19:48	53b8d46d-bee5-40d9-b513-893b7e32d5b0	userError: User Already Exists
+20250426	21:19:55	b075814e-c422-4dcb-ac3f-166cbb500697	userError: User Already Exists

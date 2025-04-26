@@ -12,6 +12,7 @@ setLoading(true)
     }
   
     if (loaded === true) {
+      console.log("how")
     setLoading(false)
     }
   }, [loaded, error])
