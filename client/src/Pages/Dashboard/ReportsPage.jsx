@@ -2,6 +2,7 @@ import DashboardToast from "../../components/common/DashboardToast"
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import RotationLoader from "../../components/Loaders/RotationLoader"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { useGetAllReports } from "../../hooks/useGetAllReports";
 import { FaStar, FaRegStar, FaEllipsis} from "react-icons/fa6";
 import { MdSaveAlt, MdReport, MdChecklist, MdClose, MdDelete, MdSave, MdAssignmentTurnedIn
  } from "react-icons/md"
@@ -11,16 +12,21 @@ import "../../styles/components/Reports/reports-page.css"
 import React from "react";
 import Calendar from "../../components/common/Calendar"
 const ReportsPage = ({ sidebarRef}) => {
+  const  {getAllReports, isLoading, error, data: reportData, reportCount} = useGetAllReports();
   const reportsListContainer = useRef()
-  const [loadPage, setLoadPage] = useState(true)
+  const [loadPage, setLoadPage] = useState(false)
   const [timeLineHeight, setTimeLineHeight] = useState("")
   const [dashboardToast, setDashboardToast] = useState(true)
   useEffect(() => {
+    getAllReports(1, 3)
     setTimeout(() => {
-      setLoadPage(false)
-      setTimeLineHeight( reportsListContainer.current.offsetHeight + "px")
+      setTimeLineHeight( reportsListContainer.current.offsetHeight + "px")      
     }, 2000);
       }, [])
+      useEffect(() => {
+console.log(reportCount);
+console.log(reportData)
+      }, [reportData, reportCount])
       const [contextMenu, setContextMenu] = useState()
   return (
     <>
@@ -155,6 +161,8 @@ const ReportsPage = ({ sidebarRef}) => {
     <div className="litenote-dashboard-right reports-page-right">
     
     <DashboardHeader sidebarRef={sidebarRef} contextMenu={contextMenu} setContextMenu={setContextMenu}/>
+    </div>
+    <div className="litenote-dashboard-right reports-page-right" style={{marginTop : "30px"}}>
  
   <Calendar />
     </div>

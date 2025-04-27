@@ -10,8 +10,6 @@ const corsOptions = require(path.join(__dirname, "config", "corsConfig.js"))
 const userRouter = require(path.join(__dirname,  "routes", "userRoute.js"))
 const storyRouter = require(path.join(__dirname,  "routes", "storyRoute.js"))
 const noteRouter = require(path.join(__dirname,  "routes", "noteRoute.js"))
-const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
-const designerRouter = require(path.join(__dirname,  "routes", "designerRoute.js"))
 const fixRouter = require(path.join(__dirname,  "routes", "fixRoute.js"))
 const newsletterRouter = require(path.join(__dirname,  "routes", "newsletterRoute.js"))
 const notificationRouter = require(path.join(__dirname,  "routes", "notificationRoute.js"))
@@ -43,8 +41,6 @@ app.use((err, req, res, next) => {
   });
   
 app.use("/api/user", userRouter);
-app.use("/api/developer", developerRouter);
-app.use("/api/designer", designerRouter);
 app.use("/api/story", storyRouter); 
 app.use("/api/note", noteRouter); 
 app.use("/api/newsletter", newsletterRouter); 

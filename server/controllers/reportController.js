@@ -43,16 +43,19 @@ catch(error){
 }
 }
 const getAllReports = async(req, res) => {
-    const { page, limit, date} = req.query;
+    const { page, limit} = req.query;
+    const pageInt = parseInt(page, 10);
+    const limitInt = parseInt(limit, 10);
+    const skip = (pageInt - 1) * limit;
 try{
-    const reports = await Report.find({ user: req.user._id, category : category })
-    .populate("actor", "picture bio username")
-    .populate("referenceId",  category == "profile" ? "picture bio username" : "title") // Populate user or story details
+    const reports = await Report.find()
+    .populate("userId", "picture bio username email")
     .sort({ createdAt: -1 })
     .skip(skip)
-    .limit(limit)
+    .limit(limitInt)
     .lean()
-
+    const reportCount = await Report.countDocuments();
+    return res.status(200).json({message : "Successfully Retrieved All Reports", reports : reports, reportCount : reportCount})
 }
 catch(error){
     console.log(error)

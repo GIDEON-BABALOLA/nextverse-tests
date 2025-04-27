@@ -8,12 +8,13 @@ const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const Notification = require(path.join(__dirname, "..", "models", "notificationModel.js"))
+const Newsletter = require(path.join(__dirname, "..", "models", "newsletterModel.js"))
+const Report = require(path.join(__dirname, "..", "models", "reportModel.js"))
+const Note = require(path.join(__dirname, "..", "models", "noteModel.js"))
 const { userError, cloudinaryError, validatorError, notificationError,  emailError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const _ = require('lodash');
 const jwt = require("jsonwebtoken")
 const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "utils", "validator.js"))
-
-const { Console } = require("console");
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
@@ -605,15 +606,36 @@ const deleteUser = async (req, res) => {
             throw new userError("Your Account Does Not Exist", 404)
         }
         const oldUser = await User.findOneAndDelete({_id: req.user._id})
+        if(!oldUser){
+            throw new userError("Your Account Does Not Exist", 404)
+        }
         const cloudinaryExists =  await cloudinaryCheckIfFolderExists("User", oldUser.email)
         if(oldUser.picture.length > 0 && cloudinaryExists){
             await cloudinaryDelete(oldUser.email)
         }
-        if(!oldUser){
-            throw new userError("Your Account Does Not Exist", 404)
-        }
-        res.status(200).json({message : "Successfully Deleted Your Account", user : oldUser})
+//deleting users part in any models
+// storyModel
+// reportModel
+// newsletterModel
+// noteModel
+// notificationModel
+await Promise.all([
+    Story.deleteMany({ userId: req.user._id }),
+    Report.deleteMany({ userId: req.user._id }),
+    Newsletter.findOneAndDelete({ email: req.user.email }),
+    Note.deleteMany({ userId: req.user._id }),
+    Notification.deleteMany({ user: req.user._id }),
+    Notification.deleteMany({ actor: req.user._id })
+  ]);
+const oldUserSharedNotes =  await Note.find({ "owners.userId": req.user._id });
+if (oldUserSharedNotes.length > 0) {
+    await Promise.all(
+        oldUserSharedNotes.map(note => Note.removeNote(req.user._id, note._id, "owner"))
+    );
+}
+res.status(200).json({message : "Successfully Deleted Your Account", user : oldUser})
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "deleteUserError.txt", "userError")
          if(error instanceof userError){
             return res.status(error.statusCode).json({ message : error.message})
@@ -630,19 +652,38 @@ const deleteAUser = async (req, res) => {
     const { username } = req.params;
     try{
         const checkUser = await User.findOne({username : username})
-        console.log(checkUser)
         if(checkUser.role == "admin"){
             throw new userError("You Cannot Delete The Account Of An Administrator", 404)
         }
         const oldUser = await User.findOneAndDelete({username: username})
         if(!oldUser){
-            throw new userError("Your Account Does Not Exist", 404)
+            throw new userError("This User Account Does Not Exist", 404)
         }
         const cloudinaryExists =  await cloudinaryCheckIfFolderExists("User", oldUser.email)
         if(oldUser.picture.length > 0 && cloudinaryExists){
             await cloudinaryDelete(oldUser.email)
         }
-        res.status(200).json({message : "Successfully Deleted User Account", user : oldUser})
+//deleting users part in any models
+// storyModel
+// reportModel
+// newsletterModel
+// noteModel
+// notificationModel
+await Promise.all([
+    Story.deleteMany({ userId: req.user._id }),
+    Report.deleteMany({ userId: req.user._id }),
+    Newsletter.findOneAndDelete({ email: req.user.email }),
+    Note.deleteMany({ userId: req.user._id }),
+    Notification.deleteMany({ user: req.user._id }),
+    Notification.deleteMany({ actor: req.user._id })
+  ]);
+const oldUserSharedNotes =  await Note.find({ "owners.userId": req.user._id });
+if (oldUserSharedNotes.length > 0) {
+    await Promise.all(
+        oldUserSharedNotes.map(note => Note.removeNote(req.user._id, note._id, "owner"))
+    );
+}
+res.status(200).json({message : "Successfully Deleted User Account", user : oldUser})
     }
     catch(error){
         console.log(error)

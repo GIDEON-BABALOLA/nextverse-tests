@@ -9,7 +9,7 @@ import LoadingSpinner from "../Loaders/LoadingSpinner"
 const Report = ({ setOpenModal }) => {
   const { username } = useParams();
   const { createAReport, isLoading, error, data, statusCode } = useCreateAReport();
-  const [content, setContent] = useState();
+  const [content, setContent] = useState("");
   const { showToast } = useToastContext()
    const [category, setCategory] = useState({
         "harrasment or bullying" : false,
@@ -36,6 +36,7 @@ if(error){
 console.log(data)
 if(Object.keys(data).length !== 0 && statusCode == 201) {
   showToast("Success", data.message, true)
+  setContent("")
   setOpenModal(false)
 }
       }, [data, statusCode, error])

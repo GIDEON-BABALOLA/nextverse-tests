@@ -296,7 +296,14 @@ if(req.query.page){
     // }
 }
 const allStories = await query.populate('userId', 'username picture').lean();
-const enrichedFeed = allStories.map((story) => ({
+const cleanedStories = allStories.filter(story => {
+    // Remove stories with empty objects, null or undefined values, and null/undefined _id
+    return Object.keys(story).length > 0 && 
+           story._id != null && 
+           !Object.values(story).includes(null) && 
+           !Object.values(story).includes(undefined);
+  });
+const enrichedFeed = cleanedStories.map((story) => ({
   ...story,
   picture : story.picture[Math.floor(Math.random() * story.picture.length)],
   isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),
@@ -467,7 +474,14 @@ try{
     else{
         foundStories = await Story.find({ category : category}).populate('userId', 'username picture').lean()
     }
-    const enrichedPopularStories = foundStories.map((story) => ({
+    const cleanedStories = foundStories.filter(story => {
+        // Remove stories with empty objects, null or undefined values, and null/undefined _id
+        return Object.keys(story).length > 0 && 
+               story._id != null && 
+               !Object.values(story).includes(null) && 
+               !Object.values(story).includes(undefined);
+      });
+    const enrichedPopularStories = cleanedStories.map((story) => ({
         ...story,
         picture : story.picture[Math.floor(Math.random() * story.picture.length)],
         isLiked: story.likes.some((like) => like.likedBy.toString() == userId.toString()),
