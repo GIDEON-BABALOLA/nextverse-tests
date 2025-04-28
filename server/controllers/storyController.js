@@ -296,6 +296,7 @@ if(req.query.page){
     // }
 }
 const allStories = await query.populate('userId', 'username picture').lean();
+console.log(allStories)
 const cleanedStories = allStories.filter(story => {
     // Remove stories with empty objects, null or undefined values, and null/undefined _id
     return Object.keys(story).length > 0 && 
@@ -303,6 +304,7 @@ const cleanedStories = allStories.filter(story => {
            !Object.values(story).includes(null) && 
            !Object.values(story).includes(undefined);
   });
+  console.log(cleanedStories.length)
 const enrichedFeed = cleanedStories.map((story) => ({
   ...story,
   picture : story.picture[Math.floor(Math.random() * story.picture.length)],
@@ -439,7 +441,14 @@ const getSuggestedStories = async (req, res) => {
 const skip = (page - 1) * limit;
 query = query.skip(skip).limit(limit);
 const suggestedStories = await query.populate('userId', 'username picture').lean();
-const enrichedStorySuggestions = suggestedStories.map((story) => ({
+const cleanedStories = suggestedStories.filter(story => {
+    // Remove stories with empty objects, null or undefined values, and null/undefined _id
+    return Object.keys(story).length > 0 && 
+           story._id != null && 
+           !Object.values(story).includes(null) && 
+           !Object.values(story).includes(undefined);
+  });
+const enrichedStorySuggestions = cleanedStories.map((story) => ({
     ...story,
     picture : story.picture[Math.floor(Math.random() * story.picture.length)],
     isLiked: story.likes.some((like) => like.likedBy.toString() == req.user._id.toString()),

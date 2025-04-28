@@ -71,8 +71,7 @@ trendingContentRef.current.innerText = derived.slice(0, 60) + "..."
                <div><b>Trending in {trending.category}</b> <span style={{color : ""}}> - &nbsp;
 <span>
 {  
-  formatDistanceToNow(new Date(trending.date.year, getMonthNumber(`${trending.date.month.toLowerCase()}`),
-   trending.date.day), { addSuffix: true })
+  formatDistanceToNow(trending.createdAt, { addSuffix: true })
 
    }</span>
                {/* {trending.date} */}

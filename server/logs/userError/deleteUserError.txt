@@ -10,3 +10,4 @@
 20250330	16:05:15	86d62c61-d710-4812-beaa-7ee57709bf58	userError: Your Account Does Not Exist
 20250330	16:20:50	e4768145-7c71-4a61-b75e-bce7245cd788	cloudinaryError: Unable To Delete Your Picture, Check Internet Connection
 20250330	16:23:49	909b1df0-8788-4bdb-b7eb-46b0b0ea502a	cloudinaryError: Unable To Delete Your Picture, Check Internet Connection
+20250427	18:58:49	00bca9a6-84ff-4f6a-a5c5-e2bb94f5cf35	userError: You are an Administrator, therefore you can't delete your account

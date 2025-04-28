@@ -1,8 +1,19 @@
 
 import { MdChevronRight, MdChevronLeft } from "react-icons/md";
+import { useGetAllReportsStatistics } from "../../hooks/useGetAllReportsStatistics"
 import "../../styles/components/common/calendar.css"
 import { useRef, useEffect, useState } from "react"
-const Calendar = () => {
+const Calendar = ({ allReportCount, setAllReportCount }) => {
+    const { getAllReportsStatistics, isLoading, error,  statusCode, reportCount } = useGetAllReportsStatistics()
+    useEffect(() => {
+getAllReportsStatistics()
+    }, [])
+    useEffect(() => {
+console.log(reportCount)
+if(Object.keys(reportCount).length !== 0){
+    setAllReportCount(reportCount)
+}
+    }, [reportCount])
     let date = new Date()
     const daysTag= useRef()
     const currentDate = useRef()
@@ -93,13 +104,13 @@ ref={daysTag}
 </ul>
 </div>
 
-<div className="more-calendar-details">
+{/* <div className="more-calendar-details">
 <div className="more-today">Today&nbsp;&nbsp;<span style={{color : "#7380EC", fontWeight : "bolder"}}>|</span></div>
 <div className="more-calendar-time-details">
 <span className="more-time">{currentTime}</span>
 <span style={{textAlign : "left"}}>{`${days[date.getDay()]}, ${" "} ${months[date.getMonth()]} ${" "} ${date.getDay()}, ${date.getFullYear()}`}</span>
 </div>
-</div>
+</div> */}
 <div style={{display : "flex", flexDirection : "row", justifyContent : 'center'}}>
 <hr style={{width : "250px"}}/>
 </div>
@@ -111,7 +122,7 @@ ref={daysTag}
 <div className="reports-analytics-container">
     <div className="reports-analytics-container-child"  >
     <div>
-        <span style={{fontSize : "1.4rem", marginRight : "10px", flex : 1}}>50:00</span>
+        <span style={{fontSize : "1.4rem", marginRight : "10px", flex : 1}}>{allReportCount.totalReports}</span>
         <span style={{color : "#7380EC", fontWeight : "bolder", fontSize : "2rem"}} >|</span>
         </div>
         <div className="reports-child-child">
@@ -122,7 +133,7 @@ ref={daysTag}
     </div>
     <div  className="reports-analytics-container-child">
     <div>
-        <span style={{fontSize : "1.4rem", marginRight : "10px", flex : 1}}>20:00</span>
+        <span style={{fontSize : "1.4rem", marginRight : "10px", flex : 1}}>{allReportCount.clearedReports}</span>
         <span style={{color : "#166534", fontWeight : "bolder", fontSize : "2rem"}} >|</span>
         </div>
         <div className="reports-child-child">
@@ -132,11 +143,22 @@ ref={daysTag}
     </div>
     <div  className="reports-analytics-container-child">
     <div>
-        <span style={{fontSize : "1.4rem", marginRight : "10px"}}>30:00</span>
+        <span style={{fontSize : "1.4rem", marginRight : "10px"}}>{allReportCount.openedReports}</span>
         <span style={{color : "#991B1B", fontWeight : "bolder", fontSize : "2rem"}} >|</span>
         </div>
         <div className="reports-child-child">
         <span style={{color : "#aaa"}}    >Active Reports</span>
+        <span>Reports Unanswered</span>
+        </div>
+       
+    </div>
+    <div  className="reports-analytics-container-child">
+    <div>
+        <span style={{fontSize : "1.4rem", marginRight : "10px"}}>{allReportCount.pendingReports}</span>
+        <span style={{color : "orange", fontWeight : "bolder", fontSize : "2rem"}} >|</span>
+        </div>
+        <div className="reports-child-child">
+        <span style={{color : "#aaa"}}> Pending Reports</span>
         <span>Reports Unanswered</span>
         </div>
        

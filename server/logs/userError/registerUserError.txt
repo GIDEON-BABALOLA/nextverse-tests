@@ -42,3 +42,7 @@
 20250426	21:19:38	a56edcf6-6bdc-4bd1-a0db-876305aed504	userError: User Already Exists
 20250426	21:19:48	53b8d46d-bee5-40d9-b513-893b7e32d5b0	userError: User Already Exists
 20250426	21:19:55	b075814e-c422-4dcb-ac3f-166cbb500697	userError: User Already Exists
+20250427	18:46:20	e82496fe-8474-4aea-aa20-6192d89b6cb6	userError: Username Has Been Used
+20250427	18:55:39	d64ab29e-5dce-4d93-a8c5-1cb5c4e9a9bf	userError: Phone Number Has Been Used
+20250427	18:55:56	aa83c0b7-766e-4b0f-87da-f2e37d86d166	userError: Username Has Been Used
+20250427	18:57:08	7ddd2683-90e8-4815-b2b6-3ac45e928b62	userError: Username Has Been Used

@@ -1,8 +1,10 @@
 const express = require("express")
 const path = require("path")
 const router = express.Router()
-const { createReport, getAllReports } = require(path.join(__dirname, "..", "controllers", "reportController.js"))
-const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
-router.get("/get-all-reports", authMiddleware,  getAllReports)
+const { createReport, getAllReports, getAllReportsStatistics, updateReport } = require(path.join(__dirname, "..", "controllers", "reportController.js"))
+const { authMiddleware, isAdministrator } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
+router.get("/get-all-reports", authMiddleware, isAdministrator, getAllReports)
+router.get("/get-all-reports-statistics", authMiddleware, isAdministrator,  getAllReportsStatistics)
+router.put("/update-a-report/:id", authMiddleware, isAdministrator, updateReport)
 router.post("/create-report", authMiddleware, createReport)
 module.exports = router

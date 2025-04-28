@@ -605,6 +605,13 @@ const deleteUser = async (req, res) => {
         if(req.user == null){
             throw new userError("Your Account Does Not Exist", 404)
         }
+        const checkUser = await User.findById(req.user._id)
+        if(!checkUser){
+            throw new userError("Your Account Does Not Exist", 404)
+        }
+        if(checkUser.role == "admin"){
+            throw new userError("You are an Administrator, therefore you can't delete your account", 404)
+        }
         const oldUser = await User.findOneAndDelete({_id: req.user._id})
         if(!oldUser){
             throw new userError("Your Account Does Not Exist", 404)
@@ -652,6 +659,9 @@ const deleteAUser = async (req, res) => {
     const { username } = req.params;
     try{
         const checkUser = await User.findOne({username : username})
+        if(!checkUser){
+            throw new userError("This User Account Does Not Exist", 404)
+        }
         if(checkUser.role == "admin"){
             throw new userError("You Cannot Delete The Account Of An Administrator", 404)
         }
@@ -670,17 +680,17 @@ const deleteAUser = async (req, res) => {
 // noteModel
 // notificationModel
 await Promise.all([
-    Story.deleteMany({ userId: req.user._id }),
-    Report.deleteMany({ userId: req.user._id }),
-    Newsletter.findOneAndDelete({ email: req.user.email }),
-    Note.deleteMany({ userId: req.user._id }),
-    Notification.deleteMany({ user: req.user._id }),
-    Notification.deleteMany({ actor: req.user._id })
+    Story.deleteMany({ userId: oldUser._id }),
+    Report.deleteMany({ userId: oldUser._id }),
+    Newsletter.findOneAndDelete({ email: oldUser.email }),
+    Note.deleteMany({ userId: oldUser._id }),
+    Notification.deleteMany({ user: oldUser._id }),
+    Notification.deleteMany({ actor: oldUser._id })
   ]);
-const oldUserSharedNotes =  await Note.find({ "owners.userId": req.user._id });
+const oldUserSharedNotes =  await Note.find({ "owners.userId": oldUser._id });
 if (oldUserSharedNotes.length > 0) {
     await Promise.all(
-        oldUserSharedNotes.map(note => Note.removeNote(req.user._id, note._id, "owner"))
+        oldUserSharedNotes.map(note => Note.removeNote(oldUser._id, note._id, "owner"))
     );
 }
 res.status(200).json({message : "Successfully Deleted User Account", user : oldUser})
