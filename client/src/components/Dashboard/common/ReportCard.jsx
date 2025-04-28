@@ -9,6 +9,9 @@ const ReportCard = ({ report, isLoading, setReports, setAllReportCount }) => {
   const { showToast } = useToastContext();
   const {updateAReport, isLoading : updateIsLoading, error, data : updateData, statusCode} = useUpdateAReport();
   const updateReport = (id, status) => {
+    if(status == "closed"){
+      updateAReport(id, "opened")
+    }
     if(status == "opened"){
     updateAReport(id, "pending")
     }
@@ -31,9 +34,9 @@ setReports((prev) => (
 ))
 setAllReportCount((prev) => {
         return {...prev,
-          clearedReports : updateData.report.status == "closed" ? prev.clearedReports + 1 : prev.clearedReports,
-          openedReports : updateData.report.status == "closed" || updateData.report.status == "pending" ? prev.openedReports - 1 :  prev.openedReports,
-          pendingReports :updateData.report.status == "pending" ? prev.pendingReports + 1 : prev.pendingReports
+          clearedReports : updateData.counts.clearedReports,
+          openedReports : updateData.counts.openedReports,
+          pendingReports :updateData.counts.pendingReports
         }
 })
 showToast("Success", updateData.message, true)

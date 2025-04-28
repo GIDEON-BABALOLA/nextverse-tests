@@ -115,7 +115,21 @@ const updateReport = async(req, res) => {
             {
                 new : true
             })
-        res.status(200).json({message : "Successfully Updated Report", report : updatedReport})
+            const totalReports = await Report.countDocuments();
+            const clearedReports = await Report.countDocuments({ status : "closed"})
+            const openedReports =  await Report.countDocuments({ status : "opened"})
+            const pendingReports = await Report.countDocuments({ status : "pending"})
+            res.status(200).json({
+                message: "Successfully Updated Report",
+                report: updatedReport,
+                counts: {
+                  totalReports,
+                  clearedReports,
+                  openedReports,
+                  pendingReports
+                }
+              });
+              
     }
     catch(error){
         console.log(error)

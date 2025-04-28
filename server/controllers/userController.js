@@ -18,7 +18,7 @@ const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
-const { generateEmailContent, sendEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
+const { generateEmailContent, sendVerificationEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 //User Registration
 const duplicateUsername = async (req, res) => {
@@ -93,30 +93,12 @@ if(req.file){
     profilePicture = avatars[Math.floor((Math.random() * 50) + 1)]
 }
 
-
+let minute = 5;
 const hashedPassword = await bcrypt.hash(password, 10);
  const otp = otpGenerator(4)
  const token = crypto.randomBytes(32).toString("hex")
  const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
- const minute = 5
- let values = {
-    code : otp,
-    token : token,
-    email : email,
-    minute : minute,
-    frontendUrl : process.env.LITENOTE_FRONTEND_URL,
-};
- const emailContent = await generateEmailContent(
-values,
-path.join(__dirname, "..", "views", "confirmEmail.ejs")
-)
-const data = {
-  to: email,
-  subject: 'Verify Your Account',
-  html: emailContent,
-  text: 'Litenote Needs To Confirm Your Email Address'
-}; 
-await sendEmail(data)
+await sendVerificationEmail(email,  otp, process.env.LITENOTE_FRONTEND_URL, token, process.env.LITENOTE_VERIFICATION_EMAIL, minute)
 const newUser = await User.create({ 
     username, 
     email, 
@@ -255,7 +237,7 @@ const resendUserVerification = async (req, res) => {
          html: emailContent,
          text: 'Litenote Needs To Confirm Your Email Address'
        }; 
-       await sendEmail(data)
+       await sendVerificationEmail(data)
 user.verificationToken = verificationToken;
 user.verificationCode = otp;
 user.verificationTokenExpires = time;

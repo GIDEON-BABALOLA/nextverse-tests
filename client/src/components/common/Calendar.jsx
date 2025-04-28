@@ -159,7 +159,7 @@ ref={daysTag}
         </div>
         <div className="reports-child-child">
         <span style={{color : "#aaa"}}> Pending Reports</span>
-        <span>Reports Unanswered</span>
+        <span>Reports in Progress</span>
         </div>
        
     </div>

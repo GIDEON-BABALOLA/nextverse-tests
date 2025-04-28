@@ -46,3 +46,9 @@
 20250427	18:55:39	d64ab29e-5dce-4d93-a8c5-1cb5c4e9a9bf	userError: Phone Number Has Been Used
 20250427	18:55:56	aa83c0b7-766e-4b0f-87da-f2e37d86d166	userError: Username Has Been Used
 20250427	18:57:08	7ddd2683-90e8-4815-b2b6-3ac45e928b62	userError: Username Has Been Used
+20250428	18:47:33	0acc0405-87dc-45a5-8a72-19557dd10c0d	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20250428	18:48:51	d2dd4553-7d1f-483b-a1e3-d61678524c2a	TypeError: sendVerificationEmail is not a function
+20250428	18:50:00	2ab5ed60-1a82-4470-a6c9-a358ed610ada	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20250428	18:52:41	957b4d73-9ceb-48de-b7b8-ea45f7fb4005	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20250428	18:58:01	5ad75789-d180-400a-979c-4018cb98c55a	ReferenceError: minute is not defined
+20250428	19:00:03	a997acd4-3768-4fa9-aa0a-05215f5d8881	userError: Username Has Been Used

@@ -45,6 +45,8 @@ const [allReportCount, setAllReportCount] = useState(initialReportCount)
       }, [page, limit])
       useEffect(() => {
         if(reports.length === reportCount && reportCount > 0){
+          console.log(reportCount);
+          
           setPreventLoadMore(true)
         }
           }, [reports, reportCount])
@@ -118,6 +120,7 @@ if(reportData.length > 0){
       useEffect(() => {
 console.log(reports)
       },[reports])
+      
   return (
     <>
     <Toast />
@@ -147,7 +150,7 @@ resendRequest()
   />
 </div> :
 <>
-<div className= "vertical-line" style={{height : timeLineHeight }}></div>
+<div className= "vertical-line" style={{height : timeLineHeight }} />
 <section ref={reportsListContainer}>
  {
   reports.map((report, index) => (
@@ -166,14 +169,16 @@ setAllReportCount={setAllReportCount}
        ))
    
      }
+     { !preventLoadMore && <div ref={lastItemRef} style={{margin : "40px 0px"}} >load more</div> }
 </section>
 </>
 }
+
 </section>
 
 </div>
-<div ref={lastItemRef} style={{margin : "20px 0px"}} />
    </section>
+   
 }
 {error && <>
 
