@@ -1,47 +1,20 @@
 const path = require("path")
 const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const mongoose = require('mongoose'); // Erase if already required
-
-const commentSchema = new mongoose.Schema({
-    comment: {
-        type: String,
-        required: true,
-    },
-    commentBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    date : {
-        type : Date,
-        required : true
-    }
-});
-
 const likeSchema = new mongoose.Schema({
-    likedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    }
-});
+    likedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
+},  { timestamps: { createdAt: true, updatedAt: false } });
 const viewsSchema = new mongoose.Schema({
-    likedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    }
-});
+    viewedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
+},  { timestamps: { createdAt: true, updatedAt: false } });
+const commentSchema = new mongoose.Schema({
+    comment: { type: String, required: true },
+    commentBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+},  { timestamps: { createdAt: true, updatedAt: false } });
 const bookmarkSchema = new mongoose.Schema({
-    bookmarkBy : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "User",
-        required : true
-    }
-},
-    {
-        timestamps: { createdAt: true, updatedAt: false } // Enable createdAt, disable updatedAt
-    })
+    bookmarkBy : { type : mongoose.Schema.Types.ObjectId, ref : "User", required : true}
+},  { timestamps: { createdAt: true, updatedAt: false }  })
+
 const storySchema = new mongoose.Schema({
     author:{
         type:String,
@@ -139,8 +112,8 @@ storySchema.methods.addViews = async function (comment, userId) {
     return this;
 };
 
-storySchema.methods.addComment = async function (comment, userId, date) {
-    this.comments.unshift({ comment, commentBy: userId, date });
+storySchema.methods.addComment = async function (comment, userId) {
+    this.comments.unshift({ comment, commentBy: userId });
     this.totalComments = this.comments.length;
     await this.save();
     return this;
@@ -205,7 +178,26 @@ storySchema.methods.removeLike = async function (userId) {
     }
     return this;
 };
-
+storySchema.methods.addView = async function (userId) {
+    if (!this.views.some(view => view.viewedBy.toString() === userId.toString())) { //.some works just like .find
+        this.views.unshift({ viewedBy : userId });
+        this.totalViews = this.views.length;
+        await this.save();
+    }
+    return this;
+};
+storySchema.methods.removeView = async function (userId) {
+    const initialLength = this.Views.length;
+    this.views = this.views.filter(
+    view => view.viewedBy.toString() !== userId.toString()
+    );
+    // If the length has changed, it means a Like was removed
+    if (this.views.length !== initialLength) {
+        this.totalViews = this.views.length;
+        await this.save();
+    }
+    return this;
+};
 
 
 //Export the model

@@ -211,9 +211,7 @@ const isFollowing = !!exists;
 if(!foundStory){
     throw new userError("This Story Does Not Exist", 404)
 }
-const totalViews =  (Number(foundStory.totalViews) || 0) + 1;
-foundStory.totalViews = totalViews.toString()
-await foundStory.save()
+await foundStory.addView(req.user._id);
 const adjustedStory = foundStory.toObject();
     res.status(200).json({ story :
          {...adjustedStory,
@@ -553,9 +551,7 @@ const commentAStory = async (req, res) => {
             throw new userError("Pls enter your comment for this story", 400)
         }
         const story = await Story.findById(id);
-        // Add the comment to the story using static method
-        const date = new Date();
-        const commentedStory = await story.addComment( comment, req.user._id, date);
+        const commentedStory = await story.addComment( comment, req.user._id);
         await Notification.createStoryNotification(story.userId, story._id, "comment", `${req.user.username} commented on your story.`, req.user._id)
         // Respond with the updated story
         res.status(201).json(commentedStory.toObject().comments[0]);
