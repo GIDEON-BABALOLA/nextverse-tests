@@ -1,6 +1,5 @@
 const { MailtrapClient } = require("mailtrap");
 const { emailError } = require("./customError");
-
 const TOKEN = process.env.LITENOTE_MAILTRAP_EMAIL_TOKEN;
 const SENDER_EMAIL = "confirmation@litenote.app";
 const sendVerificationEmail = async (email, otp, frontendUrl, token, uuid, time) => {
