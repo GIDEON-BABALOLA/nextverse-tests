@@ -45,6 +45,7 @@ router.get("/get-user-profile", authMiddleware, getUserProfile)
 router.get("/get-user-bookmarks", authMiddleware, getUserBookmarks)
 router.get("/get-user-stories/:username", authMiddleware, getUserStories)
 router.get("/get-current-user-stories", authMiddleware, getCurrentUserStories)
+
 router.get("/logout-user",  authMiddleware, logoutUser)
 router.delete("/delete-user", authMiddleware, deleteUser)
 router.delete("/delete-a-user/:username", authMiddleware, isAdministrator,  deleteAUser)

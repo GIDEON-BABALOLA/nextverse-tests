@@ -1,5 +1,6 @@
 
 import useNavigateStory from "../../../hooks/useNavigateStory"
+import { formatTime } from "../../../helpers/formatTime";
 const TableRow = ({ id, title, author, category, date, readTime, serialNumber, isLoading}) => {
   console.log(id);
   
@@ -34,7 +35,7 @@ const TableRow = ({ id, title, author, category, date, readTime, serialNumber, i
                     <td>{category}</td>
                     <td className="litenote-dashboard-primary">{date}</td>
                     <td className="litenote-dashboard-warning">
-                    {readTime["minutes"] == 0 ? `${readTime["seconds"]} seconds read` : `${readTime["minutes"]} minutes read`  }
+                    {readTime["minutes"] == 0 ? `${readTime["seconds"]} seconds read` : `${formatTime(readTime["minutes"])} read`  }
                     </td>
                   
                 </tr>

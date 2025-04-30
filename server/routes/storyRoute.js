@@ -19,9 +19,10 @@ const {
     getStoryComments,
     getStoryLikes,
     searchStories,
+    getStoryAnalytics,
     liveSearchSuggestions
 } = require(path.join(__dirname, "..", "controllers", "storyController.js"))
-const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
+const { authMiddleware, isAdministrator } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
 router.post("/create-a-story", authMiddleware, uploadMiddleware, createStory)
 router.patch("/comment-a-story/:id", authMiddleware, commentAStory)
@@ -40,5 +41,6 @@ router.get("/get-popular-stories/:category/:number", getPopularStories)
 router.get("/get-suggested-stories", authMiddleware, getSuggestedStories)
 router.get("/get-story-comments/:id", authMiddleware, getStoryComments)
 router.get("/get-story-likes/:id", authMiddleware, getStoryLikes)
+router.get("/get-story-analytics", authMiddleware, isAdministrator, getStoryAnalytics)
 router.delete("/delete-a-story/:id", authMiddleware, deleteAStory)
 module.exports = router

@@ -5,54 +5,13 @@ import { useGetExploreStories } from "../../../hooks/useGetExploreStories"
 import ArrowKeyDetector from "../../../hooks/useArrowKeys"
 import DashboardPagination from "./DashboardPagination"
 import Pagination from '@mui/material/Pagination';
+import { useThemeContext } from "../../../hooks/useThemeContext"
 import { useEffect, useState } from "react"
-const dummyStories = [
-    {
-title : "The Endless Journey",
-author : "Dave James",
-category : "Adventure",
-date : "3/28/2024",
-readTime : "10mins"
-    }, 
-    {
-title : "Love Conquers All ",
-category : "Romance",
-author : "John Elvis",
-date : "6/28/2024 ",
-readTime : "5mins"
-    },
-    {
-title : "The Mythical Realm",
-author : "Dora Cardie",
-category : "Friction",
-date : "7/28/2024",
-readTime : "10mins"
-    }, 
-    {
-title : "The Science Behind Exercise",
-author : "itness Zone",
-category : "Non Friction",
-date : "11/28/2024",
-readTime : "8mins"   
-    },
-    {
-        title : "The Mythical Realm",
-        author : "Dora Cardie",
-        category : "Friction",
-        date : "7/28/2024",
-        readTime : "10mins"
-            }, 
-            {
-        title : "The Science Behind Exercise",
-        author : "itness Zone",
-        category : "Non Friction",
-        date : "11/28/2024",
-        readTime : "8mins"   
-            },
-]
+
 const RecentStories = () => {
    const  {getExploreStories, isLoading, error, data, statusCode, storyCount} = useGetExploreStories();
 const [recentStories, setRecentStories] = useState([])
+const { colorMode } = useThemeContext();
 const [loadingState, setLoadingState] = useState([{}, {}, {}, {}, {}, {}])
 const [page, setPage] = useState(1)
    useEffect(() => {
@@ -70,7 +29,7 @@ getExploreStories(page, 6, "all")
   return (
     <>
        <div className="litenote-dashboard-recent-stories"
-    style={{backgroundColor :"#f6f6f9"}}
+    style={{backgroundColor :"var(--recent-stories-background)"}}
     >
         <div 
         className="recent-stories-title-and-pagination">
@@ -81,6 +40,17 @@ getExploreStories(page, 6, "all")
   count={Math.ceil(storyCount / 6)}
   variant="outlined"
   color="primary"
+  sx={{
+    '& .MuiPaginationItem-outlined': {
+        color: colorMode === "dark-mode" && "white",
+        // Change the border color based on the colorMode
+      },
+    '& .Mui-selected': {
+        borderColor: colorMode === "dark-mode" && "white",
+       // Change the selected page color if needed
+    },
+  }}
+
   shape="rounded"
 />
     </div>

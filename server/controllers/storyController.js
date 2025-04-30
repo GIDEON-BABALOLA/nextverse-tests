@@ -812,6 +812,58 @@ switch (req.user.role) {
                 }
     }
 }
+//For admin
+const getStoryAnalytics = async (req, res) => {
+    try{
+        const [mostLikedStory, mostBookmarkedStory, mostViewedStory, mostCommentedStory, mostRecentStory] = await Promise.all([
+            Story.find()
+                .sort({ totalLikes: -1 })
+                .limit(1) 
+                .select("title author"),
+            
+            Story.find()
+                .sort({ totalBookmarks: -1 }) 
+                .limit(1)
+                .select("title author")
+                , 
+        
+            Story.find()
+                .sort({ totalViews: -1 })
+                .limit(1)
+                .select("title author")
+                ,  
+            
+            Story.find()
+                .sort({ totalComments: -1 })
+                .limit(1)
+                .select("title author")
+                ,
+            Story.find()
+    .sort({ createdAt: -1 })  // Sort by createdAt in descending order
+    .limit(1)  // Limit to 1 result (most recent story)
+    .select("title author createdAt")
+                
+        ]);
+        res.status(200).json({
+            mostLikedStory,
+            mostBookmarkedStory,
+            mostViewedStory,
+            mostCommentedStory,
+            mostRecentStory
+        })
+        
+        
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getStoryAnalyticsError.txt", "userError")
+        if(error instanceof userError){
+            return res.status(error.statusCode).json({ message : error.message})
+        }else{
+            return res.status(500).json({message : "Internal Server Error"})
+        }
+    }
+}
 module.exports = {
     createStory,
     getAStory,
@@ -832,5 +884,6 @@ module.exports = {
     getStoryComments,
     getStoryLikes,
     searchStories,
-    liveSearchSuggestions
+    liveSearchSuggestions,
+    getStoryAnalytics
 }

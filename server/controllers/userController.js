@@ -942,5 +942,5 @@ module.exports = {
     getAUser,
     getUserBookmarks,
     getUserStories,
-    getCurrentUserStories
+    getCurrentUserStories,
 }
