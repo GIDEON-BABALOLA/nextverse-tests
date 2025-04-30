@@ -18,7 +18,7 @@ const { validateEmail, validatePassword } = require(path.join(__dirname, "..", "
 const { otpGenerator } = require(path.join(__dirname, "..", "utils", "otpGenerator.js"))
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
-const { generateEmailContent, sendVerificationEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
+const { sendWelcomeEmail, sendVerificationEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 //User Registration
 const duplicateUsername = async (req, res) => {
@@ -168,6 +168,7 @@ user.verificationCode = null;
 user.verificationTokenExpires = null;
 user.status = true;
 await user.save()
+await sendWelcomeEmail(user.email, user.username, process.env.LITENOTE_WELCOME_EMAIL)
 return res.status(201).json({message : "Account Verification Successfull, Go To Login"})
 
 }catch(error){
@@ -220,24 +221,7 @@ const resendUserVerification = async (req, res) => {
         const otp = otpGenerator(4)
         const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
         const time = Date.now() + minute * 60 * 1000 //5 minutes //saved five minutes ahead in the future
-        let values = {
-           code : otp,
-           token : token,
-           email : email,
-           minute : minute,
-           frontendUrl : process.env.LITENOTE_FRONTEND_URL
-       };
-        const emailContent = await generateEmailContent(
-       values,
-       path.join(__dirname, "..", "views", "confirmEmail.ejs")
-       )
-       const data = {
-         to: email,
-         subject: 'Verify Your Account',
-         html: emailContent,
-         text: 'Litenote Needs To Confirm Your Email Address'
-       }; 
-       await sendVerificationEmail(data)
+await sendVerificationEmail(email,  otp, process.env.LITENOTE_FRONTEND_URL, token, process.env.LITENOTE_VERIFICATION_EMAIL, minute)
 user.verificationToken = verificationToken;
 user.verificationCode = otp;
 user.verificationTokenExpires = time;

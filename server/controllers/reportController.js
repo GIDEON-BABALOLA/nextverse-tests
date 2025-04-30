@@ -3,7 +3,8 @@ const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEven
 const { reportError } = require(path.join(__dirname, "..", "utils", "customError.js"))
 const Report = require(path.join(__dirname, "..", "models", "reportModel.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
-const { userError } = require(path.join(__dirname, "..", "utils", "customError.js"))
+const { userError, emailError } = require(path.join(__dirname, "..", "utils", "customError.js"))
+const { sendReportEmail } = require(path.join(__dirname, "..", "utils", "Email.js"))
 const createReport = async (req, res) => {
 const { category,  content, username } = req.body;
 console.log(req.body)
@@ -26,6 +27,7 @@ console.log(userToBeReported)
 if(req.user._id.toString() == userToBeReported._id.toString()){
     throw new reportError("You Cannot Report Your Account", 400)
 }
+await sendReportEmail(req.user.email, req.user.username, userToBeReported.username, `${category[0].toUpperCase() + category.slice(1)}`, process.env.LITENOTE_REPORT_EMAIL_OPENED)
 const newReport = await Report.create({ 
    category,
    content,
@@ -41,6 +43,9 @@ catch(error){
         return res.status(error.statusCode).json({ message : error.message})
     }
     else if(error instanceof userError){
+        return res.status(error.statusCode).json({ message : error.message})
+    }
+    else if(error instanceof emailError){
         return res.status(error.statusCode).json({ message : error.message})
     }
     else{
@@ -108,9 +113,19 @@ else{
     }
 }
 const updateReport = async(req, res) => {
-    const { status } = req.body;
+    const { status, username, category } = req.body;
     const { id } = req.params;
     try{
+        let emailTemplate;
+
+if (status === "opened") {
+  emailTemplate = process.env.LITENOTE_REPORT_EMAIL_OPENED;
+} else if (status === "pending") {
+  emailTemplate = process.env.LITENOTE_REPORT_EMAIL_PENDING;
+} else if (status === "closed") {
+  emailTemplate = process.env.LITENOTE_REPORT_EMAIL_CLOSED;
+}
+        await sendReportEmail(req.user.email, req.user.username, username, `${category[0].toUpperCase() + category.slice(1)}`, emailTemplate)
         const updatedReport =  await Report.findByIdAndUpdate(id, { status : status},
             {
                 new : true
@@ -138,6 +153,9 @@ const updateReport = async(req, res) => {
             return res.status(error.statusCode).json({ message : error.message})
         }
         else if(error instanceof userError){
+            return res.status(error.statusCode).json({ message : error.message})
+        }
+        else if(error instanceof emailError){
             return res.status(error.statusCode).json({ message : error.message})
         }
         else{

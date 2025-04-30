@@ -3,3 +3,5 @@
 20250427	15:34:39	e3ee6c98-8596-4df3-a99d-9eaee4e3b979	userError: You Cannot Delete The Account Of An Administrator
 20250427	18:15:06	9cae1108-4290-4f50-8a82-b19e18e4ba01	TypeError: Cannot read properties of null (reading 'role')
 20250427	18:15:55	3c7f7195-055d-4cf8-8336-72fdcc99b9e5	userError: This User Account Does Not Exist
+20250430	04:26:27	c59c5fe4-40a4-478d-8bb6-0365b28d732e	userError: You Cannot Delete The Account Of An Administrator
+20250430	04:26:33	fb1b676f-1942-40c8-b617-606cf0d8ef1f	userError: You Cannot Delete The Account Of An Administrator

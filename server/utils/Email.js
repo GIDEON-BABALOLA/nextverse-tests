@@ -18,18 +18,75 @@ const sendVerificationEmail = async (email, otp, frontendUrl, token, uuid, time)
       template_variables: {
         "otp": otp,
         "time": time,
+        "email" : email,
         "link": `${frontendUrl}/verify/${email}/${token}`,
-        "company_info_name": "Test_Company_info_name",
-        "company_info_address": "Test_Company_info_address",
-        "company_info_city": "Test_Company_info_city",
-        "company_info_zip_code": "Test_Company_info_zip_code",
-        "company_info_country": "Test_Company_info_country"
+        "company_info_name": "NextVerse",
+        "company_info_address": "12 Amaforitshe Street, Eboh Road Warri Delta State",
+        "company_info_city": "Warri",
+        "company_info_zip_code": "332211",
+        "company_info_country": "Nigeria"
       }
     });
   } catch (error) {
     console.log(error);
-    throw new emailError("Unable To Send You A Confirmation And Welcome Email, Try To Register Again", 400);
+    throw new emailError("Unable To Send You A Confirmation Email, Try To Register Again", 400);
+  }
+};
+const sendWelcomeEmail = async (email, name, uuid) => {
+  const client = new MailtrapClient({ token: TOKEN });
+
+  const sender = {
+    email: SENDER_EMAIL,
+    name: "Litenote",
+  };
+
+  try {
+    await client.send({
+      from: sender,
+      to: [{ email }],
+      template_uuid: uuid,
+      template_variables: {
+        "name" : name,
+        "company_info_name": "NextVerse",
+        "company_info_address": "12 Amaforitshe Street, Eboh Road Warri Delta State",
+        "company_info_city": "Warri",
+        "company_info_zip_code": "332211",
+        "company_info_country": "Nigeria"
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    throw new emailError("Unable To Send You A Welcome Email", 400);
+  }
+};
+const sendReportEmail = async (email, name, reportedUser, category, uuid) => {
+  const client = new MailtrapClient({ token: TOKEN });
+
+  const sender = {
+    email: SENDER_EMAIL,
+    name: "Litenote",
+  };
+
+  try {
+    await client.send({
+      from: sender,
+      to: [{ email }],
+      template_uuid: uuid,
+      template_variables: {
+        "name" : name,
+        "reportedUser" : reportedUser,
+        "category" : category,
+        "company_info_name": "NextVerse",
+        "company_info_address": "12 Amaforitshe Street, Eboh Road Warri Delta State",
+        "company_info_city": "Warri",
+        "company_info_zip_code": "332211",
+        "company_info_country": "Nigeria"
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    throw new emailError("Unable To Send You A Welcome Email", 400);
   }
 };
 
-module.exports = { sendVerificationEmail };
+module.exports = { sendVerificationEmail, sendWelcomeEmail, sendReportEmail };

@@ -296,7 +296,6 @@ if(req.query.page){
     // }
 }
 const allStories = await query.populate('userId', 'username picture').lean();
-console.log(allStories)
 const cleanedStories = allStories.filter(story => {
     // Remove stories with empty objects, null or undefined values, and null/undefined _id
     return Object.keys(story).length > 0 && 

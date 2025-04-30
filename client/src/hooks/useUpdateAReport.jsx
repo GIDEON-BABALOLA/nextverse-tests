@@ -5,13 +5,15 @@ export const useUpdateAReport = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState({})
-    const updateAReport = async (id, status) => {
+    const updateAReport = async (id, status, username, category) => {
         setIsLoading(true) //starting the request
         try{
             setError(null)
 const response = await axiosConfig.put(`/report/update-a-report/${id}`,
     {
-       status : status
+       status : status,
+       username : username,
+       category : category
     }, 
     {
         signal : AbortSignal.timeout(axiosProperties["timeout"])

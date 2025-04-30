@@ -30,9 +30,7 @@ const AnalyticsPage = ({sidebarRef}) => {
             var newTime = new Date().toLocaleTimeString()
         setTime(newTime)
         }, 1000);
-        setInterval(() => {
-          setLoadPage(false)
-        }, 2000)
+        setLoadPage(false)
     }, [])
     const [contextMenu, setContextMenu] = useState()
   return (

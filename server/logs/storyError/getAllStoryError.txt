@@ -30,3 +30,5 @@
 20250111	19:11:15	711e26bf-2d27-4e1c-894d-265c51a80f6f	userError: This page does not exist
 20250111	19:11:15	0403ebd5-6319-48b4-9de6-62b18beb0a1d	userError: This page does not exist
 20250415	11:58:55	ec4c170c-00fd-46fa-a9d0-8ed83a797cc9	ReferenceError: story is not defined
+20250430	12:03:49	e7c06b79-5454-4e7d-b684-68437f0d40db	MongoServerError: BSON field 'skip' value must be >= 0, actual value '-6'
+20250430	12:03:50	dda8a6a1-5f74-462a-9d40-0c30c1523137	MongoServerError: BSON field 'skip' value must be >= 0, actual value '-12'

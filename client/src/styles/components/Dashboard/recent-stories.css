@@ -1,5 +1,6 @@
 main .litenote-dashboard-recent-stories{
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 main .litenote-dashboard-recent-stories h2{
   margin-bottom: 0.8rem;
@@ -41,6 +42,42 @@ main table thead th{
   color: var(--color-primary);
  }
  
+.recent-stories-loader{
+  object-fit: cover;
+  background: var(--skeleton-background);
+  background-size: 200% 100%;
+  -webkit-animation: 1.5s shine linear infinite;
+          animation: 1.5s shine linear infinite;
+}
+.recent-stories-title-and-pagination{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0px;
+  justify-content: space-between;  
+}
+.tri{
+  border-bottom: 1px solid #ccc;
+}
+
+.table-row-loader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+
+}
+.table-row-loader div{
+  width: 80px;
+  height: 10px;
+  margin: 10px;
+ font-weight: bolder;
+}
+
+@media screen and (max-width:768px) {
+  .recent-stories-title-and-pagination{
+    flex-direction: column;
+  }
+}
 
 
 

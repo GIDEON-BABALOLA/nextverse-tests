@@ -7,16 +7,16 @@ import { useToastContext } from '../../../hooks/useToastContext'
 import LoadingSpinner from "../../../components/Loaders/LoadingSpinner"
 const ReportCard = ({ report, isLoading, setReports, setAllReportCount }) => {
   const { showToast } = useToastContext();
-  const {updateAReport, isLoading : updateIsLoading, error, data : updateData, statusCode} = useUpdateAReport();
-  const updateReport = (id, status) => {
+  const {updateAReport, isLoading : updateIsLoading, error, data : updateData} = useUpdateAReport();
+  const updateReport = (id, status, username, category) => {
     if(status == "closed"){
-      updateAReport(id, "opened")
+      updateAReport(id, "opened", username, category)
     }
     if(status == "opened"){
-    updateAReport(id, "pending")
+    updateAReport(id, "pending", username, category)
     }
     if(status == "pending"){
-      updateAReport(id, "closed")
+      updateAReport(id, "closed", username, category)
     }
   }
   useEffect(() => {
@@ -113,7 +113,7 @@ showToast("Success", updateData.message, true)
   <LoadingSpinner/>
   </span>
 :
-  <span onClick={() => updateReport(report._id, report.status)}>
+  <span onClick={() => updateReport(report._id, report.status, report.userId.username, report.category)}>
   <MdAssignmentTurnedIn size={20}/>Answer
   </span>
 }
@@ -126,7 +126,7 @@ showToast("Success", updateData.message, true)
   <LoadingSpinner/>
   </span>
 :
-  <span onClick={() => updateReport(report._id, report.status)}>
+  <span onClick={() => updateReport(report._id, report.status, report.userId.username, report.category)}>
   <MdAssignmentTurnedIn size={20}/>Reopen
   </span>
 }
