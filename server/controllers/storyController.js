@@ -8,7 +8,6 @@ const Notification = require(path.join(__dirname, "..", "models", "notificationM
 const _ = require('lodash');
 const slugify = require("slugify")
 const { cloudinaryError, userError, notificationError } = require("../utils/customError");
-const { Console } = require("console");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { countWordsAndEstimateReadingTime } = require(path.join(__dirname, "..", "utils", "countWordsAndEstimateReadingTime.js"))
@@ -864,59 +863,147 @@ const getStoryMetrics = async (req, res) => {
         const now = new Date();
         const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
         const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
-    
+        const countMetric = (field, start, end) => ([
+            { $unwind: `$${field}` },
+            { $match: { [`${field}.createdAt`]: { $gte: start, $lt: end } } },
+            { $count: "count" }
+          ]);
+        const countData = (start, end) => ({
+            createdAt : {
+                $gte : start,
+                $lt : end
+            }
+        })
         // Likes in the last 24h
-        const [todayLikes, yesterdayLikes, todayBookmarks, yesterdayBookmarks] = await Promise.all([
-            Story.aggregate([
-                { $unwind: "$likes" },
-                { $match: { "likes.createdAt": { $gte: twentyFourHoursAgo, $lt: now } } },
-                { $count: "count" }
-            ]),
-            Story.aggregate([
-                { $unwind: "$likes" },
-                { $match: { "likes.createdAt": { $gte: fortyEightHoursAgo, $lt: twentyFourHoursAgo } } },
-                { $count: "count" }
-            ]),
-            Story.aggregate([
-                { $unwind: "$bookmarks" },
-                { $match: { "bookmarks.createdAt": { $gte: twentyFourHoursAgo, $lt: now } }  },
-                { $count: "count" }
-            ]),
-            Story.aggregate([
-                { $unwind: "$bookmarks" },
-                { $match: { "bookmarks.createdAt": { $gte: fortyEightHoursAgo, $lt: twentyFourHoursAgo } } },
-                { $count: "count" }
-            ]),
-
-
+        const [
+            todayLikes,
+            yesterdayLikes,
+            todayBookmarks,
+            yesterdayBookmarks,
+            todayViews,
+            yesterdayViews,
+            todayComments,
+            yesterdayComments,
+            todayUsers,
+            yesterdayUsers,
+            todayStories,
+            yesterdayStories
+            ] = await Promise.all([
+                Story.aggregate(countMetric("likes", twentyFourHoursAgo, now)),
+                Story.aggregate(countMetric("likes", fortyEightHoursAgo, twentyFourHoursAgo)),
+                Story.aggregate(countMetric("bookmarks", twentyFourHoursAgo, now)),
+                Story.aggregate(countMetric("bookmarks", fortyEightHoursAgo, twentyFourHoursAgo)),
+                Story.aggregate(countMetric("views", twentyFourHoursAgo, now)),
+                Story.aggregate(countMetric("views", fortyEightHoursAgo, twentyFourHoursAgo)),
+                Story.aggregate(countMetric("comments", twentyFourHoursAgo, now)),
+                Story.aggregate(countMetric("comments", fortyEightHoursAgo, twentyFourHoursAgo)),
+                User.countDocuments(countData(twentyFourHoursAgo, now)),
+                User.countDocuments(countData(fortyEightHoursAgo, twentyFourHoursAgo)),
+                Story.countDocuments(countData(twentyFourHoursAgo, now)),  // ✅ ADD THIS
+                Story.countDocuments(countData(fortyEightHoursAgo, twentyFourHoursAgo))
         ])
-    
+    console.log(todayStories, "todayStories")
         const todayLikesCount = todayLikes[0]?.count || 0;
         const yesterdayLikesCount = yesterdayLikes[0]?.count || 0;
-        const likesPercentageChange = ((todayLikesCount - yesterdayLikesCount) / Math.max(yesterdayLikesCount, 1)) * 100;
-        let trend
-        if(likesPercentageChange > 0 ){
-        trend = "increase"
-        }
-        else if(likesPercentageChange < 0){
-        trend = "decrease"
-        }
-        else{
-        trend = "notrend"
-        }
+        const todayBookmarksCount = todayBookmarks[0]?.count || 0;
+        const yesterdayBookmarksCount = yesterdayBookmarks[0]?.count || 0;
+        const todayViewsCount = todayViews[0]?.count || 0;
+        const yesterdayViewsCount = yesterdayViews[0]?.count || 0;
+        const todayCommentsCount = todayComments[0]?.count || 0;
+        const yesterdayCommentsCount = yesterdayComments[0]?.count || 0;
+        const calculatePercentageChange = (todayCount, yesterdayCount) => {
+            console.log(yesterdayCount, todayCount)
+            // If both today and yesterday counts are 0, return 0% change
+            if (todayCount === 0 && yesterdayCount === 0) return 0;
+            else return  ((todayCount - yesterdayCount) / (todayCount + yesterdayCount)) * 100;
+        };
+        const likesPercentageChange = calculatePercentageChange(todayLikesCount, yesterdayLikesCount);
+        const bookmarksPercentageChange = calculatePercentageChange(todayBookmarksCount, yesterdayBookmarksCount);
+        const viewsPercentageChange = calculatePercentageChange(todayViewsCount, yesterdayViewsCount);
+        const commentsPercentageChange = calculatePercentageChange(todayCommentsCount, yesterdayCommentsCount);
+        const usersPercentageChange = calculatePercentageChange(todayUsers, yesterdayUsers);
+        const storiesPercentageChange = calculatePercentageChange(todayStories, yesterdayStories);  
+        const trend = (value) => value > 0 ? "uptrend" : value < 0 ? "downtrend" : "uptrend";
+        const likesTrend = trend(likesPercentageChange)
+        const bookmarksTrend = trend(bookmarksPercentageChange)
+        const viewsTrend = trend(viewsPercentageChange);
+        const commentsTrend = trend(commentsPercentageChange)
+        const usersTrend = trend(usersPercentageChange)
+        const storiesTrend = trend(storiesPercentageChange)
+        
         res.status(200).json({
         likes : {
             todayLikesCount,
             yesterdayLikesCount,
-            likesPercentageChange
+            percentage : likesPercentageChange,
+            trend : likesTrend
         },
         bookmarks : {
-            
+            todayBookmarksCount,
+            yesterdayBookmarksCount,
+            percentage : bookmarksPercentageChange,
+            trend : bookmarksTrend
+        },
+        views : {
+            todayViewsCount,
+            yesterdayViewsCount,
+            percentage : viewsPercentageChange,
+            trend : viewsTrend
+        },
+        comments : {
+            todayCommentsCount,
+            yesterdayCommentsCount,
+            percentage : commentsPercentageChange,
+            trend : commentsTrend
+        },
+        users : {
+            todayUsersCount : todayUsers, 
+            yesterdayUsersCount : yesterdayUsers,
+            percentage : usersPercentageChange,
+            trend : usersTrend
+        },
+        stories : {
+            todayStoriesCount : todayStories, 
+            yesterdayStoriesCount : yesterdayStories,
+            percentage : storiesPercentageChange,
+            trend : storiesTrend
         }
         })
-        return { today, yesterday, percentageChange: Math.round(percentageChange * 100) / 100 };
     }
     catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getStoryMetricsError.txt", "storyError")
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ message : error.message})
+            }
+             else{
+            return res.status(500).json({message : "Internal Server Error"})
+                }
+    }
+}
+const getGlobalMetrics = async (req, res) => {
+    try{
+        const countMetric = (field) => ([
+            { $unwind: `$${field}`},
+            { $count: "count" }
+          ]);
+const [userCount, storyCount, likeCount, commentCount, bookmarkCount, viewCount] = await Promise.all([
+    User.countDocuments(),
+    Story.countDocuments(),
+    Story.aggregate(countMetric("likes")),
+    Story.aggregate(countMetric("comments")),
+    Story.aggregate(countMetric("bookmarks")),
+    Story.aggregate(countMetric("views")),
+])
+res.status(200).json({
+    userCount,
+    storyCount,
+    likeCount : likeCount[0]?.count || 0,
+    commentCount : commentCount[0]?.count || 0,
+    bookmarkCount : bookmarkCount[0]?.count || 0,
+    viewCount : viewCount[0]?.count || 0
+})
+    }catch(error){
         console.log(error)
     }
 }
@@ -942,5 +1029,6 @@ module.exports = {
     searchStories,
     liveSearchSuggestions,
     getStoryAnalytics,
-    getStoryMetrics
+    getStoryMetrics,
+    getGlobalMetrics
 }

@@ -1,8 +1,8 @@
 
 import "../../../styles/components/Dashboard/circular-progress.css"
+import Percentage from "./Percentage"
 import {  useState, useEffect } from "react"
-const CircularProgress = ({ end }) => {
-
+const CircularProgress = ({ end, trend, value, storyMetricsLoading }) => {
 const [count, setCount] = useState(0);
 useEffect(() => {
   let start = 0;
@@ -21,16 +21,29 @@ useEffect(() => {
 
   return () => clearInterval(counter); // Cleanup interval on component unmount
 }, [end]);
-// useEffect(() => {
-// render()
-// }, [])
   return (
     <section className="litenote-circular-progress">
 <div className="container">
 <div className="circular-progress" 
-style={{background : `conic-gradient(#7380EC ${count * 3.6}deg, #ededed 0deg)`}}
+style={{
+  background: `conic-gradient(
+    ${trend == "uptrend" ? '#7380EC' : '#ff7782ec'} ${count * 3.6}deg,
+    #ededed 0deg
+  )`,
+}}
 >
-<div className="progress-valueman">{`${count}%`}</div>
+ <>
+ {
+  storyMetricsLoading ? 
+  <div className="recent-stories-loader" style={{width : "30px", height : "10px", position : "relative"}}></div> 
+  :
+  <>
+  {trend == "uptrend" ? <div className="progress-valueman" style={{color : "#41f1b5"}}>+{value}%</div> : 
+<div className="progress-valueman" style={{color : "#ff7782ec"}}>-{value}%</div>
+}</>
+ }
+ </>
+
 </div>
 
 </div>

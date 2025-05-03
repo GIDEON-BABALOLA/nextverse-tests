@@ -20,6 +20,8 @@ const {
     getStoryLikes,
     searchStories,
     getStoryAnalytics,
+    getStoryMetrics,
+    getGlobalMetrics,
     liveSearchSuggestions
 } = require(path.join(__dirname, "..", "controllers", "storyController.js"))
 const { authMiddleware, isAdministrator } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
@@ -42,5 +44,7 @@ router.get("/get-suggested-stories", authMiddleware, getSuggestedStories)
 router.get("/get-story-comments/:id", authMiddleware, getStoryComments)
 router.get("/get-story-likes/:id", authMiddleware, getStoryLikes)
 router.get("/get-story-analytics", authMiddleware, isAdministrator, getStoryAnalytics)
+router.get("/get-story-metrics", authMiddleware, isAdministrator, getStoryMetrics)
+router.get("/get-global-metrics", authMiddleware, isAdministrator, getGlobalMetrics)
 router.delete("/delete-a-story/:id", authMiddleware, deleteAStory)
 module.exports = router

@@ -3,7 +3,7 @@ import {
   import "../../../styles/components/Dashboard/analytics-card.css"
   import Counter from "../../Profile/Counter"
   import CircularProgress from './CircularProgress';
-const AnalyticsCard = ({cardTitle, cardTotal, cx, cy, r, cardPercent, className, cardIcon}) => {
+const AnalyticsCard = ({cardTitle, cardTotal, cardPercent, className, cardIcon, trend,  storyMetricsLoading}) => {
   return (
    <>
       <div className={className} >
@@ -15,7 +15,7 @@ const AnalyticsCard = ({cardTitle, cardTotal, cx, cy, r, cardPercent, className,
          <h3 className='litenote-dashboard-h-three'>{cardTitle}</h3> 
          <h1 className='litenote-dashboard-h-one'><Counter end={parseInt(cardTotal)}/></h1> 
         </div>
-<CircularProgress end={parseInt(cardPercent)}/>
+<CircularProgress end={parseInt(cardPercent)} trend={trend} value={cardPercent} storyMetricsLoading={storyMetricsLoading}/>
  </div>
  <small className="litenote-dashboard-text-muted">Last 24 Hours </small>
    </div>

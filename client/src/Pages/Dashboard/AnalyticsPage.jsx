@@ -17,7 +17,11 @@ import StoriesAnalytics from '../../components/Dashboard/common/StoriesAnalytics
 import DashboardToast from '../../components/common/DashboardToast';
 import ConnectivityToast from '../../components/common/connectivityToast';
 import RotationLoader from '../../components/Loaders/RotationLoader';
+import { useGetGlobalMetrics } from '../../hooks/useGetGlobalMetrics';
+import { useGetStoryMetrics } from '../../hooks/useGetStoryMetrics';
 const AnalyticsPage = ({sidebarRef}) => {
+  const  { getGlobalMetrics, isLoading : globalMetricsLoading, error : globalMetricsError,  data: globalMetricsData } = useGetGlobalMetrics();
+  const { getStoryMetrics, isLoading : storyMetricsLoading, error : storyMetricsError,  data: storyMetricsData }  = useGetStoryMetrics();
     let time = new Date().toLocaleTimeString();
     const [timed, setTime] = useState(time)
     const [loadPage, setLoadPage] = useState(true)
@@ -25,13 +29,17 @@ const AnalyticsPage = ({sidebarRef}) => {
     const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const datetime = new Date()
     useEffect(() => {
-
+  getGlobalMetrics()
+  getStoryMetrics()
         setInterval(() => {
             var newTime = new Date().toLocaleTimeString()
         setTime(newTime)
         }, 1000);
         setLoadPage(false)
     }, [])
+    useEffect(() => {
+console.log(storyMetricsData);
+    }, [storyMetricsData])
     const [contextMenu, setContextMenu] = useState()
   return (
    <>
@@ -53,8 +61,11 @@ const AnalyticsPage = ({sidebarRef}) => {
      <div className="litenote-dashboard-insights">
      <AnalyticsCard className={"litenote-dashboard-Stories cadre"}
       r={36}
-    cardPercent={"81%"}
-    cardTotal={"25200"}
+    cardPercent={storyMetricsLoading ? 0 : storyMetricsData.stories.percentage}
+    cardTotal={globalMetricsLoading ? 0 : globalMetricsData.storyCount}
+    trend={ storyMetricsLoading ? 0 :  storyMetricsData.stories.trend}
+    storyMetricsLoading={storyMetricsLoading}
+    globalMetricsLoading={globalMetricsLoading}
     cardTitle={"Total Stories"}
     cx={38}
     cy={38}
@@ -67,9 +78,12 @@ const AnalyticsPage = ({sidebarRef}) => {
 
 <AnalyticsCard 
     className={"litenote-dashboard-authors cadre"}
-    cardPercent={"88%"}
-    cardTotal={"17260"}
-    cardTitle={"Total Authors"}
+    cardPercent={storyMetricsLoading ? 0 : storyMetricsData.bookmarks.percentage}
+    cardTotal={globalMetricsLoading ?  0 : globalMetricsData.bookmarkCount}
+    trend={ storyMetricsLoading ? 0 :  storyMetricsData.bookmarks.trend}
+    storyMetricsLoading={storyMetricsLoading}
+    globalMetricsLoading={globalMetricsLoading}
+    cardTitle={"Total Bookmarks"}
     cx={38}
     cy={38}
     r={36}
@@ -79,8 +93,11 @@ const AnalyticsPage = ({sidebarRef}) => {
 
 <AnalyticsCard
 className={"litenote-dashboard-views cadre"}
-cardPercent={"79%"}
-cardTotal={"3500"}
+cardPercent={storyMetricsLoading ? 0 : storyMetricsData.views.percentage}
+cardTotal={globalMetricsLoading ? 0 : globalMetricsData.viewCount}
+trend={ storyMetricsLoading ? 0 : storyMetricsData.views.trend}
+storyMetricsLoading={storyMetricsLoading}
+globalMetricsLoading={globalMetricsLoading}
 cardTitle={"Total Views"}
 cx={38}
 cy={38}
@@ -89,8 +106,11 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
  />
 <AnalyticsCard 
     className={"litenote-dashboard-likes cadre"}
-    cardPercent={"79%"}
-    cardTotal={"7500"}
+    cardPercent={storyMetricsLoading ? 0 : storyMetricsData.likes.percentage}
+    cardTotal={globalMetricsLoading ? 0 : globalMetricsData.likeCount}
+    trend={ storyMetricsLoading ? 0 : storyMetricsData.likes.trend}
+    storyMetricsLoading={storyMetricsLoading}
+    globalMetricsLoading={globalMetricsLoading}
     cardTitle={"Total likes"}
     cx={38}
     cy={38}
@@ -100,8 +120,11 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
 />
 <AnalyticsCard 
     className={"litenote-dashboard-users cadre"}
-    cardPercent={"79%"}
-    cardTotal={"8900"}
+    cardPercent={storyMetricsLoading ? 0 : storyMetricsData.users.percentage}
+    cardTotal={globalMetricsLoading ? 0 : globalMetricsData.userCount}
+    trend={ storyMetricsLoading ? 0 : storyMetricsData.users.trend}
+    storyMetricsLoading={storyMetricsLoading}
+    globalMetricsLoading={globalMetricsLoading}
     cardTitle={"Total Users"}
     cx={38}
     cy={38}
@@ -111,8 +134,11 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
 />
 <AnalyticsCard 
     className={"litenote-dashboard-comments cadre"}
-    cardPercent={"20%"}
-    cardTotal={"4200"}
+    cardPercent={storyMetricsLoading ? 0 : storyMetricsData.comments.percentage}
+    cardTotal={globalMetricsLoading ? 0 : globalMetricsData.commentCount}
+    trend={storyMetricsLoading ? 0 : storyMetricsData.comments.trend}
+    storyMetricsLoading={storyMetricsLoading}
+    globalMetricsLoading={globalMetricsLoading}
     cardTitle={"Total Comments"}
     cx={38}
     cy={38}

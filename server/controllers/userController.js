@@ -921,6 +921,14 @@ const getAllUsers = async (req, res) => {
                 }
             }
             }
+        const getRecentUpdates = async (req, res) => {
+            try{
+
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
 module.exports = {
     signupUser,
     loginUser,

@@ -4,17 +4,24 @@ import { useEffect } from "react";
 import { FaRegBookmark, FaRegThumbsUp, FaRegShareFromSquare  } from "react-icons/fa6";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useGetStoryAnalytics } from "../../../hooks/useGetStoryAnalytics";
+import { useGetStoryMetrics } from "../../../hooks/useGetStoryMetrics";
 import useNavigateStory from "../../../hooks/useNavigateStory";
 import { Link } from "react-router-dom"
+import Percentage from "./Percentage";
 const StoriesAnalytics = () => {
 const navigateToStory = useNavigateStory();
 const { getStoryAnalytics, isLoading, error, data } = useGetStoryAnalytics();
+const { getStoryMetrics, data : metricsData, isLoading : metricsIsLoading} = useGetStoryMetrics();
 useEffect(() => {
+getStoryMetrics();
 getStoryAnalytics();
+
 }, [])
 useEffect(() => {
+console.log(metricsData)
+}, [metricsData])
+useEffect(() => {
 console.log(data);
-
 }, [data])
 
   return (
@@ -29,7 +36,7 @@ console.log(data);
                 <h3 className="litenote-dashboard-h-three">Recent Stories</h3>
                 <small className="litenote-dashboard-text-muted">Last 24 Hours </small>
             </div>
-            <h5 className="litenote-dashboard-success litenote-dashboard-h-five">+59%</h5>
+            { metricsIsLoading ? <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div> : <Percentage trend={metricsData.stories.trend} value={metricsData.stories.percentage}/> }
         </div>
         </div>
         <div className="litenote-dashboard-item liked"  onClick={() => navigateToStory(data.mostLikedStory[0])}>
@@ -41,7 +48,7 @@ console.log(data);
                 <h3 className="litenote-dashboard-h-three">Most Liked</h3>
                 <small className="litenote-dashboard-text-muted">Last 24 Hours </small>
             </div>
-            <h5 className="litenote-dashboard-danger litenote-dashboard-h-five">+50%</h5>
+             { metricsIsLoading ?  <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div>  : <Percentage trend={metricsData.likes.trend} value={metricsData.likes.percentage}/> }
         </div>
     </div>
     <div className="litenote-dashboard-item bookmarked"  onClick={() => navigateToStory(data.mostBookmarkedStory[0])}>
@@ -53,7 +60,7 @@ console.log(data);
                 <h3 className="litenote-dashboard-h-three">Most Bookmarked</h3>
                 <small className="litenote-dashboard-text-muted">Last 24 Hours </small>
             </div>
-            <h5 className="litenote-dashboard-danger litenote-dashboard-h-five">+50%</h5>
+             { metricsIsLoading ? <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div>  : <Percentage trend={metricsData.bookmarks.trend} value={metricsData.bookmarks.percentage}/> }
         </div>
     </div>
     <div className="litenote-dashboard-item views"  onClick={() => navigateToStory(data.mostViewedStory[0])}>
@@ -65,7 +72,7 @@ console.log(data);
                 <h3 className="litenote-dashboard-h-three">Most Viewed</h3>
                 <small className="litenote-dashboard-text-muted">Last 24 Hours </small>
             </div>
-            <h5 className="litenote-dashboard-success litenote-dashboard-h-five">+69%</h5>
+             {metricsIsLoading ? <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div>  : <Percentage trend={metricsData.views.trend} value={metricsData.views.percentage}/> }
         </div>
         </div>
     <div className="litenote-dashboard-item comment"  onClick={() => navigateToStory(data.mostCommentedStory[0])}>
@@ -77,7 +84,7 @@ console.log(data);
                 <h3 className="litenote-dashboard-h-three">Most Comments</h3>
                 <small className="litenote-dashboard-text-muted">Last 24 Hours </small>
             </div>
-            <h5 className="litenote-dashboard-danger litenote-dashboard-h-five">+50%</h5>
+            { metricsIsLoading ? <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div> : <Percentage trend={metricsData.comments.trend} value={metricsData.comments.percentage}/> }
         </div>
     </div>
     <Link to="/dashboard/publish" style={{textDecoration : "none"}}>
