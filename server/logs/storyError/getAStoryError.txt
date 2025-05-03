@@ -13,3 +13,11 @@
 20250424	15:43:30	d95088f3-ca10-4b50-9a62-2f29a32731be	ReferenceError: user is not defined
 20250424	15:43:33	3d1e26ed-c124-41fb-b25e-832e73031a5b	ReferenceError: user is not defined
 20250424	15:43:34	f6f3a84e-2c37-4902-b0af-3e5d35afbe4a	ReferenceError: user is not defined
+20250503	06:09:32	cf9c402b-8a5f-413b-81f4-d382f10d2b55	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:09:34	ae25c33b-6aa6-49e0-b412-b29b26c2885c	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:09:35	b7aeea5c-5b0f-463f-bb94-a6774a01f41e	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:09:36	855be8cf-0415-4f5f-84d3-476e4e18b39e	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:09:37	f6163aa3-30c3-400b-aedd-1b1e27bae061	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:09:37	ee016e32-3dc2-4f7c-98f4-7c85587378af	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:09:38	646bb0fe-20a8-42dc-9c95-0593217c10d0	TypeError: Cannot read properties of undefined (reading 'some')
+20250503	06:11:54	8a5c5817-4c66-4dfa-9daa-67a8beb445d3	TypeError: Cannot read properties of undefined (reading 'some')

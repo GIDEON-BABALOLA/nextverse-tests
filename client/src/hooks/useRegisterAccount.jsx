@@ -48,7 +48,7 @@ const response = await axiosConfig.post("/user/register-user", {
     recaptchaToken : captchaValue
 },
 {
-    signal : AbortSignal.timeout(10000) //times out after 10 seconds
+    signal : AbortSignal.timeout(60000) //times out after 10 seconds
 }
 )
 if(response && response.data){

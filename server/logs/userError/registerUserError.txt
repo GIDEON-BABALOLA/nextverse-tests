@@ -56,3 +56,5 @@
 20250430	04:19:45	8a50ec76-1b97-497c-ad59-110b63f9aa3b	userError: Username Has Been Used
 20250430	04:21:28	fc854d2b-2e71-40a7-817f-277cc16808aa	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
 20250430	04:21:55	6b0b1f5b-1204-4df2-a863-e68cf6a0aa48	emailError: Unable To Send You A Confirmation And Welcome Email, Try To Register Again
+20250502	20:24:20	5329bc16-953f-408f-9f28-13eab5822c39	userError: Phone Number Has Been Used
+20250503	06:05:20	f9179add-54fb-4baa-a33a-efc8817351f5	userError: User Already Exists

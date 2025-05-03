@@ -190,8 +190,7 @@ if(!id){
 
 const foundStory = await Story.findById(id)
 .populate("userId", "picture username email bio")
-.select("estimatedReadingTime date _id author title content picture totalLikes totalViews")
-console.log(foundStory)
+.select("estimatedReadingTime date _id author title content picture totalLikes totalViews views")
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : foundStory.userId
@@ -860,6 +859,67 @@ const getStoryAnalytics = async (req, res) => {
         }
     }
 }
+const getStoryMetrics = async (req, res) => {
+    try{
+        const now = new Date();
+        const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
+    
+        // Likes in the last 24h
+        const [todayLikes, yesterdayLikes, todayBookmarks, yesterdayBookmarks] = await Promise.all([
+            Story.aggregate([
+                { $unwind: "$likes" },
+                { $match: { "likes.createdAt": { $gte: twentyFourHoursAgo, $lt: now } } },
+                { $count: "count" }
+            ]),
+            Story.aggregate([
+                { $unwind: "$likes" },
+                { $match: { "likes.createdAt": { $gte: fortyEightHoursAgo, $lt: twentyFourHoursAgo } } },
+                { $count: "count" }
+            ]),
+            Story.aggregate([
+                { $unwind: "$bookmarks" },
+                { $match: { "bookmarks.createdAt": { $gte: twentyFourHoursAgo, $lt: now } }  },
+                { $count: "count" }
+            ]),
+            Story.aggregate([
+                { $unwind: "$bookmarks" },
+                { $match: { "bookmarks.createdAt": { $gte: fortyEightHoursAgo, $lt: twentyFourHoursAgo } } },
+                { $count: "count" }
+            ]),
+
+
+        ])
+    
+        const todayLikesCount = todayLikes[0]?.count || 0;
+        const yesterdayLikesCount = yesterdayLikes[0]?.count || 0;
+        const likesPercentageChange = ((todayLikesCount - yesterdayLikesCount) / Math.max(yesterdayLikesCount, 1)) * 100;
+        let trend
+        if(likesPercentageChange > 0 ){
+        trend = "increase"
+        }
+        else if(likesPercentageChange < 0){
+        trend = "decrease"
+        }
+        else{
+        trend = "notrend"
+        }
+        res.status(200).json({
+        likes : {
+            todayLikesCount,
+            yesterdayLikesCount,
+            likesPercentageChange
+        },
+        bookmarks : {
+            
+        }
+        })
+        return { today, yesterday, percentageChange: Math.round(percentageChange * 100) / 100 };
+    }
+    catch(error){
+        console.log(error)
+    }
+}
 module.exports = {
     createStory,
     getAStory,
@@ -881,5 +941,6 @@ module.exports = {
     getStoryLikes,
     searchStories,
     liveSearchSuggestions,
-    getStoryAnalytics
+    getStoryAnalytics,
+    getStoryMetrics
 }

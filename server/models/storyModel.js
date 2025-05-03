@@ -105,12 +105,6 @@ const storySchema = new mongoose.Schema({
     timestamps : true,
     autoIndex: false
 });
-storySchema.methods.addViews = async function (comment, userId) {
-    this.comments.unshift({ comment, commentBy: userId });
-    this.totalComments = this.comments.length;
-    await this.save();
-    return this;
-};
 
 storySchema.methods.addComment = async function (comment, userId) {
     this.comments.unshift({ comment, commentBy: userId });
@@ -179,25 +173,22 @@ storySchema.methods.removeLike = async function (userId) {
     return this;
 };
 storySchema.methods.addView = async function (userId) {
-    if (!this.views.some(view => view.viewedBy.toString() === userId.toString())) { //.some works just like .find
         this.views.unshift({ viewedBy : userId });
         this.totalViews = this.views.length;
         await this.save();
-    }
-    return this;
+        return this;
 };
 storySchema.methods.removeView = async function (userId) {
-    const initialLength = this.Views.length;
-    this.views = this.views.filter(
-    view => view.viewedBy.toString() !== userId.toString()
-    );
-    // If the length has changed, it means a Like was removed
-    if (this.views.length !== initialLength) {
+    // Find the index of one view record for the given user
+    const index = this.views.findIndex(view => view.viewedBy.toString() === userId.toString());
+    if (index !== -1) {
+        this.views.splice(index, 1);
         this.totalViews = this.views.length;
         await this.save();
     }
     return this;
 };
+
 
 
 //Export the model
