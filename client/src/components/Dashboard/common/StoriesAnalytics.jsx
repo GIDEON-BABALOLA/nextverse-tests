@@ -1,16 +1,18 @@
 import { MdVisibility, MdMenuBook, MdFolderShared, MdAdd } from "react-icons/md"
 import "../../../styles/components/Dashboard/stories-analytics.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaRegBookmark, FaRegThumbsUp, FaRegShareFromSquare  } from "react-icons/fa6";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useGetStoryAnalytics } from "../../../hooks/useGetStoryAnalytics";
 import { useGetStoryMetrics } from "../../../hooks/useGetStoryMetrics";
 import useNavigateStory from "../../../hooks/useNavigateStory";
+import ErrorMessage from "../../common/ErrorMessage"
 import { Link } from "react-router-dom"
 import Percentage from "./Percentage";
 const StoriesAnalytics = () => {
 const navigateToStory = useNavigateStory();
 const { getStoryAnalytics, isLoading, error, data } = useGetStoryAnalytics();
+const [loadingState] = useState([{}, {}, {}, {}, {}])
 const { getStoryMetrics, data : metricsData, isLoading : metricsIsLoading} = useGetStoryMetrics();
 useEffect(() => {
 getStoryMetrics();
@@ -23,10 +25,58 @@ console.log(metricsData)
 useEffect(() => {
 console.log(data);
 }, [data])
-
+const resendRequest = () => {
+    getStoryAnalytics();
+}
   return (
     <div className="litenote-dashboard-stories-analytics">
     <h2 className='litenote-dashboard-h-two'>Stories Analytics</h2>
+    {error && <>
+
+
+{ error?.code == "ERR_NETWORK" ? 
+  <ErrorMessage title={"Check Your Internet Connection"} 
+message={"We are unable to load this content, check your connection"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+error?.code == "ERR_CANCELED"
+
+?
+<ErrorMessage title={"Timeout Error"} 
+message={"Sorry, Your Request Has Timed Out, Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+:
+<ErrorMessage title={"Something went wrong"} 
+message={"We are unable to load this content,Pls click on the refresh button"}
+height={60}
+type={error.code}
+fireClick = {resendRequest}
+/>
+}
+</>
+}
+{ !error &&
+    <>
+    {
+    isLoading ?
+    <>
+    {loadingState.map((content, index) => (
+    <div className="recent-stories-loader"
+    key={index}
+    style={{width : "100%", height : "60px", margin : "10px 0px",  borderRadius : "10px"}}>
+</div>
+    ))
+
+    }
+    </>
+:
+<>
     <div className="litenote-dashboard-item stories">
         <div className="litenote-dashboard-icon">
          <MdMenuBook />
@@ -39,6 +89,7 @@ console.log(data);
             { metricsIsLoading ? <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div> : <Percentage trend={metricsData.stories.trend} value={metricsData.stories.percentage}/> }
         </div>
         </div>
+        
         <div className="litenote-dashboard-item liked"  onClick={() => navigateToStory(data.mostLikedStory[0])}>
         <div className="litenote-dashboard-icon" style={{backgroundColor :"#F44336"}}>
          <FaRegThumbsUp />
@@ -87,6 +138,10 @@ console.log(data);
             { metricsIsLoading ? <div className="recent-stories-loader" style={{width : "30px", height : "10px"}}></div> : <Percentage trend={metricsData.comments.trend} value={metricsData.comments.percentage}/> }
         </div>
     </div>
+    </>
+}
+    </>
+}
     <Link to="/dashboard/publish" style={{textDecoration : "none"}}>
     <div className="litenote-dashboard-item add">
      <MdAdd size={20}/>

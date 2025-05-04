@@ -810,6 +810,8 @@ switch (req.user.role) {
 //For admin
 const getStoryAnalytics = async (req, res) => {
     try{
+        console.log(how);
+        
         const [mostLikedStory, mostBookmarkedStory, mostViewedStory, mostCommentedStory, mostRecentStory] = await Promise.all([
             Story.find()
                 .sort({ totalLikes: -1 })
