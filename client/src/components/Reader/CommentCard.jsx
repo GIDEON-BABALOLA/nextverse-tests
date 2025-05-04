@@ -61,7 +61,7 @@ const CommentCard = ({ comment, isLoading, setDeleteModal }) => {
             {comment.commentBy["username"]}
             </span>
             <span style={{color : "#777777"}}>
-            {formatDistanceToNow(comment.date)}
+            {formatDistanceToNow(comment.createdAt)}
             </span>
           </div>
             <div className="comment-card-container-second-section-body">

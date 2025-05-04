@@ -50,7 +50,7 @@ useEffect(() => {
           username : user["username"],
           picture : user["picture"]
         },
-        date : data.date,
+        createdAt : data.createdAt,
         _id : data._id
       }
       , ...comments])

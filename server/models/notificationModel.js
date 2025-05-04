@@ -32,6 +32,11 @@ actor: {
     ref: "User", // The user who performed the action (liked, commented, followed)
     required: true,
   },
+  categoryReference: {
+    type: String,
+    required: true,
+    enum: ["Story", "User"] // actual Mongoose model names
+  }  
 },
 {
     timestamps : true
@@ -41,6 +46,7 @@ notificationSchema.statics.createStoryNotification = async function(userId, stor
     const notification = new this({
         user: userId, // The recipient
         category: "story",
+        categoryReference: "Story",
         type: type,
         message: message,
         referenceId: storyId, // The story that was liked
@@ -53,6 +59,7 @@ notificationSchema.statics.createProfileNotification = async function(userId, fo
     const notification = new this({
         user: userId, // The recipient
         category: "profile",
+        categoryReference: "User",
         type: type,
         message: message,
         referenceId: followerId, // The user who followed

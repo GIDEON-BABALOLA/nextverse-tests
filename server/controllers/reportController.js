@@ -66,8 +66,19 @@ try{
     .skip(skip)
     .limit(limitInt)
     .lean()
-    const reportCount = await Report.countDocuments();
-    return res.status(200).json({message : "Successfully Retrieved All Reports", reports : reports, reportCount : reportCount})
+    const cleanReports = reports
+    .filter(story => {
+        // Remove stories with empty objects, null or undefined values, and null/undefined _id
+        return Object.keys(story).length > 0 && 
+               story._id != null && 
+               !Object.values(story).includes(null) && 
+               !Object.values(story).includes(undefined);
+      });
+    const reportCount = await Report.countDocuments(
+        {   userId: { $exists: true, $ne: null } }
+    );
+    console.log(reportCount)
+    return res.status(200).json({message : "Successfully Retrieved All Reports", reports : cleanReports, reportCount : reportCount})
 }
 catch(error){
     console.log(error)

@@ -39,7 +39,6 @@ const getMyNotifications = async (req, res) => {
             user: req.user._id,
             category: "profile",
           });
-console.log(cleanNotifications, notifications)
         res.status(200).json({
             "message" : "Successfully Retreived Notifications",
             notifications : cleanNotifications,
@@ -78,6 +77,44 @@ res.status(200).json({"message" : "Successfully retreived Notification Count", n
         }
     }
 }
-module.exports = { getMyNotifications,
-getNotificationsCount
+const getAllNotifications = async (req, res) => {
+    const { page, limit, category } = req.query;
+    const skip = (page - 1) * limit;
+    try{
+        const notifications = await Notification.find({ category : category })
+        .populate("actor", "picture username")
+        .populate({
+            path: "referenceId", // will dynamically use refPath (e.g., 'Story', 'User')
+            select: category == "profile" ? "picture bio username" : "title", // include all possible fields
+            
+          })
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .lean();
+        const cleanNotifications = notifications
+        .filter(story => {
+            // Remove stories with empty objects, null or undefined values, and null/undefined _id
+            return Object.keys(story).length > 0 && 
+                   story._id != null && 
+                   !Object.values(story).includes(null) && 
+                   !Object.values(story).includes(undefined);
+          });
+          console.log(cleanNotifications)
+        res.status(200).json({message : "Successfully Retrieved All Notifications",  notifications : cleanNotifications })
+    }
+    catch(error){
+        console.log(error)
+        logEvents(`${error.name}: ${error.message}`, "getAllNotificationsError.txt", "notificationError")
+        if(error instanceof notificationError){
+            return res.status(error.statusCode).json({ message : error.message})
+        }else{
+            return res.status(500).json({message : "Internal Server Error"})
+        }
+    }
+}
+module.exports = { 
+getMyNotifications,
+getNotificationsCount,
+getAllNotifications
  }

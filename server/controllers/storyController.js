@@ -554,6 +554,7 @@ const commentAStory = async (req, res) => {
         // Respond with the updated story
         res.status(201).json(commentedStory.toObject().comments[0]);
     } catch (error) {
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "addCommentToStoryError.txt", "storyError");
 
         if (error instanceof userError) {
@@ -602,7 +603,7 @@ const getStoryComments = async (req, res) => {
     const storyComments = await Story.findOne({ _id: id })
   .populate({
     path: 'comments.commentBy', // This populates the user (commentBy) in the comments array
-    select: 'username picture' 
+    select: 'username picture createdAt' 
     // You can add other fields here as needed
   })
   .slice('comments', [parseInt(skip), parseInt(limit)])
@@ -912,10 +913,17 @@ const getStoryMetrics = async (req, res) => {
         const todayCommentsCount = todayComments[0]?.count || 0;
         const yesterdayCommentsCount = yesterdayComments[0]?.count || 0;
         const calculatePercentageChange = (todayCount, yesterdayCount) => {
-            console.log(yesterdayCount, todayCount)
-            // If both today and yesterday counts are 0, return 0% change
+            // If both today and yesterday counts are 0, return 0 since there's no change
             if (todayCount === 0 && yesterdayCount === 0) return 0;
-            else return  ((todayCount - yesterdayCount) / (todayCount + yesterdayCount)) * 100;
+        
+            // If only yesterday's count is 0, treat this as a 100% increase
+            if (yesterdayCount === 0) return 100;
+        
+            // If only today's count is 0, treat this as a 100% decrease
+            if (todayCount === 0) return -100;
+        
+            // Normal calculation for percentage change
+            return Math.round(((todayCount - yesterdayCount) / Math.max(todayCount, yesterdayCount)) * 100);
         };
         const likesPercentageChange = calculatePercentageChange(todayLikesCount, yesterdayLikesCount);
         const bookmarksPercentageChange = calculatePercentageChange(todayBookmarksCount, yesterdayBookmarksCount);
@@ -935,37 +943,37 @@ const getStoryMetrics = async (req, res) => {
         likes : {
             todayLikesCount,
             yesterdayLikesCount,
-            percentage : likesPercentageChange,
+            percentage : Math.abs(likesPercentageChange),
             trend : likesTrend
         },
         bookmarks : {
             todayBookmarksCount,
             yesterdayBookmarksCount,
-            percentage : bookmarksPercentageChange,
+            percentage : Math.abs(bookmarksPercentageChange),
             trend : bookmarksTrend
         },
         views : {
             todayViewsCount,
             yesterdayViewsCount,
-            percentage : viewsPercentageChange,
+            percentage : Math.abs(viewsPercentageChange),
             trend : viewsTrend
         },
         comments : {
             todayCommentsCount,
             yesterdayCommentsCount,
-            percentage : commentsPercentageChange,
+            percentage : Math.abs(commentsPercentageChange),
             trend : commentsTrend
         },
         users : {
             todayUsersCount : todayUsers, 
             yesterdayUsersCount : yesterdayUsers,
-            percentage : usersPercentageChange,
+            percentage : Math.abs(usersPercentageChange),
             trend : usersTrend
         },
         stories : {
             todayStoriesCount : todayStories, 
             yesterdayStoriesCount : yesterdayStories,
-            percentage : storiesPercentageChange,
+            percentage : Math.abs(storiesPercentageChange),
             trend : storiesTrend
         }
         })

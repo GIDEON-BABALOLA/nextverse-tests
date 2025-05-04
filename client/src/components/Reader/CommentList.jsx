@@ -32,6 +32,7 @@ setCommentNumber
   }, [parameters.page, parameters.limit, openModal, storyId, parameters, isOpen])
   useEffect(() => {
     if (data) {
+      console.log(data)
       setEmptyData(false)
       const skip = (parameters["page"]) * parameters["limit"];
       if (skip >= commentCount && commentCount > 0) {
