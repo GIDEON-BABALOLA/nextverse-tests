@@ -16,6 +16,7 @@ const notificationRouter = require(path.join(__dirname,  "routes", "notification
 const reportRouter = require(path.join(__dirname, "routes", "reportRoute"))
 const generalRouter = require(path.join(__dirname,  "routes", "generalRoute.js"))
 const challengeRouter = require(path.join(__dirname,  "routes", "challengeRoute.js"))
+const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors(corsOptions))
@@ -46,6 +47,7 @@ app.use("/api/story", storyRouter);
 app.use("/api/note", noteRouter); 
 app.use("/api/newsletter", newsletterRouter); 
 app.use("/api/notification", notificationRouter); 
+app.use("/api/developer", developerRouter);
 app.use("/api/report", reportRouter)
 app.use("/api/general", generalRouter)
 app.use("/api/challenge", challengeRouter)
