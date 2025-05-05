@@ -85,7 +85,7 @@ const getAllNotifications = async (req, res) => {
         .populate("actor", "picture username")
         .populate({
             path: "referenceId", // will dynamically use refPath (e.g., 'Story', 'User')
-            select: category == "profile" ? "picture bio username" : "title", // include all possible fields
+            select: category == "profile" ? "picture bio username" : "title author", // include all possible fields
             
           })
         .sort({ createdAt: -1 })
@@ -100,7 +100,6 @@ const getAllNotifications = async (req, res) => {
                    !Object.values(story).includes(null) && 
                    !Object.values(story).includes(undefined);
           });
-          console.log(cleanNotifications)
         res.status(200).json({message : "Successfully Retrieved All Notifications",  notifications : cleanNotifications })
     }
     catch(error){

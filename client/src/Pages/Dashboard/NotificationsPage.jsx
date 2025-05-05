@@ -134,7 +134,8 @@ setNotificationData([])
         <div className="my-notifications-header">
             <h1>Notifications</h1>
         </div>
-       <NotificationsTab slideLine={slideLine} attachmentLine={attachmentLine}
+       <NotificationsTab slideLine={slideLine}
+attachmentLine={attachmentLine}
 changeNotificationState={changeNotificationState}
 currentNotification={currentNotification}
 notificationCount={notificationCount}

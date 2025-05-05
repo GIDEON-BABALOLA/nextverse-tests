@@ -810,8 +810,6 @@ switch (req.user.role) {
 //For admin
 const getStoryAnalytics = async (req, res) => {
     try{
-        console.log(how);
-        
         const [mostLikedStory, mostBookmarkedStory, mostViewedStory, mostCommentedStory, mostRecentStory] = await Promise.all([
             Story.find()
                 .sort({ totalLikes: -1 })
@@ -905,7 +903,6 @@ const getStoryMetrics = async (req, res) => {
                 Story.countDocuments(countData(twentyFourHoursAgo, now)),  // ✅ ADD THIS
                 Story.countDocuments(countData(fortyEightHoursAgo, twentyFourHoursAgo))
         ])
-    console.log(todayStories, "todayStories")
         const todayLikesCount = todayLikes[0]?.count || 0;
         const yesterdayLikesCount = yesterdayLikes[0]?.count || 0;
         const todayBookmarksCount = todayBookmarks[0]?.count || 0;

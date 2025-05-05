@@ -14,6 +14,7 @@ import { Link } from "react-router-dom"
 import {  useState } from "react"
 const FeedPage = () => {
     const { closeContextMenu } = useModalContext();
+    const [attachmentLine, setAttachmentLine ] = useState(0)
     const [feedCategory, setFeedCategory] = useState({
       all : true,
       technology : false,
@@ -57,6 +58,12 @@ const FeedPage = () => {
     }
     }
   const { width } = useWindowSize()
+  const slideLine =(e, index) => {
+      setAttachmentLine(e.target.offsetLeft)
+      const allAttachments = document.querySelectorAll(".feed-heading")
+      allAttachments.forEach((content) => content.classList.remove("active"))
+      allAttachments[index].classList.add("active")
+      }
   return (
     <>
     <ConnectivityToast />
@@ -74,13 +81,18 @@ const FeedPage = () => {
            </> }
         </div>
         
-        <div className="feed-tabs">
-            <span className="feed-headman active">Recommended</span>
+        <div className="feed-tab">
+            <span className="feed-heading active"
+
+            onClick={(e) => slideLine(e, 0) }
+            >Recommended</span>
             <span
-            className="feed-headman"
+            className="feed-heading"
+            onClick={(e) => slideLine(e, 1) }
              >Following</span>
             <span 
-            className="feed-headman"
+            className="feed-heading"
+            onClick={(e) => slideLine(e, 2) }
            >Challenges</span>
         </div>
         <hr />

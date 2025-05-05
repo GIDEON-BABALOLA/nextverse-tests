@@ -356,6 +356,7 @@
     -webkit-animation: 1.5s shine linear infinite;
             animation: 1.5s shine linear infinite;
    }
+
    .feed-loaders-picture{
     width: 90px;
     height: 90px;
@@ -657,7 +658,27 @@ color: var(--searcher-color);
   color: #fff;
   border-radius: var(--border-radius-1);
    }
-
+   .feed-tab{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    gap: 10px;
+   }
+   .feed-heading{
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+   }
+   .feed-heading.active{
+    color: #526cdf;
+    border-bottom: 2px solid white;
+   }
+   @media (max-width: 768px) {
+    .feed-tab{
+        justify-content: space-between;
+    }
+   }
 
 
 

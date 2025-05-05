@@ -9,6 +9,8 @@ import { useGetAllNotifications } from "../../../hooks/useGetAllNotifications"
 import useNavigateStory from "../../../hooks/useNavigateStory";
 import useNavigateProfile from "../../../hooks/useNavigateProfile"
 const RecentUpdates = () => {
+    const navigateToStory = useNavigateStory();
+    const navigateToProfile = useNavigateProfile();
     const [loadingState, setLoadingState] = useState([{}, {}, {}, {}])
     const [emptyData, setEmptyData] = useState(false)
     const {
@@ -21,6 +23,7 @@ const RecentUpdates = () => {
             getAllNotifications(1, 4, "story");
         }, [])
         useEffect(() => {
+            console.log(data)
             if(data.length > 0) {
                 setEmptyData(false)
             }
@@ -103,8 +106,8 @@ fireClick = {resendRequest}
                 <>
 
              {data.map((content, index) => (
-        <div className="litenote-dashboard-update" key={index}>
-            <div className="litenote-dashboard-profile-photo">
+        <div className="litenote-dashboard-update" key={index} style={{cursor : "pointer"}}>
+            <div className="litenote-dashboard-profile-photo" onClick={() => navigateToProfile(content.actor.username)}>
             <CommonAvatar
   style={{height : "40px", width: "40px"}}
   image={content.actor.picture}
@@ -112,7 +115,14 @@ fireClick = {resendRequest}
   />
             </div>
             <div className="litenote-dashboard-message">
-                <div><b>{content.message.replace("your story.", "the story")}</b> with the title {content.referenceId.title}</div>
+                <div><b>{content.message.replace("your story.", "the story")}</b> with the title 
+                <b>
+                {" "}
+                <span onClick={() =>  navigateToStory(content.referenceId)}>
+                {content.referenceId.title}
+                </span>
+                </b>
+                </div>
                 <small className="litenote-dashboard-text-muted">
                     {formatDistanceToNow(content.createdAt)}
                     </small>
