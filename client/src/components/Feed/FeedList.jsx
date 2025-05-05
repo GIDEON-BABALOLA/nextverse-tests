@@ -13,7 +13,7 @@ import NoContent from "../common/NoContent"
 import { generateRandomPage } from "../../helpers/generateRandomPage"
 import { isVisibleInViewport } from "../../helpers/isVisibleInViewPort"
 import useWindowSize from "../../hooks/useWindowSize"
-const FeedList = ({ view, feedCategory}) => {
+const FeedList = ({ view, feedCategory, selection}) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4);
   const [emptyData, setEmptyData] = useState(false)
@@ -37,18 +37,19 @@ currentStoryId
   useEffect(() => {
     setEmptyData(false)
     const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
+    const selected = Object.keys(selection).find(key => selection[key] === true)
     const skip = (page - 1) * limit;
     if (skip >= storyCount && storyCount > 0) {
       const randomPage = generateRandomPage(page)
       setPage(randomPage);
       return;
     }
-    populateFeed(page, limit, category);
-  }, [page, feedCategory,limit]);
+    populateFeed(page, limit, category, selected);
+  }, [page, feedCategory, limit, selection]);
   useEffect(() => {
     setPage(1); // Reset to the first page when the category changes
     setFeedStories([]); // Clear current stories to avoid mixing old and new category data
-  }, [feedCategory]);
+  }, [feedCategory, selection]);
   useEffect(() => {
     if(data.length > 0){
       setEmptyData(false)
@@ -134,8 +135,9 @@ const resendRequest = () => {
   setEmptyData(false)
   console.log(feedCategory)
   const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
-  console.log(category)
-  populateFeed(1, limit, category)
+  const selected = Object.keys(selection).find(key => selection[key] === true)
+  console.log(selected)
+  populateFeed(1, limit, category, selected)
 }
   return (
     <>

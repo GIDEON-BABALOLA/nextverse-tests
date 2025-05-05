@@ -32,3 +32,5 @@
 20250415	11:58:55	ec4c170c-00fd-46fa-a9d0-8ed83a797cc9	ReferenceError: story is not defined
 20250430	12:03:49	e7c06b79-5454-4e7d-b684-68437f0d40db	MongoServerError: BSON field 'skip' value must be >= 0, actual value '-6'
 20250430	12:03:50	dda8a6a1-5f74-462a-9d40-0c30c1523137	MongoServerError: BSON field 'skip' value must be >= 0, actual value '-12'
+20250505	10:24:22	909e9db3-0372-4165-9c2b-629224335f99	TypeError: Cannot read properties of undefined (reading 'equals')
+20250505	10:24:53	de22b4c2-b05b-4f67-8220-47b0c6dc98ed	TypeError: Cannot read properties of undefined (reading 'equals')

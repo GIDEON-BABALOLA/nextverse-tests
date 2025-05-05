@@ -6,12 +6,13 @@ export const usePopulateFeed = () => {
     const [statusCode, setStatusCode] = useState(null)
     const [storyCount, setStoryCount] = useState(0)
     const [data, setData] = useState([])
-    const populateFeed = async (page, limit, category) => {
+    const populateFeed = async (page, limit, category, selection) => {
         const parameters = {
             page : page,
             limit : limit,
             category : category,
-            fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes content date bookmarks"
+            selection : selection,
+            fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes date bookmarks"
         }
         if(category == "all"){
 delete parameters.category

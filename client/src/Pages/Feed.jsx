@@ -24,6 +24,11 @@ const FeedPage = () => {
       romance : false,
       memoir : false
     })
+    const [selection, setSelection] = useState({
+        recommended : true,
+        following : false,
+        challenges : false
+    })
     const [view, setView] = useState({
         list : false,
         grid : true
@@ -60,6 +65,11 @@ const FeedPage = () => {
   const { width } = useWindowSize()
   const slideLine =(e, index) => {
       setAttachmentLine(e.target.offsetLeft)
+      setSelection({
+        recommended :e.target.innerText == "Recommended",
+        following :  e.target.innerText == "Following",
+        challenges : e.target.innerText == "Challenges"
+      })
       const allAttachments = document.querySelectorAll(".feed-heading")
       allAttachments.forEach((content) => content.classList.remove("active"))
       allAttachments[index].classList.add("active")
@@ -97,7 +107,9 @@ const FeedPage = () => {
         </div>
         <hr />
         
-  <FeedList view={view} feedCategory={feedCategory}/>
+  <FeedList 
+  selection={selection}
+  view={view} feedCategory={feedCategory}/>
     </div>
         
   <FeedRightSidebar feedCategory={feedCategory} setFeedCategory ={setFeedCategory}/>

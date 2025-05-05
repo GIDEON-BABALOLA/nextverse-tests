@@ -8,6 +8,7 @@ const Notification = require(path.join(__dirname, "..", "models", "notificationM
 const _ = require('lodash');
 const slugify = require("slugify")
 const { cloudinaryError, userError, notificationError } = require("../utils/customError");
+const { log } = require("console");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { countWordsAndEstimateReadingTime } = require(path.join(__dirname, "..", "utils", "countWordsAndEstimateReadingTime.js"))
@@ -236,7 +237,7 @@ const getAllStories = async (req, res) => {
     try{
         //filtering
 const queryObj = {...req.query}
-const excludeFields = ["page", "sort", "limit", "fields"]
+const excludeFields = ["page", "sort", "limit", "fields", "selection"]
 excludeFields.forEach((el) => delete queryObj[el])
    // Handle date filtering specifically
    let dateFilter = {};
@@ -255,8 +256,14 @@ excludeFields.forEach((el) => delete queryObj[el])
 let queryString;
 queryString = JSON.stringify(queryObj)
 queryString = queryString.replace(/\b(gte|gt|lte|lt|eq)\b/g, (match) => `$${match}`)
+const followedUserIds = req.user.following.map(f => f.follows);
+const showFollowingOnly = req.query.selection == "following"
 let query;
-const queryToBeSent = {...JSON.parse(queryString), ...dateFilter}
+const selectionQuery = showFollowingOnly
+  ? { userId: { $in: followedUserIds } }
+  : {}; // Empty query = match all
+
+const queryToBeSent = {...JSON.parse(queryString), ...dateFilter, ...selectionQuery}
  // Combine the query object and date filter
 query = Story.find(queryToBeSent)
 //Sorting, arrangement of the data you want 
@@ -299,7 +306,6 @@ const cleanedStories = allStories.filter(story => {
            !Object.values(story).includes(null) && 
            !Object.values(story).includes(undefined);
   });
-  console.log(cleanedStories.length)
 const enrichedFeed = cleanedStories.map((story) => ({
   ...story,
   picture : story.picture[Math.floor(Math.random() * story.picture.length)],
