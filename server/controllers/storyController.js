@@ -290,9 +290,10 @@ query = query.skip(skip).limit(limit);
 let storyCount;
 if(req.query.page){
     if(req.query.category){
-        storyCount =  await Story.countDocuments({category : req.query.category});
-    }else{
-        storyCount = await Story.countDocuments();
+        storyCount =  await Story.countDocuments({category : req.query.category, ...selectionQuery});
+    }
+    else{
+        storyCount = await Story.countDocuments({...selectionQuery});
     }
     // if(skip >= storyCount){
     //     throw new userError( "This page does not exist", 404)

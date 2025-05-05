@@ -15,6 +15,7 @@ const newsletterRouter = require(path.join(__dirname,  "routes", "newsletterRout
 const notificationRouter = require(path.join(__dirname,  "routes", "notificationRoute.js"))
 const reportRouter = require(path.join(__dirname, "routes", "reportRoute"))
 const generalRouter = require(path.join(__dirname,  "routes", "generalRoute.js"))
+const challengeRouter = require(path.join(__dirname,  "routes", "challengeRoute.js"))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors(corsOptions))
@@ -47,6 +48,7 @@ app.use("/api/newsletter", newsletterRouter);
 app.use("/api/notification", notificationRouter); 
 app.use("/api/report", reportRouter)
 app.use("/api/general", generalRouter)
+app.use("/api/challenge", challengeRouter)
 app.use("/api/fix", fixRouter); 
 mongoose.connect(process.env.LITENOTE_MONGODB_URL)
 .then(() => {

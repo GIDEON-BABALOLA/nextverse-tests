@@ -77,6 +77,13 @@ class emailError extends Error{
         this.statusCode = statusCode;
     }
 }
+class challengeError extends Error{
+    constructor(message, statusCode){
+        super(message)
+        this.name = this.constructor.name;
+        this.statusCode = statusCode;
+    }
+}
 module.exports = {
 userError,
 cloudinaryError,
@@ -88,5 +95,6 @@ emailError,
 developerError,
 designerError,
 notificationError,
-reportError
+reportError,
+challengeError
  }

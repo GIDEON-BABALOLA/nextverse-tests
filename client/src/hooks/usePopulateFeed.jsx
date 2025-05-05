@@ -12,7 +12,7 @@ export const usePopulateFeed = () => {
             limit : limit,
             category : category,
             selection : selection,
-            fields : "author estimatedReadingTime avatar category totalViews totalLikes picture title likes date bookmarks"
+            fields : "author estimatedReadingTime avatar category content totalViews totalLikes picture title likes date bookmarks"
         }
         if(category == "all"){
 delete parameters.category

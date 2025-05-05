@@ -12,6 +12,7 @@ import { usePopulateFeed } from "../../hooks/usePopulateFeed"
 import NoContent from "../common/NoContent"
 import { generateRandomPage } from "../../helpers/generateRandomPage"
 import { isVisibleInViewport } from "../../helpers/isVisibleInViewPort"
+import { useGetAllChallenges } from "../../hooks/useGetAllChallenges"
 import useWindowSize from "../../hooks/useWindowSize"
 const FeedList = ({ view, feedCategory, selection}) => {
   const [page, setPage] = useState(1);
@@ -31,6 +32,7 @@ setShareUrl,
 currentStoryId
 } = useModalContext();
   const  { populateFeed, isLoading, error, data, storyCount } = usePopulateFeed(); 
+  const { getAllChallenges, isLoading : challengeLoading , error : challengeError, data : challengeData,  challengeCount } = useGetAllChallenges()
   const [loading, setLoading] = useState([])
   const lastItemRef = useRef();
   const loadingRef = useRef(null);
@@ -38,6 +40,10 @@ currentStoryId
     setEmptyData(false)
     const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
     const selected = Object.keys(selection).find(key => selection[key] === true)
+    if(selected == "challenges"){
+      getAllChallenges(1, 6)
+      return
+    }
     const skip = (page - 1) * limit;
     if (skip >= storyCount && storyCount > 0) {
       const randomPage = generateRandomPage(page)
@@ -61,7 +67,13 @@ currentStoryId
     })
     }  
     }, [data])
-
+useEffect(() => {
+  if(!challengeLoading){
+    if(challengeData.length == 0 && !error){
+      setEmptyData(true)
+    }
+  }
+}, [challengeData, challengeLoading])
     useEffect(() => {
 if(!isLoading){
   if(data.length == 0 && !error){
@@ -133,10 +145,12 @@ if(!isLoading){
     }, [width])
 const resendRequest = () => {
   setEmptyData(false)
-  console.log(feedCategory)
   const category = Object.keys(feedCategory).find(key => feedCategory[key] === true)
   const selected = Object.keys(selection).find(key => selection[key] === true)
-  console.log(selected)
+  if(selected == "challenges"){
+    getAllChallenges(1, 6)
+    return
+  }
   populateFeed(1, limit, category, selected)
 }
   return (

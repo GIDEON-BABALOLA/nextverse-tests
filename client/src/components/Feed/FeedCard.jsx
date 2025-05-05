@@ -398,7 +398,7 @@ className="list-view-card-second-section"
     <span style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "4px"}}>
     { avatarLoading ? <div className="feed-loaders feed-loaders-avatar"></div>
 :
-    <img src={storyAvatar}></img>
+    <img src={storyAvatar} style={{width : "40px", height : "40px", objectFit : "cover"}}></img>
     }
     <div style={{display :"flex", flexDirection : "column", justifyContent : "space-around"}}>
 <span><b>{story.userId.username}</b></span>

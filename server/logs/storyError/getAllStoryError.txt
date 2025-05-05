@@ -34,3 +34,7 @@
 20250430	12:03:50	dda8a6a1-5f74-462a-9d40-0c30c1523137	MongoServerError: BSON field 'skip' value must be >= 0, actual value '-12'
 20250505	10:24:22	909e9db3-0372-4165-9c2b-629224335f99	TypeError: Cannot read properties of undefined (reading 'equals')
 20250505	10:24:53	de22b4c2-b05b-4f67-8220-47b0c6dc98ed	TypeError: Cannot read properties of undefined (reading 'equals')
+20250505	10:45:30	94a0903d-31df-4841-9a8e-ac78e70350ce	ReferenceError: category is not defined
+20250505	10:45:30	cc4e0814-2660-488b-b662-b3228288280d	ReferenceError: category is not defined
+20250505	10:45:32	1e0fde31-6d0d-4934-a70a-de68025a614c	ReferenceError: category is not defined
+20250505	10:45:33	98227ba7-77eb-410a-b178-354c4aacdb50	ReferenceError: category is not defined
