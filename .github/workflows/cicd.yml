@@ -36,7 +36,7 @@ jobs:
        - name: Logging in to AWS Elastic Container Registry
          run:  aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 884435848326.dkr.ecr.eu-north-1.amazonaws.com
        - name: Build Docker Image
-         run:  docker build -t litenote-server ./server
+         run:  docker build -t litenote-server:1.0 ./server
        - name: Tag Docker Image
          run:  docker tag litenote-server:1.0 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-server:1.0
        - name: Publish Image to AWS Elastic Container Registry
