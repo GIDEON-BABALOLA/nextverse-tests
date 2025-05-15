@@ -1,3 +1,0 @@
-20250324	00:12:45	c2740916-a94e-488d-962c-3360a13853d7	userError: This attribute president is not valid
-20250324	00:16:21	2c82f51c-32eb-4b7b-8c13-d1ee4741156e	userError: This attribute president is not valid
-20250324	00:19:05	bcec3e25-7b49-4d71-abb2-939092bc7617	userError: This attribute president is not valid

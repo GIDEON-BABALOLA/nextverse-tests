@@ -1,2 +1,0 @@
-20250505	11:10:23	9deef50d-2854-4ea5-96d1-f269c7b9fa66	TypeError: Invalid sort value: { createdAt: -1 }
-20250505	11:10:23	8cfe9376-7671-41b2-811f-db2eaae9409b	TypeError: Invalid sort value: { createdAt: -1 }

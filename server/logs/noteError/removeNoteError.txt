@@ -1,7 +1,0 @@
-20250309	14:39:36	42a8f5fc-6fcd-4108-9081-319b6bca88c9	TypeError: noteToBeRemoved.removeNote is not a function
-20250309	14:39:53	d02a37b9-349d-4bf3-8193-e108afbbae1f	TypeError: noteToBeRemoved.removeNote is not a function
-20250309	14:40:13	41b74578-5463-4553-9a61-5f0af053c1f3	TypeError: noteToBeRemoved.removeNote is not a function
-20250309	14:40:49	9f7107de-da5f-4d2a-ab2d-e66327d51a84	TypeError: noteToBeRemoved.removeNote is not a function
-20250309	14:43:39	cccebd5c-4afb-466c-a796-9ad01ef9fc8a	TypeError: noteToBeRemoved.removeNote is not a function
-20250309	16:11:16	22355b24-077e-442a-90d9-b391557dddcd	ReferenceError: type is not defined
-20250309	16:12:22	7c079f33-93ec-4424-ba1c-246018ff432e	ReferenceError: type is not defined

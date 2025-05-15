@@ -1,5 +1,0 @@
-20250327	00:24:00	1ccd6484-35c5-4d4b-b30e-f6846023c617	userError: Pls Choose An Image To Upload
-20250327	00:24:47	4a1c5d0f-8825-4429-a356-4aa0da26fb64	userError: Pls Choose An Image To Upload
-20250327	00:30:11	c903923d-79fa-449a-bac1-57836a481d2c	userError: Pls Choose An Image To Upload
-20250327	00:31:06	deffc8c0-efab-4e83-824a-d1ef8e150a20	userError: Pls Choose An Image To Upload
-20250327	01:05:19	bab30a0f-8945-4956-9126-1402e325cea6	ReferenceError: rukiyat is not defined

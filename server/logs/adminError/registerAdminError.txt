@@ -1,6 +1,0 @@
-20250403	00:53:09	d9b0d79f-ce38-49f9-ab07-e88c64b8387a	adminError: Phone Number Has Been Used
-20250403	00:55:04	7fc15900-6da3-4a13-9c6e-413ec18e587d	adminError: You Are Not An Administrator
-20250403	00:56:10	f619ff05-6a10-438a-9ec4-28551efcbb6b	adminError: You Are Not An Administrator
-20250403	01:00:18	f4888e53-4e8d-456b-a196-d8e3eac5319c	adminError: Please Fill In All The Fields
-20250421	22:50:45	8f98c413-7a27-4df3-8ed0-d0f563bd0d62	ReferenceError: otpGenerator is not defined
-20250421	22:51:24	fdaafb7b-b954-4312-8d82-13ec7d95aa2a	ReferenceError: generateEmailContent is not defined
