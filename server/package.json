@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/recaptcha-enterprise": "^5.13.0",
-    "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^2.2.0",
     "bson": "^6.10.3",
@@ -27,7 +26,6 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mailtrap": "^3.4.0",
-    "mongoose": "^8.14.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.13",
@@ -40,5 +38,10 @@
     "tesseract.js": "^5.1.0",
     "uuid": "^9.0.1",
     "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "axios": "^1.9.0",
+    "cross-spawn": "^7.0.6",
+    "mongoose": "^8.14.3"
   }
 }
