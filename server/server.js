@@ -55,7 +55,7 @@ app.use("/api/fix", fixRouter);
 mongoose.connect(process.env.LITENOTE_MONGODB_URL)
 .then(() => {
       app.listen(PORT, () => {
-        console.log(` Connected To Database && Server is running on port ${PORT}`)
+        console.log(` Connected To Database && Server is now running on port ${PORT}`)
     })
 })
 .catch((error) => {
