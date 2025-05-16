@@ -55,6 +55,8 @@ jobs:
         run:  docker pull 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-server:1.0
       - name: Delete old container
         run:  docker rm -f litenote-server1 litenote-server2 litenote-server3
+      - name: Print current directory
+        run: pwd
       - name: Run server 1
         run: docker run --env-file environment.txt -d -p 50001:5000 --name litenote-server1 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-server:1.0
       - name: Run server 2
