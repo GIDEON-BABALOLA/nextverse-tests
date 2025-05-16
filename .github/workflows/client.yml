@@ -31,8 +31,8 @@ jobs:
            - name: Logging in to AWS Elastic Container Registry
              run:  aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 884435848326.dkr.ecr.eu-north-1.amazonaws.com
            - name: Pull Image from AWS Elastic Container Registry
-             uses: docker pull 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
+             run: docker pull 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
            - name: Delete Old Container
-             uses: docker rm -f litenote-client
+             run: docker rm -f litenote-client
            - name: Run Docker Container
-             uses: docker run  --env-file litenote-client-environment.txt -d -p 80:80 --name litenote-client 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
+             run: docker run  --env-file litenote-client-environment.txt -d -p 80:80 --name litenote-client 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
