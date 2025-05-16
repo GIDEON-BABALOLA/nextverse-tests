@@ -76,7 +76,7 @@ jobs:
       - name: Delete old container
         run:  docker rm -f litenote-server1 litenote-server2 litenote-server3
       - name: Run Docker compose File
-        run:  docker-compose up -d 
+        run:  docker compose up -d 
 
 
    
