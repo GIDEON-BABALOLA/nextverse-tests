@@ -52,6 +52,7 @@ app.use("/api/report", reportRouter)
 app.use("/api/general", generalRouter)
 app.use("/api/challenge", challengeRouter)
 app.use("/api/fix", fixRouter); 
+console.log(process.env.LITENOTE_MONGODB_LIVE_URL)
 mongoose.connect(process.env.LITENOTE_MONGODB_LIVE_URL)
 .then(() => {
       app.listen(PORT, () => {
