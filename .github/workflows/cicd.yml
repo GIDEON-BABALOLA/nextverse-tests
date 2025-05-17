@@ -38,7 +38,6 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
-      
       - name: Login to ECR
         run: aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 884435848326.dkr.ecr.eu-north-1.amazonaws.com
       - name: Create .env file for React
