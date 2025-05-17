@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
-#Environment Variables
-.env
 .vercel
+
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
