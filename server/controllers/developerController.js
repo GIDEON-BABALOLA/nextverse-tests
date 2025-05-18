@@ -318,6 +318,7 @@ const deleteDeveloper = async (req, res) => {
 }
 const getAllDevelopers = async(req, res) => {
     console.log(req.header('x-forwarded-for') )
+    console.log(req.socket.remoteAddress)
     let query
     try{
     query = Developer.find()
