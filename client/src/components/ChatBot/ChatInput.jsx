@@ -2,7 +2,7 @@ import { useRef, useEffect, useContext } from "react"
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { BiMicrophone } from "react-icons/bi";
 import { BiSolidSend } from "react-icons/bi";
-import "regenerator-runtime/runtime"
+import "regenerator-runtime"
 import  ChatBotContext  from "../../context/ChatBotContext"
 const ChatInput = ( { handleChat } ) => {
    const { inputText, setInputText, inputInitHeight, setInputInitHeight } = useContext(ChatBotContext)
