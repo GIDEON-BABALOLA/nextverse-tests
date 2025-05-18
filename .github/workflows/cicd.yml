@@ -90,4 +90,4 @@ jobs:
         run: docker rm -f litenote-client || true
 
       - name: Run Client Container
-        run: docker run -d -p 80:80 --name litenote-client 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
+        run: docker run -d -p 8080:80 --name litenote-client 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
