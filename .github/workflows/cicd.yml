@@ -71,7 +71,8 @@ jobs:
 
       - name: Remove old container
         run: docker rm -f litenote-server || true
-
+      - name: Print Current Directory
+        run: pwd
       - name: Run Server Container
         run: docker run --env-file litenote-server-environment.txt -d -p 5000:5000 --name litenote-server 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-server:1.0
 
