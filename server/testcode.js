@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt")
 const User = require("./models/userModel"); // Adjust path if needed
 
 mongoose.connect("mongodb+srv://nextverse101:n3dblQlCnV63uvZU@cluster0.hhv6f.mongodb.net/litenoteDB").then(() => {
@@ -9,14 +10,15 @@ mongoose.connect("mongodb+srv://nextverse101:n3dblQlCnV63uvZU@cluster0.hhv6f.mon
 });
 
 async function createUser() {
+  const hashedPassword = await bcrypt.hash("password123$", 10);
   try {
     const newUser = new User({
       username: "Jemima",
       email: "marojemima@gmail.com",
-      password: "password123$",
+      password: hashedPassword,
       mobile: "08012345678",
       bio: "I love writing",
-      staus : "true"
+      verification : true
     });
 
     await newUser.save();
