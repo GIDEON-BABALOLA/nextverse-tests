@@ -10,11 +10,11 @@ mongoose.connect("mongodb+srv://nextverse101:n3dblQlCnV63uvZU@cluster0.hhv6f.mon
 });
 
 async function createUser() {
-  const hashedPassword = await bcrypt.hash("password123$", 10);
+  const hashedPassword = await bcrypt.hash("Password123$", 10);
   try {
     const newUser = new User({
-      username: "Jemima",
-      email: "marojemima@gmail.com",
+      username: "Great",
+      email: "eyarhono.great@lmu.edu.ng",
       password: hashedPassword,
       mobile: "08012345678",
       bio: "I love writing",
