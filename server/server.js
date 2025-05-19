@@ -20,6 +20,7 @@ const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors(corsOptions))
+app.set('trust proxy', true);
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
