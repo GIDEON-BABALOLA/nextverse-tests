@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react"
 import { axiosConfig } from "../../api/axiosConfig"
 import { FaCheck, FaTimes } from "react-icons/fa"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import GoogleAuth from "../Dashboard/common/GoogleAuth"
 import Button from "./Button"
 import Recaptcha from "../common/Recaptcha"
 const Register = () => {
@@ -123,6 +124,16 @@ if(response){
           />
          <Button 
          onClick={handleRegister} isLoading={isLoading} text={"Register"}/>
+                       <span style={{color : "white", textAlign : "center", display : "flex", flexDirection : "row",
+          justifyContent : "center", alignItems : "center", padding : "5px  0px"
+         }}
+         >or</span>
+               <div
+                  style={{
+                  }}
+                  >
+                  <GoogleAuth context={"signup"}/>
+                  </div> 
 
 <Recaptcha 
 ref={recaptchaRef}

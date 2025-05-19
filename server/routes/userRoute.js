@@ -22,7 +22,8 @@ resendUserVerification,
 getUserBookmarks,
 getUserStories,
 getAllMyUsers,
-getCurrentUserStories
+getCurrentUserStories,
+googleAuthentication
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
 const { authMiddleware, isAdministrator, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
@@ -31,6 +32,7 @@ router.post("/register-user", verifyReCAPTCHA,  signupUser);
 router.post("/verify-user-registration", verifyUserRegistration)
 router.post("/resend-user-verification", resendUserVerification)
 router.post("/login-user", verifyReCAPTCHA, bruteForceLimiter, loginUser)
+router.post("/google-authentication", verifyReCAPTCHA, bruteForceLimiter, googleAuthentication)
 router.post("/upload-user-picture", authMiddleware,  uploadProfileImageMiddleware,  uploadUserPicture)
 router.post("/follow-user", authMiddleware, followUser)
 router.post("/unfollow-user", authMiddleware, unfollowUser)

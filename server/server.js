@@ -57,7 +57,6 @@ console.log(process.env.LITENOTE_MONGODB_LIVE_URL)
 mongoose.connect(process.env.LITENOTE_MONGODB_LIVE_URL)
 .then(() => {
       app.listen(PORT, () => {
-        console.log(PORT, process.env.LITENOTE_MONGODB_LIVE_URL)
         console.log(` Connected To Database && Server is now trully running on port ${PORT}`)
     })
 })

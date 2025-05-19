@@ -5,6 +5,7 @@ import Input from "./Input"
 import Button from "./Button"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { useLoginAccount } from "../../hooks/useLoginAccount"
+import GoogleAuth from "../Dashboard/common/GoogleAuth"
 import { useToastContext } from "../../hooks/useToastContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import Toast from "../common/Toast"
@@ -107,8 +108,16 @@ onClick={rememberMe}
          className="litenote-login-submit-btn" onClick={handleLogin} text={"Login"}
 
          />
-  
- 
+         <span style={{ textAlign : "center", display : "flex", flexDirection : "row",
+          justifyContent : "center", alignItems : "center", padding : "5px  0px", color: "#dfc0bb", fontSize : "15px"
+         }}
+         >or</span>
+         <div
+         style={{
+         }}
+         >
+         <GoogleAuth context={"signup"}/>
+         </div> 
         <div className="litenote-login-register-link">
         <Link to="/register" >
         <span style={{fontSize : "1.4rem"}}>

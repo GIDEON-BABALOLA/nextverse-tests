@@ -13,12 +13,13 @@ async function createUser() {
   const hashedPassword = await bcrypt.hash("Password123$", 10);
   try {
     const newUser = new User({
-      username: "Jemima",
-      email: "marojemima@gmail.com",
+      username: "Jesse",
+      email: "jesseokolakpa9@gmail.com",
       password: hashedPassword,
-      mobile: "08012345621",
+      mobile: "08112312821",
       bio: "I love writing",
-      verification : true
+      verification : true,
+      status: true
     });
 
     await newUser.save();

@@ -43,18 +43,29 @@ const userSchema = new mongoose.Schema({
         type : Number,
         default : null
     },
-    verificationTokenExpires : {
+googleId: { type: String, unique: true, sparse: true },
+verificationTokenExpires : {
         type : Date,
         default : null
     },
-    password:{
-        type:String,
-        required:true,
-    },
-    mobile : {
-        type : String,
-        required : true,
-        unique : true
+password: {
+  type: String,
+  required: function () {
+    return this.authSource === "self";
+  },
+},
+    authSource: {
+    enum: ["self", "google"],
+    type: String,
+    default: "self"
+   },
+
+mobile : {
+type : String,
+required: function () {
+    return this.authSource === "self";
+  },
+unique : true
     },
     accessToken : {
         type:String
