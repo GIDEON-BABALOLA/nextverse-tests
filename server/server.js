@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     // Handle specific error: Not allowed by CORS
     if (err.message === "Not allowed by CORS") {
-      res.status(403).json({"message" : "CORS Policy Violation, Leave Now"}); // Use 403 for forbidden requests
+      res.status(403).json({"message" : "CORS Policy Violation, Leave Now Now"}); // Use 403 for forbidden requests
     }
     else if(err.code === 'ECONNRESET'){
        res.status(504).json({ error: 'Your Request Has Timed out' });
