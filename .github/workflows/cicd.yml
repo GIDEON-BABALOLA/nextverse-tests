@@ -49,6 +49,7 @@ jobs:
          echo "VITE_REACT_GOOGLE_GEMINI_API_KEY=${{ secrets.VITE_REACT_GOOGLE_GEMINI_API_KEY }}" >> ./client/.env
          echo "VITE_REACT_GOOGLE_DRIVE_CLIENT_ID=${{ secrets.VITE_REACT_GOOGLE_DRIVE_CLIENT_ID }}" >> ./client/.env
          echo "VITE_REACT_GOOGLE_DRIVE_API_KEY=${{ secrets.VITE_REACT_GOOGLE_DRIVE_API_KEY }}" >> ./client/.env
+         echo "VITE_REACT_GOOGLE_AUTHENTICATION_CLIENT_ID=${{ secrets.VITE_REACT_GOOGLE_AUTHENTICATION_CLIENT_ID }}" >> ./client/.env
       - name: Build Client Image
         run: docker build --no-cache -t litenote-client:1.0 ./client
 
