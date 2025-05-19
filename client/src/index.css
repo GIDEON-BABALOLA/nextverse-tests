@@ -216,19 +216,7 @@ html, #root {
     box-sizing: border-box;
     animation: animloader 1s linear infinite;
   }
-.litenote-dashboard-h-three, 
-.nav-sidebar-link h3, 
-.nav-user-info h4 {
-  -webkit-text-fill-color: initial; /* Helps fix invisible text bug */
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-.litenote-dashboard-h-three,
-.nav-user-info h4,
-.nav-sidebar-link h3 {
-  color: black; /* or white based on your background */
-}
-
+  
   @keyframes animloader {
     0% {
       box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
