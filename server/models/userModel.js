@@ -51,22 +51,23 @@ verificationTokenExpires : {
 password: {
   type: String,
   required: function () {
-    return this.authSource === "self";
+    return this.authSource.includes("self");
   },
 },
     authSource: {
     enum: ["self", "google"],
-    type: String,
+    type: [String],
     default: "self"
    },
 
-mobile : {
-type : String,
-required: function () {
-    return this.authSource === "self";
+mobile: {
+  type: String,
+  required: function () {
+    return this.authSource.includes("self");;
   },
-unique : true
-    },
+  unique: true,
+  sparse: true // Allow multiple nulls by making the index sparse
+},
     accessToken : {
         type:String
     },

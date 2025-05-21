@@ -5,20 +5,21 @@ export const useGoogleAuthentication = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [statusCode, setStatusCode] = useState(null)
     const [data, setData] = useState([])
-    const googleAuthentication = async (credential) => {
+    const googleAuthentication = async (credential, context) => {
         console.log(credential)
         setIsLoading(true) //starting the request
         try{
 setError(null)
-const response = await axiosConfig.post("/user/google-authentication", {
- credential : credential
+const response = await axiosConfig.post("/third-party-auth/google-authentication", {
+ credential : credential,
+ context: context
 },
 {
     signal : AbortSignal.timeout(60000) //times out after 10 seconds
 }
 )
 if(response && response.data){
-    setData(response.data.user)
+    setData(response.data)
     setStatusCode(response.status)
     setError(null)
     setIsLoading(false)

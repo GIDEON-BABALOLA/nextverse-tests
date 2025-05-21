@@ -7,7 +7,6 @@ import useNavigateStory from "../../hooks/useNavigateStory";
 import useNavigateProfile from "../../hooks/useNavigateProfile";
 import { getStoryUrl } from "../../helpers/getStoryUrl";
 const PopularStoriesCard = ({ fireClick, story, isLoading, setCurrentStoryDetails}) => {
-  console.log(story)
   const { popularStories } = usePopularStoriesContext()
   const navigateToStory = useNavigateStory();
   const navigateToProfile = useNavigateProfile();

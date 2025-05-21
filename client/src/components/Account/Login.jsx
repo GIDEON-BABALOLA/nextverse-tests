@@ -14,6 +14,10 @@ const Login = () => {
 const router =  useNavigate()
 const { dispatch } = useAuthContext()
 const { loginAccount, isLoading, error, data, statusCode } = useLoginAccount()
+const [loading, setLoading] = useState(false)
+useEffect(() => {
+setLoading(isLoading)
+}, [isLoading])
 const { showToast } = useToastContext()
   const [passwordVisibility, setPasswordVisibility] = useState(false)
   const [email, setEmail] = useState();
@@ -104,7 +108,7 @@ onClick={rememberMe}
           </div>
         
         <Button
-        isLoading={isLoading}
+        isLoading={loading}
          className="litenote-login-submit-btn" onClick={handleLogin} text={"Login"}
 
          />
@@ -116,7 +120,7 @@ onClick={rememberMe}
          style={{
          }}
          >
-         <GoogleAuth context={"signup"}/>
+         <GoogleAuth context={"signin"} setLoading={setLoading} width={270}/>
          </div> 
         <div className="litenote-login-register-link">
         <Link to="/register" >

@@ -1,5 +1,6 @@
 import { MdLogout } from "react-icons/md"
 import { useLogoutAccount } from "../../hooks/useLogOutAccount"
+import { googleLogout } from '@react-oauth/google';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useToastContext } from "../../hooks/useToastContext";
@@ -18,6 +19,7 @@ showToast("Error", error, false)
   }, [error, showToast])
   useEffect(() => {
     if(statusCode == 204){
+      googleLogout();
     dispatch({type : "LOGOUT"})
       showToast("Success", "Successfully Logged Out", true)
       setTimeout(() => {

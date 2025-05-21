@@ -20,8 +20,6 @@ const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateM
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete, cloudinaryCheckIfFolderExists } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { sendWelcomeEmail, sendVerificationEmail} = require(path.join(__dirname, "..", "utils", "Email.js"))
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
-const { OAuth2Client } = require('google-auth-library');
- const client = new OAuth2Client();
 //User Registration
 const duplicateUsername = async (req, res) => {
     try{
@@ -40,73 +38,6 @@ return res.status(200).json({message : "Username is available"})
          }
     }
 }
-
-
-
-
-
-
-const googleAuthentication = async (req, res) => {
-  const { credential } = req.body;
-    try{
-    // Verify the ID token with Google's API
-    const ticket = await client.verifyIdToken({
-      idToken: credential,
-      audience: process.env.GOOGLE_AUTHENTICATION_CLIENT_ID,
-    });
-const payload = ticket.getPayload();
-const { email, name, picture, sub: googleId  } = payload;
-console.log(payload)
-//check if user is an administrator
-let role = "user";
-const adminEmails = process.env.ADMIN_EMAILS ? process.env.ADMIN_EMAILS.split(',') : [];
-const isAdmin = adminEmails.includes(email);
-if(isAdmin){
-    role = "admin"
-}
-// Check if the user already exists in the database
-let user = await User.findOne({googleId : googleId})
-if(!user) {
-user = await User.create({ 
-    username: name, 
-    googleId,
-    email : email, 
-    bio : "writer",
-    verification : role == "admin" ? true : false, 
-    ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
-    picture : picture,
-    role : role,
-    authSource: "google",
-    status : true
- })
-await sendWelcomeEmail(email, name, process.env.LITENOTE_WELCOME_EMAIL)
-}
-    const id = user?._id.toString()
-    const refreshToken = generateRefreshToken(id, user.role)
-    await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
-    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 7, sameSite : "None",  secure : true })
-    //Seven Day Refresh Token
-    res.status(201).json({
-        user : {...user, accessToken : generateAccessToken(id, user.role)},
-        message : "Successfully Logged In User"
-    })
-    }catch(error){
-    console.log(error)
-    logEvents(`${error.name}: ${error.message}`, "googleAuthenticationError.txt", "userError")
-    if (error instanceof userError) {
-       return  res.status(error.statusCode).json({ message : error.message})
-    }else if(error instanceof validatorError){
-        return  res.status(error.statusCode).json({ message : error.message})  
-    }
-    else if(error instanceof emailError){
-        return  res.status(error.statusCode).json({ message : error.message})  
-    }
-    else{
-        return res.status(500).json({message : "Internal Server Error"})
-    }
-}
-    }
-
 const signupUser = async (req, res) => {
 try{
 const { username, email, password, mobile} = req.body
@@ -165,7 +96,7 @@ const newUser = await User.create({
     ipAddress : req.header('x-forwarded-for') || req.socket.remoteAddress,
     picture : profilePicture,
     role : role,
-    authSource: "self"
+    authSource: ["self"]
  })
  const time = Date.now() + minute * 60 * 1000 //5 minutes //saved five minutes ahead in the future
 await newUser.createVerificationToken(otp, verificationToken, time);
@@ -340,6 +271,13 @@ if(!foundUser){
 if(foundUser.status === false){
     throw new userError("Your Account Has Not Yet Been Verified", 400)
 }
+    // Add this check: reject if authSource is google (no password login)
+    if (foundUser.authSource.includes("google")) {
+      throw new userError(
+        "You signed up using Google. Please log in using Google authentication.",
+        400
+      );
+    }
 const match = await bcrypt.compare(password, foundUser.password)
 if(foundUser && match){
     const id = foundUser?._id.toString()
@@ -1007,6 +945,5 @@ module.exports = {
     getAUser,
     getUserBookmarks,
     getUserStories,
-    getCurrentUserStories,
-    googleAuthentication
+    getCurrentUserStories
 }

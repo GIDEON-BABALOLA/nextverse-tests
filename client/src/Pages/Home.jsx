@@ -6,13 +6,16 @@ import Faq from "../components/Home/faq.jsx"
 import ChatBot from "../components/ChatBot/ChatBot.jsx"
 import NewsletterSignup from "../components/common/NewsletterSignup.jsx"
 import Testimonial from "../components/Home/Testimonial.jsx"
+import { useAuthContext } from "../hooks/useAuthContext.jsx"
 import { useRef } from "react"
 import GetStartedTimeline from "../components/common/GetStartedTimeline.jsx"
 import { useThemeContext } from "../hooks/useThemeContext.jsx"
 import { useModalContext } from "../hooks/useModalContext.jsx"
+import GoogleOneTap from "../components/Dashboard/common/GoogleOneTap.jsx"
 import { useEffect } from "react"
 const Home = () => {
   const { closeContextMenu } = useModalContext()
+  const { user } = useAuthContext()
   const { colorMode } = useThemeContext()
 const page = useRef()
 useEffect(() => {
@@ -34,6 +37,8 @@ case "dark-mode":
     <NewsletterSignup page={page}/>
     
     <Intro />
+       { !user && <GoogleOneTap /> }
+
     {/* <LanguageSelect /> */}
     <PopularStoriesContextProvider>
     <PopularStories />

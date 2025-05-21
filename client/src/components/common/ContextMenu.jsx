@@ -2,6 +2,7 @@ import "../../styles/components/common/context.css"
 import { useRef, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useBookmarkAStory } from "../../hooks/useBookmarkAStory"
+import React from "react"
 import { useUnBookmarkAStory } from "../../hooks/useUnBookmarkAStory"
 import { useLikeAStory } from "../../hooks/useLikeAStory";
 import { useUnLikeAStory } from "../../hooks/useUnlikeAStory";
@@ -474,7 +475,7 @@ const openAStory = () => {
         {
             contextMenuData.map(((item, id) => (
                
-        <> {
+        <React.Fragment key={id}> {
            item.type  == "custom" ? 
            <>
            {item.label === "Bookmark" && (
@@ -516,7 +517,7 @@ const openAStory = () => {
                     >{item.label}</span>
                 </li>
 }
-               </>
+               </React.Fragment >
         
             
             )))

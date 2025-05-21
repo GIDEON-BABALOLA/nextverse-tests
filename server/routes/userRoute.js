@@ -23,7 +23,6 @@ getUserBookmarks,
 getUserStories,
 getAllMyUsers,
 getCurrentUserStories,
-googleAuthentication
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
 const { authMiddleware, isAdministrator, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
@@ -32,7 +31,6 @@ router.post("/register-user", verifyReCAPTCHA,  signupUser);
 router.post("/verify-user-registration", verifyUserRegistration)
 router.post("/resend-user-verification", resendUserVerification)
 router.post("/login-user", verifyReCAPTCHA, bruteForceLimiter, loginUser)
-router.post("/google-authentication", verifyReCAPTCHA, bruteForceLimiter, googleAuthentication)
 router.post("/upload-user-picture", authMiddleware,  uploadProfileImageMiddleware,  uploadUserPicture)
 router.post("/follow-user", authMiddleware, followUser)
 router.post("/unfollow-user", authMiddleware, unfollowUser)
@@ -47,7 +45,6 @@ router.get("/get-user-profile", authMiddleware, getUserProfile)
 router.get("/get-user-bookmarks", authMiddleware, getUserBookmarks)
 router.get("/get-user-stories/:username", authMiddleware, getUserStories)
 router.get("/get-current-user-stories", authMiddleware, getCurrentUserStories)
-
 router.get("/logout-user",  authMiddleware, logoutUser)
 router.delete("/delete-user", authMiddleware, deleteUser)
 router.delete("/delete-a-user/:username", authMiddleware, isAdministrator,  deleteAUser)

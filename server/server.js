@@ -17,10 +17,11 @@ const reportRouter = require(path.join(__dirname, "routes", "reportRoute"))
 const generalRouter = require(path.join(__dirname,  "routes", "generalRoute.js"))
 const challengeRouter = require(path.join(__dirname,  "routes", "challengeRoute.js"))
 const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
+const thirdPartyAuthRouter = require(path.join(__dirname,  "routes", "thirdPartyAuthRoute.js"))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors(corsOptions))
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
@@ -52,8 +53,8 @@ app.use("/api/developer", developerRouter);
 app.use("/api/report", reportRouter)
 app.use("/api/general", generalRouter)
 app.use("/api/challenge", challengeRouter)
+app.use("/api/third-party-auth", thirdPartyAuthRouter)
 app.use("/api/fix", fixRouter); 
-console.log(process.env.LITENOTE_MONGODB_LIVE_URL)
 mongoose.connect(process.env.LITENOTE_MONGODB_LIVE_URL)
 .then(() => {
       app.listen(PORT, () => {

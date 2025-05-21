@@ -21,8 +21,12 @@ const Register = () => {
   const [nameError, setNameError] = useState(false)
   const [passwordVisibility, setPasswordVisibility] = useState(true)
   const [captchaValue, setCaptchaValue] = useState(null)
+  const [loading, setLoading] = useState(false)
   const { showToast } = useToastContext()
   const { registerAccount, isLoading, error, data, statusCode} = useRegisterAccount()
+  useEffect(() => {
+setLoading(loading)
+  }, [isLoading])
   useEffect(() => {
     if(error){
       setCaptchaValue(null)
@@ -123,16 +127,17 @@ if(response){
             onChange = {(e) => setMobile(e.target.value)}
           />
          <Button 
-         onClick={handleRegister} isLoading={isLoading} text={"Register"}/>
+         onClick={handleRegister} isLoading={loading} text={"Register"}/>
                        <span style={{color : "white", textAlign : "center", display : "flex", flexDirection : "row",
           justifyContent : "center", alignItems : "center", padding : "5px  0px"
          }}
          >or</span>
                <div
                   style={{
+                    marginBottom :"5px"
                   }}
                   >
-                  <GoogleAuth context={"signup"}/>
+                  <GoogleAuth context={"signup"} setLoading={setLoading} width={290}/>
                   </div> 
 
 <Recaptcha 

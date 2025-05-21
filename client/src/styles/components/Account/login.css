@@ -115,6 +115,15 @@
 .litenote-login-form .litenote-login-register-link a:hover {
   color: #fff;
 }
+.google-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.google-btn-container > div {
+  max-width: 280px;
+  width: 100%;
+}
 
 @keyframes animate {
   0% {
