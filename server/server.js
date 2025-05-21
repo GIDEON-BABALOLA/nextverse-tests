@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const app = express();
 const PORT = process.env.LITENOTE_PORT
-const corsOptions = require(path.join(__dirname, "config", "corsConfig.js"))
+const  {corsOptions, googleCorsOptions } = require(path.join(__dirname, "config", "corsConfig.js"))
 const userRouter = require(path.join(__dirname,  "routes", "userRoute.js"))
 const storyRouter = require(path.join(__dirname,  "routes", "storyRoute.js"))
 const noteRouter = require(path.join(__dirname,  "routes", "noteRoute.js"))
@@ -19,8 +19,8 @@ const challengeRouter = require(path.join(__dirname,  "routes", "challengeRoute.
 const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
 const thirdPartyAuthRouter = require(path.join(__dirname,  "routes", "thirdPartyAuthRoute.js"))
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
-app.use(cors(corsOptions))
 app.set('trust proxy', 1);
 app.use((req, res, next) => {
   res.setHeader(
@@ -43,18 +43,18 @@ app.use((err, req, res, next) => {
       next(err);
     }
   });
-  
-app.use("/api/user", userRouter);
-app.use("/api/story", storyRouter); 
-app.use("/api/note", noteRouter); 
-app.use("/api/newsletter", newsletterRouter); 
-app.use("/api/notification", notificationRouter); 
-app.use("/api/developer", developerRouter);
-app.use("/api/report", reportRouter)
-app.use("/api/general", generalRouter)
-app.use("/api/challenge", challengeRouter)
-app.use("/api/third-party-auth", thirdPartyAuthRouter)
-app.use("/api/fix", fixRouter); 
+// Standard routes — use normal CORS
+app.use("/api/user", cors(corsOptions), userRouter);
+app.use("/api/story", cors(corsOptions), storyRouter);
+app.use("/api/note", cors(corsOptions), noteRouter);
+app.use("/api/newsletter", cors(corsOptions), newsletterRouter);
+app.use("/api/notification", cors(corsOptions), notificationRouter);
+app.use("/api/developer", cors(corsOptions), developerRouter);
+app.use("/api/report", cors(corsOptions), reportRouter);
+app.use("/api/general", cors(corsOptions), generalRouter);
+app.use("/api/challenge", cors(corsOptions), challengeRouter);
+app.use("/api/fix", cors(corsOptions), fixRouter);
+app.use("/api/third-party-auth", cors(googleCorsOptions), thirdPartyAuthRouter); 
 mongoose.connect(process.env.LITENOTE_MONGODB_LIVE_URL)
 .then(() => {
       app.listen(PORT, () => {

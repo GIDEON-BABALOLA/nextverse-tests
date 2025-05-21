@@ -5,9 +5,9 @@ const allowedOrigins = [
 "http://localhost:3000",
 ]
 const corsOptions = {
-  origin: function (origin, callback) {
+  origin: function (origin, callback) {  
         // use !origin during development and not during production
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    if (allowedOrigins.indexOf(origin) !== -1 ) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -22,6 +22,23 @@ const corsOptions = {
   "Authorization",
   "X-Request-With",
   ],
-  optionsSucessStatus : 200
+  optionsSuccessStatus: 200 
 }
-module.exports = corsOptions
+const googleCorsOptions = {
+  origin: (origin, callback) => {
+    console.log(origin)
+    // Allow null origin (for Google redirect)
+    if (allowedOrigins.indexOf(origin) !== -1 || origin == "null") {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS for Google Callback"));
+    }
+  },
+  credentials: true,
+  methods: ["POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}
+module.exports = {
+  corsOptions,
+  googleCorsOptions
+}

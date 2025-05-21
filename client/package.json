@@ -34,6 +34,7 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-dropbox-chooser": "^0.0.5",
+    "react-google-button": "^0.8.0",
     "react-google-drive-picker": "^1.2.2",
     "react-google-recaptcha": "^3.1.0",
     "react-headroom": "^3.2.1",

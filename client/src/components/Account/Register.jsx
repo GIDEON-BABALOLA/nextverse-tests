@@ -5,13 +5,15 @@ import { useToastContext } from "../../hooks/useToastContext"
 import SpinnerLoader from "../Loaders/SpinnerLoader"
 import { useEffect, useState, useRef } from "react"
 import { axiosConfig } from "../../api/axiosConfig"
+import GoogleAuthRedirect from "../Dashboard/common/GoogleAuthRedirect"
 import { FaCheck, FaTimes } from "react-icons/fa"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import GoogleAuth from "../Dashboard/common/GoogleAuth"
 import Button from "./Button"
+import useWindowSize from "../../hooks/useWindowSize"
 import Recaptcha from "../common/Recaptcha"
 const Register = () => {
-
+  const { width } = useWindowSize();
   const recaptchaRef = useRef(null);
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
@@ -137,7 +139,11 @@ if(response){
                     marginBottom :"5px"
                   }}
                   >
+                    { width < 1024 ? 
                   <GoogleAuth context={"signup"} setLoading={setLoading} width={290}/>
+                   :
+                  <GoogleAuthRedirect  width={290}  context={"signup"} setLoading={setLoading}/>
+                    }
                   </div> 
 
 <Recaptcha 

@@ -45,7 +45,7 @@ const authMiddleware = async (req, res, next)=>{
             }
             next()
         }else{
-            return res.status(401).json({"error" : " You have No Authorization token in the request headers, You are not logged in"})      
+            return res.status(401).json({"errorc" : " You have No Authorization token in the request headers, You are not logged in"})      
         }
     }catch(error){
         logEvents(`${error.name}:${error.message}`, "authenticationErrorLog.txt", "authError")
@@ -117,4 +117,7 @@ catch(err){
     return res.status(500).json({message : "Internal Server Error"})
 }
 }
-module.exports = { authMiddleware, isAdministrator, isDeveloper, isDesigner, isUser, bruteForceLimiter }
+// middlewares/validateGoogleReferer.js
+
+
+module.exports = { authMiddleware, isAdministrator, isDeveloper, isDesigner, isUser, bruteForceLimiter}

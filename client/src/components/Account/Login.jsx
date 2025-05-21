@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import Recaptcha from "../common/Recaptcha"
+import GoogleAuthRedirect from "../Dashboard/common/GoogleAuthRedirect"
 import Input from "./Input"
 import Button from "./Button"
+import useWindowSize from "../../hooks/useWindowSize"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { useLoginAccount } from "../../hooks/useLoginAccount"
 import GoogleAuth from "../Dashboard/common/GoogleAuth"
@@ -10,6 +12,7 @@ import { useToastContext } from "../../hooks/useToastContext"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import Toast from "../common/Toast"
 const Login = () => {
+  const { width } = useWindowSize()
   const recaptchaRef = useRef(null);
 const router =  useNavigate()
 const { dispatch } = useAuthContext()
@@ -120,7 +123,11 @@ onClick={rememberMe}
          style={{
          }}
          >
+          { width < 1024 ?
          <GoogleAuth context={"signin"} setLoading={setLoading} width={270}/>
+         :
+         <GoogleAuthRedirect context={"signin"} setLoading={setLoading} width={270}/>
+          }
          </div> 
         <div className="litenote-login-register-link">
         <Link to="/register" >
