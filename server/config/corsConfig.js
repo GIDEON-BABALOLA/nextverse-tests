@@ -27,7 +27,11 @@ const corsOptions = {
 const googleCorsOptions = {
   origin: (origin, callback) => {
     console.log("Origin:", origin);
-    if (allowedOrigins.includes(origin) || origin == null) {
+    if  (
+  allowedOrigins.includes(origin) ||
+  origin == null ||       // null or undefined
+  origin === "null"       // string "null"
+) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS for Google Callback"));
