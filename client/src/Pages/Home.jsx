@@ -16,6 +16,7 @@ import { useEffect } from "react"
 const Home = () => {
   const { closeContextMenu } = useModalContext()
   const { user } = useAuthContext()
+  console.log(user)
   const { colorMode } = useThemeContext()
 const page = useRef()
 useEffect(() => {

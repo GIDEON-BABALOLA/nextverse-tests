@@ -4,6 +4,8 @@
     --feed-sidebar-background : white;
     --total-feed-background : #F8F8F8;
     --feed-right-sidebar-background : white;
+    --feed-headin: #a3a3a3;
+    --feed-headin-border-bottom: #526cdf;
     --feed-right-sidebar-color : black;
     --feed-topic-background : #f0f0f0;
     --feed-topic-color : black;
@@ -51,6 +53,8 @@
     --feed-sidebar-icon : #0E1012;
     --feed-sidebar-icon-color : white;
     --feed-card-background : #181A1E;
+    --feed-headin-border-bottom: white;
+     --feed-headin: white;
     --feed-card-color : white;
     --feed-logo-color : white;
     --feed-first : #7380EC;
@@ -665,14 +669,14 @@ color: var(--searcher-color);
     gap: 10px;
    }
    .feed-heading{
-    color: white;
+    color: var(--feed-headin);
     font-size: 1.4rem;
     font-weight: 700;
     cursor: pointer;
    }
    .feed-heading.active{
     color: #526cdf;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--feed-headin-border-bottom);
    }
    @media (max-width: 768px) {
     .feed-tab{
