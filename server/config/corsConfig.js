@@ -26,9 +26,8 @@ const corsOptions = {
 }
 const googleCorsOptions = {
   origin: (origin, callback) => {
-    console.log(origin)
-    // Allow null origin (for Google redirect)
-    if (allowedOrigins.includes(origin) || origin == "null" || origin == "undefined") {
+    console.log("Origin:", origin);
+    if (allowedOrigins.includes(origin) || origin == null) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS for Google Callback"));
@@ -37,7 +36,8 @@ const googleCorsOptions = {
   credentials: true,
   methods: ["POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
-}
+};
+
 module.exports = {
   corsOptions,
   googleCorsOptions
