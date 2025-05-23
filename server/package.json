@@ -24,6 +24,7 @@
     "express": "^5.1.0",
     "express-rate-limit": "^7.2.0",
     "google-auth-library": "^9.15.1",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mailtrap": "^3.4.0",

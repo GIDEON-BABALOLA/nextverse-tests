@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const path = require("path")
+const helmet = require('helmet');
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const app = express();
@@ -43,6 +44,18 @@ app.use((err, req, res, next) => {
       next(err);
     }
   });
+  app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "default-src": ["'self'"],
+      "frame-ancestors": ["'self'", "https://accounts.google.com", "https://*.google.com"],
+      "script-src": ["'self'", "https://accounts.google.com", "https://apis.google.com", "https://*.google.com", "'unsafe-inline'", "'unsafe-eval'"],
+      "connect-src": ["'self'", "https://accounts.google.com", "https://*.google.com"],
+      "style-src": ["'self'", "'unsafe-inline'"],
+    }
+  })
+);
+
 // Standard routes — use normal CORS
 app.use("/api/user", cors(corsOptions), userRouter);
 app.use("/api/story", cors(corsOptions), storyRouter);
