@@ -52,6 +52,7 @@ setLoading(isLoading)
          context={context}
          onSuccess={handleSuccess}
          onError={handleError}
+         cancel_on_tap_outside={false}
      />
    );
  };

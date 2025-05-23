@@ -18,6 +18,7 @@ const GoogleAuth = ({ context, setLoading, width}) => {
          login_uri={LOGINURI}
          logo_alignment='left'
          context={context}
+         cancel_on_tap_outside={false}
      />
      </GoogleOAuthProvider>
    );

@@ -7,7 +7,7 @@ const allowedOrigins = [
 const corsOptions = {
   origin: function (origin, callback) {  
         // use !origin during development and not during production
-    if (allowedOrigins.indexOf(origin) !== -1 ) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -28,7 +28,7 @@ const googleCorsOptions = {
   origin: (origin, callback) => {
     console.log(origin)
     // Allow null origin (for Google redirect)
-    if (allowedOrigins.indexOf(origin) !== -1 || origin == "null") {
+    if (allowedOrigins.includes(origin) || origin === "null") {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS for Google Callback"));

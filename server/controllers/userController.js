@@ -1,3 +1,5 @@
+
+const isProduction = process.env.NODE_ENV === "production";
 const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const fs = require('fs');
@@ -283,7 +285,13 @@ if(foundUser && match){
     const id = foundUser?._id.toString()
     const refreshToken = generateRefreshToken(id, foundUser.role)
     await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
-    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 7, sameSite : "None",  secure : true })
+res.cookie("refreshToken", refreshToken, {
+  httpOnly: true,
+  maxAge: 60 * 60 * 1000 * 24 * 7, // 7 days
+  sameSite: "None",
+  secure: true,
+  ...(isProduction && { domain: ".litenote.app" })
+});
     //Seven Day Refresh Token
     res.status(201).json({
         user : {...foundUser, accessToken : generateAccessToken(id, foundUser.role)},
@@ -401,12 +409,23 @@ const logoutUser = async (req, res) => {
         const refreshToken = cookies.refreshToken;
         const user = await User.findOne({refreshToken})
         if(!user){
-            res.clearCookie("refreshToken", {httpOnly: true, sameSite : "None" , secure  : true })
+  res.clearCookie("refreshToken", {
+  httpOnly: true,
+  sameSite: "None",
+  secure: true,
+  ...(isProduction && { domain: ".litenote.app" })
+});
+
             return res.status(204).json({message : "Successfully Logged Out", "success" : true})
         }
         user.refreshToken = ""
         await user.save();      
-        res.clearCookie("refreshToken", {httpOnly: true,  sameSite : "None", secure : true })
+  res.clearCookie("refreshToken", {
+  httpOnly: true,
+  sameSite: "None",
+  secure: true,
+  ...(isProduction && { domain: ".litenote.app" })
+});
         return res.status(204).json({message : "Successfully Logged Out now", "success" : true})
     }catch(error){
         console.log(error)

@@ -1,5 +1,5 @@
+const isProduction = process.env.NODE_ENV === "production";
 const path = require("path");
-const axios = require("axios")
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const CLIENT_ID = process.env.GOOGLE_AUTHENTICATION_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_AUTHENTICATION_CLIENT_SECRET;
@@ -66,7 +66,13 @@ else{
     const id = user?._id.toString()
     const refreshToken = generateRefreshToken(id, user.role)
     await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
-    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 7, sameSite : "None",  secure : true })
+res.cookie("refreshToken", refreshToken, {
+  httpOnly: true,
+  maxAge: 60 * 60 * 1000 * 24 * 7, // 7 days
+  sameSite: "None",
+  secure: true,
+  ...(isProduction && { domain: ".litenote.app" })
+});
     //Seven Day Refresh Token
         res.status(201).json({
         user : {...user.toObject(), accessToken : generateAccessToken(id, user.role)},
@@ -90,7 +96,7 @@ else{
 }
     }
 const googleCallback = async (req, res) => {
-  const { credential, context } = req.body;
+  const { credential } = req.body;
     try{
     // Verify the ID token with Google's API
     const ticket = await client.verifyIdToken({
@@ -139,10 +145,16 @@ else{
       }
 }
 
-    const id = user?._id.toString()
-    const refreshToken = generateRefreshToken(id, user.role)
-    await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
-    res.cookie("refreshToken", refreshToken, { httpOnly : true, maxAge: 60 * 60 * 1000 * 24 * 7, sameSite : 'None',  secure : true })
+const id = user?._id.toString()
+const refreshToken = generateRefreshToken(id, user.role)
+await User.findByIdAndUpdate(id, {refreshToken : refreshToken}, { new : true})
+res.cookie("refreshToken", refreshToken, {
+  httpOnly: true,
+  maxAge: 60 * 60 * 1000 * 24 * 7, // 7 days
+  sameSite: "None",
+  secure: true,
+  ...(isProduction && { domain: ".litenote.app" })
+});
     return res.redirect(process.env.FRONTEND_URL)
     //Seven Day Refresh Token
     //     res.status(201).json({
