@@ -4,6 +4,13 @@ const allowedOrigins = [
 "http://localhost:5173",
 "http://localhost:3000",
 ]
+const allOrigins = [
+"https://litenote.app",
+"https://www.litenote.app",
+"http://localhost:5173",
+"http://localhost:3000",
+"null"
+]
 const corsOptions = {
   origin: function (origin, callback) {  
         // use !origin during development and not during production
@@ -25,18 +32,14 @@ const corsOptions = {
   optionsSuccessStatus: 200 
 }
 const googleCorsOptions = {
-  origin: (origin, callback) => {
-    console.log("Origin:", origin);
-    if  (
-  allowedOrigins.includes(origin) ||
-  origin == null ||       // null or undefined
-  origin === "null"       // string "null"
-) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS for Google Callback"));
-    }
-  },
+origin: (origin, callback) => {
+  console.log("CORS Origin:", origin);
+  if (allOrigins.includes(origin)) {
+    callback(null, true);
+  } else {
+    callback(new Error("Not allowed by CORS for Google Callback"));
+  }
+},
   credentials: true,
   methods: ["POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
