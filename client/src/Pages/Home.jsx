@@ -14,6 +14,8 @@ import { useModalContext } from "../hooks/useModalContext.jsx"
 import GoogleOneTap from "../components/Dashboard/common/GoogleOneTap.jsx"
 import { useEffect } from "react"
 const Home = () => {
+  console.log(import.meta.env.VITE_REACT_GOOGLE_AUTHENTICATION_REDIRECT_URI)
+  console.log(import.meta.env.VITE_REACT_GOOGLE_AUTHENTICATION_CLIENT_ID)
   const { closeContextMenu } = useModalContext()
   const { user, appLoading } = useAuthContext()
   console.log(user)
