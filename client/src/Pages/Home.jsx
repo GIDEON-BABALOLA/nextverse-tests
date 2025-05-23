@@ -15,7 +15,7 @@ import GoogleOneTap from "../components/Dashboard/common/GoogleOneTap.jsx"
 import { useEffect } from "react"
 const Home = () => {
   const { closeContextMenu } = useModalContext()
-  const { user } = useAuthContext()
+  const { user, appLoading } = useAuthContext()
   console.log(user)
   const { colorMode } = useThemeContext()
 const page = useRef()
@@ -38,7 +38,7 @@ case "dark-mode":
     <NewsletterSignup page={page}/>
     
     <Intro />
-       { !user && <GoogleOneTap /> }
+       { !user && !appLoading && <GoogleOneTap /> }
 
     {/* <LanguageSelect /> */}
     <PopularStoriesContextProvider>
