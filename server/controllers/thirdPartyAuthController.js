@@ -155,12 +155,12 @@ res.cookie("refreshToken", refreshToken, {
   secure: true,
   ...(isProduction && { domain: ".litenote.app" })
 });
-    return res.redirect(process.env.FRONTEND_URL)
-    //Seven Day Refresh Token
+     //Seven Day Refresh Token
     //     res.status(201).json({
     //     user : {...user.toObject(), accessToken : generateAccessToken(id, user.role)},
     //     message: isNewUser ? "Successfully Signed Up User" : `Welcome Back ${user.username}`
     // })
+    return res.redirect(process.env.FRONTEND_URL)
      
     }catch(error){
     console.log(error)

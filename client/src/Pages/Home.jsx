@@ -14,11 +14,18 @@ import { useModalContext } from "../hooks/useModalContext.jsx"
 import GoogleOneTap from "../components/Dashboard/common/GoogleOneTap.jsx"
 import { useEffect } from "react"
 const Home = () => {
-  console.log(import.meta.env.VITE_REACT_GOOGLE_AUTHENTICATION_REDIRECT_URI)
-  console.log(import.meta.env.VITE_REACT_GOOGLE_AUTHENTICATION_CLIENT_ID)
+  useEffect(()=>{
+if (!import.meta.env.VITE_REACT_GOOGLE_AUTHENTICATION_REDIRECT_URI ||
+    !import.meta.env.VITE_REACT_GOOGLE_AUTHENTICATION_CLIENT_ID) {
+  console.error("Google OAuth env variables are missing!");
+}
+else{
+console.log("Google OAuth env variables are not missing!")
+}
+  }, [])
+
   const { closeContextMenu } = useModalContext()
   const { user, appLoading } = useAuthContext()
-  console.log(user)
   const { colorMode } = useThemeContext()
 const page = useRef()
 useEffect(() => {
