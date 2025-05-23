@@ -411,6 +411,7 @@ const logoutUser = async (req, res) => {
         if(!user){
   res.clearCookie("refreshToken", {
   httpOnly: true,
+  maxAge: 60 * 60 * 1000 * 24 * 7, // 7 days
   sameSite: "None",
   secure: true,
   ...(isProduction && { domain: ".litenote.app" })
@@ -422,6 +423,7 @@ const logoutUser = async (req, res) => {
         await user.save();      
   res.clearCookie("refreshToken", {
   httpOnly: true,
+  maxAge: 60 * 60 * 1000 * 24 * 7, // 7 days
   sameSite: "None",
   secure: true,
   ...(isProduction && { domain: ".litenote.app" })
