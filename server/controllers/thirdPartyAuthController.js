@@ -155,13 +155,12 @@ res.cookie("refreshToken", refreshToken, {
   secure: true,
   ...(isProduction && { domain: ".litenote.app" })
 });
-     //Seven Day Refresh Token
-    //     res.status(201).json({
-    //     user : {...user.toObject(), accessToken : generateAccessToken(id, user.role)},
-    //     message: isNewUser ? "Successfully Signed Up User" : `Welcome Back ${user.username}`
-    // })
-    return res.redirect(process.env.LITENOTE_FRONTEND_URL)
-     
+const frontendUrl = process.env.LITENOTE_FRONTEND_URL;
+if (!frontendUrl) {
+  console.error("FRONTEND_URL is missing in env!");
+  return res.status(500).send("Server misconfiguration");
+}
+return res.redirect(frontendUrl);
     }catch(error){
     console.log(error)
     logEvents(`${error.name}: ${error.message}`, "thirdPartyAuthError.txt", "thirdPartyAuthError")
