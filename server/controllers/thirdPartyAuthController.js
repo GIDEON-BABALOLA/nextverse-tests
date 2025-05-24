@@ -160,7 +160,7 @@ res.cookie("refreshToken", refreshToken, {
     //     user : {...user.toObject(), accessToken : generateAccessToken(id, user.role)},
     //     message: isNewUser ? "Successfully Signed Up User" : `Welcome Back ${user.username}`
     // })
-    return res.redirect(process.env.FRONTEND_URL)
+    return res.redirect(process.env.LITENOTE_FRONTEND_URL)
      
     }catch(error){
     console.log(error)
