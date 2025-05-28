@@ -390,6 +390,7 @@ if(Object.keys(data).length !== 0 && statusCode == 201){
       span.style.textDecoration = "underline";
       span.style.cursor = "pointer";
       span.style.color = color;
+      span.style.fontSize = "15px"
     
       // Insert the span
       range.insertNode(span);

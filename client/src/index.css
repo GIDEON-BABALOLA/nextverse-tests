@@ -15,7 +15,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-
+  scroll-behavior: smooth
 }
 .no-scroll {
   overflow: hidden;
@@ -33,12 +33,14 @@ html, #root {
   }
   html, body, #root{
     background-color: var(--lite-note-mode);
+    scroll-behavior: smooth
   }
   .body-height-override{
     height: 100%;
   }
   body {
     overflow-x: hidden;
+    scroll-behavior: smooth
   }
   .insta-kid{
     background:  rgba(239, 179, 180, 0.3);
