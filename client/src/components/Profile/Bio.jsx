@@ -191,7 +191,7 @@ triggerFollow.followUser(profile.email)
       
         
           </h2>
-          <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}} size={30}/>
+          { user && user.verification == true && <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}} size={30}/> }
           <span>{
           !imPossibleToFollow &&
           <>

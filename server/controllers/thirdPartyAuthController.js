@@ -49,7 +49,8 @@ if (!user) {
     ipAddress: req.header("x-forwarded-for") || req.socket.remoteAddress,
     picture,
     role,
-    authSource: ["google"]
+    authSource: ["google"],
+    status: true,
   });
   await sendWelcomeEmail(email, given_name, process.env.LITENOTE_WELCOME_EMAIL);
 }
@@ -131,6 +132,7 @@ if (!user) {
     picture,
     role,
     authSource: ["google"],
+    status: true,
   });
   await sendWelcomeEmail(email, given_name, process.env.LITENOTE_WELCOME_EMAIL);
 }
