@@ -3,6 +3,7 @@ import { FaShieldAlt, FaCookieBite} from "react-icons/fa";
 import { FaInstagram, FaTwitter, FaFacebookSquare, FaTiktok } from "react-icons/fa";
 import { MdLanguage, MdCode, MdInfo } from "react-icons/md";
 import { Link } from "react-router-dom"
+import { MdLock } from "react-icons/md";
 import { useState } from "react"
 import LanguageSelect from "./LanguageSelect";
 import SpecialModal from "../../components/common/SpecialModal"
@@ -26,7 +27,7 @@ const Footer = () => {
     <div className="footer-content">
       <div className="logo" style={{display : "flex", flexDirection : "column", gap : "20px"}}>
       <h6>Legal</h6>
-      <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%"}}>
+      <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%", alignItems : "center"}}>
       <FaShieldAlt/>
       <span style={{cursor : "pointer"}}
       onClick={() =>  showTermsAndConditions(true)}>
@@ -34,7 +35,7 @@ const Footer = () => {
       
       </span>
       </div>
-      <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%"}}>
+      <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%", alignItems : "center"}}>
       <FaCookieBite/>
       <span style={{cursor : "pointer"}}
       onClick={() => { showCookieConsent(true);
@@ -56,18 +57,19 @@ const Footer = () => {
       <div className="logo" style={{display : "flex", flexDirection : "column", gap : "20px"}}>
       <h6>Company</h6>
       
-      <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%"}}>
-      {/* <MdCode size={20}/> */}
+      <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%", alignItems : "center"}}>
+        <MdLock />
       <span style={{cursor : "pointer"}}>
-      <Link to = "our-team">
-      {"< />"} Our Team
+      <Link to = "privacy-policy">
+     
+Privacy Policy
 
       </Link>
    
       
       </span>
       </div>
-      <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%"}}>
+      <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%", alignItems : "center"}}>
       <MdInfo size={15}/>
       <span style={{cursor : "pointer"}}>
       About Us
@@ -77,7 +79,7 @@ const Footer = () => {
       <div className="logo" style={{display : "flex", flexDirection : "column", gap : "20px"}}>
       <h6>Community & Resources</h6>
       
-      <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%"}}>
+      <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%", alignItems : "center"}}>
       <FaShieldAlt/>
       <span style={{cursor : "pointer"}}
      >
@@ -89,7 +91,7 @@ const Footer = () => {
       
       </span>
       </div>
-      <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%"}}>
+      <div style={{display : "flex", flexDirection : "row", gap : "7px",  marginTop : "3%", alignItems : "center"}}>
       <FaCookieBite/>
       <span style={{cursor : "pointer"}}
       onClick={() =>  {showNewsLetter(true);

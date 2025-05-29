@@ -1,0 +1,65 @@
+.privacy-policy-box{
+    	box-shadow: #0000001A 0px 2px 5px 0px;
+        padding:   50px;
+         display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: white;
+  padding: 2rem;          /* optional */
+  border-radius: 8px;
+}
+.privacy-policy-section-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding: 5rem;
+  background-color: #f0f0f0; /* Optional: remove or change as needed */
+}
+.privacy-policy-accordion-title{
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 500;
+    color: black;
+}
+.privacy-policy-accordion-symbol{
+        font-size: 60px;
+        color: gray;
+}
+.privacy-policy-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: white;
+  padding: 0 10px;
+  border-radius: 0 0 5px 5px;
+  font-size: 1.2rem;
+}
+
+
+.headings-po:hover .privacy-policy-accordion-title,
+.headings-po:hover .privacy-policy-accordion-symbol {
+ color: #ff7163;
+}
+.privacy-policy-original-title{
+  font-size: 4rem;
+  font-weight: 700;
+}
+@media screen and (max-width:768px) {
+.privacy-policy-section-container {
+      padding: 1rem; 
+}
+.privacy-policy-original-title{
+  padding: 2rem;
+    font-size: 2rem;
+}
+.privacy-policy-accordion-title{
+    font-size: 20px;
+    white-space: nowrap;
+}
+.privacy-policy-accordion-symbol{
+ font-size: 20px;
+}
+}

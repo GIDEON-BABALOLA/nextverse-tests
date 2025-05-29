@@ -4,6 +4,7 @@ import Layout from './components/common/Layout';
 import Home from './Pages/Home';
 import NotFound from "./Pages/NotFound"
 import LoginPage from './Pages/Login';
+import PrivacyPolicyPage from './Pages/PrivacyPolicyPage';
 import RegisterPage from './Pages/Register';
 import VerifyPage from "./Pages/Verify"
 import ProfilePage from './Pages/Profile';
@@ -97,6 +98,7 @@ if(location["*"]  !== ""){
           )
         }
 />
+  <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
   </Route>
   <Route path="feed" 
     element={
@@ -132,6 +134,7 @@ if(location["*"]  !== ""){
         }
 />
   <Route path="our-developers" element={<DevelopersPage />} />
+  {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> */}
   <Route path="login" element={<LoginPage />} />
   <Route path="note/:email/:id" element={ <NoteReaderPage />} />
   <Route path="dashboard" element={ <DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
