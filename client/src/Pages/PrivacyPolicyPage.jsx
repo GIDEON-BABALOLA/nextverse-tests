@@ -178,7 +178,7 @@ return <>
     </div>
   <div className="privacy-policy-box">
     <div>
-{data.map((section, index) => (
+{data.map((section, index) => ( 
   <div key={index} style={{ marginTop: "20px" }}>
       <hr />
     <div style={{display: "flex", flexDirection: "row", justifyContent : "space-between", cursor : "pointer", alignItems : "center", padding : "20px 5px"}} 

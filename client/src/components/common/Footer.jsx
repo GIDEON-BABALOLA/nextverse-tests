@@ -59,7 +59,9 @@ const Footer = () => {
       
       <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%", alignItems : "center"}}>
         <MdLock />
-      <span style={{cursor : "pointer"}}>
+      <span style={{cursor : "pointer"}}       onClick={() =>  {showNewsLetter(true);
+        window.scrollTo(0, 0);
+      }}>
       <Link to = "privacy-policy">
      
 Privacy Policy
