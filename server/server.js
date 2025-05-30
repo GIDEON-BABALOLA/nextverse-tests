@@ -71,7 +71,7 @@ app.use("/api/third-party-auth", cors(googleCorsOptions), thirdPartyAuthRouter);
 mongoose.connect(process.env.LITENOTE_MONGODB_LIVE_URL)
 .then(() => {
       app.listen(PORT, () => {
-        console.log(` Now Connected To Database && Server is now trully running on port ${PORT}`)
+        console.log(` Now Connected To  This Database && Server is now trully running on port ${PORT}`)
     })
 })
 .catch((error) => {
