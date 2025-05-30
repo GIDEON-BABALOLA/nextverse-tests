@@ -27,6 +27,12 @@ jobs:
 
       - name: Push Server Image
         run: docker push 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-server:1.0
+      - name: Delete Untagged Server Images From AWS ECR
+        run: >
+             aws ecr batch-delete-image
+             --repository-name litenote-server
+             --region eu-north-1
+             --cli-input-json "{\"imageIds\": $(aws ecr list-images --repository-name litenote-server --region eu-north-1 --filter tagStatus=UNTAGGED --query 'imageIds[*]' --output json)}"
 
   # React Client Build
   build-client:
@@ -60,6 +66,12 @@ jobs:
 
       - name: Push Client Image
         run: docker push 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
+      - name: Delete Untagged Client Images From AWS ECR
+        run: >
+             aws ecr batch-delete-image
+             --repository-name litenote-client
+             --region eu-north-1
+             --cli-input-json "{\"imageIds\": $(aws ecr list-images --repository-name litenote-client --region eu-north-1 --filter tagStatus=UNTAGGED --query 'imageIds[*]' --output json)}"
 
   # Server Deployment
   deploy-server:
@@ -98,5 +110,6 @@ jobs:
         run: docker image prune -f
       - name: Run Client Container
         run: docker run -d -p 8080:80 --name litenote-client 884435848326.dkr.ecr.eu-north-1.amazonaws.com/litenote-client:1.0
+
 
 

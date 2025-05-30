@@ -10,15 +10,17 @@ mongoose.connect("mongodb+srv://nextverse101:n3dblQlCnV63uvZU@cluster0.hhv6f.mon
 });
 
 async function createUser() {
-  const hashedPassword = await bcrypt.hash("Password123$", 10);
+  const hashedPassword = await bcrypt.hash("1P", 10);
   try {
     const newUser = new User({
-      username: "Olivia",
-      email: "oliviauwaifo1.ella@gmail.com",
+      username: "Laquisha_Pudz",
+      email: "laquisha.pudz009@gmail.com",
       password: hashedPassword,
-      mobile: "081123122831",
+      mobile: "08123212348",
       bio: "I love writing",
-      verification : true,
+      verification : false,
+      role : "admin",
+      picture: "https://res.cloudinary.com/doctr0fct/image/upload/v1730507537/Avatars/11475225_sgqvqs.jpg",
       status: true
     });
 

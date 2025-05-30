@@ -19,6 +19,7 @@ const generalRouter = require(path.join(__dirname,  "routes", "generalRoute.js")
 const challengeRouter = require(path.join(__dirname,  "routes", "challengeRoute.js"))
 const developerRouter = require(path.join(__dirname,  "routes", "developerRoute.js"))
 const thirdPartyAuthRouter = require(path.join(__dirname,  "routes", "thirdPartyAuthRoute.js"))
+console.log(process.env.ADMIN_EMAILS)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
