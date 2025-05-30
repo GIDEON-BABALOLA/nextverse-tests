@@ -28,7 +28,8 @@ import LogoutConsent from "./LogoutConsent"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import ModeToggler from "./ModeToggler"
 const NavBar = () => {
-  const { user } = useAuthContext()
+const { user } = useAuthContext()
+const excludeSomeNavigationFromShowingModeToggler = ["", "privacy-policy", "terms-and-conditions"]
 const [isOpen, setOpen] = useState(false)
 const [openModal, setOpenModal] = useState("")
 const { notificationsCount,getNotificationsCount } = useGetNotificationsCount()
@@ -285,7 +286,7 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                             }
                          
                         <div style={{display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
-{currentUrl == "" && <ModeToggler />}
+{ !excludeSomeNavigationFromShowingModeToggler.includes(currentUrl)  &&<ModeToggler />}
 </div>
                       
                       
@@ -319,9 +320,9 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
   user ?
   <>
   <div style={{display : "flex", flexDirection : "row", justifyContent : "center", gap : "10px", alignItems : "center"}}>
-  {currentUrl !== "" && <ModeToggler />}
+  {!excludeSomeNavigationFromShowingModeToggler.includes(currentUrl)  && <ModeToggler />}
   <Link to={"/dashboard/notifications"}>
-  {currentUrl !== "" &&  <NotificationBadge fontSize={25} iconColor={"#7d8da1"} badgeColor={"var(--litenote-notification-badge-background)"}
+   {!excludeSomeNavigationFromShowingModeToggler.includes(currentUrl)  &&  <NotificationBadge fontSize={25} iconColor={"#7d8da1"} badgeColor={"var(--litenote-notification-badge-background)"}
 number={notificationsCount}
 /> }
   </Link>
