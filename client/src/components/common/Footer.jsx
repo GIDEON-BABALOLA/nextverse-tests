@@ -30,8 +30,11 @@ const Footer = () => {
       <div style={{display : "flex", flexDirection : "row", gap : "7px", marginTop : "3%", alignItems : "center"}}>
       <FaShieldAlt/>
       <span style={{cursor : "pointer"}}
-      onClick={() =>  showTermsAndConditions(true)}>
-      Terms and Conditions 
+      onClick={() => {
+           window.scrollTo(0, 0);
+      }}
+    >
+         <Link to = "terms-and-conditions">Terms and Conditions </Link>
       
       </span>
       </div>

@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import NotFound from "./Pages/NotFound"
 import LoginPage from './Pages/Login';
 import PrivacyPolicyPage from './Pages/PrivacyPolicyPage';
+import TermsAndConditionsPage from './Pages/TermsAndConditionsPage';
 import RegisterPage from './Pages/Register';
 import VerifyPage from "./Pages/Verify"
 import ProfilePage from './Pages/Profile';
@@ -99,6 +100,7 @@ if(location["*"]  !== ""){
         }
 />
   <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+    <Route path="terms-and-conditions" element={<TermsAndConditionsPage />} />
   </Route>
   <Route path="feed" 
     element={
