@@ -1,0 +1,14 @@
+# Allow all bots full access except for sensitive or unnecessary parts
+
+User-agent: *
+Disallow: /dashboard/users
+Disallow: /dashboard/analytics
+Disallow: /dashboard/reports
+Disallow: /login/
+Disallow: /register/
+Disallow: /node_modules/
+Disallow: /scripts/
+Disallow: /tmp/
+
+# Sitemap location helps search engines find your sitemap
+Sitemap: https://litenote.app/sitemap.xml
