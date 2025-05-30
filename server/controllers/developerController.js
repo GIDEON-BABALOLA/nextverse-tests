@@ -1,7 +1,7 @@
 const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const fs = require('fs');
-const bcrypt = require("bcrypt")
+const bcryptjs = require("bcryptjs")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
 const Developer = require(path.join(__dirname, "..", "models", "developerModel.js"))
 const { developerError, cloudinaryError, validatorError } = require(path.join(__dirname, "..", "utils", "customError.js"))
@@ -53,7 +53,7 @@ if(req.file){
     profilePicture = avatars[Math.floor((Math.random() * 50) + 1)]
 }
 
-const hashedPassword = await bcrypt.hash(password, 10);
+const hashedPassword = await bcryptjs.hash(password, 10);
 const newDeveloper = await Developer.create({
     username,
     email,
@@ -96,7 +96,7 @@ const foundDeveloper = await Developer.findOne({email : email})
 if(!foundDeveloper){
     throw new developerError("You Are Not A Developer", 404)
 }
-const match = await bcrypt.compare(password, foundDeveloper.password)
+const match = await bcryptjs.compare(password, foundDeveloper.password)
 if(foundDeveloper && match){
     const id = foundDeveloper?._id.toString()
     const refreshToken = generateRefreshToken(id, foundDeveloper.role)

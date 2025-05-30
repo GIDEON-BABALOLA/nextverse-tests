@@ -1,6 +1,6 @@
 // controllers/DataMigrationController.js
 const path = require("path");
-const bcrypt = require("bcrypt")
+const bcryptjs = require("bcryptjs")
 const { avatars } = require(path.join(__dirname, "..", "data", "avatars"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"));
 const User = require(path.join(__dirname, "..", "models", "userModel.js"));
@@ -27,7 +27,7 @@ if(foundUser) {
 if(foundMobile){
     throw new Error("Phone Number Has Been Used", 400)
 }
-const hashedPassword = await bcrypt.hash(element["password"], 10);
+const hashedPassword = await bcryptjs.hash(element["password"], 10);
 const newUser = {
   username : element["username"], 
   email : element["email"], 

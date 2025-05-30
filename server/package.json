@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/recaptcha-enterprise": "^5.13.0",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "bson": "^6.10.3",
     "cloudinary": "^2.2.0",
@@ -29,7 +29,7 @@
     "lodash": "^4.17.21",
     "mailtrap": "^3.4.0",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
+    "multer": "^2.0.0",
     "nodemailer": "^6.9.13",
     "nodemon": "^3.1.4",
     "password-validator": "^5.3.0",

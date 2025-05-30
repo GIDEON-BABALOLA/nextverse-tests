@@ -3,7 +3,8 @@ const isProduction = process.env.NODE_ENV === "production";
 const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const fs = require('fs');
-const bcrypt = require("bcrypt")
+const bcryptjs = require("bcryptjs")
+
 const crypto = require("crypto")
 const mongoose = require("mongoose")
 const { generateAccessToken, generateRefreshToken} = require(path.join(__dirname, "..", "config", "tokenConfig.js"))
@@ -83,7 +84,7 @@ if(req.file){
 }
 
 let minute = 5;
-const hashedPassword = await bcrypt.hash(password, 10);
+const hashedPassword = await bcryptjs.hash(password, 10);
  const otp = otpGenerator(4)
  const token = crypto.randomBytes(32).toString("hex")
  const verificationToken = crypto.createHash("sha256").update(token).digest("hex")
@@ -280,7 +281,7 @@ if(foundUser.status === false){
         400
       );
     }
-const match = await bcrypt.compare(password, foundUser.password)
+const match = await bcryptjs.compare(password, foundUser.password)
 if(foundUser && match){
     const id = foundUser?._id.toString()
     const refreshToken = generateRefreshToken(id, foundUser.role)
@@ -545,7 +546,7 @@ for(const key in req.body){
         }
         if(key == "password"){
             await validatePassword(value)
-            const hashedPassword = await bcrypt.hash(value, 10);
+            const hashedPassword = await bcryptjs.hash(value, 10);
             req.body.password =  hashedPassword
         }
         if(key == "username"){

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); // Erase if already required
 const crypto = require("crypto")
-const bcrypt = require("bcrypt")
+const bcryptjs = require("bcryptjs")
 // Declare the Schema of the Mongo model
 const bookmarkSchema = new mongoose.Schema({
     bookmarkId : {
