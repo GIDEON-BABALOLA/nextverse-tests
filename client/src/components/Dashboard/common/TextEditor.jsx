@@ -5,6 +5,7 @@ import useNavigateStory from "../../../hooks/useNavigateStory";
 import { useCreateAStory } from "../../../hooks/useCreateAStory";
 import useWindowSize from "../../../hooks/useWindowSize";
 import ImageUpload from "../../common/ImageUpload";
+import axios from "axios"
 import { useToastContext } from "../../../hooks/useToastContext";
 import TextEditorImage from "../common/TextEditorImage"
 import LoadingSpinner from "../../Loaders/LoadingSpinner";
@@ -203,6 +204,10 @@ initializer()
       }, [])
     const dropImage = (e) => {
       e.preventDefault()
+      if(textAreaRef.current.innerText == "" && textAreaRef.current.innerHTML == ""){
+        showToast("Error", "Pls Write Before Inserting An Image")
+        return;
+      }
       const file = e.dataTransfer.files[0]
       const maxSize = 2 * 1024 * 1024
       const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
@@ -235,7 +240,10 @@ initializer()
       handlePlaceholder(); 
     }
     const dropboxSuccess = (file) => {
-      console.log(file)
+      if(textAreaRef.current.innerText == "" && textAreaRef.current.innerHTML == ""){
+        showToast("Error", "Pls Write Before Inserting An Image")
+        return;
+      }
       const fileUrl = file[0].link.replace("dl=0", "raw=1");
       if([...storyPictures].length === 3){
         setAttachmentModal(false)
@@ -250,10 +258,68 @@ initializer()
       handlePlaceholder(); 
       setAttachmentModal(false)
     }
-    const googleDriveSuccess = () => {
+//     const googleDriveSuccess = (data) => {
+//       console.log(data.docs[0])
+//   if (data.action === 'cancel') {
+//           console.log('User clicked cancel/close button')
+//         }
+// if(data.action == "picked"){
+//   console.log(data.docs[0])
+// const fileId = data.docs[0].id;
+// const fileUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+// console.log(fileUrl)
+//       if([...storyPictures].length === 3){
+//         setAttachmentModal(false)
+//         showToast("Error", "You can only upload a maximum of three images", false)
+//         return
+//       }
+//       const imageID = uuidv4()
+//       setStoryPictures((prev) => {
+//         return [...prev, { id: imageID, name : data.docs[0].name, src : fileUrl, source : "cloud"}]
+//       })
+//       insertTextAtCursor(`[Image ${data.docs[0].name}]`, "#7380ec");
+//       handlePlaceholder(); 
+//       setAttachmentModal(false)
+// }
+//     }
+const googleDriveSuccess =  (imageURL, file) => {
+    if(textAreaRef.current.innerText == "" && textAreaRef.current.innerHTML == ""){
+        showToast("Error", "Pls Write Before Inserting An Image")
+        return;
+      }
+    const maxSize = 2 * 1024 * 1024
+    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]
+    if(!validTypes.includes(file.type)){
+        showToast("Error", "Please Choose An Image File", false)
+        return;
+      }
+    if(file.size > maxSize){
+        showToast("Error", "Image Size Must Be Less Than 2MB", false)
+        return;
+      }
+    if([...storyPictures].length === 3){
+        setAttachmentModal(false)
+        showToast("Error", "You can only upload a maximum of three images", false)
+        return
+      }
+      setSelectedImage(file.name)
+      const imageID = uuidv4();
+      setLocalPictures((prev) => {
+        return [...prev, { id: imageID, name: file.name, file : file}]
+      })
+      setStoryPictures((prev) => {
+        return [...prev, { id : imageID, name : file.name, src : imageURL, source : "local"}]
+      })
+      insertTextAtCursor(`[Image ${file.name}]`, "#7380ec");
+      handlePlaceholder(); 
+  
+};
 
-    }
     const onUpload = (e) => {
+      if(textAreaRef.current.innerText == "" && textAreaRef.current.innerHTML == ""){
+        showToast("Error", "Pls Write Before Inserting An Image")
+        return;
+      }
       const file = e.target.files[0];
       console.log(file.name)
       const maxSize = 2 * 1024 * 1024
