@@ -5,7 +5,8 @@
     --total-feed-background : #F8F8F8;
     --feed-right-sidebar-background : white;
     --feed-headin: #a3a3a3;
-    --feed-headin-border-bottom: #526cdf;
+    --feed-heading-active: #ff5e62;
+    --feed-headin-border-bottom: #ff5e62;
     --feed-right-sidebar-color : black;
     --feed-topic-background : #f0f0f0;
     --feed-topic-color : black;
@@ -54,6 +55,7 @@
     --feed-sidebar-icon-color : white;
     --feed-card-background : #181A1E;
     --feed-headin-border-bottom: white;
+     --feed-heading-active: #526cdf;
      --feed-headin: white;
     --feed-card-color : white;
     --feed-logo-color : white;
@@ -675,7 +677,7 @@ color: var(--searcher-color);
     cursor: pointer;
    }
    .feed-heading.active{
-    color: #526cdf;
+    color: var(--feed-heading-active);
     border-bottom: 2px solid var(--feed-headin-border-bottom);
    }
    @media (max-width: 768px) {

@@ -810,6 +810,7 @@ const getAllUsers = async (req, res) => {
     const newUsersToFollow = await User.find({
         _id: { $nin: alreadyFollowedId },
     })
+        .sort({ role: 1 })
         .skip(skip)
         .limit(limit)
         .lean(); // Use lean if you want plain JavaScript objects    
