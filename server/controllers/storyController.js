@@ -426,24 +426,42 @@ const liveSearchSuggestions = async (req, res) => {
 }
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
-    console.log(req.query)
     const queryObj = {...req.query}
     try{
-        let query;
-        if(queryObj.type == "others"){
-            query   =   Story.find({userId :  { $ne: req.query.userId }, _id : { $ne: req.query.currentStoryId} })
-        }
-        else{
-            query   =   Story.find({userId :  req.query.userId, _id : { $ne: req.query.currentStoryId} })
-        }
-        if(req.query.fields){
-            const fields = req.query.fields.split(",").join(" ")
-            query = query.select(fields)
+        // let query;
+        // if(queryObj.type == "others"){
+        //     query   =   Story.find({userId :  { $ne: req.query.userId }, _id : { $ne: req.query.currentStoryId} })
+        // }
+        // else{
+        //     query   =   Story.find({userId :  req.query.userId, _id : { $ne: req.query.currentStoryId} })
+        // }
+        // if(req.query.fields){
+        //     const fields = req.query.fields.split(",").join(" ")
+        //     query = query.select(fields)
         
-        }
-const skip = (page - 1) * limit;
-query = query.skip(skip).limit(limit);
-const suggestedStories = await query.populate('userId', 'username picture').lean();
+        // }
+// const skip = (page - 1) * limit;
+// query = query.skip(skip).limit(limit);
+// const suggestedStories = await query.populate('userId', 'username picture').lean();
+const matchStage = {
+    _id: { $ne: req.query.currentStoryId},
+    userId: queryObj.type === "others"
+    ? { $ne: req.query.userId }
+    : req.query.userId
+}
+const pipeline = [
+    { $match: matchStage },
+    {$sample: { size: 2}} // Randomly pick 2 stories
+]
+if(req.query.fields){
+    const fieldsArray =  req.query.fields.split(" ")
+    const projectStage = {}
+    for (const field of fieldsArray) {
+        projectStage[field.trim()] = 1;
+    }
+    pipeline.push({ $project: projectStage})
+}
+const suggestedStories = await Story.aggregate(pipeline)
 const cleanedStories = suggestedStories.filter(story => {
     // Remove stories with empty objects, null or undefined values, and null/undefined _id
     return Object.keys(story).length > 0 && 
