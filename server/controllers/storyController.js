@@ -428,21 +428,7 @@ const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
     const queryObj = {...req.query}
     try{
-        // let query;
-        // if(queryObj.type == "others"){
-        //     query   =   Story.find({userId :  { $ne: req.query.userId }, _id : { $ne: req.query.currentStoryId} })
-        // }
-        // else{
-        //     query   =   Story.find({userId :  req.query.userId, _id : { $ne: req.query.currentStoryId} })
-        // }
-        // if(req.query.fields){
-        //     const fields = req.query.fields.split(",").join(" ")
-        //     query = query.select(fields)
-        
-        // }
-// const skip = (page - 1) * limit;
-// query = query.skip(skip).limit(limit);
-// const suggestedStories = await query.populate('userId', 'username picture').lean();
+console.log(req.query.userId)
 const matchStage = {
     _id: { $ne: req.query.currentStoryId},
     userId: queryObj.type === "others"
@@ -451,7 +437,18 @@ const matchStage = {
 }
 const pipeline = [
     { $match: matchStage },
-    {$sample: { size: 2}} // Randomly pick 2 stories
+    {$sample: { size: 2}}, // Randomly pick 2 stories
+     {
+    $lookup: {
+      from: 'users', // Name of the users collection
+      localField: 'userId',
+      foreignField: '_id',
+      as: 'user'
+    }
+  },
+  {
+    $unwind: '$user' // Convert user array to an object
+  },
 ]
 if(req.query.fields){
     const fieldsArray =  req.query.fields.split(" ")
@@ -459,6 +456,8 @@ if(req.query.fields){
     for (const field of fieldsArray) {
         projectStage[field.trim()] = 1;
     }
+    projectStage["user.username"] = 1
+     projectStage["user.picture"] = 1
     pipeline.push({ $project: projectStage})
 }
 const suggestedStories = await Story.aggregate(pipeline)

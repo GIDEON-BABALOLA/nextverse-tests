@@ -16,10 +16,10 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
   let storyPicture = ""
   let storyAvatar = ""
   if(isLoading === false){
-    console.log(story.userId)
+    console.log(story.user)
     //  storyPicture = story.picture[Math.round(Math.random())]
     storyPicture = story.picture.url
-    storyAvatar = story.userId.picture
+    storyAvatar = story.user.picture
   }
 
   const imageStatus = useMultipleImageLoad(storyPicture, storyAvatar)
@@ -55,7 +55,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
     .replace(/[^a-z0-9]+/g, "-") 
     .replace(/^-+|-+$/g, ""); 
     console.log(encodedTitle)
-  navigate(`/story/${story.userId.username}/${encodedTitle}/${story._id}`)
+  navigate(`/story/${story.user.username}/${encodedTitle}/${story._id}`)
   }
   return (
  <> {
@@ -103,7 +103,7 @@ const SuggestionCard = ({ fireClick, story, isLoading}) => {
                >&nbsp;</span>
               : <img className="story-card-avatar" src={storyAvatar}     style={{objectFit : "cover"}}/>
                }
-               <span>{story.userId.username}</span>
+               <span>{story.user.username}</span>
              
                </div>
                <FaEllipsisH  className="litenote-profile-read-more-share" style={{position : "relative", bottom : "30px"}} 
