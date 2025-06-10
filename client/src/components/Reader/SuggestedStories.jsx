@@ -10,7 +10,7 @@ const [emptyData, setEmptyData] = useState(false)
 const stories = useGetSuggestedStories();
 useEffect(() => {
   setEmptyData(false)
-stories.getSuggestedStories(1, 2, "all", userId, storyId, "others")
+stories.getSuggestedStories(1, 2, "all", userId._id, storyId, "others")
   }, [userId, storyId]);
   useEffect(() => {
 if(stories.data.length > 0){
