@@ -1,6 +1,7 @@
 const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const { rankStories } = require(path.join(__dirname, "..", "utils", "rankStories.js"))
+const { ObjectId } = require('mongoose').Types;
 const fs = require('fs');
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
@@ -429,12 +430,14 @@ const getSuggestedStories = async (req, res) => {
     const queryObj = {...req.query}
     try{
 console.log(req.query.userId)
+const currentUserId = new ObjectId(req.query.userId);
+const currentStoryId = new ObjectId(req.query.currentStoryId);
 const matchStage = {
-    _id: { $ne: req.query.currentStoryId},
-    userId: queryObj.type === "others"
-    ? { $ne: req.query.userId }
-    : req.query.userId
-}
+  _id: { $ne: currentStoryId }, // exclude current story
+  userId: queryObj.type === "others"
+    ? { $ne: currentUserId }     // get stories from other users
+    : currentUserId              // get stories from the same user
+};
 const pipeline = [
     { $match: matchStage },
     {$sample: { size: 2}}, // Randomly pick 2 stories
@@ -457,7 +460,7 @@ if(req.query.fields){
         projectStage[field.trim()] = 1;
     }
     projectStage["user.username"] = 1
-     projectStage["user.picture"] = 1
+    projectStage["user.picture"] = 1
     pipeline.push({ $project: projectStage})
 }
 const suggestedStories = await Story.aggregate(pipeline)
