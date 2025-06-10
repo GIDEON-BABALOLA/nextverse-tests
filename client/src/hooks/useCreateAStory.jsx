@@ -13,7 +13,7 @@ export const useCreateAStory = () => {
 const response = await axiosConfig.post(`/story/create-a-story`,
    formData, 
     {
-        signal : AbortSignal.timeout(60000) //times out after 1 minute
+        signal : AbortSignal.timeout(120000) //times out after 1 minute
     }
 )
 if(response && response.data){
@@ -33,7 +33,7 @@ setIsLoading(false)
 setError({message : "Your Request Has Timed Out", code : error.code})
             }
             else if(error.message == "Network Error"){
-                setError({message : "Our aervice Is Currently Offline", code : error.code})
+                setError({message : "Our service Is Currently Offline", code : error.code})
             }
             else if(error.message == "Request failed with status code 404"){
                 setError({message : "Not Found", code : error.code})
