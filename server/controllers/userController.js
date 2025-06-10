@@ -380,7 +380,7 @@ const user = await User.findOne({ username: username })
 if(!user){
     throw new userError("Your Account Does Not Exist", 401)
 }
-const totalStories =  await Story.countDocuments({username : username}) || 0
+const totalStories =  await Story.countDocuments({author : username}) || 0
 const exists = await User.exists({
     email: req.user.email,
     "following.follows" : user._id
