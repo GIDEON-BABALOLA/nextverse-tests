@@ -426,6 +426,7 @@ const liveSearchSuggestions = async (req, res) => {
 }
 const getSuggestedStories = async (req, res) => {
     const { page, limit } = req.query;
+    console.log(req.query)
     const queryObj = {...req.query}
     try{
         let query;
@@ -458,6 +459,7 @@ const enrichedStorySuggestions = cleanedStories.map((story) => ({
   }));
 res.status(200).json({suggestedStories : enrichedStorySuggestions})  
     }catch(error){
+        console.log(error)
         logEvents(`${error.name}: ${error.message}`, "getSuggestedStoriesError.txt", "storyError")
         if (error instanceof userError) {
         return  res.status(error.statusCode).json({ message : error.message})
