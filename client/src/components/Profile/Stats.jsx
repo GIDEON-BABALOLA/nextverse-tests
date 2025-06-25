@@ -1,38 +1,29 @@
 import Counter from "./Counter"
 import { useProfileContext } from "../../hooks/useProfileContext";
-import { useGetUserFollowers } from "../../hooks/useGetUserFollowers";
-import { useGetUserFollowing } from "../../hooks/useGetUserFollowing";
+import FollowersCard from "./FollowersCard";
+import FollowingCard from "./FollowingCard";
 import SpecialModal from "../common/SpecialModal";
 import { useEffect, useState } from "react";
 const Stats = ({ isLoading }) => {
-  const { getUserFollowing, isLoading: followingLoading, error: followingError, data: followingData,  followingCount } = useGetUserFollowing()
-  const { getUserFollowers, isLoading: followersLoading, error: followersError, data: followersData, followersCount } = useGetUserFollowers()
   const [openModal, setOpenModal] = useState({
     followersModal: false,
     followingModal: false
   })
   const  { profile } = useProfileContext()
- useEffect(() => {
-if(openModal.followersModal){
-getUserFollowers(1, 3, profile._id)
-}
-if(openModal.followingModal){
-getUserFollowing(1, 3, profile._id)
-}
- }, [openModal])
-useEffect(() => {
-
-}, [followersData, followingData])
-  const previewFollowingModal = () => {
-
-  }
-  const previewFollowersModal = () => {
-
-  }
   return (
     <>
-    <SpecialModal openModal={openModal.followersModal} setOpenModal={setOpenModal}  content={previewFollowersModal()} />
-    <SpecialModal openModal={openModal.followingModal} setOpenModal={setOpenModal}  content={previewFollowingModal()} />
+    <SpecialModal 
+    openModal={openModal.followersModal || openModal.followingModal}
+    setOpenModal={setOpenModal}
+    content={
+      openModal.followersModal ? (
+<FollowersCard openModal={openModal.followersModal}/>
+      ) : openModal.followingModal ? (
+<FollowingCard openModal={openModal.followingModal}/>
+      )
+      : null
+    }
+    />
     { isLoading ?
     <div style={{display : "flex", flexDirection :"row", justifyContent : "space-between", width : "100%", gap : "4px"}} className="stats-profile-loader">
     <div className="litenote-profile-stat" style={{display : "flex", flexDirection : "column", gap : "6px", marginTop : "10px"}}>
