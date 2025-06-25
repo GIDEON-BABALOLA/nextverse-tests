@@ -880,9 +880,9 @@ const getUserFollowers = async (req, res) => {
             .lean();
         
 const me = await User.findById(req.user._id).select("following").populate('following.follows').lean();
-const cleanedMe = me.filter(item => item.follows !== null);
+const cleanedMe = me.following.filter(item => item.follows !== null);
 const myFollowedIds = new Set(
-  cleanedMe.following.map(entry => entry.follows._id.toString())
+  cleanedMe.map(entry => entry.follows._id.toString())
 );
 
 const editedUserFollowers = userFollowers.map(f => ({
@@ -915,10 +915,9 @@ const getUserFollowing = async (req, res) => {
             .select("picture username email bio")
             .lean();
 const me = await User.findById(req.user._id).select("following").populate('following.follows').lean();
-const cleanedMe = me.filter(item => item.follows !== null);
-
+const cleanedMe = me.following.filter(item => item.follows !== null);
 const myFollowedIds = new Set(
-  cleanedMe.following.map(entry => entry.follows._id.toString())
+  cleanedMe.map(entry => entry.follows._id.toString())
 );
 const editedUserFollowing = userFollowing.map(f => ({
   ...f,
