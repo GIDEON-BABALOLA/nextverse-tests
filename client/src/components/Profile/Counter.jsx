@@ -22,7 +22,7 @@ const Counter = ({ end }) => {
     return () => clearInterval(counter); // Cleanup interval on component unmount
   }, [end]);
 
-  return <div>{count.toLocaleString()}</div>;
+  return <div className='special-modal-client'>{count.toLocaleString()}</div>;
 };
 
 export default Counter;

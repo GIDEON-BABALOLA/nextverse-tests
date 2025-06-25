@@ -47,25 +47,39 @@ const Stats = ({ isLoading }) => {
             <span className="litenote-profile-stat-value"><Counter end={profile["totalStories"]}/></span>
             <span className="litenote-profile-stat-label" style={{color : "white"}}   >Stories</span>
           </div>
-          <div className="litenote-profile-stat special-modal-client"
+          <div className="litenote-profile-stat"
            style={{cursor: "pointer"}}
-           onClick={() => setOpenModal({
+          >
+            <span className="litenote-profile-stat-value special-modal-client"
+            onClick={() => setOpenModal({
             followersModal: true,
             followingModal: false
           })}
-          >
-            <span className="litenote-profile-stat-value special-modal-client"><Counter end={profile["totalfollowers"]}/></span>
-            <span className="litenote-profile-stat-label special-modal-client" style={{color : "white"}}   >Followers</span>
+            >
+            <Counter end={profile["totalfollowers"]}/>
+            </span>
+            <span className="litenote-profile-stat-label special-modal-client"
+            onClick={() => setOpenModal({
+            followersModal: true,
+            followingModal: false
+          })}
+            style={{color : "white"}}>Followers</span>
           </div>
-          <div className="litenote-profile-stat special-modal-client"
+          <div className="litenote-profile-stat"
             style={{cursor: "pointer"}}
+          >
+            <span className="litenote-profile-stat-value special-modal-client"
             onClick={() => setOpenModal({
             followersModal: false,
             followingModal: true
           })}
-          >
-            <span className="litenote-profile-stat-value special-modal-client"><Counter end={profile["totalfollowing"]}/></span>
-            <span className="litenote-profile-stat-label special-modal-client" style={{color : "white"}}   >Following</span>
+            ><Counter end={profile["totalfollowing"]}/></span>
+            <span className="litenote-profile-stat-label special-modal-client" style={{color : "white"}}  
+            onClick={() => setOpenModal({
+            followersModal: false,
+            followingModal: true
+          })}
+            >Following</span>
           </div>
     </>
     }
