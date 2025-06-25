@@ -28,7 +28,6 @@ const triggerFollow = useFollowUser()
 const triggerUnFollow = useUnFollowUser();
 
 useEffect(() => {
-  console.log(profile)
 if(profile.email == user.email){
   setImPossibleToFollow(true)
 }else{
@@ -177,22 +176,14 @@ triggerFollow.followUser(profile.email)
    </section>
     :
 <section>
-<div style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "10px" }}>
+<div style={{display : "flex",  gap : "10px" }} className="litenote-bio-section">
 
-
-            <h2 className="litenote-profile-name">{profile["username"]} 
-            {/* <FcRating style={{marginLeft : "1%"}} /> */}
-
-          {/* <span className="checkbot">
-    
-          <FaCertificate style={{color : "#ff5e62", margin: "1%"}} />
-            <FaCheck className="checkman"  size={14}/> 
-          </span> */}
-        
-      
-        
+<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap:"5px"}}>
+    <h2 className="litenote-profile-name">{profile["username"]} 
           </h2>
           { user && user.verification == true && <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}} size={30}/> }
+</div>
+ <p className="litenote-profile-bio bio-phone">{profile.bio} hey</p>
           <span>{
           !imPossibleToFollow &&
           <>
@@ -216,9 +207,7 @@ triggerFollow.followUser(profile.email)
         }
         </span>
         </div>
-         
-          
-        <p className="litenote-profile-bio">{profile.bio}</p>
+        <p className="litenote-profile-bio bio-desktop">{profile.bio}</p>
 </section>
    }
 <SpecialModal openModal={openModal} setOpenModal={setOpenModal}  content={previewUnfollowHtml()} />

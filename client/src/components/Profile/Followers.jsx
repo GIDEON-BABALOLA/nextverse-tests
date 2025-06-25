@@ -124,7 +124,7 @@ useEffect(() => {
        ))
    
      }
-      <div ref={lastItemRef} style={{margin : "40px 0px"}} />
+      <div ref={lastItemRef} style={{margin : "10px 0px"}} />
    </div>
 }
    </> 

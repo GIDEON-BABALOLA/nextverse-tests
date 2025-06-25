@@ -430,6 +430,10 @@ box-shadow: var(--litenote-profile-header-box-shadow);
     background-color:white;
     color:  #ff5e62;;
   }
+   .litenote-bio-section{
+      flex-direction: row;
+      align-items: center;
+    }
  
   
   
@@ -452,11 +456,27 @@ box-shadow: var(--litenote-profile-header-box-shadow);
       opacity: 1;
     }
   }
-  
+   .bio-phone{
+      display: none;
+    }
+    .bio-desktop{
+      display: block;
+    }
   @media screen and (max-width: 768px) {
     .litenote-profile-header {
       flex-direction: column;
       align-items: flex-start;
+    }
+    .litenote-bio-section{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .bio-phone{
+      display: none;
+    }
+    .bio-desktop{
+      display: block;
+      margin-top: 10px;
     }
   
     .litenote-profile-image {
