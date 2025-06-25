@@ -20,7 +20,7 @@ useEffect(() => {
       if(openModal){
       getUserFollowers(page, limit, profile._id)
       }
-      }, [page, limit, followersCount, openModal])
+      }, [page, limit, openModal, profile])
  useEffect(() => {
     if(followers.length === followersCount && followersCount > 0){
       setPreventLoadMore(true)

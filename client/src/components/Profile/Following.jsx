@@ -18,7 +18,7 @@ const { getUserFollowing, isLoading, error, data, followingCount } = useGetUserF
       if(openModal){
       getUserFollowing(page, limit, profile._id)
       }
-      }, [page, limit, followingCount, openModal])
+      }, [page, limit, openModal, profile])
   useEffect(() => {
     if(following.length === followingCount && followingCount > 0){
       setPreventLoadMore(true)

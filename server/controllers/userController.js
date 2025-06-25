@@ -878,8 +878,18 @@ const getUserFollowers = async (req, res) => {
             .limit(parseInt(limit))
             .select("picture username email bio")
             .lean();
+const me = await User.findById(req.user._id).select("following").populate('following.follows').lean();
+
+const myFollowedIds = new Set(
+  me.following.map(entry => entry.follows._id.toString())
+);
+
+const editedUserFollowers = userFollowers.map(f => ({
+  ...f,
+  isFollowing: myFollowedIds.has(f._id.toString())
+}));
     const followersCount = await User.countDocuments({"following.follows" : userId})
-    res.status(200).json({ followers : userFollowers, count : followersCount}) 
+    res.status(200).json({ followers : editedUserFollowers, count : followersCount}) 
     }
     catch(error){
     console.log(error)
@@ -903,8 +913,16 @@ const getUserFollowing = async (req, res) => {
             .limit(parseInt(limit))
             .select("picture username email bio")
             .lean();
+const me = await User.findById(req.user._id).select("following").populate('following.follows').lean();
+const myFollowedIds = new Set(
+  me.following.map(entry => entry.follows._id.toString())
+);
+const editedUserFollowing = userFollowing.map(f => ({
+  ...f,
+  isFollowing: myFollowedIds.has(f._id.toString())
+}));
     const followingCount = await User.countDocuments({"followers.followedby" : userId})
-    res.status(200).json({ following : userFollowing, count : followingCount}) 
+    res.status(200).json({ following : editedUserFollowing, count : followingCount}) 
     }
     catch(error){
     console.log(error)

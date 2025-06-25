@@ -8,6 +8,8 @@
      --litenote-profile-header : black;
      --litenote-profile-header-box-shadow : none;
      --follow-toast-message : black;
+     --modal-follow-button-active: #ff5e62;
+     --modal-follow-button-inactive: #f9a3a5;
 
      --litenote-profile-page : #f8f8f8;
   }
@@ -18,10 +20,18 @@
     --story-card-dark-box-shadow : 2px 6px 21px -2px rgba(0,0,0,0.75);
     --litenote-profile-section-title : white;
     --litenote-profile-header : #131618;
+     --modal-follow-button-active: #526CDF;
+     --modal-follow-button-inactive: #9cacf7;
     --litenote-profile-page : #181A1E;
     --litenote-profile-header-box-shadow : 0 2px 6px rgba(0, 0, 0, 0.6);
     --follow-toast-message : white;
     
+  }
+  .modal-follow-button-active{
+    background-color: var(--modal-follow-button-active);
+  }
+   .modal-follow-button-inactive{
+    background-color: var(--modal-follow-button-inactive);
   }
   .swipe-drawer{
 border-radius: 20px;

@@ -1,5 +1,7 @@
 import CommonAvatar from "../common/CommonAvatar"
+import useNavigateProfile from "../../hooks/useNavigateProfile"
 const FollowerCard = ({ follower, isLoading }) => {
+  const navigateToProfile = useNavigateProfile()
   console.log(follower)
   return (
     
@@ -30,15 +32,22 @@ const FollowerCard = ({ follower, isLoading }) => {
   image={follower.picture}
   className="settings-page-avatar"
   />
-  <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
+  <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start", cursor: "pointer"}} onClick={() => navigateToProfile(follower.username)}>
     <span style={{ fontSize: "1rem"}}>{follower.username}</span>
     <span style={{ fontSize: "1rem"}}>{follower.bio}</span>
   </div>
   </div>
   <div>
-<button style={{outline:"none", border: "none", padding:"7px 16px", backgroundColor : "#ff5e62", color: "white", borderRadius: "5px"}}>
+    {
+      follower.isFollowing ? 
+<button style={{outline:"none", border: "none", padding:"7px 16px",  color: "white", borderRadius: "5px"}} className="modal-follow-button-inactive">
+  Following
+</button> 
+      :
+<button style={{outline:"none", border: "none", padding:"7px 16px", color: "white", borderRadius: "5px"}} className="modal-follow-button-active"  >
   Follow
 </button>
+    }
   </div>
   </div>
 }
