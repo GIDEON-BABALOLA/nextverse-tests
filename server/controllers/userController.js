@@ -866,6 +866,56 @@ const getAllUsers = async (req, res) => {
             }
         }
         }
+const getUserFollowers = async (req, res) => {
+     const { page, limit, userId } = req.query;
+    try{
+    const skip = (page - 1) * limit;
+    const userFollowers = await User.find({
+            'following.follows': userId
+          })
+            .sort({ createdAt: -1 }) // Newest first
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .select("picture username email bio")
+            .lean();
+    const followersCount = await User.countDocuments({"following.follows" : userId})
+    res.status(200).json({ followers : userFollowers, count : followersCount}) 
+    }
+    catch(error){
+    console.log(error)
+    logEvents(`${error.name}: ${error.message}`, "getUserFollowersError.txt", "userError")
+    if(error instanceof userError){
+                return res.status(error.statusCode).json({ message : error.message})
+    }else{
+                return res.status(500).json({message : "Internal Server Error"})
+        }
+    }
+}
+const getUserFollowing = async (req, res) => {
+    const { page, limit, userId } = req.query;
+    try{
+    const skip = (page - 1) * limit; 
+    const userFollowing = await User.find({
+            'followers.followedby': userId
+          })
+            .sort({ createdAt: -1 }) // Newest first
+            .skip(parseInt(skip))
+            .limit(parseInt(limit))
+            .select("picture username email bio")
+            .lean();
+    const followingCount = await User.countDocuments({"followers.followedby" : userId})
+    res.status(200).json({ following : userFollowing, count : followingCount}) 
+    }
+    catch(error){
+    console.log(error)
+    logEvents(`${error.name}: ${error.message}`, "getUserFollowingError.txt", "userError")
+    if(error instanceof userError){
+    return res.status(error.statusCode).json({ message : error.message})
+    }else{
+    return res.status(500).json({message : "Internal Server Error"})
+        }   
+    }
+}
         const getUserStories = async (req, res) => {
             const { page, limit } = req.query;
             const { username } = req.params
@@ -967,6 +1017,8 @@ module.exports = {
     getAllMyUsers,
     getAUser,
     getUserBookmarks,
+    getUserFollowers,
+    getUserFollowing,
     getUserStories,
     getCurrentUserStories
 }

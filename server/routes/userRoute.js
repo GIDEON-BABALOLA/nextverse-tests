@@ -23,6 +23,8 @@ getUserBookmarks,
 getUserStories,
 getAllMyUsers,
 getCurrentUserStories,
+getUserFollowers, 
+getUserFollowing
 } = require(path.join(__dirname, "..", "controllers", "userController.js"))
 const { verifyReCAPTCHA } = require(path.join(__dirname, "..", "middlewares", "verifyReCAPTCHA"))
 const { authMiddleware, isAdministrator, bruteForceLimiter } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
@@ -43,6 +45,8 @@ router.get("/get-all-users", authMiddleware, getAllUsers)
 router.get("/get-all-my-users", authMiddleware,  isAdministrator,getAllMyUsers)
 router.get("/get-user-profile", authMiddleware, getUserProfile)
 router.get("/get-user-bookmarks", authMiddleware, getUserBookmarks)
+router.get("/get-user-followers", authMiddleware, getUserFollowers)
+router.get("/get-user-following", authMiddleware, getUserFollowing)
 router.get("/get-user-stories/:username", authMiddleware, getUserStories)
 router.get("/get-current-user-stories", authMiddleware, getCurrentUserStories)
 router.get("/logout-user",  authMiddleware, logoutUser)

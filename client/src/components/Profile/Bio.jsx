@@ -28,6 +28,7 @@ const triggerFollow = useFollowUser()
 const triggerUnFollow = useUnFollowUser();
 
 useEffect(() => {
+  console.log(profile)
 if(profile.email == user.email){
   setImPossibleToFollow(true)
 }else{
@@ -215,7 +216,8 @@ triggerFollow.followUser(profile.email)
         }
         </span>
         </div>
-          <span><b>{profile.email}</b></span>
+         
+          
         <p className="litenote-profile-bio">{profile.bio}</p>
 </section>
    }
