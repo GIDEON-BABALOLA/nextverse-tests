@@ -1,5 +1,6 @@
 import { useGetUserFollowing } from "../../hooks/useGetUserFollowing";
 import FollowingCard from "./FollowingCard"
+import NoContent from "../common/NoContent"
 import { useState, useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import { useProfileContext } from "../../hooks/useProfileContext";
@@ -75,8 +76,9 @@ const { getUserFollowing, isLoading, error, data, followingCount } = useGetUserF
           }
               }, [data, isLoading, followingCount, following, preventLoadMore, limit, page, error])
 const resendRequest = () => {
+  console.log("you")
   setEmptyData(false)
-   getUserFollowers(page, limit, profile._id)
+  getUserFollowing(page, limit, profile._id)
   }
   return (
    <>

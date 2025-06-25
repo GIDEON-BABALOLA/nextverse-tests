@@ -1,6 +1,7 @@
 import { useGetUserFollowers } from "../../hooks/useGetUserFollowers";
 import ErrorMessage from "../common/ErrorMessage";
 import { MdClose } from "react-icons/md";
+import NoContent from "../common/NoContent"
 import FollowerCard  from "./FollowerCard"
 import { useRef } from "react";
 import { useState, useEffect } from "react";
@@ -77,8 +78,9 @@ useEffect(() => {
           }
               }, [data, isLoading, followersCount, followers, preventLoadMore, limit, page, error])
   const resendRequest = () => {
+    console.log("you")
   setEmptyData(false)
-   getUserFollowers(page, limit, profile._id)
+  getUserFollowers(page, limit, profile._id)
   }
   return (
  <>

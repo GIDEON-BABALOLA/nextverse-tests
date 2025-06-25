@@ -2,9 +2,11 @@ import Counter from "./Counter"
 import { useProfileContext } from "../../hooks/useProfileContext";
 import Followers from "./Followers";
 import Following from "./Following";
+import useWindowSize from "../../hooks/useWindowSize"
 import SpecialModal from "../common/SpecialModal";
 import { useEffect, useState } from "react";
 const Stats = ({ isLoading }) => {
+  const { width } = useWindowSize()
   const [openModal, setOpenModal] = useState({
     followersModal: false,
     followingModal: false
@@ -13,7 +15,7 @@ const Stats = ({ isLoading }) => {
   return (
     <>
     <SpecialModal 
-    width={500}
+    width={ width < 768 ? 350 : 500}
     height={400}
     openModal={openModal.followersModal || openModal.followingModal}
     setOpenModal={setOpenModal}
