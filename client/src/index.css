@@ -96,6 +96,13 @@ html, #root {
     text-wrap: nowrap;
     white-space: nowrap;
   }
+  .d-divider {
+  border: none;
+  height: 1px;
+  background-color: red;
+  margin: 20px 0;
+}
+
   .status-inactive{
    
     border-radius: 9999px;

@@ -1,7 +1,7 @@
 import Counter from "./Counter"
 import { useProfileContext } from "../../hooks/useProfileContext";
-import FollowersCard from "./FollowersCard";
-import FollowingCard from "./FollowingCard";
+import Followers from "./Followers";
+import Following from "./Following";
 import SpecialModal from "../common/SpecialModal";
 import { useEffect, useState } from "react";
 const Stats = ({ isLoading }) => {
@@ -13,13 +13,15 @@ const Stats = ({ isLoading }) => {
   return (
     <>
     <SpecialModal 
+    width={500}
+    height={400}
     openModal={openModal.followersModal || openModal.followingModal}
     setOpenModal={setOpenModal}
     content={
       openModal.followersModal ? (
-<FollowersCard openModal={openModal.followersModal}/>
+<Followers openModal={openModal.followersModal} setOpenModal={setOpenModal}/>
       ) : openModal.followingModal ? (
-<FollowingCard openModal={openModal.followingModal}/>
+<Following openModal={openModal.followingModal} setOpenModal={setOpenModal}/>
       )
       : null
     }
@@ -52,8 +54,8 @@ const Stats = ({ isLoading }) => {
             followingModal: false
           })}
           >
-            <span className="litenote-profile-stat-value"><Counter end={profile["totalfollowers"]}/></span>
-            <span className="litenote-profile-stat-label" style={{color : "white"}}   >Followers</span>
+            <span className="litenote-profile-stat-value special-modal-client"><Counter end={profile["totalfollowers"]}/></span>
+            <span className="litenote-profile-stat-label special-modal-client" style={{color : "white"}}   >Followers</span>
           </div>
           <div className="litenote-profile-stat special-modal-client"
             style={{cursor: "pointer"}}
@@ -62,8 +64,8 @@ const Stats = ({ isLoading }) => {
             followingModal: true
           })}
           >
-            <span className="litenote-profile-stat-value"><Counter end={profile["totalfollowing"]}/></span>
-            <span className="litenote-profile-stat-label" style={{color : "white"}}   >Following</span>
+            <span className="litenote-profile-stat-value special-modal-client"><Counter end={profile["totalfollowing"]}/></span>
+            <span className="litenote-profile-stat-label special-modal-client" style={{color : "white"}}   >Following</span>
           </div>
     </>
     }

@@ -50,6 +50,17 @@ box-shadow: var(--litenote-profile-header-box-shadow);
             animation: 1.5s shine linear infinite;
   
   }
+    .profile-loaders{
+    object-fit: cover;
+    background: var(--skeleton-background);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+            animation: 1.5s shine linear infinite;
+   }
+  .profile-loaders-username{
+    width: 100px;
+    height: 15px;
+   }
   .profile-rotation-parent-container{
     position: relative;
     width: 100%;

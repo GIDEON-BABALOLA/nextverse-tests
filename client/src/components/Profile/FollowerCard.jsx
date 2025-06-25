@@ -1,6 +1,6 @@
 import CommonAvatar from "../common/CommonAvatar"
-const FollowingCard = ({ following, isLoading }) => {
-  console.log(following)
+const FollowerCard = ({ follower, isLoading }) => {
+  console.log(follower)
   return (
     
     <>
@@ -27,12 +27,12 @@ const FollowingCard = ({ following, isLoading }) => {
   <div style={{display: "flex", flexDirection: "row", alignItems : "center", justifyContent: "space-between", gap: "10px"}}>
     <CommonAvatar
   style={{height : "60px", width: "60px"}}
-  image={following.picture}
+  image={follower.picture}
   className="settings-page-avatar"
   />
   <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-    <span style={{ fontSize: "1rem"}}>{following.username}</span>
-    <span style={{ fontSize: "1rem"}}>{following.bio}</span>
+    <span style={{ fontSize: "1rem"}}>{follower.username}</span>
+    <span style={{ fontSize: "1rem"}}>{follower.bio}</span>
   </div>
   </div>
   <div>
@@ -47,4 +47,4 @@ const FollowingCard = ({ following, isLoading }) => {
   )
 }
 
-export default FollowingCard
+export default FollowerCard
