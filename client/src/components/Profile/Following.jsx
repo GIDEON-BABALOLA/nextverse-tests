@@ -1,5 +1,6 @@
 import { useGetUserFollowing } from "../../hooks/useGetUserFollowing";
 import FollowingCard from "./FollowingCard"
+import ErrorMessage from "../common/ErrorMessage"
 import NoContent from "../common/NoContent"
 import { useState, useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
