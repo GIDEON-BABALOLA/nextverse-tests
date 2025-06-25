@@ -878,13 +878,20 @@ const getUserFollowers = async (req, res) => {
             .limit(parseInt(limit))
             .select("picture username email bio")
             .lean();
+    const cleanedUserFollowers = userFollowers.filter(user => {
+    // Remove stories with empty objects, null or undefined values, and null/undefined _id
+    return Object.keys(user).length > 0 && 
+           user._id != null && 
+           !Object.values(user).includes(null) && 
+           !Object.values(user).includes(undefined);
+  });
 const me = await User.findById(req.user._id).select("following").populate('following.follows').lean();
 
 const myFollowedIds = new Set(
   me.following.map(entry => entry.follows._id.toString())
 );
 
-const editedUserFollowers = userFollowers.map(f => ({
+const editedUserFollowers = cleanedUserFollowers.map(f => ({
   ...f,
   isFollowing: myFollowedIds.has(f._id.toString())
 }));
@@ -913,11 +920,18 @@ const getUserFollowing = async (req, res) => {
             .limit(parseInt(limit))
             .select("picture username email bio")
             .lean();
+    const cleanedUserFollowing = userFollowing.filter(user => {
+    // Remove stories with empty objects, null or undefined values, and null/undefined _id
+    return Object.keys(user).length > 0 && 
+           user._id != null && 
+           !Object.values(user).includes(null) && 
+           !Object.values(user).includes(undefined);
+  });
 const me = await User.findById(req.user._id).select("following").populate('following.follows').lean();
 const myFollowedIds = new Set(
   me.following.map(entry => entry.follows._id.toString())
 );
-const editedUserFollowing = userFollowing.map(f => ({
+const editedUserFollowing = cleanedUserFollowing.map(f => ({
   ...f,
   isFollowing: myFollowedIds.has(f._id.toString())
 }));
