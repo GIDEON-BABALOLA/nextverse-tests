@@ -16,7 +16,7 @@ const Stats = ({ isLoading }) => {
     <>
     <SpecialModal 
     width={ width < 768 ? 350 : 500}
-    height={400}
+    height={width < 768 ? 500 : 400}
     openModal={openModal.followersModal || openModal.followingModal}
     setOpenModal={setOpenModal}
     content={
