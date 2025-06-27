@@ -138,3 +138,24 @@ height: 4rem;
    
     border-radius: 50%; 
 }
+@media screen and (max-width: 768px) {
+  .litenote-sidebar-aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80vw;
+    height: 100vh;
+    background: white;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    will-change: transform;
+    background: #fff; 
+    z-index: 9999;
+  }
+}
+
+.litenote-sidebar-aside {
+  transform: translateZ(0); /* Forces hardware acceleration */
+  will-change: transform;
+}
