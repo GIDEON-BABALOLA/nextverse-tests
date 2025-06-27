@@ -1,6 +1,8 @@
 import CommonAvatar from "../common/CommonAvatar"
 import useNavigateProfile from "../../hooks/useNavigateProfile"
+import { useFollowUser } from "../../hooks/useFollowUser"
 const FollowingCard = ({ following, isLoading }) => {
+  const {followUser, isLoading: buttonLoading, error, data, statusCode} = useFollowUser()
     const navigateToProfile = useNavigateProfile()
   console.log(following)
   return (

@@ -61,8 +61,12 @@ html, #root {
                 animation: 1.5s shine linear infinite;
   }
   .remove-scrolling { 
-    height: 100%; 
-    overflow: hidden; 
+    /* height: 100%; 
+    overflow: hidden;  */
+     position: fixed;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
   } 
   .profile-photo-home{
     border-radius:50%;

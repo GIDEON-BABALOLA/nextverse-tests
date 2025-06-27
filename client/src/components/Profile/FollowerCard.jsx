@@ -1,8 +1,12 @@
 import CommonAvatar from "../common/CommonAvatar"
 import useNavigateProfile from "../../hooks/useNavigateProfile"
+import { useFollowUser } from "../../hooks/useFollowUser"
 const FollowerCard = ({ follower, isLoading }) => {
+  const {followUser, isLoading: buttonLoading, error, data,} = useFollowUser()
   const navigateToProfile = useNavigateProfile()
-  console.log(follower)
+  const handleFollowUser = () => {
+    followUser(follower.email)
+  }
   return (
     
     <>
@@ -44,7 +48,9 @@ const FollowerCard = ({ follower, isLoading }) => {
   Following
 </button> 
       :
-<button style={{outline:"none", border: "none", padding:"7px 16px", color: "white", borderRadius: "5px"}} className="modal-follow-button-active"  >
+<button 
+onClick={() => handleFollowUser()}
+style={{outline:"none", border: "none", padding:"7px 16px", color: "white", borderRadius: "5px"}} className="modal-follow-button-active"  >
   Follow
 </button>
     }
