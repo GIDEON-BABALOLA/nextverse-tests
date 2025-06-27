@@ -306,7 +306,7 @@ border-radius: var(--border-radius-1);
   left: 0;
   width: 65vw;
   height: 100vh;
-  background: white;
+  background: var(--total-navbar-background);
   z-index: 9999;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;

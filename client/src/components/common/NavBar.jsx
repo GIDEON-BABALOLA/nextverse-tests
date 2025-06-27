@@ -253,7 +253,8 @@ setOpenModal={setOpenModal} />} height={350} width={400}/>
                      
                         <Link 
                           to={ user ? `/profile/${user.username}` : "/login"} 
-                         className={`nav-sidebar-link ${currentUrl === "profile" && "active"}`} 
+                         className={`nav-sidebar-link ${currentUrl.includes("profile") && "active"}`} 
+                         
                         
                         onClick={dave}>
                         <FaUser size={20} />
