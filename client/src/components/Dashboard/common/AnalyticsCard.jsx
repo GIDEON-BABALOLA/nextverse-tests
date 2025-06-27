@@ -6,7 +6,7 @@ import {
 const AnalyticsCard = ({cardTitle, cardTotal, cardPercent, className, cardIcon, trend,  storyMetricsLoading}) => {
   return (
    <>
-      <div className={className} >
+      <div className={className}  style={{ maxWidth: "400px"}}>
       <span>
       {cardIcon}
       </span>
