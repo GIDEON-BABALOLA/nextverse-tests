@@ -138,3 +138,22 @@ height: 4rem;
    
     border-radius: 50%; 
 }
+@media (max-width: 768px) {
+   .litenote-sidebar-aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 65vw;
+  height: 100vh;
+  background: white;
+  z-index: 9999;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+}
+.litenote-sidebar-aside.open {
+  transform: translateX(0);
+}
+}

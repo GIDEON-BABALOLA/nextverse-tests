@@ -2,8 +2,6 @@
 import useNavigateStory from "../../../hooks/useNavigateStory"
 import { formatTime } from "../../../helpers/formatTime";
 const TableRow = ({ id, title, author, category, date, readTime, serialNumber, isLoading}) => {
-  console.log(id);
-  
   const navigateToStory = useNavigateStory();
   const openStory = () => {
     navigateToStory({_id : id, author, title})

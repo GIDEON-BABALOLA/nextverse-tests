@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react"
 import useImageLoad from "../../hooks/useImageLoaded"
 const CustomAvatar = ({ image, ...props}) => {
-  console.log(image)
   const [loading, setLoading] = useState(true)
   const { loaded, error } = useImageLoad(image);
   useEffect(() => {

@@ -57,8 +57,9 @@ const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    const currentPage = useParams();
    const currentUrl = Object.values(currentPage)[0].split("/")[1]
    const closeSidebar = () => {
-sidebarRef.current.classList.add("litenote-sidebar-aside-close")
-sidebarRef.current.style.display = "block";
+// sidebarRef.current.classList.add("litenote-sidebar-aside-close")
+// sidebarRef.current.style.display = "block";
+ sidebarRef.current.classList.remove("open")
    }
    let startX, startY, endX, endY;
    const minSwipeDistance = 50;
@@ -85,6 +86,7 @@ sidebarRef.current.style.display = "block";
      
    }
    const dave = (e) => {
+      console.log("hi")
       console.log(e.target.innerText)
       if(e.target.innerText == "Notifications"){
          getNotificationsCount()
@@ -93,8 +95,9 @@ sidebarRef.current.style.display = "block";
          setOpenModal(true)
       }
       setDashboardToast(false)
-      sidebarRef.current.classList.add("litenote-sidebar-aside-close")
-sidebarRef.current.style.display = "block";
+// sidebarRef.current.classList.add("litenote-sidebar-aside-close")
+// sidebarRef.current.style.display = "block";
+sidebarRef.current.classList.add("open")
    }
    useEffect(()=> {
 clickSidebarMenu()
