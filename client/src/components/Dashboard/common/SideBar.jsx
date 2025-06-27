@@ -59,7 +59,7 @@ const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    const closeSidebar = () => {
 // sidebarRef.current.classList.add("litenote-sidebar-aside-close")
 // sidebarRef.current.style.display = "block";
- sidebarRef.current.classList.remove("open")
+sidebarRef.current.classList.remove("open")
    }
    let startX, startY, endX, endY;
    const minSwipeDistance = 50;
@@ -86,7 +86,6 @@ const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
      
    }
    const dave = (e) => {
-      console.log("hi")
       console.log(e.target.innerText)
       if(e.target.innerText == "Notifications"){
          getNotificationsCount()
@@ -97,7 +96,7 @@ const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
       setDashboardToast(false)
 // sidebarRef.current.classList.add("litenote-sidebar-aside-close")
 // sidebarRef.current.style.display = "block";
-sidebarRef.current.classList.add("open")
+sidebarRef.current.classList.remove("open")
    }
    useEffect(()=> {
 clickSidebarMenu()
@@ -146,7 +145,9 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                            <h3 className="litenote-dashboard-h-three">Feed</h3>
         </Link>
                  
-                    <Link to="/dashboard/bookmarks"  className={`sidebar-links ${currentUrl === "bookmarks" && "active"}`}>
+                    <Link to="/dashboard/bookmarks"  className={`sidebar-links ${currentUrl === "bookmarks" && "active"}`}
+                    onClick={dave}
+                    >
                     <MdBookmarks size={20} />
                            <h3 className="litenote-dashboard-h-three">Bookmarks</h3>
         </Link>
@@ -173,7 +174,8 @@ ref={sidebarRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                      }
                         <Link to="/dashboard/publish" className={`sidebar-links ${currentUrl === "publish" && "active"}`} 
                         
-                        onClick={dave}>
+                        onClick={dave}
+                        >
                         <MdAutoStories size={24} />
 
                            <h3 className="litenote-dashboard-h-three">Publish</h3>

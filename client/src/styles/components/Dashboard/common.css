@@ -237,10 +237,10 @@ a{
         display: none;
         animation: showMenu 400ms ease forwards;
     }
-    .litenote-sidebar-aside-close{
+    /* .litenote-sidebar-aside-close{
     left: 0%;
     animation: closeMenu 900ms ease forwards;
-    }
+    } */
     @keyframes showMenu {
         to{
             left: 0%;

@@ -73,8 +73,9 @@ contextMenu.current.classList.add("active")
     contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
       };
   const showSidebar = () => {
-//        sidebarRef.current.classList.remove("litenote-sidebar-aside-close")
-//  sidebarRef.current.style.display='block';
+    console.log(sidebarRef.current.classList)
+ sidebarRef.current.classList.remove("litenote-sidebar-aside-close")
+ sidebarRef.current.style.display='block';
 sidebarRef.current.classList.add("open")
   }
   return (
