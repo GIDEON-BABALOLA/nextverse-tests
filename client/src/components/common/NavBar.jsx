@@ -56,7 +56,7 @@ getNotificationsCount()
 
   const showNavSidebar = () => {
     navSidebarRef.current.classList.remove("litenote-nav-sidebar-aside-close")
-    navSidebarRef.current.style.display='block';
+    // navSidebarRef.current.style.display='block';
     if(width < 768){
       disableScroll()
     }
