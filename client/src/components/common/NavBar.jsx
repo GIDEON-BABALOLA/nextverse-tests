@@ -55,8 +55,9 @@ getNotificationsCount()
   } 
 
   const showNavSidebar = () => {
-    navSidebarRef.current.classList.remove("litenote-nav-sidebar-aside-close")
-    navSidebarRef.current.style.display='block';
+    // navSidebarRef.current.classList.remove("litenote-nav-sidebar-aside-close")
+    navSidebarRef.current.classList.add("open")
+    // navSidebarRef.current.style.display='block';
     if(width < 768){
       disableScroll()
     }
@@ -89,8 +90,9 @@ getNotificationsCount()
      }
    }
   const closeNavSidebar = () => {
-    navSidebarRef.current.classList.add("litenote-nav-sidebar-aside-close")
-    navSidebarRef.current.style.display = "block";
+    // navSidebarRef.current.classList.add("litenote-nav-sidebar-aside-close")
+    // navSidebarRef.current.style.display = "block";
+    navSidebarRef.current.classList.remove("open")
     if(width < 768){
       enableScroll()
     }

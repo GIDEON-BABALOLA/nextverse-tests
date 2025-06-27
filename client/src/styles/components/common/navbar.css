@@ -162,7 +162,7 @@ border-radius: var(--border-radius-1);
   transform: scale(0.8);
 }
 
-    .litenote-nav-sidebar-aside{
+    /* .litenote-nav-sidebar-aside{
         position: fixed;
         left: -100%;
         background: var(--color-white);
@@ -173,11 +173,11 @@ border-radius: var(--border-radius-1);
         padding-right: var(--card-padding);
         display: none;
         animation: showNavSideMenu 400ms ease forwards;
-    }
-    .litenote-nav-sidebar-aside-close{
+    } */
+    /* .litenote-nav-sidebar-aside-close{
     left: 0%;
     animation: closeNavSideMenu 900ms ease forwards;
-    }
+    } */
     @keyframes showNavSideMenu {
         to{
             left: 0%;
@@ -298,3 +298,22 @@ border-radius: var(--border-radius-1);
     }
    }
  
+
+
+   .litenote-nav-sidebar-aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 65vw;
+  height: 100vh;
+  background: white;
+  z-index: 9999;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+}
+.litenote-nav-sidebar-aside.open {
+  transform: translateX(0);
+}
