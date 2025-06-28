@@ -91,7 +91,7 @@ setSearchResult(userData)
 }
 const singleSearch = () => {
   const resultsArray = userData.filter((user) => user.email.toLowerCase().includes(searchQuery.toLowerCase()) 
-  || user.mobile.includes(searchQuery) ||  user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  || user?.mobile?.includes(searchQuery) ||  user.username.toLowerCase().includes(searchQuery.toLowerCase())
 ) //Returns Boolean
   setSearchResult(resultsArray)
 }
