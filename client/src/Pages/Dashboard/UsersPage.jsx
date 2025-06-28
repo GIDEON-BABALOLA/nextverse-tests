@@ -82,7 +82,6 @@ setSearchResult(userData)
 
   const handleSearchChange = (e) => { 
     const value = e.target.value.trim()
-
     setSearchQuery(value)
     if(!value){
         return setSearchResult(userData)
@@ -103,7 +102,7 @@ const searchArray = (search) => {
 }
 const resultsArray = (search) => {
   const resultsArray = userData.filter((user) => user.email.toLowerCase().includes(search.toLowerCase()) 
-  || user.mobile.includes(search) ||  user.username.toLowerCase().includes(search.toLowerCase())
+  || user?.mobile?.includes(search) ||  user.username.toLowerCase().includes(search.toLowerCase())
 ) //Returns Boolean
 return resultsArray
 
