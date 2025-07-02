@@ -181,7 +181,7 @@ triggerFollow.followUser(profile.email)
 <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap:"5px"}}>
     <h2 className="litenote-profile-name">{profile["username"]} 
           </h2>
-          { user && user.verification == true && <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}} size={30}/> }
+          { profile && profile.verification == true && <MdVerified style={{marginLeft : "1%", color : "black", fill : "#FF4B33"}} size={30}/> }
 </div>
  <p className="litenote-profile-bio bio-phone">{profile.bio} hey</p>
           <span>{
